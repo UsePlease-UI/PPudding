@@ -1,1 +1,5 @@
-# react-components
+### Test
+
+```
+$ npm test
+```
