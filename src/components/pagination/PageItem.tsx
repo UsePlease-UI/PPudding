@@ -12,7 +12,7 @@ const ListStyle = css({
     borderRadius: 4,
     fontSize: 15,
     fontWeight: 600,
-    cursor: 'pointer',
+    cursor: 'pointer'
 });
 type pageItemPropType = {
     key: number;
@@ -24,6 +24,7 @@ type pageItemPropType = {
 
 export default function PageItem({ key, pageNum, page, totalCount, onClick }: pageItemPropType) {
     return (
+        // eslint-disable-next-line react/jsx-no-useless-fragment
         <>
             {pageNum > totalCount ? null : (
                 <li
@@ -33,11 +34,12 @@ export default function PageItem({ key, pageNum, page, totalCount, onClick }: pa
                         ListStyle,
                         {
                             background: page === pageNum ? '#3378FF' : '',
-                            color: page === pageNum ? 'white' : '#8D8D8D',
-                        },
+                            color: page === pageNum ? 'white' : '#8D8D8D'
+                        }
                     ])}
                     onClick={onClick}
-                    onKeyUp={onClick}>
+                    onKeyUp={onClick}
+                >
                     {pageNum}
                 </li>
             )}
