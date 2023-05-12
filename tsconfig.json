@@ -1,23 +1,20 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "lib": ["dom", "dom.iterable", "es6"], // MUI : lib: ['dom', 'es6']
-        "noImplicitAny": true, // MUI
-        "noImplicitThis": true, // MUI
-        "strictNullChecks": true, // MUI
-        "allowJs": true, // MUI
+        "target": "es2015",
+        "module": "esnext",
+        "jsx": "react-jsx",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "noFallthroughCasesInSwitch": true,
-        "module": "esnext",
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
-        "jsx": "react-jsx",
         "baseUrl": "src"
     },
     "include": ["src"]
