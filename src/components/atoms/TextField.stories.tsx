@@ -5,6 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
     title: 'ATOMS/TextField',
     component: TextField,
+    tags: ['autodocs'],
     argTypes: {
         name: {
             control: { type: 'text' },
