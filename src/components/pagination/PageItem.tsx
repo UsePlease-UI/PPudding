@@ -2,7 +2,7 @@
 
 import { css } from '@emotion/react';
 
-const ListStyle = css({
+const listStyle = css({
     width: 32,
     height: 32,
     display: 'flex',
@@ -14,24 +14,23 @@ const ListStyle = css({
     fontWeight: 600,
     cursor: 'pointer'
 });
+
 type pageItemPropType = {
-    key: number;
     pageNum: number;
     page: number;
     totalCount: number;
     onClick: () => void;
 };
 
-export default function PageItem({ key, pageNum, page, totalCount, onClick }: pageItemPropType) {
+export default function PageItem({ pageNum, page, totalCount, onClick }: pageItemPropType) {
     return (
         // eslint-disable-next-line react/jsx-no-useless-fragment
         <>
             {pageNum > totalCount ? null : (
                 <li
                     role="presentation"
-                    key={key}
                     css={css([
-                        ListStyle,
+                        listStyle,
                         {
                             background: page === pageNum ? '#3378FF' : '',
                             color: page === pageNum ? 'white' : '#8D8D8D'

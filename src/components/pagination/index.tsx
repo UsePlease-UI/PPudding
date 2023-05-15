@@ -4,11 +4,11 @@ import { useState } from 'react';
 
 import { css } from '@emotion/react';
 
-import PageItem from './PageItem';
+import PageItem from 'components/pagination/PageItem';
 
 import { PageFirstIcon, PagePreviousIcon, PageNextIcon, PageLastIcon } from 'assets/icons';
 
-const IconWrapper = css({
+const iconWrapper = css({
     width: 32,
     height: 32,
     display: 'flex',
@@ -29,9 +29,10 @@ type PaginationPropsType = {
     count: number;
 };
 
+const PAGE_ARR = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 export default function Pagination({ count }: PaginationPropsType) {
     const [page, setPage] = useState(1);
-    const pageArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
     // const totalCount = Math.ceil(count / pageSize);
     const totalCount = 32;
@@ -69,7 +70,7 @@ export default function Pagination({ count }: PaginationPropsType) {
                 aria-label="first button"
                 onClick={() => handleFirstClick()}
                 css={css([
-                    IconWrapper,
+                    iconWrapper,
                     {
                         '& svg': {
                             stroke: totalCount < 2 ? '#8D8D8D4D' : '#8D8D8D'
@@ -85,7 +86,7 @@ export default function Pagination({ count }: PaginationPropsType) {
                 aria-label="previous Button"
                 onClick={() => handlePrevClick()}
                 css={css([
-                    IconWrapper,
+                    iconWrapper,
                     {
                         '& svg': {
                             stroke: totalCount < 2 ? '#8D8D8D4D' : '#8D8D8D'
@@ -106,7 +107,7 @@ export default function Pagination({ count }: PaginationPropsType) {
                 })}
             >
                 <ul style={{ display: 'flex', flexDirection: 'row', gap: '10px', padding: 20 }}>
-                    {pageArr.map((el, index) => (
+                    {PAGE_ARR.map((el, index) => (
                         <PageItem
                             key={el}
                             pageNum={el + 1}
@@ -122,7 +123,7 @@ export default function Pagination({ count }: PaginationPropsType) {
                 aria-label="next button"
                 onClick={() => handleNextClick()}
                 css={css([
-                    IconWrapper,
+                    iconWrapper,
                     {
                         '& svg': {
                             stroke: totalCount < 2 ? '#8D8D8D4D' : '#8D8D8D'
@@ -138,7 +139,7 @@ export default function Pagination({ count }: PaginationPropsType) {
                 aria-label="last button"
                 onClick={() => handleLastClick()}
                 css={css([
-                    IconWrapper,
+                    iconWrapper,
                     {
                         '& svg': {
                             stroke: totalCount < 2 ? '#8D8D8D4D' : '#8D8D8D'
