@@ -1,4 +1,8 @@
-import { css } from '@emotion/react';
+import React from 'react';
+
+import { Global, css } from '@emotion/react';
+import type { Preview } from '@storybook/react';
+import { withThemeFromJSXProvider } from '@storybook/addon-styling';
 
 const reset = css`
     * {
@@ -60,4 +64,24 @@ const reset = css`
     }
 `;
 
-export default reset;
+const GlobalStyles = () => <Global styles={reset} />;
+
+export const decorators = [
+    withThemeFromJSXProvider({
+        GlobalStyles // Adds your GlobalStyles component to all stories
+    })
+];
+
+const preview: Preview = {
+    parameters: {
+        actions: { argTypesRegex: '^on[A-Z].*' },
+        controls: {
+            matchers: {
+                color: /(background|color)$/i,
+                date: /Date$/
+            }
+        }
+    }
+};
+
+export default preview;
