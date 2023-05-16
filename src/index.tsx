@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 import { Global } from '@emotion/react';
 
-import Pagination from 'components/pagination';
+import Pagination from 'components/molecules/Pagination';
 import reportWebVitals from 'reportWebVitals';
 import reset from 'styles/reset';
 

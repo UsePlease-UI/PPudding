@@ -23,17 +23,23 @@ type pageItemPropType = {
 };
 
 export default function PageItem({ pageNum, page, totalCount, onClick }: pageItemPropType) {
+    console.log(page, pageNum);
+
     return (
         // eslint-disable-next-line react/jsx-no-useless-fragment
         <>
             {pageNum > totalCount ? null : (
                 <li
+                    aria-label="Go to page {{page}}"
                     role="presentation"
                     css={css([
                         listStyle,
                         {
                             background: page === pageNum ? '#3378FF' : '',
-                            color: page === pageNum ? 'white' : '#8D8D8D'
+                            color: page === pageNum ? 'white' : '#8D8D8D',
+                            '&:hover': {
+                                background: page === pageNum ? '#2668EB' : '#3378FF4D'
+                            }
                         }
                     ])}
                     onClick={onClick}
