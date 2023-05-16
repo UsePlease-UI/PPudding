@@ -1,11 +1,9 @@
 /** @jsxImportSource @emotion/react */
-
 import { useState } from 'react';
-
-import { css } from '@emotion/react';
 
 import PageItem from 'components/pagination/PageItem';
 
+import { css } from '@emotion/react';
 import { PageFirstIcon, PagePreviousIcon, PageNextIcon, PageLastIcon } from 'assets/icons';
 
 const iconWrapper = css({
