@@ -9,7 +9,7 @@ const navStyle = css({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     width: '100%'
 });
 
@@ -28,10 +28,7 @@ type PaginationPropsType = {
 };
 
 const PAGE_LIMIT = 10;
-/**
- *  Accessibility
- *  nav element에 aria-label 속성 필수
- */
+
 export default function Pagination({ totalCount, page, blockNum, onChange }: PaginationPropsType) {
     const pageMaxCount = Math.ceil(totalCount / 10);
 
