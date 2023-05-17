@@ -50,7 +50,7 @@ export default function App() {
                     <Pagination totalCount={32} page={page} blockNum={blockNum} onChange={handlePaginationChange} />
                 </FlexBox>
                 <FlexBox direction="column" gap={10}>
-                    <h2>TEXTFIELD</h2>
+                    <h2>SELECT</h2>
                     <FormControl
                         id="milk"
                         label="우유"
@@ -69,7 +69,7 @@ export default function App() {
                     </FormControl>
                 </FlexBox>
                 <FlexBox direction="column" gap={10}>
-                    <h2>SELECT</h2>
+                    <h2>TEXTFIELD</h2>
                     <FormControl
                         id="name"
                         helperTextId="name-helper-text"
