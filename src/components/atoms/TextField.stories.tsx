@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import TextField from 'components/atoms/TextField';
 
 import type { Meta, StoryObj } from '@storybook/react';
@@ -9,54 +11,78 @@ const meta = {
     argTypes: {
         name: {
             control: { type: 'text' },
-            table: { category: 'required' }
+            description: 'TextField 이름',
+            table: { category: 'required', type: { summary: 'string' } }
         },
         value: {
-            control: { type: 'text' },
-            table: { category: 'required' }
+            control: false,
+            description: 'TextField 값',
+            table: { category: 'required', type: { summary: 'string' } }
         },
         onChange: {
-            table: { category: 'required' }
+            control: false,
+            description: 'Change Event Handler',
+            table: { category: 'required', type: { summary: 'function' } }
         },
         isDisabled: {
             control: { type: 'boolean' },
-            table: { category: 'States' }
+            description: '활성화여부',
+            table: { category: 'States', defaultValue: { summary: false }, type: { summary: 'boolean' } }
         },
         isReadOnly: {
             control: { type: 'boolean' },
-            table: { category: 'States' }
+            description: '읽기 전용',
+            table: { category: 'States', defaultValue: { summary: false }, type: { summary: 'boolean' } }
         },
         isFullWidth: {
             control: { type: 'boolean' },
-            table: { category: 'States' }
+            description: '[CSS] width (100% 또는 기본 값)',
+            table: { category: 'States', defaultValue: { summary: false }, type: { summary: 'boolean' } }
         },
         title: {
-            table: { category: 'Accessibility' }
+            control: { type: 'text' },
+            description: '[웹 접근성] Title 속성',
+            table: { category: 'Accessibility', type: { summary: 'string' } }
         },
         type: {
             control: { type: 'inline-radio' },
+            description: '[속성] TextField 타입',
             options: ['text', 'number', 'url', 'email', 'password', 'phone'],
-            table: { category: 'Input Attributes' }
+            table: {
+                category: 'Input Attributes',
+                defaultValue: { summary: 'text' },
+                type: { summary: 'text | number | url | email | password | phone' }
+            }
         },
         placeholder: {
-            table: { category: 'Input Attributes' }
+            control: { type: 'text' },
+            description: '[속성] TextField 안내문',
+            table: { category: 'Input Attributes', defaultValue: { summary: '""' }, type: { summary: 'string' } }
         },
         maxLength: {
             control: { type: 'number' },
-            table: { category: 'Input Attributes' }
+            description: '[속성] TextField 값 제한',
+            table: { category: 'Input Attributes', defaultValue: { summary: 100 }, type: { summary: 'number' } }
         },
         onKeyDown: {
-            table: { category: 'optional' }
+            control: false,
+            description: 'Key Event Handler',
+            table: { category: 'optional', defaultValue: { summary: '() => {}' }, type: { summary: 'function' } }
         },
         onFocus: {
-            table: { category: 'optional' }
+            control: false,
+            description: 'Focus Event Handler',
+            table: { category: 'optional', defaultValue: { summary: '() => {}' }, type: { summary: 'function' } }
         },
         onBlur: {
-            table: { category: 'optional' }
+            control: false,
+            description: 'Blur Event Handler',
+            table: { category: 'optional', defaultValue: { summary: '() => {}' }, type: { summary: 'function' } }
         },
         customCSS: {
             control: { type: 'object' },
-            table: { category: 'Style' }
+            description: 'Custom CSS',
+            table: { category: 'Style', defaultValue: { summary: '{}' }, type: { summary: 'CSSInterpolation' } }
         }
     }
 } satisfies Meta<typeof TextField>;
@@ -65,16 +91,19 @@ export default meta;
 type Story = StoryObj<typeof TextField>;
 
 export const Default: Story = {
+    render: (args) => {
+        const [value, setValue] = useState('ReactJS');
+        return <TextField {...args} value={value} onChange={(e) => setValue(e.currentTarget.value)} />;
+    },
     args: {
         name: 'name',
-        value: 'ReactJS',
         isReadOnly: false,
         isDisabled: false,
         isFullWidth: true,
         title: '이름',
         type: 'text',
         placeholder: '이름을 입력해주세요.',
-        maxLength: 10,
-        customCSS: { backgroundColor: 'white' }
+        maxLength: 100,
+        customCSS: { backgroundColor: '#ffffff' }
     }
 };
