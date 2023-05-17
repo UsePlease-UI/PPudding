@@ -1,12 +1,47 @@
 ![](https://img.shields.io/badge/기간-2023--05~2023--06-blue)
 
-## 목표
+## 컴포넌트 구현
 
--   [ ] Pagination
+-   [ ] Accordian
+-   [ ] AutoComplete
+-   [ ] Button
+-   [ ] Calendar
+-   [ ] Checkbox
+-   [ ] Chip
+-   [ ] Drag n Drop
+-   [ ] Editor
+-   [ ] Menu Button (PopOver)
+-   [ ] Modal
+-   [x] Pagination
+-   [ ] Radio Button
 -   [ ] Select
+-   [ ] Slider (Carousel/Swiper)
+-   [ ] Skeleton / Loader
+-   [ ] Tab
+-   [ ] Table
+-   [x] Textfield
+-   [ ] Toggle
+
+## 웹 접근성
+
+-   [ ] Accordian
+-   [ ] AutoComplete
+-   [ ] Button
+-   [ ] Calendar
+-   [ ] Checkbox
+-   [ ] Chip
+-   [ ] Drag n Drop
+-   [ ] Editor
+-   [ ] Menu Button (PopOver)
+-   [ ] Modal
+-   [ ] Pagination
+-   [ ] Radio Button
+-   [ ] Select
+-   [ ] Slider (Carousel/Swiper)
+-   [ ] Skeleton / Loader
+-   [ ] Tab
+-   [ ] Table
 -   [ ] Textfield
--   [ ] modal
--   [ ] calendar
 -   [ ] Toggle
 
 ---
@@ -18,9 +53,10 @@
 
 **_컴포넌트마다 상이_**
 
-| 작성자 | 주제 |
-| ------ | ---- |
-| -      | -    |
+| 작성자           | 주제       |
+| ---------------- | ---------- |
+| Kimyerim1935     | Pagination |
+| akffkdahffkdgo77 | TextField  |
 
 ## Convention
 

@@ -3,15 +3,16 @@ import ReactDOM from 'react-dom/client';
 
 import { Global } from '@emotion/react';
 
-import Pagination from 'components/pagination';
+import App from 'app/App';
 import reportWebVitals from 'reportWebVitals';
 import reset from 'styles/reset';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
 root.render(
     <React.StrictMode>
         <Global styles={reset} />
-        <Pagination count={10} />
+        <App />
     </React.StrictMode>
 );
 
