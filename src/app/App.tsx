@@ -17,7 +17,7 @@ const OPTIONS = [
 ];
 
 const customCSS = {
-    maxWidth: 500,
+    maxWidth: 1200,
     padding: 20,
     backgroundColor: '#ffffff',
     borderRadius: 4,
@@ -37,9 +37,13 @@ export default function App() {
     };
 
     return (
-        <>
-            <Pagination totalCount={32} page={page} blockNum={blockNum} onChange={handlePaginationChange} />
-            <FlexBox direction="column" gap={10} customCSS={customCSS}>
+        <FlexBox direction="column" gap={40} customCSS={customCSS}>
+            <FlexBox direction="column" gap={10}>
+                <h2>PAGINATION</h2>
+                <Pagination totalCount={32} page={page} blockNum={blockNum} onChange={handlePaginationChange} />
+            </FlexBox>
+            <FlexBox direction="column" gap={10}>
+                <h2>TEXTFIELD</h2>
                 <FormControl
                     id="milk"
                     label="우유"
@@ -56,6 +60,9 @@ export default function App() {
                         onChange={(e) => setMilk(e.currentTarget.value)}
                     />
                 </FormControl>
+            </FlexBox>
+            <FlexBox direction="column" gap={10}>
+                <h2>SELECT</h2>
                 <FormControl
                     id="name"
                     helperTextId="name-helper-text"
@@ -72,6 +79,6 @@ export default function App() {
                     />
                 </FormControl>
             </FlexBox>
-        </>
+        </FlexBox>
     );
 }
