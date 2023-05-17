@@ -18,9 +18,9 @@ type FormControlType = {
 
 export default function FormControl({
     children,
-    id = 'textfield',
+    id = 'input',
     label = '',
-    helperTextId = 'textfield-helper-text',
+    helperTextId = 'input-helper-text',
     helperText = '',
     customCSS = {}
 }: FormControlType) {
