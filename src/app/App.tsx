@@ -17,6 +17,7 @@ const OPTIONS = [
 ];
 
 const customCSS = {
+    width: '100%',
     maxWidth: 1200,
     padding: 20,
     backgroundColor: '#ffffff',
@@ -37,47 +38,54 @@ export default function App() {
     };
 
     return (
-        <FlexBox direction="column" gap={40} customCSS={customCSS}>
-            <FlexBox direction="column" gap={10}>
-                <h2>PAGINATION</h2>
-                <Pagination totalCount={32} page={page} blockNum={blockNum} onChange={handlePaginationChange} />
-            </FlexBox>
-            <FlexBox direction="column" gap={10}>
-                <h2>TEXTFIELD</h2>
-                <FormControl
-                    id="milk"
-                    label="우유"
-                    helperText="우유 종류를 선택해주세요"
-                    helperTextId="milk-helper-text"
-                >
-                    <Select
+        <FlexBox
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            customCSS={{ width: '100vw', height: '100vh' }}
+        >
+            <FlexBox direction="column" gap={40} customCSS={customCSS}>
+                <FlexBox direction="column" gap={10}>
+                    <h2>PAGINATION</h2>
+                    <Pagination totalCount={32} page={page} blockNum={blockNum} onChange={handlePaginationChange} />
+                </FlexBox>
+                <FlexBox direction="column" gap={10}>
+                    <h2>TEXTFIELD</h2>
+                    <FormControl
                         id="milk"
-                        aria-labelledby="milk"
-                        name="milk"
-                        value={milk}
-                        label={OPTIONS.filter((val) => val.value === milk)?.[0]?.label}
-                        options={OPTIONS}
-                        onChange={(e) => setMilk(e.currentTarget.value)}
-                    />
-                </FormControl>
-            </FlexBox>
-            <FlexBox direction="column" gap={10}>
-                <h2>SELECT</h2>
-                <FormControl
-                    id="name"
-                    helperTextId="name-helper-text"
-                    helperText="최소 10글자 이상 입력"
-                    label="닉네임"
-                >
-                    <TextField
-                        title="이름"
-                        name="name"
-                        value={name}
-                        maxLength={10}
-                        onChange={(e) => setName(e.currentTarget.value)}
-                        customCSS={css({ borderColor: 'hotpink' })}
-                    />
-                </FormControl>
+                        label="우유"
+                        helperText="우유 종류를 선택해주세요"
+                        helperTextId="milk-helper-text"
+                    >
+                        <Select
+                            id="milk"
+                            aria-labelledby="milk"
+                            name="milk"
+                            value={milk}
+                            label={OPTIONS.filter((val) => val.value === milk)?.[0]?.label}
+                            options={OPTIONS}
+                            onChange={(e) => setMilk(e.currentTarget.value)}
+                        />
+                    </FormControl>
+                </FlexBox>
+                <FlexBox direction="column" gap={10}>
+                    <h2>SELECT</h2>
+                    <FormControl
+                        id="name"
+                        helperTextId="name-helper-text"
+                        helperText="최소 10글자 이상 입력"
+                        label="닉네임"
+                    >
+                        <TextField
+                            title="이름"
+                            name="name"
+                            value={name}
+                            maxLength={10}
+                            onChange={(e) => setName(e.currentTarget.value)}
+                            customCSS={css({ borderColor: 'hotpink' })}
+                        />
+                    </FormControl>
+                </FlexBox>
             </FlexBox>
         </FlexBox>
     );
