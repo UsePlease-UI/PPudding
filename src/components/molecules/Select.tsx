@@ -8,6 +8,19 @@ import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
 import { ChevronDownIcon } from 'assets/icons';
 
+type OptionType = { label: string; value: string | number };
+
+type SelectType = InputHTMLAttributes<HTMLButtonElement> & {
+    name: string;
+    label: string;
+    value: string | number;
+    options?: OptionType[];
+    isDisabled?: boolean;
+    isReadOnly?: boolean;
+    onChange: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    customCSS?: CSSInterpolation;
+};
+
 const buttonStyle = css({
     height: 40,
     minWidth: 120,
@@ -36,19 +49,6 @@ const buttonTextStyle = css({
 });
 
 const iconStyle = css({ display: 'inline-block', width: 20, height: 20 });
-
-type OptionType = { label: string; value: string | number };
-
-type SelectType = InputHTMLAttributes<HTMLButtonElement> & {
-    name: string;
-    label: string;
-    value: string | number;
-    options?: OptionType[];
-    isDisabled?: boolean;
-    isReadOnly?: boolean;
-    onChange: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    customCSS?: CSSInterpolation;
-};
 
 const MAX_MENU_HEIGHT = 300;
 const AVG_OPTION_HEIGHT = 24;
@@ -92,23 +92,27 @@ export default function Select({
         }
     };
 
-    useEffect(() => {
-        if (isVisible) {
+    const handleClick = () => {
+        if (!isVisible) {
             document.body.style.overflow = 'hidden';
             handlePosition();
         } else {
             document.body.style.overflow = 'auto';
         }
-    }, [isVisible]);
+        setIsVisible((prev) => !prev);
+    };
 
+    // eslint-disable-next-line consistent-return
     useEffect(() => {
-        window.addEventListener('resize', handlePosition);
-        window.addEventListener('scroll', handlePosition);
-        return () => {
-            window.removeEventListener('resize', handlePosition);
-            window.removeEventListener('scroll', handlePosition);
-        };
-    }, []);
+        if (isVisible) {
+            window.addEventListener('resize', handlePosition);
+            window.addEventListener('scroll', handlePosition);
+            return () => {
+                window.removeEventListener('resize', handlePosition);
+                window.removeEventListener('scroll', handlePosition);
+            };
+        }
+    }, [isVisible]);
 
     return (
         <div css={css({ position: 'relative' })}>
@@ -123,15 +127,12 @@ export default function Select({
                 id={id}
                 role="combobox"
                 tabIndex={0}
-                onClick={() => setIsVisible((prev) => !prev)}
+                onClick={() => handleClick()}
                 css={css([
                     buttonStyle,
                     {
                         ...(isReadOnly && {
-                            '&&': {
-                                border: '1px solid #e0e0e0',
-                                backgroundColor: '#f4f4f4'
-                            }
+                            '&&': { border: '1px solid #e0e0e0', backgroundColor: '#f4f4f4' }
                         })
                     },
                     css(customCSS)
@@ -144,7 +145,7 @@ export default function Select({
             </button>
             <div id="root-select" />
             {isVisible && (
-                <Backdrop onClose={() => setIsVisible(false)}>
+                <Backdrop onClose={() => handleClick()}>
                     <div
                         css={css({
                             position: 'fixed',
