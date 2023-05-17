@@ -1,10 +1,8 @@
 /** @jsxImportSource @emotion/react */
-
-import { css } from '@emotion/react';
-
 import PageButton from 'components/atoms/PageButton';
 import PageItem from 'components/atoms/PageItem';
 
+import { css } from '@emotion/react';
 import { PageFirstIcon, PagePreviousIcon, PageNextIcon, PageLastIcon } from 'assets/icons';
 
 const navStyle = css({
