@@ -23,31 +23,33 @@ type pageItemPropType = {
 };
 
 export default function PageItem({ pageNum, page, totalCount, onClick }: pageItemPropType) {
-    console.log(page, pageNum);
+    const props = page === pageNum ? { 'aria-current': 'page' as const } : { 'aria-label': `Go to page ${page}` };
 
-    return (
-        // eslint-disable-next-line react/jsx-no-useless-fragment
-        <>
-            {pageNum > totalCount ? null : (
-                <li
-                    aria-label="Go to page {{page}}"
-                    role="presentation"
-                    css={css([
-                        listStyle,
-                        {
-                            background: page === pageNum ? '#3378FF' : '',
-                            color: page === pageNum ? 'white' : '#8D8D8D',
-                            '&:hover': {
-                                background: page === pageNum ? '#2668EB' : '#3378FF4D'
-                            }
-                        }
-                    ])}
-                    onClick={onClick}
-                    onKeyUp={onClick}
-                >
-                    {pageNum}
-                </li>
-            )}
-        </>
+    return pageNum > totalCount ? null : (
+        <li
+            role="presentation"
+            css={css([
+                listStyle,
+                {
+                    background: page === pageNum ? '#3378FF' : '',
+                    '&:hover': { background: page === pageNum ? '#2668EB' : '#3378FF4D' }
+                }
+            ])}
+        >
+            <button
+                {...props}
+                type="button"
+                onClick={onClick}
+                css={css({
+                    cursor: 'pointer',
+                    width: '100%',
+                    height: '100%',
+                    padding: 0,
+                    color: page === pageNum ? 'white' : '#8D8D8D'
+                })}
+            >
+                {pageNum}
+            </button>
+        </li>
     );
 }

@@ -11,6 +11,7 @@ type PageButtonType = InputHTMLAttributes<HTMLButtonElement> & {
 };
 
 const iconWrapper = css({
+    cursor: 'pointer',
     width: 32,
     height: 32,
     display: 'flex',
@@ -24,6 +25,10 @@ const iconWrapper = css({
     },
     '&:disabled svg': {
         stroke: '#8D8D8D4D'
+    },
+    '&:hover': {
+        borderRadius: 4,
+        backgroundColor: '#3378FF4D'
     }
 });
 

@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
 
-import { useState } from 'react';
-
 import { css } from '@emotion/react';
 
 import PageButton from 'components/atoms/PageButton';
@@ -25,41 +23,41 @@ const ulStyle = css({
 });
 
 type PaginationPropsType = {
-    count: number;
+    totalCount: number;
+    page: number;
+    blockNum: number;
+    onChange: (page: number, blockNum: number) => void;
 };
 
-const PAGE_ARR = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
+const PAGE_LIMIT = 10;
 /**
  *  Accessibility
  *  nav element에 aria-label 속성 필수
  */
-export default function Pagination({ count }: PaginationPropsType) {
-    const [page, setPage] = useState(1);
+export default function Pagination({ totalCount, page, blockNum, onChange }: PaginationPropsType) {
+    const pageMaxCount = Math.ceil(totalCount / 10);
 
-    // const totalCount = Math.ceil(count / pageSize);
-    const totalCount = 10;
-
-    // const pageMaxCount = Math.ceil(totalCount / 10);
-
-    const handleFirstClick = () => {
-        setPage(1);
-    };
+    const handleFirstClick = () => onChange(1, 1);
+    const handleLastClick = () => onChange(totalCount, pageMaxCount);
 
     const handlePrevClick = () => {
-        setPage((prev) => prev - 1);
+        let newNum = blockNum;
+        if ((page - 1) % PAGE_LIMIT === 0 && page !== 1) {
+            newNum = +blockNum - 1;
+        }
+        onChange(page - 1, newNum);
     };
 
     const handleNextClick = () => {
-        setPage((prev) => prev + 1);
-    };
-
-    const handleLastClick = () => {
-        setPage(10);
+        let newNum = blockNum;
+        if ((page + 1) % PAGE_LIMIT === 1) {
+            newNum = blockNum + 1;
+        }
+        onChange(page + 1, newNum);
     };
 
     return (
-        <nav aria-label="pagination" css={navStyle}>
+        <nav aria-label="pagination" id="pagination" css={navStyle}>
             <ul css={ulStyle}>
                 <li>
                     <PageButton
@@ -79,15 +77,18 @@ export default function Pagination({ count }: PaginationPropsType) {
                         aria-label="previous button"
                     />
                 </li>
-                {PAGE_ARR.map((el, index) => (
-                    <PageItem
-                        key={el}
-                        pageNum={el + 1}
-                        page={page}
-                        totalCount={totalCount}
-                        onClick={() => setPage(index + 1)}
-                    />
-                ))}
+                {Array(PAGE_LIMIT)
+                    .fill(page)
+                    .map((_, idx) => idx + (blockNum - 1) * PAGE_LIMIT)
+                    .map((el, index) => (
+                        <PageItem
+                            key={el}
+                            pageNum={el + 1}
+                            page={page}
+                            totalCount={totalCount}
+                            onClick={() => onChange(index + 1, blockNum)}
+                        />
+                    ))}
                 <li>
                     <PageButton
                         icon={<PageNextIcon />}
