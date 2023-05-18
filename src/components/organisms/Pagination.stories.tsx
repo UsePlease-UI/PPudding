@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import Pagination from 'components/molecules/Pagination';
+import Pagination from 'components/organisms/Pagination';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'MOLECULES/Pagination',
+    title: 'ORGANISMS/Pagination',
     component: Pagination,
     tags: ['autodocs'],
     argTypes: {
@@ -24,6 +24,10 @@ const meta = {
         onChange: {
             control: false,
             table: { category: 'REQUIRED' }
+        },
+        customCSS: {
+            control: { type: 'object' },
+            table: { category: 'Style' }
         }
     }
 } satisfies Meta<typeof Pagination>;
@@ -50,9 +54,12 @@ const PaginationControlTemplate: Story = {
     }
 };
 
-export const Default: Story = {
+export const PaginationControl: Story = {
     ...PaginationControlTemplate,
     args: {
-        totalCount: 10
+        totalCount: 10,
+        customCSS: {
+            borderRadius: '10px'
+        }
     }
 };
