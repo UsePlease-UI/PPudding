@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import FlexBox from 'components/atoms/FlexBox';
 import TextField from 'components/atoms/TextField';
 import FormControl from 'components/molecules/FormControl';
-import Pagination from 'components/molecules/Pagination';
+import Pagination from 'components/organisms/Pagination';
 
 export default function App() {
     const [name, setName] = useState('');
