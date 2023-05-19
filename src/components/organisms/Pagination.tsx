@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 
+import PageList from 'components/molecules/PageList';
+
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
-
-import PageList from '../molecules/PageList';
 
 const navStyle = css({
     display: 'flex',
