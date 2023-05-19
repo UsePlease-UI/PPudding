@@ -1,11 +1,10 @@
 import { useState } from 'react';
 
-import Pagination from 'components/molecules/Pagination';
-
 import FlexBox from 'components/atoms/FlexBox';
 import TextField from 'components/atoms/TextField';
 import FormControl from 'components/molecules/FormControl';
 import Select from 'components/molecules/Select';
+import Pagination from 'components/organisms/Pagination';
 
 import { css } from '@emotion/react';
 
