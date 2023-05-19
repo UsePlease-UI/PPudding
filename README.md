@@ -15,7 +15,7 @@
 -   [x] Pagination
 -   [ ] PopOver API
 -   [ ] Radio Button
--   [ ] Select
+-   [x] Select
 -   [ ] Selectmenu Tag
 -   [ ] Slider (Carousel/Swiper)
 -   [ ] Skeleton / Loader
@@ -59,6 +59,7 @@
 | ---------------- | ---------- |
 | Kimyerim1935     | Pagination |
 | akffkdahffkdgo77 | TextField  |
+| akffkdahffkdgo77 | Select  |
 
 ## Convention
 
