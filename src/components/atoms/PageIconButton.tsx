@@ -5,9 +5,8 @@ import { css } from '@emotion/react';
 
 type PageButtonType = InputHTMLAttributes<HTMLButtonElement> & {
     isDisabled: boolean;
-    onClick: () => void;
-    totalCount: number;
     icon: React.ReactNode;
+    onClick: () => void;
 };
 
 const iconWrapper = css({
@@ -21,7 +20,8 @@ const iconWrapper = css({
     border: 'none',
     '& svg': {
         width: '16px',
-        height: '16px'
+        height: '16px',
+        stroke: '#8D8D8D'
     },
     '&:disabled svg': {
         stroke: '#8D8D8D4D'
@@ -32,15 +32,9 @@ const iconWrapper = css({
     }
 });
 
-export default function PageButton({ icon, isDisabled, totalCount, onClick, ...props }: PageButtonType) {
+export default function PageIconButton({ icon, isDisabled, onClick, ...props }: PageButtonType) {
     return (
-        <button
-            {...props}
-            type="button"
-            onClick={() => onClick()}
-            css={css([iconWrapper, { '& svg': { stroke: totalCount < 2 ? '#8D8D8D4D' : '#8D8D8D' } }])}
-            disabled={isDisabled}
-        >
+        <button {...props} type="button" onClick={() => onClick()} css={iconWrapper} disabled={isDisabled}>
             {icon}
         </button>
     );

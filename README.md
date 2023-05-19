@@ -13,8 +13,10 @@
 -   [ ] Menu Button (PopOver)
 -   [ ] Modal
 -   [x] Pagination
+-   [ ] PopOver API
 -   [ ] Radio Button
 -   [ ] Select
+-   [ ] Selectmenu Tag
 -   [ ] Slider (Carousel/Swiper)
 -   [ ] Skeleton / Loader
 -   [ ] Tab
