@@ -6,11 +6,11 @@ import palette from 'styles/palette';
 type blockType = {
     children: React.ReactNode;
     name: string;
+    selected: string;
     onClick: (e: string) => void;
 };
 
 const blockStyle = css({
-    background: `${palette.primary.main}`,
     color: 'white',
     cursor: 'pointer',
     minWidth: 100,
@@ -21,9 +21,13 @@ const blockStyle = css({
     }
 });
 
-export default function Block({ children, name, onClick }: blockType) {
+export default function Block({ children, name, onClick, selected }: blockType) {
     return (
-        <button type="button" css={blockStyle} onClick={() => onClick(name)}>
+        <button
+            type="button"
+            css={css([blockStyle, { background: selected === name ? palette.primary.main : palette.secondary.main }])}
+            onClick={() => onClick(name)}
+        >
             {children}
         </button>
     );

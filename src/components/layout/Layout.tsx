@@ -53,7 +53,7 @@ export default function Layout() {
         <div css={layoutStyle}>
             <BlockWrapper>
                 {COMPONENT_LIST.map((el: string) => (
-                    <Block onClick={handleClick} name={el}>
+                    <Block onClick={handleClick} name={el} selected={selected}>
                         {el}
                     </Block>
                 ))}
@@ -61,13 +61,13 @@ export default function Layout() {
             <div css={componentStyle}>
                 {selected === 'Pagination' && (
                     <FlexBox direction="column" gap={10}>
-                        <h2>PAGINATION</h2>
+                        <h2>{selected}</h2>
                         <Pagination totalCount={32} page={page} blockNum={blockNum} onChange={handlePaginationChange} />
                     </FlexBox>
                 )}
                 {selected === 'Select' && (
                     <FlexBox direction="column" gap={10}>
-                        <h2>SELECT</h2>
+                        <h2>{selected}</h2>
                         <FormControl
                             id="milk"
                             label="우유"
@@ -88,7 +88,7 @@ export default function Layout() {
                 )}
                 {selected === 'TextField' && (
                     <FlexBox direction="column" gap={10}>
-                        <h2>TEXTFIELD</h2>
+                        <h2>{selected}</h2>
                         <FormControl
                             id="name"
                             helperTextId="name-helper-text"
