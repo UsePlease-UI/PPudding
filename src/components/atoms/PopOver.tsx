@@ -6,7 +6,7 @@ import { CSSInterpolation } from '@emotion/serialize';
 type PopoverType = {
     isOpen: boolean;
     children: JSX.Element;
-    customCSS?: CSSInterpolation | any;
+    customCSS?: CSSInterpolation;
 };
 
 const popoverStyle = css({
