@@ -3,8 +3,9 @@
 import { css } from '@emotion/react';
 
 type PopoverType = {
+    isOpen: boolean;
     children: JSX.Element;
-    customCSS: React.CSSProperties | any;
+    customCSS?: React.CSSProperties | any;
 };
 
 const popoverStyle = css({
@@ -16,6 +17,6 @@ const popoverStyle = css({
     boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)'
 });
 
-export default function PopOver({ children, customCSS = {} }: PopoverType) {
-    return <div css={css([popoverStyle, customCSS])}>{children}</div>;
+export default function PopOver({ children, isOpen, customCSS = {} }: PopoverType) {
+    return isOpen ? <div css={css([popoverStyle, customCSS])}>{children}</div> : null;
 }

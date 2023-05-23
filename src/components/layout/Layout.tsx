@@ -113,13 +113,11 @@ export default function Layout() {
                         <button type="button" onClick={handleOpen} css={popoverStyle} ref={buttonRef}>
                             click me
                         </button>
-                        {isOpen && (
-                            <div css={css({ position: 'relative' })}>
-                                <PopOver>
-                                    <div>The contents of the Popover</div>
-                                </PopOver>
-                            </div>
-                        )}
+                        <div css={css({ position: 'relative' })}>
+                            <PopOver isOpen={isOpen}>
+                                <div>The contents of the Popover</div>
+                            </PopOver>
+                        </div>
                     </FlexBox>
                 )}
                 {selected === 'Select' && (

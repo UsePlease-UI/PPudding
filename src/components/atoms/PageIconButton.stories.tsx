@@ -19,6 +19,7 @@ const meta = {
             description: '활성화여부',
             table: { category: 'REQUIRED', type: { summary: 'boolean' } }
         },
+
         onClick: {
             control: false,
             description: 'click event handler',
@@ -32,7 +33,6 @@ type Story = StoryObj<typeof PageIconButton>;
 
 export const Default: Story = {
     render: (args) => {
-        // eslint-disable-next-line no-console
         return <PageIconButton {...args} icon={<PageFirstIcon />} onClick={() => console.log(1)} />;
     },
     args: {
