@@ -59,7 +59,7 @@ export default function Layout() {
         setBlockNum(newBlockNum);
     };
 
-    const handleClick = (e: any) => {
+    const handleClick = (e: string) => {
         setSelected(e);
     };
 
