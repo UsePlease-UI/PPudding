@@ -1,11 +1,12 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from '@emotion/react';
+import { CSSInterpolation } from '@emotion/serialize';
 
 type PopoverType = {
     isOpen: boolean;
     children: JSX.Element;
-    customCSS?: React.CSSProperties | any;
+    customCSS?: CSSInterpolation | any;
 };
 
 const popoverStyle = css({
@@ -18,5 +19,5 @@ const popoverStyle = css({
 });
 
 export default function PopOver({ children, isOpen, customCSS = {} }: PopoverType) {
-    return isOpen ? <div css={css([popoverStyle, customCSS])}>{children}</div> : null;
+    return isOpen ? <div css={css([popoverStyle, customCSS, { position: 'relative' }])}>{children}</div> : null;
 }

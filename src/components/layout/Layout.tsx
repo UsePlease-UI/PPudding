@@ -77,7 +77,6 @@ export default function Layout() {
     };
 
     useEffect(() => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         function handleClickOutside(event: MouseEvent) {
             if (isOpen && !buttonRef.current?.contains(event.target as Node)) {
                 handleClose();
@@ -113,11 +112,9 @@ export default function Layout() {
                         <button type="button" onClick={handleOpen} css={popoverStyle} ref={buttonRef}>
                             click me
                         </button>
-                        <div css={css({ position: 'relative' })}>
-                            <PopOver isOpen={isOpen}>
-                                <div>The contents of the Popover</div>
-                            </PopOver>
-                        </div>
+                        <PopOver isOpen={isOpen}>
+                            <div>The contents of the Popover</div>
+                        </PopOver>
                     </FlexBox>
                 )}
                 {selected === 'Select' && (

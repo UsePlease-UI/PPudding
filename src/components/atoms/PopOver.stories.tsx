@@ -34,7 +34,7 @@ const meta = {
             description: '컴포넌트 상태',
             control: false,
             table: {
-                type: { summary: 'React.ReactNode' },
+                type: { summary: 'boolean' },
                 category: 'REQUIRED'
             }
         },
@@ -81,7 +81,6 @@ const Template: Story = {
 export const Default: Story = {
     ...Template,
     args: {
-        isOpen: false,
         customCSS: {
             padding: 20
         }
