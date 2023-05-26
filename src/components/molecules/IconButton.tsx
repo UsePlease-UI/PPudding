@@ -10,9 +10,6 @@ type VariantType = 'outlined' | 'contained' | 'text';
 
 type IconButtonType = {
     children: React.ReactNode;
-    hasStartIcon?: boolean;
-    hasEndIcon?: boolean;
-    icon?: React.ReactNode;
     type?: 'button' | 'reset' | 'submit';
     size?: SizeType;
     variant?: VariantType;
@@ -125,30 +122,14 @@ function getVariantStyle(variant: VariantType) {
     }
 }
 
-const startIconContainerStyle = css({
-    display: 'inline-block',
-    width: 20,
-    height: 20,
-    marginLeft: '-2px'
-});
-
-const endIconContainerStyle = css({
-    display: 'inline-block',
-    width: 20,
-    height: 20,
-    marginRight: '-2px'
-});
-
 export default function Button({
     children,
-    hasStartIcon = false,
-    hasEndIcon = false,
-    icon,
     type = 'button',
     size = 'large',
     variant = 'outlined',
     isDisabled = false,
     onClick = () => {},
+    customCSS,
     ...props
 }: IconButtonType) {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -165,12 +146,10 @@ export default function Button({
             type={type}
             disabled={isDisabled}
             onClick={handleClick}
-            css={css([buttonStyle, getSizeStyle(size), getVariantStyle(variant)])}
+            css={css([buttonStyle, getSizeStyle(size), getVariantStyle(variant), customCSS])}
         >
-            <FlexBox gap={4} justifyContent={hasStartIcon || hasEndIcon ? 'flex-start' : 'center'} alignItems="center">
-                {hasStartIcon && <span css={startIconContainerStyle}>{icon}</span>}
+            <FlexBox gap={4} justifyContent="center" alignItems="center">
                 {children}
-                {hasEndIcon && <span css={endIconContainerStyle}>{icon}</span>}
             </FlexBox>
         </button>
     );
