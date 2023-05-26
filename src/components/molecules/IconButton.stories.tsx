@@ -1,3 +1,6 @@
+import { expect } from '@storybook/jest';
+import { userEvent, within } from '@storybook/testing-library';
+
 import IconButton from 'components/molecules/IconButton';
 
 import { ChevronDownIcon } from 'assets/icons';
@@ -79,4 +82,13 @@ export const Default: Story = {
         variant: 'outlined',
         customCSS: {}
     }
+};
+
+// TODO: 테스트 작성하기
+Default.play = async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button');
+    await expect(button).toHaveStyle('height: 45px');
+    await userEvent.click(button);
+    await expect(args.onClick).toHaveBeenCalled();
 };
