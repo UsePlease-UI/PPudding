@@ -10,6 +10,10 @@ const blockWrapperStyle = css({
     flexWrap: 'wrap'
 });
 
-export default function BlockWrapper({ children }: any) {
+type BlockWrapperType = {
+    children: React.ReactNode;
+};
+
+export default function BlockWrapper({ children }: BlockWrapperType) {
     return <div css={blockWrapperStyle}>{children}</div>;
 }

@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
 
@@ -23,7 +22,7 @@ export default function FlexBox({
     alignItems = 'unset',
     direction = 'row',
     gap = 0,
-    flex = 'unset',
+    flex = 'none',
     customCSS = {}
 }: FlexBoxType) {
     return (
