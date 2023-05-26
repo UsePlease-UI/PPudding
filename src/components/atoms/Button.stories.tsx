@@ -88,6 +88,6 @@ export const Default: Story = {
         hasEndIcon: false,
         size: 'large',
         variant: 'outlined',
-        customCSS: { backgroundColor: '#ffffff' }
+        customCSS: {}
     }
 };

@@ -162,6 +162,7 @@ export default function Button({
     variant = 'outlined',
     isDisabled = false,
     onClick = () => {},
+    customCSS,
     ...props
 }: ButtonType) {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -178,7 +179,7 @@ export default function Button({
             type={type}
             disabled={isDisabled}
             onClick={handleClick}
-            css={css([buttonStyle, getSizeStyle(size), getVariantStyle(variant)])}
+            css={css([buttonStyle, getSizeStyle(size), getVariantStyle(variant), customCSS])}
         >
             <FlexBox gap={4} justifyContent={hasStartIcon || hasEndIcon ? 'flex-start' : 'center'} alignItems="center">
                 {hasStartIcon && <span css={startIconContainerStyle}>{icon}</span>}
