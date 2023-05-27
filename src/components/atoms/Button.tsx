@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /** @jsxImportSource @emotion/react */
-import FlexBox from './FlexBox';
+import FlexBox from 'components/atoms/FlexBox';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
