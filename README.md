@@ -2,7 +2,7 @@
 
 ## 컴포넌트 구현
 
--   [ ] Accordian
+-   [ ] Accordion
 -   [ ] AutoComplete
 -   [x] Button
 -   [ ] Calendar
@@ -25,7 +25,7 @@
 
 ## 웹 접근성
 
--   [ ] Accordian
+-   [ ] Accordion
 -   [ ] AutoComplete
 -   [x] Button
 -   [ ] Calendar
@@ -48,6 +48,7 @@
 ---
 
 -   [ ] Design Pattern
+    -   [x] Atomic Design
 -   [ ] React Architecture
 
 ## 일정
