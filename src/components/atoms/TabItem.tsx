@@ -8,8 +8,8 @@ import { CSSInterpolation } from '@emotion/serialize';
 
 type TabItemType = {
     label: string;
-    index: number;
     value: number;
+    index: number;
     onChange?: (newValue: number) => void;
     icon?: React.ReactNode;
     customCSS?: CSSInterpolation;
@@ -32,7 +32,8 @@ const buttonStyle = css({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    cursor: 'pointer'
 });
 
 const containerStyle = css({ display: 'flex', alignItems: 'center', justifyContent: 'center' });
