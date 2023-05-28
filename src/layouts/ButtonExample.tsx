@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Button from 'components/atoms/Button';
 import FlexBox from 'components/atoms/FlexBox';
 

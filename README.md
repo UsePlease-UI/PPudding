@@ -2,7 +2,7 @@
 
 ## 컴포넌트 구현
 
--   [ ] Accordian
+-   [ ] Accordion
 -   [ ] AutoComplete
 -   [x] Button
 -   [ ] Calendar
@@ -18,14 +18,14 @@
 -   [x] Select
 -   [ ] Slider (Carousel/Swiper)
 -   [ ] Skeleton / Loader
--   [ ] Tab
+-   [x] Tab
 -   [ ] Table
 -   [x] Textfield
 -   [ ] Toggle
 
 ## 웹 접근성
 
--   [ ] Accordian
+-   [ ] Accordion
 -   [ ] AutoComplete
 -   [x] Button
 -   [ ] Calendar
@@ -48,6 +48,7 @@
 ---
 
 -   [ ] Design Pattern
+    -   [x] Atomic Design
 -   [ ] React Architecture
 
 ## 일정
@@ -61,6 +62,7 @@
 | akffkdahffkdgo77 | Select     |
 | Kimyerim1935     | PopOver    |
 | akffkdahffkdgo77 | Button     |
+| akffkdahffkdgo77 | Tab        |
 
 ## Convention
 
