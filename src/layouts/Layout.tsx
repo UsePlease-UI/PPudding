@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import Block from 'components/atoms/Block';
 import BlockWrapper from 'components/atoms/BlockWrapper';
+import AutoCompleteExample from 'layouts/AutoCompleteExample';
 import ButtonExample from 'layouts/ButtonExample';
 import IconButtonExample from 'layouts/IconButtonExample';
 import PaginationExample from 'layouts/PaginationExample';
@@ -13,7 +14,7 @@ import TextFieldExample from 'layouts/TextFieldExample';
 
 import { css } from '@emotion/react';
 
-const COMPONENT_LIST = ['Button', 'IconButton', 'Pagination', 'PopOver', 'Select', 'Tab', 'TextField'];
+const COMPONENT_LIST = ['AutoComplete', 'Button', 'IconButton', 'Pagination', 'PopOver', 'Select', 'Tab', 'TextField'];
 
 const layoutStyle = css({ maxWidth: 1200, margin: '0 auto', padding: '20px 0' });
 
@@ -34,6 +35,7 @@ export default function Layout() {
                 ))}
             </BlockWrapper>
             <div css={componentStyle}>
+                {selected === 'AutoComplete' && <AutoCompleteExample />}
                 {selected === 'Button' && <ButtonExample />}
                 {selected === 'IconButton' && <IconButtonExample />}
                 {selected === 'Pagination' && <PaginationExample />}
