@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import FlexBox from 'components/atoms/FlexBox';
 import FormControl from 'components/molecules/FormControl';

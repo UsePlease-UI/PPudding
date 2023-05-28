@@ -20,6 +20,7 @@ const tabStyle = css({
     boxShadow: '0 0 8px 0px #eeeeee'
 });
 
+// WAI-ARIA : https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
 export default function TabExample() {
     const [value, setValue] = useState(1);
 
