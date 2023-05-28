@@ -18,7 +18,7 @@
 -   [x] Select
 -   [ ] Slider (Carousel/Swiper)
 -   [ ] Skeleton / Loader
--   [ ] Tab
+-   [x] Tab
 -   [ ] Table
 -   [x] Textfield
 -   [ ] Toggle
@@ -62,6 +62,7 @@
 | akffkdahffkdgo77 | Select     |
 | Kimyerim1935     | PopOver    |
 | akffkdahffkdgo77 | Button     |
+| akffkdahffkdgo77 | Tab        |
 
 ## Convention
 
