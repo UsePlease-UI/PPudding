@@ -3,20 +3,20 @@ import { useState } from 'react';
 
 import Block from 'components/atoms/Block';
 import BlockWrapper from 'components/atoms/BlockWrapper';
-import ButtonExample from 'layouts/ButtonExample';
-import IconButtonExample from 'layouts/IconButtonExample';
-import PaginationExample from 'layouts/PaginationExample';
-import PopOverExample from 'layouts/PopOverExample';
-import SelectExample from 'layouts/SelectExample';
-import TabExample from 'layouts/TabExample';
-import TextFieldExample from 'layouts/TextFieldExample';
+import ButtonExample from 'examples/ButtonExample';
+import IconButtonExample from 'examples/IconButtonExample';
+import PaginationExample from 'examples/PaginationExample';
+import PopOverExample from 'examples/PopOverExample';
+import SelectExample from 'examples/SelectExample';
+import TabExample from 'examples/TabExample';
+import TextFieldExample from 'examples/TextFieldExample';
+import ToggleButtonExample from 'examples/ToggleButtonExample';
 
 import { css } from '@emotion/react';
 
-const COMPONENT_LIST = ['Button', 'IconButton', 'Pagination', 'PopOver', 'Select', 'Tab', 'TextField'];
+const COMPONENT_LIST = ['Button', 'IconButton', 'Pagination', 'PopOver', 'Select', 'Tab', 'TextField', 'ToggleButton'];
 
 const layoutStyle = css({ maxWidth: 1200, margin: '0 auto', padding: '20px 0' });
-
 const componentStyle = css({ marginTop: 20, display: 'flex' });
 
 export default function Layout() {
@@ -41,6 +41,7 @@ export default function Layout() {
                 {selected === 'Select' && <SelectExample />}
                 {selected === 'TextField' && <TextFieldExample />}
                 {selected === 'Tab' && <TabExample />}
+                {selected === 'ToggleButton' && <ToggleButtonExample />}
             </div>
         </div>
     );
