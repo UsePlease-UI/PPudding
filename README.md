@@ -21,7 +21,7 @@
 -   [x] Tab
 -   [ ] Table
 -   [x] Textfield
--   [ ] Toggle
+-   [x] Toggle Button
 
 ## 웹 접근성
 
@@ -43,7 +43,7 @@
 -   [ ] Tab
 -   [ ] Table
 -   [ ] Textfield
--   [ ] Toggle
+-   [ ] Toggle Button
 
 ---
 
