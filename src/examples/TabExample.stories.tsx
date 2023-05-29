@@ -1,4 +1,4 @@
-import TabExample from 'layouts/TabExample';
+import TabExample from 'examples/TabExample';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
