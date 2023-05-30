@@ -9,12 +9,23 @@ import PaginationExample from 'examples/PaginationExample';
 import PopOverExample from 'examples/PopOverExample';
 import SelectExample from 'examples/SelectExample';
 import TabExample from 'examples/TabExample';
+import TableExample from 'examples/TableExample';
 import TextFieldExample from 'examples/TextFieldExample';
 import ToggleButtonExample from 'examples/ToggleButtonExample';
 
 import { css } from '@emotion/react';
 
-const COMPONENT_LIST = ['Button', 'IconButton', 'Pagination', 'PopOver', 'Select', 'Tab', 'TextField', 'ToggleButton'];
+const COMPONENT_LIST = [
+    'Button',
+    'IconButton',
+    'Pagination',
+    'PopOver',
+    'Select',
+    'Tab',
+    'Table',
+    'TextField',
+    'ToggleButton'
+];
 
 const layoutStyle = css({ maxWidth: 1200, margin: '0 auto', padding: '20px 0' });
 const componentStyle = css({ marginTop: 20, display: 'flex' });
@@ -41,6 +52,7 @@ export default function Layout() {
                 {selected === 'Select' && <SelectExample />}
                 {selected === 'TextField' && <TextFieldExample />}
                 {selected === 'Tab' && <TabExample />}
+                {selected === 'Table' && <TableExample />}
                 {selected === 'ToggleButton' && <ToggleButtonExample />}
             </div>
         </div>
