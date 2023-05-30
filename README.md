@@ -17,7 +17,7 @@
 -   [ ] Radio Button
 -   [x] Select
 -   [ ] Slider (Carousel/Swiper)
--   [ ] Skeleton / Loader
+-   [x] Skeleton / Loader
 -   [x] Tab
 -   [x] Table
 -   [x] Textfield
@@ -39,9 +39,9 @@
 -   [ ] Radio Button
 -   [ ] Select
 -   [ ] Slider (Carousel/Swiper)
--   [ ] Skeleton / Loader
+-   [x] Skeleton / Loader
 -   [ ] Tab
--   [ ] Table
+-   [x] Table
 -   [ ] Textfield
 -   [ ] Toggle Button
 
@@ -65,6 +65,7 @@
 | akffkdahffkdgo77 | Tab          |
 | Kimyerim1935     | AutoComplete |
 | akffkdahffkdgo77 | Table        |
+| akffkdahffkdgo77 | Skeleton     |
 
 ## Convention
 
