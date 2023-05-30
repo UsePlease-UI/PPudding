@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import Block from 'components/atoms/Block';
 import BlockWrapper from 'components/atoms/BlockWrapper';
+import Skeleton from 'components/atoms/Skeleton';
 import ButtonExample from 'examples/ButtonExample';
 import IconButtonExample from 'examples/IconButtonExample';
 import PaginationExample from 'examples/PaginationExample';
@@ -21,6 +22,7 @@ const COMPONENT_LIST = [
     'Pagination',
     'PopOver',
     'Select',
+    'Skeleton',
     'Tab',
     'Table',
     'TextField',
@@ -50,6 +52,7 @@ export default function Layout() {
                 {selected === 'Pagination' && <PaginationExample />}
                 {selected === 'PopOver' && <PopOverExample />}
                 {selected === 'Select' && <SelectExample />}
+                {selected === 'Skeleton' && <Skeleton />}
                 {selected === 'TextField' && <TextFieldExample />}
                 {selected === 'Tab' && <TabExample />}
                 {selected === 'Table' && <TableExample />}
