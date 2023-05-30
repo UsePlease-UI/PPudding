@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import TableCaption from 'components/atoms/TableCaption';
-import TableCell from 'components/atoms/TableCell';
-import TableRow from 'components/atoms/TableRow';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -29,15 +27,7 @@ type Story = StoryObj<typeof TableCaption>;
 
 export const Default: Story = {
     args: {
-        children: (
-            <TableRow>
-                <TableCell>1</TableCell>
-                <TableCell>바나나</TableCell>
-                <TableCell>바나나차차</TableCell>
-                <TableCell>1010101010</TableCell>
-                <TableCell>바나나나나나나나나나</TableCell>
-            </TableRow>
-        ),
+        children: 'Caption Example',
         customCSS: {}
     }
 };
