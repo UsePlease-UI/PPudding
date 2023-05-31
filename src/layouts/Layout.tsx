@@ -8,6 +8,7 @@ import ButtonExample from 'examples/ButtonExample';
 import IconButtonExample from 'examples/IconButtonExample';
 import PaginationExample from 'examples/PaginationExample';
 import PopOverExample from 'examples/PopOverExample';
+import RadioExample from 'examples/RadioExample';
 import SelectExample from 'examples/SelectExample';
 import TabExample from 'examples/TabExample';
 import TableExample from 'examples/TableExample';
@@ -21,6 +22,7 @@ const COMPONENT_LIST = [
     'IconButton',
     'Pagination',
     'PopOver',
+    'Radio',
     'Select',
     'Skeleton',
     'Tab',
@@ -31,6 +33,37 @@ const COMPONENT_LIST = [
 
 const layoutStyle = css({ maxWidth: 1200, margin: '0 auto', padding: '20px 0' });
 const componentStyle = css({ marginTop: 20, display: 'flex' });
+
+function getComponents(type: string) {
+    switch (type) {
+        case 'Button':
+            return <ButtonExample />;
+        case 'IconButton':
+            return <IconButtonExample />;
+        case 'Pagination':
+            return <PaginationExample />;
+        case 'PopOver':
+            return <PopOverExample />;
+        case 'Radio':
+            return <RadioExample />;
+        case 'Select':
+            return <SelectExample />;
+        case 'Skeleton':
+            return <Skeleton />;
+        case 'Tab':
+            return <TabExample />;
+        case 'Table':
+            return <TableExample />;
+        case 'TextField':
+            return <TextFieldExample />;
+        case 'ToggleButton':
+            return <ToggleButtonExample />;
+        default:
+            break;
+    }
+
+    return null;
+}
 
 export default function Layout() {
     const [selected, setSelected] = useState(COMPONENT_LIST[0]);
@@ -46,18 +79,7 @@ export default function Layout() {
                     </Block>
                 ))}
             </BlockWrapper>
-            <div css={componentStyle}>
-                {selected === 'Button' && <ButtonExample />}
-                {selected === 'IconButton' && <IconButtonExample />}
-                {selected === 'Pagination' && <PaginationExample />}
-                {selected === 'PopOver' && <PopOverExample />}
-                {selected === 'Select' && <SelectExample />}
-                {selected === 'Skeleton' && <Skeleton />}
-                {selected === 'TextField' && <TextFieldExample />}
-                {selected === 'Tab' && <TabExample />}
-                {selected === 'Table' && <TableExample />}
-                {selected === 'ToggleButton' && <ToggleButtonExample />}
-            </div>
+            <div css={componentStyle}>{getComponents(selected)}</div>
         </div>
     );
 }
