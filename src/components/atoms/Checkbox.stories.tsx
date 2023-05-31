@@ -49,7 +49,7 @@ const meta: Meta<typeof Checkbox> = {
         icon: {
             type: { name: 'string', required: false },
             description: '기본 아이콘',
-            control: 'text',
+            control: false,
             table: {
                 type: { summary: 'React.ReactNode' },
                 category: 'optional'
@@ -58,7 +58,7 @@ const meta: Meta<typeof Checkbox> = {
         checkedIcon: {
             type: { name: 'string', required: false },
             description: '선택 아이콘',
-            control: 'text',
+            control: false,
             table: {
                 type: { summary: 'React.ReactNode' },
                 category: 'optional'
