@@ -12,12 +12,6 @@ const meta: Meta<typeof RadioGroup> = {
     title: 'ATOMS/RadioGroup',
     component: RadioGroup,
     tags: ['autodocs'],
-    parameters: {
-        docs: {
-            argTypes: { exclude: ['currentValue', 'onChange'] },
-            controls: { exclude: ['currentValue', 'onChange'] }
-        }
-    },
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     argTypes: {
         children: {
