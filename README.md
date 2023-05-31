@@ -6,7 +6,7 @@
 -   [ ] AutoComplete
 -   [x] Button
 -   [ ] Calendar
--   [ ] Checkbox
+-   [x] Checkbox
 -   [ ] Chip
 -   [ ] Drag n Drop
 -   [ ] Editor
@@ -67,6 +67,7 @@
 | akffkdahffkdgo77 | Table        |
 | akffkdahffkdgo77 | Skeleton     |
 | akffkdahffkdgo77 | Radio        |
+| akffkdahffkdgo77 | Checkbox     |
 
 ## Convention
 
@@ -97,3 +98,7 @@ PR 메시지
 [깃허브 아이디] 컴포넌트명 추가
 
 ```
+
+### References
+
+-   [아이콘](https://heroicons.com/)

@@ -5,6 +5,7 @@ import Block from 'components/atoms/Block';
 import BlockWrapper from 'components/atoms/BlockWrapper';
 import Skeleton from 'components/atoms/Skeleton';
 import ButtonExample from 'examples/ButtonExample';
+import CheckboxExample from 'examples/CheckboxExample';
 import IconButtonExample from 'examples/IconButtonExample';
 import PaginationExample from 'examples/PaginationExample';
 import PopOverExample from 'examples/PopOverExample';
@@ -19,6 +20,7 @@ import { css } from '@emotion/react';
 
 const COMPONENT_LIST = [
     'Button',
+    'Checkbox',
     'IconButton',
     'Pagination',
     'PopOver',
@@ -38,6 +40,8 @@ function getComponents(type: string) {
     switch (type) {
         case 'Button':
             return <ButtonExample />;
+        case 'Checkbox':
+            return <CheckboxExample />;
         case 'IconButton':
             return <IconButtonExample />;
         case 'Pagination':
