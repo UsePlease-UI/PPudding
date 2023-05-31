@@ -14,7 +14,7 @@
 -   [ ] Modal
 -   [x] Pagination
 -   [ ] PopOver API
--   [ ] Radio Button
+-   [x] Radio
 -   [x] Select
 -   [ ] Slider (Carousel/Swiper)
 -   [x] Skeleton / Loader
@@ -36,7 +36,7 @@
 -   [ ] Menu Button (PopOver)
 -   [ ] Modal
 -   [ ] Pagination
--   [ ] Radio Button
+-   [ ] Radio
 -   [ ] Select
 -   [ ] Slider (Carousel/Swiper)
 -   [x] Skeleton / Loader
