@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
@@ -49,7 +50,13 @@ const buttonStyle = css({
     }
 });
 
-export default function Chip({ label, value, isDeletable = true, onDelete, customCSS = {} }: SearchChipType) {
+export default function Chip({
+    label,
+    value,
+    isDeletable = true,
+    onDelete = () => {},
+    customCSS = {}
+}: SearchChipType) {
     return (
         <div css={css([chipStyle, { padding: isDeletable ? '4px 8px 4px 14px' : '4px 12px' }, customCSS])}>
             <span css={labelStyle}>{label}</span>
