@@ -1,15 +1,17 @@
 /** @jsxImportSource @emotion/react */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useState } from 'react';
+// import { useState } from 'react';
+
+import ComboBox from 'components/molecules/ComboBox';
 
 import { css } from '@emotion/react';
+import { ChevronDownIcon } from 'assets/icons';
 
 export default function AutoComplete() {
     return (
         <div>
             <label htmlFor="autocomplete" css={css({ display: 'none' })} />
-            <input type="text" id="autocomplete" aria-expanded="true" role="combobox" aria-controls="hello" />
-            <button type="button">g</button>
+            <ComboBox icon={<ChevronDownIcon />} />
         </div>
     );
 }
