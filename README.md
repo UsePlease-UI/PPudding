@@ -6,7 +6,7 @@
 -   [ ] AutoComplete
 -   [x] Button
 -   [ ] Calendar
--   [ ] Checkbox
+-   [x] Checkbox
 -   [ ] Chip
 -   [ ] Drag n Drop
 -   [ ] Editor
@@ -14,14 +14,14 @@
 -   [ ] Modal
 -   [x] Pagination
 -   [ ] PopOver API
--   [ ] Radio Button
+-   [x] Radio
 -   [x] Select
 -   [ ] Slider (Carousel/Swiper)
--   [ ] Skeleton / Loader
+-   [x] Skeleton / Loader
 -   [x] Tab
--   [ ] Table
+-   [x] Table
 -   [x] Textfield
--   [ ] Toggle
+-   [x] Toggle Button
 
 ## 웹 접근성
 
@@ -36,14 +36,14 @@
 -   [ ] Menu Button (PopOver)
 -   [ ] Modal
 -   [ ] Pagination
--   [ ] Radio Button
+-   [ ] Radio
 -   [ ] Select
 -   [ ] Slider (Carousel/Swiper)
--   [ ] Skeleton / Loader
+-   [x] Skeleton / Loader
 -   [ ] Tab
--   [ ] Table
+-   [x] Table
 -   [ ] Textfield
--   [ ] Toggle
+-   [ ] Toggle Button
 
 ---
 
@@ -55,14 +55,19 @@
 
 **_컴포넌트마다 상이_**
 
-| 작성자           | 주제       |
-| ---------------- | ---------- |
-| Kimyerim1935     | Pagination |
-| akffkdahffkdgo77 | TextField  |
-| akffkdahffkdgo77 | Select     |
-| Kimyerim1935     | PopOver    |
-| akffkdahffkdgo77 | Button     |
-| akffkdahffkdgo77 | Tab        |
+| 작성자           | 주제         |
+| ---------------- | ------------ |
+| Kimyerim1935     | Pagination   |
+| akffkdahffkdgo77 | TextField    |
+| akffkdahffkdgo77 | Select       |
+| Kimyerim1935     | PopOver      |
+| akffkdahffkdgo77 | Button       |
+| akffkdahffkdgo77 | Tab          |
+| Kimyerim1935     | AutoComplete |
+| akffkdahffkdgo77 | Table        |
+| akffkdahffkdgo77 | Skeleton     |
+| akffkdahffkdgo77 | Radio        |
+| akffkdahffkdgo77 | Checkbox     |
 
 ## Convention
 
@@ -93,3 +98,7 @@ PR 메시지
 [깃허브 아이디] 컴포넌트명 추가
 
 ```
+
+### References
+
+-   [아이콘](https://heroicons.com/)
