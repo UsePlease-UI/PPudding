@@ -87,6 +87,7 @@ export default function ComboBox({ icon = false }: ComboBoxType) {
                 direction="row"
                 gap={5}
                 customCSS={css({
+                    maxWidth: 200,
                     height: 40,
                     borderRadius: 4,
                     border: '1px solid #eeeeee',
