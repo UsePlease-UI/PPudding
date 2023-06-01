@@ -41,7 +41,8 @@ const meta: Meta<typeof Chip> = {
             control: false,
             table: {
                 type: { summary: 'function' },
-                category: 'optional'
+                category: 'optional',
+                defaultValue: { summary: '() => {}' }
             }
         },
         customCSS: {
