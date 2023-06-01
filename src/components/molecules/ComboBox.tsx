@@ -135,6 +135,7 @@ export default function ComboBox({ icon = false }: ComboBoxType) {
                     role="listbox"
                     aria-label="States"
                     css={css({
+                        maxWidth: 200,
                         display: 'block',
                         background: 'white',
                         borderRadius: 4,
