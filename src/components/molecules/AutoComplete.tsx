@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-// import { useState } from 'react';
 
 import ComboBox from 'components/molecules/ComboBox';
 import { AUTOCOMPLETE } from 'constants/autocomplete';
