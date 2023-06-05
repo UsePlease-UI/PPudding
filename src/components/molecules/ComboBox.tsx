@@ -20,6 +20,7 @@ type listType = {
 type ComboBoxType = {
     icon?: React.ReactNode;
     list: listType[];
+    isAutoComplete?: boolean;
 };
 
 const listItemStyle = css({
@@ -44,15 +45,14 @@ const listItemStyle = css({
     }
 });
 
-export default function ComboBox({ icon = false, list }: ComboBoxType) {
+export default function ComboBox({ icon = false, list, isAutoComplete = false }: ComboBoxType) {
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const [listArr, setListArr] = useState(list);
     const [inputValue, setInputValue] = useState<string>('');
     const listRef = useRef<HTMLUListElement | null>(null);
 
     const handleClick = () => {
-        if (inputValue) setIsVisible((prev) => !prev);
-
+        setIsVisible((prev) => !prev);
         if (!isVisible) {
             document.body.style.overflow = 'hidden';
         } else {
