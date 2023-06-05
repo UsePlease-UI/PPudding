@@ -7,6 +7,7 @@ import Skeleton from 'components/atoms/Skeleton';
 import ButtonExample from 'examples/ButtonExample';
 import CheckboxExample from 'examples/CheckboxExample';
 import ChipExample from 'examples/ChipExample';
+import ComboBoxExample from 'examples/ComboBoxExample';
 import IconButtonExample from 'examples/IconButtonExample';
 import PaginationExample from 'examples/PaginationExample';
 import PopOverExample from 'examples/PopOverExample';
@@ -26,6 +27,7 @@ const COMPONENT_LIST = [
     'Button',
     'Checkbox',
     'Chip',
+    'ComboBox',
     'IconButton',
     'Pagination',
     'PopOver',
@@ -51,6 +53,8 @@ function getComponents(type: string) {
             return <CheckboxExample />;
         case 'Chip':
             return <ChipExample />;
+        case 'ComboBox':
+            return <ComboBoxExample />;
         case 'IconButton':
             return <IconButtonExample />;
         case 'Pagination':

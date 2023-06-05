@@ -8,12 +8,18 @@ import React, { useRef, useState, useCallback } from 'react';
 import _ from 'lodash';
 
 import FlexBox from 'components/atoms/FlexBox';
-import AUTOCOMPLETE from 'constants/autocomplete';
 
 import { css } from '@emotion/react';
 
+type listType = {
+    idx: number;
+    label: string;
+    value: string;
+};
+
 type ComboBoxType = {
     icon?: React.ReactNode;
+    list: listType[];
 };
 
 const listItemStyle = css({
@@ -38,10 +44,9 @@ const listItemStyle = css({
     }
 });
 
-export default function ComboBox({ icon = false }: ComboBoxType) {
+export default function ComboBox({ icon = false, list }: ComboBoxType) {
     const [isVisible, setIsVisible] = useState<boolean>(false);
-    const [listArr, setListArr] = useState(AUTOCOMPLETE);
-
+    const [listArr, setListArr] = useState(list);
     const [inputValue, setInputValue] = useState<string>('');
     const listRef = useRef<HTMLUListElement | null>(null);
 
@@ -61,14 +66,14 @@ export default function ComboBox({ icon = false }: ComboBoxType) {
             if (inputValue.length !== 0 || inputValue !== '') {
                 setIsVisible(true);
 
-                newArr = AUTOCOMPLETE.filter((el) => el.label.includes(inputValue));
+                newArr = list.filter((el) => el.label.includes(inputValue));
                 setListArr(newArr);
             } else {
                 setIsVisible(false);
             }
 
             if (inputValue.length === 0) {
-                setListArr(AUTOCOMPLETE);
+                setListArr(list);
             }
         }, 100),
         []
