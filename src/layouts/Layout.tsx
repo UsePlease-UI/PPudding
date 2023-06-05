@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Block from 'components/atoms/Block';
 import BlockWrapper from 'components/atoms/BlockWrapper';
 import Skeleton from 'components/atoms/Skeleton';
+import AutoCompleteExample from 'examples/AutoCompleteExample';
 import ButtonExample from 'examples/ButtonExample';
 import CheckboxExample from 'examples/CheckboxExample';
 import ChipExample from 'examples/ChipExample';
@@ -16,8 +17,6 @@ import TabExample from 'examples/TabExample';
 import TableExample from 'examples/TableExample';
 import TextFieldExample from 'examples/TextFieldExample';
 import ToggleButtonExample from 'examples/ToggleButtonExample';
-
-import AutoCompleteExample from '../examples/AutoCompleteExample';
 
 import { css } from '@emotion/react';
 

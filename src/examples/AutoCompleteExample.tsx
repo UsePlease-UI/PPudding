@@ -5,7 +5,7 @@ export default function AutoCompleteExample() {
     return (
         <FlexBox direction="column" gap={10}>
             <h2>AutoComplete</h2>
-            <AutoComplete />
+            <AutoComplete label="autoComplete" />
         </FlexBox>
     );
 }

@@ -1,6 +1,4 @@
 /* eslint-disable no-shadow */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable jsx-a11y/role-has-required-aria-props */
 /** @jsxImportSource @emotion/react */
 
 import React, { useRef, useState, useCallback } from 'react';
@@ -8,18 +6,20 @@ import React, { useRef, useState, useCallback } from 'react';
 import _ from 'lodash';
 
 import FlexBox from 'components/atoms/FlexBox';
+import { COMBOBOX } from 'constants/autocomplete';
 
 import { css } from '@emotion/react';
 
-type listType = {
+type ListType = {
     idx: number;
     label: string;
     value: string;
 };
 
 type ComboBoxType = {
+    id: string;
     icon?: React.ReactNode;
-    list: listType[];
+    list: ListType[];
     isAutoComplete?: boolean;
 };
 
@@ -45,9 +45,19 @@ const listItemStyle = css({
     }
 });
 
-export default function ComboBox({ icon = false, list, isAutoComplete = false }: ComboBoxType) {
+const ulStyle = css({
+    maxWidth: 200,
+    display: 'block',
+    background: 'white',
+    borderRadius: 4,
+    border: '1px solid #e0e0e0',
+    boxSizing: 'border-box',
+    padding: '10px 0'
+});
+export default function ComboBox({ id, icon, list, isAutoComplete = false }: ComboBoxType) {
+    const dataList = isAutoComplete ? list : COMBOBOX;
     const [isVisible, setIsVisible] = useState<boolean>(false);
-    const [listArr, setListArr] = useState(list);
+    const [listArr, setListArr] = useState(dataList);
     const [inputValue, setInputValue] = useState<string>('');
     const listRef = useRef<HTMLUListElement | null>(null);
 
@@ -66,22 +76,24 @@ export default function ComboBox({ icon = false, list, isAutoComplete = false }:
             if (inputValue.length !== 0 || inputValue !== '') {
                 setIsVisible(true);
 
-                newArr = list.filter((el) => el.label.includes(inputValue));
+                newArr = dataList.filter((el) => el.label.includes(inputValue));
                 setListArr(newArr);
             } else {
                 setIsVisible(false);
             }
 
             if (inputValue.length === 0) {
-                setListArr(list);
+                setListArr(dataList);
             }
         }, 100),
         []
     );
 
-    const handleChange = (e: string) => {
-        setInputValue(e);
-        handleSearch(e);
+    const handleChange = (e: any) => {
+        const { value } = e.target;
+
+        setInputValue(value);
+        handleSearch(value);
     };
 
     return (
@@ -91,7 +103,7 @@ export default function ComboBox({ icon = false, list, isAutoComplete = false }:
                 alignItems="center"
                 direction="row"
                 gap={5}
-                customCSS={css({
+                customCSS={{
                     maxWidth: 200,
                     height: 40,
                     borderRadius: 4,
@@ -99,9 +111,10 @@ export default function ComboBox({ icon = false, list, isAutoComplete = false }:
                     background: 'white',
                     boxSizing: 'border-box',
                     padding: 10
-                })}
+                }}
             >
                 <input
+                    id={id}
                     type="text"
                     role="combobox"
                     aria-autocomplete="list"
@@ -110,10 +123,9 @@ export default function ComboBox({ icon = false, list, isAutoComplete = false }:
                     css={css({
                         height: '100%',
                         border: 0
-                        // , '&[aria-expanded=true]': { backgroundColor: 'red' }
                     })}
                     value={inputValue}
-                    onChange={(e) => handleChange(e.target.value)}
+                    onChange={(e) => handleChange(e)}
                 />
 
                 {icon && (
@@ -125,7 +137,7 @@ export default function ComboBox({ icon = false, list, isAutoComplete = false }:
                         })}
                         type="button"
                         aria-label="status"
-                        aria-expanded="false"
+                        aria-expanded={isVisible}
                         aria-controls="listbox"
                         onClick={handleClick}
                     >
@@ -134,21 +146,7 @@ export default function ComboBox({ icon = false, list, isAutoComplete = false }:
                 )}
             </FlexBox>
             {Boolean(isVisible && listArr.length > 0) && (
-                <ul
-                    ref={listRef}
-                    id="listbox"
-                    role="listbox"
-                    aria-label="States"
-                    css={css({
-                        maxWidth: 200,
-                        display: 'block',
-                        background: 'white',
-                        borderRadius: 4,
-                        border: '1px solid #e0e0e0',
-                        boxSizing: 'border-box',
-                        padding: '10px 0'
-                    })}
-                >
+                <ul ref={listRef} id="listbox" role="listbox" aria-label="States" css={ulStyle}>
                     {listArr.map((el) => {
                         return (
                             <li key={`list-${el.idx}`} css={listItemStyle}>

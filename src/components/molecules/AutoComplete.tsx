@@ -7,11 +7,15 @@ import { AUTOCOMPLETE } from 'constants/autocomplete';
 import { css } from '@emotion/react';
 import { ChevronDownIcon } from 'assets/icons';
 
-export default function AutoComplete() {
+type autoCompleteType = {
+    label: string;
+};
+
+export default function AutoComplete({ label }: autoCompleteType) {
     return (
         <div>
-            <label htmlFor="autocomplete" css={css({ display: 'none' })} />
-            <ComboBox icon={<ChevronDownIcon />} list={AUTOCOMPLETE} />
+            <label htmlFor={label} css={css({ display: 'none' })} />
+            <ComboBox id={label} icon={<ChevronDownIcon />} list={AUTOCOMPLETE} />
         </div>
     );
 }
