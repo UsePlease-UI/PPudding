@@ -1,14 +1,14 @@
-import { createContext, useContext, useMemo } from 'react';
+import { createContext, useCallback, useContext, useMemo, useState } from 'react';
 
 type AccordionContextType = {
-    value: string | number;
-    onChange: (newValue: string | number) => void;
+    isExpanded: boolean;
+    onChange: (event: React.MouseEvent<HTMLButtonElement>, isExpanded: boolean) => void;
 };
 
 type AccordionProviderType = {
     children: React.ReactNode;
-    value: string | number;
-    onChange: (newValue: string | number) => void;
+    isExpanded?: boolean;
+    onChange?: (event: React.MouseEvent<HTMLButtonElement>, isExpanded: boolean) => void;
 };
 
 const AccordionContext = createContext<AccordionContextType | undefined>(undefined);
@@ -23,8 +23,23 @@ export const useAccordionContext = () => {
     return context;
 };
 
-export default function AccordionProvider({ children, value, onChange }: AccordionProviderType) {
-    const context: AccordionContextType = useMemo(() => ({ value, onChange }), [value, onChange]);
+export default function AccordionProvider({ children, isExpanded, onChange }: AccordionProviderType) {
+    const [selected, setSelected] = useState<boolean>(isExpanded ?? false);
+
+    const handleChange = useCallback(
+        (event: React.MouseEvent<HTMLButtonElement>, curIsExpanded: boolean) => {
+            setSelected((prev) => !prev);
+            if (onChange) {
+                onChange(event, curIsExpanded);
+            }
+        },
+        [selected, onChange]
+    );
+
+    const context: AccordionContextType = useMemo(
+        () => ({ isExpanded: selected, onChange: handleChange }),
+        [isExpanded, handleChange]
+    );
 
     return <AccordionContext.Provider value={context}>{children}</AccordionContext.Provider>;
 }

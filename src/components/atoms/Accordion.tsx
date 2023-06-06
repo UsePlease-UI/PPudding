@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
 
-import { useState } from 'react';
-
 import FlexBox from 'components/atoms/FlexBox';
 import AccordionProvider from 'contexts/AccordionContext';
 
@@ -9,23 +7,14 @@ import { CSSInterpolation } from '@emotion/serialize';
 
 type AccordionType = {
     children: React.ReactNode;
+    isExpanded?: boolean;
+    onChange?: (event: React.MouseEvent<HTMLButtonElement>, isExpanded: boolean) => void;
     customCSS?: CSSInterpolation;
 };
 
-export default function Accordion({ children, customCSS = {} }: AccordionType) {
-    const [selected, setSelected] = useState<string | number>('');
-
+export default function Accordion({ isExpanded, onChange, children, customCSS = { width: '100%' } }: AccordionType) {
     return (
-        <AccordionProvider
-            value={selected}
-            onChange={(newValue) => {
-                if (selected === newValue) {
-                    setSelected('');
-                } else {
-                    setSelected(newValue);
-                }
-            }}
-        >
+        <AccordionProvider isExpanded={isExpanded} onChange={onChange}>
             <FlexBox direction="column" customCSS={customCSS}>
                 {children}
             </FlexBox>

@@ -17,18 +17,38 @@ type AccordionHeaderType = {
 
 const headingStyle = css({
     minWidth: 250,
+    width: '100%',
+    minHeight: 60,
+    border: '1px solid #eeeeee',
+    borderRadius: 4,
+    backgroundColor: '#ffffff'
+});
+
+const buttonStyle = css({
+    width: '100%',
+    height: '100%',
     padding: '5px 12px',
-    fontSize: 14,
-    lineHeight: 1.5
+    cursor: 'pointer'
 });
 
 const titleStyle = css({
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    fontSize: 18,
+    fontWeight: 600,
+    lineHeight: 1.5,
+    '& *': {
+        fontSize: 18,
+        fontWeight: 600,
+        lineHeight: 1.5
+    }
 });
 
-const buttonStyle = css({
-    border: 1
+const iconStyle = css({
+    width: 20,
+    height: 20,
+    '& svg': { width: 20, height: 20 }
 });
 
 export default function AccordionHeader({
@@ -38,23 +58,31 @@ export default function AccordionHeader({
     index,
     customCSS = {}
 }: AccordionHeaderType) {
-    const { value, onChange } = useAccordionContext();
-    const isOpen = index === value;
+    const { isExpanded, onChange } = useAccordionContext();
 
     return (
-        <h3 css={css([headingStyle, customCSS])}>
+        <h3
+            css={css([
+                headingStyle,
+                {
+                    borderBottomLeftRadius: isExpanded ? 0 : 4,
+                    borderBottomRightRadius: isExpanded ? 0 : 4
+                },
+                customCSS
+            ])}
+        >
             <button
                 id={`accordian${index}-id`}
                 type="button"
-                aria-expanded={isOpen}
+                aria-expanded={isExpanded}
                 aria-controls={`sect${index}`}
-                onClick={() => onChange(index)}
+                onClick={(e) => onChange(e, !isExpanded)}
                 css={buttonStyle}
             >
                 <div css={titleStyle}>
                     {children}
                     {hasIcon && (
-                        <span css={css({ transform: isOpen ? 'rotate(180deg)' : 'initial' })}>
+                        <span css={css([iconStyle, { transform: isExpanded ? 'rotate(180deg)' : 'initial' }])}>
                             {icon ?? <ChevronDownIcon />}
                         </span>
                     )}
