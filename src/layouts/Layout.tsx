@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Block from 'components/atoms/Block';
 import BlockWrapper from 'components/atoms/BlockWrapper';
 import Skeleton from 'components/atoms/Skeleton';
+import AccordionExample from 'examples/AccordionExample';
 import AutoCompleteExample from 'examples/AutoCompleteExample';
 import ButtonExample from 'examples/ButtonExample';
 import CheckboxExample from 'examples/CheckboxExample';
@@ -21,6 +22,7 @@ import ToggleButtonExample from 'examples/ToggleButtonExample';
 import { css } from '@emotion/react';
 
 const COMPONENT_LIST = [
+    'Accordion',
     'AutoComplete',
     'Button',
     'Checkbox',
@@ -42,6 +44,8 @@ const componentStyle = css({ marginTop: 20, display: 'flex' });
 
 function getComponents(type: string) {
     switch (type) {
+        case 'Accordion':
+            return <AccordionExample />;
         case 'AutoComplete':
             return <AutoCompleteExample />;
         case 'Button':

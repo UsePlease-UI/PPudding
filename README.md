@@ -2,12 +2,13 @@
 
 ## 컴포넌트 구현
 
--   [ ] Accordion
+
 -   [x] AutoComplete
+-   [x] Accordion
 -   [x] Button
 -   [ ] Calendar
 -   [x] Checkbox
--   [ ] Chip
+-   [x] Chip
 -   [x] ComboBox
 -   [ ] Drag n Drop
 -   [ ] Editor
@@ -71,6 +72,7 @@
 | akffkdahffkdgo77 | Skeleton     |
 | akffkdahffkdgo77 | Radio        |
 | akffkdahffkdgo77 | Checkbox     |
+| akffkdahffkdgo77 | Accordion    |
 
 ## Convention
 
