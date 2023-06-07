@@ -5,7 +5,7 @@ import TableRow from 'components/atoms/TableRow';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'ATOMS/TableRow',
+    title: 'Table/TableRow',
     component: TableRow,
     tags: ['autodocs'],
     argTypes: {
@@ -13,12 +13,19 @@ const meta = {
             type: { name: 'string', required: true },
             control: false,
             description: '컴포넌트',
-            table: { category: 'required', type: { summary: 'React.ReactNode' } }
+            table: {
+                category: 'required',
+                type: { summary: 'React.ReactNode' }
+            }
         },
         customCSS: {
             control: { type: 'object' },
             description: 'Custom CSS',
-            table: { category: 'style', defaultValue: { summary: '{}' }, type: { summary: 'CSSInterpolation' } }
+            table: {
+                category: 'style',
+                defaultValue: { summary: '{}' },
+                type: { summary: 'CSSInterpolation' }
+            }
         }
     }
 } satisfies Meta<typeof TableRow>;
