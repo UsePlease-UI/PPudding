@@ -3,24 +3,36 @@ import PageNumButton from 'components/atoms/PageNumButton';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'ATOMS/PageNumButton',
+    title: 'Pagination/PageNumButton',
     component: PageNumButton,
     tags: ['autodocs'],
     argTypes: {
         pageNum: {
+            type: { name: 'string', required: true },
             control: 'number',
-            description: 'pageNum',
-            table: { category: 'REQUIRED', type: { summary: 'number' } }
+            description: '페이지 번호',
+            table: {
+                category: 'required',
+                type: { summary: 'number' }
+            }
         },
         isSelected: {
+            type: { name: 'string', required: true },
             control: 'boolean',
             description: '페이지 선택 여부',
-            table: { category: 'REQUIRED', type: { summary: 'boolean' } }
+            table: {
+                category: 'required',
+                type: { summary: 'boolean' }
+            }
         },
         onClick: {
+            type: { name: 'string', required: true },
             control: false,
-            description: '페이지 이동',
-            table: { category: 'REQUIRED', type: { summary: 'function' } }
+            description: 'Click Event Handler',
+            table: {
+                category: 'required',
+                type: { summary: '() => void' }
+            }
         }
     }
 } satisfies Meta<typeof PageNumButton>;
