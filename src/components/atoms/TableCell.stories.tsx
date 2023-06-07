@@ -4,26 +4,36 @@ import TableCell from 'components/atoms/TableCell';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'ATOMS/TableCell',
+    title: 'Table/TableCell',
     component: TableCell,
     tags: ['autodocs'],
     argTypes: {
         children: {
             type: { name: 'string', required: true },
             description: '컴포넌트 또는 텍스트',
-            table: { category: 'required', type: { summary: 'string | React.ReactNode' } }
+            table: {
+                category: 'required',
+                type: { summary: 'string | React.ReactNode' }
+            }
         },
         component: {
             type: { name: 'string', required: false },
             control: { type: 'inline-radio' },
             options: ['th', 'td'],
             description: 'th 또는 td',
-            table: { category: 'optional', type: { summary: 'th | td' } }
+            table: {
+                category: 'optional',
+                type: { summary: 'th | td' }
+            }
         },
         customCSS: {
             control: { type: 'object' },
             description: 'Custom CSS',
-            table: { category: 'style', defaultValue: { summary: '{}' }, type: { summary: 'CSSInterpolation' } }
+            table: {
+                category: 'style',
+                defaultValue: { summary: '{}' },
+                type: { summary: 'CSSInterpolation' }
+            }
         }
     }
 } satisfies Meta<typeof TableCell>;
