@@ -8,20 +8,30 @@ import OPTIONS from 'constants/options';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'MOLECULES/FormControl',
+    title: 'Form/FormControl',
     component: FormControl,
     tags: ['autodocs'],
     argTypes: {
+        children: {
+            type: { name: 'string', required: true },
+            control: false,
+            description: '컴포넌트',
+            table: { category: 'required', type: { summary: 'React.ReactNode' } }
+        },
         id: {
             control: { type: 'text' },
             description: '[웹 접근성] id',
-            table: { category: 'Accessibility', defaultValue: { summary: 'input' }, type: { summary: 'string' } }
+            table: {
+                category: 'optional',
+                defaultValue: { summary: 'input' },
+                type: { summary: 'string' }
+            }
         },
         helperTextId: {
             control: { type: 'text' },
             description: '[웹 접근성] helper text의 id',
             table: {
-                category: 'Accessibility',
+                category: 'optional',
                 defaultValue: { summary: 'input-helper-text' },
                 type: { summary: 'string' }
             }
@@ -29,17 +39,29 @@ const meta = {
         label: {
             control: { type: 'text' },
             description: 'Label Text',
-            table: { category: 'Optional', defaultValue: { summary: '""' }, type: { summary: 'string' } }
+            table: {
+                category: 'optional',
+                defaultValue: { summary: '""' },
+                type: { summary: 'string' }
+            }
         },
         helperText: {
             control: { type: 'text' },
             description: 'Helper Text',
-            table: { category: 'Optional', defaultValue: { summary: '""' }, type: { summary: 'string' } }
+            table: {
+                category: 'optional',
+                defaultValue: { summary: '""' },
+                type: { summary: 'string' }
+            }
         },
         customCSS: {
             control: { type: 'object' },
             description: 'Custom CSS',
-            table: { category: 'Style', defaultValue: { summary: '{}' }, type: { summary: 'CSSInterpolation' } }
+            table: {
+                category: 'style',
+                defaultValue: { summary: '{}' },
+                type: { summary: 'CSSInterpolation' }
+            }
         }
     }
 } satisfies Meta<typeof FormControl>;
@@ -103,6 +125,8 @@ const FormControlSelectTemplate: Story = {
 export const FormControlTextField: Story = {
     ...FormControlTextFieldTemplate,
     args: {
+        // eslint-disable-next-line react/jsx-no-useless-fragment
+        children: <></>,
         id: 'name',
         helperText: 'I am a helper text',
         helperTextId: 'name-helper-text',
@@ -128,6 +152,8 @@ export const FormControlTextField: Story = {
 export const FormControlSelect: Story = {
     ...FormControlSelectTemplate,
     args: {
+        // eslint-disable-next-line react/jsx-no-useless-fragment
+        children: <></>,
         id: 'milk',
         helperText: '우유 종류를 선택해주세요',
         helperTextId: 'milk-helper-text',
