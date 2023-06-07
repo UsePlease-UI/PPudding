@@ -2,7 +2,7 @@
 
 ## 컴포넌트 구현
 
--   [ ] Accordion
+-   [x] Accordion
 -   [ ] AutoComplete
 -   [x] Button
 -   [ ] Calendar
@@ -68,6 +68,7 @@
 | akffkdahffkdgo77 | Skeleton     |
 | akffkdahffkdgo77 | Radio        |
 | akffkdahffkdgo77 | Checkbox     |
+| akffkdahffkdgo77 | Accordion    |
 
 ## Convention
 
