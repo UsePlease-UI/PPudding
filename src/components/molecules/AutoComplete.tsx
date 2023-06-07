@@ -15,7 +15,7 @@ type ListType = {
     value: string;
 };
 
-type autoCompleteType = {
+type AutoCompleteType = {
     inputValue: string;
     label: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -54,7 +54,7 @@ const ulStyle = css({
     padding: '10px 0'
 });
 
-export default function AutoComplete({ inputValue, onChange, label, listArr }: autoCompleteType) {
+export default function AutoComplete({ inputValue, onChange, label, listArr }: AutoCompleteType) {
     const listRef = useRef<HTMLUListElement | null>(null);
 
     useEffect(() => {
