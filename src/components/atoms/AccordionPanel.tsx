@@ -4,18 +4,20 @@ import React from 'react';
 import { useAccordionContext } from 'contexts/AccordionContext';
 
 import { css } from '@emotion/react';
+import { CSSInterpolation } from '@emotion/serialize';
 
-type AccordionPanelType = {
+export type AccordionPanelType = {
+    children: string | React.ReactNode;
     index: number;
-    children: React.ReactNode;
+    customCSS?: CSSInterpolation;
 };
 
 const panelStyle = css({
     backgroundColor: '#ffffff',
-    borderTop: 0,
     borderBottomLeftRadius: 4,
     borderBottomRightRadius: 4,
-    marginBottom: '-1px',
+    marginTop: -1,
+    marginBottom: -1,
     fontSize: 14,
     lineHeight: 1.5,
     '& *': {
@@ -24,7 +26,7 @@ const panelStyle = css({
     }
 });
 
-export default function AccordionPanel({ index, children }: AccordionPanelType) {
+export default function AccordionPanel({ children, index, customCSS = {} }: AccordionPanelType) {
     const { isExpanded } = useAccordionContext();
 
     return (
@@ -35,11 +37,12 @@ export default function AccordionPanel({ index, children }: AccordionPanelType) 
             css={css([
                 {
                     height: isExpanded ? 'auto' : 0,
-                    padding: isExpanded ? 12 : 0,
+                    padding: isExpanded ? 20 : 0,
                     border: isExpanded ? '1px solid #eeeeee' : 0,
                     visibility: isExpanded ? 'visible' : 'hidden'
                 },
-                panelStyle
+                panelStyle,
+                customCSS
             ])}
         >
             {children}
