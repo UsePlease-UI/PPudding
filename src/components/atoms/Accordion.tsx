@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-
 import FlexBox from 'components/atoms/FlexBox';
 import AccordionProvider from 'contexts/AccordionContext';
 
@@ -12,7 +11,7 @@ type AccordionType = {
     customCSS?: CSSInterpolation;
 };
 
-export default function Accordion({ isExpanded, onChange, children, customCSS = { width: '100%' } }: AccordionType) {
+export default function Accordion({ children, isExpanded, onChange, customCSS = { width: '100%' } }: AccordionType) {
     return (
         <AccordionProvider isExpanded={isExpanded} onChange={onChange}>
             <FlexBox direction="column" customCSS={customCSS}>
