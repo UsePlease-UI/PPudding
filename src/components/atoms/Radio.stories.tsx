@@ -8,7 +8,7 @@ import Radio from 'components/atoms/Radio';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Radio> = {
-    title: 'ATOMS/Radio',
+    title: 'Form/Radio/Radio',
     component: Radio,
     tags: ['autodocs'],
     parameters: {
@@ -60,7 +60,7 @@ const meta: Meta<typeof Radio> = {
             description: 'Change Handler',
             control: false,
             table: {
-                type: { summary: 'function' },
+                type: { summary: '(e: React.ChangeEvent<HTMLInputElement>) => void' },
                 category: 'optional'
             }
         },
