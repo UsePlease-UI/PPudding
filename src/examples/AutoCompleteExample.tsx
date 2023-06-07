@@ -15,19 +15,14 @@ type ListType = {
 export default function AutoCompleteExample() {
     const list = AUTOCOMPLETE;
     const [listArr, setListArr] = useState<ListType[]>(list);
-    const [isVisible, setIsVisible] = useState<boolean>(false);
     const [inputValue, setInputValue] = useState<string>('');
 
     const handleSearch = useCallback(
         _.debounce((value: string) => {
             let newArr = [];
             if (value.length !== 0 || value !== '') {
-                setIsVisible(true);
-
                 newArr = list.filter((el: ListType) => el.label.includes(value));
                 setListArr(newArr);
-            } else {
-                setIsVisible(false);
             }
 
             if (value.length === 0) {
