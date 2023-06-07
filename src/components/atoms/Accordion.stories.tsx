@@ -9,7 +9,7 @@ import { Default as AccordionPanelDefault } from 'components/atoms/AccordionPane
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'ATOMS/Accordion',
+    title: 'Accordion/Accordion',
     component: Accordion,
     tags: ['autodocs'],
     argTypes: {
