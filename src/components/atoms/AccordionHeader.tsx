@@ -7,9 +7,9 @@ import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
 import { ChevronDownIcon } from 'assets/icons';
 
-type AccordionHeaderType = {
-    index: number;
+export type AccordionHeaderType = {
     children: string | React.ReactNode;
+    index: number;
     icon?: React.ReactNode;
     hasIcon?: boolean;
     customCSS?: CSSInterpolation;
@@ -21,13 +21,14 @@ const headingStyle = css({
     minHeight: 60,
     border: '1px solid #eeeeee',
     borderRadius: 4,
-    backgroundColor: '#ffffff'
+    backgroundColor: 'pink'
 });
 
 const buttonStyle = css({
     width: '100%',
     height: '100%',
-    padding: '5px 12px',
+    minHeight: 'inherit',
+    padding: '5px 20px',
     cursor: 'pointer'
 });
 
@@ -52,10 +53,10 @@ const iconStyle = css({
 });
 
 export default function AccordionHeader({
-    hasIcon = true,
-    icon,
     children,
     index,
+    hasIcon = true,
+    icon,
     customCSS = {}
 }: AccordionHeaderType) {
     const { isExpanded, onChange } = useAccordionContext();
@@ -76,7 +77,7 @@ export default function AccordionHeader({
                 type="button"
                 aria-expanded={isExpanded}
                 aria-controls={`sect${index}`}
-                onClick={(e) => onChange(e, !isExpanded)}
+                onClick={(e) => onChange(e, isExpanded)}
                 css={buttonStyle}
             >
                 <div css={titleStyle}>
