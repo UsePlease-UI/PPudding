@@ -8,16 +8,8 @@ import palette from 'styles/palette';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-const popoverStyle = css({
-    height: 30,
-    fontWeight: 700,
-    color: `${palette.lightBlue.main}`,
-    border: `1px solid ${palette.lightBlue.main}`,
-    borderRadius: 4
-});
-
 const meta = {
-    title: 'ATOMS/PopOver',
+    title: 'Menu/PopOver',
     component: PopOver,
     tags: ['autodocs'],
     argTypes: {
@@ -27,7 +19,7 @@ const meta = {
             control: false,
             table: {
                 type: { summary: 'React.ReactNode' },
-                category: 'REQUIRED'
+                category: 'required'
             }
         },
         isOpen: {
@@ -35,19 +27,32 @@ const meta = {
             control: false,
             table: {
                 type: { summary: 'boolean' },
-                category: 'REQUIRED'
+                category: 'required'
             }
         },
         customCSS: {
             control: { type: 'object' },
             description: 'Custom CSS',
-            table: { category: 'Style', defaultValue: { summary: '{}' }, type: { summary: 'CSSInterpolation' } }
+            table: {
+                category: 'style',
+                defaultValue: { summary: '{}' },
+                type: { summary: 'CSSInterpolation' }
+            }
         }
     }
 } satisfies Meta<typeof PopOver>;
 
 export default meta;
 type Story = StoryObj<typeof PopOver>;
+
+const popoverStyle = css({
+    height: 30,
+    fontWeight: 700,
+    color: `${palette.lightBlue.main}`,
+    border: `1px solid ${palette.lightBlue.main}`,
+    borderRadius: 4,
+    padding: '5px 12px'
+});
 
 const Template: Story = {
     render: (args) => {
@@ -71,7 +76,7 @@ const Template: Story = {
                     click me
                 </button>
                 <PopOver {...args} isOpen={isOpen}>
-                    <span>This is contents</span>
+                    {args.children}
                 </PopOver>
             </>
         );
@@ -81,6 +86,7 @@ const Template: Story = {
 export const Default: Story = {
     ...Template,
     args: {
+        children: <span>This is contents</span>,
         customCSS: {
             padding: 20
         }

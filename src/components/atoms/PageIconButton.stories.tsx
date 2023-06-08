@@ -5,25 +5,36 @@ import { PageFirstIcon } from 'assets/icons';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'ATOMS/PageIconButton',
+    title: 'Pagination/PageIconButton',
     component: PageIconButton,
     tags: ['autodocs'],
     argTypes: {
         icon: {
+            type: { name: 'string', required: true },
             control: false,
             description: 'Icon',
-            table: { category: 'REQUIRED', type: { summary: 'React.ReactNode' } }
+            table: {
+                category: 'required',
+                type: { summary: 'React.ReactNode' }
+            }
         },
         isDisabled: {
+            type: { name: 'string', required: true },
             control: { type: 'boolean' },
             description: '활성화여부',
-            table: { category: 'REQUIRED', type: { summary: 'boolean' } }
+            table: {
+                category: 'required',
+                type: { summary: 'boolean' }
+            }
         },
-
         onClick: {
+            type: { name: 'string', required: true },
             control: false,
-            description: 'click event handler',
-            table: { category: 'REQUIRED', type: { summary: 'function' } }
+            description: 'Click Event Handler',
+            table: {
+                category: 'required',
+                type: { summary: '() => void' }
+            }
         }
     }
 } satisfies Meta<typeof PageIconButton>;
@@ -33,6 +44,7 @@ type Story = StoryObj<typeof PageIconButton>;
 
 export const Default: Story = {
     render: (args) => {
+        // eslint-disable-next-line no-console
         return <PageIconButton {...args} icon={<PageFirstIcon />} onClick={() => console.log(1)} />;
     },
     args: {

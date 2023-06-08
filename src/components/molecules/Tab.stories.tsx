@@ -9,7 +9,7 @@ import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'MOLECULES/Tab',
+    title: 'Tab/Tab',
     component: Tab,
     tags: ['autodocs'],
     argTypes: {
@@ -17,24 +17,37 @@ const meta = {
             type: { name: 'string', required: true },
             description: '컴포넌트',
             control: false,
-            table: { category: 'required', type: { summary: 'string' } }
+            table: {
+                category: 'required',
+                type: { summary: 'React.ReactNode' }
+            }
         },
         value: {
             type: { name: 'string', required: true },
             control: false,
             description: '선택된 탭 인덱스',
-            table: { category: 'required', type: { summary: 'number' } }
+            table: {
+                category: 'required',
+                type: { summary: 'number' }
+            }
         },
         onChange: {
             type: { name: 'string', required: true },
             control: false,
             description: 'Change Event Handler',
-            table: { category: 'required', type: { summary: 'function' } }
+            table: {
+                category: 'required',
+                type: { summary: '(newValue: number) => void' }
+            }
         },
         customCSS: {
             control: { type: 'object' },
             description: 'Custom CSS',
-            table: { category: 'Style', defaultValue: { summary: '{}' }, type: { summary: 'CSSInterpolation' } }
+            table: {
+                category: 'style',
+                defaultValue: { summary: '{}' },
+                type: { summary: 'CSSInterpolation' }
+            }
         }
     }
 } satisfies Meta<typeof Tab>;

@@ -3,7 +3,7 @@ import ToggleButton from 'components/atoms/ToggleButton';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'ATOMS/ToggleButton',
+    title: 'Form/Toggle/ToggleButton',
     component: ToggleButton,
     tags: ['autodocs'],
     parameters: {
@@ -14,11 +14,16 @@ const meta = {
     },
     argTypes: {
         name: {
+            type: { name: 'function', required: true },
             control: { type: 'text' },
             description: 'ToggleButton 이름',
-            table: { category: 'required', type: { summary: 'string' } }
+            table: {
+                category: 'required',
+                type: { summary: 'string' }
+            }
         },
         value: {
+            type: { name: 'function', required: true },
             control: false,
             description: 'ToggleButton 값',
             table: { category: 'required', type: { summary: 'string' } }
@@ -26,17 +31,27 @@ const meta = {
         currentValue: {
             control: false,
             description: '현재 선택된 Toggle Button 값',
-            table: { category: 'optional', type: { summary: 'string' } }
+            table: {
+                category: 'optional',
+                type: { summary: 'string' }
+            }
         },
         onChange: {
             control: false,
             description: 'Change Event Handler',
-            table: { category: 'optional', type: { summary: 'function' } }
+            table: {
+                category: 'optional',
+                type: { summary: 'function' }
+            }
         },
         customCSS: {
             control: { type: 'object' },
             description: 'Custom CSS',
-            table: { category: 'style', defaultValue: { summary: '{}' }, type: { summary: 'CSSInterpolation' } }
+            table: {
+                category: 'style',
+                defaultValue: { summary: '{}' },
+                type: { summary: 'CSSInterpolation' }
+            }
         }
     }
 } satisfies Meta<typeof ToggleButton>;

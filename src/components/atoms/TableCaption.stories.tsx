@@ -4,7 +4,7 @@ import TableCaption from 'components/atoms/TableCaption';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'ATOMS/TableCaption',
+    title: 'Table/TableCaption',
     component: TableCaption,
     tags: ['autodocs'],
     argTypes: {
@@ -12,12 +12,19 @@ const meta = {
             type: { name: 'string', required: true },
             control: false,
             description: '컴포넌트 또는 텍스트',
-            table: { category: 'required', type: { summary: 'string | React.ReactNode' } }
+            table: {
+                category: 'required',
+                type: { summary: 'string | React.ReactNode' }
+            }
         },
         customCSS: {
             control: { type: 'object' },
             description: 'Custom CSS',
-            table: { category: 'style', defaultValue: { summary: '{}' }, type: { summary: 'CSSInterpolation' } }
+            table: {
+                category: 'style',
+                defaultValue: { summary: '{}' },
+                type: { summary: 'CSSInterpolation' }
+            }
         }
     }
 } satisfies Meta<typeof TableCaption>;

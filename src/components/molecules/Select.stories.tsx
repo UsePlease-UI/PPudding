@@ -6,7 +6,7 @@ import OPTIONS from 'constants/options';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'MOLECULES/Select',
+    title: 'Form/Select',
     component: Select,
     tags: ['autodocs'],
     argTypes: {
@@ -14,50 +14,73 @@ const meta = {
             type: { name: 'string', required: true },
             description: 'Select 이름',
             control: { type: 'text' },
-            table: { category: 'required', type: { summary: 'string' } }
+            table: {
+                category: 'required',
+                type: { summary: 'string' }
+            }
         },
         label: {
             type: { name: 'string', required: true },
             control: false,
             description: '선택된 값의 label',
-            table: { category: 'required', type: { summary: 'string' } }
+            table: {
+                category: 'required',
+                type: { summary: 'string' }
+            }
         },
         value: {
             type: { name: 'string', required: true },
             control: false,
             description: '선택된 값의 value',
-            table: { category: 'required', type: { summary: 'string | number' } }
-        },
-        options: {
-            type: { name: 'string', required: true },
-            control: { type: 'object' },
-            description: '옵션들',
             table: {
                 category: 'required',
-                defaultValue: { summary: '[]' },
-                type: { summary: '{ label: string; value: string | number }[]' }
+                type: { summary: 'string | number' }
             }
         },
         onChange: {
             type: { name: 'string', required: true },
             control: false,
             description: 'Change Event Handler',
-            table: { category: 'required', type: { summary: 'function' } }
+            table: {
+                category: 'required',
+                type: { summary: '(e: React.MouseEvent<HTMLButtonElement>) => void;' }
+            }
+        },
+        options: {
+            control: { type: 'object' },
+            description: '옵션들',
+            table: {
+                category: 'optional',
+                defaultValue: { summary: '[]' },
+                type: { summary: '{ label: string; value: string | number }[]' }
+            }
         },
         isDisabled: {
             control: { type: 'boolean' },
             description: '활성화여부',
-            table: { category: 'States', defaultValue: { summary: false }, type: { summary: 'boolean' } }
+            table: {
+                category: 'optional',
+                defaultValue: { summary: false },
+                type: { summary: 'boolean' }
+            }
         },
         isReadOnly: {
             control: { type: 'boolean' },
             description: '읽기 전용',
-            table: { category: 'States', defaultValue: { summary: false }, type: { summary: 'boolean' } }
+            table: {
+                category: 'optional',
+                defaultValue: { summary: false },
+                type: { summary: 'boolean' }
+            }
         },
         customCSS: {
             control: { type: 'object' },
             description: 'Custom CSS',
-            table: { category: 'Style', defaultValue: { summary: '{}' }, type: { summary: 'CSSInterpolation' } }
+            table: {
+                category: 'style',
+                defaultValue: { summary: '{}' },
+                type: { summary: 'CSSInterpolation' }
+            }
         }
     }
 } satisfies Meta<typeof Select>;

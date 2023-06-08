@@ -8,11 +8,12 @@ import { ChevronDownIcon } from 'assets/icons';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'MOLECULES/IconButton',
+    title: 'Button/IconButton',
     component: IconButton,
     tags: ['autodocs'],
     argTypes: {
         children: {
+            type: { name: 'string', required: true },
             control: false,
             description: '컴포넌트',
             table: { category: 'required', type: { summary: 'React.ReactNode' } }
@@ -20,14 +21,18 @@ const meta = {
         isDisabled: {
             control: { type: 'boolean' },
             description: '활성화여부',
-            table: { category: 'States', defaultValue: { summary: false }, type: { summary: 'boolean' } }
+            table: {
+                category: 'optional',
+                defaultValue: { summary: false },
+                type: { summary: 'boolean' }
+            }
         },
         type: {
             control: { type: 'inline-radio' },
             description: '버튼 타입',
             options: ['button', 'reset', 'submit'],
             table: {
-                category: 'IconButton Attributes',
+                category: 'optional',
                 defaultValue: { summary: 'button' },
                 type: { summary: 'button | reset | submit' }
             }
@@ -37,7 +42,7 @@ const meta = {
             description: '[CSS] 버튼 스타일',
             options: ['outlined', 'contained', 'text'],
             table: {
-                category: 'Style',
+                category: 'optional',
                 defaultValue: { summary: 'outlined' },
                 type: { summary: 'outlined | contained | text' }
             }
@@ -47,7 +52,7 @@ const meta = {
             description: '[CSS] 버튼 크기',
             options: ['large', 'medium', 'small'],
             table: {
-                category: 'Style',
+                category: 'optional',
                 defaultValue: { summary: 'large' },
                 type: { summary: 'large | medium | small' }
             }
@@ -55,12 +60,20 @@ const meta = {
         onClick: {
             control: false,
             description: 'Click Event Handler',
-            table: { category: 'function', defaultValue: { summary: '() => {}' }, type: { summary: 'function' } }
+            table: {
+                category: 'optional',
+                defaultValue: { summary: '() => {}' },
+                type: { summary: 'function' }
+            }
         },
         customCSS: {
             control: { type: 'object' },
             description: 'Custom CSS',
-            table: { category: 'Style', defaultValue: { summary: '{}' }, type: { summary: 'CSSInterpolation' } }
+            table: {
+                category: 'style',
+                defaultValue: { summary: '{}' },
+                type: { summary: 'CSSInterpolation' }
+            }
         }
     }
 } satisfies Meta<typeof IconButton>;

@@ -3,7 +3,7 @@ import Chip from 'components/atoms/Chip';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Chip> = {
-    title: 'ATOMS/Chip',
+    title: 'Form/Chip',
     component: Chip,
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
@@ -40,7 +40,7 @@ const meta: Meta<typeof Chip> = {
             description: 'Delete Handler',
             control: false,
             table: {
-                type: { summary: 'function' },
+                type: { summary: '(value: string | number) => void' },
                 category: 'optional',
                 defaultValue: { summary: '() => {}' }
             }

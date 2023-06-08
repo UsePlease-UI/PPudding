@@ -5,7 +5,7 @@ import Checkbox from 'components/atoms/Checkbox';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Checkbox> = {
-    title: 'ATOMS/Checkbox',
+    title: 'Form/Checkbox',
     component: Checkbox,
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
@@ -39,11 +39,11 @@ const meta: Meta<typeof Checkbox> = {
         },
         onChange: {
             type: { name: 'function', required: true },
-            description: 'Change Handler',
+            description: 'Change Event Handler',
             control: false,
             table: {
-                type: { summary: 'function' },
-                category: 'optional'
+                type: { summary: '(e: React.ChangeEvent<HTMLInputElement>) => void' },
+                category: 'required'
             }
         },
         icon: {

@@ -9,7 +9,7 @@ import RadioGroup from 'components/atoms/RadioGroup';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof RadioGroup> = {
-    title: 'ATOMS/RadioGroup',
+    title: 'Form/Radio/RadioGroup',
     component: RadioGroup,
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
@@ -25,10 +25,10 @@ const meta: Meta<typeof RadioGroup> = {
         },
         onChange: {
             type: { name: 'function', required: true },
-            description: 'Change Handler',
+            description: 'Change Event Handler',
             control: true,
             table: {
-                type: { summary: 'function' },
+                type: { summary: '(e: React.ChangeEvent<HTMLInputElement>) => void' },
                 category: 'required'
             }
         },

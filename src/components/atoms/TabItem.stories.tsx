@@ -9,7 +9,7 @@ import { ChevronDownIcon } from 'assets/icons';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'ATOMS/TabItem',
+    title: 'Tab/TabItem',
     component: TabItem,
     tags: ['autodocs'],
     parameters: {
@@ -23,36 +23,54 @@ const meta = {
             type: { name: 'string', required: true },
             control: false,
             description: '탭 Text',
-            table: { category: 'required', type: { summary: 'string' } }
+            table: {
+                category: 'required',
+                type: { summary: 'string' }
+            }
         },
         value: {
             type: { name: 'string', required: true },
             control: false,
             description: '선택된 탭 인덱스',
-            table: { category: 'required', type: { summary: 'number' } }
+            table: {
+                category: 'required',
+                type: { summary: 'number' }
+            }
         },
         index: {
             type: { name: 'string', required: true },
             control: false,
             description: '탭 인덱스',
-            table: { category: 'required', type: { summary: 'number' } }
+            table: {
+                category: 'required',
+                type: { summary: 'number' }
+            }
         },
         icon: {
-            type: { name: 'string', required: true },
             description: '아이콘',
             control: false,
-            table: { category: 'optional', type: { summary: 'React.ReactNode' } }
+            table: {
+                category: 'optional',
+                type: { summary: 'React.ReactNode' }
+            }
         },
         onChange: {
             type: { name: 'string', required: false },
             control: false,
             description: '사용자가 전달하지 않는 props',
-            table: { category: 'optional', type: { summary: 'function' } }
+            table: {
+                category: 'optional',
+                type: { summary: '(newValue: number) => void' }
+            }
         },
         customCSS: {
             control: { type: 'object' },
             description: 'Custom CSS',
-            table: { category: 'Style', defaultValue: { summary: '{}' }, type: { summary: 'CSSInterpolation' } }
+            table: {
+                category: 'style',
+                defaultValue: { summary: '{}' },
+                type: { summary: 'CSSInterpolation' }
+            }
         }
     }
 } satisfies Meta<typeof TabItem>;

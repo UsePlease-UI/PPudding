@@ -4,7 +4,7 @@ import AccordionHeader from 'components/atoms/AccordionHeader';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'ATOMS/AccordionHeader',
+    title: 'Accordion/AccordionHeader',
     component: AccordionHeader,
     tags: ['autodocs'],
     argTypes: {
