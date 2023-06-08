@@ -35,7 +35,7 @@ export default function AutoCompleteExample() {
 
     useEffect(() => {
         if (!inputValue) {
-            setListArr([]);
+            setListArr(list);
         }
     }, [inputValue]);
 
