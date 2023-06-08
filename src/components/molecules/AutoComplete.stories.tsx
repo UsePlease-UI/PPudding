@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 
 import _ from 'lodash';
 
+import FlexBox from 'components/atoms/FlexBox';
 import AutoComplete from 'components/molecules/AutoComplete';
 import { AUTOCOMPLETE } from 'constants/autocomplete';
 
@@ -36,6 +37,11 @@ const meta = {
             control: false,
             description: '검색어 입력',
             table: { category: 'REQUIRED', type: { summary: 'function' } }
+        },
+        onSelect: {
+            control: false,
+            description: '리스트에서의 항목 선택',
+            table: { category: 'REQUIRED', type: { summary: 'function' } }
         }
     }
 } satisfies Meta<typeof AutoComplete>;
@@ -53,8 +59,8 @@ const AutoCompleteTemplate: Story = {
     render: (args) => {
         const list = AUTOCOMPLETE;
 
+        const [selectedItem, setSelectedItem] = useState<ListType>();
         const [inputValue, setInputValue] = useState<string>('');
-
         const [listArr, setListArr] = useState<ListType[]>(list);
 
         const handleSearch = useCallback(
@@ -79,13 +85,17 @@ const AutoCompleteTemplate: Story = {
         };
 
         return (
-            <AutoComplete
-                {...args}
-                label="autoComplete"
-                listArr={listArr}
-                inputValue={inputValue}
-                onChange={handleChange}
-            />
+            <FlexBox direction="column" gap={10}>
+                <span>선택된 항목의 label: {selectedItem?.label}</span>
+                <AutoComplete
+                    {...args}
+                    label="autoComplete"
+                    listArr={listArr}
+                    inputValue={inputValue}
+                    onChange={handleChange}
+                    onSelect={(e) => setSelectedItem(e)}
+                />
+            </FlexBox>
         );
     }
 };
