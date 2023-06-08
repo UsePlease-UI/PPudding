@@ -1,10 +1,10 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 
 import _ from 'lodash';
 
 import FlexBox from 'components/atoms/FlexBox';
 import AutoComplete from 'components/molecules/AutoComplete';
-import { AUTOCOMPLETE } from 'constants/autocomplete';
+import { AUTOCOMPLETE as LIST } from 'constants/autocomplete';
 
 type ListType = {
     idx: number;
@@ -13,8 +13,7 @@ type ListType = {
 };
 
 export default function AutoCompleteExample() {
-    const list = AUTOCOMPLETE;
-    const [listArr, setListArr] = useState<ListType[]>(list);
+    const [listArr, setListArr] = useState<ListType[]>(LIST);
     const [inputValue, setInputValue] = useState<string>('');
     const [selectedItem, setSelectedItem] = useState<ListType>();
 
@@ -22,23 +21,20 @@ export default function AutoCompleteExample() {
         _.debounce((value: string) => {
             let newArr = [];
             if (value.length !== 0 && value !== '') {
-                newArr = list.filter((el: ListType) => el.label.includes(value));
+                newArr = LIST.filter((el: ListType) => el.label.includes(value));
                 setListArr(newArr);
+            } else {
+                setListArr(LIST);
             }
         }, 100),
         []
     );
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setInputValue(value);
         handleSearch(value);
     };
-
-    useEffect(() => {
-        if (!inputValue) {
-            setListArr(list);
-        }
-    }, [inputValue]);
 
     return (
         <FlexBox direction="column" gap={10}>
