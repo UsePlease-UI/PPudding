@@ -49,7 +49,7 @@ export default function AutoCompleteExample() {
                 listArr={listArr}
                 inputValue={inputValue}
                 onChange={handleChange}
-                setSelectedItem={setSelectedItem}
+                onSelect={(e) => setSelectedItem(e)}
             />
         </FlexBox>
     );

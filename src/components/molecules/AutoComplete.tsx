@@ -17,9 +17,25 @@ type AutoCompleteType = {
     inputValue: string;
     label: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    setSelectedItem: React.Dispatch<React.SetStateAction<ListType | undefined>>;
+    onSelect: (el: ListType) => void;
     listArr: ListType[];
 };
+
+const flexBoxCustom = css({
+    maxWidth: 200,
+    height: 40,
+    borderRadius: 4,
+    border: '1px solid #eeeeee',
+    background: 'white',
+    boxSizing: 'border-box',
+    padding: 10
+});
+
+const inputStyle = css({
+    width: '100%',
+    height: '100%',
+    border: 0
+});
 
 const listItemStyle = css({
     width: '100%',
@@ -54,7 +70,7 @@ const ulStyle = css({
 });
 
 export default function AutoComplete(props: AutoCompleteType) {
-    const { inputValue, onChange, label, listArr, setSelectedItem } = props;
+    const { inputValue, onChange, label, listArr, onSelect } = props;
     const listRef = useRef<HTMLUListElement | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -68,7 +84,7 @@ export default function AutoComplete(props: AutoCompleteType) {
     };
 
     const handleItemClick = (e: ListType) => {
-        setSelectedItem(e);
+        onSelect(e);
         setIsOpen(false);
     };
 
@@ -96,22 +112,7 @@ export default function AutoComplete(props: AutoCompleteType) {
     return (
         <div>
             <label htmlFor={label} css={css({ display: 'none' })} />
-            <FlexBox
-                justifyContent="center"
-                alignItems="center"
-                direction="row"
-                gap={5}
-                customCSS={{
-                    maxWidth: 200,
-                    height: 40,
-                    borderRadius: 4,
-                    border: '1px solid #eeeeee',
-                    background: 'white',
-                    boxSizing: 'border-box',
-                    padding: 10,
-                    marginBottom: 10
-                }}
-            >
+            <FlexBox justifyContent="center" alignItems="center" direction="row" gap={5} customCSS={flexBoxCustom}>
                 <input
                     id={label}
                     ref={inputRef}
@@ -125,11 +126,7 @@ export default function AutoComplete(props: AutoCompleteType) {
                     onChange={onChange}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
-                    css={css({
-                        width: '100%',
-                        height: '100%',
-                        border: 0
-                    })}
+                    css={inputStyle}
                 />
             </FlexBox>
             {Boolean(listArr.length > 0 && isOpen) && (
