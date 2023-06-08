@@ -2,7 +2,6 @@
 
 ## 컴포넌트 구현
 
-
 -   [x] AutoComplete
 -   [x] Accordion
 -   [x] Button
@@ -15,7 +14,7 @@
 -   [x] Menu Button (PopOver)
 -   [ ] Modal
 -   [x] Pagination
--   [ ] PopOver API
+-   [x] PopOver API
 -   [x] Radio
 -   [x] Select
 -   [ ] Slider (Carousel/Swiper)
