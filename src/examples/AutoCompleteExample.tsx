@@ -16,6 +16,7 @@ export default function AutoCompleteExample() {
     const list = AUTOCOMPLETE;
     const [listArr, setListArr] = useState<ListType[]>(list);
     const [inputValue, setInputValue] = useState<string>('');
+    const [selectedItem, setSelectedItem] = useState<ListType>();
 
     const handleSearch = useCallback(
         _.debounce((value: string) => {
@@ -42,7 +43,14 @@ export default function AutoCompleteExample() {
     return (
         <FlexBox direction="column" gap={10}>
             <h2>AutoComplete</h2>
-            <AutoComplete label="autoComplete" listArr={listArr} inputValue={inputValue} onChange={handleChange} />
+            <span>선택된 항목의 label: {selectedItem?.label}</span>
+            <AutoComplete
+                label="autoComplete"
+                listArr={listArr}
+                inputValue={inputValue}
+                onChange={handleChange}
+                setSelectedItem={setSelectedItem}
+            />
         </FlexBox>
     );
 }

@@ -3,8 +3,6 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 
-import _ from 'lodash';
-
 import FlexBox from 'components/atoms/FlexBox';
 
 import { css } from '@emotion/react';
@@ -19,6 +17,7 @@ type AutoCompleteType = {
     inputValue: string;
     label: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    setSelectedItem: React.Dispatch<React.SetStateAction<ListType | undefined>>;
     listArr: ListType[];
 };
 
@@ -54,10 +53,10 @@ const ulStyle = css({
     padding: '10px 0'
 });
 
-export default function AutoComplete({ inputValue, onChange, label, listArr }: AutoCompleteType) {
+export default function AutoComplete(props: AutoCompleteType) {
+    const { inputValue, onChange, label, listArr, setSelectedItem } = props;
     const listRef = useRef<HTMLUListElement | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
-    const [selectedItem, setSelectedItem] = useState<ListType>();
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const handleFocus = () => {
@@ -68,7 +67,7 @@ export default function AutoComplete({ inputValue, onChange, label, listArr }: A
         setIsOpen(false);
     };
 
-    const handleClick = (e: any) => {
+    const handleItemClick = (e: ListType) => {
         setSelectedItem(e);
         setIsOpen(false);
     };
@@ -127,6 +126,7 @@ export default function AutoComplete({ inputValue, onChange, label, listArr }: A
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     css={css({
+                        width: '100%',
                         height: '100%',
                         border: 0
                     })}
@@ -137,7 +137,7 @@ export default function AutoComplete({ inputValue, onChange, label, listArr }: A
                     {listArr.map((el) => {
                         return (
                             <li key={`list-${el.idx}`} css={listItemStyle}>
-                                <button type="button" onMouseDown={() => handleClick(el)}>
+                                <button type="button" onMouseDown={() => handleItemClick(el)}>
                                     {[...el.label].map((letter, idx) =>
                                         inputValue.includes(letter) ? (
                                             <span css={css({ color: 'hotPink', fontWeight: 700 })}>{letter}</span>
@@ -152,7 +152,6 @@ export default function AutoComplete({ inputValue, onChange, label, listArr }: A
                     })}
                 </ul>
             )}
-            <span>선택된 label: {selectedItem?.label}</span>
         </div>
     );
 }
