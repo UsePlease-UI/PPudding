@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 import _ from 'lodash';
 
@@ -20,23 +20,24 @@ export default function AutoCompleteExample() {
     const handleSearch = useCallback(
         _.debounce((value: string) => {
             let newArr = [];
-            if (value.length !== 0 || value !== '') {
+            if (value.length !== 0 && value !== '') {
                 newArr = list.filter((el: ListType) => el.label.includes(value));
                 setListArr(newArr);
-            }
-
-            if (value.length === 0) {
-                setListArr(list);
             }
         }, 100),
         []
     );
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setInputValue(value);
         handleSearch(value);
     };
+
+    useEffect(() => {
+        if (!inputValue) {
+            setListArr([]);
+        }
+    }, [inputValue]);
 
     return (
         <FlexBox direction="column" gap={10}>

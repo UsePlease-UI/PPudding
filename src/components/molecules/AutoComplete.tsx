@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 import _ from 'lodash';
 
@@ -56,12 +56,43 @@ const ulStyle = css({
 
 export default function AutoComplete({ inputValue, onChange, label, listArr }: AutoCompleteType) {
     const listRef = useRef<HTMLUListElement | null>(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
+    const [selectedItem, setSelectedItem] = useState<ListType>();
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    const handleFocus = () => {
+        setIsOpen(true);
+    };
+
+    const handleBlur = () => {
+        setIsOpen(false);
+    };
+
+    const handleClick = (e: any) => {
+        setSelectedItem(e);
+        setIsOpen(false);
+    };
 
     useEffect(() => {
-        if (listArr.length) {
+        if (isOpen && listArr.length) {
             document.body.style.overflow = 'hidden';
-        } else document.body.style.overflow = 'auto';
-    }, [listArr]);
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }, [isOpen, listArr]);
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (isOpen && !inputRef.current?.contains(event.target as Node)) {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isOpen]);
 
     return (
         <div>
@@ -78,30 +109,35 @@ export default function AutoComplete({ inputValue, onChange, label, listArr }: A
                     border: '1px solid #eeeeee',
                     background: 'white',
                     boxSizing: 'border-box',
-                    padding: 10
+                    padding: 10,
+                    marginBottom: 10
                 }}
             >
                 <input
                     id={label}
+                    ref={inputRef}
                     type="text"
                     role="combobox"
                     aria-autocomplete="list"
                     aria-expanded="true"
                     aria-controls="listbox"
+                    autoComplete="off"
+                    value={inputValue}
+                    onChange={onChange}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
                     css={css({
                         height: '100%',
                         border: 0
                     })}
-                    value={inputValue}
-                    onChange={onChange}
                 />
             </FlexBox>
-            {Boolean(listArr.length > 0) && (
+            {Boolean(listArr.length > 0 && isOpen) && (
                 <ul ref={listRef} id="listbox" role="listbox" aria-label="States" css={ulStyle}>
                     {listArr.map((el) => {
                         return (
                             <li key={`list-${el.idx}`} css={listItemStyle}>
-                                <button type="button">
+                                <button type="button" onMouseDown={() => handleClick(el)}>
                                     {[...el.label].map((letter, idx) =>
                                         inputValue.includes(letter) ? (
                                             <span css={css({ color: 'hotPink', fontWeight: 700 })}>{letter}</span>
@@ -116,6 +152,7 @@ export default function AutoComplete({ inputValue, onChange, label, listArr }: A
                     })}
                 </ul>
             )}
+            <span>선택된 label: {selectedItem?.label}</span>
         </div>
     );
 }
