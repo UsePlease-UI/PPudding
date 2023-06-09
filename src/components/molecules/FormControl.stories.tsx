@@ -8,7 +8,7 @@ import OPTIONS from 'constants/options';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Form/FormControl',
+    title: 'Design System/Molecules/Form/FormControl',
     component: FormControl,
     tags: ['autodocs'],
     argTypes: {

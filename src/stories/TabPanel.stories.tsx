@@ -1,16 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import { useState } from 'react';
-
-import TabItem from 'components/atoms/TabItem';
-import Tab from 'components/molecules/Tab';
-
-import { css } from '@emotion/react';
+import TabPanel from 'components/atoms/TabPanel';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Design System/Molecules/Tab/Tab',
-    component: Tab,
+    title: 'Design System/Atoms/Tab/TabPanel',
+    component: TabPanel,
     tags: ['autodocs'],
     argTypes: {
         children: {
@@ -31,13 +26,13 @@ const meta = {
                 type: { summary: 'number' }
             }
         },
-        onChange: {
+        index: {
             type: { name: 'string', required: true },
             control: false,
-            description: 'Change Event Handler',
+            description: '탭 인덱스',
             table: {
                 category: 'required',
-                type: { summary: '(newValue: number) => void' }
+                type: { summary: 'number' }
             }
         },
         customCSS: {
@@ -50,43 +45,22 @@ const meta = {
             }
         }
     }
-} satisfies Meta<typeof Tab>;
+} satisfies Meta<typeof TabPanel>;
 
 export default meta;
-type Story = StoryObj<typeof Tab>;
-
-const tabStyle = css({
-    width: '100%',
-    minWidth: 1024,
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    borderRadius: 10,
-    border: '1px solid #eeeeee',
-    overflow: 'hidden',
-    boxShadow: '0 0 8px 0px #eeeeee'
-});
+type Story = StoryObj<typeof TabPanel>;
 
 export const Default: Story = {
     render: (args) => {
-        const [value, setValue] = useState(1);
-
-        const handleChange = (newValue: number) => {
-            setValue(newValue);
-        };
-
         return (
-            <div css={tabStyle}>
-                <Tab {...args} aria-label="navigation" value={value} onChange={handleChange}>
-                    <TabItem label="1" value={value} index={1} />
-                    <TabItem label="2" value={value} index={2} />
-                    <TabItem label="3" value={value} index={3} />
-                </Tab>
-            </div>
+            <TabPanel {...args}>
+                <p>Tab Panel #1</p>
+            </TabPanel>
         );
     },
     args: {
         value: 1,
+        index: 1,
         customCSS: {}
     }
 };

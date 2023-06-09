@@ -5,7 +5,7 @@ import PageList from 'components/molecules/PageList';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Pagination/PageList',
+    title: 'Design System/Molecules/Pagination/PageList',
     component: PageList,
     tags: ['autodocs'],
     argTypes: {

@@ -1,22 +1,44 @@
-import { expect } from '@storybook/jest';
-import { userEvent, within } from '@storybook/testing-library';
-
-import IconButton from 'components/molecules/IconButton';
-
-import { ChevronDownIcon } from 'assets/icons';
+import Button from 'components/atoms/Button';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Design System/Molecules/Button/IconButton',
-    component: IconButton,
+    title: 'Design System/Atoms/Button/Button',
+    component: Button,
     tags: ['autodocs'],
     argTypes: {
         children: {
             type: { name: 'string', required: true },
             control: false,
             description: '컴포넌트',
-            table: { category: 'required', type: { summary: 'React.ReactNode' } }
+            table: {
+                category: 'required',
+                type: { summary: 'React.ReactNode' }
+            }
+        },
+        hasStartIcon: {
+            control: { type: 'boolean' },
+            description: 'Start Icon',
+            table: {
+                category: 'optional',
+                type: { summary: 'boolean' }
+            }
+        },
+        hasEndIcon: {
+            control: { type: 'boolean' },
+            description: 'End Icon',
+            table: {
+                category: 'optional',
+                type: { summary: 'boolean' }
+            }
+        },
+        icon: {
+            control: false,
+            description: '아이콘',
+            table: {
+                category: 'optional',
+                type: { summary: 'React.ReactNode' }
+            }
         },
         isDisabled: {
             control: { type: 'boolean' },
@@ -63,7 +85,7 @@ const meta = {
             table: {
                 category: 'optional',
                 defaultValue: { summary: '() => {}' },
-                type: { summary: 'function' }
+                type: { summary: '(e: React.MouseEvent<HTMLButtonElement>) => void' }
             }
         },
         customCSS: {
@@ -76,32 +98,22 @@ const meta = {
             }
         }
     }
-} satisfies Meta<typeof IconButton>;
+} satisfies Meta<typeof Button>;
 
 export default meta;
-type Story = StoryObj<typeof IconButton>;
+type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
-    render: (args) => (
-        <IconButton {...args}>
-            <ChevronDownIcon />
-        </IconButton>
-    ),
+    render: (args) => <Button {...args}>{args.children}</Button>,
     args: {
-        children: <ChevronDownIcon />, // arg 순서를 위해서
+        children: '버튼',
+        hasStartIcon: false,
+        hasEndIcon: false,
+        icon: null,
         type: 'button',
-        isDisabled: false,
         size: 'large',
         variant: 'outlined',
+        isDisabled: false,
         customCSS: {}
     }
-};
-
-// TODO: 테스트 작성하기
-Default.play = async ({ args, canvasElement }) => {
-    const canvas = within(canvasElement);
-    const button = canvas.getByRole('button');
-    await expect(button).toHaveStyle('height: 45px');
-    await userEvent.click(button);
-    await expect(args.onClick).toHaveBeenCalled();
 };

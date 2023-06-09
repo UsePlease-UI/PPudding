@@ -4,22 +4,28 @@ import { useState } from 'react';
 import TabItem from 'components/atoms/TabItem';
 import Tab from 'components/molecules/Tab';
 
-import { css } from '@emotion/react';
+import { ChevronDownIcon } from 'assets/icons';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Design System/Molecules/Tab/Tab',
-    component: Tab,
+    title: 'Design System/Atoms/Tab/TabItem',
+    component: TabItem,
     tags: ['autodocs'],
+    parameters: {
+        docs: {
+            argTypes: { exclude: 'onChange' },
+            controls: { exclude: 'onChange' }
+        }
+    },
     argTypes: {
-        children: {
+        label: {
             type: { name: 'string', required: true },
-            description: '컴포넌트',
             control: false,
+            description: '탭 Text',
             table: {
                 category: 'required',
-                type: { summary: 'React.ReactNode' }
+                type: { summary: 'string' }
             }
         },
         value: {
@@ -31,12 +37,29 @@ const meta = {
                 type: { summary: 'number' }
             }
         },
-        onChange: {
+        index: {
             type: { name: 'string', required: true },
             control: false,
-            description: 'Change Event Handler',
+            description: '탭 인덱스',
             table: {
                 category: 'required',
+                type: { summary: 'number' }
+            }
+        },
+        icon: {
+            description: '아이콘',
+            control: false,
+            table: {
+                category: 'optional',
+                type: { summary: 'React.ReactNode' }
+            }
+        },
+        onChange: {
+            type: { name: 'string', required: false },
+            control: false,
+            description: '사용자가 전달하지 않는 props',
+            table: {
+                category: 'optional',
                 type: { summary: '(newValue: number) => void' }
             }
         },
@@ -50,22 +73,10 @@ const meta = {
             }
         }
     }
-} satisfies Meta<typeof Tab>;
+} satisfies Meta<typeof TabItem>;
 
 export default meta;
-type Story = StoryObj<typeof Tab>;
-
-const tabStyle = css({
-    width: '100%',
-    minWidth: 1024,
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    borderRadius: 10,
-    border: '1px solid #eeeeee',
-    overflow: 'hidden',
-    boxShadow: '0 0 8px 0px #eeeeee'
-});
+type Story = StoryObj<typeof TabItem>;
 
 export const Default: Story = {
     render: (args) => {
@@ -76,17 +87,17 @@ export const Default: Story = {
         };
 
         return (
-            <div css={tabStyle}>
-                <Tab {...args} aria-label="navigation" value={value} onChange={handleChange}>
-                    <TabItem label="1" value={value} index={1} />
-                    <TabItem label="2" value={value} index={2} />
-                    <TabItem label="3" value={value} index={3} />
-                </Tab>
-            </div>
+            <Tab aria-label="navigation" value={value} onChange={handleChange}>
+                <TabItem {...args} icon={<ChevronDownIcon />} value={value} label="1" index={1} />
+                <TabItem {...args} value={value} label="2" index={2} />
+                <TabItem {...args} value={value} label="3" index={3} />
+            </Tab>
         );
     },
     args: {
         value: 1,
+        label: '1',
+        index: 1,
         customCSS: {}
     }
 };
