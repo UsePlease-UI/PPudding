@@ -86,6 +86,13 @@ const preview: Preview = {
                 color: /(background|color)$/i,
                 date: /Date$/
             }
+        },
+        options: {
+            storySort: {
+                method: 'alphabetical',
+                includeNames: true,
+                order: ['Introduction', 'Examples', 'Design System', ['Atoms', 'Molecules', 'Organisms']]
+            }
         }
     }
 };

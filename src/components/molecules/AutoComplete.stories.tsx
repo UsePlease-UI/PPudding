@@ -9,7 +9,7 @@ import { AUTOCOMPLETE } from 'constants/autocomplete';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'MOLECULES/AutoComplete',
+    title: 'Design System/Molecules/Form/AutoComplete',
     component: AutoComplete,
     tags: ['autodocs'],
     argTypes: {
@@ -100,7 +100,7 @@ const AutoCompleteTemplate: Story = {
     }
 };
 
-export const AutoCompleteControl: Story = {
+export const Default: Story = {
     ...AutoCompleteTemplate,
     args: {
         listArr: AUTOCOMPLETE
