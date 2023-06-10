@@ -9,7 +9,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
     title: 'Pages/Register Page',
     component: RegisterPage,
-    tags: ['autodocs'],
     argTypes: {}
 } satisfies Meta<typeof RegisterPage>;
 
