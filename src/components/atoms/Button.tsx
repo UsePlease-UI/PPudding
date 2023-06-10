@@ -183,7 +183,7 @@ export default function Button({
         >
             <FlexBox gap={4} justifyContent={hasStartIcon || hasEndIcon ? 'flex-start' : 'center'} alignItems="center">
                 {hasStartIcon && <span css={startIconContainerStyle}>{icon}</span>}
-                {children}
+                <div>{children}</div>
                 {hasEndIcon && <span css={endIconContainerStyle}>{icon}</span>}
             </FlexBox>
         </button>

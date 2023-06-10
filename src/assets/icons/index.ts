@@ -7,3 +7,4 @@ export { ReactComponent as HeartIcon } from 'assets/icons/heart.svg';
 export { ReactComponent as SolidHeartIcon } from 'assets/icons/solid-heart.svg';
 export { ReactComponent as CheckIcon } from 'assets/icons/check.svg';
 export { ReactComponent as XMarkIcon } from 'assets/icons/x-mark.svg';
+export { ReactComponent as PaperAirplaneIcon } from 'assets/icons/paper-airplane.svg';
