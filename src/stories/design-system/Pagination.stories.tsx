@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Pagination from 'components/organisms/Pagination';
+import Pagination from '@organisms/Pagination';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

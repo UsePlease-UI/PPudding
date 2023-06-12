@@ -1,5 +1,5 @@
-import Accordion from 'components/molecules/Accordion';
-import AccordionPanel from 'components/molecules/AccordionPanel';
+import Accordion from '@molecules/Accordion';
+import AccordionPanel from '@molecules/AccordionPanel';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

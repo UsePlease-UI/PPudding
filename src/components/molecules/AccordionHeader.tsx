@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 
-import { useAccordionContext } from 'contexts/AccordionContext';
+import { useAccordionContext } from '@contexts/AccordionContext';
 
+import { ChevronDownIcon } from '@assets/icons';
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
-import { ChevronDownIcon } from 'assets/icons';
 
 export type AccordionHeaderType = {
     children: string | React.ReactNode;

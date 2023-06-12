@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import Skeleton from 'components/atoms/Skeleton';
+import Skeleton from '@atoms/Skeleton';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

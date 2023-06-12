@@ -1,9 +1,9 @@
-import TabExample from 'examples/TabExample';
+import TabExample from '@examples/TabExample';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Examples/Tab Example',
+    title: '@examples/Tab Example',
     component: TabExample,
     tags: ['autodocs'],
     argTypes: {}

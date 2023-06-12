@@ -1,10 +1,9 @@
 import { useState } from 'react';
 
+import Radio from '@atoms/Radio';
+import RadioGroup from '@atoms/RadioGroup';
 import { expect } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
-
-import Radio from 'components/atoms/Radio';
-import RadioGroup from 'components/atoms/RadioGroup';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -67,7 +66,7 @@ const meta: Meta<typeof RadioGroup> = {
 export default meta;
 type Story = StoryObj<typeof RadioGroup>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
+// More on component templates: https://storybook.js.org/docs/react/writing-@stories/introduction#using-args
 export const Default: Story = {
     render: (args) => {
         const [value, setValue] = useState('red');

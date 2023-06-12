@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import TabPanel from 'components/atoms/TabPanel';
+import TabPanel from '@atoms/TabPanel';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

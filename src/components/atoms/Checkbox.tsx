@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { forwardRef } from 'react';
 
+import { CheckIcon } from '@assets/icons';
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
-import { CheckIcon } from 'assets/icons';
 
 type CheckboxType = React.InputHTMLAttributes<HTMLInputElement> & {
     label: string;

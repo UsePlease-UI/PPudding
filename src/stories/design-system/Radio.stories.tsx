@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { expect } from '@storybook/jest';
 import { within } from '@storybook/testing-library';
 
-import Radio from 'components/atoms/Radio';
+import Radio from '@atoms/Radio';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -81,7 +81,7 @@ const meta: Meta<typeof Radio> = {
 export default meta;
 type Story = StoryObj<typeof Radio>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
+// More on component templates: https://storybook.js.org/docs/react/writing-@stories/introduction#using-args
 export const Default: Story = {
     render: (args) => {
         const [value, setValue] = useState('red');

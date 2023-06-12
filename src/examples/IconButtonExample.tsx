@@ -1,7 +1,7 @@
-import FlexBox from 'components/atoms/FlexBox';
-import IconButton from 'components/molecules/IconButton';
+import FlexBox from '@atoms/FlexBox';
+import IconButton from '@molecules/IconButton';
 
-import { ChevronDownIcon } from 'assets/icons';
+import { ChevronDownIcon } from '@assets/icons';
 
 export default function IconButtonExample() {
     return (

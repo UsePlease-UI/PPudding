@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import Chip from 'components/atoms/Chip';
-import FlexBox from 'components/atoms/FlexBox';
+import Chip from '@atoms/Chip';
+import FlexBox from '@atoms/FlexBox';
 
 export default function ChipExample() {
     return (

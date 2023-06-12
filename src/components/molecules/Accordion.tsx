@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import FlexBox from 'components/atoms/FlexBox';
-import AccordionProvider from 'contexts/AccordionContext';
+import FlexBox from '@atoms/FlexBox';
+import AccordionProvider from '@contexts/AccordionContext';
 
 import { CSSInterpolation } from '@emotion/serialize';
 

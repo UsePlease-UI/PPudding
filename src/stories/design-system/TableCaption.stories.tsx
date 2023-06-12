@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import TableCaption from 'components/atoms/TableCaption';
+import TableCaption from '@atoms/TableCaption';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

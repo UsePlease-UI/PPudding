@@ -1,23 +1,23 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
-import Block from 'components/atoms/Block';
-import BlockWrapper from 'components/atoms/BlockWrapper';
-import Skeleton from 'components/atoms/Skeleton';
-import AccordionExample from 'examples/AccordionExample';
-import AutoCompleteExample from 'examples/AutoCompleteExample';
-import ButtonExample from 'examples/ButtonExample';
-import CheckboxExample from 'examples/CheckboxExample';
-import ChipExample from 'examples/ChipExample';
-import IconButtonExample from 'examples/IconButtonExample';
-import PaginationExample from 'examples/PaginationExample';
-import PopOverExample from 'examples/PopOverExample';
-import RadioExample from 'examples/RadioExample';
-import SelectExample from 'examples/SelectExample';
-import TabExample from 'examples/TabExample';
-import TableExample from 'examples/TableExample';
-import TextFieldExample from 'examples/TextFieldExample';
-import ToggleButtonExample from 'examples/ToggleButtonExample';
+import Block from '@atoms/Block';
+import BlockWrapper from '@atoms/BlockWrapper';
+import Skeleton from '@atoms/Skeleton';
+import AccordionExample from '@examples/AccordionExample';
+import AutoCompleteExample from '@examples/AutoCompleteExample';
+import ButtonExample from '@examples/ButtonExample';
+import CheckboxExample from '@examples/CheckboxExample';
+import ChipExample from '@examples/ChipExample';
+import IconButtonExample from '@examples/IconButtonExample';
+import PaginationExample from '@examples/PaginationExample';
+import PopOverExample from '@examples/PopOverExample';
+import RadioExample from '@examples/RadioExample';
+import SelectExample from '@examples/SelectExample';
+import TabExample from '@examples/TabExample';
+import TableExample from '@examples/TableExample';
+import TextFieldExample from '@examples/TextFieldExample';
+import ToggleButtonExample from '@examples/ToggleButtonExample';
 
 import { css } from '@emotion/react';
 

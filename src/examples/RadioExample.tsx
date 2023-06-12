@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import FlexBox from 'components/atoms/FlexBox';
-import Radio from 'components/atoms/Radio';
-import RadioGroup from 'components/atoms/RadioGroup';
+import FlexBox from '@atoms/FlexBox';
+import Radio from '@atoms/Radio';
+import RadioGroup from '@atoms/RadioGroup';
 
 export default function RadioExample() {
     const [color, setColor] = useState('red');

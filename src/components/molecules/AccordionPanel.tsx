@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 
-import { useAccordionContext } from 'contexts/AccordionContext';
+import { useAccordionContext } from '@contexts/AccordionContext';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';

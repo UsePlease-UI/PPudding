@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 
-import PageButton from 'components/atoms/PageIconButton';
-import PageNumButton from 'components/atoms/PageNumButton';
+import PageButton from '@atoms/PageIconButton';
+import PageNumButton from '@atoms/PageNumButton';
 
+import { PageFirstIcon, PagePreviousIcon, PageNextIcon, PageLastIcon } from '@assets/icons';
 import { css } from '@emotion/react';
-import { PageFirstIcon, PagePreviousIcon, PageNextIcon, PageLastIcon } from 'assets/icons';
 
 type pageListType = {
     showFirstButton?: boolean;

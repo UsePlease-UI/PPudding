@@ -1,6 +1,6 @@
-import PageIconButton from 'components/atoms/PageIconButton';
+import PageIconButton from '@atoms/PageIconButton';
 
-import { PageFirstIcon } from 'assets/icons';
+import { PageFirstIcon } from '@assets/icons';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

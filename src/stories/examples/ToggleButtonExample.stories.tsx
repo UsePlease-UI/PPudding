@@ -1,9 +1,9 @@
-import ToggleButtonExample from 'examples/ToggleButtonExample';
+import ToggleButtonExample from '@examples/ToggleButtonExample';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Examples/Toggle Button Example',
+    title: '@examples/Toggle Button Example',
     component: ToggleButtonExample,
     tags: ['autodocs'],
     argTypes: {}

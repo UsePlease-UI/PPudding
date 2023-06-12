@@ -1,7 +1,7 @@
-import Button from 'components/atoms/Button';
-import FlexBox from 'components/atoms/FlexBox';
+import Button from '@atoms/Button';
+import FlexBox from '@atoms/FlexBox';
 
-import { ChevronDownIcon } from 'assets/icons';
+import { ChevronDownIcon } from '@assets/icons';
 
 export default function ButtonExample() {
     return (

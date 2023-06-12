@@ -1,9 +1,8 @@
+import IconButton from '@molecules/IconButton';
 import { expect } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
 
-import IconButton from 'components/molecules/IconButton';
-
-import { ChevronDownIcon } from 'assets/icons';
+import { ChevronDownIcon } from '@assets/icons';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

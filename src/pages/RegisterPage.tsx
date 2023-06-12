@@ -1,20 +1,21 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
-import Button from 'components/atoms/Button';
-import Checkbox from 'components/atoms/Checkbox';
-import FlexBox from 'components/atoms/FlexBox';
-import Radio from 'components/atoms/Radio';
-import RadioGroup from 'components/atoms/RadioGroup';
-import TextField from 'components/atoms/TextField';
-import ToggleButton from 'components/atoms/ToggleButton';
-import ToggleButtonGroup from 'components/atoms/ToggleButtonGroup';
-import FormControl from 'components/molecules/FormControl';
-import Select from 'components/molecules/Select';
-import { PASSWORD_REG_EXP } from 'constants/regExp';
+import Button from '@atoms/Button';
+import Checkbox from '@atoms/Checkbox';
+import FlexBox from '@atoms/FlexBox';
+import Radio from '@atoms/Radio';
+import RadioGroup from '@atoms/RadioGroup';
+import TextField from '@atoms/TextField';
+import ToggleButton from '@atoms/ToggleButton';
+import ToggleButtonGroup from '@atoms/ToggleButtonGroup';
+
+import FormControl from '@molecules/FormControl';
+import Select from '@molecules/Select';
+import { PASSWORD_REG_EXP } from '@constants/regExp';
 
 import { css } from '@emotion/react';
-import { PaperAirplaneIcon } from 'assets/icons';
+import { PaperAirplaneIcon } from '@assets/icons';
 
 const containerStyle = css({
     width: '100%',

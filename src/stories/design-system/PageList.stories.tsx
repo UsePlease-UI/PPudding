@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import PageList from 'components/molecules/PageList';
+import PageList from '@molecules/PageList';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

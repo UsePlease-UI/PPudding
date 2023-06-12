@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import FlexBox from 'components/atoms/FlexBox';
-import Accordion from 'components/molecules/Accordion';
-import AccordionHeader from 'components/molecules/AccordionHeader';
-import AccordionPanel from 'components/molecules/AccordionPanel';
+import FlexBox from '@atoms/FlexBox';
+import Accordion from '@molecules/Accordion';
+import AccordionHeader from '@molecules/AccordionHeader';
+import AccordionPanel from '@molecules/AccordionPanel';
 
 export default function AccordionExample() {
     const [panel, setPanel] = useState('panel1');

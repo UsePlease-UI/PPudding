@@ -1,9 +1,9 @@
-import Table from 'components/atoms/Table';
-import TableBody from 'components/atoms/TableBody';
-import TableCaption from 'components/atoms/TableCaption';
-import TableCell from 'components/atoms/TableCell';
-import TableHead from 'components/atoms/TableHead';
-import TableRow from 'components/atoms/TableRow';
+import Table from '@atoms/Table';
+import TableBody from '@atoms/TableBody';
+import TableCaption from '@atoms/TableCaption';
+import TableCell from '@atoms/TableCell';
+import TableHead from '@atoms/TableHead';
+import TableRow from '@atoms/TableRow';
 
 export default function TableExample() {
     return (

@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { InputHTMLAttributes, useEffect, useRef, useState } from 'react';
 
-import Backdrop from 'components/atoms/Backdrop';
-import ListBox from 'components/atoms/ListBox';
+import Backdrop from '@atoms/Backdrop';
+import ListBox from '@atoms/ListBox';
 
+import { ChevronDownIcon } from '@assets/icons';
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
-import { ChevronDownIcon } from 'assets/icons';
 
 type OptionType = { label: string; value: string | number };
 

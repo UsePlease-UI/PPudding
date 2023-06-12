@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import FlexBox from 'components/atoms/FlexBox';
-import TextField from 'components/atoms/TextField';
-import FormControl from 'components/molecules/FormControl';
+import FlexBox from '@atoms/FlexBox';
+import TextField from '@atoms/TextField';
+import FormControl from '@molecules/FormControl';
 
 export default function TextFieldExample() {
     const [name, setName] = useState('');

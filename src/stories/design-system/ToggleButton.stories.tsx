@@ -1,4 +1,4 @@
-import ToggleButton from 'components/atoms/ToggleButton';
+import ToggleButton from '@atoms/ToggleButton';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

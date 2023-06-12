@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
-import TextField from 'components/atoms/TextField';
-import FormControl from 'components/molecules/FormControl';
-import Select from 'components/molecules/Select';
-import OPTIONS from 'constants/options';
+import TextField from '@atoms/TextField';
+import FormControl from '@molecules/FormControl';
+import Select from '@molecules/Select';
+
+import OPTIONS from '@constants/options';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

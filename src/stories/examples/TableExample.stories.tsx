@@ -1,9 +1,9 @@
-import TableExample from 'examples/TableExample';
+import TableExample from '@examples/TableExample';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Examples/Table Example',
+    title: '@examples/Table Example',
     component: TableExample,
     tags: ['autodocs'],
     argTypes: {}

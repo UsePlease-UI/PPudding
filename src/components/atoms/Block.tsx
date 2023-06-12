@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from '@emotion/react';
-import palette from 'styles/palette';
+import palette from '@styles/palette';
 
 type BlockType = {
     children: React.ReactNode;
