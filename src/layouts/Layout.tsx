@@ -9,6 +9,7 @@ import AutoCompleteExample from 'examples/AutoCompleteExample';
 import ButtonExample from 'examples/ButtonExample';
 import CheckboxExample from 'examples/CheckboxExample';
 import ChipExample from 'examples/ChipExample';
+import DragNDropExample from 'examples/DragNDropExample';
 import IconButtonExample from 'examples/IconButtonExample';
 import PaginationExample from 'examples/PaginationExample';
 import PopOverExample from 'examples/PopOverExample';
@@ -27,6 +28,7 @@ const COMPONENT_LIST = [
     'Button',
     'Checkbox',
     'Chip',
+    'Drag n Drop',
     'IconButton',
     'Pagination',
     'PopOver',
@@ -54,6 +56,8 @@ function getComponents(type: string) {
             return <CheckboxExample />;
         case 'Chip':
             return <ChipExample />;
+        case 'Drag n Drop':
+            return <DragNDropExample />;
         case 'IconButton':
             return <IconButtonExample />;
         case 'Pagination':
