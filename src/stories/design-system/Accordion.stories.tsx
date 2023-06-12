@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import Accordion from 'components/atoms/Accordion';
-import AccordionHeader, { AccordionHeaderType } from 'components/atoms/AccordionHeader';
-import AccordionPanel, { AccordionPanelType } from 'components/atoms/AccordionPanel';
+import Accordion from 'components/molecules/Accordion';
+import AccordionHeader, { AccordionHeaderType } from 'components/molecules/AccordionHeader';
+import AccordionPanel, { AccordionPanelType } from 'components/molecules/AccordionPanel';
 import { Default as AccordionHeaderDefault } from 'stories/design-system/AccordionHeader.stories';
 import { Default as AccordionPanelDefault } from 'stories/design-system/AccordionPanel.stories';
 

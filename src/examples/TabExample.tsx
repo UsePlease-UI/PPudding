@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
-import TabItem from 'components/atoms/TabItem';
 import TabPanel from 'components/atoms/TabPanel';
 import Tab from 'components/molecules/Tab';
+import TabItem from 'components/molecules/TabItem';
 
 import { css } from '@emotion/react';
 import { ChevronDownIcon } from 'assets/icons';

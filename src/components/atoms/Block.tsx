@@ -3,7 +3,7 @@
 import { css } from '@emotion/react';
 import palette from 'styles/palette';
 
-type blockType = {
+type BlockType = {
     children: React.ReactNode;
     name: string;
     selected: string;
@@ -21,7 +21,7 @@ const blockStyle = css({
     }
 });
 
-export default function Block({ children, name, onClick, selected }: blockType) {
+export default function Block({ children, name, onClick, selected }: BlockType) {
     return (
         <button
             type="button"
