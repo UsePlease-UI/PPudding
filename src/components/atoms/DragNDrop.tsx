@@ -15,7 +15,7 @@ type ListItemType = {
 };
 type DragNDropType = {
     title?: string;
-    list: ListItemType[];
+    items: ListItemType[];
 };
 
 const ulDragStyle = css({
@@ -27,35 +27,70 @@ const ulDragStyle = css({
     background: 'white'
 });
 
-const liDragStyle = css({
+const dragItemStyle = css({
     boxSizing: 'border-box',
     padding: 10,
     borderBottom: '1px solid lightGray',
     '&:last-of-type': {
         borderBottom: 0
+    },
+    '&:hover': {
+        background: 'lightPink'
     }
 });
 
-export default function DragNDrop({ title, list }: DragNDropType) {
-    const [selectedItem, setSelectedItem] = useState();
+export default function DragNDrop({ title, items }: DragNDropType) {
+    const [draggedItem, setDraggedItem] = useState<ListItemType | null>(null);
+    const [listItems, setListItems] = useState<ListItemType[]>(items);
 
-    const handleClick = (e: any) => {
-        setSelectedItem(e);
+    const handleDragStart = (event: React.DragEvent<HTMLLIElement>, item: ListItemType) => {
+        setDraggedItem(item);
+    };
+
+    const handleDragOver = (event: React.DragEvent<HTMLLIElement>) => {
+        event.preventDefault();
+    };
+
+    const handleDrop = (event: React.DragEvent<HTMLLIElement>, targetItem: ListItemType) => {
+        console.log('drop');
+
+        event.preventDefault();
+        if (draggedItem) {
+            const updatedItems = listItems.map((item) => {
+                if (item.idx === draggedItem.idx) {
+                    return { ...item, id: targetItem.idx };
+                }
+                if (item.idx === targetItem.idx) {
+                    return { ...item, id: draggedItem.idx };
+                }
+                return item;
+            });
+            setDraggedItem(null);
+            setListItems(updatedItems);
+        }
     };
 
     useEffect(() => {
-        console.log(selectedItem);
-    }, [selectedItem]);
+        console.log('list', listItems);
+    }, [listItems]);
 
     return (
         <FlexBox direction="column" gap={10}>
             {title && <h2 id="dragList_title">{title}</h2>}
             <ul css={ulDragStyle} id="dragList_list" role="listBox" aria-labelledby="dragList_title">
-                {list.map((el) => {
+                {listItems.map((el) => {
                     return (
-                        // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
-                        <li key={el.idx} css={liDragStyle} role="option" onClick={() => handleClick(el.value)}>
-                            <span>{el.label}</span>
+                        <li
+                            key={el.idx}
+                            // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
+                            role="option"
+                            css={dragItemStyle}
+                            draggable
+                            onDragStart={(e) => handleDragStart(e, el)}
+                            onDragOver={handleDragOver}
+                            onDrop={(e) => handleDrop(e, el)}
+                        >
+                            {el.label}
                         </li>
                     );
                 })}
