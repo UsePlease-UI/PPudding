@@ -9,6 +9,23 @@ interface ListItem {
     value: string;
 }
 
+const SAMPLE_LIST = [
+    {
+        idx: 1,
+        label: 'first 11',
+        value: 'first item'
+    },
+    {
+        idx: 2,
+        label: 'second 22',
+        value: 'second item'
+    },
+    {
+        idx: 3,
+        label: 'third 33',
+        value: 'third item'
+    }
+];
 export default function DragNDropExample() {
     const [items, setItmes] = useState<ListItem[]>([
         {
@@ -45,7 +62,7 @@ export default function DragNDropExample() {
 
     return (
         <FlexBox gap={10}>
-            <DragNDrop title="My Drag List" items={items} />
+            <DragNDrop title="My Drag List" items={items} render={(SAMPLE_LIST: ListItem) => <li>{SAMPLE_LIST}</li>} />
         </FlexBox>
     );
 }

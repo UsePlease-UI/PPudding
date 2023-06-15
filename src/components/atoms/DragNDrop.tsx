@@ -1,8 +1,7 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/aria-role */
 /** @jsxImportSource @emotion/react */
-import { useState, useEffect } from 'react';
+
+import { useState } from 'react';
 
 import FlexBox from 'components/atoms/FlexBox';
 
@@ -13,9 +12,10 @@ type ListItemType = {
     label: string;
     value: string;
 };
-type DragNDropType = {
+type ComponentType = {
     title?: string;
     items: ListItemType[];
+    render?: (items: any) => React.ReactNode;
 };
 
 const ulDragStyle = css({
@@ -39,7 +39,7 @@ const dragItemStyle = css({
     }
 });
 
-export default function DragNDrop({ title, items }: DragNDropType) {
+export default function DragNDrop({ title, items, render }: DragNDropType) {
     const [draggedItem, setDraggedItem] = useState<ListItemType | null>(null);
     const [listItems, setListItems] = useState<ListItemType[]>(items);
 
@@ -52,49 +52,41 @@ export default function DragNDrop({ title, items }: DragNDropType) {
     };
 
     const handleDrop = (event: React.DragEvent<HTMLLIElement>, targetItem: ListItemType) => {
-        console.log('drop');
-
         event.preventDefault();
         if (draggedItem) {
-            const updatedItems = listItems.map((item) => {
-                if (item.idx === draggedItem.idx) {
-                    return { ...item, id: targetItem.idx };
-                }
-                if (item.idx === targetItem.idx) {
-                    return { ...item, id: draggedItem.idx };
-                }
-                return item;
-            });
+            const copy = listItems.slice(); // deep clone
+
+            const { idx: dragIdx } = draggedItem; // 바꾸고 싶은 element idx
+            const { idx: targetIdx } = targetItem; // 바뀐 element idx
+            copy[targetIdx - 1] = { ...draggedItem, idx: targetIdx };
+            copy[dragIdx - 1] = { ...targetItem, idx: dragIdx };
+
             setDraggedItem(null);
-            setListItems(updatedItems);
+            setListItems(copy);
         }
     };
-
-    useEffect(() => {
-        console.log('list', listItems);
-    }, [listItems]);
 
     return (
         <FlexBox direction="column" gap={10}>
             {title && <h2 id="dragList_title">{title}</h2>}
-            <ul css={ulDragStyle} id="dragList_list" role="listBox" aria-labelledby="dragList_title">
-                {listItems.map((el) => {
-                    return (
-                        <li
-                            key={el.idx}
-                            // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
-                            role="option"
-                            css={dragItemStyle}
-                            draggable
-                            onDragStart={(e) => handleDragStart(e, el)}
-                            onDragOver={handleDragOver}
-                            onDrop={(e) => handleDrop(e, el)}
-                        >
-                            {el.label}
-                        </li>
-                    );
-                })}
+            <ul css={ulDragStyle} id="dragList_list" aria-labelledby="dragList_title">
+                {render ? render(itmes) : <span>hello</span>}
             </ul>
         </FlexBox>
     );
 }
+
+// {listItems.map((el) => {
+//     return (
+//         <li
+//             key={el.idx}
+//             css={dragItemStyle}
+//             draggable
+//             onDragStart={(e) => handleDragStart(e, el)}
+//             onDragOver={handleDragOver}
+//             onDrop={(e) => handleDrop(e, el)}
+//         >
+//             {el.label}
+//         </li>
+//     );
+// })}
