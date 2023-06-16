@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
-import Radio from '@atoms/Radio';
-import RadioGroup from '@atoms/RadioGroup';
 import { expect } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
+
+import Radio from '@atoms/Radio';
+import RadioGroup from '@atoms/RadioGroup';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

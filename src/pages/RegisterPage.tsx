@@ -9,13 +9,12 @@ import RadioGroup from '@atoms/RadioGroup';
 import TextField from '@atoms/TextField';
 import ToggleButton from '@atoms/ToggleButton';
 import ToggleButtonGroup from '@atoms/ToggleButtonGroup';
-
+import { PASSWORD_REG_EXP } from '@constants/regExp';
 import FormControl from '@molecules/FormControl';
 import Select from '@molecules/Select';
-import { PASSWORD_REG_EXP } from '@constants/regExp';
 
-import { css } from '@emotion/react';
 import { PaperAirplaneIcon } from '@assets/icons';
+import { css } from '@emotion/react';
 
 const containerStyle = css({
     width: '100%',
