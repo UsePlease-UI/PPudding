@@ -7,13 +7,13 @@ export default function IconButtonExample() {
     return (
         <FlexBox direction="column" gap={10}>
             <FlexBox gap={5}>
-                <IconButton size="small">
+                <IconButton size="small" variant="outlined">
                     <ChevronDownIcon />
                 </IconButton>
-                <IconButton size="medium">
+                <IconButton size="medium" variant="outlined">
                     <ChevronDownIcon />
                 </IconButton>
-                <IconButton>
+                <IconButton size="large" variant="outlined">
                     <ChevronDownIcon />
                 </IconButton>
             </FlexBox>
@@ -24,7 +24,7 @@ export default function IconButtonExample() {
                 <IconButton size="medium" variant="contained">
                     <ChevronDownIcon />
                 </IconButton>
-                <IconButton variant="contained">
+                <IconButton size="large" variant="contained">
                     <ChevronDownIcon />
                 </IconButton>
             </FlexBox>
@@ -35,7 +35,7 @@ export default function IconButtonExample() {
                 <IconButton size="medium" variant="text">
                     <ChevronDownIcon />
                 </IconButton>
-                <IconButton variant="text">
+                <IconButton size="large" variant="text">
                     <ChevronDownIcon />
                 </IconButton>
             </FlexBox>

@@ -6,9 +6,10 @@ import { useAccordionContext } from '@contexts/AccordionContext';
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import palette from '@styles/palette';
 
-export type AccordionHeaderType = {
-    children: string | React.ReactNode;
+export type AccordionHeaderType = React.HTMLAttributes<HTMLHeadingElement> & {
+    children: React.ReactNode;
     index: number;
     icon?: React.ReactNode;
     hasIcon?: boolean;
@@ -21,16 +22,10 @@ const headingStyle = css({
     minHeight: 60,
     border: '1px solid #eeeeee',
     borderRadius: 4,
-    backgroundColor: 'pink'
+    backgroundColor: palette.primary.main
 });
 
-const buttonStyle = css({
-    width: '100%',
-    height: '100%',
-    minHeight: 'inherit',
-    padding: '5px 20px',
-    cursor: 'pointer'
-});
+const buttonStyle = css({ width: '100%', height: '100%', minHeight: 'inherit', padding: '5px 20px' });
 
 const titleStyle = css({
     display: 'flex',
@@ -39,30 +34,28 @@ const titleStyle = css({
     fontSize: 18,
     fontWeight: 600,
     lineHeight: 1.5,
-    '& *': {
-        fontSize: 18,
-        fontWeight: 600,
-        lineHeight: 1.5
-    }
+    color: '#ffffff',
+    '& *': { color: '#ffffff', fontSize: 18, fontWeight: 600, lineHeight: 1.5 }
 });
 
-const iconStyle = css({
-    width: 20,
-    height: 20,
-    '& svg': { width: 20, height: 20 }
-});
+const iconStyle = css({ width: 20, height: 20, '& svg': { width: 20, height: 20 } });
 
-export default function AccordionHeader({
-    children,
-    index,
-    hasIcon = true,
-    icon,
-    customCSS = {}
-}: AccordionHeaderType) {
+/**
+ *  [UI Component] Accordion Header Component
+ *  @param children 헤더 텍스트 | 컴포넌트
+ *  @param index Accordion 번호 (아이디 및 aria에 사용) [optional]
+ *  @param icon 아이콘 [optional]
+ *  @param hasIcon 아이콘 사용여부 [optional]
+ *  @param customCSS 커스텀 css [optional]
+ *  @returns JSX.Element
+ */
+export default function AccordionHeader(props: AccordionHeaderType) {
+    const { children, index, hasIcon = true, icon, customCSS = {}, ...rest } = props;
     const { isExpanded, onChange } = useAccordionContext();
 
     return (
         <h3
+            {...rest}
             css={css([
                 headingStyle,
                 {
@@ -73,10 +66,10 @@ export default function AccordionHeader({
             ])}
         >
             <button
-                id={`accordian${index}-id`}
                 type="button"
+                id={`accordion-panel${index}-id`}
                 aria-expanded={isExpanded}
-                aria-controls={`sect${index}`}
+                aria-controls={`panel${index}`}
                 onClick={(e) => onChange(e, isExpanded)}
                 css={buttonStyle}
             >

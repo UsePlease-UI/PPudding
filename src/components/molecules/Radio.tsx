@@ -1,8 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { forwardRef } from 'react';
 
+import Typography from '@atoms/Typography';
+
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
+import palette from '@styles/palette';
 
 type RadioType = React.InputHTMLAttributes<HTMLInputElement> & {
     name: string;
@@ -50,8 +53,8 @@ const checkedRadioStyle = css({
     width: 16,
     height: 16,
     borderRadius: 999,
-    border: `1px solid #eeeeee`,
-    backgroundColor: 'pink'
+    border: '1px solid #eeeeee',
+    backgroundColor: palette.primary.main
 });
 
 const radioStyle = css({
@@ -59,7 +62,7 @@ const radioStyle = css({
     width: 16,
     height: 16,
     borderRadius: 999,
-    border: `1px solid #eeeeee`,
+    border: '1px solid #eeeeee',
     backgroundColor: '#ffffff'
 });
 
@@ -86,7 +89,9 @@ const Radio = forwardRef<HTMLInputElement, RadioType>(function createRadio(
                 <span css={checkedRadioStyle} />
                 <span css={radioStyle} />
             </span>
-            <span css={labelTextStyle}>{label}</span>
+            <Typography component="span" customCSS={labelTextStyle}>
+                {label}
+            </Typography>
         </label>
     );
 });

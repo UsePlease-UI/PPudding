@@ -11,12 +11,7 @@ type TabPanelType = {
     customCSS?: CSSInterpolation;
 };
 
-const panelStyle = css({
-    width: '100%',
-    height: '100%',
-    minHeight: 250,
-    padding: 20
-});
+const panelStyle = css({ width: '100%', height: '100%', minHeight: 250, padding: 20 });
 
 export default function TabPanel({ children, value, index, customCSS = {} }: TabPanelType) {
     return (

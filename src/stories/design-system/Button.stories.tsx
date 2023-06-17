@@ -1,9 +1,9 @@
-import Button from '@atoms/Button';
+import Button from '@molecules/Button';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Design System/Atoms/Button/Button',
+    title: 'Design System/Molecules/Button/Button',
     component: Button,
     tags: ['autodocs'],
     argTypes: {

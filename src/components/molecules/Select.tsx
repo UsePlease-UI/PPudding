@@ -2,7 +2,7 @@
 import { InputHTMLAttributes, useEffect, useRef, useState } from 'react';
 
 import Backdrop from '@atoms/Backdrop';
-import ListBox from '@atoms/ListBox';
+import Button from '@molecules/Button';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
@@ -49,6 +49,79 @@ const buttonTextStyle = css({
 });
 
 const iconStyle = css({ display: 'inline-block', width: 20, height: 20 });
+
+type ListBoxType = {
+    id: string;
+    labelId: string;
+    name: string;
+    value: string | number;
+    options: OptionType[];
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+};
+
+const listStyle = css({
+    width: '100%',
+    maxHeight: 300,
+    padding: '10px 0',
+    border: '1px solid #eeeeee',
+    borderRadius: 4,
+    backgroundColor: '#ffffff',
+    overflowX: 'hidden',
+    overflowY: 'auto'
+});
+
+const listItemStyle = css({
+    width: '100%',
+    minWidth: 120,
+    fontSize: 14,
+    fontWeight: 400,
+    lineHeight: 1.5,
+    padding: '0 12px',
+    '& button': {
+        width: '100%',
+        height: 40,
+        textAlign: 'left',
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap'
+    },
+    '&:hover, &:hover button': {
+        fontWeight: 600,
+        color: '#ffffff',
+        backgroundColor: 'lightpink'
+    }
+});
+
+const ListBox = ({ id, labelId, name, value, options, onClick }: ListBoxType) => (
+    <ul css={listStyle} id={id} role="listbox" aria-labelledby={labelId} tabIndex={-1}>
+        {options.map((option) => (
+            <li
+                key={option.value}
+                role="option"
+                aria-selected={value === option.value}
+                css={css([
+                    listItemStyle,
+                    {
+                        ...(value === option.value && {
+                            '&, & button': {
+                                textAlign: 'left',
+                                width: '100%',
+                                height: 40,
+                                fontWeight: 600,
+                                color: '#ffffff',
+                                backgroundColor: 'hotpink'
+                            }
+                        })
+                    }
+                ])}
+            >
+                <Button type="button" name={name} value={option.value} onClick={onClick}>
+                    {option.label}
+                </Button>
+            </li>
+        ))}
+    </ul>
+);
 
 const MAX_MENU_HEIGHT = 300;
 const AVG_OPTION_HEIGHT = 24;

@@ -3,7 +3,7 @@ import { userEvent, within } from '@storybook/testing-library';
 
 import IconButton from '@molecules/IconButton';
 
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { StarIcon } from '@heroicons/react/24/outline';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -82,13 +82,10 @@ export default meta;
 type Story = StoryObj<typeof IconButton>;
 
 export const Default: Story = {
-    render: (args) => (
-        <IconButton {...args}>
-            <ChevronDownIcon />
-        </IconButton>
-    ),
+    render: (args) => <IconButton {...args}>{args.children}</IconButton>,
     args: {
-        children: <ChevronDownIcon />, // arg 순서를 위해서
+        'aria-label': 'Starred',
+        children: <StarIcon />, // arg 순서를 위해서
         type: 'button',
         isDisabled: false,
         size: 'large',
@@ -97,7 +94,6 @@ export const Default: Story = {
     }
 };
 
-// TODO: 테스트 작성하기
 Default.play = async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
     const button = canvas.getByRole('button');

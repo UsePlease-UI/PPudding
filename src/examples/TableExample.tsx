@@ -1,14 +1,21 @@
+/** @jsxImportSource @emotion/react */
 import Table from '@atoms/Table';
 import TableBody from '@atoms/TableBody';
-import TableCaption from '@atoms/TableCaption';
 import TableCell from '@atoms/TableCell';
 import TableHead from '@atoms/TableHead';
 import TableRow from '@atoms/TableRow';
+import Typography from '@atoms/Typography';
+
+import { css } from '@emotion/react';
+
+const captionStyle = css({ textAlign: 'left', fontSize: 16, lineHeight: 1.5, fontWeight: 600, padding: '8px 0' });
 
 export default function TableExample() {
     return (
         <Table aria-label="table-example">
-            <TableCaption>A basic table example with a caption</TableCaption>
+            <Typography component="caption" css={captionStyle}>
+                A basic table example with a caption
+            </Typography>
             <TableHead>
                 <TableRow>
                     <TableCell component="th">제품명</TableCell>

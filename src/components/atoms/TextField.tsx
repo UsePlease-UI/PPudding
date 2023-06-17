@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /** @jsxImportSource @emotion/react */
-import React, { InputHTMLAttributes } from 'react';
+import React from 'react';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
+import palette from '@styles/palette';
 
-type TextFieldType = InputHTMLAttributes<HTMLInputElement> & {
+type TextFieldType = React.InputHTMLAttributes<HTMLInputElement> & {
     name: string;
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -21,12 +22,7 @@ type TextFieldType = InputHTMLAttributes<HTMLInputElement> & {
     customCSS?: CSSInterpolation;
 };
 
-const inputTextStyle = css({
-    fontSize: 14,
-    fontWeight: 400,
-    lineHeight: 1.5,
-    letterSpacing: 0
-});
+const inputTextStyle = css({ fontSize: 14, fontWeight: 400, lineHeight: 1.5, letterSpacing: 0 });
 
 const textfieldStyle = css([
     inputTextStyle,
@@ -36,7 +32,7 @@ const textfieldStyle = css([
         padding: '10px 12px',
         borderRadius: 4,
         '&:active, &:focus, &:hover': {
-            border: '1px solid pink'
+            border: `1px solid ${palette.primary.main}`
         },
         '&:disabled': {
             color: 'rgba(0,0,0,0.5)',
@@ -48,6 +44,23 @@ const textfieldStyle = css([
 
 const DEFAULT_WIDTH = 320;
 
+/**
+ *  [UI Component] TextField Component
+ *  @param name TextField 이름
+ *  @param value TextField 값
+ *  @param onChange Change Event Handler
+ *  @param isReadOnly 읽기 전용 [optional]
+ *  @param isDisabled 활성화여부 [optional]
+ *  @param isFullWidth [CSS] width (100% 또는 기본값) [optional]
+ *  @param type TextField 타입 (text | number | url | email | password | phone) [optional]
+ *  @param placeholder TextField 안내문 [optional]
+ *  @param maxLength TextField 값 길이 제한 [optional]
+ *  @param onKeyDown Key Event Handler [optional]
+ *  @param onFocus Focus Event Handler [optional]
+ *  @param onBlur Blur Event Handler [optional]
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
 const TextField = React.forwardRef<HTMLInputElement, TextFieldType>(function createInput(
     {
         name,
@@ -69,12 +82,12 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldType>(function cre
 ) {
     return (
         <input
+            autoComplete="new-password"
             {...props}
             ref={ref}
             name={name}
             value={value}
             type={type}
-            autoComplete="new-password"
             maxLength={maxLength}
             placeholder={placeholder}
             disabled={isDisabled}

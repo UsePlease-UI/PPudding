@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import Checkbox from '@atoms/Checkbox';
 import FlexBox from '@atoms/FlexBox';
+import Checkbox from '@molecules/Checkbox';
 
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as SolidHeartIcon } from '@heroicons/react/24/solid';

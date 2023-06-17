@@ -1,9 +1,9 @@
-import Chip from '@atoms/Chip';
+import Chip from '@molecules/Chip';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Chip> = {
-    title: 'Design System/Atoms/Form/Chip',
+    title: 'Design System/Molecules/Form/Chip',
     component: Chip,
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes

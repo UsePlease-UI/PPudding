@@ -1,18 +1,15 @@
-/** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
+import FlexBox from '@atoms/FlexBox';
 
-const blockWrapperStyle = css({
-    width: '100%',
-    padding: 10,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 4
-});
+const customCSS = { width: '100%', padding: 10 };
 
 type BlockWrapperType = {
     children: React.ReactNode;
 };
 
 export default function BlockWrapper({ children }: BlockWrapperType) {
-    return <div css={blockWrapperStyle}>{children}</div>;
+    return (
+        <FlexBox direction="column" gap={4} customCSS={customCSS}>
+            {children}
+        </FlexBox>
+    );
 }

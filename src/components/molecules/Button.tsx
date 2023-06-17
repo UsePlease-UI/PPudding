@@ -1,14 +1,14 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 /** @jsxImportSource @emotion/react */
 import FlexBox from '@atoms/FlexBox';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
+import palette from '@styles/palette';
 
-type SizeType = 'large' | 'medium' | 'small';
-type VariantType = 'outlined' | 'contained' | 'text';
+type SizeType = 'large' | 'medium' | 'small' | '';
+type VariantType = 'outlined' | 'contained' | 'text' | '';
 
-type ButtonType = {
+type ButtonType = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     children: React.ReactNode;
     hasStartIcon?: boolean;
     hasEndIcon?: boolean;
@@ -21,9 +21,7 @@ type ButtonType = {
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const buttonStyle = css({
-    borderRadius: 4
-});
+const buttonStyle = css({ borderRadius: 4 });
 
 const smallStyle = css({
     height: 32,
@@ -31,10 +29,7 @@ const smallStyle = css({
     padding: '0 12px',
     fontSize: 13,
     fontWeight: 400,
-    '& svg': {
-        width: 14,
-        height: 14
-    }
+    '& svg': { width: 14, height: 14 }
 });
 
 const mediumStyle = css({
@@ -43,10 +38,7 @@ const mediumStyle = css({
     fontSize: 14,
     fontWeight: 500,
     padding: '0 16px',
-    '& svg': {
-        width: 16,
-        height: 16
-    }
+    '& svg': { width: 16, height: 16 }
 });
 
 const largeStyle = css({
@@ -55,24 +47,21 @@ const largeStyle = css({
     fontSize: 15,
     fontWeight: 500,
     padding: '0 16px',
-    '& svg': {
-        width: 20,
-        height: 20
-    }
+    '& svg': { width: 20, height: 20 }
 });
 
 const outlinedStyle = css({
-    color: 'magenta',
+    color: palette.primary.main,
     backgroundColor: '#ffffff',
-    border: '1px solid magenta',
+    border: `1px solid ${palette.primary.main}`,
     '&:hover': {
         color: '#ffffff',
-        border: '1px solid hotpink',
-        backgroundColor: 'lightpink'
+        border: `1px solid ${palette.primary.main}`,
+        backgroundColor: palette.lightBlue.main
     },
     '&:focus': {
-        border: '1px solid magenta',
-        backgroundColor: 'hotpink'
+        border: `1px solid ${palette.secondary.main}`,
+        backgroundColor: palette.primary.main
     },
     '&:disabled': {
         border: '1px solid #eeeeee',
@@ -81,18 +70,20 @@ const outlinedStyle = css({
 });
 
 const containedStyle = css({
-    color: '#ffffff',
-    backgroundColor: 'magenta',
-    border: '1px solid magenta',
+    color: palette.secondary.main,
+    backgroundColor: palette.lightBlue.main,
+    border: `1px solid ${palette.lightBlue.main}`,
     '&:hover': {
-        backgroundColor: 'hotpink'
+        color: '#ffffff',
+        backgroundColor: palette.primary.main
     },
     '&:focus': {
-        backgroundColor: 'magenta'
+        border: `1px solid ${palette.secondary.main}`,
+        backgroundColor: palette.secondary.main
     },
     '&:disabled': {
-        border: '1px solid magenta',
-        backgroundColor: 'lightpink'
+        border: '1px solid #eeeeee',
+        backgroundColor: '#145cb1b3'
     }
 });
 
@@ -114,23 +105,27 @@ const textStyle = css({
 
 function getSizeStyle(size: SizeType) {
     switch (size) {
+        case 'large':
+            return largeStyle;
         case 'medium':
             return mediumStyle;
         case 'small':
             return smallStyle;
         default:
-            return largeStyle;
+            return {};
     }
 }
 
 function getVariantStyle(variant: VariantType) {
     switch (variant) {
+        case 'outlined':
+            return outlinedStyle;
         case 'contained':
             return containedStyle;
         case 'text':
             return textStyle;
         default:
-            return outlinedStyle;
+            return {};
     }
 }
 
@@ -140,7 +135,7 @@ const startIconContainerStyle = css({
     alignItems: 'center',
     width: 20,
     height: 20,
-    marginLeft: '-2px'
+    marginLeft: -2
 });
 
 const endIconContainerStyle = css({
@@ -149,22 +144,38 @@ const endIconContainerStyle = css({
     alignItems: 'center',
     width: 20,
     height: 20,
-    marginRight: '-2px'
+    marginRight: -2
 });
 
-export default function Button({
-    children,
-    hasStartIcon = false,
-    hasEndIcon = false,
-    icon,
-    type = 'button',
-    size = 'large',
-    variant = 'outlined',
-    isDisabled = false,
-    onClick = () => {},
-    customCSS,
-    ...props
-}: ButtonType) {
+/**
+ *  [UI Component] Button Component
+ *  @param children 컴포넌트
+ *  @param hasStartIcon Start Icon 사용여부 [optional]
+ *  @param hasEndIcon End Icon 사용여부 [optional]
+ *  @param icon 아이콘 [optional]
+ *  @param type 버튼 타입 (button | reset | submit) [optional]
+ *  @param size 버튼 크기 ('' | large | medium | small) [optional]
+ *  @param variant 버튼 스타일 ('' | outlined | contained | text) [optional]
+ *  @param isDisabled 활성화여부 [optional]
+ *  @param onClick Click Event Handler [optional]
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
+export default function Button(props: ButtonType) {
+    const {
+        children,
+        hasStartIcon = false,
+        hasEndIcon = false,
+        icon,
+        type = 'button',
+        size = '',
+        variant = '',
+        isDisabled = false,
+        onClick,
+        customCSS,
+        ...rest
+    } = props;
+
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.currentTarget.blur();
         if (onClick) {
@@ -174,18 +185,22 @@ export default function Button({
 
     return (
         <button
-            {...props}
+            {...rest}
             // eslint-disable-next-line react/button-has-type
             type={type}
             disabled={isDisabled}
             onClick={handleClick}
             css={css([buttonStyle, getSizeStyle(size), getVariantStyle(variant), customCSS])}
         >
-            <FlexBox gap={4} justifyContent={hasStartIcon || hasEndIcon ? 'flex-start' : 'center'} alignItems="center">
-                {hasStartIcon && <span css={startIconContainerStyle}>{icon}</span>}
+            {hasStartIcon || hasEndIcon ? (
+                <FlexBox gap={4} justifyContent="flex-start" alignItems="center">
+                    {hasStartIcon && <span css={startIconContainerStyle}>{icon}</span>}
+                    <div css={css({ textAlign: 'center' })}>{children}</div>
+                    {hasEndIcon && <span css={endIconContainerStyle}>{icon}</span>}
+                </FlexBox>
+            ) : (
                 <div>{children}</div>
-                {hasEndIcon && <span css={endIconContainerStyle}>{icon}</span>}
-            </FlexBox>
+            )}
         </button>
     );
 }

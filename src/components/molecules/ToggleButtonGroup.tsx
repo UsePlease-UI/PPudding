@@ -1,7 +1,7 @@
-/** @jsxImportSource @emotion/react */
 import React from 'react';
 
-import { css } from '@emotion/react';
+import FlexBox from '@atoms/FlexBox';
+
 import { CSSInterpolation } from '@emotion/serialize';
 
 type ToggleButtonGroupType = {
@@ -13,10 +13,10 @@ type ToggleButtonGroupType = {
 
 export default function ToggleButtonGroup({ children, value, onChange, customCSS = {} }: ToggleButtonGroupType) {
     return (
-        <div role="radiogroup" css={css([customCSS])}>
+        <FlexBox role="radiogroup" customCSS={customCSS}>
             {React.Children.toArray(children).map((child) =>
                 React.cloneElement(child as React.ReactElement, { currentValue: value, onChange })
             )}
-        </div>
+        </FlexBox>
     );
 }

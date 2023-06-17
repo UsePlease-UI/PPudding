@@ -18,9 +18,17 @@ const tableStyle = css({
     border: '1px solid #eeeeee'
 });
 
-export default function Table({ children, customCSS = {}, ...props }: TableType) {
+/**
+ *  [UI Component] Table Component
+ *  @param children 컴포넌트
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
+export default function Table(props: TableType) {
+    const { children, customCSS = {}, ...rest } = props;
+
     return (
-        <table {...props} css={css([tableStyle, customCSS])}>
+        <table {...rest} css={css([tableStyle, customCSS])}>
             {children}
         </table>
     );

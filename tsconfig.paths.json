@@ -9,6 +9,7 @@
             "@organisms/*": ["./components/organisms/*"],
             "@constants/*": ["./constants/*"],
             "@contexts/*": ["./contexts/*"],
+            "@examples": ["./examples/index.ts"],
             "@examples/*": ["./examples/*"],
             "@layouts/*": ["./layouts/*"],
             "@pages/*": ["./pages/*"],

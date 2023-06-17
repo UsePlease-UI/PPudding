@@ -2,8 +2,7 @@
 import React from 'react';
 
 import FlexBox from '@atoms/FlexBox';
-import InputHelperText from '@atoms/InputHelperText';
-import InputLabel from '@atoms/InputLabel';
+import Typography from '@atoms/Typography';
 
 import { CSSInterpolation } from '@emotion/serialize';
 
@@ -26,9 +25,13 @@ export default function FormControl({
 }: FormControlType) {
     return (
         <FlexBox direction="column" gap={4} customCSS={customCSS}>
-            <InputLabel id={id} label={label} />
+            <Typography component="label" htmlFor={id}>
+                {label}
+            </Typography>
             {React.cloneElement(children, { 'aria-label': id, 'aria-describedby': helperTextId })}
-            <InputHelperText id={helperTextId} text={helperText} />
+            <Typography component="small" id={helperTextId}>
+                {helperText}
+            </Typography>
         </FlexBox>
     );
 }
