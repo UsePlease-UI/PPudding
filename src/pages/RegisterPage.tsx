@@ -1,20 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
-import Button from 'components/atoms/Button';
-import Checkbox from 'components/atoms/Checkbox';
-import FlexBox from 'components/atoms/FlexBox';
-import Radio from 'components/atoms/Radio';
-import RadioGroup from 'components/atoms/RadioGroup';
-import TextField from 'components/atoms/TextField';
-import ToggleButton from 'components/atoms/ToggleButton';
-import ToggleButtonGroup from 'components/atoms/ToggleButtonGroup';
-import FormControl from 'components/molecules/FormControl';
-import Select from 'components/molecules/Select';
-import { PASSWORD_REG_EXP } from 'constants/regExp';
+import Button from '@atoms/Button';
+import Checkbox from '@atoms/Checkbox';
+import FlexBox from '@atoms/FlexBox';
+import Radio from '@atoms/Radio';
+import RadioGroup from '@atoms/RadioGroup';
+import TextField from '@atoms/TextField';
+import ToggleButton from '@atoms/ToggleButton';
+import ToggleButtonGroup from '@atoms/ToggleButtonGroup';
+import { PASSWORD_REG_EXP } from '@constants/regExp';
+import FormControl from '@molecules/FormControl';
+import Select from '@molecules/Select';
 
 import { css } from '@emotion/react';
-import { PaperAirplaneIcon } from 'assets/icons';
+import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
 
 const containerStyle = css({
     width: '100%',
@@ -51,6 +51,7 @@ const buttonCustomCSS = {
     backgroundColor: 'pink',
     borderColor: 'pink',
     width: '100%',
+    color: '#000000',
     '& > div': {
         gap: 10,
         justifyContent: 'center'
@@ -155,9 +156,12 @@ export default function RegisterPage() {
                         />
                     </FormControl>
                     <FlexBox gap={20}>
-                        <FormControl id="year" label="연도" helperText="" helperTextId="year-helper-text">
+                        <FlexBox direction="column" gap={4}>
+                            <small id="year" css={css({ fontWeight: 600 })}>
+                                연도
+                            </small>
                             <Select
-                                id="year"
+                                id="year-select"
                                 aria-labelledby="year"
                                 name="year"
                                 value={year}
@@ -165,10 +169,13 @@ export default function RegisterPage() {
                                 options={YEAR_OPTIONS}
                                 onChange={(e) => setYear(e.currentTarget.value)}
                             />
-                        </FormControl>
-                        <FormControl id="month" label="월" helperText="" helperTextId="month-helper-text">
+                        </FlexBox>
+                        <FlexBox direction="column" gap={4}>
+                            <small id="month" css={css({ fontWeight: 600 })}>
+                                월
+                            </small>
                             <Select
-                                id="month"
+                                id="month-select"
                                 aria-labelledby="month"
                                 name="month"
                                 value={month}
@@ -176,10 +183,13 @@ export default function RegisterPage() {
                                 options={MONTH_OPTIONS}
                                 onChange={(e) => setMonth(e.currentTarget.value)}
                             />
-                        </FormControl>
-                        <FormControl id="day" label="일" helperText="" helperTextId="day-helper-text">
+                        </FlexBox>
+                        <FlexBox direction="column" gap={4}>
+                            <small id="day" css={css({ fontWeight: 600 })}>
+                                일
+                            </small>
                             <Select
-                                id="day"
+                                id="day-select"
                                 aria-labelledby="day"
                                 name="day"
                                 value={day}
@@ -187,7 +197,7 @@ export default function RegisterPage() {
                                 options={DAY_OPTIONS}
                                 onChange={(e) => setDay(e.currentTarget.value)}
                             />
-                        </FormControl>
+                        </FlexBox>
                     </FlexBox>
                     <FlexBox direction="column" gap={5}>
                         <span css={textStyle}>성별</span>

@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
-import TabItem from 'components/atoms/TabItem';
-import Tab from 'components/molecules/Tab';
+import Tab from '@molecules/Tab';
+import TabItem from '@molecules/TabItem';
 
 import { css } from '@emotion/react';
 

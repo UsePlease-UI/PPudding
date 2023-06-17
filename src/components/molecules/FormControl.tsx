@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 
-import FlexBox from 'components/atoms/FlexBox';
-import InputHelperText from 'components/atoms/InputHelperText';
-import InputLabel from 'components/atoms/InputLabel';
+import FlexBox from '@atoms/FlexBox';
+import InputHelperText from '@atoms/InputHelperText';
+import InputLabel from '@atoms/InputLabel';
 
 import { CSSInterpolation } from '@emotion/serialize';
 

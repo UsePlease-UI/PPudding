@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
-import TabItem from 'components/atoms/TabItem';
-import Tab from 'components/molecules/Tab';
+import Tab from '@molecules/Tab';
+import TabItem from '@molecules/TabItem';
 
-import { ChevronDownIcon } from 'assets/icons';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

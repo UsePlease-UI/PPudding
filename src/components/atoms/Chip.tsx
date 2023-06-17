@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /** @jsxImportSource @emotion/react */
+
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
-import { XMarkIcon } from 'assets/icons';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 type SearchChipType = {
     label: string;

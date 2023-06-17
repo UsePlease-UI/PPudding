@@ -2,9 +2,9 @@ import { useState, useCallback } from 'react';
 
 import _ from 'lodash';
 
-import FlexBox from 'components/atoms/FlexBox';
-import AutoComplete from 'components/molecules/AutoComplete';
-import { AUTOCOMPLETE } from 'constants/autocomplete';
+import FlexBox from '@atoms/FlexBox';
+import { AUTOCOMPLETE } from '@constants/autocomplete';
+import AutoComplete from '@molecules/AutoComplete';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

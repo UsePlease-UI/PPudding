@@ -1,4 +1,4 @@
-import PageNumButton from 'components/atoms/PageNumButton';
+import PageNumButton from '@atoms/PageNumButton';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

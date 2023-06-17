@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useRef, useState } from 'react';
 
-import FlexBox from 'components/atoms/FlexBox';
-import PopOver from 'components/atoms/PopOver';
+import FlexBox from '@atoms/FlexBox';
+import PopOver from '@atoms/PopOver';
 
 import { css } from '@emotion/react';
-import palette from 'styles/palette';
+import palette from '@styles/palette';
 
 const popoverStyle = css({
     height: 30,

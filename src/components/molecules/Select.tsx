@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { InputHTMLAttributes, useEffect, useRef, useState } from 'react';
 
-import Backdrop from 'components/atoms/Backdrop';
-import ListBox from 'components/atoms/ListBox';
+import Backdrop from '@atoms/Backdrop';
+import ListBox from '@atoms/ListBox';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
-import { ChevronDownIcon } from 'assets/icons';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 type OptionType = { label: string; value: string | number };
 
@@ -143,9 +143,9 @@ export default function Select({
                     <ChevronDownIcon />
                 </span>
             </button>
-            <div id="root-select" />
+            <div id={`root-select-${id}`} />
             {isVisible && (
-                <Backdrop onClose={() => handleClick()}>
+                <Backdrop id={`root-select-${id}`} onClose={() => handleClick()}>
                     <div
                         css={css({
                             position: 'fixed',

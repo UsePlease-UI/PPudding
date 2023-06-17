@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
-import { CheckIcon } from 'assets/icons';
+import { CheckIcon } from '@heroicons/react/24/outline';
 
 type CheckboxType = React.InputHTMLAttributes<HTMLInputElement> & {
     label: string;

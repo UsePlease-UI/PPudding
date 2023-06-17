@@ -1,4 +1,4 @@
-import Chip from 'components/atoms/Chip';
+import Chip from '@atoms/Chip';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -62,7 +62,7 @@ const meta: Meta<typeof Chip> = {
 export default meta;
 type Story = StoryObj<typeof Chip>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
+// More on component templates: https://storybook.js.org/docs/react/writing-@stories/introduction#using-args
 export const Default: Story = {
     args: {
         label: '사탕',

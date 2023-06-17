@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 
-import { useTabContext } from 'contexts/TabContext';
+import { useTabContext } from '@contexts/TabContext';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
