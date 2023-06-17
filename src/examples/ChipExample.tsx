@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import Chip from '@atoms/Chip';
 import FlexBox from '@atoms/FlexBox';
+import Chip from '@molecules/Chip';
 
 export default function ChipExample() {
     return (

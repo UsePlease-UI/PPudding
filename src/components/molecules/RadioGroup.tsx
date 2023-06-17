@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 
-import { css } from '@emotion/react';
+import FlexBox from '@atoms/FlexBox';
+
 import { CSSInterpolation } from '@emotion/serialize';
 
 type RadioGroupType = {
@@ -14,22 +15,15 @@ type RadioGroupType = {
 
 export default function RadioGroup({ children, value, onChange, isRow = true, customCSS = {} }: RadioGroupType) {
     return (
-        <div
-            role="radiogroup"
-            css={css([
-                {
-                    display: 'flex',
-                    alignItems: isRow ? 'center' : 'unset',
-                    justifyContent: isRow ? 'flex-start' : 'unset',
-                    flexDirection: isRow ? 'row' : 'column',
-                    gap: 8
-                },
-                customCSS
-            ])}
+        <FlexBox
+            alignItems={isRow ? 'center' : 'unset'}
+            justifyContent={isRow ? 'flex-start' : 'unset'}
+            direction={isRow ? 'row' : 'column'}
+            customCSS={customCSS}
         >
             {React.Children.toArray(children).map((child) =>
                 React.cloneElement(child as React.ReactElement, { currentValue: value, onChange })
             )}
-        </div>
+        </FlexBox>
     );
 }

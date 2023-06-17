@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import OPTIONS from '@constants/options';
 import Select from '@molecules/Select';
+
+import OPTIONS from '@constants/options';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

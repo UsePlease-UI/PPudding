@@ -8,13 +8,13 @@ type SkeletonType = {
 
 const blink = keyframes`
     0% {
-        opacity: 0.4
+        opacity: 0.4;
     }
     50%{
-        opacity: 1
+        opacity: 1;
     }
     100% {
-        opacity: 0.4
+        opacity: 0.4;
     }
 `;
 
@@ -27,6 +27,11 @@ const skeletonStyle = css({
     animation: `${blink} 2s ease-in-out infinite`
 });
 
+/**
+ *  [UI Component] Skeleton Component
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
 export default function Skeleton({ customCSS = {} }: SkeletonType) {
     return <div css={css([skeletonStyle, customCSS])} />;
 }

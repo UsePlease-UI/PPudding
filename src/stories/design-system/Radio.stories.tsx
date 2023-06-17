@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { expect } from '@storybook/jest';
 import { within } from '@storybook/testing-library';
 
-import Radio from '@atoms/Radio';
+import Radio from '@molecules/Radio';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Radio> = {
-    title: 'Design System/Atoms/Form/Radio/Radio',
+    title: 'Design System/Molecules/Form/Radio/Radio',
     component: Radio,
     tags: ['autodocs'],
     parameters: {

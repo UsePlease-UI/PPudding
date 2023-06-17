@@ -3,6 +3,8 @@ import { useState } from 'react';
 import TextField from '@atoms/TextField';
 import FormControl from '@molecules/FormControl';
 
+import palette from '@styles/palette';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
@@ -102,7 +104,7 @@ export const FormControlTextField: Story = {
         customCSS: {
             padding: 10,
             backgroundColor: '#ffffff',
-            border: '1px solid pink',
+            border: `1px solid ${palette.lightBlue.main}`,
             borderRadius: 4,
             '& > label': {
                 textTransform: 'uppercase',

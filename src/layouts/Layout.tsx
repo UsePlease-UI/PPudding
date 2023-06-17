@@ -1,25 +1,31 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import Block from '@atoms/Block';
-import BlockWrapper from '@atoms/BlockWrapper';
 import Skeleton from '@atoms/Skeleton';
-import AccordionExample from '@examples/AccordionExample';
-import AutoCompleteExample from '@examples/AutoCompleteExample';
-import ButtonExample from '@examples/ButtonExample';
-import CheckboxExample from '@examples/CheckboxExample';
-import ChipExample from '@examples/ChipExample';
-import IconButtonExample from '@examples/IconButtonExample';
-import PaginationExample from '@examples/PaginationExample';
-import PopOverExample from '@examples/PopOverExample';
-import RadioExample from '@examples/RadioExample';
-import SelectExample from '@examples/SelectExample';
-import TabExample from '@examples/TabExample';
-import TableExample from '@examples/TableExample';
-import TextFieldExample from '@examples/TextFieldExample';
-import ToggleButtonExample from '@examples/ToggleButtonExample';
 
-import { css } from '@emotion/react';
+import {
+    AccordionExample,
+    AutoCompleteExample,
+    ButtonExample,
+    CheckboxExample,
+    ChipExample,
+    IconButtonExample,
+    PaginationExample,
+    PopOverExample,
+    RadioExample,
+    SelectExample,
+    TabExample,
+    TableExample,
+    TextFieldExample,
+    ToggleButtonExample
+} from '@examples';
+import Block from '@layouts/Block';
+import BlockWrapper from '@layouts/BlockWrapper';
+
+import { css, keyframes } from '@emotion/react';
+import { BuildingLibraryIcon } from '@heroicons/react/24/outline';
+import palette from '@styles/palette';
 
 const COMPONENT_LIST = [
     'Accordion',
@@ -27,7 +33,7 @@ const COMPONENT_LIST = [
     'Button',
     'Checkbox',
     'Chip',
-    'IconButton',
+    'Icon Button',
     'Pagination',
     'PopOver',
     'Radio',
@@ -36,11 +42,133 @@ const COMPONENT_LIST = [
     'Tab',
     'Table',
     'TextField',
-    'ToggleButton'
+    'Toggle Button'
 ];
 
-const layoutStyle = css({ maxWidth: 1200, margin: '0 auto', padding: '20px 0' });
-const componentStyle = css({ marginTop: 20, display: 'flex' });
+const layoutStyle = css({
+    minHeight: '100vh',
+    margin: '0 auto',
+    backgroundColor: palette.primary.main
+});
+
+const headerStyle = css({
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1,
+    height: 80,
+    borderBottom: '1px dashed #ffffff',
+    backgroundColor: palette.primary.main,
+    padding: '0 20px',
+    display: 'flex',
+    justifyContent: 'space-between'
+});
+
+const stroke = keyframes`
+    0% {
+        stroke-dashoffset: 350px;
+    }
+    50% {
+        stroke-dashoffset: 0px;
+    }
+    100% {
+        stroke-dashoffset: 350px;
+    }
+`;
+
+const svgTextStyle = css({
+    fontFamily: 'monospace',
+    fontSize: 70,
+    letterSpacing: -5,
+    stroke: palette.secondary.main,
+    strokeWidth: 2,
+    strokeDasharray: 350,
+    animation: `${stroke} 3s infinite`
+});
+
+const iconStyle = css({
+    display: 'inline-block',
+    width: 24,
+    height: 24
+});
+
+const asideStyle = css({
+    position: 'fixed',
+    top: 80,
+    left: 0,
+    minHeight: 'calc(100vh - 80px)',
+    borderRight: '1px dashed #ffffff',
+    backgroundColor: palette.primary.main,
+    display: 'flex',
+    alignItems: 'flex-start'
+});
+
+const mainStyle = css({
+    marginTop: 80,
+    transition: 'margin 0.5s ease-in-out',
+    padding: 60
+});
+
+const sectionStyle = css({
+    backgroundColor: '#ffffff',
+    padding: 40,
+    borderRadius: 5,
+    width: '100%',
+    maxWidth: 1536,
+    margin: '0 auto'
+});
+
+type HeaderType = { show: boolean; onClick: () => void };
+
+const Header = ({ show, onClick }: HeaderType) => (
+    <header css={headerStyle}>
+        <h1>
+            <Link to="/" css={css({ display: 'flex', alignItems: 'center' })}>
+                <svg css={css({ fill: '#ffffff' })} width="100%" height={80} viewBox="0 0 1200 80">
+                    <text x="0" y="60" css={svgTextStyle}>
+                        React Components
+                    </text>
+                </svg>
+            </Link>
+        </h1>
+        <button type="button" onClick={onClick}>
+            <span css={css([iconStyle, { color: show ? '#ffffff' : palette.secondary.main }])}>
+                <BuildingLibraryIcon />
+            </span>
+        </button>
+    </header>
+);
+
+type AsideType = {
+    show: boolean;
+    selected: string;
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+};
+
+const Aside = ({ show, selected, onClick }: AsideType) => (
+    <aside
+        css={css([
+            asideStyle,
+            {
+                width: show ? 240 : 0,
+                transition: 'width 0.5s ease-in-out',
+                '& > div': {
+                    opacity: show ? 1 : 0,
+                    transition: 'opacity 0.45s ease-in-out'
+                }
+            }
+        ])}
+    >
+        <BlockWrapper>
+            {COMPONENT_LIST.map((el: string) => (
+                <Block key={el} name={el} selected={selected} onClick={onClick}>
+                    {el}
+                </Block>
+            ))}
+        </BlockWrapper>
+    </aside>
+);
 
 function getComponents(type: string) {
     switch (type) {
@@ -54,7 +182,7 @@ function getComponents(type: string) {
             return <CheckboxExample />;
         case 'Chip':
             return <ChipExample />;
-        case 'IconButton':
+        case 'Icon Button':
             return <IconButtonExample />;
         case 'Pagination':
             return <PaginationExample />;
@@ -72,7 +200,7 @@ function getComponents(type: string) {
             return <TableExample />;
         case 'TextField':
             return <TextFieldExample />;
-        case 'ToggleButton':
+        case 'Toggle Button':
             return <ToggleButtonExample />;
         default:
             break;
@@ -82,20 +210,18 @@ function getComponents(type: string) {
 }
 
 export default function Layout() {
+    const [show, setShow] = useState(true);
     const [selected, setSelected] = useState(COMPONENT_LIST[0]);
 
-    const handleClick = (e: string) => setSelected(e);
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => setSelected(e.currentTarget.value);
 
     return (
         <div css={layoutStyle}>
-            <BlockWrapper>
-                {COMPONENT_LIST.map((el: string) => (
-                    <Block key={el} onClick={handleClick} name={el} selected={selected}>
-                        {el}
-                    </Block>
-                ))}
-            </BlockWrapper>
-            <div css={componentStyle}>{getComponents(selected)}</div>
+            <Header show={show} onClick={() => setShow((prev) => !prev)} />
+            <Aside show={show} selected={selected} onClick={handleClick} />
+            <main css={css([mainStyle, { marginLeft: show ? 240 : 0 }])}>
+                <section css={sectionStyle}>{getComponents(selected)}</section>
+            </main>
         </div>
     );
 }

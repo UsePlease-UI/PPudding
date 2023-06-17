@@ -1,40 +1,33 @@
 /** @jsxImportSource @emotion/react */
+import Button from '@molecules/Button';
 
-import { css } from '@emotion/react';
 import palette from '@styles/palette';
 
 type BlockType = {
     children: React.ReactNode;
     name: string;
     selected: string;
-    onClick: (e: string) => void;
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
-
-const blockStyle = css({
-    height: 40,
-    textTransform: 'uppercase',
-    fontWeight: 600,
-    borderRadius: 4
-});
 
 export default function Block({ children, name, onClick, selected }: BlockType) {
     return (
-        <button
+        <Button
             type="button"
-            css={css([
-                blockStyle,
-                {
-                    border: '1px dashed #ffffff',
-                    color: selected === name ? palette.secondary.main : '#ffffff',
-                    background: selected === name ? palette.lightBlue.main : palette.secondary.main,
-                    '&:hover': {
-                        opacity: 0.6
-                    }
-                }
-            ])}
-            onClick={() => onClick(name)}
+            value={name}
+            customCSS={{
+                height: 40,
+                textTransform: 'uppercase',
+                fontWeight: 600,
+                borderRadius: 4,
+                border: '1px dashed #ffffff',
+                color: selected === name ? palette.secondary.main : '#ffffff',
+                background: selected === name ? palette.lightBlue.main : palette.secondary.main,
+                '&:hover': { opacity: 0.6 }
+            }}
+            onClick={onClick}
         >
             {children}
-        </button>
+        </Button>
     );
 }

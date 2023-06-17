@@ -1,9 +1,11 @@
 /** @jsxImportSource @emotion/react */
+import React from 'react';
 
-import { forwardRef } from 'react';
+import Typography from '@atoms/Typography';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
+import palette from '@styles/palette';
 
 type ToggleButtonType = {
     children: React.ReactNode;
@@ -48,8 +50,8 @@ const labelStyle = css({
         borderBottomRightRadius: 4
     },
     '& input:checked + span': {
-        color: '#000000',
-        backgroundColor: 'pink'
+        color: '#ffffff',
+        backgroundColor: palette.primary.main
     }
 });
 
@@ -65,7 +67,7 @@ const labelTextStyle = css({
     textTransform: 'uppercase'
 });
 
-const ToggleButton = forwardRef<HTMLInputElement, ToggleButtonType>(function createRadioButton(
+const ToggleButton = React.forwardRef<HTMLInputElement, ToggleButtonType>(function createToggleButton(
     { name, currentValue, value, onChange, children, customCSS = {}, ...props },
     ref
 ) {
@@ -82,7 +84,9 @@ const ToggleButton = forwardRef<HTMLInputElement, ToggleButtonType>(function cre
                 checked={value === currentValue}
                 css={visuallyHidden}
             />
-            <span css={labelTextStyle}>{children}</span>
+            <Typography component="span" customCSS={labelTextStyle}>
+                {children}
+            </Typography>
         </label>
     );
 });

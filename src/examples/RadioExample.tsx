@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import FlexBox from '@atoms/FlexBox';
-import Radio from '@atoms/Radio';
-import RadioGroup from '@atoms/RadioGroup';
+import Radio from '@molecules/Radio';
+import RadioGroup from '@molecules/RadioGroup';
 
 export default function RadioExample() {
     const [color, setColor] = useState('red');
