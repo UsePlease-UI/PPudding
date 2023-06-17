@@ -25,7 +25,7 @@ const reset = css`
         font-size: 14px;
         line-height: 1.5;
         color: #000000;
-        background-color: #ffffff;
+        background-color: #145cb1;
     }
 
     code {
