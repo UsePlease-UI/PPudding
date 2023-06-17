@@ -1,7 +1,7 @@
 import Button from '@atoms/Button';
 import FlexBox from '@atoms/FlexBox';
 
-import { ChevronDownIcon } from '@assets/icons';
+import { StarIcon } from '@heroicons/react/24/outline';
 
 export default function ButtonExample() {
     return (
@@ -14,24 +14,24 @@ export default function ButtonExample() {
                     <Button>버튼</Button>
                 </FlexBox>
                 <FlexBox gap={5}>
-                    <Button size="small" hasStartIcon icon={<ChevronDownIcon />}>
+                    <Button size="small" hasStartIcon icon={<StarIcon />}>
                         아이콘 버튼 1
                     </Button>
-                    <Button size="medium" hasStartIcon icon={<ChevronDownIcon />}>
+                    <Button size="medium" hasStartIcon icon={<StarIcon />}>
                         아이콘 버튼 2
                     </Button>
-                    <Button hasStartIcon icon={<ChevronDownIcon />}>
+                    <Button hasStartIcon icon={<StarIcon />}>
                         아이콘 버튼 1
                     </Button>
                 </FlexBox>
                 <FlexBox gap={5}>
-                    <Button size="small" hasEndIcon icon={<ChevronDownIcon />}>
+                    <Button size="small" hasEndIcon icon={<StarIcon />}>
                         아이콘 버튼 1
                     </Button>
-                    <Button size="medium" hasEndIcon icon={<ChevronDownIcon />}>
+                    <Button size="medium" hasEndIcon icon={<StarIcon />}>
                         아이콘 버튼 2
                     </Button>
-                    <Button hasEndIcon icon={<ChevronDownIcon />}>
+                    <Button hasEndIcon icon={<StarIcon />}>
                         아이콘 버튼 1
                     </Button>
                 </FlexBox>
@@ -48,24 +48,24 @@ export default function ButtonExample() {
                     <Button variant="contained">버튼</Button>
                 </FlexBox>
                 <FlexBox gap={5}>
-                    <Button size="small" variant="contained" hasStartIcon icon={<ChevronDownIcon />}>
+                    <Button size="small" variant="contained" hasStartIcon icon={<StarIcon />}>
                         아이콘 버튼 1
                     </Button>
-                    <Button size="medium" variant="contained" hasStartIcon icon={<ChevronDownIcon />}>
+                    <Button size="medium" variant="contained" hasStartIcon icon={<StarIcon />}>
                         아이콘 버튼 2
                     </Button>
-                    <Button variant="contained" hasStartIcon icon={<ChevronDownIcon />}>
+                    <Button variant="contained" hasStartIcon icon={<StarIcon />}>
                         아이콘 버튼 1
                     </Button>
                 </FlexBox>
                 <FlexBox gap={5}>
-                    <Button size="small" variant="contained" hasEndIcon icon={<ChevronDownIcon />}>
+                    <Button size="small" variant="contained" hasEndIcon icon={<StarIcon />}>
                         아이콘 버튼 1
                     </Button>
-                    <Button size="medium" variant="contained" hasEndIcon icon={<ChevronDownIcon />}>
+                    <Button size="medium" variant="contained" hasEndIcon icon={<StarIcon />}>
                         아이콘 버튼 2
                     </Button>
-                    <Button variant="contained" hasEndIcon icon={<ChevronDownIcon />}>
+                    <Button variant="contained" hasEndIcon icon={<StarIcon />}>
                         아이콘 버튼 1
                     </Button>
                 </FlexBox>
@@ -82,24 +82,24 @@ export default function ButtonExample() {
                     <Button variant="text">버튼</Button>
                 </FlexBox>
                 <FlexBox gap={5}>
-                    <Button size="small" variant="text" hasStartIcon icon={<ChevronDownIcon />}>
+                    <Button size="small" variant="text" hasStartIcon icon={<StarIcon />}>
                         아이콘 버튼 1
                     </Button>
-                    <Button size="medium" variant="text" hasStartIcon icon={<ChevronDownIcon />}>
+                    <Button size="medium" variant="text" hasStartIcon icon={<StarIcon />}>
                         아이콘 버튼 2
                     </Button>
-                    <Button variant="text" hasStartIcon icon={<ChevronDownIcon />}>
+                    <Button variant="text" hasStartIcon icon={<StarIcon />}>
                         아이콘 버튼 1
                     </Button>
                 </FlexBox>
                 <FlexBox gap={5}>
-                    <Button size="small" variant="text" hasEndIcon icon={<ChevronDownIcon />}>
+                    <Button size="small" variant="text" hasEndIcon icon={<StarIcon />}>
                         아이콘 버튼 1
                     </Button>
-                    <Button size="medium" variant="text" hasEndIcon icon={<ChevronDownIcon />}>
+                    <Button size="medium" variant="text" hasEndIcon icon={<StarIcon />}>
                         아이콘 버튼 2
                     </Button>
-                    <Button variant="text" hasEndIcon icon={<ChevronDownIcon />}>
+                    <Button variant="text" hasEndIcon icon={<StarIcon />}>
                         아이콘 버튼 1
                     </Button>
                 </FlexBox>

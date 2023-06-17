@@ -3,7 +3,8 @@ import { useState } from 'react';
 import Checkbox from '@atoms/Checkbox';
 import FlexBox from '@atoms/FlexBox';
 
-import { HeartIcon, SolidHeartIcon } from '@assets/icons';
+import { HeartIcon } from '@heroicons/react/24/outline';
+import { HeartIcon as SolidHeartIcon } from '@heroicons/react/24/solid';
 
 export default function CheckboxExample() {
     const [chocolate, setChocolate] = useState(false);

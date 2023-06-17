@@ -3,7 +3,7 @@ import TabExample from '@examples/TabExample';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: '@examples/Tab Example',
+    title: 'Examples/Tab Example',
     component: TabExample,
     tags: ['autodocs'],
     argTypes: {}

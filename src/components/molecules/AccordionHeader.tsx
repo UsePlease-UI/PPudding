@@ -3,9 +3,9 @@ import React from 'react';
 
 import { useAccordionContext } from '@contexts/AccordionContext';
 
-import { ChevronDownIcon } from '@assets/icons';
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 export type AccordionHeaderType = {
     children: string | React.ReactNode;

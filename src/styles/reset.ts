@@ -25,7 +25,7 @@ const reset = css`
         font-size: 14px;
         line-height: 1.5;
         color: #000000;
-        background-color: #fafafa;
+        background-color: #ffffff;
     }
 
     code {
@@ -49,6 +49,7 @@ const reset = css`
         border: 0;
         outline: 0;
         background-color: transparent;
+        cursor: pointer;
     }
 
     button:disabled {

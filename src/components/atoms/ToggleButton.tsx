@@ -48,7 +48,7 @@ const labelStyle = css({
         borderBottomRightRadius: 4
     },
     '& input:checked + span': {
-        color: '#ffffff',
+        color: '#000000',
         backgroundColor: 'pink'
     }
 });

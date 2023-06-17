@@ -5,8 +5,8 @@ import TabPanel from '@atoms/TabPanel';
 import Tab from '@molecules/Tab';
 import TabItem from '@molecules/TabItem';
 
-import { ChevronDownIcon } from '@assets/icons';
 import { css } from '@emotion/react';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 const tabStyle = css({
     width: '100%',

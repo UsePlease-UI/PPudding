@@ -11,21 +11,27 @@ type BlockType = {
 };
 
 const blockStyle = css({
-    color: 'white',
-    cursor: 'pointer',
-    minWidth: 100,
     height: 40,
-    borderRadius: 10,
-    '&:hover': {
-        background: `${palette.lightBlue.main}`
-    }
+    textTransform: 'uppercase',
+    fontWeight: 600,
+    borderRadius: 4
 });
 
 export default function Block({ children, name, onClick, selected }: BlockType) {
     return (
         <button
             type="button"
-            css={css([blockStyle, { background: selected === name ? palette.primary.main : palette.secondary.main }])}
+            css={css([
+                blockStyle,
+                {
+                    border: '1px dashed #ffffff',
+                    color: selected === name ? palette.secondary.main : '#ffffff',
+                    background: selected === name ? palette.lightBlue.main : palette.secondary.main,
+                    '&:hover': {
+                        opacity: 0.6
+                    }
+                }
+            ])}
             onClick={() => onClick(name)}
         >
             {children}

@@ -42,7 +42,7 @@ module.exports = {
                         position: 'before'
                     },
                     {
-                        pattern: '{*.+(css|scss|svg|png|jpg|jpeg),@assets/**,@emotion/**,@styles/**}',
+                        pattern: '{*.+(css|scss|svg|png|jpg|jpeg),@assets/**,@emotion/**,@styles/**,@heroicons/**}',
                         patternOptions: {
                             dot: true,
                             nocomment: true,

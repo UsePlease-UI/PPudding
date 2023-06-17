@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { css } from '@emotion/react';
 
 type BackdropType = {
+    id: string;
     children: React.ReactNode;
     onClose: () => void;
 };
@@ -18,7 +19,7 @@ const backdropStyle = css({
     zIndex: 1300
 });
 
-export default function Backdrop({ children, onClose }: BackdropType) {
+export default function Backdrop({ id, children, onClose }: BackdropType) {
     return createPortal(
         <div
             css={backdropStyle}
@@ -32,6 +33,6 @@ export default function Backdrop({ children, onClose }: BackdropType) {
         >
             {children}
         </div>,
-        document.getElementById('root-select') as HTMLElement
+        document.getElementById(id) as HTMLElement
     );
 }

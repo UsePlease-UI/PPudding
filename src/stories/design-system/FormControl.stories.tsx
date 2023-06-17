@@ -1,10 +1,7 @@
 import { useState } from 'react';
 
 import TextField from '@atoms/TextField';
-import OPTIONS from '@constants/options';
 import FormControl from '@molecules/FormControl';
-import Select from '@molecules/Select';
-
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -93,36 +90,6 @@ const FormControlTextFieldTemplate: Story = {
     }
 };
 
-const SELECT_ARGS = {
-    name: 'milk',
-    label: '딸기',
-    value: '1',
-    options: OPTIONS,
-    isReadOnly: false,
-    isDisabled: false,
-    customCSS: {
-        '& + #root-select > div > div': {
-            marginTop: 75
-        }
-    }
-};
-
-const FormControlSelectTemplate: Story = {
-    render: (args) => {
-        const [value, setValue] = useState('');
-        return (
-            <FormControl {...args}>
-                <Select
-                    {...SELECT_ARGS}
-                    label={OPTIONS.filter((val) => val.value === value)?.[0]?.label}
-                    value={value}
-                    onChange={(e) => setValue(e.currentTarget.value)}
-                />
-            </FormControl>
-        );
-    }
-};
-
 export const FormControlTextField: Story = {
     ...FormControlTextFieldTemplate,
     args: {
@@ -132,33 +99,6 @@ export const FormControlTextField: Story = {
         helperText: 'I am a helper text',
         helperTextId: 'name-helper-text',
         label: 'name',
-        customCSS: {
-            padding: 10,
-            backgroundColor: '#ffffff',
-            border: '1px solid pink',
-            borderRadius: 4,
-            '& > label': {
-                textTransform: 'uppercase',
-                marginLeft: 2,
-                marginBottom: 2
-            },
-            '& > small': {
-                marginTop: 4,
-                marginLeft: 4
-            }
-        }
-    }
-};
-
-export const FormControlSelect: Story = {
-    ...FormControlSelectTemplate,
-    args: {
-        // eslint-disable-next-line react/jsx-no-useless-fragment
-        children: <></>,
-        id: 'milk',
-        helperText: '우유 종류를 선택해주세요',
-        helperTextId: 'milk-helper-text',
-        label: '우유',
         customCSS: {
             padding: 10,
             backgroundColor: '#ffffff',
