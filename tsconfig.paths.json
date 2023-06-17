@@ -11,6 +11,7 @@
             "@contexts/*": ["./contexts/*"],
             "@examples/*": ["./examples/*"],
             "@layouts/*": ["./layouts/*"],
+            "@pages/*": ["./pages/*"],
             "@stories/*": ["./stories/*"],
             "@styles/*": ["./styles/*"]
         }
