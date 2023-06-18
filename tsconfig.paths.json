@@ -8,12 +8,12 @@
             "@molecules/*": ["./components/molecules/*"],
             "@organisms/*": ["./components/organisms/*"],
             "@constants/*": ["./constants/*"],
-            "@snippets/*": ["./snippets/*"],
             "@contexts/*": ["./contexts/*"],
             "@examples": ["./examples/index.ts"],
             "@examples/*": ["./examples/*"],
             "@layouts/*": ["./layouts/*"],
             "@pages/*": ["./pages/*"],
+            "@snippets/*": ["./snippets/*"],
             "@stories/*": ["./stories/*"],
             "@styles/*": ["./styles/*"]
         }
