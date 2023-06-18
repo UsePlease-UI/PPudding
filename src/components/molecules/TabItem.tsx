@@ -10,8 +10,8 @@ type TabItemType = {
     label: string;
     value: number;
     index: number;
-    onChange?: (newValue: number) => void;
     icon?: React.ReactNode;
+    onChange?: (newValue: number) => void;
     customCSS?: CSSInterpolation;
 };
 
@@ -41,7 +41,18 @@ const iconStyle = css({ width: 20, height: 20, '& svg': { width: 20, height: 20,
 const textStyle = css({ margin: 20, color: '#000000', fontSize: 14, fontWeight: 500 });
 const indicatorStyle = css({ width: '80%', height: 2, borderRadius: 999, backgroundColor: 'pink' });
 
-export default function TabItem({ label, value, index, icon, customCSS, onChange }: TabItemType) {
+/**
+ *  [UI Component] Tab Item Component
+ *  @param value 선택된 탭 인덱스
+ *  @param label 탭 Text
+ *  @param index 탭 인덱스
+ *  @param icon 아이콘  [optional]
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
+export default function TabItem(props: TabItemType) {
+    const { label, value, index, icon, customCSS, onChange } = props;
+
     const { linkRefs } = useTabContext();
 
     const handleClick = (newValue: number) => {

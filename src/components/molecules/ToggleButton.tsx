@@ -67,6 +67,13 @@ const labelTextStyle = css({
     textTransform: 'uppercase'
 });
 
+/**
+ *  [UI Component] Toggle Button Component
+ *  @param name ToggleButton 이름
+ *  @param value ToggleButton 값
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
 const ToggleButton = React.forwardRef<HTMLInputElement, ToggleButtonType>(function createToggleButton(
     { name, currentValue, value, onChange, children, customCSS = {}, ...props },
     ref

@@ -127,18 +127,32 @@ const MAX_MENU_HEIGHT = 300;
 const AVG_OPTION_HEIGHT = 24;
 const MIN_OFFSET = 20;
 
-export default function Select({
-    id = 'combo',
-    name,
-    label,
-    value,
-    options = [],
-    isDisabled = false,
-    isReadOnly = false,
-    onChange,
-    customCSS = {},
-    ...props
-}: SelectType) {
+/**
+ *  [UI Component] Select Component
+ *  @param name Select 이름
+ *  @param label 선택된 값의 label
+ *  @param value 선택된 값의 value
+ *  @param onChange Change Event Handler
+ *  @param options 옵션들 [optional]
+ *  @param isReadOnly 읽기 전용 [optional]
+ *  @param isDisabled 활성화여부 [optional]
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
+export default function Select(props: SelectType) {
+    const {
+        id = 'combo',
+        name,
+        label,
+        value,
+        options = [],
+        isDisabled = false,
+        isReadOnly = false,
+        onChange,
+        customCSS = {},
+        ...rest
+    } = props;
+
     const ref = useRef<HTMLButtonElement | null>(null);
     const [isVisible, setIsVisible] = useState(false);
     const [top, setTop] = useState(0);
@@ -196,7 +210,7 @@ export default function Select({
                 aria-expanded={isVisible}
                 aria-controls="listbox"
                 aria-haspopup="listbox"
-                aria-labelledby={props['aria-labelledby'] || 'combo1-label'}
+                aria-labelledby={rest['aria-labelledby'] || 'combo1-label'}
                 id={id}
                 role="combobox"
                 tabIndex={0}
@@ -236,8 +250,8 @@ export default function Select({
                         })}
                     >
                         <ListBox
-                            id={(props['aria-haspopup'] as string) || 'listbox'}
-                            labelId={(props['aria-labelledby'] as string) || 'combo1-label'}
+                            id={(rest['aria-haspopup'] as string) || 'listbox'}
+                            labelId={(rest['aria-labelledby'] as string) || 'combo1-label'}
                             name={name}
                             value={value}
                             options={options}

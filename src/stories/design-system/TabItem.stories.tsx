@@ -4,12 +4,12 @@ import { useState } from 'react';
 import Tab from '@molecules/Tab';
 import TabItem from '@molecules/TabItem';
 
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { StarIcon } from '@heroicons/react/24/outline';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Design System/Atoms/Tab/TabItem',
+    title: 'Design System/Molecules/Tab/TabItem',
     component: TabItem,
     tags: ['autodocs'],
     parameters: {
@@ -88,9 +88,9 @@ export const Default: Story = {
 
         return (
             <Tab aria-label="navigation" value={value} onChange={handleChange}>
-                <TabItem {...args} icon={<ChevronDownIcon />} value={value} label="1" index={1} />
-                <TabItem {...args} value={value} label="2" index={2} />
-                <TabItem {...args} value={value} label="3" index={3} />
+                <TabItem {...args} icon={args.icon} value={value} label="1" index={1} />
+                <TabItem {...args} icon={null} value={value} label="2" index={2} />
+                <TabItem {...args} icon={null} value={value} label="3" index={3} />
             </Tab>
         );
     },
@@ -98,6 +98,7 @@ export const Default: Story = {
         value: 1,
         label: '1',
         index: 1,
+        icon: <StarIcon />,
         customCSS: {}
     }
 };

@@ -17,8 +17,8 @@ type ButtonType = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     size?: SizeType;
     variant?: VariantType;
     isDisabled?: boolean;
-    customCSS?: CSSInterpolation;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    customCSS?: CSSInterpolation;
 };
 
 const buttonStyle = css({ borderRadius: 4 });

@@ -7,22 +7,34 @@ import Typography from '@atoms/Typography';
 import { CSSInterpolation } from '@emotion/serialize';
 
 type FormControlType = {
-    id?: string;
-    helperTextId?: string;
-    label?: string | React.ReactNode;
-    helperText?: string | React.ReactNode;
     children: React.ReactElement;
+    id?: string;
+    label?: string | React.ReactNode;
+    helperTextId?: string;
+    helperText?: string | React.ReactNode;
     customCSS?: CSSInterpolation;
 };
 
-export default function FormControl({
-    children,
-    id = 'input',
-    label = '',
-    helperTextId = 'input-helper-text',
-    helperText = '',
-    customCSS = {}
-}: FormControlType) {
+/**
+ *  [UI Component] Form Control Component
+ *  @param children 컴포넌트
+ *  @param id [웹 접근성] id [optional]
+ *  @param label Label Text [optional]
+ *  @param helperText Helper Text [optional]
+ *  @param helperTextId [웹 접근성] helper text의 id [optional]
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
+export default function FormControl(props: FormControlType) {
+    const {
+        children,
+        id = 'input',
+        label = '',
+        helperTextId = 'input-helper-text',
+        helperText = '',
+        customCSS = {}
+    } = props;
+
     return (
         <FlexBox direction="column" gap={4} customCSS={customCSS}>
             <Typography component="label" htmlFor={id}>
