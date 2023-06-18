@@ -11,7 +11,7 @@ export default function CheckboxExample() {
     const [candy, setCandy] = useState(false);
 
     return (
-        <FlexBox gap={10}>
+        <FlexBox gap={10} customCSS={{ margin: 20 }}>
             <Checkbox
                 label="초콜릿"
                 value="chocolate"
