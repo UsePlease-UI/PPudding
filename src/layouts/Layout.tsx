@@ -22,6 +22,8 @@ import {
 } from '@examples';
 import Block from '@layouts/Block';
 import BlockWrapper from '@layouts/BlockWrapper';
+import CodeSnippet from '@layouts/CodeSnippet';
+import Description from '@layouts/Description';
 
 import { css, keyframes } from '@emotion/react';
 import { BuildingLibraryIcon } from '@heroicons/react/24/outline';
@@ -45,11 +47,7 @@ const COMPONENT_LIST = [
     'Toggle Button'
 ];
 
-const layoutStyle = css({
-    minHeight: '100vh',
-    margin: '0 auto',
-    backgroundColor: palette.primary.main
-});
+const layoutStyle = css({ minHeight: '100vh', margin: '0 auto', backgroundColor: palette.primary.main });
 
 const headerStyle = css({
     position: 'fixed',
@@ -87,11 +85,7 @@ const svgTextStyle = css({
     animation: `${stroke} 3s infinite`
 });
 
-const iconStyle = css({
-    display: 'inline-block',
-    width: 24,
-    height: 24
-});
+const iconStyle = css({ display: 'inline-block', width: 24, height: 24 });
 
 const asideStyle = css({
     position: 'fixed',
@@ -104,23 +98,18 @@ const asideStyle = css({
     alignItems: 'flex-start'
 });
 
-const mainStyle = css({
-    marginTop: 80,
-    transition: 'margin 0.5s ease-in-out',
-    padding: 60
-});
+const mainStyle = css({ marginTop: 80, padding: 60, transition: 'margin 0.5s ease-in-out' });
 
 const sectionStyle = css({
-    backgroundColor: '#ffffff',
-    padding: 40,
-    borderRadius: 5,
     width: '100%',
     maxWidth: 1536,
-    margin: '0 auto'
+    margin: '0 auto',
+    padding: 40,
+    borderRadius: 5,
+    backgroundColor: '#ffffff'
 });
 
 type HeaderType = { show: boolean; onClick: () => void };
-
 const Header = ({ show, onClick }: HeaderType) => (
     <header css={headerStyle}>
         <h1>
@@ -145,7 +134,6 @@ type AsideType = {
     selected: string;
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
-
 const Aside = ({ show, selected, onClick }: AsideType) => (
     <aside
         css={css([
@@ -153,10 +141,7 @@ const Aside = ({ show, selected, onClick }: AsideType) => (
             {
                 width: show ? 240 : 0,
                 transition: 'width 0.5s ease-in-out',
-                '& > div': {
-                    opacity: show ? 1 : 0,
-                    transition: 'opacity 0.45s ease-in-out'
-                }
+                '& > div': { opacity: show ? 1 : 0, transition: 'opacity 0.45s ease-in-out' }
             }
         ])}
     >
@@ -213,14 +198,16 @@ export default function Layout() {
     const [show, setShow] = useState(true);
     const [selected, setSelected] = useState(COMPONENT_LIST[0]);
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => setSelected(e.currentTarget.value);
-
     return (
         <div css={layoutStyle}>
             <Header show={show} onClick={() => setShow((prev) => !prev)} />
-            <Aside show={show} selected={selected} onClick={handleClick} />
+            <Aside show={show} selected={selected} onClick={(e) => setSelected(e.currentTarget.value)} />
             <main css={css([mainStyle, { marginLeft: show ? 240 : 0 }])}>
-                <section css={sectionStyle}>{getComponents(selected)}</section>
+                <section css={sectionStyle}>
+                    <Description component={selected} />
+                    {getComponents(selected)}
+                    <CodeSnippet component={selected} />
+                </section>
             </main>
         </div>
     );
