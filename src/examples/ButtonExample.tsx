@@ -20,14 +20,14 @@ export default function ButtonExample() {
                     <Typography component="h3" css={css({ textTransform: 'capitalize' })}>
                         {variant}
                     </Typography>
-                    <FlexBox gap={5}>
+                    <FlexBox gap={5} customCSS={{ flexWrap: 'wrap' }}>
                         {SIZE.map((size) => (
                             <Button key={size} size={size as SizeType} variant={variant as VariantType}>
                                 버튼
                             </Button>
                         ))}
                     </FlexBox>
-                    <FlexBox gap={5}>
+                    <FlexBox gap={5} customCSS={{ flexWrap: 'wrap' }}>
                         {SIZE.map((size) => (
                             <Button
                                 key={size}
@@ -40,7 +40,7 @@ export default function ButtonExample() {
                             </Button>
                         ))}
                     </FlexBox>
-                    <FlexBox gap={5}>
+                    <FlexBox gap={5} customCSS={{ flexWrap: 'wrap' }}>
                         {SIZE.map((size) => (
                             <Button
                                 key={size}
