@@ -8,6 +8,7 @@ export { default as PaginationExample } from '@examples/PaginationExample';
 export { default as PopOverExample } from '@examples/PopOverExample';
 export { default as RadioExample } from '@examples/RadioExample';
 export { default as SelectExample } from '@examples/SelectExample';
+export { default as SkeletonExample } from '@examples/SkeletonExample';
 export { default as TabExample } from '@examples/TabExample';
 export { default as TableExample } from '@examples/TableExample';
 export { default as TextFieldExample } from '@examples/TextFieldExample';

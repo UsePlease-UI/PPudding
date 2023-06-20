@@ -12,6 +12,7 @@ import { ACCORDION_CODE_SNIPPET, ACCORDION_SHORT } from '@snippets/accordion';
 import { BUTTON_CODE_SNIPPET, BUTTON_SHORT_SNIPPET } from '@snippets/button';
 import { CHECKBOX_CODE_SNIPPET, CHECKBOX_SHORT_SNIPPET } from '@snippets/checkbox';
 import { CHIP_CODE_SNIPPET, CHIP_SHORT_SNIPPET } from '@snippets/chip';
+import { SKELETON_CODE_SNIPPET } from '@snippets/skeleton';
 import palette from '@styles/palette';
 
 const codeContainerStyle = css({ width: '100%', overflow: 'hidden', borderRadius: 5 });
@@ -32,6 +33,10 @@ const CODE_SNIPPET = {
     Chip: {
         short: CHIP_SHORT_SNIPPET,
         full: CHIP_CODE_SNIPPET
+    },
+    Skeleton: {
+        short: SKELETON_CODE_SNIPPET,
+        full: SKELETON_CODE_SNIPPET
     }
 };
 

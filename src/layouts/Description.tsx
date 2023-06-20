@@ -68,6 +68,12 @@ const DESCRIPTION = {
         icon: 'F',
         name: 'Chip',
         description: 'A component that can be used to represent an attribute or trigger an action'
+    },
+    Skeleton: {
+        link: '/',
+        icon: 'S',
+        name: 'Skeleton',
+        description: 'A component that indicates progress'
     }
 };
 
