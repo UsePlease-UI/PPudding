@@ -11,12 +11,6 @@ const reset = css`
         width: 100%;
     }
 
-    html,
-    body,
-    #root {
-        height: 100%;
-    }
-
     body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
             'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
