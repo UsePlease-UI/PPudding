@@ -10,8 +10,8 @@ import palette from '@styles/palette';
 type ChipType = {
     label: string;
     value: string | number;
-    onDelete?: (value: string | number) => void;
     isDeletable?: boolean;
+    onDelete?: (value: string | number) => void;
     customCSS?: CSSInterpolation;
 };
 

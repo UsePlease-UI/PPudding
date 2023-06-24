@@ -48,7 +48,7 @@ module.exports = {
                     },
                     {
                         pattern:
-                            '{*.+(css|scss|svg|png|jpg|jpeg),@assets/**,@constants/**,@emotion/**,@styles/**,@heroicons/**}',
+                            '{*.+(css|scss|svg|png|jpg|jpeg),@assets/**,@constants/**,@emotion/**,@styles/**,@heroicons/**,@snippets/**}',
                         patternOptions: {
                             dot: true,
                             nocomment: true,

@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 /** @jsxImportSource @emotion/react */
-
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
 import palette from '@styles/palette';
@@ -14,8 +12,8 @@ type IconButtonType = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     size?: SizeType;
     variant?: VariantType;
     isDisabled?: boolean;
-    customCSS?: CSSInterpolation;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    customCSS?: CSSInterpolation;
 };
 
 const buttonStyle = css({ borderRadius: 4 });
@@ -118,7 +116,7 @@ export default function IconButton({
     size = '',
     variant = '',
     isDisabled = false,
-    onClick = () => {},
+    onClick,
     customCSS,
     ...props
 }: IconButtonType) {

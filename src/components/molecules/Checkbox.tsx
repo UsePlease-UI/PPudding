@@ -94,7 +94,7 @@ const labelTextStyle = css({ fontSize: 16, lineHeight: 1.5, marginLeft: 4 });
  *  @param customCSS 커스텀 CSS [optional]
  *  @returns JSX.Element
  */
-const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function createCheckBox(
+const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function createCheckbox(
     { icon, checkedIcon, checked, onChange, label, value, customCSS = {}, ...props }: CheckboxType,
     ref
 ) {

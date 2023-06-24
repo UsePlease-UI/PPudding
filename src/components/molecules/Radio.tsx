@@ -68,6 +68,14 @@ const radioStyle = css({
 
 const labelTextStyle = css({ fontSize: 14, lineHeight: 1.5, fontWeight: 500, marginLeft: 4 });
 
+/**
+ *  [UI Component] Radio Component
+ *  @param name 라디오 버튼 이름
+ *  @param label 라디오 텍스트 값
+ *  @param value 라디오 버튼 값
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
 const Radio = forwardRef<HTMLInputElement, RadioType>(function createRadio(
     { name, label, value, currentValue, onChange, customCSS, ...props },
     ref

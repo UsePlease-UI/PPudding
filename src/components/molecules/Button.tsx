@@ -17,36 +17,42 @@ type ButtonType = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     size?: SizeType;
     variant?: VariantType;
     isDisabled?: boolean;
-    customCSS?: CSSInterpolation;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    customCSS?: CSSInterpolation;
 };
 
 const buttonStyle = css({ borderRadius: 4 });
 
 const smallStyle = css({
-    height: 32,
+    minHeight: 32,
+    height: 'max-content',
     minWidth: 48,
-    padding: '0 12px',
+    width: 'max-content',
+    padding: '4px 12px',
     fontSize: 13,
     fontWeight: 400,
     '& svg': { width: 14, height: 14 }
 });
 
 const mediumStyle = css({
-    height: 40,
+    minHeight: 40,
+    height: 'max-content',
     minWidth: 56,
+    width: 'max-content',
     fontSize: 14,
     fontWeight: 500,
-    padding: '0 16px',
+    padding: '4px 16px',
     '& svg': { width: 16, height: 16 }
 });
 
 const largeStyle = css({
-    height: 45,
+    minHeight: 45,
+    height: 'max-content',
     minWidth: 96,
+    width: 'max-content',
     fontSize: 15,
     fontWeight: 500,
-    padding: '0 16px',
+    padding: '4px 16px',
     '& svg': { width: 20, height: 20 }
 });
 
