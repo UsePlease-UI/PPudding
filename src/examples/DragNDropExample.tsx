@@ -58,11 +58,17 @@ export default function DragNDropExample() {
             label: 'sixth',
             value: 'sixth item'
         }
-    ]);
-
+`    ]);
+`
     return (
         <FlexBox gap={10}>
-            <DragNDrop title="My Drag List" items={items} render={(SAMPLE_LIST: ListItem) => <li>{SAMPLE_LIST}</li>} />
+            <DragNDrop
+                title="My Drag List"
+                render={(data) => {
+                    // eslint-disable-next-line no-unused-expressions
+                    data;
+                }}
+            />
         </FlexBox>
     );
 }

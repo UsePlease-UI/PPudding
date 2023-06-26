@@ -14,8 +14,8 @@ type ListItemType = {
 };
 type ComponentType = {
     title?: string;
-    items: ListItemType[];
-    render?: (items: any) => React.ReactNode;
+    items?: ListItemType[] | [];
+    render?: (data: ListItemType) => void;
 };
 
 const ulDragStyle = css({
@@ -39,9 +39,11 @@ const dragItemStyle = css({
     }
 });
 
-export default function DragNDrop({ title, items, render }: DragNDropType) {
+export default function DragNDrop(props: ComponentType) {
+    const { title, items, render } = props;
+
     const [draggedItem, setDraggedItem] = useState<ListItemType | null>(null);
-    const [listItems, setListItems] = useState<ListItemType[]>(items);
+    const [listItems, setListItems] = useState(items || []);
 
     const handleDragStart = (event: React.DragEvent<HTMLLIElement>, item: ListItemType) => {
         setDraggedItem(item);
@@ -70,7 +72,7 @@ export default function DragNDrop({ title, items, render }: DragNDropType) {
         <FlexBox direction="column" gap={10}>
             {title && <h2 id="dragList_title">{title}</h2>}
             <ul css={ulDragStyle} id="dragList_list" aria-labelledby="dragList_title">
-                {render ? render(itmes) : <span>hello</span>}
+                {render ? <>{render(data)}</> : null}
             </ul>
         </FlexBox>
     );
