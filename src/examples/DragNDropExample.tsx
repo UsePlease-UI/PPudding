@@ -65,7 +65,6 @@ export default function DragNDropExample() {
             <DragNDrop
                 title="My Drag List"
                 render={(data) => {
-                    // eslint-disable-next-line no-unused-expressions
                     data;
                 }}
             />
