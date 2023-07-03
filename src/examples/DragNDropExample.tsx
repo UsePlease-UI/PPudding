@@ -1,25 +1,43 @@
 /** @jsxImportSource @emotion/react */
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import DragNDrop from 'components/atoms/DragNDrop';
 import FlexBox from 'components/atoms/FlexBox';
 
 import { css } from '@emotion/react';
 
-const SAMPLE_LIST = [
+const SAMPLE_LIST_RENDER_PROPS = [
     {
         idx: 1,
-        label: 'first 11',
+        label: 'first 11 Render',
         value: 'first item'
     },
     {
         idx: 2,
-        label: 'second 22',
+        label: 'second 22 Render',
         value: 'second item'
     },
     {
         idx: 3,
-        label: 'third 33',
+        label: 'third 33 Render',
+        value: 'third item'
+    }
+];
+
+const SAMPLE_LIST_PROPS = [
+    {
+        idx: 1,
+        label: 'first 11 Props',
+        value: 'first item'
+    },
+    {
+        idx: 2,
+        label: 'second 22 Props',
+        value: 'second item'
+    },
+    {
+        idx: 3,
+        label: 'third 33 Props',
         value: 'third item'
     }
 ];
@@ -44,7 +62,7 @@ export type ListItemType = {
 
 export default function DragNDropExample() {
     const [draggedItem, setDraggedItem] = useState<ListItemType | null>(null);
-    const [listItems, setListItems] = useState(SAMPLE_LIST || []);
+    const [listItems, setListItems] = useState(SAMPLE_LIST_RENDER_PROPS || []);
 
     const handleDragStart = (event: React.DragEvent<HTMLLIElement>, item: ListItemType) => {
         setDraggedItem(item);
@@ -69,38 +87,34 @@ export default function DragNDropExample() {
         }
     };
 
-    useEffect(() => {
-        console.log(listItems);
-    }, [listItems]);
-
     return (
         <FlexBox gap={10}>
             <DragNDrop
                 title="My Drag List"
-                // render={() => {
-                //     return (
-                //         <div>
-                //             {listItems.map((data) => {
-                //                 return (
-                //                     <li
-                //                         key={data.idx}
-                //                         css={dragItemStyle}
-                //                         draggable
-                //                         onDragStart={(e) => handleDragStart(e, data)}
-                //                         onDragOver={handleDragOver}
-                //                         onDrop={(e) => handleDrop(e, data)}
-                //                     >
-                //                         {data.label}
-                //                     </li>
-                //                 );
-                //             })}
-                //         </div>
-                //     );
-                // }}
-                items={SAMPLE_LIST}
-                onDragStart={handleDragStart}
-                onDragOver={handleDragOver}
-                onDrop={handleDrop}
+                render={() => {
+                    return (
+                        <div>
+                            {listItems.map((data) => {
+                                return (
+                                    <li
+                                        key={data.idx}
+                                        css={dragItemStyle}
+                                        draggable
+                                        onDragStart={(e) => handleDragStart(e, data)}
+                                        onDragOver={handleDragOver}
+                                        onDrop={(e) => handleDrop(e, data)}
+                                    >
+                                        {data.label}
+                                    </li>
+                                );
+                            })}
+                        </div>
+                    );
+                }}
+                // items={SAMPLE_LIST_PROPS}
+                // onDragStart={handleDragStart}
+                // onDragOver={handleDragOver}
+                // onDrop={handleDrop}
             />
         </FlexBox>
     );
