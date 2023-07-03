@@ -62,7 +62,7 @@ export type ListItemType = {
 
 export default function DragNDropExample() {
     const [draggedItem, setDraggedItem] = useState<ListItemType | null>(null);
-    const [listItems, setListItems] = useState(SAMPLE_LIST_RENDER_PROPS || []);
+    const [listItems, setListItems] = useState(SAMPLE_LIST_RENDER_PROPS);
 
     const handleDragStart = (event: React.DragEvent<HTMLLIElement>, item: ListItemType) => {
         setDraggedItem(item);
@@ -111,10 +111,6 @@ export default function DragNDropExample() {
                         </div>
                     );
                 }}
-                // items={SAMPLE_LIST_PROPS}
-                // onDragStart={handleDragStart}
-                // onDragOver={handleDragOver}
-                // onDrop={handleDrop}
             />
         </FlexBox>
     );

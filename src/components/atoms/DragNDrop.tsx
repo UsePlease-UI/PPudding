@@ -7,14 +7,17 @@ import { css } from '@emotion/react';
 
 import type { ListItemType } from 'examples/DragNDropExample';
 
-type ComponentType = {
-    title?: string;
-    render?: (el: any) => React.ReactElement<any, string | React.JSXElementConstructor<any>>;
+interface ItemListType {
     items?: ListItemType[];
-    onDragStart?: (event: React.DragEvent<HTMLLIElement>, item: ListItemType) => void;
-    onDragOver?: (event: React.DragEvent<HTMLLIElement>) => void;
-    onDrop?: (event: React.DragEvent<HTMLLIElement>, targetItem: ListItemType) => void;
-};
+    onDragStart: (event: React.DragEvent<HTMLLIElement>, item: ListItemType) => void;
+    onDragOver: (event: React.DragEvent<HTMLLIElement>) => void;
+    onDrop: (event: React.DragEvent<HTMLLIElement>, targetItem: ListItemType) => void;
+}
+
+interface ComponentType extends ItemListType {
+    title?: string;
+    render?: (el: any) => React.ReactNode;
+}
 
 const ulDragStyle = css({
     minWidth: 300,
@@ -37,11 +40,11 @@ const dragItemStyle = css({
     }
 });
 
-const ItemList = (props: any) => {
+const ItemList = (props: ItemListType) => {
     const { items, onDragStart, onDragOver, onDrop } = props;
     return (
         <div>
-            {items?.map((el: any) => {
+            {items?.map((el: ListItemType) => {
                 return (
                     <li
                         key={el.idx}
@@ -64,8 +67,8 @@ export default function DragNDrop(props: ComponentType) {
 
     return (
         <FlexBox direction="column" gap={10}>
-            {title && <h2 id="dragList_title">{title}</h2>}
-            <ul css={ulDragStyle} id="dragList_list" aria-labelledby="dragList_title">
+            {title && <h2 id="drag-list-title">{title}</h2>}
+            <ul css={ulDragStyle} id="drag-list" aria-labelledby="dragList_title">
                 {render && render('el')}
                 <ItemList items={items} onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop} />
             </ul>
