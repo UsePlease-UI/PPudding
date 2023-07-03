@@ -7,17 +7,17 @@ import { css } from '@emotion/react';
 
 import type { ListItemType } from 'examples/DragNDropExample';
 
-interface ItemListType {
+type ItemListType = {
     items?: ListItemType[];
     onDragStart: (event: React.DragEvent<HTMLLIElement>, item: ListItemType) => void;
     onDragOver: (event: React.DragEvent<HTMLLIElement>) => void;
     onDrop: (event: React.DragEvent<HTMLLIElement>, targetItem: ListItemType) => void;
-}
+};
 
-interface ComponentType extends ItemListType {
+type ComponentType = ItemListType & {
     title?: string;
     render?: (el: any) => React.ReactNode;
-}
+};
 
 const ulDragStyle = css({
     minWidth: 300,
