@@ -35,7 +35,7 @@
 -   [ ] Carousel
 -   [ ] Calendar
 -   [ ] Editor
--   [ ] Drag n Drop
+-   [x] Drag n Drop
 
 ---
 
@@ -62,6 +62,7 @@
 | akffkdahffkdgo77 | Checkbox     |
 | akffkdahffkdgo77 | Accordion    |
 | Kimyerim1935     | AutoComplete |
+| Kimyerim1935     | Drag n Drop  |
 
 ## Convention
 
