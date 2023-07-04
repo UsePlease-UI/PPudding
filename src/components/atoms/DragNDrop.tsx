@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable jsx-a11y/aria-role */
 /** @jsxImportSource @emotion/react */
 
@@ -8,15 +9,19 @@ import { css } from '@emotion/react';
 import type { ListItemType } from 'examples/DragNDropExample';
 
 type ItemListType = {
-    items?: ListItemType[];
+    items: ListItemType[];
     onDragStart: (event: React.DragEvent<HTMLLIElement>, item: ListItemType) => void;
     onDragOver: (event: React.DragEvent<HTMLLIElement>) => void;
     onDrop: (event: React.DragEvent<HTMLLIElement>, targetItem: ListItemType) => void;
 };
 
-type ComponentType = ItemListType & {
+type ComponentType = {
     title?: string;
-    render?: (el: any) => React.ReactNode;
+    render?: () => React.ReactNode;
+    items?: ListItemType[];
+    onDragStart?: (event: React.DragEvent<HTMLLIElement>, item: ListItemType) => void;
+    onDragOver?: (event: React.DragEvent<HTMLLIElement>) => void;
+    onDrop?: (event: React.DragEvent<HTMLLIElement>, targetItem: ListItemType) => void;
 };
 
 const ulDragStyle = css({
@@ -43,8 +48,8 @@ const dragItemStyle = css({
 const ItemList = (props: ItemListType) => {
     const { items, onDragStart, onDragOver, onDrop } = props;
     return (
-        <div>
-            {items?.map((el: ListItemType) => {
+        <>
+            {items.map((el: ListItemType) => {
                 return (
                     <li
                         key={el.idx}
@@ -58,19 +63,22 @@ const ItemList = (props: ItemListType) => {
                     </li>
                 );
             })}
-        </div>
+        </>
     );
 };
 
 export default function DragNDrop(props: ComponentType) {
-    const { title, items, render, onDragStart, onDragOver, onDrop } = props;
+    const { title, items, render, onDragStart = () => {}, onDragOver = () => {}, onDrop = () => {} } = props;
 
     return (
         <FlexBox direction="column" gap={10}>
             {title && <h2 id="drag-list-title">{title}</h2>}
             <ul css={ulDragStyle} id="drag-list" aria-labelledby="dragList_title">
-                {render && render('el')}
-                <ItemList items={items} onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop} />
+                {render ? (
+                    render()
+                ) : (
+                    <ItemList items={items || []} onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop} />
+                )}
             </ul>
         </FlexBox>
     );

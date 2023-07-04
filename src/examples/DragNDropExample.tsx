@@ -24,23 +24,23 @@ const SAMPLE_LIST_RENDER_PROPS = [
     }
 ];
 
-const SAMPLE_LIST_PROPS = [
-    {
-        idx: 1,
-        label: 'first 11 Props',
-        value: 'first item'
-    },
-    {
-        idx: 2,
-        label: 'second 22 Props',
-        value: 'second item'
-    },
-    {
-        idx: 3,
-        label: 'third 33 Props',
-        value: 'third item'
-    }
-];
+// const SAMPLE_LIST_PROPS = [
+//     {
+//         idx: 1,
+//         label: 'first 11 Props',
+//         value: 'first item'
+//     },
+//     {
+//         idx: 2,
+//         label: 'second 22 Props',
+//         value: 'second item'
+//     },
+//     {
+//         idx: 3,
+//         label: 'third 33 Props',
+//         value: 'third item'
+//     }
+// ];
 
 const dragItemStyle = css({
     boxSizing: 'border-box',
@@ -91,26 +91,20 @@ export default function DragNDropExample() {
         <FlexBox gap={10}>
             <DragNDrop
                 title="My Drag List"
-                render={() => {
-                    return (
-                        <div>
-                            {listItems.map((data) => {
-                                return (
-                                    <li
-                                        key={data.idx}
-                                        css={dragItemStyle}
-                                        draggable
-                                        onDragStart={(e) => handleDragStart(e, data)}
-                                        onDragOver={handleDragOver}
-                                        onDrop={(e) => handleDrop(e, data)}
-                                    >
-                                        {data.label}
-                                    </li>
-                                );
-                            })}
-                        </div>
-                    );
-                }}
+                render={() =>
+                    listItems.map((data) => (
+                        <li
+                            key={data.idx}
+                            css={dragItemStyle}
+                            draggable
+                            onDragStart={(e) => handleDragStart(e, data)}
+                            onDragOver={handleDragOver}
+                            onDrop={(e) => handleDrop(e, data)}
+                        >
+                            {data.label}
+                        </li>
+                    ))
+                }
             />
         </FlexBox>
     );
