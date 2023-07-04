@@ -1,8 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { forwardRef } from 'react';
 
+import Typography from '@atoms/Typography';
+
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
+import palette from '@styles/palette';
 
 type RadioType = React.InputHTMLAttributes<HTMLInputElement> & {
     name: string;
@@ -50,8 +53,8 @@ const checkedRadioStyle = css({
     width: 16,
     height: 16,
     borderRadius: 999,
-    border: `1px solid #eeeeee`,
-    backgroundColor: 'pink'
+    border: '1px solid #eeeeee',
+    backgroundColor: palette.primary.main
 });
 
 const radioStyle = css({
@@ -59,12 +62,20 @@ const radioStyle = css({
     width: 16,
     height: 16,
     borderRadius: 999,
-    border: `1px solid #eeeeee`,
+    border: '1px solid #eeeeee',
     backgroundColor: '#ffffff'
 });
 
 const labelTextStyle = css({ fontSize: 14, lineHeight: 1.5, fontWeight: 500, marginLeft: 4 });
 
+/**
+ *  [UI Component] Radio Component
+ *  @param name 라디오 버튼 이름
+ *  @param label 라디오 텍스트 값
+ *  @param value 라디오 버튼 값
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
 const Radio = forwardRef<HTMLInputElement, RadioType>(function createRadio(
     { name, label, value, currentValue, onChange, customCSS, ...props },
     ref
@@ -86,7 +97,9 @@ const Radio = forwardRef<HTMLInputElement, RadioType>(function createRadio(
                 <span css={checkedRadioStyle} />
                 <span css={radioStyle} />
             </span>
-            <span css={labelTextStyle}>{label}</span>
+            <Typography component="span" customCSS={labelTextStyle}>
+                {label}
+            </Typography>
         </label>
     );
 });

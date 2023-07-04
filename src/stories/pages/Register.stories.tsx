@@ -1,8 +1,9 @@
 import { expect, jest } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
 
-import { PASSWORD_REG_EXP } from 'constants/regExp';
-import RegisterPage from 'pages/RegisterPage';
+import RegisterPage from '@pages/RegisterPage';
+
+import { PASSWORD_REG_EXP } from '@constants/regExp';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -37,6 +38,7 @@ Default.play = async ({ canvasElement, step }) => {
     const useYn = canvas.getByRole('radio', { name: '미사용' });
     const terms = canvas.getByRole('checkbox', { name: '이용약관 동의' });
     const policy = canvas.getByRole('checkbox', { name: '(선택) 마케팅 동의' });
+    const consoleSpy = jest.spyOn(console, 'log');
 
     await step('닉네임 입력', async () => {
         expect(name).toHaveAttribute('type', 'text');
@@ -113,8 +115,10 @@ Default.play = async ({ canvasElement, step }) => {
     });
 
     await step('회원가입 성공', async () => {
+        await sleep(1000);
+        expect(registerButton).toBeEnabled();
         await userEvent.click(registerButton);
-        const consoleSpy = jest.spyOn(console, 'log');
+        await sleep(1000);
         expect(consoleSpy).toHaveBeenCalledWith('hello i am submitted!');
     });
 };

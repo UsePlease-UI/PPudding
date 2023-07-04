@@ -3,13 +3,13 @@ import { useState } from 'react';
 import { expect } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
 
-import Radio from 'components/atoms/Radio';
-import RadioGroup from 'components/atoms/RadioGroup';
+import Radio from '@molecules/Radio';
+import RadioGroup from '@molecules/RadioGroup';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof RadioGroup> = {
-    title: 'Design System/Atoms/Form/Radio/RadioGroup',
+    title: 'Design System/Molecules/Form/Radio/RadioGroup',
     component: RadioGroup,
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
@@ -67,7 +67,7 @@ const meta: Meta<typeof RadioGroup> = {
 export default meta;
 type Story = StoryObj<typeof RadioGroup>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
+// More on component templates: https://storybook.js.org/docs/react/writing-@stories/introduction#using-args
 export const Default: Story = {
     render: (args) => {
         const [value, setValue] = useState('red');

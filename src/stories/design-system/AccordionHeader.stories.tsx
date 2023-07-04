@@ -1,10 +1,10 @@
-import Accordion from 'components/atoms/Accordion';
-import AccordionHeader from 'components/atoms/AccordionHeader';
+import Accordion from '@molecules/Accordion';
+import AccordionHeader from '@molecules/AccordionHeader';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Design System/Atoms/Accordion/AccordionHeader',
+    title: 'Design System/Molecules/Accordion/AccordionHeader',
     component: AccordionHeader,
     tags: ['autodocs'],
     argTypes: {
@@ -14,7 +14,7 @@ const meta = {
             description: '헤더 텍스트 | 컴포넌트',
             table: {
                 category: 'required',
-                type: { summary: 'string | React.ReactNode' }
+                type: { summary: 'React.ReactNode' }
             }
         },
         index: {

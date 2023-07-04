@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { InputHTMLAttributes, useEffect, useRef, useState } from 'react';
 
-import Backdrop from 'components/atoms/Backdrop';
-import ListBox from 'components/atoms/ListBox';
+import Backdrop from '@atoms/Backdrop';
+import Button from '@molecules/Button';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
-import { ChevronDownIcon } from 'assets/icons';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 type OptionType = { label: string; value: string | number };
 
@@ -50,22 +50,109 @@ const buttonTextStyle = css({
 
 const iconStyle = css({ display: 'inline-block', width: 20, height: 20 });
 
+type ListBoxType = {
+    id: string;
+    labelId: string;
+    name: string;
+    value: string | number;
+    options: OptionType[];
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+};
+
+const listStyle = css({
+    width: '100%',
+    maxHeight: 300,
+    padding: '10px 0',
+    border: '1px solid #eeeeee',
+    borderRadius: 4,
+    backgroundColor: '#ffffff',
+    overflowX: 'hidden',
+    overflowY: 'auto'
+});
+
+const listItemStyle = css({
+    width: '100%',
+    minWidth: 120,
+    fontSize: 14,
+    fontWeight: 400,
+    lineHeight: 1.5,
+    padding: '0 12px',
+    '& button': {
+        width: '100%',
+        height: 40,
+        textAlign: 'left',
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap'
+    },
+    '&:hover, &:hover button': {
+        fontWeight: 600,
+        color: '#ffffff',
+        backgroundColor: 'lightpink'
+    }
+});
+
+const ListBox = ({ id, labelId, name, value, options, onClick }: ListBoxType) => (
+    <ul css={listStyle} id={id} role="listbox" aria-labelledby={labelId} tabIndex={-1}>
+        {options.map((option) => (
+            <li
+                key={option.value}
+                role="option"
+                aria-selected={value === option.value}
+                css={css([
+                    listItemStyle,
+                    {
+                        ...(value === option.value && {
+                            '&, & button': {
+                                textAlign: 'left',
+                                width: '100%',
+                                height: 40,
+                                fontWeight: 600,
+                                color: '#ffffff',
+                                backgroundColor: 'hotpink'
+                            }
+                        })
+                    }
+                ])}
+            >
+                <Button type="button" name={name} value={option.value} onClick={onClick}>
+                    {option.label}
+                </Button>
+            </li>
+        ))}
+    </ul>
+);
+
 const MAX_MENU_HEIGHT = 300;
 const AVG_OPTION_HEIGHT = 24;
 const MIN_OFFSET = 20;
 
-export default function Select({
-    id = 'combo',
-    name,
-    label,
-    value,
-    options = [],
-    isDisabled = false,
-    isReadOnly = false,
-    onChange,
-    customCSS = {},
-    ...props
-}: SelectType) {
+/**
+ *  [UI Component] Select Component
+ *  @param name Select 이름
+ *  @param label 선택된 값의 label
+ *  @param value 선택된 값의 value
+ *  @param onChange Change Event Handler
+ *  @param options 옵션들 [optional]
+ *  @param isReadOnly 읽기 전용 [optional]
+ *  @param isDisabled 활성화여부 [optional]
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
+export default function Select(props: SelectType) {
+    const {
+        id = 'combo',
+        name,
+        label,
+        value,
+        options = [],
+        isDisabled = false,
+        isReadOnly = false,
+        onChange,
+        customCSS = {},
+        ...rest
+    } = props;
+
     const ref = useRef<HTMLButtonElement | null>(null);
     const [isVisible, setIsVisible] = useState(false);
     const [top, setTop] = useState(0);
@@ -123,7 +210,7 @@ export default function Select({
                 aria-expanded={isVisible}
                 aria-controls="listbox"
                 aria-haspopup="listbox"
-                aria-labelledby={props['aria-labelledby'] || 'combo1-label'}
+                aria-labelledby={rest['aria-labelledby'] || 'combo1-label'}
                 id={id}
                 role="combobox"
                 tabIndex={0}
@@ -143,9 +230,9 @@ export default function Select({
                     <ChevronDownIcon />
                 </span>
             </button>
-            <div id="root-select" />
+            <div id={`root-select-${id}`} />
             {isVisible && (
-                <Backdrop onClose={() => handleClick()}>
+                <Backdrop id={`root-select-${id}`} onClose={() => handleClick()}>
                     <div
                         css={css({
                             position: 'fixed',
@@ -163,8 +250,8 @@ export default function Select({
                         })}
                     >
                         <ListBox
-                            id={(props['aria-haspopup'] as string) || 'listbox'}
-                            labelId={(props['aria-labelledby'] as string) || 'combo1-label'}
+                            id={(rest['aria-haspopup'] as string) || 'listbox'}
+                            labelId={(rest['aria-labelledby'] as string) || 'combo1-label'}
                             name={name}
                             value={value}
                             options={options}

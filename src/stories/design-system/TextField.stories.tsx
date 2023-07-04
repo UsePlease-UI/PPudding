@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import TextField from 'components/atoms/TextField';
+import TextField from '@atoms/TextField';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

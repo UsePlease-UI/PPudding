@@ -1,14 +1,17 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 /** @jsxImportSource @emotion/react */
+import Typography from '@atoms/Typography';
+import IconButton from '@molecules/IconButton';
+
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
-import { XMarkIcon } from 'assets/icons';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import palette from '@styles/palette';
 
-type SearchChipType = {
+type ChipType = {
     label: string;
     value: string | number;
-    onDelete?: (value: string | number) => void;
     isDeletable?: boolean;
+    onDelete?: (value: string | number) => void;
     customCSS?: CSSInterpolation;
 };
 
@@ -18,21 +21,17 @@ const chipStyle = css({
     alignItems: 'center',
     gap: 8,
     borderRadius: 999,
-    border: '1px solid pink',
+    border: `1px solid ${palette.primary.main}`,
     color: '#000000',
     backgroundColor: '#ffffff',
     '&:hover': {
-        backgroundColor: 'lightpink'
+        backgroundColor: palette.lightBlue.main
     }
 });
 
-const labelStyle = css({
-    fontSize: 14,
-    lineHeight: 1.5,
-    fontWeight: 500
-});
+const labelStyle = css({ fontSize: 14, lineHeight: 1.5, fontWeight: 500 });
 
-const buttonStyle = css({
+const buttonStyle = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -48,20 +47,26 @@ const buttonStyle = css({
         height: 12,
         width: 12
     }
-});
+};
 
-export default function Chip({
-    label,
-    value,
-    isDeletable = true,
-    onDelete = () => {},
-    customCSS = {}
-}: SearchChipType) {
+/**
+ *  [UI Component] Chip Component
+ *  @param label 텍스트 값
+ *  @param value 값
+ *  @param isDeletable 삭제 가능여부 [optional]
+ *  @param onDelete Delete Handler  [optional]
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
+export default function Chip(props: ChipType) {
+    const { label, value, isDeletable = true, onDelete, customCSS = {} } = props;
     return (
         <div css={css([chipStyle, { padding: isDeletable ? '4px 8px 4px 14px' : '4px 12px' }, customCSS])}>
-            <span css={labelStyle}>{label}</span>
+            <Typography component="span" customCSS={labelStyle}>
+                {label}
+            </Typography>
             {isDeletable && (
-                <button
+                <IconButton
                     aria-label="delete"
                     type="button"
                     onClick={(e) => {
@@ -72,10 +77,10 @@ export default function Chip({
                             e.preventDefault();
                         }
                     }}
-                    css={css(buttonStyle)}
+                    customCSS={buttonStyle}
                 >
                     <XMarkIcon />
-                </button>
+                </IconButton>
             )}
         </div>
     );

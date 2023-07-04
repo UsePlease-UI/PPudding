@@ -1,18 +1,18 @@
 import { useState } from 'react';
 
-import Checkbox from 'components/atoms/Checkbox';
+import Checkbox from '@molecules/Checkbox';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Checkbox> = {
-    title: 'Design System/Atoms/Form/Checkbox',
+    title: 'Design System/Molecules/Form/Checkbox',
     component: Checkbox,
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     argTypes: {
         label: {
             type: { name: 'string', required: true },
-            description: '라디오 텍스트 값',
+            description: '체크박스 텍스트 값',
             control: false,
             table: {
                 type: { summary: 'string' },
@@ -21,7 +21,7 @@ const meta: Meta<typeof Checkbox> = {
         },
         value: {
             type: { name: 'string', required: true },
-            description: '라디오 버튼 값',
+            description: '체크박스 값',
             control: false,
             table: {
                 type: { summary: 'string | number' },
@@ -81,7 +81,7 @@ const meta: Meta<typeof Checkbox> = {
 export default meta;
 type Story = StoryObj<typeof Checkbox>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
+// More on component templates: https://storybook.js.org/docs/react/writing-@stories/introduction#using-args
 export const Default: Story = {
     render: (args) => {
         const [candy, setCandy] = useState(true);

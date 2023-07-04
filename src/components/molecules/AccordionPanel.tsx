@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 
-import { useAccordionContext } from 'contexts/AccordionContext';
+import { useAccordionContext } from '@contexts/AccordionContext';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
 
-export type AccordionPanelType = {
-    children: string | React.ReactNode;
+export type AccordionPanelType = React.HTMLAttributes<HTMLDivElement> & {
+    children: React.ReactNode;
     index: number;
     customCSS?: CSSInterpolation;
 };
@@ -26,13 +26,22 @@ const panelStyle = css({
     }
 });
 
-export default function AccordionPanel({ children, index, customCSS = {} }: AccordionPanelType) {
+/**
+ *  [UI Component] Accordion Panel Component
+ *  @param children 컴포넌트
+ *  @param index Accordion 번호 (아이디 및 aria에 사용)
+ *  @param customCSS 커스텀 css [optional]
+ *  @returns JSX.Element
+ */
+export default function AccordionPanel(props: AccordionPanelType) {
+    const { children, index, customCSS = {}, ...rest } = props;
     const { isExpanded } = useAccordionContext();
 
     return (
         <div
-            id={`sect${index}`}
-            aria-labelledby={`accordian${index}-id`}
+            {...rest}
+            id={`panel${index}`}
+            aria-labelledby={`accordion-panel${index}-id`}
             role="region"
             css={css([
                 {

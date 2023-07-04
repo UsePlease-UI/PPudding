@@ -1,16 +1,17 @@
 import { useState } from 'react';
 
-import Checkbox from 'components/atoms/Checkbox';
-import FlexBox from 'components/atoms/FlexBox';
+import FlexBox from '@atoms/FlexBox';
+import Checkbox from '@molecules/Checkbox';
 
-import { HeartIcon, SolidHeartIcon } from 'assets/icons';
+import { HeartIcon } from '@heroicons/react/24/outline';
+import { HeartIcon as SolidHeartIcon } from '@heroicons/react/24/solid';
 
 export default function CheckboxExample() {
     const [chocolate, setChocolate] = useState(false);
     const [candy, setCandy] = useState(false);
 
     return (
-        <FlexBox gap={10}>
+        <FlexBox gap={10} customCSS={{ margin: 20 }}>
             <Checkbox
                 label="초콜릿"
                 value="chocolate"

@@ -66,6 +66,23 @@
 
 ## Convention
 
+### ATOMS
+
+-   HTML tag 또는 더 이상 분해할 수 없는 기본 컴포넌트
+-   HTML element, 글꼴, 애니메이션, 컬러 팔레트, 레이아웃 같은 추상적인 요소도 포함
+-   단일 컴포넌트로 사용하기 어렵지만 molecules 또는 organisms 단위에서 여러 단위와 결합되어 사용
+
+### MOLECULES
+
+-   두 개 이상의 atoms가 모여 구성된 간단한 컴포넌트
+-   고유한 특성을 가진 컴포넌트
+-   한 가지 일을 해야한다 (Single Responsibility Principle)
+
+### ORGANISMS
+
+-   UI 인터페이스 / 특정 컨텍스트를 가진 컴포넌트
+-   header 컨텍스트 -> 로고(아톰) + navigation (molecule) + search form (molecule)
+
 ### Git
 
 <code>feat/[주제명]</code>으로 브랜치 생성

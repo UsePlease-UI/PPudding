@@ -1,10 +1,10 @@
-import ToggleButton from 'components/atoms/ToggleButton';
-import ToggleButtonGroup from 'components/atoms/ToggleButtonGroup';
+import ToggleButton from '@molecules/ToggleButton';
+import ToggleButtonGroup from '@molecules/ToggleButtonGroup';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Design System/Atoms/Form/Toggle/ToggleButtonGroup',
+    title: 'Design System/Molecules/Form/Toggle/ToggleButtonGroup',
     component: ToggleButtonGroup,
     tags: ['autodocs'],
     argTypes: {

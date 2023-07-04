@@ -2,9 +2,10 @@ import { useState, useCallback } from 'react';
 
 import _ from 'lodash';
 
-import FlexBox from 'components/atoms/FlexBox';
-import AutoComplete from 'components/molecules/AutoComplete';
-import { AUTOCOMPLETE as LIST } from 'constants/autocomplete';
+import FlexBox from '@atoms/FlexBox';
+import AutoComplete from '@molecules/AutoComplete';
+
+import { AUTOCOMPLETE as LIST } from '@constants/autocomplete';
 
 type ListType = {
     idx: number;

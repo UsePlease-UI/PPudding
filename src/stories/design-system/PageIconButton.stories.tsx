@@ -1,6 +1,6 @@
-import PageIconButton from 'components/atoms/PageIconButton';
+import PageIconButton from '@atoms/PageIconButton';
 
-import { PageFirstIcon } from 'assets/icons';
+import { ChevronLeftIcon } from '@heroicons/react/24/outline';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -45,7 +45,7 @@ type Story = StoryObj<typeof PageIconButton>;
 export const Default: Story = {
     render: (args) => {
         // eslint-disable-next-line no-console
-        return <PageIconButton {...args} icon={<PageFirstIcon />} onClick={() => console.log(1)} />;
+        return <PageIconButton {...args} icon={<ChevronLeftIcon />} onClick={() => console.log(1)} />;
     },
     args: {
         isDisabled: false

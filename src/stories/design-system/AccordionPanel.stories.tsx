@@ -1,20 +1,20 @@
-import Accordion from 'components/atoms/Accordion';
-import AccordionPanel from 'components/atoms/AccordionPanel';
+import Accordion from '@molecules/Accordion';
+import AccordionPanel from '@molecules/AccordionPanel';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-    title: 'Design System/Atoms/Accordion/AccordionPanel',
+    title: 'Design System/Molecules/Accordion/AccordionPanel',
     component: AccordionPanel,
     tags: ['autodocs'],
     argTypes: {
         children: {
             type: { name: 'string', required: true },
             control: 'text',
-            description: '텍스트 | 컴포넌트',
+            description: '패널 텍스트 | 컴포넌트',
             table: {
                 category: 'required',
-                type: { summary: 'string | React.ReactNode' }
+                type: { summary: 'React.ReactNode' }
             }
         },
         index: {

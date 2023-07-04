@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import TableCell from 'components/atoms/TableCell';
+import TableCell from '@atoms/TableCell';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

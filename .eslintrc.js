@@ -42,7 +42,13 @@ module.exports = {
                         position: 'before'
                     },
                     {
-                        pattern: '{*.+(css|scss|svg|png|jpg|jpeg),assets/**,@emotion/**,styles/**}',
+                        pattern: '{@atoms/**,@molecules/**,@organisms/**,@contexts/**}',
+                        group: 'external',
+                        position: 'after'
+                    },
+                    {
+                        pattern:
+                            '{*.+(css|scss|svg|png|jpg|jpeg),@assets/**,@constants/**,@emotion/**,@styles/**,@heroicons/**,@snippets/**}',
                         patternOptions: {
                             dot: true,
                             nocomment: true,

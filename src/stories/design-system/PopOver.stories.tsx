@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { useState, useRef } from 'react';
 
-import PopOver from 'components/atoms/PopOver';
+import PopOver from '@atoms/PopOver';
 
 import { css } from '@emotion/react';
-import palette from 'styles/palette';
+import palette from '@styles/palette';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

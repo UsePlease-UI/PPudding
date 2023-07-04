@@ -11,12 +11,6 @@ const reset = css`
         width: 100%;
     }
 
-    html,
-    body,
-    #root {
-        height: 100%;
-    }
-
     body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
             'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -25,7 +19,7 @@ const reset = css`
         font-size: 14px;
         line-height: 1.5;
         color: #000000;
-        background-color: #fafafa;
+        background-color: #145cb1;
     }
 
     code {
@@ -49,6 +43,7 @@ const reset = css`
         border: 0;
         outline: 0;
         background-color: transparent;
+        cursor: pointer;
     }
 
     button:disabled {
