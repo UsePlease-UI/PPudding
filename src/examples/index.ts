@@ -3,6 +3,7 @@ export { default as AutoCompleteExample } from '@examples/AutoCompleteExample';
 export { default as ButtonExample } from '@examples/ButtonExample';
 export { default as CheckboxExample } from '@examples/CheckboxExample';
 export { default as ChipExample } from '@examples/ChipExample';
+export { default as DragNDropExample } from '@examples/DragNDropExample';
 export { default as IconButtonExample } from '@examples/IconButtonExample';
 export { default as PaginationExample } from '@examples/PaginationExample';
 export { default as PopOverExample } from '@examples/PopOverExample';
