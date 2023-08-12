@@ -9,6 +9,7 @@ import IconButton from '@molecules/IconButton';
 import { css } from '@emotion/react';
 import { CodeBracketSquareIcon } from '@heroicons/react/24/outline';
 import { ACCORDION_CODE_SNIPPET, ACCORDION_SHORT } from '@snippets/accordion';
+import { AUTOCOMPLETE_SHORT, AUTOCOMPLETE_CODE_SNIPPET } from '@snippets/autoComplete';
 import { BUTTON_CODE_SNIPPET, BUTTON_SHORT_SNIPPET } from '@snippets/button';
 import { CHECKBOX_CODE_SNIPPET, CHECKBOX_SHORT_SNIPPET } from '@snippets/checkbox';
 import { CHIP_CODE_SNIPPET, CHIP_SHORT_SNIPPET } from '@snippets/chip';
@@ -22,6 +23,10 @@ const CODE_SNIPPET = {
     Accordion: {
         short: ACCORDION_SHORT,
         full: ACCORDION_CODE_SNIPPET
+    },
+    AutoComplete: {
+        short: AUTOCOMPLETE_SHORT,
+        full: AUTOCOMPLETE_CODE_SNIPPET
     },
     Button: {
         short: BUTTON_SHORT_SNIPPET,
