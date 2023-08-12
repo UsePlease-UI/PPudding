@@ -24,24 +24,6 @@ const SAMPLE_LIST_RENDER_PROPS = [
     }
 ];
 
-// const SAMPLE_LIST_PROPS = [
-//     {
-//         idx: 1,
-//         label: 'first 11 Props',
-//         value: 'first item'
-//     },
-//     {
-//         idx: 2,
-//         label: 'second 22 Props',
-//         value: 'second item'
-//     },
-//     {
-//         idx: 3,
-//         label: 'third 33 Props',
-//         value: 'third item'
-//     }
-// ];
-
 const dragItemStyle = css({
     boxSizing: 'border-box',
     padding: 10,
