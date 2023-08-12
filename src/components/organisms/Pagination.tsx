@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import PageList from 'components/molecules/PageList';
+import PageList from '@molecules/PageList';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';

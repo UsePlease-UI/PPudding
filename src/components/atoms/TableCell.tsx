@@ -20,17 +20,24 @@ const tableCellStyle = css({
     fontWeight: 400
 });
 
-const textStyle = css({
-    fontWeight: 600
-});
+const textStyle = css({ fontWeight: 600 });
 
-export default function TableCell({ children, component = 'td', customCSS = {}, ...props }: TableCellType) {
+/**
+ *  [UI Component] Table Cell Component
+ *  @param children 컴포넌트
+ *  @param component 컴포넌트 타입 (td | th) [optional]
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
+export default function TableCell(props: TableCellType) {
+    const { children, component = 'td', customCSS = {}, ...rest } = props;
+
     return component === 'td' ? (
-        <td {...props} css={css([tableCellStyle, customCSS])}>
+        <td {...rest} css={css([tableCellStyle, customCSS])}>
             {children}
         </td>
     ) : (
-        <th {...props} css={css([tableCellStyle, textStyle, customCSS])}>
+        <th {...rest} css={css([tableCellStyle, textStyle, customCSS])}>
             {children}
         </th>
     );

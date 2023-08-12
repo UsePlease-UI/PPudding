@@ -2,50 +2,40 @@
 
 ## 컴포넌트 구현
 
--   [x] AutoComplete
+### Basic Components
+
 -   [x] Accordion
 -   [x] Button
--   [ ] Calendar
--   [x] Checkbox
--   [x] Chip
--   [x] ComboBox
--   [ ] Drag n Drop
--   [ ] Editor
--   [x] Menu Button (PopOver)
--   [ ] Modal
--   [x] Pagination
--   [x] PopOver API
--   [x] Radio
--   [x] Select
--   [ ] Slider (Carousel/Swiper)
--   [x] Skeleton / Loader
--   [x] Tab
+    -   [x] Button
+    -   [x] Icon Button
+-   [ ] Dialog
+    -   [ ] Alert
+    -   [ ] Alert / Message Dialog
+    -   [ ] Dialog (Modal)
+-   [x] Form
+    -   [x] Checkbox
+    -   [x] Chip
+    -   [x] ComboBox
+        -   [x] AutoComplete
+        -   [x] Select
+    -   [x] Radio Group
+    -   [x] Textfield
+    -   [x] Toggle Button
+-   [x] Menu and Menubar
+    -   [x] Menu Button (PopOver)
+-   [x] Progress
+    -   [x] Skeleton
+-   [x] Tabs
 -   [x] Table
--   [x] Textfield
--   [x] Toggle Button
+    -   [x] Table
+    -   [x] Pagination
 
-## 웹 접근성
+### Challenges
 
--   [ ] Accordion
--   [x] AutoComplete
--   [x] Button
+-   [ ] Carousel
 -   [ ] Calendar
--   [ ] Checkbox
--   [ ] Chip
--   [x] ComboBox
--   [ ] Drag n Drop
 -   [ ] Editor
--   [ ] Menu Button (PopOver)
--   [ ] Modal
--   [ ] Pagination
--   [ ] Radio
--   [ ] Select
--   [ ] Slider (Carousel/Swiper)
--   [x] Skeleton / Loader
--   [ ] Tab
--   [x] Table
--   [ ] Textfield
--   [ ] Toggle Button
+-   [x] Drag n Drop
 
 ---
 
@@ -64,16 +54,34 @@
 | akffkdahffkdgo77 | Select       |
 | Kimyerim1935     | PopOver      |
 | akffkdahffkdgo77 | Button       |
+| akffkdahffkdgo77 | Icon Button  |
 | akffkdahffkdgo77 | Tab          |
-| Kimyerim1935     | AutoComplete |
-| Kimyerim1935     | ComboBox     |
 | akffkdahffkdgo77 | Table        |
 | akffkdahffkdgo77 | Skeleton     |
 | akffkdahffkdgo77 | Radio        |
 | akffkdahffkdgo77 | Checkbox     |
 | akffkdahffkdgo77 | Accordion    |
+| Kimyerim1935     | AutoComplete |
+| Kimyerim1935     | Drag n Drop  |
 
 ## Convention
+
+### ATOMS
+
+-   HTML tag 또는 더 이상 분해할 수 없는 기본 컴포넌트
+-   HTML element, 글꼴, 애니메이션, 컬러 팔레트, 레이아웃 같은 추상적인 요소도 포함
+-   단일 컴포넌트로 사용하기 어렵지만 molecules 또는 organisms 단위에서 여러 단위와 결합되어 사용
+
+### MOLECULES
+
+-   두 개 이상의 atoms가 모여 구성된 간단한 컴포넌트
+-   고유한 특성을 가진 컴포넌트
+-   한 가지 일을 해야한다 (Single Responsibility Principle)
+
+### ORGANISMS
+
+-   UI 인터페이스 / 특정 컨텍스트를 가진 컴포넌트
+-   header 컨텍스트 -> 로고(아톰) + navigation (molecule) + search form (molecule)
 
 ### Git
 

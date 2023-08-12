@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
-import TabItem from 'components/atoms/TabItem';
-import TabPanel from 'components/atoms/TabPanel';
-import Tab from 'components/molecules/Tab';
+import TabPanel from '@atoms/TabPanel';
+import Tab from '@molecules/Tab';
+import TabItem from '@molecules/TabItem';
 
 import { css } from '@emotion/react';
-import { ChevronDownIcon } from 'assets/icons';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 const tabStyle = css({
     width: '100%',

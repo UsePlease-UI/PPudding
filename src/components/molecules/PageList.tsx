@@ -1,10 +1,15 @@
 /** @jsxImportSource @emotion/react */
 
-import PageButton from 'components/atoms/PageIconButton';
-import PageNumButton from 'components/atoms/PageNumButton';
+import PageButton from '@atoms/PageIconButton';
+import PageNumButton from '@atoms/PageNumButton';
 
 import { css } from '@emotion/react';
-import { PageFirstIcon, PagePreviousIcon, PageNextIcon, PageLastIcon } from 'assets/icons';
+import {
+    ChevronDoubleLeftIcon,
+    ChevronDoubleRightIcon,
+    ChevronLeftIcon,
+    ChevronRightIcon
+} from '@heroicons/react/24/outline';
 
 type pageListType = {
     showFirstButton?: boolean;
@@ -59,7 +64,7 @@ export default function PageList(props: pageListType) {
             {showFirstButton && (
                 <li css={listStyle}>
                     <PageButton
-                        icon={<PageFirstIcon />}
+                        icon={<ChevronDoubleLeftIcon />}
                         isDisabled={page === 1}
                         onClick={handleFirstClick}
                         aria-label="first button"
@@ -68,7 +73,7 @@ export default function PageList(props: pageListType) {
             )}
             <li css={listStyle}>
                 <PageButton
-                    icon={<PagePreviousIcon />}
+                    icon={<ChevronLeftIcon />}
                     isDisabled={page === 1}
                     onClick={handlePrevClick}
                     aria-label="previous button"
@@ -91,7 +96,7 @@ export default function PageList(props: pageListType) {
                 )}
             <li css={listStyle}>
                 <PageButton
-                    icon={<PageNextIcon />}
+                    icon={<ChevronRightIcon />}
                     isDisabled={page === totalCount}
                     onClick={handleNextClick}
                     aria-label="next button"
@@ -100,7 +105,7 @@ export default function PageList(props: pageListType) {
             {showLastButton && (
                 <li css={listStyle}>
                     <PageButton
-                        icon={<PageLastIcon />}
+                        icon={<ChevronDoubleRightIcon />}
                         isDisabled={page === totalCount}
                         onClick={handleLastClick}
                         aria-label="last button"

@@ -1,9 +1,10 @@
+/** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
-import Accordion from 'components/atoms/Accordion';
-import AccordionHeader from 'components/atoms/AccordionHeader';
-import AccordionPanel from 'components/atoms/AccordionPanel';
-import FlexBox from 'components/atoms/FlexBox';
+import FlexBox from '@atoms/FlexBox';
+import Accordion from '@molecules/Accordion';
+import AccordionHeader from '@molecules/AccordionHeader';
+import AccordionPanel from '@molecules/AccordionPanel';
 
 export default function AccordionExample() {
     const [panel, setPanel] = useState('panel1');
@@ -21,13 +22,13 @@ export default function AccordionExample() {
         };
 
     return (
-        <FlexBox direction="column" customCSS={{ width: '100%' }}>
+        <FlexBox direction="column" customCSS={{ margin: 20 }}>
             <Accordion isExpanded={panel === 'panel1'} onChange={handleChange('panel1')}>
-                <AccordionHeader index={1}>Question 1</AccordionHeader>
+                <AccordionHeader index={1}>Controlled - Question 1</AccordionHeader>
                 <AccordionPanel index={1}>Apple</AccordionPanel>
             </Accordion>
             <Accordion>
-                <AccordionHeader index={2}>Question 2</AccordionHeader>
+                <AccordionHeader index={2}>Uncontrolled - Question 2</AccordionHeader>
                 <AccordionPanel index={2}>Banana</AccordionPanel>
             </Accordion>
         </FlexBox>

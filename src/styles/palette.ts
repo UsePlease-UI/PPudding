@@ -12,4 +12,5 @@ const palette = {
         main: '#8BBCE4'
     }
 };
+
 export default palette;

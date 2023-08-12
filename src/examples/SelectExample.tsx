@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
-import FlexBox from 'components/atoms/FlexBox';
-import FormControl from 'components/molecules/FormControl';
-import Select from 'components/molecules/Select';
-import OPTIONS from 'constants/options';
+import FlexBox from '@atoms/FlexBox';
+import FormControl from '@molecules/FormControl';
+import Select from '@molecules/Select';
+
+import OPTIONS from '@constants/options';
 
 export default function SelectExample() {
     const [milk, setMilk] = useState('');

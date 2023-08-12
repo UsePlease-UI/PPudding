@@ -3,7 +3,7 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 
-import FlexBox from 'components/atoms/FlexBox';
+import FlexBox from '@atoms/FlexBox';
 
 import { css } from '@emotion/react';
 

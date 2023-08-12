@@ -20,6 +20,14 @@ const tableRowStyle = css({
     }
 });
 
-export default function TableRow({ children, customCSS = {} }: TableRowType) {
+/**
+ *  [UI Component] Table Row Component
+ *  @param children 컴포넌트
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
+export default function TableRow(props: TableRowType) {
+    const { children, customCSS = {} } = props;
+
     return <tr css={css([tableRowStyle, customCSS])}>{children}</tr>;
 }

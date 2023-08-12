@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import FlexBox from 'components/atoms/FlexBox';
-import Pagination from 'components/organisms/Pagination';
+import FlexBox from '@atoms/FlexBox';
+import Pagination from '@organisms/Pagination';
 
 export default function PaginationExample() {
     const [page, setPage] = useState<number>(1);
