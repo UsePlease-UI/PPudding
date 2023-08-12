@@ -39,7 +39,7 @@ const COMPONENT_LIST = [
     'Button',
     'Checkbox',
     'Chip',
-    'Drag n Drop',
+    'DragNDrop',
     'Icon Button',
     'Pagination',
     'PopOver',
@@ -259,6 +259,7 @@ function getComponents(type: string) {
 export default function Layout() {
     const [show, setShow] = useState(false);
     const [selected, setSelected] = useState(COMPONENT_LIST[0]);
+    console.log(selected);
 
     return (
         <div css={layoutStyle}>

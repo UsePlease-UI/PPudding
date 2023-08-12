@@ -1,4 +1,4 @@
-export const DRAGNDROP_SHORT_SNIPPET = `
+export const DRAGNDROP_SHORT= `
     <DragNDrop
         title="My Drag List"
         render={() =>
