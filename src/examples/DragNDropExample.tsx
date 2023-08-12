@@ -90,7 +90,6 @@ export default function DragNDropExample() {
     return (
         <FlexBox gap={10}>
             <DragNDrop
-                title="My Drag List"
                 render={() =>
                     listItems.map((data) => (
                         <li

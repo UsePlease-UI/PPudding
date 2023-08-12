@@ -227,7 +227,7 @@ function getComponents(type: string) {
             return <CheckboxExample />;
         case 'Chip':
             return <ChipExample />;
-        case 'Drag n Drop':
+        case 'DragNDrop':
             return <DragNDropExample />;
         case 'IconButton':
             return <IconButtonExample />;
@@ -259,7 +259,6 @@ function getComponents(type: string) {
 export default function Layout() {
     const [show, setShow] = useState(false);
     const [selected, setSelected] = useState(COMPONENT_LIST[0]);
-    console.log(selected);
 
     return (
         <div css={layoutStyle}>
