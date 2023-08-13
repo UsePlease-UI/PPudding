@@ -1,66 +1,24 @@
-/** @jsxImportSource @emotion/react */
-import { useState } from 'react';
+export const DRAGNDROP_SHORT= `
+    <DragNDrop
+        title="My Drag List"
+        render={() =>
+            listItems.map((data) => (
+                <li
+                    key={data.idx}
+                    css={dragItemStyle}
+                    draggable
+                    onDragStart={(e) => handleDragStart(e, data)}
+                    onDragOver={handleDragOver}
+                    onDrop={(e) => handleDrop(e, data)}
+                >
+                    {data.label}
+                </li>
+            ))
+        }
+    />  
+`;
 
-import DragNDrop from 'components/atoms/DragNDrop';
-import FlexBox from 'components/atoms/FlexBox';
-
-import { css } from '@emotion/react';
-
-const SAMPLE_LIST_RENDER_PROPS = [
-    {
-        idx: 1,
-        label: 'first 11 Render',
-        value: 'first item'
-    },
-    {
-        idx: 2,
-        label: 'second 22 Render',
-        value: 'second item'
-    },
-    {
-        idx: 3,
-        label: 'third 33 Render',
-        value: 'third item'
-    }
-];
-
-// const SAMPLE_LIST_PROPS = [
-//     {
-//         idx: 1,
-//         label: 'first 11 Props',
-//         value: 'first item'
-//     },
-//     {
-//         idx: 2,
-//         label: 'second 22 Props',
-//         value: 'second item'
-//     },
-//     {
-//         idx: 3,
-//         label: 'third 33 Props',
-//         value: 'third item'
-//     }
-// ];
-
-const dragItemStyle = css({
-    boxSizing: 'border-box',
-    padding: 10,
-    borderBottom: '1px solid lightGray',
-    '&:last-of-type': {
-        borderBottom: 0
-    },
-    '&:hover': {
-        background: 'lightPink'
-    }
-});
-
-export type ListItemType = {
-    idx: number;
-    label: string;
-    value: string;
-};
-
-export default function DragNDropExample() {
+export const DRAGNDROP_CODE_SNIPPET = `
     const [draggedItem, setDraggedItem] = useState<ListItemType | null>(null);
     const [listItems, setListItems] = useState(SAMPLE_LIST_RENDER_PROPS);
 
@@ -90,6 +48,7 @@ export default function DragNDropExample() {
     return (
         <FlexBox gap={10}>
             <DragNDrop
+                title="My Drag List"
                 render={() =>
                     listItems.map((data) => (
                         <li
@@ -107,4 +66,4 @@ export default function DragNDropExample() {
             />
         </FlexBox>
     );
-}
+`;

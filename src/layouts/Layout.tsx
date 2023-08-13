@@ -39,7 +39,7 @@ const COMPONENT_LIST = [
     'Button',
     'Checkbox',
     'Chip',
-    'Drag n Drop',
+    'DragNDrop',
     'Icon Button',
     'Pagination',
     'PopOver',
@@ -227,7 +227,7 @@ function getComponents(type: string) {
             return <CheckboxExample />;
         case 'Chip':
             return <ChipExample />;
-        case 'Drag n Drop':
+        case 'DragNDrop':
             return <DragNDropExample />;
         case 'IconButton':
             return <IconButtonExample />;
