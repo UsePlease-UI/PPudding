@@ -14,6 +14,7 @@ import { BUTTON_CODE_SNIPPET, BUTTON_SHORT_SNIPPET } from '@snippets/button';
 import { CHECKBOX_CODE_SNIPPET, CHECKBOX_SHORT_SNIPPET } from '@snippets/checkbox';
 import { CHIP_CODE_SNIPPET, CHIP_SHORT_SNIPPET } from '@snippets/chip';
 import { DRAGNDROP_CODE_SNIPPET, DRAGNDROP_SHORT } from '@snippets/dragNdrop';
+import { POPOVER_SHORT, POPOVER_CODE_SNIPPET } from '@snippets/popover';
 import { SKELETON_CODE_SNIPPET } from '@snippets/skeleton';
 import palette from '@styles/palette';
 
@@ -43,6 +44,10 @@ const CODE_SNIPPET = {
     DragNDrop: {
         short: DRAGNDROP_SHORT,
         full: DRAGNDROP_CODE_SNIPPET
+    },
+    PopOver: {
+        short: POPOVER_SHORT,
+        full: POPOVER_CODE_SNIPPET
     },
     Skeleton: {
         short: SKELETON_CODE_SNIPPET,
