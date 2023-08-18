@@ -1,11 +1,5 @@
-import { BrowserRouter } from 'react-router-dom';
-
-import Layout from '@layouts/Layout';
+import Layout from 'pages/Home';
 
 export default function App() {
-    return (
-        <BrowserRouter>
-            <Layout />
-        </BrowserRouter>
-    );
+    return <Layout />;
 }
