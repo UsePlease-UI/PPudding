@@ -1,4 +1,4 @@
-import TabExample from 'examples/TabExample';
+import TabExample from 'pages/Home/examples/TabExample';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

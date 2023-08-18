@@ -1,4 +1,4 @@
-import ToggleButtonExample from 'examples/ToggleButtonExample';
+import ToggleButtonExample from 'pages/Home/examples/ToggleButtonExample';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

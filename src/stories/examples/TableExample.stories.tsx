@@ -1,4 +1,4 @@
-import TableExample from 'examples/TableExample';
+import TableExample from 'pages/Home/examples/TableExample';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

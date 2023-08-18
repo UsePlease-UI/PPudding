@@ -29,7 +29,7 @@ const reset = css`
         font-size: 14px;
         line-height: 1.5;
         color: #000000;
-        background-color: #fafafa;
+        background-color: #ffffff;
     }
 
     code {
