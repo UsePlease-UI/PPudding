@@ -17,6 +17,5 @@
         "noEmit": true,
         "baseUrl": "src"
     },
-    "include": ["src"],
-    "extends": "./tsconfig.paths.json"
+    "include": ["src"]
 }
