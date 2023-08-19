@@ -9,7 +9,8 @@ module.exports = {
         'plugin:jsx-a11y/recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:prettier/recommended',
-        'prettier'
+        'prettier',
+        'plugin:storybook/recommended'
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -23,8 +24,18 @@ module.exports = {
     rules: {
         'import/extensions': 'off',
         'prettier/prettier': 'off',
-        'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
-        'react/no-unknown-property': ['error', { ignore: ['css'] }],
+        'react/jsx-filename-extension': [
+            'warn',
+            {
+                extensions: ['.js', '.jsx', '.ts', '.tsx']
+            }
+        ],
+        'react/no-unknown-property': [
+            'error',
+            {
+                ignore: ['css']
+            }
+        ],
         'react/react-in-jsx-scope': 'off',
         'import/no-extraneous-dependencies': 'off',
         'react/function-component-definition': 'off',

@@ -1,5 +1,6 @@
+import remarkGfm from 'remark-gfm';
+
 import type { StorybookConfig } from '@storybook/react-webpack5';
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const config: StorybookConfig = {
     stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -9,7 +10,17 @@ const config: StorybookConfig = {
         '@storybook/preset-create-react-app',
         '@storybook/addon-interactions',
         '@storybook/addon-styling',
-        '@storybook/addon-a11y'
+        '@storybook/addon-a11y',
+        {
+            name: '@storybook/addon-docs',
+            options: {
+                mdxPluginOptions: {
+                    mdxCompileOptions: {
+                        remarkPlugins: [remarkGfm]
+                    }
+                }
+            }
+        }
     ],
     framework: {
         name: '@storybook/react-webpack5',
@@ -18,10 +29,6 @@ const config: StorybookConfig = {
     docs: {
         autodocs: 'tag'
     },
-    staticDirs: ['../public'],
-    webpackFinal: async (config, { configType }) => {
-        config.resolve!.plugins = [new TsconfigPathsPlugin()];
-        return config;
-    }
+    staticDirs: ['../public']
 };
 export default config;

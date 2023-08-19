@@ -91,7 +91,7 @@ const preview: Preview = {
             storySort: {
                 method: 'alphabetical',
                 includeNames: true,
-                order: ['Introduction', 'Examples', 'Design System', ['Atoms', 'Molecules', 'Organisms']]
+                order: ['Introduction', 'Examples']
             }
         }
     }
