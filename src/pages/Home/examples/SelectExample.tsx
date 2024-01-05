@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import FlexBox from 'components/Base/FlexBox';
-import Select from 'components/Listbox/Select';
 import FormControl from 'components/Form/FormControl';
+import Select from 'components/Listbox/Select';
 
 import { OPTIONS } from './constants';
 
