@@ -1,4 +1,6 @@
 /** @jsxImportSource @emotion/react */
+import { useEffect } from 'react';
+
 import FlexBox from 'components/Base/FlexBox';
 import IconButton from 'components/Button/IconButton';
 
@@ -38,56 +40,70 @@ type AsideType = {
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
     onClose: () => void;
 };
-const Aside = ({ show, selected, onClick, onClose }: AsideType) => (
-    <aside
-        css={css([
-            asideStyle,
-            {
-                width: show ? 240 : 0,
-                transition: 'width 0.5s ease-in-out',
-                '& > div': { opacity: show ? 1 : 0, transition: 'opacity 0.45s ease-in-out' },
-                '@media (max-width: 1024px)': {
-                    borderRight: 0,
-                    width: show ? '100%' : 0,
-                    backgroundColor: show ? 'rgba(0,0,0,0.8)' : 'unset'
+
+const Aside = ({ show, selected, onClick, onClose }: AsideType) => {
+    useEffect(() => {
+        if (show) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.removeProperty('overflow');
+        }
+    }, [show]);
+
+    return (
+        <aside
+            css={css([
+                asideStyle,
+                {
+                    width: show ? 240 : 0,
+                    transition: 'width 0.5s ease-in-out',
+                    '& > div': {
+                        pointerEvents: show ? 'auto' : 'none',
+                        opacity: show ? 1 : 0,
+                        transition: 'opacity 0.45s ease-in-out'
+                    },
+                    '@media (max-width: 1024px)': {
+                        borderRight: 0,
+                        width: show ? '100%' : 0,
+                        backgroundColor: show ? 'rgba(0,0,0,0.8)' : 'unset'
+                    }
                 }
-            }
-        ])}
-    >
-        <FlexBox
-            justifyContent="flex-end"
-            customCSS={{
-                width: '100%',
-                marginBottom: 40,
-                '@media (min-width: 1025px)': {
-                    display: 'none'
-                }
-            }}
+            ])}
         >
-            <IconButton
-                aria-label="close"
+            <FlexBox
+                justifyContent="flex-end"
                 customCSS={{
-                    width: 30,
-                    height: 30,
-                    '& > svg': {
-                        color: '#ffffff',
-                        width: 30,
-                        height: 30
+                    width: '100%',
+                    '@media (min-width: 1025px)': {
+                        display: 'none'
                     }
                 }}
-                onClick={onClose}
             >
-                <XMarkIcon />
-            </IconButton>
-        </FlexBox>
-        <BlockWrapper>
-            {COMPONENT_LIST.map((el: string) => (
-                <Block key={el} name={el} selected={selected} onClick={onClick}>
-                    {el}
-                </Block>
-            ))}
-        </BlockWrapper>
-    </aside>
-);
+                <IconButton
+                    aria-label="close"
+                    customCSS={{
+                        width: 30,
+                        height: 30,
+                        '& > svg': {
+                            color: '#ffffff',
+                            width: 30,
+                            height: 30
+                        }
+                    }}
+                    onClick={onClose}
+                >
+                    <XMarkIcon />
+                </IconButton>
+            </FlexBox>
+            <BlockWrapper>
+                {COMPONENT_LIST.map((el: string) => (
+                    <Block key={el} name={el} selected={selected} onClick={onClick}>
+                        {el}
+                    </Block>
+                ))}
+            </BlockWrapper>
+        </aside>
+    );
+};
 
 export default Aside;
