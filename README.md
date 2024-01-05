@@ -1,6 +1,7 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&height=350&text=React%20Components&color=gradient&customColorList=0,2,2,5,30)
 
 ![v1.0](https://img.shields.io/badge/v1.0-2023--05~2023--08-blue?style=flat-square)
+![Create React App](https://img.shields.io/badge/create_react_app-303846?style=flat-square&logo=createreactapp&logoColor=09D3AC)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat-square&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat-square&logo=react&logoColor=%2361DAFB)
 ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=flat-square&logo=yarn&logoColor=white)
@@ -67,4 +68,4 @@ PR 메시지
 
 ### References
 
--   [아이콘](https://heroicons.com/)
+-   [Heroicons](https://heroicons.com/)
