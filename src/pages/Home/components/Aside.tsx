@@ -58,7 +58,7 @@ const Aside = ({ show, selected, onClick, onClose }: AsideType) => {
                     width: show ? 240 : 0,
                     transition: 'width 0.5s ease-in-out',
                     '& > div': {
-                        pointerEvents: 'none',
+                        pointerEvents: show ? 'auto' : 'none',
                         opacity: show ? 1 : 0,
                         transition: 'opacity 0.45s ease-in-out'
                     },
