@@ -29,7 +29,7 @@ export function getComponents(type: string) {
             return <ChipExample />;
         case 'DragNDrop':
             return <DragNDropExample />;
-        case 'IconButton':
+        case 'Icon Button':
             return <IconButtonExample />;
         case 'Pagination':
             return <PaginationExample />;

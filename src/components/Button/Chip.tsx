@@ -23,29 +23,35 @@ const chipStyle = css({
     borderRadius: 999,
     border: `1px solid ${palette.primary.main}`,
     color: '#000000',
-    backgroundColor: '#ffffff',
-    '&:hover': {
-        backgroundColor: palette.lightBlue.main
-    }
+    backgroundColor: '#ffffff'
 });
 
-const labelStyle = css({ fontSize: 14, lineHeight: 1.5, fontWeight: 500 });
+const labelStyle = css({
+    fontSize: 14,
+    lineHeight: 1.5,
+    fontWeight: 500
+});
 
 const buttonStyle = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     cursor: 'pointer',
-    border: '1px solid #eeeeee',
+    border: `1px solid ${palette.primary.main}`,
     borderRadius: 999,
     padding: 5,
-    backgroundColor: 'transparent',
+    backgroundColor: '#ffffff',
     '&:hover': {
-        backgroundColor: '#e8a5af'
+        backgroundColor: palette.primary.main,
+        '& svg': {
+            color: '#ffffff'
+        }
     },
     '& svg': {
         height: 12,
-        width: 12
+        width: 12,
+        strokeWidth: 4,
+        color: palette.primary.main
     }
 };
 

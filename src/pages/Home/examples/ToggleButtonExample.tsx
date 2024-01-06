@@ -7,7 +7,11 @@ export default function ToggleButtonExample() {
     const [fruits, setFruits] = useState('banana');
 
     return (
-        <ToggleButtonGroup value={fruits} onChange={(e) => setFruits(e.currentTarget.value)}>
+        <ToggleButtonGroup
+            value={fruits}
+            onChange={(e) => setFruits(e.currentTarget.value)}
+            customCSS={{ margin: '20px 0' }}
+        >
             <ToggleButton name="fruits" value="apple" onChange={(e) => setFruits(e.currentTarget.value)}>
                 Apple
             </ToggleButton>

@@ -10,11 +10,36 @@ import palette from 'styles/palette';
 const popoverStyle = css({
     height: 30,
     fontWeight: 700,
-    color: `${palette.lightBlue.main}`,
+    color: palette.lightBlue.main,
     border: `1px solid ${palette.lightBlue.main}`,
     borderRadius: 4
 });
 
+const ulStyle = css({
+    padding: '4px 0',
+    '& li': {
+        height: 40,
+        margin: '0 5px',
+        padding: '0 10px',
+        borderBottom: `1px solid ${palette.lightBlue.main}`,
+        '&:hover': {
+            '& a': {
+                cursor: 'pointer',
+                color: palette.lightBlue.main
+            }
+        },
+        '&:last-of-type': {
+            borderBottom: 0
+        }
+    },
+    '& a': {
+        display: 'inline-block',
+        lineHeight: '40px',
+        color: palette.primary.main
+    }
+});
+
+// FIXME: handleClickOutside 수정
 export default function PopOverExample() {
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
     const isOpen = Boolean(anchorEl);
@@ -48,13 +73,19 @@ export default function PopOverExample() {
     }, [isOpen]);
 
     return (
-        <FlexBox direction="column" gap={10}>
-            <h2>PopOver</h2>
-            <button type="button" onClick={handleOpen} css={popoverStyle} ref={buttonRef}>
-                click me
+        <FlexBox direction="column" gap={10} customCSS={{ margin: '20px 0' }}>
+            <button type="button" ref={buttonRef} onClick={handleOpen} css={popoverStyle}>
+                메뉴 보기
             </button>
-            <PopOver isOpen={isOpen}>
-                <div>The contents of the Popover</div>
+            <PopOver isOpen={isOpen} customCSS={{ padding: 0 }}>
+                <ul css={ulStyle}>
+                    <li>
+                        <a href="/">Hello</a>
+                    </li>
+                    <li>
+                        <a href="/">Hi</a>
+                    </li>
+                </ul>
             </PopOver>
         </FlexBox>
     );

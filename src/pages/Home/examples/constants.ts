@@ -61,3 +61,39 @@ export const COMBOBOX = [
         value: 'sample05'
     }
 ];
+
+export const DRAG_N_DROP = [
+    {
+        idx: 1,
+        label: '사과',
+        value: 'apple'
+    },
+    {
+        idx: 2,
+        label: '바나나',
+        value: 'banana'
+    },
+    {
+        idx: 3,
+        label: '키위',
+        value: 'kiwi'
+    }
+];
+
+export const DRAG_N_DROP_2 = [
+    {
+        idx: 1,
+        label: '오렌지',
+        value: 'orange'
+    },
+    {
+        idx: 2,
+        label: '망고',
+        value: 'mango'
+    },
+    {
+        idx: 3,
+        label: '복숭아',
+        value: 'peach'
+    }
+];

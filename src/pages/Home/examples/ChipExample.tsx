@@ -8,7 +8,7 @@ export default function ChipExample() {
     };
 
     return (
-        <FlexBox gap={10} customCSS={{ margin: 20 }}>
+        <FlexBox gap={10} customCSS={{ margin: '20px 0' }}>
             <Chip label="아이스크림" value="ice cream" isDeletable={false} />
             <Chip label="삭제 가능" value="deletable" isDeletable onDelete={handleDelete} />
         </FlexBox>

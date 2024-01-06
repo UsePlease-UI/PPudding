@@ -11,7 +11,6 @@ type PopoverType = {
 
 const popoverStyle = css({
     position: 'absolute',
-    boxSizing: 'border-box',
     padding: 10,
     whiteSpace: 'nowrap',
     borderRadius: 4,

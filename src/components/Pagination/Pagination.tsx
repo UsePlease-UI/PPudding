@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-
 import PageList from 'components/Pagination/PageList';
 
 import { css } from '@emotion/react';
@@ -10,10 +9,11 @@ const navStyle = css({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    width: '100%'
+    width: '100%',
+    padding: 20
 });
 
-type PaginationPropsType = {
+type PaginationType = {
     totalCount: number;
     page: number;
     blockNum: number;
@@ -23,7 +23,7 @@ type PaginationPropsType = {
 
 const PAGE_LIMIT = 10;
 
-export default function Pagination({ totalCount, page, blockNum, onChange, customCSS = {} }: PaginationPropsType) {
+export default function Pagination({ totalCount, page, blockNum, onChange, customCSS = {} }: PaginationType) {
     const pageMaxCount = Math.ceil(totalCount / 10);
 
     const handleFirstClick = () => onChange(1, 1);

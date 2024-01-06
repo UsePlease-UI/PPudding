@@ -8,7 +8,7 @@ export default function RadioExample() {
     const [color, setColor] = useState('red');
 
     return (
-        <FlexBox direction="column" gap={10}>
+        <FlexBox direction="column" gap={10} customCSS={{ margin: '20px 0' }}>
             <RadioGroup value={color} onChange={(e) => setColor(e.currentTarget.value)}>
                 <Radio name="color" label="빨강" value="red" />
                 <Radio name="color" label="파랑" value="blue" />

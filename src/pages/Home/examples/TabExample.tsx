@@ -1,16 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
+import Typography from 'components/Base/Typography';
 import Tab from 'components/Tab/Tab';
 import TabItem from 'components/Tab/TabItem';
 import TabPanel from 'components/Tab/TabPanel';
 
 import { css } from '@emotion/react';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { HomeIcon } from '@heroicons/react/24/outline';
 
 const tabStyle = css({
+    margin: '20px 0',
     width: '100%',
-    minWidth: 1024,
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -31,18 +32,18 @@ export default function TabExample() {
     return (
         <div css={tabStyle}>
             <Tab aria-label="navigation" value={value} onChange={handleChange}>
-                <TabItem icon={<ChevronDownIcon />} label="1" value={value} index={1} />
+                <TabItem icon={<HomeIcon />} label="1" value={value} index={1} />
                 <TabItem label="2" value={value} index={2} />
                 <TabItem label="3" value={value} index={3} />
             </Tab>
             <TabPanel value={value} index={1}>
-                <p>Tab Panel #1</p>
+                <Typography component="p">Tab Panel #1</Typography>
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <p>Tab Panel #2</p>
+                <Typography component="p">Tab Panel #2</Typography>
             </TabPanel>
             <TabPanel value={value} index={3}>
-                <p>Tab Panel #3</p>
+                <Typography component="p">Tab Panel #3</Typography>
             </TabPanel>
         </div>
     );

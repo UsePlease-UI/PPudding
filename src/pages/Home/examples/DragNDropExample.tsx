@@ -1,50 +1,30 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
-import DragNDrop from 'components/API/DragNDrop';
 import FlexBox from 'components/Base/FlexBox';
+import DragNDrop from 'components/DragNDrop/DragNDrop';
+import { ListItemType } from 'components/DragNDrop/DragNDropListItem';
+
+import { DRAG_N_DROP, DRAG_N_DROP_2 } from './constants';
 
 import { css } from '@emotion/react';
-
-const SAMPLE_LIST_RENDER_PROPS = [
-    {
-        idx: 1,
-        label: 'first 11 Render',
-        value: 'first item'
-    },
-    {
-        idx: 2,
-        label: 'second 22 Render',
-        value: 'second item'
-    },
-    {
-        idx: 3,
-        label: 'third 33 Render',
-        value: 'third item'
-    }
-];
+import palette from 'styles/palette';
 
 const dragItemStyle = css({
-    boxSizing: 'border-box',
     padding: 10,
-    borderBottom: '1px solid lightGray',
+    borderBottom: '1px solid #eeeeee',
     '&:last-of-type': {
         borderBottom: 0
     },
     '&:hover': {
-        background: 'lightPink'
+        color: '#ffffff',
+        background: palette.primary.main
     }
 });
 
-export type ListItemType = {
-    idx: number;
-    label: string;
-    value: string;
-};
-
 export default function DragNDropExample() {
     const [draggedItem, setDraggedItem] = useState<ListItemType | null>(null);
-    const [listItems, setListItems] = useState(SAMPLE_LIST_RENDER_PROPS);
+    const [listItems, setListItems] = useState(DRAG_N_DROP);
 
     const handleDragStart = (event: React.DragEvent<HTMLLIElement>, item: ListItemType) => {
         setDraggedItem(item);
@@ -70,7 +50,7 @@ export default function DragNDropExample() {
     };
 
     return (
-        <FlexBox gap={10}>
+        <FlexBox gap={10} direction="column" customCSS={{ margin: '20px 0' }}>
             <DragNDrop
                 render={() =>
                     listItems.map((data) => (
@@ -87,6 +67,7 @@ export default function DragNDropExample() {
                     ))
                 }
             />
+            <DragNDrop items={DRAG_N_DROP_2} />
         </FlexBox>
     );
 }

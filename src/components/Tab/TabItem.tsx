@@ -5,6 +5,7 @@ import { useTabContext } from 'components/useTab';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
+import palette from 'styles/palette';
 
 type TabItemType = {
     label: string;
@@ -36,10 +37,28 @@ const buttonStyle = css({
     cursor: 'pointer'
 });
 
-const containerStyle = css({ display: 'flex', alignItems: 'center', justifyContent: 'center' });
-const iconStyle = css({ width: 20, height: 20, '& svg': { width: 20, height: 20, color: 'pink' } });
-const textStyle = css({ margin: 20, color: '#000000', fontSize: 14, fontWeight: 500 });
-const indicatorStyle = css({ width: '80%', height: 2, borderRadius: 999, backgroundColor: 'pink' });
+const containerStyle = css({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+});
+const iconStyle = css({
+    width: 16,
+    height: 16,
+    '& svg': { width: 16, height: 16, color: palette.primary.main }
+});
+const textStyle = css({
+    margin: '20px 4px',
+    color: '#000000',
+    fontSize: 14,
+    fontWeight: 500
+});
+const indicatorStyle = css({
+    width: '80%',
+    height: 2,
+    borderRadius: 999,
+    backgroundColor: palette.primary.main
+});
 
 /**
  *  [UI Component] Tab Item Component
@@ -71,13 +90,25 @@ export default function TabItem(props: TabItemType) {
         >
             <div css={containerStyle}>
                 {!!icon && <span css={iconStyle}>{icon}</span>}
-                <p css={css([textStyle, { fontWeight: value === index ? 700 : 500 }])}>{label}</p>
+                <p
+                    css={css([
+                        textStyle,
+                        {
+                            fontWeight: value === index ? 700 : 500
+                        }
+                    ])}
+                >
+                    {label}
+                </p>
             </div>
             <div
                 id={`tab-indicator-${index}`}
                 css={css([
                     indicatorStyle,
-                    { transition: 'all ease-in-out 0.1s', visibility: value === index ? 'visible' : 'hidden' }
+                    {
+                        transition: 'all ease-in-out 0.1s',
+                        visibility: value === index ? 'visible' : 'hidden'
+                    }
                 ])}
             />
         </button>
