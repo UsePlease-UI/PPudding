@@ -4,13 +4,12 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "@emotion/react": "^11.11.0",
-        "@heroicons/react": "^2.0.18",
+        "@emotion/react": "^11.11.3",
+        "@heroicons/react": "^2.1.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-scripts": "5.0.1",
-        "react-syntax-highlighter": "^15.5.0"
-    },
+        "react-scripts": "5.0.1"
+     },
     "scripts": {
         "predeploy": "npm run build",
         "deploy": "gh-pages -d build",

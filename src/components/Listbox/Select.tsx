@@ -7,6 +7,7 @@ import Button from 'components/Button/Button';
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import palette from 'styles/palette';
 
 type OptionType = { label: string; value: string | number };
 
@@ -88,7 +89,7 @@ const listItemStyle = css({
     '&:hover, &:hover button': {
         fontWeight: 600,
         color: '#ffffff',
-        backgroundColor: 'lightpink'
+        backgroundColor: palette.lightBlue.main
     }
 });
 

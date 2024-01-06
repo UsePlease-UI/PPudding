@@ -2,6 +2,7 @@
 
 import Typography from 'components/Base/Typography';
 import IconButton from 'components/Button/IconButton';
+import useMobile from 'hooks/useMobile';
 
 import { css, keyframes } from '@emotion/react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
@@ -41,40 +42,50 @@ const svgTextStyle = css({
     stroke: palette.secondary.main,
     strokeWidth: 2,
     strokeDasharray: 350,
-    animation: `${stroke} 3s infinite`
+    animation: `${stroke} 3s infinite`,
+    '@media (max-width: 425px)': {
+        fontSize: 200
+    }
 });
 
-type HeaderType = { show: boolean; onClick: () => void };
+type HeaderType = {
+    show: boolean;
+    onClick: () => void;
+};
 
-const Header = ({ show, onClick }: HeaderType) => (
-    <header css={headerStyle}>
-        <Typography component="h1" customCSS={{ display: 'flex', alignItems: 'center' }}>
-            <svg css={css({ fill: '#ffffff' })} width="100%" height={80} viewBox="0 0 1200 80">
-                <text x="0" y="60" css={svgTextStyle}>
-                    React Components
-                </text>
-            </svg>
-        </Typography>
-        <IconButton
-            type="button"
-            onClick={onClick}
-            customCSS={{
-                color: !show ? '#ffffff' : palette.primary.main,
-                backgroundColor: !show ? palette.secondary.main : '#ffffff',
-                border: `1px dashed ${!show ? '#ffffff' : palette.secondary.main}`,
-                padding: 2,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                '& svg': {
-                    width: 30,
-                    height: 30
-                }
-            }}
-        >
-            <Bars3Icon />
-        </IconButton>
-    </header>
-);
+const Header = ({ show, onClick }: HeaderType) => {
+    const isMobile = useMobile();
+
+    return (
+        <header css={headerStyle}>
+            <Typography component="h1" customCSS={{ display: 'flex', alignItems: 'center' }}>
+                <svg css={css({ fill: '#ffffff' })} width="100%" height={80} viewBox="0 0 1200 80">
+                    <text x="0" y={isMobile ? '100' : '70'} css={svgTextStyle}>
+                        {isMobile ? 'RC' : 'React Components'}
+                    </text>
+                </svg>
+            </Typography>
+            <IconButton
+                type="button"
+                onClick={onClick}
+                customCSS={{
+                    color: !show ? '#ffffff' : palette.primary.main,
+                    backgroundColor: !show ? palette.secondary.main : '#ffffff',
+                    border: `1px dashed ${!show ? '#ffffff' : palette.secondary.main}`,
+                    padding: 2,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    '& svg': {
+                        width: 30,
+                        height: 30
+                    }
+                }}
+            >
+                <Bars3Icon />
+            </IconButton>
+        </header>
+    );
+};
 
 export default Header;

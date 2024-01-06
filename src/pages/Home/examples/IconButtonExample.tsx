@@ -5,7 +5,7 @@ import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 export default function IconButtonExample() {
     return (
-        <FlexBox direction="column" gap={10}>
+        <FlexBox direction="column" alignItems="center" gap={10} customCSS={{ margin: '20px 0' }}>
             <FlexBox gap={5}>
                 <IconButton size="small" variant="outlined">
                     <ChevronDownIcon />

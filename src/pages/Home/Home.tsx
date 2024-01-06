@@ -2,7 +2,6 @@
 import { useState } from 'react';
 
 import Aside from './components/Aside';
-import CodeSnippet from './components/CodeSnippet';
 import { COMPONENT_LIST } from './components/constants';
 import Description from './components/Description';
 import Header from './components/Header';
@@ -20,7 +19,7 @@ const mainStyle = css({
     marginTop: 80,
     padding: 60,
     transition: 'margin 0.5s ease-in-out',
-    '@media (max-width: 1024px)': {
+    '@media (max-width: 425px)': {
         padding: 20
     }
 });
@@ -31,7 +30,11 @@ const sectionStyle = css({
     margin: '0 auto',
     padding: 40,
     borderRadius: 5,
-    backgroundColor: '#ffffff'
+    backgroundColor: '#ffffff',
+    '@media (max-width: 425px)': {
+        padding: 10,
+        minHeight: 'calc(100vh - 120px)'
+    }
 });
 
 export default function Home() {
@@ -55,7 +58,7 @@ export default function Home() {
                     mainStyle,
                     {
                         marginLeft: show ? 240 : 0,
-                        '@media (max-width: 1024px)': {
+                        '@media (max-width: 768px)': {
                             marginLeft: 0
                         }
                     }
@@ -64,7 +67,6 @@ export default function Home() {
                 <section css={sectionStyle}>
                     <Description component={selected} />
                     {getComponents(selected)}
-                    <CodeSnippet component={selected} />
                 </section>
             </main>
         </div>

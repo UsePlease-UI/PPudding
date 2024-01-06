@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
-import DragNDrop from 'components/API/DragNDrop';
+import DragNDrop from 'components/DragNDrop/DragNDrop';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

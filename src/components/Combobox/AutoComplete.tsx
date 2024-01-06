@@ -6,6 +6,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import FlexBox from 'components/Base/FlexBox';
 
 import { css } from '@emotion/react';
+import palette from 'styles/palette';
 
 type ListType = {
     idx: number;
@@ -55,7 +56,7 @@ const listItemStyle = css({
     '&:hover, &:hover button': {
         fontWeight: 600,
         color: '#ffffff',
-        backgroundColor: 'lightpink'
+        backgroundColor: palette.lightBlue.main
     }
 });
 

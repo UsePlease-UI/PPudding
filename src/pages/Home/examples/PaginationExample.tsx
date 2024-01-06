@@ -13,9 +13,14 @@ export default function PaginationExample() {
     };
 
     return (
-        <FlexBox direction="column" gap={10}>
-            <h2>Pagination</h2>
-            <Pagination totalCount={32} page={page} blockNum={blockNum} onChange={handlePaginationChange} />
+        <FlexBox direction="column" gap={10} customCSS={{ margin: '20px 0' }}>
+            <Pagination
+                totalCount={32}
+                page={page}
+                blockNum={blockNum}
+                onChange={handlePaginationChange}
+                customCSS={{ padding: 0 }}
+            />
         </FlexBox>
     );
 }

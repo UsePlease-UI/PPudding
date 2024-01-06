@@ -21,16 +21,16 @@ const asideStyle = css({
     backgroundColor: palette.primary.main,
     display: 'flex',
     alignItems: 'flex-start',
-    '@media (max-width: 1024px)': {
+    '@media (max-width: 768px)': {
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
         width: '100%',
-        padding: 20,
         zIndex: 11,
         backgroundColor: 'rgba(0,0,0,0.8)',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        overflowY: 'auto'
     }
 });
 
@@ -58,11 +58,12 @@ const Aside = ({ show, selected, onClick, onClose }: AsideType) => {
                     width: show ? 240 : 0,
                     transition: 'width 0.5s ease-in-out',
                     '& > div': {
+                        padding: 20,
                         pointerEvents: show ? 'auto' : 'none',
                         opacity: show ? 1 : 0,
                         transition: 'opacity 0.45s ease-in-out'
                     },
-                    '@media (max-width: 1024px)': {
+                    '@media (max-width: 768px)': {
                         borderRight: 0,
                         width: show ? '100%' : 0,
                         backgroundColor: show ? 'rgba(0,0,0,0.8)' : 'unset'
@@ -74,7 +75,7 @@ const Aside = ({ show, selected, onClick, onClose }: AsideType) => {
                 justifyContent="flex-end"
                 customCSS={{
                     width: '100%',
-                    '@media (min-width: 1025px)': {
+                    '@media (min-width: 769px)': {
                         display: 'none'
                     }
                 }}

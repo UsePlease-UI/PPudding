@@ -3,6 +3,7 @@ import { useState, useCallback } from 'react';
 import _ from 'lodash';
 
 import FlexBox from 'components/Base/FlexBox';
+import Typography from 'components/Base/Typography';
 import AutoComplete from 'components/Combobox/AutoComplete';
 
 import { AUTOCOMPLETE as LIST } from './constants';
@@ -38,9 +39,8 @@ export default function AutoCompleteExample() {
     };
 
     return (
-        <FlexBox direction="column" gap={10}>
-            <h2>AutoComplete</h2>
-            <span>선택된 항목의 label: {selectedItem?.label}</span>
+        <FlexBox direction="column" gap={10} customCSS={{ margin: '20px 0' }}>
+            <Typography component="span">선택된 항목의 LABEL: {selectedItem?.label}</Typography>
             <AutoComplete
                 label="autoComplete"
                 listArr={listArr}

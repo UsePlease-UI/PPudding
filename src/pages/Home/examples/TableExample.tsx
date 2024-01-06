@@ -12,7 +12,7 @@ const captionStyle = css({ textAlign: 'left', fontSize: 16, lineHeight: 1.5, fon
 
 export default function TableExample() {
     return (
-        <Table aria-label="table-example">
+        <Table aria-label="table-example" customCSS={{ margin: '20px 0' }}>
             <Typography component="caption" css={captionStyle}>
                 A basic table example with a caption
             </Typography>

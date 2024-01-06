@@ -10,8 +10,7 @@ export default function SelectExample() {
     const [milk, setMilk] = useState('');
 
     return (
-        <FlexBox direction="column" gap={10}>
-            <h2>Select</h2>
+        <FlexBox direction="column" gap={10} customCSS={{ margin: '20px 0' }}>
             <FormControl id="milk" label="우유" helperText="우유 종류를 선택해주세요" helperTextId="milk-helper-text">
                 <Select
                     id="milk"

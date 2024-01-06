@@ -29,7 +29,7 @@ const ulStyle = css({
     display: 'flex',
     flexDirection: 'row',
     gap: '5px',
-    padding: 20
+    flexWrap: 'wrap'
 });
 
 const listStyle = css({
