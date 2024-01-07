@@ -1,14 +1,13 @@
-import React from 'react';
+import { ChangeEvent, Children, ReactElement, ReactNode, cloneElement } from 'react';
 
 import FlexBox from 'components/Base/FlexBox';
 
-import { CSSInterpolation } from '@emotion/serialize';
+import type { CustomCSSType } from 'styles/types';
 
-type ToggleButtonGroupType = {
-    children: React.ReactNode;
+type ToggleButtonGroupType = CustomCSSType & {
+    children: ReactNode;
     value: string | number;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    customCSS?: CSSInterpolation;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 /**
@@ -22,8 +21,8 @@ type ToggleButtonGroupType = {
 export default function ToggleButtonGroup({ children, value, onChange, customCSS = {} }: ToggleButtonGroupType) {
     return (
         <FlexBox role="radiogroup" customCSS={customCSS}>
-            {React.Children.toArray(children).map((child) =>
-                React.cloneElement(child as React.ReactElement, { currentValue: value, onChange })
+            {Children.toArray(children).map((child) =>
+                cloneElement(child as ReactElement, { currentValue: value, onChange })
             )}
         </FlexBox>
     );

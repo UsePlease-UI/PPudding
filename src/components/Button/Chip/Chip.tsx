@@ -2,57 +2,17 @@
 import Typography from 'components/Base/Typography';
 import IconButton from 'components/Button/IconButton';
 
-import { css } from '@emotion/react';
-import { CSSInterpolation } from '@emotion/serialize';
-import { XMarkIcon } from '@heroicons/react/24/outline';
-import palette from 'styles/palette';
+import { chipStyle } from './styles';
 
-type ChipType = {
+import { css } from '@emotion/react';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import type { CustomCSSType } from 'styles/types';
+
+type ChipType = CustomCSSType & {
     label: string;
     value: string | number;
     isDeletable?: boolean;
     onDelete?: (value: string | number) => void;
-    customCSS?: CSSInterpolation;
-};
-
-const chipStyle = css({
-    width: 'max-content',
-    display: 'flex',
-    alignItems: 'center',
-    gap: 8,
-    borderRadius: 999,
-    border: `1px solid ${palette.primary.main}`,
-    color: '#000000',
-    backgroundColor: '#ffffff'
-});
-
-const labelStyle = css({
-    fontSize: 14,
-    lineHeight: 1.5,
-    fontWeight: 500
-});
-
-const buttonStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-    border: `1px solid ${palette.primary.main}`,
-    borderRadius: 999,
-    padding: 5,
-    backgroundColor: '#ffffff',
-    '&:hover': {
-        backgroundColor: palette.primary.main,
-        '& svg': {
-            color: '#ffffff'
-        }
-    },
-    '& svg': {
-        height: 12,
-        width: 12,
-        strokeWidth: 4,
-        color: palette.primary.main
-    }
 };
 
 /**
@@ -67,8 +27,8 @@ const buttonStyle = {
 export default function Chip(props: ChipType) {
     const { label, value, isDeletable = true, onDelete, customCSS = {} } = props;
     return (
-        <div css={css([chipStyle, { padding: isDeletable ? '4px 8px 4px 14px' : '4px 12px' }, customCSS])}>
-            <Typography component="span" customCSS={labelStyle}>
+        <div css={css([chipStyle.chip, { padding: isDeletable ? '4px 8px 4px 14px' : '4px 12px' }, customCSS])}>
+            <Typography component="span" customCSS={chipStyle.label}>
                 {label}
             </Typography>
             {isDeletable && (
@@ -83,7 +43,7 @@ export default function Chip(props: ChipType) {
                             e.preventDefault();
                         }
                     }}
-                    customCSS={buttonStyle}
+                    customCSS={chipStyle.button}
                 >
                     <XMarkIcon />
                 </IconButton>

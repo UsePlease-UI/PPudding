@@ -3,8 +3,7 @@ import { useState } from 'react';
 
 import FlexBox from 'components/Base/FlexBox';
 import Button from 'components/Button/Button';
-import ToggleButton from 'components/Button/ToggleButton';
-import ToggleButtonGroup from 'components/Button/ToggleButtonGroup';
+import { ToggleButton, ToggleButtonGroup } from 'components/Button/ToggleButton';
 import Checkbox from 'components/Form/Checkbox';
 import FormControl from 'components/Form/FormControl';
 import Radio from 'components/Form/Radio';

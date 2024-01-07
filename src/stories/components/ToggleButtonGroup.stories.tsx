@@ -1,5 +1,4 @@
-import ToggleButton from 'components/Button/ToggleButton';
-import ToggleButtonGroup from 'components/Button/ToggleButtonGroup';
+import { ToggleButton, ToggleButtonGroup } from 'components/Button/ToggleButton';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
