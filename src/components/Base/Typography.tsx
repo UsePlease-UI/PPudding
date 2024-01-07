@@ -1,14 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import { HTMLAttributes, LabelHTMLAttributes, ReactNode } from 'react';
 
 import { css, jsx } from '@emotion/react';
-import { CSSInterpolation } from '@emotion/serialize';
+import { CustomCSSType } from 'styles/types';
 
-type TypographyType = React.HTMLAttributes<HTMLElement> &
-    React.LabelHTMLAttributes<HTMLLabelElement> & {
+type BaseType = HTMLAttributes<HTMLElement> & LabelHTMLAttributes<HTMLLabelElement>;
+
+type TypographyType = BaseType &
+    CustomCSSType & {
         component: string;
-        children: React.ReactNode;
-        customCSS?: CSSInterpolation;
+        children: ReactNode;
     };
 
 /**

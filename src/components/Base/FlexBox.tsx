@@ -1,18 +1,22 @@
 /** @jsxImportSource @emotion/react */
+import { HTMLAttributes, ReactNode } from 'react';
+
 import { css } from '@emotion/react';
-import { CSSInterpolation } from '@emotion/serialize';
+import { CustomCSSType } from 'styles/types';
 
-type FlexBoxType = React.HTMLAttributes<HTMLDivElement> & {
-    children: React.ReactNode;
-    justifyContent?: string;
-    alignItems?: string;
-    direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
-    gap?: number;
-    flex?: string;
-    customCSS?: CSSInterpolation;
-};
+type FlexBoxType = HTMLAttributes<HTMLDivElement> &
+    CustomCSSType & {
+        children: ReactNode;
+        justifyContent?: string;
+        alignItems?: string;
+        direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+        gap?: number;
+        flex?: string;
+    };
 
-const flexBoxStyle = css({ display: 'flex' });
+const flexBoxStyle = css({
+    display: 'flex'
+});
 
 /**
  *  [Base] Styled Component
@@ -40,7 +44,17 @@ export default function FlexBox(props: FlexBoxType) {
     return (
         <div
             {...rest}
-            css={css([flexBoxStyle, { justifyContent, alignItems, flexDirection: direction, gap, flex }, customCSS])}
+            css={css([
+                flexBoxStyle,
+                {
+                    justifyContent,
+                    alignItems,
+                    flexDirection: direction,
+                    gap,
+                    flex
+                },
+                customCSS
+            ])}
         >
             {children}
         </div>
