@@ -1,44 +1,21 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
 import { useAccordionContext } from 'components/useAccordion';
 
+import { accordionStyle } from './styles';
+
 import { css } from '@emotion/react';
-import { CSSInterpolation } from '@emotion/serialize';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import palette from 'styles/palette';
+import type { CustomCSSType } from 'styles/types';
 
-export type AccordionHeaderType = React.HTMLAttributes<HTMLHeadingElement> & {
-    children: React.ReactNode;
-    index: number;
-    icon?: React.ReactNode;
-    hasIcon?: boolean;
-    customCSS?: CSSInterpolation;
-};
-
-const headingStyle = css({
-    minWidth: 250,
-    width: '100%',
-    minHeight: 60,
-    border: '1px solid #eeeeee',
-    borderRadius: 4,
-    backgroundColor: palette.primary.main
-});
-
-const buttonStyle = css({ width: '100%', height: '100%', minHeight: 'inherit', padding: '5px 20px' });
-
-const titleStyle = css({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    fontSize: 18,
-    fontWeight: 600,
-    lineHeight: 1.5,
-    color: '#ffffff',
-    '& *': { color: '#ffffff', fontSize: 18, fontWeight: 600, lineHeight: 1.5 }
-});
-
-const iconStyle = css({ width: 20, height: 20, '& svg': { width: 20, height: 20 } });
+export type AccordionHeaderType = HTMLAttributes<HTMLHeadingElement> &
+    CustomCSSType & {
+        children: ReactNode;
+        index: number;
+        icon?: ReactNode;
+        hasIcon?: boolean;
+    };
 
 /**
  *  [UI Component] Accordion Header Component
@@ -57,7 +34,7 @@ export default function AccordionHeader(props: AccordionHeaderType) {
         <h3
             {...rest}
             css={css([
-                headingStyle,
+                accordionStyle.heading,
                 {
                     borderBottomLeftRadius: isExpanded ? 0 : 4,
                     borderBottomRightRadius: isExpanded ? 0 : 4
@@ -71,12 +48,14 @@ export default function AccordionHeader(props: AccordionHeaderType) {
                 aria-expanded={isExpanded}
                 aria-controls={`panel${index}`}
                 onClick={(e) => onChange(e, isExpanded)}
-                css={buttonStyle}
+                css={accordionStyle.button}
             >
-                <div css={titleStyle}>
+                <div css={accordionStyle.title}>
                     {children}
                     {hasIcon && (
-                        <span css={css([iconStyle, { transform: isExpanded ? 'rotate(180deg)' : 'initial' }])}>
+                        <span
+                            css={css([accordionStyle.icon, { transform: isExpanded ? 'rotate(180deg)' : 'initial' }])}
+                        >
                             {icon ?? <ChevronDownIcon />}
                         </span>
                     )}

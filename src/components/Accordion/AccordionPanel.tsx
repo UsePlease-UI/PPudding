@@ -1,30 +1,20 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
 import { useAccordionContext } from 'components/useAccordion';
 
+import { accordionStyle } from './styles';
+
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
+import type { CustomCSSType } from 'styles/types';
 
-export type AccordionPanelType = React.HTMLAttributes<HTMLDivElement> & {
-    children: React.ReactNode;
-    index: number;
-    customCSS?: CSSInterpolation;
-};
-
-const panelStyle = css({
-    backgroundColor: '#ffffff',
-    borderBottomLeftRadius: 4,
-    borderBottomRightRadius: 4,
-    marginTop: -1,
-    marginBottom: -1,
-    fontSize: 14,
-    lineHeight: 1.5,
-    '& *': {
-        fontSize: 14,
-        lineHeight: 1.5
-    }
-});
+export type AccordionPanelType = HTMLAttributes<HTMLDivElement> &
+    CustomCSSType & {
+        children: ReactNode;
+        index: number;
+        customCSS?: CSSInterpolation;
+    };
 
 /**
  *  [UI Component] Accordion Panel Component
@@ -50,7 +40,7 @@ export default function AccordionPanel(props: AccordionPanelType) {
                     border: isExpanded ? '1px solid #eeeeee' : 0,
                     visibility: isExpanded ? 'visible' : 'hidden'
                 },
-                panelStyle,
+                accordionStyle.panel,
                 customCSS
             ])}
         >

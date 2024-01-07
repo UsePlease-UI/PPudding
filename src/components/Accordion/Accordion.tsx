@@ -1,13 +1,15 @@
 /** @jsxImportSource @emotion/react */
+import { MouseEvent, ReactNode } from 'react';
+
 import FlexBox from 'components/Base/FlexBox';
 import { AccordionProvider } from 'components/useAccordion';
 
 import { CSSInterpolation } from '@emotion/serialize';
 
-type AccordionType = {
-    children: React.ReactNode;
+export type AccordionType = {
+    children: ReactNode;
     isExpanded?: boolean;
-    onChange?: (event: React.MouseEvent<HTMLButtonElement>, isExpanded: boolean) => void;
+    onChange?: (event: MouseEvent<HTMLButtonElement>, isExpanded: boolean) => void;
     customCSS?: CSSInterpolation;
 };
 
