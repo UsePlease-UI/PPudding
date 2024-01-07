@@ -7,6 +7,12 @@ const reset = css`
         padding: 0;
     }
 
+    html,
+    body,
+    #root {
+        min-height: 100%;
+    }
+
     html {
         width: 100%;
     }
