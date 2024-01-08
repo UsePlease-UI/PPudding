@@ -22,7 +22,7 @@ const panelStyle = css({ width: '100%', height: '100%', minHeight: 250, padding:
  *  @returns JSX.Element
  */
 export default function TabPanel(props: TabPanelType) {
-    const { children, value, index, customCSS = {} } = props;
+    const { children, value, index, customCSS } = props;
 
     return (
         <div css={css([panelStyle, customCSS])} role="tabpanel" hidden={value !== index}>

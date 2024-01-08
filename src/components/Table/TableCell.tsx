@@ -30,7 +30,7 @@ const textStyle = css({ fontWeight: 600 });
  *  @returns JSX.Element
  */
 export default function TableCell(props: TableCellType) {
-    const { children, component = 'td', customCSS = {}, ...rest } = props;
+    const { children, component = 'td', customCSS, ...rest } = props;
 
     return component === 'td' ? (
         <td {...rest} css={css([tableCellStyle, customCSS])}>

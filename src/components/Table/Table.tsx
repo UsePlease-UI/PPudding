@@ -3,6 +3,7 @@ import React from 'react';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
+import palette from 'styles/palette';
 
 type TableType = React.TableHTMLAttributes<HTMLTableElement> & {
     children: React.ReactNode;
@@ -13,9 +14,9 @@ const tableStyle = css({
     width: '100%',
     height: '100%',
     display: 'table',
-    backgroundColor: '#ffffff',
+    backgroundColor: palette.neutral.white,
     borderCollapse: 'collapse',
-    border: '1px solid #eeeeee'
+    border: `1px solid ${palette.gray['100']}`
 });
 
 /**
@@ -25,7 +26,7 @@ const tableStyle = css({
  *  @returns JSX.Element
  */
 export default function Table(props: TableType) {
-    const { children, customCSS = {}, ...rest } = props;
+    const { children, customCSS, ...rest } = props;
 
     return (
         <table {...rest} css={css([tableStyle, customCSS])}>

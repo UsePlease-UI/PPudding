@@ -1,11 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 
-import FlexBox from 'components/Base/FlexBox';
-import { TabProvider } from 'components/useTab';
-
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
+import palette from 'styles/palette';
+
+import FlexBox from 'components/Base/FlexBox';
+import { TabProvider } from 'components/useTab';
 
 type TabType = {
     children: React.ReactNode;
@@ -18,7 +19,7 @@ const tabListStyle = css({
     width: '100%',
     minHeight: 80,
     backgroundColor: '#fbfbfb',
-    borderBottom: '1px solid #eeeeee'
+    borderBottom: `1px solid ${palette.gray['100']}`
 });
 
 /**
@@ -30,7 +31,7 @@ const tabListStyle = css({
  *  @returns JSX.Element
  */
 export default function Tab(props: TabType) {
-    const { children, value, onChange, customCSS = {}, ...rest } = props;
+    const { children, value, onChange, customCSS, ...rest } = props;
 
     return (
         <TabProvider value={value} onChange={onChange}>

@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import PageList from 'components/Pagination/PageList';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
+
+import PageList from 'components/Pagination/PageList';
 
 const navStyle = css({
     display: 'flex',
@@ -23,7 +24,7 @@ type PaginationType = {
 
 const PAGE_LIMIT = 10;
 
-export default function Pagination({ totalCount, page, blockNum, onChange, customCSS = {} }: PaginationType) {
+export default function Pagination({ totalCount, page, blockNum, onChange, customCSS }: PaginationType) {
     const pageMaxCount = Math.ceil(totalCount / 10);
 
     const handleFirstClick = () => onChange(1, 1);

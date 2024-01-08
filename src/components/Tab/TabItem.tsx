@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 
-import { useTabContext } from 'components/useTab';
-
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
 import palette from 'styles/palette';
+
+import { useTabContext } from 'components/useTab';
 
 type TabItemType = {
     label: string;
@@ -45,11 +45,11 @@ const containerStyle = css({
 const iconStyle = css({
     width: 16,
     height: 16,
-    '& svg': { width: 16, height: 16, color: palette.primary.main }
+    '& svg': { width: 16, height: 16, color: palette.primary['600'] }
 });
 const textStyle = css({
     margin: '20px 4px',
-    color: '#000000',
+    color: palette.neutral.black,
     fontSize: 14,
     fontWeight: 500
 });
@@ -57,7 +57,7 @@ const indicatorStyle = css({
     width: '80%',
     height: 2,
     borderRadius: 999,
-    backgroundColor: palette.primary.main
+    backgroundColor: palette.primary['600']
 });
 
 /**

@@ -16,7 +16,7 @@ type TableBodyType = React.HTMLAttributes<HTMLTableSectionElement> & {
  *  @returns JSX.Element
  */
 export default function TableBody(props: TableBodyType) {
-    const { children, customCSS = {} } = props;
+    const { children, customCSS } = props;
 
     return <tbody css={css(customCSS)}>{children}</tbody>;
 }

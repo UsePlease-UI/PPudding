@@ -3,6 +3,7 @@ import React from 'react';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
+import palette from 'styles/palette';
 
 type TableHeadType = React.HTMLAttributes<HTMLTableSectionElement> & {
     children: React.ReactNode;
@@ -13,7 +14,7 @@ const tableHeadStyle = css({
     display: 'table-header-group',
     verticalAlign: 'middle',
     backgroundColor: '#fafafa',
-    borderBottom: '1px solid #eeeeee',
+    borderBottom: `1px solid ${palette.gray['100']}`,
     '& tr th': {
         padding: '12px'
     },
@@ -29,7 +30,7 @@ const tableHeadStyle = css({
  *  @returns JSX.Element
  */
 export default function TableHead(props: TableHeadType) {
-    const { children, customCSS = {} } = props;
+    const { children, customCSS } = props;
 
     return <thead css={css([tableHeadStyle, customCSS])}>{children}</thead>;
 }

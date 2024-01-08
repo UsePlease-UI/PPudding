@@ -1,8 +1,5 @@
 /** @jsxImportSource @emotion/react */
 
-import PageButton from 'components/Pagination/PageIconButton';
-import PageNumButton from 'components/Pagination/PageNumButton';
-
 import { css } from '@emotion/react';
 import {
     ChevronDoubleLeftIcon,
@@ -10,6 +7,9 @@ import {
     ChevronLeftIcon,
     ChevronRightIcon
 } from '@heroicons/react/24/outline';
+
+import PageButton from 'components/Pagination/PageIconButton';
+import PageNumButton from 'components/Pagination/PageNumButton';
 
 type pageListType = {
     showFirstButton?: boolean;

@@ -3,6 +3,7 @@ import React from 'react';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
+import palette from 'styles/palette';
 
 type TableRowType = React.HTMLAttributes<HTMLTableRowElement> & {
     children: React.ReactNode;
@@ -11,7 +12,7 @@ type TableRowType = React.HTMLAttributes<HTMLTableRowElement> & {
 
 const tableRowStyle = css({
     display: 'table-row',
-    borderBottom: '1px solid #eeeeee',
+    borderBottom: `1px solid ${palette.gray['100']}`,
     '&:hover': {
         backgroundColor: 'pink'
     },
@@ -27,7 +28,7 @@ const tableRowStyle = css({
  *  @returns JSX.Element
  */
 export default function TableRow(props: TableRowType) {
-    const { children, customCSS = {} } = props;
+    const { children, customCSS } = props;
 
     return <tr css={css([tableRowStyle, customCSS])}>{children}</tr>;
 }
