@@ -86,7 +86,7 @@ const AutoCompleteTemplate: Story = {
         };
 
         return (
-            <FlexBox direction="column" gap={10}>
+            <FlexBox flexDirection="column" gap={10}>
                 <span>선택된 항목의 label: {selectedItem?.label}</span>
                 <AutoComplete
                     {...args}

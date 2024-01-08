@@ -1,18 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
+import { css } from '@emotion/react';
+import palette from 'styles/palette';
+
 import Aside from './components/Aside';
 import { COMPONENT_LIST } from './components/constants';
 import Description from './components/Description';
 import Header from './components/Header';
 import { getComponents } from './examples/utils';
 
-import { css } from '@emotion/react';
-import palette from 'styles/palette';
-
 const layoutStyle = css({
     margin: '0 auto',
-    backgroundColor: palette.primary.main
+    backgroundColor: palette.primary['600']
 });
 
 const mainStyle = css({
@@ -30,7 +30,7 @@ const sectionStyle = css({
     margin: '0 auto',
     padding: 40,
     borderRadius: 5,
-    backgroundColor: '#ffffff',
+    backgroundColor: palette.neutral.white,
     '@media (max-width: 425px)': {
         padding: 10,
         minHeight: 'calc(100vh - 120px)'

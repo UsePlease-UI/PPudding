@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
+import { css } from '@emotion/react';
+import { HomeIcon } from '@heroicons/react/24/outline';
+import palette from 'styles/palette';
+
 import Typography from 'components/Base/Typography';
 import Tab from 'components/Tab/Tab';
 import TabItem from 'components/Tab/TabItem';
 import TabPanel from 'components/Tab/TabPanel';
-
-import { css } from '@emotion/react';
-import { HomeIcon } from '@heroicons/react/24/outline';
 
 const tabStyle = css({
     margin: '20px 0',
@@ -16,9 +17,9 @@ const tabStyle = css({
     display: 'flex',
     flexDirection: 'column',
     borderRadius: 10,
-    border: '1px solid #eeeeee',
+    border: `1px solid ${palette.gray['100']}`,
     overflow: 'hidden',
-    boxShadow: '0 0 8px 0px #eeeeee'
+    boxShadow: `0 0 8px 0px ${palette.gray['100']}`
 });
 
 // WAI-ARIA : https://www.w3.org/WAI/ARIA/apg/patterns/tabs/

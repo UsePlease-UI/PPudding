@@ -1,25 +1,25 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
+import { css } from '@emotion/react';
+import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
+import palette from 'styles/palette';
+
 import FlexBox from 'components/Base/FlexBox';
 import Button from 'components/Button/Button';
 import { ToggleButton, ToggleButtonGroup } from 'components/Button/ToggleButton';
 import Checkbox from 'components/Form/Checkbox';
 import FormControl from 'components/Form/FormControl';
-import Radio from 'components/Form/Radio';
-import RadioGroup from 'components/Form/RadioGroup';
+import { Radio, RadioGroup } from 'components/Form/Radio';
 import TextField from 'components/Form/TextField';
-import Select from 'components/Listbox/Select';
+import Select from 'components/Combobox/Select';
 
 import { PASSWORD_REG_EXP } from './constants';
-
-import { css } from '@emotion/react';
-import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
 
 const containerStyle = css({
     width: '100%',
     height: '100%',
-    backgroundColor: '#ffffff',
+    backgroundColor: palette.neutral.white,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
@@ -51,7 +51,7 @@ const buttonCustomCSS = {
     backgroundColor: 'pink',
     borderColor: 'pink',
     width: '100%',
-    color: '#000000',
+    color: palette.neutral.black,
     '& > div': {
         gap: 10,
         justifyContent: 'center'
@@ -59,7 +59,7 @@ const buttonCustomCSS = {
     '&:disabled': {
         color: '#999999',
         borderColor: '#999999',
-        backgroundColor: '#eeeeee'
+        backgroundColor: palette.gray['100']
     }
 };
 
@@ -97,7 +97,7 @@ export default function RegisterPage() {
     return (
         <div css={containerStyle}>
             <form onSubmit={handleSubmit} css={formStyle}>
-                <FlexBox direction="column" gap={10} customCSS={{ width: '100%', maxWidth: 425, padding: 20 }}>
+                <FlexBox flexDirection="column" gap={10} customCSS={{ width: '100%', maxWidth: 425, padding: 20 }}>
                     <FormControl
                         id="name"
                         helperTextId="name-helper-text"
@@ -156,7 +156,7 @@ export default function RegisterPage() {
                         />
                     </FormControl>
                     <FlexBox gap={20}>
-                        <FlexBox direction="column" gap={4}>
+                        <FlexBox flexDirection="column" gap={4}>
                             <small id="year" css={css({ fontWeight: 600 })}>
                                 연도
                             </small>
@@ -170,7 +170,7 @@ export default function RegisterPage() {
                                 onChange={(e) => setYear(e.currentTarget.value)}
                             />
                         </FlexBox>
-                        <FlexBox direction="column" gap={4}>
+                        <FlexBox flexDirection="column" gap={4}>
                             <small id="month" css={css({ fontWeight: 600 })}>
                                 월
                             </small>
@@ -184,7 +184,7 @@ export default function RegisterPage() {
                                 onChange={(e) => setMonth(e.currentTarget.value)}
                             />
                         </FlexBox>
-                        <FlexBox direction="column" gap={4}>
+                        <FlexBox flexDirection="column" gap={4}>
                             <small id="day" css={css({ fontWeight: 600 })}>
                                 일
                             </small>
@@ -199,7 +199,7 @@ export default function RegisterPage() {
                             />
                         </FlexBox>
                     </FlexBox>
-                    <FlexBox direction="column" gap={5}>
+                    <FlexBox flexDirection="column" gap={5}>
                         <span css={textStyle}>성별</span>
                         <RadioGroup value={gender} onChange={(e) => setGender(e.currentTarget.value)}>
                             <Radio name="gender" label="선택안함" value="N/A" />
@@ -207,7 +207,7 @@ export default function RegisterPage() {
                             <Radio name="gender" label="남성" value="M" />
                         </RadioGroup>
                     </FlexBox>
-                    <FlexBox direction="column" gap={5}>
+                    <FlexBox flexDirection="column" gap={5}>
                         <span css={textStyle}>이메일 수신여부</span>
                         <ToggleButtonGroup value={useYn} onChange={(e) => setUseYn(e.currentTarget.value)}>
                             <ToggleButton name="useYn" value="Y">
@@ -218,9 +218,9 @@ export default function RegisterPage() {
                             </ToggleButton>
                         </ToggleButtonGroup>
                     </FlexBox>
-                    <FlexBox direction="column" gap={10}>
+                    <FlexBox flexDirection="column" gap={10}>
                         <Checkbox label="전체 동의" value="terms" checked={terms && policy} onChange={handleCheck} />
-                        <FlexBox direction="column" gap={5}>
+                        <FlexBox flexDirection="column" gap={5}>
                             <Checkbox
                                 label="이용약관 동의"
                                 value="terms"

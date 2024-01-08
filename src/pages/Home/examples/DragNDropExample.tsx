@@ -1,24 +1,24 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
+import { css } from '@emotion/react';
+import palette from 'styles/palette';
+
 import FlexBox from 'components/Base/FlexBox';
 import DragNDrop from 'components/DragNDrop/DragNDrop';
 import { ListItemType } from 'components/DragNDrop/DragNDropListItem';
 
 import { DRAG_N_DROP, DRAG_N_DROP_2 } from './constants';
 
-import { css } from '@emotion/react';
-import palette from 'styles/palette';
-
 const dragItemStyle = css({
     padding: 10,
-    borderBottom: '1px solid #eeeeee',
+    borderBottom: `1px solid ${palette.gray['100']}`,
     '&:last-of-type': {
         borderBottom: 0
     },
     '&:hover': {
-        color: '#ffffff',
-        background: palette.primary.main
+        color: palette.neutral.white,
+        background: palette.primary['600']
     }
 });
 
@@ -50,7 +50,7 @@ export default function DragNDropExample() {
     };
 
     return (
-        <FlexBox gap={10} direction="column" customCSS={{ margin: '20px 0' }}>
+        <FlexBox gap={10} flexDirection="column" customCSS={{ margin: '20px 0' }}>
             <DragNDrop
                 render={() =>
                     listItems.map((data) => (

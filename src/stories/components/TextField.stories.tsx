@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { palette } from 'styles';
+
 import TextField from 'components/Form/TextField';
 
 import type { Meta, StoryObj } from '@storybook/react';
@@ -156,6 +158,8 @@ export const Default: Story = {
         type: 'text',
         placeholder: '이름을 입력해주세요.',
         maxLength: 100,
-        customCSS: { backgroundColor: '#ffffff' }
+        customCSS: {
+            backgroundColor: palette.neutral.white
+        }
     }
 };

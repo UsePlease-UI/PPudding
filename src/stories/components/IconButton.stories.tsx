@@ -1,9 +1,10 @@
 import { expect } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
 
+import { StarIcon } from '@heroicons/react/24/outline';
+
 import IconButton from 'components/Button/IconButton';
 
-import { StarIcon } from '@heroicons/react/24/outline';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

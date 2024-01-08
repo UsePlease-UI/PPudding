@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
+import palette from 'styles/palette';
+
 import FormControl from 'components/Form/FormControl';
 import TextField from 'components/Form/TextField';
-
-import palette from 'styles/palette';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -103,8 +103,8 @@ export const FormControlTextField: Story = {
         label: 'name',
         customCSS: {
             padding: 10,
-            backgroundColor: '#ffffff',
-            border: `1px solid ${palette.lightBlue.main}`,
+            backgroundColor: palette.neutral.white,
+            border: `1px solid ${palette.tertiary['400']}`,
             borderRadius: 4,
             '& > label': {
                 textTransform: 'uppercase',

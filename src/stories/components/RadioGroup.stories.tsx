@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { expect } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
 
-import Radio from 'components/Form/Radio';
-import RadioGroup from 'components/Form/RadioGroup';
+import { Radio, RadioGroup } from 'components/Form/Radio';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -92,7 +91,7 @@ Default.play = async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const radioGroup = canvas.getByRole('radiogroup');
     await expect(radioGroup).toBeInTheDocument();
-    await expect(radioGroup).toHaveStyle('flex-direction: row');
+    await expect(radioGroup).toHaveStyle('flex-flexDirection: row');
 
     const radio1 = canvas.getByRole('radio', { name: '빨강' });
     await expect(radio1).toBeChecked();

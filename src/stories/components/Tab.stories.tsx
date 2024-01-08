@@ -1,10 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
+import { css } from '@emotion/react';
+import palette from 'styles/palette';
+
 import Tab from 'components/Tab/Tab';
 import TabItem from 'components/Tab/TabItem';
-
-import { css } from '@emotion/react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -62,9 +63,9 @@ const tabStyle = css({
     display: 'flex',
     flexDirection: 'column',
     borderRadius: 10,
-    border: '1px solid #eeeeee',
+    border: `1px solid ${palette.gray['100']}`,
     overflow: 'hidden',
-    boxShadow: '0 0 8px 0px #eeeeee'
+    boxShadow: `0 0 8px 0px ${palette.gray['100']}`
 });
 
 export const Default: Story = {

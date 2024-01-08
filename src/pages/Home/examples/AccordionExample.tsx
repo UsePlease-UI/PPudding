@@ -22,7 +22,7 @@ export default function AccordionExample() {
         };
 
     return (
-        <FlexBox direction="column" customCSS={{ margin: '20px 0' }}>
+        <FlexBox flexDirection="column" customCSS={{ margin: '20px 0' }}>
             <Accordion isExpanded={panel === 'panel1'} onChange={handleChange('panel1')}>
                 <AccordionHeader index={1}>Controlled - Q1</AccordionHeader>
                 <AccordionPanel index={1}>Apple</AccordionPanel>

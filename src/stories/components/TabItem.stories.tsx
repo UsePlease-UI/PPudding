@@ -1,10 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
+import { StarIcon } from '@heroicons/react/24/outline';
+
 import Tab from 'components/Tab/Tab';
 import TabItem from 'components/Tab/TabItem';
 
-import { StarIcon } from '@heroicons/react/24/outline';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

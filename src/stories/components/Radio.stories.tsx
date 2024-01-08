@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { expect } from '@storybook/jest';
 import { within } from '@storybook/testing-library';
 
-import Radio from 'components/Form/Radio';
+import { Radio } from 'components/Form/Radio';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

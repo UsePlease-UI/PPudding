@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Select from 'components/Listbox/Select';
+import Select from 'components/Combobox/Select';
 
 import { OPTIONS } from './constants';
 

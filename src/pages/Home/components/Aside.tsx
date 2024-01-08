@@ -1,24 +1,23 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect } from 'react';
 
-import FlexBox from 'components/Base/FlexBox';
-import IconButton from 'components/Button/IconButton';
-
-import Block from './Block';
-import BlockWrapper from './BlockWrapper';
-import { COMPONENT_LIST } from './constants';
-
 import { css } from '@emotion/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import palette from 'styles/palette';
+
+import FlexBox from 'components/Base/FlexBox';
+import IconButton from 'components/Button/IconButton';
+import useMobile from 'hooks/useMobile';
+
+import Block from './Block';
+import { COMPONENT_LIST } from './constants';
 
 const asideStyle = css({
     position: 'fixed',
     top: 80,
     left: 0,
-    minHeight: 'calc(100vh - 80px)',
-    borderRight: '1px dashed #ffffff',
-    backgroundColor: palette.primary.main,
+    borderRight: `1px dashed ${palette.neutral.white}`,
+    backgroundColor: palette.primary['600'],
     display: 'flex',
     alignItems: 'flex-start',
     '@media (max-width: 768px)': {
@@ -42,13 +41,15 @@ type AsideType = {
 };
 
 const Aside = ({ show, selected, onClick, onClose }: AsideType) => {
+    const isMobile = useMobile();
+
     useEffect(() => {
-        if (show) {
+        if (isMobile && show) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.removeProperty('overflow');
         }
-    }, [show]);
+    }, [isMobile, show]);
 
     return (
         <aside
@@ -61,7 +62,11 @@ const Aside = ({ show, selected, onClick, onClose }: AsideType) => {
                         padding: 20,
                         pointerEvents: show ? 'auto' : 'none',
                         opacity: show ? 1 : 0,
-                        transition: 'opacity 0.45s ease-in-out'
+                        transition: 'opacity 0.45s ease-in-out',
+                        ...(!isMobile && {
+                            maxHeight: 'calc(100vh - 80px)',
+                            overflowY: 'auto'
+                        })
                     },
                     '@media (max-width: 768px)': {
                         borderRight: 0,
@@ -86,7 +91,7 @@ const Aside = ({ show, selected, onClick, onClose }: AsideType) => {
                         width: 30,
                         height: 30,
                         '& > svg': {
-                            color: '#ffffff',
+                            color: palette.neutral.white,
                             width: 30,
                             height: 30
                         }
@@ -96,13 +101,13 @@ const Aside = ({ show, selected, onClick, onClose }: AsideType) => {
                     <XMarkIcon />
                 </IconButton>
             </FlexBox>
-            <BlockWrapper>
+            <FlexBox flexDirection="column" gap={4} customCSS={{ width: '100%', padding: 10 }}>
                 {COMPONENT_LIST.map((el: string) => (
                     <Block key={el} name={el} selected={selected} onClick={onClick}>
                         {el}
                     </Block>
                 ))}
-            </BlockWrapper>
+            </FlexBox>
         </aside>
     );
 };

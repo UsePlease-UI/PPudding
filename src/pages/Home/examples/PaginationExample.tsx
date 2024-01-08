@@ -13,7 +13,7 @@ export default function PaginationExample() {
     };
 
     return (
-        <FlexBox direction="column" gap={10} customCSS={{ margin: '20px 0' }}>
+        <FlexBox flexDirection="column" gap={10} customCSS={{ margin: '20px 0' }}>
             <Pagination
                 totalCount={32}
                 page={page}

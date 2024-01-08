@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import FlexBox from 'components/Base/FlexBox';
+import Select from 'components/Combobox/Select';
 import FormControl from 'components/Form/FormControl';
-import Select from 'components/Listbox/Select';
 
 import { OPTIONS } from './constants';
 
@@ -10,7 +10,7 @@ export default function SelectExample() {
     const [milk, setMilk] = useState('');
 
     return (
-        <FlexBox direction="column" gap={10} customCSS={{ margin: '20px 0' }}>
+        <FlexBox flexDirection="column" gap={10} customCSS={{ margin: '20px 0' }}>
             <FormControl id="milk" label="우유" helperText="우유 종류를 선택해주세요" helperTextId="milk-helper-text">
                 <Select
                     id="milk"
