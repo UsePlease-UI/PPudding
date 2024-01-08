@@ -1,18 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import { ReactElement, ReactNode, cloneElement } from 'react';
 
-import FlexBox from 'components/Base/FlexBox';
-import Typography from 'components/Base/Typography';
+import type { CustomCSSType } from 'styles/types';
 
-import { CSSInterpolation } from '@emotion/serialize';
+import { FlexBox, Typography } from 'components/Base';
 
-type FormControlType = {
-    children: React.ReactElement;
+type FormControlType = CustomCSSType & {
+    children: ReactNode;
     id?: string;
-    label?: string | React.ReactNode;
+    label?: string | ReactNode;
     helperTextId?: string;
-    helperText?: string | React.ReactNode;
-    customCSS?: CSSInterpolation;
+    helperText?: string | ReactNode;
 };
 
 /**
@@ -32,15 +30,18 @@ export default function FormControl(props: FormControlType) {
         label = '',
         helperTextId = 'input-helper-text',
         helperText = '',
-        customCSS = {}
+        customCSS
     } = props;
 
     return (
-        <FlexBox direction="column" gap={4} customCSS={customCSS}>
+        <FlexBox flexDirection="column" gap={4} customCSS={customCSS}>
             <Typography component="label" htmlFor={id}>
                 {label}
             </Typography>
-            {React.cloneElement(children, { 'aria-label': id, 'aria-describedby': helperTextId })}
+            {cloneElement(children as ReactElement, {
+                'aria-label': id,
+                'aria-describedby': helperTextId
+            })}
             <Typography component="small" id={helperTextId}>
                 {helperText}
             </Typography>
