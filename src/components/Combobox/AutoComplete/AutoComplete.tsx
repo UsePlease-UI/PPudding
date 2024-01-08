@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
-import React, { useRef, useEffect, useState } from 'react';
-
-import FlexBox from 'components/Base/FlexBox';
+import React, { useRef, useEffect, useState, ChangeEvent } from 'react';
 
 import { css } from '@emotion/react';
 import palette from 'styles/palette';
+
+import FlexBox from 'components/Base/FlexBox';
 
 type ListType = {
     idx: number;
@@ -17,7 +17,7 @@ type ListType = {
 type AutoCompleteType = {
     inputValue: string;
     label: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     onSelect: (el: ListType) => void;
     listArr: ListType[];
 };
@@ -26,9 +26,8 @@ const flexBoxCustom = css({
     maxWidth: 200,
     height: 40,
     borderRadius: 4,
-    border: '1px solid #eeeeee',
-    background: 'white',
-    boxSizing: 'border-box',
+    border: `1px solid ${palette.gray['100']}`,
+    background: palette.neutral.white,
     padding: 10
 });
 
@@ -55,8 +54,8 @@ const listItemStyle = css({
     },
     '&:hover, &:hover button': {
         fontWeight: 600,
-        color: '#ffffff',
-        backgroundColor: palette.lightBlue.main
+        color: palette.neutral.white,
+        backgroundColor: palette.tertiary['400']
     }
 });
 
@@ -113,7 +112,7 @@ export default function AutoComplete(props: AutoCompleteType) {
     return (
         <div>
             <label htmlFor={label} css={css({ display: 'none' })} />
-            <FlexBox justifyContent="center" alignItems="center" direction="row" gap={5} customCSS={flexBoxCustom}>
+            <FlexBox justifyContent="center" alignItems="center" flexDirection="row" gap={5} customCSS={flexBoxCustom}>
                 <input
                     id={label}
                     ref={inputRef}
