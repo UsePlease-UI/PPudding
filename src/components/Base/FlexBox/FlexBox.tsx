@@ -24,7 +24,7 @@ const flexBoxStyle = css({
  *  @param children 컴포넌트
  *  @param justifyContent [CSS] justify-content [optional]
  *  @param alignItems [CSS] align-items [optional]
- *  @param direction [CSS] flex-direction [optional]
+ *  @param fledDirection [CSS] flex-direction [optional]
  *  @param gap [CSS] gap [optional]
  *  @param flex [CSS] flex [optional]
  *  @param customCSS 커스텀 CSS [optional]

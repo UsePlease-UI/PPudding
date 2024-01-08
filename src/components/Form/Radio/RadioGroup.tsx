@@ -17,7 +17,7 @@ type RadioGroupType = CustomCSSType & {
  *  @param children 컴포넌트
  *  @param onChange Change Event Handler
  *  @param value 선택된 라디오 버튼 값
- *  @param isRow [CSS] flex flexDirection (row | column)
+ *  @param isRow [CSS] flex direction (row | column)
  *  @param customCSS 커스텀 CSS [optional]
  *  @returns JSX.Element
  */
