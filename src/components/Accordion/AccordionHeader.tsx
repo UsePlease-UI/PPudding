@@ -1,21 +1,22 @@
 /** @jsxImportSource @emotion/react */
 import { HTMLAttributes, ReactNode } from 'react';
 
-import { useAccordionContext } from 'components/useAccordion';
-
-import { accordionStyle } from './styles';
-
 import { css } from '@emotion/react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import type { CustomCSSType } from 'styles/types';
 
-export type AccordionHeaderType = HTMLAttributes<HTMLHeadingElement> &
-    CustomCSSType & {
-        children: ReactNode;
-        index: number;
-        icon?: ReactNode;
-        hasIcon?: boolean;
-    };
+import { useAccordionContext } from 'components/useAccordion';
+
+import { accordionStyle } from './styles';
+
+type BaseType = HTMLAttributes<HTMLHeadingElement> & CustomCSSType;
+
+export type AccordionHeaderType = BaseType & {
+    children: ReactNode;
+    index: number;
+    icon?: ReactNode;
+    hasIcon?: boolean;
+};
 
 /**
  *  [UI Component] Accordion Header Component
@@ -27,7 +28,7 @@ export type AccordionHeaderType = HTMLAttributes<HTMLHeadingElement> &
  *  @returns JSX.Element
  */
 export default function AccordionHeader(props: AccordionHeaderType) {
-    const { children, index, hasIcon = true, icon, customCSS = {}, ...rest } = props;
+    const { children, index, hasIcon = true, icon, customCSS, ...rest } = props;
     const { isExpanded, onChange } = useAccordionContext();
 
     return (
@@ -54,7 +55,12 @@ export default function AccordionHeader(props: AccordionHeaderType) {
                     {children}
                     {hasIcon && (
                         <span
-                            css={css([accordionStyle.icon, { transform: isExpanded ? 'rotate(180deg)' : 'initial' }])}
+                            css={css([
+                                accordionStyle.icon,
+                                {
+                                    transform: isExpanded ? 'rotate(180deg)' : 'initial'
+                                }
+                            ])}
                         >
                             {icon ?? <ChevronDownIcon />}
                         </span>

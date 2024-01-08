@@ -6,9 +6,9 @@ export const accordionStyle = {
         minWidth: 250,
         width: '100%',
         minHeight: 60,
-        border: '1px solid #eeeeee',
+        border: `1px solid ${palette.gray['100']}`,
         borderRadius: 4,
-        backgroundColor: palette.primary.main
+        backgroundColor: palette.primary['600']
     }),
     button: css({
         width: '100%',
@@ -23,9 +23,9 @@ export const accordionStyle = {
         fontSize: 18,
         fontWeight: 600,
         lineHeight: 1.5,
-        color: '#ffffff',
+        color: palette.neutral.white,
         '& *': {
-            color: '#ffffff',
+            color: palette.neutral.white,
             fontSize: 18,
             fontWeight: 600,
             lineHeight: 1.5
@@ -40,7 +40,7 @@ export const accordionStyle = {
         }
     }),
     panel: css({
-        backgroundColor: '#ffffff',
+        backgroundColor: palette.neutral.white,
         borderBottomLeftRadius: 4,
         borderBottomRightRadius: 4,
         marginTop: -1,
