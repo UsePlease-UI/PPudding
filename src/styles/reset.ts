@@ -22,7 +22,7 @@ const reset = css`
             'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        font-size: 14px;
+        font-size: 16px;
         line-height: 1.5;
         color: #000000;
         background-color: #145cb1;
