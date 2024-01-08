@@ -1,17 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import palette from 'styles/palette';
-
-const itemStyle = css({
-    padding: 10,
-    borderBottom: '1px solid #eeeeee',
-    '&:last-of-type': {
-        borderBottom: 0
-    },
-    '&:hover': {
-        background: palette.lightBlue.main
-    }
-});
+import { dragNDropStyle } from './styles';
 
 export type ListItemType = {
     idx: number;
@@ -34,7 +22,7 @@ export default function DragNDropListItem(props: DragNDropListItemType) {
                 return (
                     <li
                         key={el.idx}
-                        css={itemStyle}
+                        css={dragNDropStyle.listItem}
                         draggable
                         onDragStart={(e) => {
                             if (onDragStart) {
