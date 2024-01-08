@@ -1,26 +1,19 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import { Children, ReactElement, ReactNode, cloneElement } from 'react';
 
 import { css } from '@emotion/react';
-import { CSSInterpolation } from '@emotion/serialize';
-import palette from 'styles/palette';
+import type { CustomCSSType } from 'styles/types';
 
 import FlexBox from 'components/Base/FlexBox';
 import { TabProvider } from 'components/useTab';
 
-type TabType = {
-    children: React.ReactNode;
+import { tabStyle } from './styles';
+
+type TabType = CustomCSSType & {
+    children: ReactNode;
     value: number;
     onChange: (newValue: number) => void;
-    customCSS?: CSSInterpolation;
 };
-
-const tabListStyle = css({
-    width: '100%',
-    minHeight: 80,
-    backgroundColor: '#fbfbfb',
-    borderBottom: `1px solid ${palette.gray['100']}`
-});
 
 /**
  *  [UI Component] Tab Component
@@ -35,16 +28,10 @@ export default function Tab(props: TabType) {
 
     return (
         <TabProvider value={value} onChange={onChange}>
-            <div {...rest} role="tablist" css={css([tabListStyle, customCSS])}>
-                <FlexBox
-                    justifyContent="space-evenly"
-                    alignItems="center"
-                    customCSS={{ width: '100%', height: '100%' }}
-                >
+            <div {...rest} role="tablist" css={css([tabStyle.tabList, customCSS])}>
+                <FlexBox justifyContent="space-evenly" alignItems="center" customCSS={tabStyle.tabContainer}>
                     {/* https://fe-developers.kakaoent.com/2021/211022-react-children-tip/ */}
-                    {React.Children.toArray(children).map((child) =>
-                        React.cloneElement(child as React.ReactElement, { onChange })
-                    )}
+                    {Children.toArray(children).map((child) => cloneElement(child as ReactElement, { onChange }))}
                 </FlexBox>
             </div>
         </TabProvider>

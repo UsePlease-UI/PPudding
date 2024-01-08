@@ -1,26 +1,19 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import { ReactNode, TdHTMLAttributes, ThHTMLAttributes } from 'react';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
+import type { CustomCSSType } from 'styles/types';
 
-type TableCellType = React.ThHTMLAttributes<HTMLTableCellElement> &
-    React.TdHTMLAttributes<HTMLTableCellElement> & {
-        children: string | React.ReactNode;
-        component?: 'th' | 'td';
-        customCSS?: CSSInterpolation;
-    };
+import { tableStyle } from './styles';
 
-const tableCellStyle = css({
-    display: 'table-cell',
-    height: '100%',
-    padding: '8px 10px',
-    fontSize: 14,
-    lineHeight: 1.5,
-    fontWeight: 400
-});
+type BaseType = ThHTMLAttributes<HTMLTableCellElement> & TdHTMLAttributes<HTMLTableCellElement> & CustomCSSType;
 
-const textStyle = css({ fontWeight: 600 });
+type TableCellType = BaseType & {
+    children: string | ReactNode;
+    component?: 'th' | 'td';
+    customCSS?: CSSInterpolation;
+};
 
 /**
  *  [UI Component] Table Cell Component
@@ -33,11 +26,11 @@ export default function TableCell(props: TableCellType) {
     const { children, component = 'td', customCSS, ...rest } = props;
 
     return component === 'td' ? (
-        <td {...rest} css={css([tableCellStyle, customCSS])}>
+        <td {...rest} css={css([tableStyle.tableCell, customCSS])}>
             {children}
         </td>
     ) : (
-        <th {...rest} css={css([tableCellStyle, textStyle, customCSS])}>
+        <th {...rest} css={css([tableStyle.tableCell, tableStyle.text, customCSS])}>
             {children}
         </th>
     );

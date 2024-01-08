@@ -1,27 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
 import { css } from '@emotion/react';
-import { CSSInterpolation } from '@emotion/serialize';
-import palette from 'styles/palette';
+import type { CustomCSSType } from 'styles/types';
 
-type TableHeadType = React.HTMLAttributes<HTMLTableSectionElement> & {
-    children: React.ReactNode;
-    customCSS?: CSSInterpolation;
+import { tableStyle } from './styles';
+
+type BaseType = HTMLAttributes<HTMLTableSectionElement> & CustomCSSType;
+
+type TableHeadType = BaseType & {
+    children: ReactNode;
 };
-
-const tableHeadStyle = css({
-    display: 'table-header-group',
-    verticalAlign: 'middle',
-    backgroundColor: '#fafafa',
-    borderBottom: `1px solid ${palette.gray['100']}`,
-    '& tr th': {
-        padding: '12px'
-    },
-    '&:hover tr': {
-        backgroundColor: 'inherit'
-    }
-});
 
 /**
  *  [UI Component] Table Head Component
@@ -32,5 +21,5 @@ const tableHeadStyle = css({
 export default function TableHead(props: TableHeadType) {
     const { children, customCSS } = props;
 
-    return <thead css={css([tableHeadStyle, customCSS])}>{children}</thead>;
+    return <thead css={css([tableStyle.tableHead, customCSS])}>{children}</thead>;
 }

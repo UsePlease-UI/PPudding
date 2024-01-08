@@ -1,17 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import { ReactNode } from 'react';
 
 import { css } from '@emotion/react';
-import { CSSInterpolation } from '@emotion/serialize';
+import { CustomCSSType } from 'styles';
 
-type TabPanelType = {
-    children: React.ReactNode;
+import { tabStyle } from './styles';
+
+type TabPanelType = CustomCSSType & {
+    children: ReactNode;
     value: number;
     index: number;
-    customCSS?: CSSInterpolation;
 };
-
-const panelStyle = css({ width: '100%', height: '100%', minHeight: 250, padding: 20 });
 
 /**
  *  [UI Component] Tab Panel Component
@@ -25,7 +24,7 @@ export default function TabPanel(props: TabPanelType) {
     const { children, value, index, customCSS } = props;
 
     return (
-        <div css={css([panelStyle, customCSS])} role="tabpanel" hidden={value !== index}>
+        <div css={css([tabStyle.panel, customCSS])} role="tabpanel" hidden={value !== index}>
             {children}
         </div>
     );

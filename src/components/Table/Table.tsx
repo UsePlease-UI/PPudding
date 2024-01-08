@@ -1,23 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import { ReactNode, TableHTMLAttributes } from 'react';
 
 import { css } from '@emotion/react';
-import { CSSInterpolation } from '@emotion/serialize';
-import palette from 'styles/palette';
+import type { CustomCSSType } from 'styles/types';
 
-type TableType = React.TableHTMLAttributes<HTMLTableElement> & {
-    children: React.ReactNode;
-    customCSS?: CSSInterpolation;
+import { tableStyle } from './styles';
+
+type BaseType = TableHTMLAttributes<HTMLTableElement> & CustomCSSType;
+
+type TableType = BaseType & {
+    children: ReactNode;
 };
-
-const tableStyle = css({
-    width: '100%',
-    height: '100%',
-    display: 'table',
-    backgroundColor: palette.neutral.white,
-    borderCollapse: 'collapse',
-    border: `1px solid ${palette.gray['100']}`
-});
 
 /**
  *  [UI Component] Table Component
@@ -29,7 +22,7 @@ export default function Table(props: TableType) {
     const { children, customCSS, ...rest } = props;
 
     return (
-        <table {...rest} css={css([tableStyle, customCSS])}>
+        <table {...rest} css={css([tableStyle.table, customCSS])}>
             {children}
         </table>
     );
