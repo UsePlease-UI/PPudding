@@ -8,35 +8,30 @@ export const chipStyle = {
         alignItems: 'center',
         gap: 8,
         borderRadius: 999,
-        border: `1px solid ${palette.primary.main}`,
-        color: '#000000',
-        backgroundColor: '#ffffff'
-    }),
-    label: css({
-        fontSize: 14,
-        lineHeight: 1.5,
-        fontWeight: 500
+        border: `1px solid ${palette.primary['600']}`,
+        color: palette.neutral.black,
+        backgroundColor: palette.neutral.white
     }),
     button: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         cursor: 'pointer',
-        border: `1px solid ${palette.primary.main}`,
+        border: `1px solid ${palette.primary['600']}`,
         borderRadius: 999,
         padding: 5,
-        backgroundColor: '#ffffff',
+        backgroundColor: palette.neutral.white,
         '&:hover': {
-            backgroundColor: palette.primary.main,
+            backgroundColor: palette.primary['600'],
             '& svg': {
-                color: '#ffffff'
+                color: palette.neutral.white
             }
         },
         '& svg': {
             height: 12,
             width: 12,
             strokeWidth: 4,
-            color: palette.primary.main
+            color: palette.primary['600']
         }
     }
 };

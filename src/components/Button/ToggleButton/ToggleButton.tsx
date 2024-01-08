@@ -1,13 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import React, { ChangeEvent, ReactNode } from 'react';
 
+import { css } from '@emotion/react';
+import { visuallyHidden, CustomCSSType, palette } from 'styles';
+
 import Typography from 'components/Base/Typography';
 
 import { toggleButtonStyle } from './styles';
-
-import { css } from '@emotion/react';
-import { visuallyHidden } from 'styles/common';
-import type { CustomCSSType } from 'styles/types';
 
 type ToggleButtonType = CustomCSSType & {
     children: ReactNode;
@@ -25,7 +24,7 @@ type ToggleButtonType = CustomCSSType & {
  *  @returns JSX.Element
  */
 const ToggleButton = React.forwardRef<HTMLInputElement, ToggleButtonType>(function createToggleButton(
-    { name, currentValue, value, onChange, children, customCSS = {}, ...props },
+    { name, currentValue, value, onChange, children, customCSS, ...props },
     ref
 ) {
     return (
@@ -41,7 +40,18 @@ const ToggleButton = React.forwardRef<HTMLInputElement, ToggleButtonType>(functi
                 checked={value === currentValue}
                 css={visuallyHidden}
             />
-            <Typography component="span" customCSS={toggleButtonStyle.labelText}>
+
+            <Typography
+                component="span"
+                height="inherit"
+                fontSize={14}
+                fontWeight="500"
+                lineHeight="inherit"
+                align="center"
+                color={palette.neutral.black}
+                textTransform="uppercase"
+                customCSS={toggleButtonStyle.labelText}
+            >
                 {children}
             </Typography>
         </label>

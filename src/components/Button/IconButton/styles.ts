@@ -33,49 +33,49 @@ export const iconButtonStyle = {
         }
     }),
     outlined: css({
-        color: palette.primary.main,
-        backgroundColor: '#ffffff',
-        border: `1px solid ${palette.primary.main}`,
+        color: palette.primary['600'],
+        backgroundColor: palette.neutral.white,
+        border: `1px solid ${palette.primary['600']}`,
         '&:hover': {
-            color: '#ffffff',
-            border: `1px solid ${palette.primary.main}`,
-            backgroundColor: palette.lightBlue.main
+            color: palette.neutral.white,
+            border: `1px solid ${palette.primary['600']}`,
+            backgroundColor: palette.tertiary['400']
         },
         '&:focus': {
-            border: `1px solid ${palette.secondary.main}`,
-            backgroundColor: palette.primary.main
+            border: `1px solid ${palette.secondary['600']}`,
+            backgroundColor: palette.primary['600']
         },
         '&:disabled': {
-            border: '1px solid #eeeeee',
+            border: `1px solid ${palette.gray['100']}`,
             backgroundColor: '#f4f4f4'
         }
     }),
     contained: css({
-        color: palette.secondary.main,
-        backgroundColor: palette.lightBlue.main,
-        border: `1px solid ${palette.lightBlue.main}`,
+        color: palette.secondary['600'],
+        backgroundColor: palette.tertiary['400'],
+        border: `1px solid ${palette.tertiary['400']}`,
         '&:hover': {
-            color: '#ffffff',
-            backgroundColor: palette.primary.main
+            color: palette.neutral.white,
+            backgroundColor: palette.primary['600']
         },
         '&:focus': {
-            border: `1px solid ${palette.secondary.main}`,
-            backgroundColor: palette.secondary.main
+            border: `1px solid ${palette.secondary['600']}`,
+            backgroundColor: palette.secondary['600']
         },
         '&:disabled': {
-            border: '1px solid #eeeeee',
+            border: `1px solid ${palette.gray['100']}`,
             backgroundColor: '#145cb1b3'
         }
     }),
     text: css({
-        color: '#000000',
+        color: palette.neutral.black,
         border: '1px solid #e6e6e6',
-        backgroundColor: '#ffffff',
+        backgroundColor: palette.neutral.white,
         '&:hover': {
             border: '1px solid #cccccc'
         },
         '&:focus': {
-            border: '1px solid #000000'
+            border: `1px solid ${palette.neutral.black}`
         },
         '&:disabled': {
             color: '#cccccc',

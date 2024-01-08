@@ -1,24 +1,25 @@
 /** @jsxImportSource @emotion/react */
 import { ButtonHTMLAttributes, MouseEvent, ReactNode } from 'react';
 
+import { css } from '@emotion/react';
+import type { CustomCSSType } from 'styles/types';
+
 import FlexBox from 'components/Base/FlexBox';
 
 import { SizeType, VariantType, buttonStyle, getSizeStyle, getVariantStyle } from './styles';
 
-import { css } from '@emotion/react';
-import type { CustomCSSType } from 'styles/types';
+type BaseType = ButtonHTMLAttributes<HTMLButtonElement> & CustomCSSType;
 
-type ButtonType = ButtonHTMLAttributes<HTMLButtonElement> &
-    CustomCSSType & {
-        children: ReactNode;
-        hasStartIcon?: boolean;
-        hasEndIcon?: boolean;
-        icon?: ReactNode;
-        size?: SizeType;
-        variant?: VariantType;
-        isDisabled?: boolean;
-        onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
-    };
+type ButtonType = BaseType & {
+    children: ReactNode;
+    hasStartIcon?: boolean;
+    hasEndIcon?: boolean;
+    icon?: ReactNode;
+    size?: SizeType;
+    variant?: VariantType;
+    isDisabled?: boolean;
+    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+};
 
 /**
  *  [UI Component] Button Component

@@ -1,19 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import { ButtonHTMLAttributes, MouseEvent, ReactNode } from 'react';
 
-import { SizeType, VariantType, getSizeStyle, getVariantStyle, iconButtonStyle } from './styles';
-
 import { css } from '@emotion/react';
 import type { CustomCSSType } from 'styles/types';
 
-type IconButtonType = ButtonHTMLAttributes<HTMLButtonElement> &
-    CustomCSSType & {
-        children: ReactNode;
-        size?: SizeType;
-        variant?: VariantType;
-        isDisabled?: boolean;
-        onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
-    };
+import { SizeType, VariantType, getSizeStyle, getVariantStyle, iconButtonStyle } from './styles';
+
+type BaseType = ButtonHTMLAttributes<HTMLButtonElement> & CustomCSSType;
+
+type IconButtonType = BaseType & {
+    children: ReactNode;
+    size?: SizeType;
+    variant?: VariantType;
+    isDisabled?: boolean;
+    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+};
 
 /**
  *  [UI Component] Icon Button

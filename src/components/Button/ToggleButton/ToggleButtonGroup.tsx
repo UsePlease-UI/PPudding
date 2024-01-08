@@ -1,8 +1,8 @@
 import { ChangeEvent, Children, ReactElement, ReactNode, cloneElement } from 'react';
 
-import FlexBox from 'components/Base/FlexBox';
-
 import type { CustomCSSType } from 'styles/types';
+
+import FlexBox from 'components/Base/FlexBox';
 
 type ToggleButtonGroupType = CustomCSSType & {
     children: ReactNode;
@@ -18,7 +18,7 @@ type ToggleButtonGroupType = CustomCSSType & {
  *  @param customCSS 커스텀 CSS [optional]
  *  @returns JSX.Element
  */
-export default function ToggleButtonGroup({ children, value, onChange, customCSS = {} }: ToggleButtonGroupType) {
+export default function ToggleButtonGroup({ children, value, onChange, customCSS }: ToggleButtonGroupType) {
     return (
         <FlexBox role="radiogroup" customCSS={customCSS}>
             {Children.toArray(children).map((child) =>
