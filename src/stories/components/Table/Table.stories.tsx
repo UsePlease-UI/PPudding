@@ -1,9 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import Table from 'components/Table/Table';
-import TableBody from 'components/Table/TableBody';
-import TableCell from 'components/Table/TableCell';
-import TableHead from 'components/Table/TableHead';
-import TableRow from 'components/Table/TableRow';
+import { Table, TableBody, TableCell, TableHead, TableRow } from 'components/Table';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

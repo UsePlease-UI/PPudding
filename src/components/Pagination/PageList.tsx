@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-
 import { css } from '@emotion/react';
 import {
     ChevronDoubleLeftIcon,
@@ -25,6 +24,7 @@ type pageListType = {
     handleLastClick: () => void;
 };
 
+// TODO: styles.ts로 파일 분리
 const ulStyle = css({
     display: 'flex',
     flexDirection: 'row',
@@ -32,6 +32,7 @@ const ulStyle = css({
     flexWrap: 'wrap'
 });
 
+// TODO: styles.ts로 파일 분리
 const listStyle = css({
     width: 32,
     height: 32,

@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { ChangeEvent, ReactNode } from 'react';
+import { ChangeEvent, ReactNode, forwardRef } from 'react';
 
 import { css } from '@emotion/react';
 import { visuallyHidden, CustomCSSType, palette } from 'styles';
@@ -25,14 +25,12 @@ type ToggleButtonType = CustomCSSType & {
  *  @param customCSS 커스텀 CSS [optional]
  *  @returns JSX.Element
  */
-const ToggleButton = React.forwardRef<HTMLInputElement, ToggleButtonType>(function createToggleButton(
-    { name, currentValue, value, onChange, children, customCSS, ...props },
-    ref
-) {
+const ToggleButton = forwardRef<HTMLInputElement, ToggleButtonType>(function createToggleButton(props, ref) {
+    const { name, currentValue, value, onChange, children, customCSS, ...rest } = props;
     return (
         <label htmlFor={`${name}-${value}`} css={css([toggleButtonStyle.label, customCSS])}>
             <input
-                {...props}
+                {...rest}
                 id={`${name}-${value}`}
                 ref={ref}
                 type="radio"
@@ -42,7 +40,6 @@ const ToggleButton = React.forwardRef<HTMLInputElement, ToggleButtonType>(functi
                 checked={value === currentValue}
                 css={visuallyHidden}
             />
-
             <Typography
                 component="span"
                 height="inherit"

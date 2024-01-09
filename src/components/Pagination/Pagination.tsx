@@ -5,6 +5,7 @@ import { CSSInterpolation } from '@emotion/serialize';
 
 import PageList from 'components/Pagination/PageList';
 
+// TODO: styles.ts로 파일 분리
 const navStyle = css({
     display: 'flex',
     flexDirection: 'row',
@@ -24,6 +25,16 @@ type PaginationType = {
 
 const PAGE_LIMIT = 10;
 
+// TODO: 문서
+/**
+ *  [UI Component] Pagination Component
+ *  @param totalCount
+ *  @param page
+ *  @param blockNum
+ *  @param onChange
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
 export default function Pagination({ totalCount, page, blockNum, onChange, customCSS }: PaginationType) {
     const pageMaxCount = Math.ceil(totalCount / 10);
 

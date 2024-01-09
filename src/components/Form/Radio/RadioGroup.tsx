@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { ChangeEvent, Children, ReactElement, ReactNode, cloneElement } from 'react';
 
-import { CustomCSSType } from 'styles';
+import type { CustomCSSType } from 'styles/types';
 
 import FlexBox from 'components/Base/FlexBox';
 

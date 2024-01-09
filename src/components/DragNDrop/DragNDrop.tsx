@@ -15,6 +15,17 @@ type DragNDropType = {
     onDrop?: (event: DragEvent<HTMLLIElement>, targetItem: ListItemType) => void;
 };
 
+// TODO:
+/**
+ *  [UI Component] Drag and Drop Component
+ *  @param title
+ *  @param render
+ *  @param items
+ *  @param onDragStart
+ *  @param onDragOver
+ *  @param onDrop
+ *  @returns JSX.Element
+ */
 export default function DragNDrop(props: DragNDropType) {
     const { title, items, render, ...rest } = props;
 

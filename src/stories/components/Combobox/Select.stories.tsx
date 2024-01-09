@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import Select from 'components/Combobox/Select';
 
-import { OPTIONS } from './constants';
+import { OPTIONS } from '../constants';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

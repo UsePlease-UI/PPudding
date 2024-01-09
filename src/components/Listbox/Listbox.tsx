@@ -18,7 +18,6 @@ type ListboxType = {
     onClick: (e: MouseEvent<HTMLButtonElement>) => void;
 };
 
-// TODO: List Component
 const Listbox = ({ id, labelId, name, value, options, onClick }: ListboxType) => (
     <ul id={id} role="listbox" aria-labelledby={labelId} tabIndex={-1} css={listBoxStyle.list}>
         {options.map((option) => (

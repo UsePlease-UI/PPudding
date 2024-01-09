@@ -2,7 +2,7 @@
 import { ReactNode } from 'react';
 
 import { css } from '@emotion/react';
-import { CustomCSSType } from 'styles';
+import type { CustomCSSType } from 'styles/types';
 
 import { tabStyle } from './styles';
 

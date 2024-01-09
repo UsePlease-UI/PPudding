@@ -4,7 +4,8 @@ import { ButtonHTMLAttributes, MouseEvent, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import type { CustomCSSType } from 'styles/types';
 
-import { SizeType, VariantType, getSizeStyle, getVariantStyle, iconButtonStyle } from './styles';
+import { getSizeStyle, iconButtonStyle } from './styles';
+import { SizeType, VariantType, getVariantStyle } from '../styles';
 
 type BaseType = ButtonHTMLAttributes<HTMLButtonElement> & CustomCSSType;
 

@@ -1,9 +1,6 @@
 import { css } from '@emotion/react';
 
-import { buttonStyle } from '../Button/styles';
-
-export type SizeType = 'large' | 'medium' | 'small' | '';
-export type VariantType = 'outlined' | 'contained' | 'text' | '';
+import { SizeType } from '../styles';
 
 export const iconButtonStyle = {
     iconButton: css({
@@ -43,19 +40,6 @@ export function getSizeStyle(size: SizeType) {
             return iconButtonStyle.medium;
         case 'small':
             return iconButtonStyle.small;
-        default:
-            return {};
-    }
-}
-
-export function getVariantStyle(variant: VariantType) {
-    switch (variant) {
-        case 'outlined':
-            return buttonStyle.outlined;
-        case 'contained':
-            return buttonStyle.contained;
-        case 'text':
-            return buttonStyle.text;
         default:
             return {};
     }

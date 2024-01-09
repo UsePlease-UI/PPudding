@@ -1,10 +1,15 @@
 import { useState } from 'react';
 
-import Accordion from 'components/Accordion/Accordion';
-import AccordionHeader, { AccordionHeaderType } from 'components/Accordion/AccordionHeader';
-import AccordionPanel, { AccordionPanelType } from 'components/Accordion/AccordionPanel';
-import { Default as AccordionHeaderDefault } from 'stories/components/AccordionHeader.stories';
-import { Default as AccordionPanelDefault } from 'stories/components/AccordionPanel.stories';
+import {
+    Accordion,
+    AccordionHeader,
+    AccordionHeaderType,
+    AccordionPanel,
+    AccordionPanelType
+} from 'components/Accordion';
+
+import { Default as AccordionHeaderDefault } from './AccordionHeader.stories';
+import { Default as AccordionPanelDefault } from './AccordionPanel.stories';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

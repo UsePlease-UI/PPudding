@@ -6,7 +6,8 @@ import type { CustomCSSType } from 'styles/types';
 
 import FlexBox from 'components/Base/FlexBox';
 
-import { SizeType, VariantType, buttonStyle, getSizeStyle, getVariantStyle } from './styles';
+import { buttonStyle, getSizeStyle } from './styles';
+import { SizeType, VariantType, getVariantStyle } from '../styles';
 
 type BaseType = ButtonHTMLAttributes<HTMLButtonElement> & CustomCSSType;
 
@@ -67,7 +68,7 @@ export default function Button(props: ButtonType) {
             {hasStartIcon || hasEndIcon ? (
                 <FlexBox gap={4} justifyContent="flex-start" alignItems="center">
                     {hasStartIcon && <span css={buttonStyle.startIcon}>{icon}</span>}
-                    <div css={css({ textAlign: 'center' })}>{children}</div>
+                    <div css={buttonStyle.container}>{children}</div>
                     {hasEndIcon && <span css={buttonStyle.endIcon}>{icon}</span>}
                 </FlexBox>
             ) : (

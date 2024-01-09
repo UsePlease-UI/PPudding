@@ -5,7 +5,7 @@ import _ from 'lodash';
 import FlexBox from 'components/Base/FlexBox';
 import AutoComplete from 'components/Combobox/AutoComplete';
 
-import { AUTOCOMPLETE } from './constants';
+import { AUTOCOMPLETE } from '../constants';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

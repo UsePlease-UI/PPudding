@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-
-import React, { useRef, useEffect, useState, ChangeEvent } from 'react';
+import { useRef, useEffect, useState, ChangeEvent, Fragment } from 'react';
 
 import { css } from '@emotion/react';
 import palette from 'styles/palette';
@@ -22,6 +21,7 @@ type AutoCompleteType = {
     listArr: ListType[];
 };
 
+// TODO: styles.ts 파일 분리
 const flexBoxCustom = css({
     maxWidth: 200,
     height: 40,
@@ -31,12 +31,14 @@ const flexBoxCustom = css({
     padding: 10
 });
 
+// TODO: styles.ts 파일 분리
 const inputStyle = css({
     width: '100%',
     height: '100%',
     border: 0
 });
 
+// TODO: styles.ts 파일 분리
 const listItemStyle = css({
     width: '100%',
     minWidth: 120,
@@ -59,16 +61,28 @@ const listItemStyle = css({
     }
 });
 
+// TODO: styles.ts 파일 분리
 const ulStyle = css({
     maxWidth: 200,
     display: 'block',
     background: 'white',
     borderRadius: 4,
-    border: '1px solid #e0e0e0',
+    border: '1px solid #e0e0e0', // TODO: palette 색상으로 변경
     boxSizing: 'border-box',
     padding: '10px 0'
 });
 
+// TODO: 문서
+/**
+ *  [UI Component] AutoComplete Component
+ *  @param inputValue
+ *  @param label
+ *  @param label
+ *  @param onChange
+ *  @param onSelect
+ *  @param listArr
+ *  @returns JSX.Element
+ */
 export default function AutoComplete(props: AutoCompleteType) {
     const { inputValue, onChange, label, listArr, onSelect } = props;
     const listRef = useRef<HTMLUListElement | null>(null);
@@ -140,7 +154,7 @@ export default function AutoComplete(props: AutoCompleteType) {
                                             <span css={css({ color: 'hotPink', fontWeight: 700 })}>{letter}</span>
                                         ) : (
                                             // eslint-disable-next-line react/no-array-index-key
-                                            <React.Fragment key={`letter-${idx}`}>{letter}</React.Fragment>
+                                            <Fragment key={`letter-${idx}`}>{letter}</Fragment>
                                         )
                                     )}
                                 </button>

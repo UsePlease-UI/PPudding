@@ -22,7 +22,10 @@ export default function ToggleButtonGroup({ children, value, onChange, customCSS
     return (
         <FlexBox role="radiogroup" customCSS={customCSS}>
             {Children.toArray(children).map((child) =>
-                cloneElement(child as ReactElement, { currentValue: value, onChange })
+                cloneElement(child as ReactElement, {
+                    currentValue: value,
+                    onChange
+                })
             )}
         </FlexBox>
     );

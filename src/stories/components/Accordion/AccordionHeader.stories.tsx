@@ -1,5 +1,4 @@
-import Accordion from 'components/Accordion/Accordion';
-import AccordionHeader from 'components/Accordion/AccordionHeader';
+import { Accordion, AccordionHeader } from 'components/Accordion';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
