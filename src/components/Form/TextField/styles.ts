@@ -17,17 +17,24 @@ export const textfieldStyle = {
             lineHeight: 1.5,
             letterSpacing: 0,
             height: 40,
-            border: `1px solid ${palette.gray['100']}`,
+            border: `1px solid ${palette.gray[100]}`,
             padding: '10px 12px',
             borderRadius: 4,
             '&:active, &:focus, &:hover': {
-                border: `1px solid ${palette.primary['600']}`
+                border: `1px solid ${palette.primary[600]}`
             },
             '&:disabled': {
                 color: 'rgba(0,0,0,0.5)',
-                border: '1px solid grey',
-                backgroundColor: palette.gray['100']
+                border: `1px solid ${palette.gray[600]}`,
+                backgroundColor: palette.gray[100]
             }
         }
-    ])
+    ]),
+    readOnly: css({
+        '&&': {
+            pointerEvents: 'none',
+            border: `1px solid ${palette.gray[500]}`,
+            backgroundColor: palette.gray[100]
+        }
+    })
 };

@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { useState, useRef } from 'react';
 
-
 import { css } from '@emotion/react';
 import palette from 'styles/palette';
 
@@ -49,8 +48,8 @@ type Story = StoryObj<typeof PopOver>;
 const popoverStyle = css({
     height: 30,
     fontWeight: 700,
-    color: `${palette.tertiary['400']}`,
-    border: `1px solid ${palette.tertiary['400']}`,
+    color: `${palette.tertiary[400]}`,
+    border: `1px solid ${palette.tertiary[400]}`,
     borderRadius: 4,
     padding: '5px 12px'
 });

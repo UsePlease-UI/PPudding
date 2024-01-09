@@ -7,7 +7,6 @@ import Typography from 'components/Base/Typography';
 import Button from 'components/Button/Button';
 import useMobile from 'hooks/useMobile';
 
-
 const SIZE = ['small', 'medium', 'large'] as const;
 type SizeType = 'small' | 'medium' | 'large';
 

@@ -11,12 +11,12 @@ export const dragNDropStyle = {
     }),
     listItem: css({
         padding: 10,
-        borderBottom: `1px solid ${palette.gray['100']}`,
+        borderBottom: `1px solid ${palette.gray[100]}`,
         '&:last-of-type': {
             borderBottom: 0
         },
         '&:hover': {
-            background: palette.tertiary['400']
+            background: palette.tertiary[400]
         }
     })
 };

@@ -12,7 +12,7 @@ import { getComponents } from './examples/utils';
 
 const layoutStyle = css({
     margin: '0 auto',
-    backgroundColor: palette.primary['600']
+    backgroundColor: palette.primary[600]
 });
 
 const mainStyle = css({

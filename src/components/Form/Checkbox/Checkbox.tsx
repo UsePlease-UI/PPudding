@@ -50,8 +50,8 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function createCheck
                     css={css([
                         checkboxStyle.checked,
                         {
-                            border: checkedIcon ? 0 : `1px solid ${palette.gray['100']}`,
-                            backgroundColor: checkedIcon ? 'transparent' : palette.tertiary['400']
+                            border: checkedIcon ? 0 : `1px solid ${palette.gray[100]}`,
+                            backgroundColor: checkedIcon ? 'transparent' : palette.primary[400]
                         }
                     ])}
                 >

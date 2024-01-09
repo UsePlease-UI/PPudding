@@ -6,7 +6,6 @@ import FlexBox from 'components/Base/FlexBox';
 import FormControl from 'components/Form/FormControl';
 import TextField from 'components/Form/TextField';
 
-
 export default function TextFieldExample() {
     const [name, setName] = useState('');
 
@@ -20,7 +19,7 @@ export default function TextFieldExample() {
                     maxLength={10}
                     onChange={(e) => setName(e.currentTarget.value)}
                     customCSS={{
-                        borderColor: palette.secondary['600'],
+                        borderColor: palette.secondary[600],
                         '@media (max-width: 425px)': {
                             minWidth: 0,
                             width: '100%'

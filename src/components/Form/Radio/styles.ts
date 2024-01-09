@@ -32,15 +32,15 @@ export const radioStyle = {
         width: 16,
         height: 16,
         borderRadius: 999,
-        border: `1px solid ${palette.gray['100']}`,
-        backgroundColor: palette.primary['600']
+        border: `1px solid ${palette.gray[100]}`,
+        backgroundColor: palette.primary[600]
     }),
     radio: css({
         display: 'inline-block',
         width: 16,
         height: 16,
         borderRadius: 999,
-        border: `1px solid ${palette.gray['100']}`,
+        border: `1px solid ${palette.gray[100]}`,
         backgroundColor: palette.neutral.white
     }),
     labelText: css({

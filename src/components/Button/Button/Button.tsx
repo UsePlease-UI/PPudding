@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { ButtonHTMLAttributes, MouseEvent, ReactNode } from 'react';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 
 import { css } from '@emotion/react';
 import type { CustomCSSType } from 'styles/types';
@@ -18,7 +18,6 @@ type ButtonType = BaseType & {
     size?: SizeType;
     variant?: VariantType;
     isDisabled?: boolean;
-    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 };
 
 /**
@@ -31,7 +30,6 @@ type ButtonType = BaseType & {
  *  @param size 버튼 크기 ('' | large | medium | small) [optional]
  *  @param variant 버튼 스타일 ('' | outlined | contained | text) [optional]
  *  @param isDisabled 활성화여부 [optional]
- *  @param onClick Click Event Handler [optional]
  *  @param customCSS 커스텀 CSS [optional]
  *  @returns JSX.Element
  */

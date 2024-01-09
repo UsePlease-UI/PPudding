@@ -6,7 +6,6 @@ import { StarIcon } from '@heroicons/react/24/outline';
 import Tab from 'components/Tab/Tab';
 import TabItem from 'components/Tab/TabItem';
 
-
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {

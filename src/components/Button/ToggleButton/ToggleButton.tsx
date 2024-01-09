@@ -18,8 +18,10 @@ type ToggleButtonType = CustomCSSType & {
 
 /**
  *  [UI Component] Toggle Button Component
- *  @param name ToggleButton 이름
- *  @param value ToggleButton 값
+ *  @param children 컴포넌트
+ *  @param name Toggle Button 이름
+ *  @param value Toggle Button 값
+ *  @param value 현재 선택된 Toggle Button 값
  *  @param customCSS 커스텀 CSS [optional]
  *  @returns JSX.Element
  */

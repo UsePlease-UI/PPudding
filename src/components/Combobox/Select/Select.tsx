@@ -3,10 +3,10 @@ import { InputHTMLAttributes, MouseEvent, useEffect, useRef, useState } from 're
 
 import { css } from '@emotion/react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import { CustomCSSType } from 'styles';
+import type { CustomCSSType } from 'styles/types';
 
 import Backdrop from 'components/Base/Backdrop';
-import ListBox from 'components/Listbox/Listbox';
+import ListBox from 'components/Listbox';
 
 import { AVG_OPTION_HEIGHT, MAX_MENU_HEIGHT, MIN_OFFSET, selectStyle } from './styles';
 
@@ -43,8 +43,8 @@ export default function Select(props: SelectType) {
         label,
         value,
         options = [],
-        isDisabled = false,
-        isReadOnly = false,
+        isDisabled,
+        isReadOnly,
         onChange,
         customCSS,
         ...rest
@@ -115,12 +115,7 @@ export default function Select(props: SelectType) {
                 css={css([
                     selectStyle.button,
                     {
-                        ...(isReadOnly && {
-                            '&&': {
-                                border: '1px solid #e0e0e0',
-                                backgroundColor: '#f4f4f4'
-                            }
-                        })
+                        ...(isReadOnly && selectStyle.buttonReadOnly)
                     },
                     css(customCSS)
                 ])}

@@ -16,7 +16,7 @@ const headerStyle = css({
     zIndex: 1,
     height: 80,
     borderBottom: `1px dashed ${palette.neutral.white}`,
-    backgroundColor: palette.primary['600'],
+    backgroundColor: palette.primary[600],
     padding: '0 20px',
     display: 'flex',
     justifyContent: 'space-between',
@@ -39,7 +39,7 @@ const svgTextStyle = css({
     fontFamily: 'monospace',
     fontSize: 70,
     letterSpacing: -5,
-    stroke: palette.secondary['600'],
+    stroke: palette.secondary[600],
     strokeWidth: 2,
     strokeDasharray: 350,
     animation: `${stroke} 3s infinite`,
@@ -69,9 +69,9 @@ const Header = ({ show, onClick }: HeaderType) => {
                 type="button"
                 onClick={onClick}
                 customCSS={{
-                    color: !show ? palette.neutral.white : palette.primary['600'],
-                    backgroundColor: !show ? palette.secondary['600'] : palette.neutral.white,
-                    border: `1px dashed ${!show ? palette.neutral.white : palette.secondary['600']}`,
+                    color: !show ? palette.neutral.white : palette.primary[600],
+                    backgroundColor: !show ? palette.secondary[600] : palette.neutral.white,
+                    border: `1px dashed ${!show ? palette.neutral.white : palette.secondary[600]}`,
                     padding: 2,
                     display: 'flex',
                     alignItems: 'center',

@@ -17,7 +17,7 @@ const asideStyle = css({
     top: 80,
     left: 0,
     borderRight: `1px dashed ${palette.neutral.white}`,
-    backgroundColor: palette.primary['600'],
+    backgroundColor: palette.primary[600],
     display: 'flex',
     alignItems: 'flex-start',
     '@media (max-width: 768px)': {

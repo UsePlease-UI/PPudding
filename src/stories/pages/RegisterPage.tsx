@@ -59,7 +59,7 @@ const buttonCustomCSS = {
     '&:disabled': {
         color: '#999999',
         borderColor: '#999999',
-        backgroundColor: palette.gray['100']
+        backgroundColor: palette.gray[100]
     }
 };
 

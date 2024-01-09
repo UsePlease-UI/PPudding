@@ -11,9 +11,9 @@ const linkStyle = css({
     alignItems: 'center',
     padding: 20,
     borderRadius: 4,
-    color: palette.primary['600'],
+    color: palette.primary[600],
     backgroundColor: palette.neutral.white,
-    border: `1px dashed ${palette.primary['600']}`,
+    border: `1px dashed ${palette.primary[600]}`,
     '& h2': { fontSize: 14 },
     '@media (max-width: 425px)': {
         padding: 10
@@ -44,7 +44,7 @@ const linkIconStyle = css({
     lineHeight: '40px',
     fontWeight: 900,
     textAlign: 'center',
-    border: `1px solid ${palette.gray['100']}`,
+    border: `1px solid ${palette.gray[100]}`,
     borderRadius: 4,
     animation: `${blink} 2s ease-in-out infinite`
 });

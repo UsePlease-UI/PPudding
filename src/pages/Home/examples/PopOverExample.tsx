@@ -7,12 +7,11 @@ import palette from 'styles/palette';
 import FlexBox from 'components/Base/FlexBox';
 import PopOver from 'components/Menu/PopOver';
 
-
 const popoverStyle = css({
     height: 30,
     fontWeight: 700,
-    color: palette.tertiary['400'],
-    border: `1px solid ${palette.tertiary['400']}`,
+    color: palette.tertiary[400],
+    border: `1px solid ${palette.tertiary[400]}`,
     borderRadius: 4
 });
 
@@ -22,11 +21,11 @@ const ulStyle = css({
         height: 40,
         margin: '0 5px',
         padding: '0 10px',
-        borderBottom: `1px solid ${palette.tertiary['400']}`,
+        borderBottom: `1px solid ${palette.tertiary[400]}`,
         '&:hover': {
             '& a': {
                 cursor: 'pointer',
-                color: palette.tertiary['400']
+                color: palette.tertiary[400]
             }
         },
         '&:last-of-type': {
@@ -36,7 +35,7 @@ const ulStyle = css({
     '& a': {
         display: 'inline-block',
         lineHeight: '40px',
-        color: palette.primary['600']
+        color: palette.primary[600]
     }
 });
 

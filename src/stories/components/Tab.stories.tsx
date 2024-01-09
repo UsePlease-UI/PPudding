@@ -63,9 +63,9 @@ const tabStyle = css({
     display: 'flex',
     flexDirection: 'column',
     borderRadius: 10,
-    border: `1px solid ${palette.gray['100']}`,
+    border: `1px solid ${palette.gray[100]}`,
     overflow: 'hidden',
-    boxShadow: `0 0 8px 0px ${palette.gray['100']}`
+    boxShadow: `0 0 8px 0px ${palette.gray[100]}`
 });
 
 export const Default: Story = {

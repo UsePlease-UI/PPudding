@@ -8,7 +8,6 @@ import TableCell from 'components/Table/TableCell';
 import TableHead from 'components/Table/TableHead';
 import TableRow from 'components/Table/TableRow';
 
-
 const captionStyle = css({ textAlign: 'left', fontSize: 16, lineHeight: 1.5, fontWeight: 600, padding: '8px 0' });
 
 export default function TableExample() {

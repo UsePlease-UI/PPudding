@@ -19,7 +19,7 @@ export const loaderStyle = {
         width: '100%',
         height: 30,
         borderRadius: 4,
-        backgroundColor: palette.gray['100'],
+        backgroundColor: palette.gray[100],
         animation: `${blink} 2s ease-in-out infinite`
     })
 };

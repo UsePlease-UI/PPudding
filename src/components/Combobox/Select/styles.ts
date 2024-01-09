@@ -13,7 +13,7 @@ export const selectStyle = {
         height: 40,
         minWidth: 120,
         padding: '0 8px 0 12px',
-        border: `1px solid ${palette.gray['100']}`,
+        border: `1px solid ${palette.gray[100]}`,
         borderRadius: 4,
         backgroundColor: palette.neutral.white,
         display: 'inline-flex',
@@ -21,7 +21,13 @@ export const selectStyle = {
         justifyContent: 'space-between',
         '&:disabled': {
             color: palette.neutral.black,
-            backgroundColor: palette.gray['100']
+            backgroundColor: palette.gray[100]
+        }
+    }),
+    buttonReadOnly: css({
+        '&&': {
+            border: `1px solid ${palette.gray[500]}`,
+            backgroundColor: palette.gray[100]
         }
     }),
     buttonText: css({

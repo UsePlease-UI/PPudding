@@ -33,10 +33,9 @@ const Listbox = ({ id, labelId, name, value, options, onClick }: ListboxType) =>
                             '&, & button': {
                                 textAlign: 'left',
                                 width: '100%',
-                                height: 40,
                                 fontWeight: 600,
                                 color: palette.neutral.white,
-                                backgroundColor: palette.primary['600']
+                                backgroundColor: palette.primary[400]
                             }
                         })
                     }

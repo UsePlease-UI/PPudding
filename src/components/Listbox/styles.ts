@@ -6,7 +6,7 @@ export const listBoxStyle = {
         width: '100%',
         maxHeight: 300,
         padding: '10px 0',
-        border: `1px solid ${palette.gray['100']}`,
+        border: `1px solid ${palette.gray[100]}`,
         borderRadius: 4,
         backgroundColor: palette.neutral.white,
         overflowX: 'hidden',
@@ -19,6 +19,7 @@ export const listBoxStyle = {
         fontWeight: 400,
         lineHeight: 1.5,
         padding: '0 12px',
+        borderBottom: `1px solid ${palette.gray[100]}`,
         '& button': {
             width: '100%',
             height: 40,
@@ -29,8 +30,7 @@ export const listBoxStyle = {
         },
         '&:hover, &:hover button': {
             fontWeight: 600,
-            color: palette.neutral.white,
-            backgroundColor: palette.tertiary['400']
+            color: palette.primary[800]
         }
     })
 };

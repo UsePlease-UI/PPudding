@@ -39,56 +39,61 @@ export const buttonStyle = {
         fontSize: 15,
         fontWeight: 500,
         padding: '4px 16px',
-        '& svg': { width: 20, height: 20 }
+        '& svg': {
+            width: 20,
+            height: 20
+        }
     }),
     outlined: css({
-        color: palette.primary['600'],
+        color: palette.primary[600],
         backgroundColor: palette.neutral.white,
-        border: `1px solid ${palette.primary['600']}`,
+        border: `1px solid ${palette.primary[600]}`,
         '&:hover': {
-            color: palette.neutral.white,
-            border: `1px solid ${palette.primary['600']}`,
-            backgroundColor: palette.tertiary['400']
+            color: palette.primary[700],
+            border: `1px solid ${palette.primary[600]}`,
+            backgroundColor: palette.primary[50]
         },
         '&:focus': {
-            border: `1px solid ${palette.secondary['600']}`,
-            backgroundColor: palette.primary['600']
+            color: palette.primary[700],
+            border: `1px solid ${palette.secondary[700]}`,
+            backgroundColor: palette.primary[100]
         },
         '&:disabled': {
-            border: `1px solid ${palette.gray['100']}`,
-            backgroundColor: '#f4f4f4'
+            color: palette['blue-gray'][600],
+            border: `1px solid ${palette['blue-gray'][400]}`,
+            backgroundColor: palette['blue-gray'][50]
         }
     }),
     contained: css({
-        color: palette.secondary['600'],
-        backgroundColor: palette.tertiary['400'],
-        border: `1px solid ${palette.tertiary['400']}`,
+        color: palette.neutral.white,
+        backgroundColor: palette.primary[600],
+        border: `1px solid ${palette.primary[600]}`,
         '&:hover': {
-            color: palette.neutral.white,
-            backgroundColor: palette.primary['600']
+            backgroundColor: palette.primary[500]
         },
         '&:focus': {
-            border: `1px solid ${palette.secondary['600']}`,
-            backgroundColor: palette.secondary['600']
+            backgroundColor: palette.primary[700],
+            border: `1px solid ${palette.primary[700]}`
         },
         '&:disabled': {
-            border: `1px solid ${palette.gray['100']}`,
-            backgroundColor: '#145cb1b3'
+            color: palette.gray[200],
+            border: `1px solid ${palette.gray[400]}`,
+            backgroundColor: palette.gray[400]
         }
     }),
     text: css({
         color: palette.neutral.black,
-        border: '1px solid #e6e6e6',
+        border: '1px solid transparent',
         backgroundColor: palette.neutral.white,
         '&:hover': {
-            border: '1px solid #cccccc'
+            border: `1px solid ${palette.gray[600]}`
         },
         '&:focus': {
+            backgroundColor: palette.gray[50],
             border: `1px solid ${palette.neutral.black}`
         },
         '&:disabled': {
-            color: '#cccccc',
-            border: '1px solid #e6e6e6'
+            color: palette.gray[600]
         }
     }),
     startIcon: css({

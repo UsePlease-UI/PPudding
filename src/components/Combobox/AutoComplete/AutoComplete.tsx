@@ -26,7 +26,7 @@ const flexBoxCustom = css({
     maxWidth: 200,
     height: 40,
     borderRadius: 4,
-    border: `1px solid ${palette.gray['100']}`,
+    border: `1px solid ${palette.gray[100]}`,
     background: palette.neutral.white,
     padding: 10
 });
@@ -55,7 +55,7 @@ const listItemStyle = css({
     '&:hover, &:hover button': {
         fontWeight: 600,
         color: palette.neutral.white,
-        backgroundColor: palette.tertiary['400']
+        backgroundColor: palette.tertiary[400]
     }
 });
 

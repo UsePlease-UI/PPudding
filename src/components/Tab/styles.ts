@@ -5,8 +5,8 @@ export const tabStyle = {
     tabList: css({
         width: '100%',
         minHeight: 80,
-        backgroundColor: '#fbfbfb',
-        borderBottom: `1px solid ${palette.gray['100']}`
+        backgroundColor: palette.gray[50],
+        borderBottom: `1px solid ${palette.gray[100]}`
     }),
     tabContainer: {
         width: '100%',
@@ -28,7 +28,7 @@ export const tabStyle = {
         '& svg': {
             width: 16,
             height: 16,
-            color: palette.primary['600']
+            color: palette.primary[600]
         }
     }),
     text: css({
@@ -41,7 +41,7 @@ export const tabStyle = {
         width: '80%',
         height: 2,
         borderRadius: 999,
-        backgroundColor: palette.primary['600']
+        backgroundColor: palette.primary[600]
     }),
     panel: css({
         width: '100%',

@@ -6,9 +6,9 @@ export const accordionStyle = {
         minWidth: 250,
         width: '100%',
         minHeight: 60,
-        border: `1px solid ${palette.gray['100']}`,
+        border: `1px solid ${palette.gray[100]}`,
         borderRadius: 4,
-        backgroundColor: palette.primary['600']
+        backgroundColor: palette.primary[600]
     }),
     button: css({
         width: '100%',

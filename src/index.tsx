@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-
 import { Global } from '@emotion/react';
 import reset from 'styles/reset';
 

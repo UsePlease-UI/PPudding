@@ -6,7 +6,6 @@ import { HeartIcon as SolidHeartIcon } from '@heroicons/react/24/solid';
 import FlexBox from 'components/Base/FlexBox';
 import Checkbox from 'components/Form/Checkbox';
 
-
 export default function CheckboxExample() {
     const [chocolate, setChocolate] = useState(false);
     const [candy, setCandy] = useState(false);

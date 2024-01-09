@@ -8,13 +8,13 @@ export const tableStyle = {
         display: 'table',
         backgroundColor: palette.neutral.white,
         borderCollapse: 'collapse',
-        border: `1px solid ${palette.gray['100']}`
+        border: `1px solid ${palette.gray[100]}`
     }),
     tableHead: css({
         display: 'table-header-group',
         verticalAlign: 'middle',
-        backgroundColor: '#fafafa',
-        borderBottom: `1px solid ${palette.gray['100']}`,
+        backgroundColor: palette.gray[50],
+        borderBottom: `1px solid ${palette.gray[100]}`,
         '& tr th': {
             padding: '12px'
         },
@@ -24,9 +24,9 @@ export const tableStyle = {
     }),
     tableRow: css({
         display: 'table-row',
-        borderBottom: `1px solid ${palette.gray['100']}`,
+        borderBottom: `1px solid ${palette.gray[100]}`,
         '&:hover': {
-            backgroundColor: 'pink'
+            backgroundColor: palette.primary[50]
         },
         '&:last-of-type': {
             borderBottom: 0

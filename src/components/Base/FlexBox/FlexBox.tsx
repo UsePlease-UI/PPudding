@@ -4,6 +4,8 @@ import { HTMLAttributes, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import type { CustomCSSType } from 'styles/types';
 
+import { flexBoxStyle } from './styles';
+
 type BaseType = HTMLAttributes<HTMLDivElement> & CustomCSSType;
 
 type FlexBoxType = BaseType & {
@@ -14,10 +16,6 @@ type FlexBoxType = BaseType & {
     gap?: number;
     flex?: string;
 };
-
-const flexBoxStyle = css({
-    display: 'flex'
-});
 
 /**
  *  [Base] Styled Component

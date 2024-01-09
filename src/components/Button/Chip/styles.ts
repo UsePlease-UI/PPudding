@@ -8,7 +8,7 @@ export const chipStyle = {
         alignItems: 'center',
         gap: 8,
         borderRadius: 999,
-        border: `1px solid ${palette.primary['600']}`,
+        border: `1px solid ${palette.primary[600]}`,
         color: palette.neutral.black,
         backgroundColor: palette.neutral.white
     }),
@@ -17,12 +17,12 @@ export const chipStyle = {
         alignItems: 'center',
         justifyContent: 'center',
         cursor: 'pointer',
-        border: `1px solid ${palette.primary['600']}`,
+        border: `1px solid ${palette.primary[600]}`,
         borderRadius: 999,
         padding: 5,
         backgroundColor: palette.neutral.white,
         '&:hover': {
-            backgroundColor: palette.primary['600'],
+            backgroundColor: palette.primary[600],
             '& svg': {
                 color: palette.neutral.white
             }
@@ -31,7 +31,7 @@ export const chipStyle = {
             height: 12,
             width: 12,
             strokeWidth: 4,
-            color: palette.primary['600']
+            color: palette.primary[600]
         }
     }
 };

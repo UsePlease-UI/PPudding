@@ -41,7 +41,7 @@ export const checkboxStyle = {
         width: 20,
         height: 20,
         borderRadius: 4,
-        border: `1px solid ${palette.gray['100']}`,
+        border: `1px solid ${palette.gray[100]}`,
         backgroundColor: palette.neutral.white
     }),
     iconCheckbox: css({

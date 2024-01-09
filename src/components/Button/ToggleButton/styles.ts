@@ -12,13 +12,13 @@ export const toggleButtonStyle = {
         backgroundColor: palette.neutral.white,
         '& span': {
             padding: '0 16px',
-            border: `1px solid ${palette.gray['100']}`,
+            border: `1px solid ${palette.gray[100]}`,
             borderLeft: 0
         },
         '&:first-of-type span': {
             borderTopLeftRadius: 4,
             borderBottomLeftRadius: 4,
-            borderLeft: `1px solid ${palette.gray['100']}`
+            borderLeft: `1px solid ${palette.gray[100]}`
         },
         '&:last-of-type span': {
             borderTopRightRadius: 4,
@@ -26,7 +26,7 @@ export const toggleButtonStyle = {
         },
         '& input:checked + span': {
             color: palette.neutral.white,
-            backgroundColor: palette.primary['600']
+            backgroundColor: palette.primary[600]
         }
     }),
     labelText: css({

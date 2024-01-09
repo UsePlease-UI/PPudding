@@ -12,13 +12,13 @@ import { DRAG_N_DROP, DRAG_N_DROP_2 } from './constants';
 
 const dragItemStyle = css({
     padding: 10,
-    borderBottom: `1px solid ${palette.gray['100']}`,
+    borderBottom: `1px solid ${palette.gray[100]}`,
     '&:last-of-type': {
         borderBottom: 0
     },
     '&:hover': {
         color: palette.neutral.white,
-        background: palette.primary['600']
+        background: palette.primary[600]
     }
 });
 

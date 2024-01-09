@@ -22,8 +22,8 @@ export default function Block({ children, name, onClick, selected }: BlockType) 
                 fontWeight: 600,
                 borderRadius: 4,
                 border: `1px dashed ${palette.neutral.white}`,
-                color: selected === name ? palette.secondary['600'] : palette.neutral.white,
-                background: selected === name ? palette.tertiary['400'] : palette.secondary['600'],
+                color: selected === name ? palette.secondary[600] : palette.neutral.white,
+                background: selected === name ? palette.tertiary[400] : palette.secondary[600],
                 '&:hover': { opacity: 0.6 }
             }}
             onClick={onClick}

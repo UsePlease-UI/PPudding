@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
-import palette from 'styles/palette';
+
+import { buttonStyle } from '../Button/styles';
 
 export type SizeType = 'large' | 'medium' | 'small' | '';
 export type VariantType = 'outlined' | 'contained' | 'text' | '';
@@ -31,56 +32,6 @@ export const iconButtonStyle = {
             width: 20,
             height: 20
         }
-    }),
-    outlined: css({
-        color: palette.primary['600'],
-        backgroundColor: palette.neutral.white,
-        border: `1px solid ${palette.primary['600']}`,
-        '&:hover': {
-            color: palette.neutral.white,
-            border: `1px solid ${palette.primary['600']}`,
-            backgroundColor: palette.tertiary['400']
-        },
-        '&:focus': {
-            border: `1px solid ${palette.secondary['600']}`,
-            backgroundColor: palette.primary['600']
-        },
-        '&:disabled': {
-            border: `1px solid ${palette.gray['100']}`,
-            backgroundColor: '#f4f4f4'
-        }
-    }),
-    contained: css({
-        color: palette.secondary['600'],
-        backgroundColor: palette.tertiary['400'],
-        border: `1px solid ${palette.tertiary['400']}`,
-        '&:hover': {
-            color: palette.neutral.white,
-            backgroundColor: palette.primary['600']
-        },
-        '&:focus': {
-            border: `1px solid ${palette.secondary['600']}`,
-            backgroundColor: palette.secondary['600']
-        },
-        '&:disabled': {
-            border: `1px solid ${palette.gray['100']}`,
-            backgroundColor: '#145cb1b3'
-        }
-    }),
-    text: css({
-        color: palette.neutral.black,
-        border: '1px solid #e6e6e6',
-        backgroundColor: palette.neutral.white,
-        '&:hover': {
-            border: '1px solid #cccccc'
-        },
-        '&:focus': {
-            border: `1px solid ${palette.neutral.black}`
-        },
-        '&:disabled': {
-            color: '#cccccc',
-            border: '1px solid #e6e6e6'
-        }
     })
 };
 
@@ -100,11 +51,11 @@ export function getSizeStyle(size: SizeType) {
 export function getVariantStyle(variant: VariantType) {
     switch (variant) {
         case 'outlined':
-            return iconButtonStyle.outlined;
+            return buttonStyle.outlined;
         case 'contained':
-            return iconButtonStyle.contained;
+            return buttonStyle.contained;
         case 'text':
-            return iconButtonStyle.text;
+            return buttonStyle.text;
         default:
             return {};
     }

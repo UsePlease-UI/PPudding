@@ -10,12 +10,13 @@ import { useAccordionContext } from 'components/useAccordion';
 
 import { accordionStyle } from './styles';
 
-export type AccordionPanelType = HTMLAttributes<HTMLDivElement> &
-    CustomCSSType & {
-        children: ReactNode;
-        index: number;
-        customCSS?: CSSInterpolation;
-    };
+type BaseType = HTMLAttributes<HTMLDivElement> & CustomCSSType;
+
+export type AccordionPanelType = BaseType & {
+    children: ReactNode;
+    index: number;
+    customCSS?: CSSInterpolation;
+};
 
 /**
  *  [UI Component] Accordion Panel Component
@@ -38,7 +39,7 @@ export default function AccordionPanel(props: AccordionPanelType) {
                 {
                     height: isExpanded ? 'auto' : 0,
                     padding: isExpanded ? 20 : 0,
-                    border: isExpanded ? `1px solid ${palette.gray['100']}` : 0,
+                    border: isExpanded ? `1px solid ${palette.gray[100]}` : 0,
                     visibility: isExpanded ? 'visible' : 'hidden'
                 },
                 accordionStyle.panel,

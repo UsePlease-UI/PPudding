@@ -104,7 +104,7 @@ export const FormControlTextField: Story = {
         customCSS: {
             padding: 10,
             backgroundColor: palette.neutral.white,
-            border: `1px solid ${palette.tertiary['400']}`,
+            border: `1px solid ${palette.primary[400]}`,
             borderRadius: 4,
             '& > label': {
                 textTransform: 'uppercase',

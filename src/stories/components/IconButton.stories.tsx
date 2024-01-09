@@ -5,7 +5,6 @@ import { StarIcon } from '@heroicons/react/24/outline';
 
 import IconButton from 'components/Button/IconButton';
 
-
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
