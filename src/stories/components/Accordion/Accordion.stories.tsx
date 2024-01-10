@@ -27,6 +27,14 @@ const meta = {
                 type: { summary: 'React.ReactNode' }
             }
         },
+        isDisabled: {
+            control: false,
+            description: 'Panel 비활성화 여부 (Panel 콘텐츠가 보이는 상태로 고정)',
+            table: {
+                category: 'optional',
+                type: { summary: 'boolean' }
+            }
+        },
         isExpanded: {
             control: false,
             description: 'Panel 선택여부',
@@ -100,6 +108,7 @@ export const Controlled: Story = {
     args: {
         // eslint-disable-next-line react/jsx-no-useless-fragment
         children: <></>,
+        isDisabled: false,
         isExpanded: false,
         customCSS: {}
     }

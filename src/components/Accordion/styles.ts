@@ -24,11 +24,13 @@ export const accordionStyle = {
         fontWeight: 600,
         lineHeight: 1.5,
         color: palette.neutral.white,
+        textAlign: 'left',
         '& *': {
-            color: palette.neutral.white,
             fontSize: 18,
             fontWeight: 600,
-            lineHeight: 1.5
+            lineHeight: 1.5,
+            color: palette.neutral.white,
+            textAlign: 'left'
         }
     }),
     icon: css({

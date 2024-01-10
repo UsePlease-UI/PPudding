@@ -1,14 +1,17 @@
-import { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import { MouseEvent, ReactNode, createContext, useCallback, useContext, useId, useMemo, useState } from 'react';
 
 type AccordionContextType = {
+    accordionId: string;
     isExpanded: boolean;
-    onChange: (event: React.MouseEvent<HTMLButtonElement>, isExpanded: boolean) => void;
+    isDisabled: boolean;
+    onChange: (event: MouseEvent<HTMLButtonElement>, isExpanded: boolean) => void;
 };
 
 type AccordionProviderType = {
-    children: React.ReactNode;
+    children: ReactNode;
     isExpanded?: boolean;
-    onChange?: (event: React.MouseEvent<HTMLButtonElement>, isExpanded: boolean) => void;
+    isDisabled?: boolean;
+    onChange?: (event: MouseEvent<HTMLButtonElement>, isExpanded: boolean) => void;
 };
 
 const AccordionContext = createContext<AccordionContextType | undefined>(undefined);
@@ -23,11 +26,12 @@ export const useAccordionContext = () => {
     return context;
 };
 
-export function AccordionProvider({ children, isExpanded, onChange }: AccordionProviderType) {
+export function AccordionProvider({ children, isExpanded, isDisabled = false, onChange }: AccordionProviderType) {
+    const accordionId = useId();
     const [selected, setSelected] = useState<boolean>(isExpanded ?? false);
 
     const handleChange = useCallback(
-        (event: React.MouseEvent<HTMLButtonElement>, curIsExpanded: boolean) => {
+        (event: MouseEvent<HTMLButtonElement>, curIsExpanded: boolean) => {
             setSelected((prev) => !prev);
             if (onChange) {
                 onChange(event, curIsExpanded);
@@ -37,8 +41,8 @@ export function AccordionProvider({ children, isExpanded, onChange }: AccordionP
     );
 
     const context: AccordionContextType = useMemo(
-        () => ({ isExpanded: selected, onChange: handleChange }),
-        [isExpanded, handleChange]
+        () => ({ accordionId, isExpanded: isDisabled ? true : selected, isDisabled, onChange: handleChange }),
+        [accordionId, isExpanded, isDisabled, handleChange]
     );
 
     return <AccordionContext.Provider value={context}>{children}</AccordionContext.Provider>;

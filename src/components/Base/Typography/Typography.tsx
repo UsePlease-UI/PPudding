@@ -80,7 +80,7 @@ export default function Typography(props: TypographyType) {
                             backgroundColor,
                             width,
                             height,
-                            gutterBottom
+                            marginBottom: gutterBottom
                         },
                         customCSS
                     ]),

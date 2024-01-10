@@ -16,15 +16,6 @@ const meta = {
                 type: { summary: 'React.ReactNode' }
             }
         },
-        index: {
-            type: { name: 'string', required: true },
-            control: 'number',
-            description: 'Accordion 번호 (아이디 및 aria에 사용)',
-            table: {
-                category: 'required',
-                type: { summary: 'number' }
-            }
-        },
         customCSS: {
             control: { type: 'object' },
             description: 'Custom CSS',
@@ -50,7 +41,6 @@ export const Default: Story = {
     },
     args: {
         children: 'Apple',
-        index: 1,
         customCSS: {}
     }
 };

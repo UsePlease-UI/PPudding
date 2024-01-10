@@ -3,7 +3,7 @@ import { HTMLAttributes, ReactNode } from 'react';
 
 import { css } from '@emotion/react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import type { CustomCSSType } from 'styles/types';
+import { palette, CustomCSSType } from 'styles';
 
 import { useAccordionContext } from 'components/useAccordion';
 
@@ -13,23 +13,21 @@ type BaseType = HTMLAttributes<HTMLHeadingElement> & CustomCSSType;
 
 export type AccordionHeaderType = BaseType & {
     children: ReactNode;
-    index: number;
-    icon?: ReactNode;
     hasIcon?: boolean;
+    icon?: ReactNode;
 };
 
 /**
  *  [UI Component] Accordion Header Component
  *  @param children 헤더 텍스트 | 컴포넌트
- *  @param index Accordion 번호 (아이디 및 aria에 사용) [optional]
  *  @param icon 아이콘 [optional]
  *  @param hasIcon 아이콘 사용여부 [optional]
  *  @param customCSS 커스텀 css [optional]
  *  @returns JSX.Element
  */
 export default function AccordionHeader(props: AccordionHeaderType) {
-    const { children, index, hasIcon = true, icon, customCSS, ...rest } = props;
-    const { isExpanded, onChange } = useAccordionContext();
+    const { children, hasIcon = true, icon, customCSS, ...rest } = props;
+    const { accordionId, isExpanded, isDisabled, onChange } = useAccordionContext();
 
     return (
         <h3
@@ -38,20 +36,41 @@ export default function AccordionHeader(props: AccordionHeaderType) {
                 accordionStyle.heading,
                 {
                     borderBottomLeftRadius: isExpanded ? 0 : 4,
-                    borderBottomRightRadius: isExpanded ? 0 : 4
+                    borderBottomRightRadius: isExpanded ? 0 : 4,
+                    ...(isDisabled && {
+                        backgroundColor: palette.gray[400]
+                    })
                 },
                 customCSS
             ])}
         >
             <button
                 type="button"
-                id={`accordion-panel${index}-id`}
+                id={`accordion-panel-${accordionId}`}
                 aria-expanded={isExpanded}
-                aria-controls={`panel${index}`}
+                aria-controls={`panel-${accordionId}`}
+                aria-disabled={isDisabled}
+                disabled={isDisabled}
                 onClick={(e) => onChange(e, isExpanded)}
                 css={accordionStyle.button}
             >
-                <div css={accordionStyle.title}>
+                <div
+                    css={css([
+                        accordionStyle.title,
+                        {
+                            fontWeight: isExpanded ? 700 : 500,
+                            '& *': {
+                                fontWeight: isExpanded ? 700 : 500
+                            },
+                            ...(isDisabled && {
+                                color: palette.gray[900],
+                                '& *': {
+                                    color: palette.gray[900]
+                                }
+                            })
+                        }
+                    ])}
+                >
                     {children}
                     {hasIcon && (
                         <span

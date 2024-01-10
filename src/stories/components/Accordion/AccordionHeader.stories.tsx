@@ -16,15 +16,6 @@ const meta = {
                 type: { summary: 'React.ReactNode' }
             }
         },
-        index: {
-            type: { name: 'string', required: true },
-            control: 'number',
-            description: 'Accordion 번호 (아이디 및 aria에 사용)',
-            table: {
-                category: 'required',
-                type: { summary: 'number' }
-            }
-        },
         hasIcon: {
             control: { type: 'boolean' },
             description: '아이콘 사용여부',
@@ -66,7 +57,6 @@ export const Default: Story = {
     },
     args: {
         children: 'Question 1',
-        index: 1,
         hasIcon: true,
         customCSS: {}
     }
