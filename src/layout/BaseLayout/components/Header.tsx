@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-
 import { css, keyframes } from '@emotion/react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import palette from 'styles/palette';

@@ -6,11 +6,28 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import palette from 'styles/palette';
 
 import FlexBox from 'components/Base/FlexBox';
+import Button from 'components/Button/Button';
 import IconButton from 'components/Button/IconButton';
 import useMobile from 'hooks/useMobile';
 
-import Block from './Block';
-import { COMPONENT_LIST } from './constants';
+const COMPONENT_LIST = [
+    'Accordion',
+    'AutoComplete',
+    'Button',
+    'Checkbox',
+    'Chip',
+    'DragNDrop',
+    'Icon Button',
+    'Pagination',
+    'PopOver',
+    'Radio',
+    'Select',
+    'Skeleton',
+    'Tab',
+    'Table',
+    'TextField',
+    'Toggle Button'
+];
 
 const asideStyle = css({
     position: 'fixed',
@@ -103,9 +120,27 @@ const Aside = ({ show, selected, onClick, onClose }: AsideType) => {
             </FlexBox>
             <FlexBox flexDirection="column" gap={4} customCSS={{ width: '100%', padding: 10 }}>
                 {COMPONENT_LIST.map((el: string) => (
-                    <Block key={el} name={el} selected={selected} onClick={onClick}>
+                    <Button
+                        key={el}
+                        type="button"
+                        value={el}
+                        customCSS={{
+                            flex: 'none',
+                            height: 40,
+                            textTransform: 'uppercase',
+                            fontWeight: 600,
+                            borderRadius: 4,
+                            border: `1px dashed ${palette.neutral.white}`,
+                            color: selected === el ? palette.secondary[600] : palette.neutral.white,
+                            background: selected === el ? palette.tertiary[400] : palette.secondary[600],
+                            '&:hover': {
+                                opacity: 0.6
+                            }
+                        }}
+                        onClick={onClick}
+                    >
                         {el}
-                    </Block>
+                    </Button>
                 ))}
             </FlexBox>
         </aside>

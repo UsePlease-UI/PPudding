@@ -1,5 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
+import { Link, useSearchParams } from 'react-router-dom';
+
 import { css, keyframes } from '@emotion/react';
 import palette from 'styles/palette';
 
@@ -148,18 +150,15 @@ const DESCRIPTION = {
     }
 };
 
-type DescriptionType = {
-    component: string;
-};
-
 type ComponentType = keyof typeof DESCRIPTION;
 
-export default function Description({ component }: DescriptionType) {
-    const componentName = component as ComponentType;
+export default function Description() {
+    const [params] = useSearchParams();
+    const componentName = (params.get('component') || 'Accordion') as ComponentType;
     const isMobile = useMobile();
 
     return DESCRIPTION[componentName] ? (
-        <a href={DESCRIPTION[componentName].link} target="_blank" rel="noreferrer noopener" css={linkStyle}>
+        <Link to={DESCRIPTION[componentName].link} target="_blank" rel="noreferrer noopener" css={linkStyle}>
             <Typography component="span" customCSS={linkIconStyle}>
                 {DESCRIPTION[componentName].icon}
             </Typography>
@@ -167,6 +166,6 @@ export default function Description({ component }: DescriptionType) {
                 <Typography component="h2">{DESCRIPTION[componentName].name}</Typography>
                 {!isMobile && <Typography component="p">{DESCRIPTION[componentName].description}</Typography>}{' '}
             </div>
-        </a>
+        </Link>
     ) : null;
 }

@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import { palette } from 'styles';
 
 export const layoutStyle = {
-    aside: css({
+    header: css({
         position: 'fixed',
         top: 0,
         left: 0,
@@ -10,13 +10,16 @@ export const layoutStyle = {
         display: 'flex',
         alignItems: 'center',
         padding: '10px 20px',
+        backgroundColor: palette.neutral.white,
+        boxShadow: `1px 1px 10px 1px ${palette.primary[100]}`,
         '@media (min-width: 1512px)': {
             padding: 0,
             right: 'unset',
             bottom: 0,
             justifyContent: 'center',
             width: 320,
-            backgroundColor: palette.primary[600]
+            backgroundColor: palette.primary[600],
+            boxShadow: 'unset'
         }
     }),
     heading: css({
@@ -24,6 +27,7 @@ export const layoutStyle = {
         fontWeight: 900,
         textAlign: 'center',
         color: palette.primary[600],
+        textTransform: 'uppercase',
         '@media (min-width: 1512px)': {
             fontSize: 56,
             color: palette.neutral.white
@@ -56,6 +60,7 @@ export const layoutStyle = {
         }
     },
     contents: {
+        height: '100%',
         maxWidth: 1024,
         margin: '0 auto',
         '@media (min-width: 1512px)': {
