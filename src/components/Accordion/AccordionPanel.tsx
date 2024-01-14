@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
 import { palette, CustomCSSType } from 'styles';
 
-import { useAccordionContext } from 'components/useAccordion';
+import { useAccordion } from 'components/useAccordion';
 
 import { accordionStyle } from './styles';
 
@@ -24,7 +24,7 @@ export type AccordionPanelType = BaseType & {
  */
 export default function AccordionPanel(props: AccordionPanelType) {
     const { children, customCSS, ...rest } = props;
-    const { accordionId, isExpanded } = useAccordionContext();
+    const { accordionId, isExpanded } = useAccordion();
 
     return (
         <div

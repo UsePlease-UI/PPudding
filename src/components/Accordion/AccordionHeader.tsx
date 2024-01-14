@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { palette, CustomCSSType } from 'styles';
 
-import { useAccordionContext } from 'components/useAccordion';
+import { useAccordion } from 'components/useAccordion';
 
 import { accordionStyle } from './styles';
 
@@ -27,7 +27,7 @@ export type AccordionHeaderType = BaseType & {
  */
 export default function AccordionHeader(props: AccordionHeaderType) {
     const { children, hasIcon = true, icon, customCSS, ...rest } = props;
-    const { accordionId, isExpanded, isDisabled, onChange } = useAccordionContext();
+    const { accordionId, isExpanded, isDisabled, onChange } = useAccordion();
 
     return (
         <h3

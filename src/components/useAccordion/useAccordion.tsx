@@ -16,7 +16,7 @@ type AccordionProviderType = {
 
 const AccordionContext = createContext<AccordionContextType | undefined>(undefined);
 
-export const useAccordionContext = () => {
+export const useAccordion = () => {
     const context = useContext(AccordionContext);
 
     if (!context) {
@@ -26,6 +26,14 @@ export const useAccordionContext = () => {
     return context;
 };
 
+/**
+ *  [UI Component] Accordion Provider
+ *  @param children 컴포넌트
+ *  @param isExpanded Panel 선택 여부 [optional]
+ *  @param isDisabled Panel 비활성화 여부 [optional]
+ *  @param onChange Change Event Handler [optional]
+ *  @returns JSX.Element
+ */
 export function AccordionProvider({ children, isExpanded, isDisabled = false, onChange }: AccordionProviderType) {
     const accordionId = useId();
     const [selected, setSelected] = useState<boolean>(isExpanded ?? false);
