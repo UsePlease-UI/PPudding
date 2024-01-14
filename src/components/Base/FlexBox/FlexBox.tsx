@@ -10,32 +10,35 @@ type BaseType = HTMLAttributes<HTMLDivElement> & CustomCSSType;
 
 type FlexBoxType = BaseType & {
     children: ReactNode;
-    justifyContent?: string;
-    alignItems?: string;
     flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+    alignItems?: string;
+    justifyContent?: string;
     gap?: number;
     flex?: string;
+    flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse' | 'unset';
 };
 
 /**
- *  [Base] Styled Component
+ *  [Base] Flex Component
  *  @param children 컴포넌트
- *  @param justifyContent [CSS] justify-content [optional]
- *  @param alignItems [CSS] align-items [optional]
- *  @param fledDirection [CSS] flex-direction [optional]
- *  @param gap [CSS] gap [optional]
- *  @param flex [CSS] flex [optional]
+ *  @param fledDirection [CSS] flex-direction
+ *  @param alignItems [CSS] align-items
+ *  @param justifyContent [CSS] justify-content
+ *  @param gap [CSS] gap
+ *  @param flex [CSS] flex
+ *  @param flexWrap [CSS] flex wrap
  *  @param customCSS 커스텀 CSS [optional]
  *  @returns JSX.Element
  */
 export default function FlexBox(props: FlexBoxType) {
     const {
         children,
-        justifyContent = 'unset',
-        alignItems = 'unset',
         flexDirection = 'row',
+        alignItems = 'unset',
+        justifyContent = 'unset',
         gap = 0,
         flex = 'none',
+        flexWrap = 'unset',
         customCSS,
         ...rest
     } = props;
@@ -50,7 +53,8 @@ export default function FlexBox(props: FlexBoxType) {
                     alignItems,
                     flexDirection,
                     gap,
-                    flex
+                    flex,
+                    flexWrap
                 },
                 customCSS
             ])}

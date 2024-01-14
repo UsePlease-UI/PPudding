@@ -7,7 +7,7 @@ import type { CustomCSSType } from 'styles/types';
 type BaseType = HTMLAttributes<HTMLElement> & LabelHTMLAttributes<HTMLLabelElement> & CustomCSSType;
 
 type TypographyType = BaseType & {
-    component: string;
+    component?: string;
     children: ReactNode;
     fontFamily?: string;
     fontSize?: number;
@@ -44,7 +44,7 @@ type TypographyType = BaseType & {
  */
 export default function Typography(props: TypographyType) {
     const {
-        component,
+        component = 'p',
         fontFamily,
         fontSize,
         fontWeight,

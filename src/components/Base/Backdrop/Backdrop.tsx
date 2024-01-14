@@ -5,24 +5,23 @@ import { createPortal } from 'react-dom';
 import { backdropStyle } from './styles';
 
 type BackdropType = {
-    id: string;
     children: ReactNode;
     onClose: () => void;
+    containerId?: string;
 };
 
 /**
  *  [Base Component] Backdrop Component
- *  @param id DOM id
+ *  @param containerId DOM id
  *  @param children 컴포넌트
  *  @param onClose Click Away Handler
- *  @returns React.ReactPortal
+ *  @returns ReactPortal
  */
 export default function Backdrop(props: BackdropType) {
-    const { id, children, onClose } = props;
+    const { containerId, children, onClose } = props;
 
     return createPortal(
         <div
-            css={backdropStyle}
             role="presentation"
             onClick={onClose}
             onKeyDown={(e) => {
@@ -30,9 +29,10 @@ export default function Backdrop(props: BackdropType) {
                     onClose();
                 }
             }}
+            css={backdropStyle}
         >
             {children}
         </div>,
-        document.getElementById(id) as HTMLElement
+        document.getElementById(containerId || 'root') as HTMLElement
     );
 }
