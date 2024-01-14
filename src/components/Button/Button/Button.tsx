@@ -13,37 +13,36 @@ type BaseType = ButtonHTMLAttributes<HTMLButtonElement> & CustomCSSType;
 
 type ButtonType = BaseType & {
     children: ReactNode;
+    isDisabled?: boolean;
     hasStartIcon?: boolean;
     hasEndIcon?: boolean;
     icon?: ReactNode;
     size?: SizeType;
     variant?: VariantType;
-    isDisabled?: boolean;
 };
 
 /**
  *  [UI Component] Button Component
  *  @param children 컴포넌트
- *  @param hasStartIcon Start Icon 사용여부 [optional]
- *  @param hasEndIcon End Icon 사용여부 [optional]
+ *  @param isDisabled 비활성화 여부 [optional]
+ *  @param hasStartIcon Start Icon 사용 여부 [optional]
+ *  @param hasEndIcon End Icon 사용 여부 [optional]
  *  @param icon 아이콘 [optional]
- *  @param type 버튼 타입 (button | reset | submit) [optional]
- *  @param size 버튼 크기 ('' | large | medium | small) [optional]
- *  @param variant 버튼 스타일 ('' | outlined | contained | text) [optional]
- *  @param isDisabled 활성화여부 [optional]
+ *  @param size [CSS] 버튼 크기 (large | medium | small)
+ *  @param variant [CSS] 버튼 스타일 (outlined | contained | text)
  *  @param customCSS 커스텀 CSS [optional]
  *  @returns JSX.Element
  */
 export default function Button(props: ButtonType) {
     const {
+        type = 'button',
         children,
+        isDisabled = false,
         hasStartIcon = false,
         hasEndIcon = false,
         icon,
-        type = 'button',
-        size = '',
-        variant = '',
-        isDisabled = false,
+        size,
+        variant,
         onClick,
         customCSS,
         ...rest

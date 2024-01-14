@@ -66,7 +66,7 @@ export const buttonStyle = {
     })
 };
 
-export function getSizeStyle(size: SizeType) {
+export function getSizeStyle(size?: SizeType) {
     switch (size) {
         case 'large':
             return buttonStyle.large;

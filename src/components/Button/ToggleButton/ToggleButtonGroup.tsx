@@ -6,8 +6,8 @@ import FlexBox from 'components/Base/FlexBox';
 
 type ToggleButtonGroupType = CustomCSSType & {
     children: ReactNode;
-    value: string | number;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    value?: string | string[];
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 /**
@@ -19,10 +19,13 @@ type ToggleButtonGroupType = CustomCSSType & {
  *  @returns JSX.Element
  */
 export default function ToggleButtonGroup({ children, value, onChange, customCSS }: ToggleButtonGroupType) {
+    const isMultiple = typeof value !== 'string';
+
     return (
-        <FlexBox role="radiogroup" customCSS={customCSS}>
+        <FlexBox {...(!isMultiple && { role: 'radiogroup' })} customCSS={customCSS}>
             {Children.toArray(children).map((child) =>
                 cloneElement(child as ReactElement, {
+                    isMultiple,
                     currentValue: value,
                     onChange
                 })

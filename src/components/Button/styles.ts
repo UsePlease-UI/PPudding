@@ -1,8 +1,9 @@
 import { css } from '@emotion/react';
 import { palette } from 'styles';
 
-export type SizeType = 'large' | 'medium' | 'small' | '';
-export type VariantType = 'outlined' | 'contained' | 'text' | '';
+export type SizeType = 'large' | 'medium' | 'small';
+export type IconButtonSizeType = SizeType | 'mini';
+export type VariantType = 'outlined' | 'contained' | 'text';
 
 export const commonStyle = {
     outlined: css({
@@ -11,17 +12,16 @@ export const commonStyle = {
         border: `1px solid ${palette.primary[600]}`,
         '&:hover': {
             color: palette.primary[700],
-            border: `1px solid ${palette.primary[600]}`,
             backgroundColor: palette.primary[50]
         },
         '&:focus': {
             color: palette.primary[700],
-            border: `1px solid ${palette.secondary[700]}`,
+            borderColor: palette.primary[700],
             backgroundColor: palette.primary[100]
         },
         '&:disabled': {
             color: palette['blue-gray'][600],
-            border: `1px solid ${palette['blue-gray'][400]}`,
+            borderColor: palette['blue-gray'][400],
             backgroundColor: palette['blue-gray'][50]
         }
     }),
@@ -59,7 +59,7 @@ export const commonStyle = {
     })
 };
 
-export function getVariantStyle(variant: VariantType) {
+export function getVariantStyle(variant?: VariantType) {
     switch (variant) {
         case 'outlined':
             return commonStyle.outlined;

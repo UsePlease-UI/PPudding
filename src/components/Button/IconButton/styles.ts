@@ -1,38 +1,47 @@
 import { css } from '@emotion/react';
 
-import { SizeType } from '../styles';
+import { IconButtonSizeType } from '../styles';
 
 export const iconButtonStyle = {
     iconButton: css({
-        borderRadius: 4
-    }),
-    small: css({
-        height: 32,
-        width: 32,
+        width: 'max-content',
+        height: 'max-content',
+        borderRadius: 4,
         '& svg': {
-            width: 12,
-            height: 12
+            display: 'block'
         }
     }),
-    medium: css({
-        height: 40,
-        width: 40,
+    mini: css({
+        padding: 6,
         '& svg': {
             width: 16,
             height: 16
         }
     }),
-    large: css({
-        height: 45,
-        width: 45,
+    small: css({
+        padding: 8,
         '& svg': {
             width: 20,
             height: 20
         }
+    }),
+    medium: css({
+        padding: 8,
+        '& svg': {
+            width: 24,
+            height: 24
+        }
+    }),
+    large: css({
+        padding: 8,
+        '& svg': {
+            width: 28,
+            height: 28
+        }
     })
 };
 
-export function getSizeStyle(size: SizeType) {
+export function getSizeStyle(size?: IconButtonSizeType) {
     switch (size) {
         case 'large':
             return iconButtonStyle.large;
@@ -41,6 +50,6 @@ export function getSizeStyle(size: SizeType) {
         case 'small':
             return iconButtonStyle.small;
         default:
-            return {};
+            return iconButtonStyle.mini;
     }
 }

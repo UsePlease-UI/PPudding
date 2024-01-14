@@ -1,45 +1,34 @@
 /** @jsxImportSource @emotion/react */
-import { ButtonHTMLAttributes, MouseEvent, ReactNode } from 'react';
+import { ButtonHTMLAttributes, MouseEvent, ReactNode, forwardRef } from 'react';
 
 import { css } from '@emotion/react';
 import type { CustomCSSType } from 'styles/types';
 
 import { getSizeStyle, iconButtonStyle } from './styles';
-import { SizeType, VariantType, getVariantStyle } from '../styles';
+import { IconButtonSizeType, VariantType, getVariantStyle } from '../styles';
 
 type BaseType = ButtonHTMLAttributes<HTMLButtonElement> & CustomCSSType;
 
 type IconButtonType = BaseType & {
     children: ReactNode;
-    size?: SizeType;
-    variant?: VariantType;
     isDisabled?: boolean;
-    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+    size?: IconButtonSizeType;
+    variant?: VariantType;
 };
 
 /**
  *  [UI Component] Icon Button
  *  @param children 컴포넌트
- *  @param type 버튼 type (button | reset | submit) [optional]
- *  @param isDisabled 활성화여부 [optional]
- *  @param size 버튼 크기 ('' | large | medium | small) [optional]
- *  @param variant 버튼 스타일 ('' | outlined | contained | text) [optional]
- *  @param onClick Click Event Handler [optional]
+ *  @param isDisabled 비활성화 여부 [optional]
+ *  @param size [CSS] 버튼 크기 ('' | large | medium | small)
+ *  @param variant [CSS] 버튼 스타일 ('' | outlined | contained | text)
  *  @returns JSX.Element
  */
-export default function IconButton(props: IconButtonType) {
-    const {
-        children,
-        type = 'button',
-        size = '',
-        variant = '',
-        isDisabled = false,
-        onClick,
-        customCSS,
-        ...rest
-    } = props;
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(function createIconButton(props, ref) {
+    const { type = 'button', children, isDisabled, size, variant, onClick, customCSS, ...rest } = props;
+
+    const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
         e.currentTarget.blur();
         if (onClick) {
             onClick(e);
@@ -49,6 +38,7 @@ export default function IconButton(props: IconButtonType) {
     return (
         <button
             {...rest}
+            ref={ref}
             // eslint-disable-next-line react/button-has-type
             type={type}
             disabled={isDisabled}
@@ -58,4 +48,6 @@ export default function IconButton(props: IconButtonType) {
             {children}
         </button>
     );
-}
+});
+
+export default IconButton;

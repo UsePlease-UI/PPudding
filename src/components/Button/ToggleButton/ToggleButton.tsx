@@ -1,19 +1,22 @@
 /** @jsxImportSource @emotion/react */
-import { ChangeEvent, ReactNode, forwardRef } from 'react';
+import { ChangeEvent, InputHTMLAttributes, ReactNode, forwardRef, useId } from 'react';
 
 import { css } from '@emotion/react';
 import { visuallyHidden, CustomCSSType, palette } from 'styles';
 
 import Typography from 'components/Base/Typography';
 
-import { toggleButtonStyle } from './styles';
+import { SizeType, getSizeStyle, toggleButtonStyle } from './styles';
 
-type ToggleButtonType = CustomCSSType & {
+type BaseType = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & CustomCSSType;
+
+type ToggleButtonType = BaseType & {
     children: ReactNode;
     name: string;
-    value: string | number;
-    currentValue?: string | number;
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+    value: string;
+    size?: SizeType;
+    currentValue?: string | string[];
+    isMultiple?: boolean;
 };
 
 /**
@@ -21,38 +24,54 @@ type ToggleButtonType = CustomCSSType & {
  *  @param children 컴포넌트
  *  @param name Toggle Button 이름
  *  @param value Toggle Button 값
- *  @param value 현재 선택된 Toggle Button 값
+ *  @param size [CSS] 버튼 사이즈 (small | medium | large)
  *  @param customCSS 커스텀 CSS [optional]
  *  @returns JSX.Element
  */
 const ToggleButton = forwardRef<HTMLInputElement, ToggleButtonType>(function createToggleButton(props, ref) {
-    const { name, currentValue, value, onChange, children, customCSS, ...rest } = props;
+    const { size, name, currentValue = '', isMultiple, value, onChange, children, customCSS, ...rest } = props;
+    const id = useId();
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        e.currentTarget.blur();
+        if (onChange) {
+            onChange(e);
+        }
+    };
+
     return (
-        <label htmlFor={`${name}-${value}`} css={css([toggleButtonStyle.label, customCSS])}>
+        <label htmlFor={id} css={css([toggleButtonStyle.label, customCSS])}>
             <input
                 {...rest}
-                id={`${name}-${value}`}
+                id={id}
                 ref={ref}
-                type="radio"
+                type={isMultiple ? 'checkbox' : 'radio'}
                 name={name}
                 value={value}
-                onChange={onChange}
-                checked={value === currentValue}
+                checked={typeof currentValue === 'string' ? value === currentValue : currentValue.includes(value)}
+                onChange={handleChange}
                 css={visuallyHidden}
             />
-            <Typography
-                component="span"
-                height="inherit"
-                fontSize={14}
-                fontWeight="500"
-                lineHeight="inherit"
-                align="center"
-                color={palette.neutral.black}
-                textTransform="uppercase"
-                customCSS={toggleButtonStyle.labelText}
-            >
-                {children}
-            </Typography>
+            {typeof children === 'string' ? (
+                <Typography
+                    component="span"
+                    height="inherit"
+                    fontSize={16}
+                    fontWeight="500"
+                    lineHeight="inherit"
+                    align="center"
+                    color={palette.primary[600]}
+                    textTransform="uppercase"
+                    customCSS={{
+                        ...toggleButtonStyle.labelText,
+                        ...getSizeStyle(size).text
+                    }}
+                >
+                    {children}
+                </Typography>
+            ) : (
+                <span css={css([toggleButtonStyle.iconButton, getSizeStyle(size).icon])}>{children}</span>
+            )}
         </label>
     );
 });
