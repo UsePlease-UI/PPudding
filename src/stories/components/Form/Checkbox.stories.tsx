@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Checkbox from 'components/Form/Checkbox';
+import { Checkbox } from 'components/Form/Checkbox';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
