@@ -12,7 +12,7 @@ export type TabProviderType = {
 
 const TabContext = createContext<TabContextType | undefined>(undefined);
 
-export const useTabContext = () => {
+export const useTab = () => {
     const context = useContext(TabContext);
 
     if (!context) {

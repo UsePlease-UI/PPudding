@@ -4,8 +4,8 @@ import { ReactNode } from 'react';
 import { css } from '@emotion/react';
 import type { CustomCSSType } from 'styles/types';
 
-import { FlexBox } from 'components/Base';
-import { useTabContext } from 'components/useTab';
+import FlexBox from 'components/Base/FlexBox';
+import { useTab } from 'components/useTab';
 
 import { tabStyle } from './styles';
 
@@ -38,7 +38,7 @@ function a11yProps(index: number, value: number) {
  */
 export default function TabItem(props: TabItemType) {
     const { label, value, index, icon, customCSS, onChange } = props;
-    const { linkRefs } = useTabContext();
+    const { linkRefs } = useTab();
 
     const handleClick = (newValue: number) => {
         if (onChange) {
