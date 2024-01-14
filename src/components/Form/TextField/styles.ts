@@ -4,12 +4,6 @@ import { palette } from 'styles';
 export const DEFAULT_WIDTH = 320;
 
 export const textfieldStyle = {
-    inputText: css({
-        fontSize: 14,
-        fontWeight: 400,
-        lineHeight: 1.5,
-        letterSpacing: 0
-    }),
     textfield: css([
         {
             fontSize: 14,
@@ -27,6 +21,9 @@ export const textfieldStyle = {
                 color: 'rgba(0,0,0,0.5)',
                 border: `1px solid ${palette.gray[600]}`,
                 backgroundColor: palette.gray[100]
+            },
+            '@media (max-width: 425px)': {
+                minWidth: 0
             }
         }
     ]),

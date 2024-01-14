@@ -3,17 +3,18 @@ import { InputHTMLAttributes, ReactNode, forwardRef } from 'react';
 
 import { css } from '@emotion/react';
 import { CheckIcon } from '@heroicons/react/24/outline';
-import { CustomCSSType, visuallyHidden, palette } from 'styles';
+import { CustomCSSType, visuallyHidden } from 'styles';
 
 import Typography from 'components/Base/Typography';
 
-import { checkboxStyle } from './styles';
+import { SizeType, checkboxStyle, getSizeStyle } from './styles';
 
-type BaseType = InputHTMLAttributes<HTMLInputElement> & CustomCSSType;
+type BaseType = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & CustomCSSType;
 
 type CheckboxType = BaseType & {
     label: string;
-    value: string | number;
+    isDisabled?: boolean;
+    size?: SizeType;
     icon?: ReactNode;
     checkedIcon?: ReactNode;
 };
@@ -21,45 +22,100 @@ type CheckboxType = BaseType & {
 /**
  *  [UI Component] Checkbox Component
  *  @param label 체크박스 텍스트 값
- *  @param value 체크박스 값
- *  @param checked 값 선택여부
- *  @param onChange Change Event Handler
+ *  @param isDisabled 비활성화 여부 [optional]
+ *  @param size [CSS] 체크박스 크기 (small | medium | large)
  *  @param icon 아이콘 [optional]
  *  @param checkedIcon 선택 아이콘 [optional]
  *  @param customCSS 커스텀 CSS [optional]
  *  @returns JSX.Element
  */
 const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function createCheckbox(
-    { icon, checkedIcon, checked, onChange, label, value, customCSS, ...props }: CheckboxType,
+    { label, size = 'medium', isDisabled, icon, checkedIcon, onChange, customCSS, ...props }: CheckboxType,
     ref
 ) {
     return (
-        <label htmlFor={label} css={css([checkboxStyle.label, customCSS])}>
+        <label
+            htmlFor={label}
+            css={css([
+                checkboxStyle.label,
+                {
+                    ...(isDisabled && checkboxStyle.pointer)
+                },
+                customCSS
+            ])}
+        >
             <span>
                 <input
                     {...props}
                     id={label}
                     ref={ref}
                     type="checkbox"
-                    name={String(value)}
-                    checked={checked}
-                    onChange={onChange}
+                    disabled={isDisabled}
+                    onChange={(e) => {
+                        e.currentTarget.blur();
+                        if (onChange) {
+                            onChange(e);
+                        }
+                    }}
                     css={css([visuallyHidden, checkboxStyle.input])}
                 />
-                <span
-                    css={css([
-                        checkboxStyle.checked,
-                        {
-                            border: checkedIcon ? 0 : `1px solid ${palette.gray[100]}`,
-                            backgroundColor: checkedIcon ? 'transparent' : palette.primary[400]
-                        }
-                    ])}
-                >
-                    {checkedIcon || <CheckIcon />}
-                </span>
-                {icon ? <span css={checkboxStyle.iconCheckbox}>{icon}</span> : <span css={checkboxStyle.checkbox} />}
+                {checkedIcon ? (
+                    <span
+                        css={css([
+                            getSizeStyle(size).custom,
+                            checkboxStyle.checkedIconContainer,
+                            checkboxStyle.customCheckedIcon,
+                            {
+                                ...(isDisabled && checkboxStyle.disabledIcon)
+                            }
+                        ])}
+                    >
+                        {checkedIcon}
+                    </span>
+                ) : (
+                    <span
+                        css={css([
+                            getSizeStyle(size).default,
+                            checkboxStyle.checkedIconContainer,
+                            checkboxStyle.defaultCheckedIcon,
+                            {
+                                ...(isDisabled && checkboxStyle.disabledDefaultIcon)
+                            }
+                        ])}
+                    >
+                        <CheckIcon />
+                    </span>
+                )}
+                {icon ? (
+                    <span
+                        css={css([
+                            getSizeStyle(size).custom,
+                            checkboxStyle.customCheckboxContainer,
+                            {
+                                ...(isDisabled && checkboxStyle.disabledIcon)
+                            }
+                        ])}
+                    >
+                        {icon}
+                    </span>
+                ) : (
+                    <span
+                        css={css([
+                            getSizeStyle(size).default,
+                            checkboxStyle.defaultCheckboxContainer,
+                            {
+                                ...(isDisabled && checkboxStyle.disabledCheckbox)
+                            }
+                        ])}
+                    />
+                )}
             </span>
-            <Typography component="span" fontSize={16} lineHeight="1.5" customCSS={checkboxStyle.labelText}>
+            <Typography
+                component="span"
+                lineHeight="1.5"
+                fontWeight="500"
+                customCSS={{ ...checkboxStyle.labelText, ...getSizeStyle(size).text }}
+            >
                 {label}
             </Typography>
         </label>

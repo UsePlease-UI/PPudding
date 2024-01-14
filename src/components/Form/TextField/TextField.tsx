@@ -1,9 +1,10 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 /** @jsxImportSource @emotion/react */
-import { InputHTMLAttributes, forwardRef } from 'react';
+import { InputHTMLAttributes, ReactNode, forwardRef, useId } from 'react';
 
 import { css } from '@emotion/react';
 import type { CustomCSSType } from 'styles/types';
+
+import FormControl from 'components/Base/FormControl';
 
 import { DEFAULT_WIDTH, textfieldStyle } from './styles';
 
@@ -13,6 +14,8 @@ type TextFieldType = BaseType & {
     isReadOnly?: boolean;
     isDisabled?: boolean;
     isFullWidth?: boolean;
+    labelText?: string | ReactNode;
+    helperText?: string | ReactNode;
 };
 
 /**
@@ -24,26 +27,35 @@ type TextFieldType = BaseType & {
  *  @returns JSX.Element
  */
 const TextField = forwardRef<HTMLInputElement, TextFieldType>(function createInput(
-    { isDisabled, isReadOnly, isFullWidth, type = 'text', customCSS, ...props },
+    { type = 'text', isReadOnly, isDisabled, isFullWidth, labelText, helperText, customCSS, ...props },
     ref
 ) {
+    const labelId = props.id || useId();
+    const helperTextId = props['aria-describedby'] || useId();
+
     return (
-        <input
-            autoComplete="new-password"
-            {...props}
-            ref={ref}
-            type={type}
-            disabled={isDisabled}
-            readOnly={isReadOnly}
-            css={css([
-                textfieldStyle.textfield,
-                {
-                    width: isFullWidth ? '100%' : DEFAULT_WIDTH,
-                    ...(isReadOnly && textfieldStyle.readOnly)
-                },
-                customCSS
-            ])}
-        />
+        <FormControl id={labelId} helperTextId={helperTextId} helperText={helperText} labelText={labelText}>
+            <input
+                {...props}
+                aria-label={!labelText ? 'outlined-text-input' : undefined}
+                aria-describedby={helperText ? helperTextId : undefined}
+                id={labelId}
+                autoComplete={props.autoComplete || 'new-password'}
+                ref={ref}
+                type={type}
+                disabled={isDisabled}
+                readOnly={isReadOnly}
+                css={css([
+                    textfieldStyle.textfield,
+                    {
+                        minWidth: isFullWidth ? 0 : DEFAULT_WIDTH,
+                        width: '100%',
+                        ...(isReadOnly && textfieldStyle.readOnly)
+                    },
+                    customCSS
+                ])}
+            />
+        </FormControl>
     );
 });
 
