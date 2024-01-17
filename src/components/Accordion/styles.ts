@@ -8,7 +8,10 @@ export const accordionStyle = {
         minHeight: 60,
         border: `1px solid ${palette.gray[100]}`,
         borderRadius: 4,
-        backgroundColor: palette.primary[600]
+        backgroundColor: palette.primary[600],
+        '@media (max-width: 320px)': {
+            minWidth: 0
+        }
     }),
     button: css({
         width: '100%',

@@ -1,47 +1,23 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect, useState } from 'react';
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
-import { css } from '@emotion/react';
+import useMobile from 'hooks/useMobile';
 
 import Aside from './components/Aside';
 import Header from './components/Header';
 import { baseLayoutStyle } from './styles';
 
-const DEFAULT_COMPONENT = 'Accordion';
-
 const BaseLayout = () => {
-    const [show, setShow] = useState(false);
-    const [selected, setSelected] = useState(DEFAULT_COMPONENT);
-    const [searchParams, setSearchParams] = useSearchParams();
+    const isMobile = useMobile();
 
-    useEffect(() => {
-        if (searchParams) {
-            setSelected(searchParams.get('component') || DEFAULT_COMPONENT);
-        }
-    }, [searchParams]);
+    const [isVisible, setIsVisible] = useState(false);
 
     return (
         <div css={baseLayoutStyle.layout}>
-            <Header show={show} onClick={() => setShow((prev) => !prev)} />
-            <Aside
-                show={show}
-                selected={selected}
-                onClose={() => setShow((prev) => !prev)}
-                onClick={(e) => {
-                    setShow(false);
-                    setSelected(e.currentTarget.value);
-                    setSearchParams({ component: e.currentTarget.value });
-                }}
-            />
-            <main
-                css={css([
-                    baseLayoutStyle.main,
-                    {
-                        marginLeft: show ? 240 : 0
-                    }
-                ])}
-            >
+            <Header onClick={() => setIsVisible((prev) => !prev)} />
+            {isMobile && <Aside isVisible={isVisible} onClose={() => setIsVisible((prev) => !prev)} />}
+            <main css={baseLayoutStyle.main}>
                 <section css={baseLayoutStyle.section}>
                     <Outlet />
                 </section>

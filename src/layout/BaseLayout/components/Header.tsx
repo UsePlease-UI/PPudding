@@ -1,88 +1,105 @@
 /** @jsxImportSource @emotion/react */
-import { css, keyframes } from '@emotion/react';
-import { Bars3Icon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { BookOpenIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon } from '@heroicons/react/24/solid';
 import palette from 'styles/palette';
 
-import Typography from 'components/Base/Typography';
+import { Backdrop, Typography } from 'components/Base';
+import Button from 'components/Button/Button';
 import IconButton from 'components/Button/IconButton';
 import useMobile from 'hooks/useMobile';
 
-const headerStyle = css({
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 1,
-    height: 80,
-    borderBottom: `1px dashed ${palette.neutral.white}`,
-    backgroundColor: palette.primary[600],
-    padding: '0 20px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-});
-
-const stroke = keyframes`
-    0% {
-        stroke-dashoffset: 350px;
-    }
-    50% {
-        stroke-dashoffset: 0px;
-    }
-    100% {
-        stroke-dashoffset: 350px;
-    }
-`;
-
-const svgTextStyle = css({
-    fontFamily: 'monospace',
-    fontSize: 70,
-    letterSpacing: -5,
-    stroke: palette.secondary[600],
-    strokeWidth: 2,
-    strokeDasharray: 350,
-    animation: `${stroke} 3s infinite`,
-    '@media (max-width: 425px)': {
-        fontSize: 200
-    }
-});
+import { COMPONENT_LIST, DEMO_LIST } from './constants';
+import { headerStyle } from './styles';
 
 type HeaderType = {
-    show: boolean;
     onClick: () => void;
 };
 
-const Header = ({ show, onClick }: HeaderType) => {
+const Header = ({ onClick }: HeaderType) => {
     const isMobile = useMobile();
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <header css={headerStyle}>
-            <Typography component="h1" customCSS={{ display: 'flex', alignItems: 'center' }}>
-                <svg css={css({ fill: palette.neutral.white })} width="100%" height={80} viewBox="0 0 1200 80">
-                    <text x="0" y={isMobile ? '100' : '70'} css={svgTextStyle}>
+        <header css={headerStyle.header}>
+            <Typography component="h1" customCSS={headerStyle.headerText}>
+                <svg viewBox="0 0 1200 80" width="100%" height={80} css={headerStyle.svg}>
+                    <text x="0" y={isMobile ? '100' : '70'} css={headerStyle.svgText}>
                         {isMobile ? 'RC' : 'React Components'}
                     </text>
                 </svg>
             </Typography>
-            <IconButton
-                type="button"
-                onClick={onClick}
-                customCSS={{
-                    color: !show ? palette.neutral.white : palette.primary[600],
-                    backgroundColor: !show ? palette.secondary[600] : palette.neutral.white,
-                    border: `1px dashed ${!show ? palette.neutral.white : palette.secondary[600]}`,
-                    padding: 2,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    '& svg': {
-                        width: 30,
-                        height: 30
-                    }
-                }}
-            >
-                <Bars3Icon />
-            </IconButton>
+            {isMobile ? (
+                <IconButton size="medium" onClick={onClick} customCSS={headerStyle.hamburgerButton}>
+                    <Bars3Icon />
+                </IconButton>
+            ) : (
+                <div css={headerStyle.menuContainer}>
+                    <Button
+                        size="small"
+                        variant="contained"
+                        onClick={() => setIsOpen((prev) => !prev)}
+                        customCSS={headerStyle.menuButton}
+                    >
+                        둘러보기
+                    </Button>
+                    <Backdrop isOpen={isOpen} isDimmed onClose={() => setIsOpen(false)}>
+                        <nav css={headerStyle.menuNav}>
+                            <div css={headerStyle.menuListContainer}>
+                                <Typography
+                                    component="h2"
+                                    fontSize={16}
+                                    fontWeight="900"
+                                    align="center"
+                                    backgroundColor={palette.neutral.white}
+                                    customCSS={headerStyle.componentHeading}
+                                >
+                                    컴포넌트
+                                </Typography>
+                                <ul css={headerStyle.menuList}>
+                                    {COMPONENT_LIST.map((component) => (
+                                        <li key={component} css={headerStyle.menuListItem}>
+                                            <Link to={`/?component=${component}`} css={headerStyle.linkText}>
+                                                {component}
+                                            </Link>
+                                            <Link
+                                                title="가이드 보러가기"
+                                                to={`/guide/${component.toLowerCase()}`}
+                                                css={headerStyle.icon}
+                                            >
+                                                <BookOpenIcon width={16} height={16} color={palette.neutral.black} />
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div css={headerStyle.menuListContainer}>
+                                <Typography
+                                    component="h2"
+                                    fontSize={16}
+                                    fontWeight="900"
+                                    align="center"
+                                    backgroundColor={palette.neutral.white}
+                                    customCSS={headerStyle.demoHeading}
+                                >
+                                    데모
+                                </Typography>
+                                <ul css={headerStyle.menuList}>
+                                    {DEMO_LIST.map((demo) => (
+                                        <li key={demo} css={headerStyle.menuListItem}>
+                                            <Link to={`/demo/${demo}`} css={headerStyle.linkText}>
+                                                {demo}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </nav>
+                    </Backdrop>
+                </div>
+            )}
         </header>
     );
 };

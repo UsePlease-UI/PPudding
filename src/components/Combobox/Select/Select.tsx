@@ -6,11 +6,9 @@ import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import type { CustomCSSType } from 'styles/types';
 
 import { Backdrop, FormControl } from 'components/Base';
-import ListBox from 'components/Listbox';
+import ListBox, { OptionType } from 'components/Listbox';
 
 import { AVG_OPTION_HEIGHT, MAX_MENU_HEIGHT, MIN_OFFSET, selectStyle } from './styles';
-
-import type { OptionType } from 'components/Listbox/types';
 
 type BaseType = InputHTMLAttributes<HTMLButtonElement> & CustomCSSType;
 
@@ -85,9 +83,9 @@ export default function Select(props: SelectType) {
         if (isVisible && ref.current) {
             const defaultTop = ref.current?.getBoundingClientRect().top || 0;
             if (isMenuPositionedTop()) {
-                setTop(defaultTop - (document.getElementById(listboxId)?.offsetHeight || 0));
+                setTop(defaultTop - (document.getElementById(listboxId)?.offsetHeight || 0) + 1);
             } else {
-                setTop(0);
+                setTop(1);
             }
         }
     }, [isVisible]);
@@ -152,7 +150,7 @@ export default function Select(props: SelectType) {
                 </button>
                 <div id={backdropId} />
                 {isVisible && (
-                    <Backdrop containerId={backdropId} onClose={() => handleClick()}>
+                    <Backdrop isOpen={isVisible} onClose={() => handleClick()}>
                         <div
                             css={css({
                                 position: 'fixed',

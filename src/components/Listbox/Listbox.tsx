@@ -7,7 +7,8 @@ import { palette } from 'styles';
 import Button from 'components/Button/Button';
 
 import { listBoxStyle } from './styles';
-import { OptionType } from './types';
+
+export type OptionType = { label: string; value: string | number };
 
 type ListboxType = {
     id: string;

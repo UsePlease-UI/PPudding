@@ -3,7 +3,7 @@ import { useState, useCallback } from 'react';
 import _ from 'lodash';
 
 import FlexBox from 'components/Base/FlexBox';
-import AutoComplete from 'components/Combobox/AutoComplete';
+import AutoComplete from 'components/Combobox/Autocomplete';
 
 import { AUTOCOMPLETE } from '../constants';
 

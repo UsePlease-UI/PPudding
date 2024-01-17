@@ -1,145 +1,72 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { css } from '@emotion/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import palette from 'styles/palette';
 
 import FlexBox from 'components/Base/FlexBox';
 import Button from 'components/Button/Button';
 import IconButton from 'components/Button/IconButton';
-import useMobile from 'hooks/useMobile';
 
-const COMPONENT_LIST = [
-    'Accordion',
-    'AutoComplete',
-    'Button',
-    'Checkbox',
-    'Chip',
-    'DragNDrop',
-    'Icon Button',
-    'Pagination',
-    'PopOver',
-    'Radio',
-    'Select',
-    'Skeleton',
-    'Tab',
-    'Table',
-    'TextField',
-    'Toggle Button'
-];
-
-const asideStyle = css({
-    position: 'fixed',
-    top: 80,
-    left: 0,
-    borderRight: `1px dashed ${palette.neutral.white}`,
-    backgroundColor: palette.primary[600],
-    display: 'flex',
-    alignItems: 'flex-start',
-    '@media (max-width: 768px)': {
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        width: '100%',
-        zIndex: 11,
-        backgroundColor: 'rgba(0,0,0,0.8)',
-        flexDirection: 'column',
-        overflowY: 'auto'
-    }
-});
+import { COMPONENT_LIST } from './constants';
+import { asideStyle } from './styles';
 
 type AsideType = {
-    show: boolean;
-    selected: string;
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    isVisible: boolean;
     onClose: () => void;
 };
 
-const Aside = ({ show, selected, onClick, onClose }: AsideType) => {
-    const isMobile = useMobile();
+const Aside = ({ isVisible, onClose }: AsideType) => {
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const [selected, setSelected] = useState(COMPONENT_LIST[0]);
 
     useEffect(() => {
-        if (isMobile && show) {
+        if (searchParams) {
+            setSelected(searchParams.get('component') || COMPONENT_LIST[0]);
+        }
+    }, [searchParams]);
+
+    useEffect(() => {
+        if (isVisible) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.removeProperty('overflow');
         }
-    }, [isMobile, show]);
+    }, [isVisible]);
 
     return (
         <aside
             css={css([
-                asideStyle,
+                asideStyle.aside,
                 {
-                    width: show ? 240 : 0,
-                    transition: 'width 0.5s ease-in-out',
-                    '& > div': {
-                        padding: 20,
-                        pointerEvents: show ? 'auto' : 'none',
-                        opacity: show ? 1 : 0,
-                        transition: 'opacity 0.45s ease-in-out',
-                        ...(!isMobile && {
-                            maxHeight: 'calc(100vh - 80px)',
-                            overflowY: 'auto'
-                        })
-                    },
-                    '@media (max-width: 768px)': {
-                        borderRight: 0,
-                        width: show ? '100%' : 0,
-                        backgroundColor: show ? 'rgba(0,0,0,0.8)' : 'unset'
-                    }
+                    ...(isVisible && asideStyle.isVisible)
                 }
             ])}
         >
-            <FlexBox
-                justifyContent="flex-end"
-                customCSS={{
-                    width: '100%',
-                    '@media (min-width: 769px)': {
-                        display: 'none'
-                    }
-                }}
-            >
-                <IconButton
-                    aria-label="close"
-                    customCSS={{
-                        width: 30,
-                        height: 30,
-                        '& > svg': {
-                            color: palette.neutral.white,
-                            width: 30,
-                            height: 30
-                        }
-                    }}
-                    onClick={onClose}
-                >
+            <FlexBox justifyContent="flex-end" customCSS={asideStyle.closeIconContainer}>
+                <IconButton aria-label="close" size="medium" customCSS={asideStyle.iconButton} onClick={onClose}>
                     <XMarkIcon />
                 </IconButton>
             </FlexBox>
-            <FlexBox flexDirection="column" gap={4} customCSS={{ width: '100%', padding: 10 }}>
-                {COMPONENT_LIST.map((el: string) => (
+            <FlexBox flexDirection="column" gap={4} customCSS={asideStyle.listContainer}>
+                {COMPONENT_LIST.map((component: string) => (
                     <Button
-                        key={el}
+                        key={component}
                         type="button"
-                        value={el}
+                        value={component}
                         customCSS={{
-                            flex: 'none',
-                            height: 40,
-                            textTransform: 'uppercase',
-                            fontWeight: 600,
-                            borderRadius: 4,
-                            border: `1px dashed ${palette.neutral.white}`,
-                            color: selected === el ? palette.secondary[600] : palette.neutral.white,
-                            background: selected === el ? palette.tertiary[400] : palette.secondary[600],
-                            '&:hover': {
-                                opacity: 0.6
-                            }
+                            ...asideStyle.listButton,
+                            ...(selected === component && asideStyle.isSelected)
                         }}
-                        onClick={onClick}
+                        onClick={(e) => {
+                            onClose();
+                            setSelected(e.currentTarget.value);
+                            setSearchParams({ component: e.currentTarget.value });
+                        }}
                     >
-                        {el}
+                        {component}
                     </Button>
                 ))}
             </FlexBox>

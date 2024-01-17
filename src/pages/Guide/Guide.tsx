@@ -1,35 +1,39 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect, useState } from 'react';
 import Markdown from 'react-markdown';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import accordion from 'components/Accordion/Accordion.md';
 import { FlexBox } from 'components/Base';
+import base from 'components/Base/Base.md';
 
 import { guideStyle } from './styles';
 
-function getMD(pathname: string) {
-    const name = pathname.split('/guide/')[1];
+function getMD(name?: string) {
     switch (name) {
         case 'accordion':
             return accordion;
-
+        case 'base':
+            return base;
         default:
             return null;
     }
 }
 
 const Guide = () => {
-    const { pathname } = useLocation();
+    const navigate = useNavigate();
+    const { component } = useParams();
     const [markdown, setMarkdown] = useState('');
 
     useEffect(() => {
-        if (getMD(pathname)) {
-            fetch(getMD(pathname))
+        if (getMD(component)) {
+            fetch(getMD(component))
                 .then((response) => response.text())
                 .then(setMarkdown);
+        } else {
+            navigate('/');
         }
-    }, [pathname]);
+    }, [component]);
 
     return (
         <FlexBox flexDirection="column" customCSS={guideStyle.container}>

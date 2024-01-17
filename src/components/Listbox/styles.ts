@@ -28,9 +28,13 @@ export const listBoxStyle = {
             overflow: 'hidden',
             whiteSpace: 'nowrap'
         },
-        '&:hover, &:hover button': {
+        '&:hover, &:hover button,': {
             fontWeight: 600,
             color: palette.primary[800]
+        },
+        '& button:focus': {
+            fontWeight: 900,
+            color: palette.primary[900]
         }
     })
 };

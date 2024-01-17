@@ -7,7 +7,10 @@ export const MIN_OFFSET = 20;
 
 export const selectStyle = {
     container: css({
-        position: 'relative'
+        position: 'relative',
+        '&:hover > button': {
+            border: `1px solid ${palette.gray[400]}`
+        }
     }),
     button: css({
         height: 40,
@@ -19,6 +22,9 @@ export const selectStyle = {
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        '&:focus': {
+            border: `1px solid ${palette.gray[600]}`
+        },
         '&:disabled': {
             color: palette.neutral.black,
             backgroundColor: palette.gray[100]
@@ -41,8 +47,12 @@ export const selectStyle = {
         whiteSpace: 'nowrap'
     }),
     icon: css({
-        display: 'inline-block',
+        display: 'block',
         width: 20,
-        height: 20
+        height: 20,
+        '& svg': {
+            width: 20,
+            height: 20
+        }
     })
 };

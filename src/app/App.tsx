@@ -1,7 +1,11 @@
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import DemoLayout from 'layout/DemoLayout';
+import BaseLayout from 'layout/BaseLayout';
+import DemoLayout from 'layout/DemoLayout/DemoLayout';
+import Editor from 'pages/Demo/Editor';
 import FAQ from 'pages/Demo/FAQ';
+import Register from 'pages/Demo/Register';
+import Search from 'pages/Demo/Search';
 import Guide from 'pages/Guide';
 import Home from 'pages/Home';
 
@@ -12,7 +16,13 @@ export default function App() {
                 [
                     {
                         path: '',
-                        element: <Home />
+                        element: <BaseLayout />,
+                        children: [
+                            {
+                                path: '',
+                                element: <Home />
+                            }
+                        ]
                     },
                     {
                         path: '/demo',
@@ -21,6 +31,18 @@ export default function App() {
                             {
                                 path: 'faq',
                                 element: <FAQ />
+                            },
+                            {
+                                path: 'search',
+                                element: <Search />
+                            },
+                            {
+                                path: 'editor',
+                                element: <Editor />
+                            },
+                            {
+                                path: 'register',
+                                element: <Register />
                             }
                         ]
                     },
@@ -29,7 +51,7 @@ export default function App() {
                         element: <Guide />,
                         children: [
                             {
-                                path: 'accordion',
+                                path: ':component',
                                 element: <Outlet />
                             }
                         ]

@@ -13,7 +13,7 @@ type ListType = {
     value: string;
 };
 
-type AutoCompleteType = {
+type AutocompleteType = {
     inputValue: string;
     label: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -74,7 +74,7 @@ const ulStyle = css({
 
 // TODO: 문서
 /**
- *  [UI Component] AutoComplete Component
+ *  [UI Component] Autocomplete Component
  *  @param inputValue
  *  @param label
  *  @param label
@@ -83,7 +83,7 @@ const ulStyle = css({
  *  @param listArr
  *  @returns JSX.Element
  */
-export default function AutoComplete(props: AutoCompleteType) {
+export default function Autocomplete(props: AutocompleteType) {
     const { inputValue, onChange, label, listArr, onSelect } = props;
     const listRef = useRef<HTMLUListElement | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);

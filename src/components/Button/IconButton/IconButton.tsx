@@ -20,8 +20,8 @@ type IconButtonType = BaseType & {
  *  [UI Component] Icon Button
  *  @param children 컴포넌트
  *  @param isDisabled 비활성화 여부 [optional]
- *  @param size [CSS] 버튼 크기 ('' | large | medium | small)
- *  @param variant [CSS] 버튼 스타일 ('' | outlined | contained | text)
+ *  @param size [CSS] 버튼 크기 (large | medium | small)
+ *  @param variant [CSS] 버튼 스타일 (outlined | contained | text)
  *  @returns JSX.Element
  */
 

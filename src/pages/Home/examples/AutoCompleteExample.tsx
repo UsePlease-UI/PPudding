@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import FlexBox from 'components/Base/FlexBox';
 import Typography from 'components/Base/Typography';
-import AutoComplete from 'components/Combobox/AutoComplete';
+import AutoComplete from 'components/Combobox/Autocomplete';
 
 import { AUTOCOMPLETE as LIST } from './constants';
 

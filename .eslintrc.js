@@ -53,7 +53,8 @@ module.exports = {
                         position: 'before'
                     },
                     {
-                        pattern: '{assets/**,constants/**,@emotion/**,styles,styles/**,@heroicons/**}',
+                        pattern:
+                            '{assets/**,constants/**,@emotion/**,styles,styles/**,@heroicons/**,@fluentui/react-icons}',
                         group: 'external',
                         position: 'after'
                     },

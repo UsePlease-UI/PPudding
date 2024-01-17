@@ -3,7 +3,9 @@ import { ReactNode } from 'react';
 
 import type { CustomCSSType } from 'styles/types';
 
-import { FlexBox, Typography } from 'components/Base';
+import { Typography } from 'components/Base';
+
+import { formControlStyle } from './styles';
 
 type FormControlType = CustomCSSType & {
     children: ReactNode;
@@ -24,17 +26,34 @@ type FormControlType = CustomCSSType & {
  *  @returns JSX.Element
  */
 export default function FormControl(props: FormControlType) {
-    const { children, id, labelText, helperTextId, helperText, customCSS } = props;
+    const { children, id, labelText, helperTextId, helperText } = props;
 
     return (
-        <FlexBox flexDirection="column" gap={4} customCSS={customCSS}>
-            <Typography component="label" htmlFor={id} fontSize={12} fontWeight="600">
-                {labelText}
-            </Typography>
+        <div css={formControlStyle.container}>
+            {labelText && (
+                <Typography
+                    component="label"
+                    htmlFor={id}
+                    fontSize={12}
+                    fontWeight="600"
+                    gutterBottom={4}
+                    customCSS={formControlStyle.labelText}
+                >
+                    {labelText}
+                </Typography>
+            )}
             {children}
-            <Typography component="small" id={helperTextId} fontSize={10} fontWeight="500">
-                {helperText}
-            </Typography>
-        </FlexBox>
+            {helperText && (
+                <Typography
+                    component="small"
+                    id={helperTextId}
+                    fontSize={10}
+                    fontWeight="500"
+                    customCSS={formControlStyle.helperText}
+                >
+                    {helperText}
+                </Typography>
+            )}
+        </div>
     );
 }

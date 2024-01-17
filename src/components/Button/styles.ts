@@ -47,11 +47,10 @@ export const commonStyle = {
         border: '1px solid transparent',
         backgroundColor: palette.neutral.white,
         '&:hover': {
-            border: `1px solid ${palette.gray[600]}`
+            backgroundColor: palette.gray[50]
         },
         '&:focus': {
-            backgroundColor: palette.gray[50],
-            border: `1px solid ${palette.neutral.black}`
+            backgroundColor: palette.gray[100]
         },
         '&:disabled': {
             color: palette.gray[600]
