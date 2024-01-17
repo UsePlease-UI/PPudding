@@ -1,9 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import PageList from 'components/Pagination/PageList';
 
 import { css } from '@emotion/react';
 import { CSSInterpolation } from '@emotion/serialize';
 
+import PageList from 'components/Pagination/PageList';
+
+// TODO: styles.ts로 파일 분리
 const navStyle = css({
     display: 'flex',
     flexDirection: 'row',
@@ -23,7 +25,17 @@ type PaginationType = {
 
 const PAGE_LIMIT = 10;
 
-export default function Pagination({ totalCount, page, blockNum, onChange, customCSS = {} }: PaginationType) {
+// TODO: 문서
+/**
+ *  [UI Component] Pagination Component
+ *  @param totalCount
+ *  @param page
+ *  @param blockNum
+ *  @param onChange
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
+export default function Pagination({ totalCount, page, blockNum, onChange, customCSS }: PaginationType) {
     const pageMaxCount = Math.ceil(totalCount / 10);
 
     const handleFirstClick = () => onChange(1, 1);

@@ -1,0 +1,42 @@
+/** @jsxImportSource @emotion/react */
+import { ChangeEvent, Children, ReactElement, ReactNode, cloneElement } from 'react';
+
+import type { CustomCSSType } from 'styles/types';
+
+import FlexBox from 'components/Base/FlexBox';
+
+type RadioGroupType = CustomCSSType & {
+    children: ReactNode;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    value: string | number;
+    isRow?: boolean;
+    gap?: number;
+};
+
+/**
+ *  [UI Component] Radio Group Component
+ *  @param children 컴포넌트
+ *  @param onChange Change Event Handler
+ *  @param value 선택된 라디오 버튼 값
+ *  @param isRow [CSS] flex direction (row | column)
+ *  @param gap [CSS] flex gap
+ *  @param customCSS 커스텀 CSS [optional]
+ *  @returns JSX.Element
+ */
+export default function RadioGroup(props: RadioGroupType) {
+    const { children, value, onChange, isRow = true, gap = 10, customCSS } = props;
+
+    return (
+        <FlexBox
+            alignItems={isRow ? 'center' : 'unset'}
+            justifyContent={isRow ? 'flex-start' : 'unset'}
+            flexDirection={isRow ? 'row' : 'column'}
+            gap={gap}
+            customCSS={customCSS}
+        >
+            {Children.toArray(children).map((child) =>
+                cloneElement(child as ReactElement, { currentValue: value, onChange })
+            )}
+        </FlexBox>
+    );
+}

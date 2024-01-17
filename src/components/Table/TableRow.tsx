@@ -1,24 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
 import { css } from '@emotion/react';
-import { CSSInterpolation } from '@emotion/serialize';
+import type { CustomCSSType } from 'styles/types';
 
-type TableRowType = React.HTMLAttributes<HTMLTableRowElement> & {
-    children: React.ReactNode;
-    customCSS?: CSSInterpolation;
+import { tableStyle } from './styles';
+
+type BaseType = HTMLAttributes<HTMLTableRowElement> & CustomCSSType;
+
+type TableRowType = BaseType & {
+    children: ReactNode;
 };
-
-const tableRowStyle = css({
-    display: 'table-row',
-    borderBottom: '1px solid #eeeeee',
-    '&:hover': {
-        backgroundColor: 'pink'
-    },
-    '&:last-of-type': {
-        borderBottom: 0
-    }
-});
 
 /**
  *  [UI Component] Table Row Component
@@ -27,7 +19,7 @@ const tableRowStyle = css({
  *  @returns JSX.Element
  */
 export default function TableRow(props: TableRowType) {
-    const { children, customCSS = {} } = props;
+    const { children, customCSS } = props;
 
-    return <tr css={css([tableRowStyle, customCSS])}>{children}</tr>;
+    return <tr css={css([tableStyle.tableRow, customCSS])}>{children}</tr>;
 }

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-import ToggleButton from 'components/Button/ToggleButton';
-import ToggleButtonGroup from 'components/Button/ToggleButtonGroup';
+import { ToggleButton, ToggleButtonGroup } from 'components/Button/ToggleButton';
 
 export default function ToggleButtonExample() {
     const [fruits, setFruits] = useState('banana');

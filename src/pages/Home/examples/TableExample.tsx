@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+
 import Typography from 'components/Base/Typography';
 import Table from 'components/Table/Table';
 import TableBody from 'components/Table/TableBody';
 import TableCell from 'components/Table/TableCell';
 import TableHead from 'components/Table/TableHead';
 import TableRow from 'components/Table/TableRow';
-
-import { css } from '@emotion/react';
 
 const captionStyle = css({ textAlign: 'left', fontSize: 16, lineHeight: 1.5, fontWeight: 600, padding: '8px 0' });
 

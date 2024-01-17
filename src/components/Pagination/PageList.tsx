@@ -1,8 +1,4 @@
 /** @jsxImportSource @emotion/react */
-
-import PageButton from 'components/Pagination/PageIconButton';
-import PageNumButton from 'components/Pagination/PageNumButton';
-
 import { css } from '@emotion/react';
 import {
     ChevronDoubleLeftIcon,
@@ -10,6 +6,9 @@ import {
     ChevronLeftIcon,
     ChevronRightIcon
 } from '@heroicons/react/24/outline';
+
+import PageButton from 'components/Pagination/PageIconButton';
+import PageNumButton from 'components/Pagination/PageNumButton';
 
 type pageListType = {
     showFirstButton?: boolean;
@@ -25,6 +24,7 @@ type pageListType = {
     handleLastClick: () => void;
 };
 
+// TODO: styles.ts로 파일 분리
 const ulStyle = css({
     display: 'flex',
     flexDirection: 'row',
@@ -32,6 +32,7 @@ const ulStyle = css({
     flexWrap: 'wrap'
 });
 
+// TODO: styles.ts로 파일 분리
 const listStyle = css({
     width: 32,
     height: 32,

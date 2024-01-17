@@ -16,6 +16,7 @@ export default function PageNumButton({ pageNum, isSelected, onClick }: pageNumB
             {...props}
             type="button"
             onClick={onClick}
+            // TODO: styles.ts로 파일 분리
             css={css({
                 width: 32,
                 height: 32,
@@ -24,10 +25,10 @@ export default function PageNumButton({ pageNum, isSelected, onClick }: pageNumB
                 fontSize: 15,
                 fontWeight: 600,
                 cursor: 'pointer',
-                color: isSelected ? 'white' : '#8D8D8D',
-                backgroundColor: isSelected ? '#3378FF' : '',
+                color: isSelected ? 'white' : '#8D8D8D', // TODO: palette 색상으로 변경
+                backgroundColor: isSelected ? '#3378FF' : '', // TODO: palette 색상으로 변경
                 '&:hover': {
-                    backgroundColor: '#3378FF4D'
+                    backgroundColor: '#3378FF4D' // TODO: palette 색상으로 변경
                 }
             })}
         >

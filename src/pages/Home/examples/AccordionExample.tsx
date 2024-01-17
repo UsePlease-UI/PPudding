@@ -22,14 +22,14 @@ export default function AccordionExample() {
         };
 
     return (
-        <FlexBox direction="column" customCSS={{ margin: '20px 0' }}>
+        <FlexBox flexDirection="column" customCSS={{ margin: '20px 0' }}>
             <Accordion isExpanded={panel === 'panel1'} onChange={handleChange('panel1')}>
-                <AccordionHeader index={1}>Controlled - Q1</AccordionHeader>
-                <AccordionPanel index={1}>Apple</AccordionPanel>
+                <AccordionHeader>Controlled - Q1</AccordionHeader>
+                <AccordionPanel>Apple</AccordionPanel>
             </Accordion>
             <Accordion>
-                <AccordionHeader index={2}>Uncontrolled - Q2</AccordionHeader>
-                <AccordionPanel index={2}>Banana</AccordionPanel>
+                <AccordionHeader>Uncontrolled - Q2</AccordionHeader>
+                <AccordionPanel>Banana</AccordionPanel>
             </Accordion>
         </FlexBox>
     );

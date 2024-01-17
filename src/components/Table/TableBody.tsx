@@ -1,12 +1,13 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
 import { css } from '@emotion/react';
-import { CSSInterpolation } from '@emotion/serialize';
+import type { CustomCSSType } from 'styles/types';
 
-type TableBodyType = React.HTMLAttributes<HTMLTableSectionElement> & {
-    children: React.ReactNode;
-    customCSS?: CSSInterpolation;
+type BaseType = HTMLAttributes<HTMLTableSectionElement> & CustomCSSType;
+
+type TableBodyType = BaseType & {
+    children: ReactNode;
 };
 
 /**
@@ -16,7 +17,7 @@ type TableBodyType = React.HTMLAttributes<HTMLTableSectionElement> & {
  *  @returns JSX.Element
  */
 export default function TableBody(props: TableBodyType) {
-    const { children, customCSS = {} } = props;
+    const { children, customCSS } = props;
 
     return <tbody css={css(customCSS)}>{children}</tbody>;
 }

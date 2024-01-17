@@ -1,25 +1,19 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import { Children, ReactElement, ReactNode, cloneElement } from 'react';
+
+import { css } from '@emotion/react';
+import type { CustomCSSType } from 'styles/types';
 
 import FlexBox from 'components/Base/FlexBox';
 import { TabProvider } from 'components/useTab';
 
-import { css } from '@emotion/react';
-import { CSSInterpolation } from '@emotion/serialize';
+import { tabStyle } from './styles';
 
-type TabType = {
-    children: React.ReactNode;
+type TabType = CustomCSSType & {
+    children: ReactNode;
     value: number;
     onChange: (newValue: number) => void;
-    customCSS?: CSSInterpolation;
 };
-
-const tabListStyle = css({
-    width: '100%',
-    minHeight: 80,
-    backgroundColor: '#fbfbfb',
-    borderBottom: '1px solid #eeeeee'
-});
 
 /**
  *  [UI Component] Tab Component
@@ -30,20 +24,14 @@ const tabListStyle = css({
  *  @returns JSX.Element
  */
 export default function Tab(props: TabType) {
-    const { children, value, onChange, customCSS = {}, ...rest } = props;
+    const { children, value, onChange, customCSS, ...rest } = props;
 
     return (
         <TabProvider value={value} onChange={onChange}>
-            <div {...rest} role="tablist" css={css([tabListStyle, customCSS])}>
-                <FlexBox
-                    justifyContent="space-evenly"
-                    alignItems="center"
-                    customCSS={{ width: '100%', height: '100%' }}
-                >
+            <div {...rest} role="tablist" css={css([tabStyle.tabList, customCSS])}>
+                <FlexBox justifyContent="space-evenly" alignItems="center" customCSS={tabStyle.tabContainer}>
                     {/* https://fe-developers.kakaoent.com/2021/211022-react-children-tip/ */}
-                    {React.Children.toArray(children).map((child) =>
-                        React.cloneElement(child as React.ReactElement, { onChange })
-                    )}
+                    {Children.toArray(children).map((child) => cloneElement(child as ReactElement, { onChange }))}
                 </FlexBox>
             </div>
         </TabProvider>

@@ -66,6 +66,8 @@ PR 메시지
 
 ```
 
-### References
+### Assets
 
 -   [Heroicons](https://heroicons.com/)
+-   [Fluent Icons](https://github.com/microsoft/fluentui-system-icons)
+-   [Pretendard Font](https://github.com/orioncactus/pretendard)

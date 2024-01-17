@@ -1,17 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useRef, useState } from 'react';
 
-import FlexBox from 'components/Base/FlexBox';
-import PopOver from 'components/Menu/PopOver';
-
 import { css } from '@emotion/react';
 import palette from 'styles/palette';
+
+import FlexBox from 'components/Base/FlexBox';
+import PopOver from 'components/Menu/PopOver';
 
 const popoverStyle = css({
     height: 30,
     fontWeight: 700,
-    color: palette.lightBlue.main,
-    border: `1px solid ${palette.lightBlue.main}`,
+    color: palette.tertiary[400],
+    border: `1px solid ${palette.tertiary[400]}`,
     borderRadius: 4
 });
 
@@ -21,11 +21,11 @@ const ulStyle = css({
         height: 40,
         margin: '0 5px',
         padding: '0 10px',
-        borderBottom: `1px solid ${palette.lightBlue.main}`,
+        borderBottom: `1px solid ${palette.tertiary[400]}`,
         '&:hover': {
             '& a': {
                 cursor: 'pointer',
-                color: palette.lightBlue.main
+                color: palette.tertiary[400]
             }
         },
         '&:last-of-type': {
@@ -35,7 +35,7 @@ const ulStyle = css({
     '& a': {
         display: 'inline-block',
         lineHeight: '40px',
-        color: palette.primary.main
+        color: palette.primary[600]
     }
 });
 
@@ -73,7 +73,7 @@ export default function PopOverExample() {
     }, [isOpen]);
 
     return (
-        <FlexBox direction="column" gap={10} customCSS={{ margin: '20px 0' }}>
+        <FlexBox flexDirection="column" gap={10} customCSS={{ margin: '20px 0' }}>
             <button type="button" ref={buttonRef} onClick={handleOpen} css={popoverStyle}>
                 메뉴 보기
             </button>

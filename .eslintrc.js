@@ -53,13 +53,18 @@ module.exports = {
                         position: 'before'
                     },
                     {
+                        pattern:
+                            '{assets/**,constants/**,@emotion/**,styles,styles/**,@heroicons/**,@fluentui/react-icons}',
+                        group: 'external',
+                        position: 'after'
+                    },
+                    {
                         pattern: '{components/**}',
                         group: 'external',
                         position: 'after'
                     },
                     {
-                        pattern:
-                            '{*.+(css|scss|svg|png|jpg|jpeg),assets/**,constants/**,@emotion/**,styles/**,@heroicons/**}',
+                        pattern: '{*.+(css|scss|svg|png|jpg|jpeg)}',
                         patternOptions: {
                             dot: true,
                             nocomment: true,
