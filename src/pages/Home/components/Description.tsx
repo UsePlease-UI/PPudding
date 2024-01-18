@@ -58,10 +58,10 @@ const DESCRIPTION = {
         name: 'Accordion',
         description: 'A component with show / hide functionality'
     },
-    AutoComplete: {
+    Autocomplete: {
         link: 'https://www.w3.org/WAI/ARIA/apg/patterns/combobox/',
         icon: 'A',
-        name: 'AutoComplete',
+        name: 'Autocomplete',
         description: 'A component that enables the user to choose a value for input from a collection'
     },
     Button: {
@@ -82,10 +82,10 @@ const DESCRIPTION = {
         name: 'Chip',
         description: 'A component that can be used to represent an attribute or trigger an action'
     },
-    DragNDrop: {
+    'Drag N Drop API': {
         link: 'https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API',
         icon: 'D',
-        name: 'Drag and Drop',
+        name: 'Drag and Drop API',
         description: 'A component that utilizes drag-and-drop api'
     },
     'Icon Button': {
@@ -100,10 +100,10 @@ const DESCRIPTION = {
         name: 'Pagination',
         description: 'A component that enables the user to select a page from a range of pages'
     },
-    PopOver: {
+    Popover: {
         link: 'https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/',
         icon: 'P',
-        name: 'PopOver',
+        name: 'Popover',
         description: 'A button that opens a menu'
     },
     Radio: {

@@ -19,7 +19,7 @@ export function getComponents(type: string) {
     switch (type) {
         case 'Accordion':
             return <AccordionExample />;
-        case 'AutoComplete':
+        case 'Autocomplete':
             return <AutoCompleteExample />;
         case 'Button':
             return <ButtonExample />;
@@ -27,13 +27,13 @@ export function getComponents(type: string) {
             return <CheckboxExample />;
         case 'Chip':
             return <ChipExample />;
-        case 'DragNDrop':
+        case 'Drag N Drop API':
             return <DragNDropExample />;
         case 'Icon Button':
             return <IconButtonExample />;
         case 'Pagination':
             return <PaginationExample />;
-        case 'PopOver':
+        case 'Popover':
             return <PopOverExample />;
         case 'Radio':
             return <RadioExample />;
