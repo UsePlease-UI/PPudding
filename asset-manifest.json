@@ -1,10 +1,12 @@
 {
   "files": {
-    "main.js": "/react-components/static/js/main.4358b7b4.js",
+    "main.js": "/react-components/static/js/main.db5d7a28.js",
+    "static/media/Accordion.md": "/react-components/static/media/Accordion.10486565e666baa1cbc3.md",
     "index.html": "/react-components/index.html",
-    "main.4358b7b4.js.map": "/react-components/static/js/main.4358b7b4.js.map"
+    "static/media/Base.md": "/react-components/static/media/Base.b52147c2ef418bcd482e.md",
+    "main.db5d7a28.js.map": "/react-components/static/js/main.db5d7a28.js.map"
   },
   "entrypoints": [
-    "static/js/main.4358b7b4.js"
+    "static/js/main.db5d7a28.js"
   ]
 }
