@@ -36,5 +36,14 @@ export const listBoxStyle = {
             fontWeight: 900,
             color: palette.primary[900]
         }
+    }),
+    selectedListItem: css({
+        '&, & button': {
+            textAlign: 'left',
+            width: '100%',
+            fontWeight: 600,
+            color: palette.neutral.white,
+            backgroundColor: palette.primary[400]
+        }
     })
 };

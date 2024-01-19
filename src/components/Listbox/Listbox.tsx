@@ -1,52 +1,62 @@
 /** @jsxImportSource @emotion/react */
-import { MouseEvent } from 'react';
+import { MouseEvent, ReactNode, forwardRef } from 'react';
 
 import { css } from '@emotion/react';
-import { palette } from 'styles';
+import { CustomCSSType } from 'styles';
 
-import Button from 'components/Button/Button';
-
+import ListboxItem from './ListboxItem';
 import { listBoxStyle } from './styles';
 
-export type OptionType = { label: string; value: string | number };
+export type OptionType = { [key: string]: string | number };
 
-type ListboxType = {
+type ListboxType = CustomCSSType & {
     id: string;
     labelId: string;
     name: string;
     value: string | number;
     options: OptionType[];
-    onClick: (e: MouseEvent<HTMLButtonElement>) => void;
+    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+    renderItem?: (option: OptionType) => ReactNode;
 };
 
-const Listbox = ({ id, labelId, name, value, options, onClick }: ListboxType) => (
-    <ul id={id} role="listbox" aria-labelledby={labelId} tabIndex={-1} css={listBoxStyle.list}>
-        {options.map((option) => (
-            <li
-                key={option.value}
-                role="option"
-                aria-selected={value === option.value}
-                css={css([
-                    listBoxStyle.listItem,
-                    {
-                        ...(value === option.value && {
-                            '&, & button': {
-                                textAlign: 'left',
-                                width: '100%',
-                                fontWeight: 600,
-                                color: palette.neutral.white,
-                                backgroundColor: palette.primary[400]
-                            }
-                        })
-                    }
-                ])}
-            >
-                <Button type="button" name={name} value={option.value} onClick={onClick}>
-                    {option.label}
-                </Button>
-            </li>
-        ))}
-    </ul>
-);
+/**
+ *  Listbox Component
+ *  @param id
+ *  @param labelId
+ *  @param name
+ *  @param value
+ *  @param options
+ *  @param onClick
+ *  @param renderItem
+ *  @returns JSX.Element
+ */
+const Listbox = forwardRef<HTMLUListElement, ListboxType>(function createListbox(
+    { id, labelId, value, options, renderItem, customCSS, ...props },
+    ref
+) {
+    return (
+        <ul
+            ref={ref}
+            id={id}
+            role="listbox"
+            aria-labelledby={labelId}
+            tabIndex={-1}
+            css={css([listBoxStyle.list, customCSS])}
+        >
+            {options.map(
+                (option) =>
+                    renderItem?.(option) || (
+                        <ListboxItem
+                            key={`${option.label}-${option.value}`}
+                            currentValue={value}
+                            label={option.label}
+                            value={option.value}
+                            {...props}
+                        />
+                    )
+            )}
+        </ul>
+    );
+});
 
 export default Listbox;
