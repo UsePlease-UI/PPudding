@@ -2,10 +2,10 @@ import { css } from '@emotion/react';
 import { palette } from 'styles';
 
 export const editorStyle = {
-    container: css({
+    container: {
         height: '100%',
         maxWidth: 1024
-    }),
+    },
     toolbarContainer: {
         padding: 10,
         borderTopLeftRadius: 4,

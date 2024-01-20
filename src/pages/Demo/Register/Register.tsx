@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { FormEvent, useState } from 'react';
 
-import { Typography, FlexBox } from 'components/Base';
+import { Typography, FlexBox, Box } from 'components/Base';
 import Button from 'components/Button/Button';
 import { ToggleButton, ToggleButtonGroup } from 'components/Button/ToggleButton';
 import Select from 'components/Combobox/Select';
@@ -42,7 +42,7 @@ const Register = () => {
     };
 
     return (
-        <div css={registerStyle.container}>
+        <Box customCSS={registerStyle.container}>
             <form onSubmit={handleSubmit} css={registerStyle.form}>
                 <FlexBox flexDirection="column" gap={10} customCSS={registerStyle.formInnerContainer}>
                     <TextField
@@ -165,7 +165,7 @@ const Register = () => {
                     </Button>
                 </FlexBox>
             </form>
-        </div>
+        </Box>
     );
 };
 

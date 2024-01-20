@@ -7,12 +7,14 @@ export const layoutStyle = {
         top: 0,
         left: 0,
         right: 0,
+        height: 80,
         display: 'flex',
         alignItems: 'center',
         padding: '10px 20px',
         backgroundColor: palette.neutral.white,
         boxShadow: `1px 1px 10px 1px ${palette.primary[100]}`,
         '@media (min-width: 1512px)': {
+            height: 'auto',
             padding: 0,
             right: 'unset',
             bottom: 0,
@@ -23,28 +25,27 @@ export const layoutStyle = {
         }
     }),
     heading: css({
-        fontSize: 24,
-        fontWeight: 900,
-        textAlign: 'center',
-        color: palette.primary[600],
         textTransform: 'uppercase',
         '@media (min-width: 1512px)': {
             fontSize: 56,
             color: palette.neutral.white
         }
     }),
-    container: css({
+    gnbContainer: {
+        position: 'fixed' as const,
+        top: 20,
+        right: 20
+    },
+    container: {
         width: '100%',
         minHeight: '100vh',
         backgroundColor: palette.neutral.white,
         borderRadius: 4,
-        display: 'flex',
-        justifyContent: 'center',
         paddingTop: 80,
         '@media (min-width: 1512px)': {
             paddingTop: 120
         }
-    }),
+    },
     main: {
         flex: 1,
         width: '100%',

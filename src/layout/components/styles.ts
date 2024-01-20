@@ -1,60 +1,15 @@
-import { css, keyframes } from '@emotion/react';
+import { css } from '@emotion/react';
 import { palette } from 'styles';
 
-const stroke = keyframes`
-0% {
-    stroke-dashoffset: 350px;
-}
-50% {
-    stroke-dashoffset: 0px;
-}
-100% {
-    stroke-dashoffset: 350px;
-}
-`;
-
-export const headerStyle = {
-    header: css({
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 1,
-        height: 80,
-        borderBottom: `1px dashed ${palette.neutral.white}`,
-        backgroundColor: palette.primary[600],
-        padding: '0 20px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    }),
-    headerText: {
-        display: 'flex',
-        alignItems: 'center'
-    },
-    svg: css({
-        fill: palette.neutral.white
-    }),
-    svgText: css({
-        fontFamily: 'monospace',
-        fontSize: 70,
-        letterSpacing: -5,
-        stroke: palette.secondary[600],
-        strokeWidth: 2,
-        strokeDasharray: 350,
-        animation: `${stroke} 3s infinite`,
-        '@media (max-width: 425px)': {
-            fontSize: 200
-        }
-    }),
+export const gnbStyle = {
     hamburgerButton: {
         color: palette.primary[600],
         backgroundColor: palette.primary[50],
         border: `1px dashed ${palette.primary[600]}`
     },
-    menuContainer: css({
-        position: 'relative'
-    }),
+    menuContainer: {
+        position: 'relative' as const
+    },
     menuButton: {
         fontWeight: 900,
         border: `1px solid ${palette.neutral.white}`
@@ -148,12 +103,6 @@ export const headerStyle = {
 
 export const asideStyle = {
     aside: css({
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 11,
         display: 'flex',
         alignItems: 'flex-start',
         flexDirection: 'column',
@@ -170,40 +119,121 @@ export const asideStyle = {
     }),
     isVisible: css({
         width: '100%',
-        backgroundColor: 'rgba(0,0,0,0.8)',
+        height: '100%',
         pointerEvents: 'auto',
         '& > div': {
             opacity: 1
         }
     }),
     closeIconContainer: {
-        width: '100%'
+        position: 'absolute' as const,
+        top: 3,
+        right: 3
     },
     iconButton: {
+        padding: 0,
+        '&:focus': {
+            backgroundColor: 'transparent',
+            '& svg': {
+                strokeWidth: 3,
+                color: palette.primary[600]
+            }
+        },
         '& > svg': {
             strokeWidth: 2,
-            color: palette.neutral.white
+            color: palette.neutral.black
         }
     },
-    listContainer: {
-        width: '100%',
-        padding: 10
-    },
-    listButton: {
-        flex: 'none',
-        height: 40,
-        textTransform: 'uppercase' as const,
-        fontWeight: 600,
+    menuNav: css({
+        position: 'absolute',
+        top: 20,
+        right: 20,
+        left: 20,
+        display: 'flex',
+        alignItems: 'flex-start',
+        flexDirection: 'column',
+        backgroundColor: palette.neutral.white,
+        width: 'calc(100% - 40px)',
+        height: 'calc(100vh - 40px)',
+        overflowY: 'auto',
         borderRadius: 4,
-        border: `1px dashed ${palette.neutral.white}`,
-        color: palette.neutral.white,
-        backgroundColor: palette.secondary[600],
-        '&:hover': {
-            opacity: 0.6
-        }
+        padding: 30,
+        gap: 20
+    }),
+    menuListContainer: css({
+        width: '100%',
+        position: 'relative',
+        borderRadius: 4,
+        border: `1px solid ${palette.primary[600]}`
+    }),
+    componentHeading: {
+        position: 'absolute' as const,
+        left: 10,
+        top: -18,
+        width: 100
     },
-    isSelected: {
-        color: palette.primary[600],
-        backgroundColor: palette.primary[50]
+    menuList: css({
+        width: '100%',
+        padding: 20,
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        gridAutoRows: '1fr',
+        gap: 4
+    }),
+    menuListItem: css({
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 4,
+        padding: '8px 4px',
+        borderRadius: 4,
+        fontWeight: 500,
+        '&:hover': {
+            fontWeight: 600,
+            backgroundColor: palette.primary[50],
+            '& a': {
+                outline: 'none',
+                color: palette.primary[600]
+            }
+        }
+    }),
+    selected: css({
+        fontWeight: 600,
+        color: palette.primary[600]
+    }),
+    linkText: css({
+        textTransform: 'capitalize',
+        fontSize: 16,
+        display: 'block',
+        textAlign: 'center',
+        color: palette.neutral.black,
+        ' &:focus': {
+            outline: 'none',
+            fontWeight: 900,
+            color: palette.primary[900]
+        }
+    }),
+    icon: css({
+        display: 'block',
+        width: 18,
+        height: 20,
+        outline: 'none',
+        '&:hover svg': {
+            strokeWidth: 2,
+            color: palette.primary[600]
+        },
+        '&:focus svg': {
+            padding: 2,
+            strokeWidth: 2,
+            borderRadius: 4,
+            color: palette.neutral.white,
+            backgroundColor: palette.primary[600]
+        }
+    }),
+    demoHeading: {
+        position: 'absolute' as const,
+        left: 10,
+        top: -18,
+        width: 60
     }
 };
