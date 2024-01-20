@@ -1,14 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import { InputHTMLAttributes, MouseEvent, ReactNode, useCallback, useEffect, useId, useRef, useState } from 'react';
+import { InputHTMLAttributes, MouseEvent, ReactNode, useId, useRef, useState } from 'react';
 
 import { css } from '@emotion/react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import type { CustomCSSType } from 'styles/types';
 
 import { Backdrop, FormControl } from 'components/Base';
-import ListBox, { OptionType } from 'components/Listbox';
+import { Listbox, OptionType } from 'components/Listbox';
 
-import { AVG_OPTION_HEIGHT, MAX_MENU_HEIGHT, MIN_OFFSET, selectStyle } from './styles';
+import { selectStyle } from './styles';
+import usePosition from '../usePosition';
 
 type BaseType = InputHTMLAttributes<HTMLButtonElement> & CustomCSSType;
 
@@ -54,62 +55,22 @@ export default function Select(props: SelectType) {
         ...rest
     } = props;
 
-    const backdropId = useId();
     const buttonId = id || useId();
     const labelId = rest['aria-labelledby'] || useId();
     const helperTextId = rest['aria-describedby'] || useId();
-    const listboxId = useId();
+    const listBoxId = useId();
 
     const ref = useRef<HTMLButtonElement | null>(null);
     const [isVisible, setIsVisible] = useState(false);
-    const [top, setTop] = useState(0);
 
-    // select가 페이지 범위를 넘어가는지 확인하는 함수
-    // MIN_OFFSET : 메뉴가 페이지 하단에 너무 가깝지 않도록
-    function isMenuPositionedTop() {
-        if (ref.current) {
-            return (
-                ref.current.getBoundingClientRect().bottom +
-                    Math.min(MAX_MENU_HEIGHT, options.length * AVG_OPTION_HEIGHT) +
-                    MIN_OFFSET >=
-                window.innerHeight
-            );
-        }
+    const { top, left, marginTop, maxWidth } = usePosition({
+        inputId: buttonId,
+        listBoxId,
+        isVisible,
+        totalLength: options.length
+    });
 
-        return false;
-    }
-
-    const handlePosition = useCallback(() => {
-        if (isVisible && ref.current) {
-            const defaultTop = ref.current?.getBoundingClientRect().top || 0;
-            if (isMenuPositionedTop()) {
-                setTop(defaultTop - (document.getElementById(listboxId)?.offsetHeight || 0) + 1);
-            } else {
-                setTop(1);
-            }
-        }
-    }, [isVisible]);
-
-    const handleClick = () => {
-        if (!isVisible) {
-            document.body.style.overflow = 'hidden';
-            handlePosition();
-        } else {
-            document.body.style.removeProperty('overflow');
-        }
-        setIsVisible((prev) => !prev);
-    };
-
-    // eslint-disable-next-line consistent-return
-    useEffect(() => {
-        handlePosition();
-        window.addEventListener('resize', handlePosition);
-        window.addEventListener('scroll', handlePosition);
-        return () => {
-            window.removeEventListener('resize', handlePosition);
-            window.removeEventListener('scroll', handlePosition);
-        };
-    }, [handlePosition]);
+    const handleClick = () => setIsVisible((prev) => !prev);
 
     return (
         <FormControl id={labelId} labelText={labelText} helperText={helperText} helperTextId={helperTextId}>
@@ -120,7 +81,7 @@ export default function Select(props: SelectType) {
                     type="button"
                     disabled={isDisabled || isReadOnly}
                     aria-expanded={isVisible}
-                    aria-controls="listbox"
+                    aria-controls={listBoxId}
                     aria-haspopup="listbox"
                     aria-describedby={helperText ? helperTextId : undefined}
                     role="combobox"
@@ -148,27 +109,23 @@ export default function Select(props: SelectType) {
                         <ChevronDownIcon width={16} height={16} />
                     </span>
                 </button>
-                <div id={backdropId} />
                 {isVisible && (
                     <Backdrop isOpen={isVisible} onClose={() => handleClick()}>
                         <div
-                            css={css({
-                                position: 'fixed',
-                                top,
-                                left: ref.current?.getBoundingClientRect().x || 0,
-                                width: '100%',
-                                marginTop: isMenuPositionedTop()
-                                    ? 1
-                                    : (ref.current?.getBoundingClientRect().top || 0) +
-                                      (ref.current?.getBoundingClientRect().height || 0) -
-                                      1,
-                                '& > ul': {
-                                    maxWidth: ref.current?.getBoundingClientRect()?.width || 300
+                            css={css([
+                                selectStyle.listContainer,
+                                {
+                                    top,
+                                    left,
+                                    marginTop,
+                                    '& > ul': {
+                                        maxWidth
+                                    }
                                 }
-                            })}
+                            ])}
                         >
-                            <ListBox
-                                id={listboxId}
+                            <Listbox
+                                id={listBoxId}
                                 labelId={labelId}
                                 name={name}
                                 value={value}

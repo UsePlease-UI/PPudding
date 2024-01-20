@@ -54,5 +54,9 @@ export const selectStyle = {
             width: 20,
             height: 20
         }
+    }),
+    listContainer: css({
+        position: 'fixed',
+        width: '100%'
     })
 };

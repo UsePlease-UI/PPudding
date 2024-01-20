@@ -71,7 +71,7 @@ export default function Button(props: ButtonType) {
                     {hasEndIcon && <span css={buttonStyle.endIcon}>{icon}</span>}
                 </FlexBox>
             ) : (
-                <div>{children}</div>
+                children
             )}
         </button>
     );

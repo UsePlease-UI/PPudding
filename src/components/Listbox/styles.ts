@@ -5,7 +5,7 @@ export const listBoxStyle = {
     list: css({
         width: '100%',
         maxHeight: 300,
-        padding: '10px 0',
+        padding: '4px 0',
         border: `1px solid ${palette.gray[100]}`,
         borderRadius: 4,
         backgroundColor: palette.neutral.white,
@@ -35,6 +35,9 @@ export const listBoxStyle = {
         '& button:focus': {
             fontWeight: 900,
             color: palette.primary[900]
+        },
+        '&:last-of-type': {
+            borderBottom: 0
         }
     }),
     selectedListItem: css({
@@ -43,7 +46,10 @@ export const listBoxStyle = {
             width: '100%',
             fontWeight: 600,
             color: palette.neutral.white,
-            backgroundColor: palette.primary[400]
+            backgroundColor: palette.primary[400],
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden'
         }
     })
 };
