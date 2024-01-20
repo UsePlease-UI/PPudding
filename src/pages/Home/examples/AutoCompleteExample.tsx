@@ -1,29 +1,35 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, ChangeEvent } from 'react';
 
 import _ from 'lodash';
 
-import FlexBox from 'components/Base/FlexBox';
-import Typography from 'components/Base/Typography';
-import AutoComplete from 'components/Combobox/Autocomplete';
+import { Box, FlexBox, Typography } from 'components/Base';
+import Autocomplete from 'components/Combobox/Autocomplete';
+import SharedAutoComplete from 'components/Shared/Autocomplete';
 
-import { AUTOCOMPLETE as LIST } from './constants';
+import { AUTOCOMPLETE as LIST, AutocompleteType } from './constants';
 
-type ListType = {
-    idx: number;
-    label: string;
-    value: string;
+const autoCompleteStyle = {
+    container: {
+        margin: '20px 0'
+    },
+    text: {
+        width: '100%',
+        display: 'block',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap' as const,
+        overflow: 'hidden'
+    }
 };
 
 export default function AutoCompleteExample() {
-    const [listArr, setListArr] = useState<ListType[]>(LIST);
+    const [listArr, setListArr] = useState<AutocompleteType[]>(LIST);
     const [inputValue, setInputValue] = useState<string>('');
-    const [selectedItem, setSelectedItem] = useState<ListType>();
+    const [selectedItem, setSelectedItem] = useState<AutocompleteType>();
 
     const handleSearch = useCallback(
         _.debounce((value: string) => {
-            let newArr = [];
             if (value.length !== 0 && value !== '') {
-                newArr = LIST.filter((el: ListType) => el.label.includes(value));
+                const newArr = LIST.filter((el) => value.includes(el.label as string));
                 setListArr(newArr);
             } else {
                 setListArr(LIST);
@@ -32,22 +38,50 @@ export default function AutoCompleteExample() {
         []
     );
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.target;
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.currentTarget;
         setInputValue(value);
         handleSearch(value);
     };
 
+    const handleShareChange = (newValue: string | number) => {
+        setInputValue(String(newValue));
+        handleSearch(String(newValue));
+    };
+
     return (
-        <FlexBox flexDirection="column" gap={10} customCSS={{ margin: '20px 0' }}>
-            <Typography component="span">선택된 항목의 LABEL: {selectedItem?.label}</Typography>
-            <AutoComplete
-                label="autoComplete"
-                listArr={listArr}
-                inputValue={inputValue}
-                onChange={handleChange}
-                onSelect={(e) => setSelectedItem(e)}
-            />
+        <FlexBox flexDirection="column" gap={10} customCSS={autoCompleteStyle.container}>
+            <Box>
+                <Typography>
+                    선택된 항목 :{' '}
+                    <Typography component="strong" customCSS={autoCompleteStyle.text}>
+                        {selectedItem?.label}
+                    </Typography>
+                </Typography>
+                <Autocomplete
+                    label="states"
+                    listArr={listArr}
+                    inputValue={inputValue}
+                    onChange={handleChange}
+                    onSelect={(e) => setSelectedItem(e as AutocompleteType)}
+                />
+            </Box>
+            <Box>
+                <Typography>
+                    선택된 항목 :{' '}
+                    <Typography component="strong" customCSS={autoCompleteStyle.text}>
+                        {selectedItem?.label}
+                    </Typography>
+                </Typography>
+                <SharedAutoComplete
+                    labelText="Lorem Ipsum"
+                    name="lorem ipsum"
+                    options={listArr}
+                    inputValue={inputValue}
+                    onChange={handleShareChange}
+                    onSelect={(e) => setSelectedItem(e as AutocompleteType)}
+                />
+            </Box>
         </FlexBox>
     );
 }

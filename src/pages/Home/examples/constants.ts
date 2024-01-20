@@ -6,59 +6,37 @@ export const OPTIONS = [
     { label: '우유', value: '4' }
 ];
 
+export type AutocompleteType = {
+    idx: number;
+    label: string;
+    value: string;
+};
+
 export const AUTOCOMPLETE = [
     {
         idx: 1,
-        label: 'first option',
-        value: 'hello01'
+        label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     },
     {
         idx: 2,
-        label: 'second option',
-        value: 'hello02'
+        label: 'Sed in eros vitae erat sollicitudin sagittis sed tincidunt odio. ',
+        value: 'Sed in eros vitae erat sollicitudin sagittis sed tincidunt odio. '
     },
     {
         idx: 3,
-        label: 'third option',
-        value: 'hello03'
+        label: 'Donec libero enim, placerat vitae tempus ac, luctus sed ex. Ut fringilla vestibulum molestie.',
+        value: 'Donec libero enim, placerat vitae tempus ac, luctus sed ex. Ut fringilla vestibulum molestie.'
     },
     {
         idx: 4,
-        label: 'fourth option',
-        value: 'hello04'
+        label: 'Ut lacinia posuere imperdiet.',
+        value: 'Ut lacinia posuere imperdiet.'
     },
     {
         idx: 5,
-        label: 'fifth option',
-        value: 'hello05'
-    }
-];
-
-export const COMBOBOX = [
-    {
-        idx: 1,
-        label: 'sample_01',
-        value: 'sample01'
-    },
-    {
-        idx: 2,
-        label: 'sample_02',
-        value: 'sample02'
-    },
-    {
-        idx: 3,
-        label: 'sample_03',
-        value: 'sample03'
-    },
-    {
-        idx: 4,
-        label: 'sample_04',
-        value: 'sample04'
-    },
-    {
-        idx: 5,
-        label: 'sample_05',
-        value: 'sample05'
+        label: 'Curabitur non elit quis ante vulputate iaculis.',
+        value: 'Curabitur non elit quis ante vulputate iaculis.'
     }
 ];
 
