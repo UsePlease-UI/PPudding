@@ -55,6 +55,34 @@ export const commonStyle = {
         '&:disabled': {
             color: palette.gray[600]
         }
+    }),
+    miniIcon: css({
+        padding: 6,
+        '& svg': {
+            width: 16,
+            height: 16
+        }
+    }),
+    smallIcon: css({
+        padding: 6.5,
+        '& svg': {
+            width: 20,
+            height: 20
+        }
+    }),
+    mediumIcon: css({
+        padding: 8,
+        '& svg': {
+            width: 24,
+            height: 24
+        }
+    }),
+    largeIcon: css({
+        padding: 8,
+        '& svg': {
+            width: 28,
+            height: 28
+        }
     })
 };
 
@@ -68,5 +96,18 @@ export function getVariantStyle(variant?: VariantType) {
             return commonStyle.text;
         default:
             return {};
+    }
+}
+
+export function getSizeStyle(size?: IconButtonSizeType) {
+    switch (size) {
+        case 'large':
+            return commonStyle.largeIcon;
+        case 'medium':
+            return commonStyle.mediumIcon;
+        case 'small':
+            return commonStyle.smallIcon;
+        default:
+            return commonStyle.miniIcon;
     }
 }

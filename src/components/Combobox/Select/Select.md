@@ -6,5 +6,15 @@
 
 ## States
 
--   Default
+-   Hovered
+-   Focused
+-   Disabled
 -   Read Only
+
+## Accessibility
+
+[Reference](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
+
+### Combobox
+
+### Listbox Popup

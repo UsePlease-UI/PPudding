@@ -13,14 +13,14 @@
 ## Variants
 
 -   Outlined
--   Contained(filled)
+-   Contained (filled)
 -   Text
 
-## Size
+## Size (min-width x min-height)
 
--   Small
--   Medium
--   Large
+-   Small (48 x 32)
+-   Medium (56 x 40)
+-   Large (96 x 45)
 
 ## Icon
 
