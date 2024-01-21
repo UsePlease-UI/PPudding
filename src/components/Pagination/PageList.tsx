@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 import {
     ChevronDoubleLeftIcon,
     ChevronDoubleRightIcon,
@@ -9,6 +8,8 @@ import {
 
 import PageButton from 'components/Pagination/PageIconButton';
 import PageNumButton from 'components/Pagination/PageNumButton';
+
+import { paginationStyle } from './style';
 
 type pageListType = {
     showFirstButton?: boolean;
@@ -23,28 +24,6 @@ type pageListType = {
     handleNextClick: () => void;
     handleLastClick: () => void;
 };
-
-// TODO: styles.ts로 파일 분리
-const ulStyle = css({
-    display: 'flex',
-    flexDirection: 'row',
-    gap: '5px',
-    flexWrap: 'wrap'
-});
-
-// TODO: styles.ts로 파일 분리
-const listStyle = css({
-    width: 32,
-    height: 32,
-    display: 'flex',
-    textDecoration: 'none',
-    justifyContent: 'center',
-    alignItems: 'center',
-    '& button': {
-        width: 'inherit',
-        height: 'inherit'
-    }
-});
 
 export default function PageList(props: pageListType) {
     const {
@@ -61,9 +40,9 @@ export default function PageList(props: pageListType) {
         handleLastClick
     } = props;
     return (
-        <ul css={ulStyle}>
+        <ul css={paginationStyle.ulStyle}>
             {showFirstButton && (
-                <li css={listStyle}>
+                <li css={paginationStyle.listStyle}>
                     <PageButton
                         icon={<ChevronDoubleLeftIcon />}
                         isDisabled={page === 1}
@@ -72,7 +51,7 @@ export default function PageList(props: pageListType) {
                     />
                 </li>
             )}
-            <li css={listStyle}>
+            <li css={paginationStyle.listStyle}>
                 <PageButton
                     icon={<ChevronLeftIcon />}
                     isDisabled={page === 1}
@@ -86,7 +65,7 @@ export default function PageList(props: pageListType) {
                 .map((_, idx) => idx + (blockNum - 1) * pageLimit)
                 .map((el, index) =>
                     el + 1 > totalCount ? null : (
-                        <li key={el} role="presentation" css={listStyle}>
+                        <li key={el} role="presentation" css={paginationStyle.listStyle}>
                             <PageNumButton
                                 pageNum={el + 1}
                                 isSelected={page === el + 1}
@@ -95,7 +74,7 @@ export default function PageList(props: pageListType) {
                         </li>
                     )
                 )}
-            <li css={listStyle}>
+            <li css={paginationStyle.listStyle}>
                 <PageButton
                     icon={<ChevronRightIcon />}
                     isDisabled={page === totalCount}
@@ -104,7 +83,7 @@ export default function PageList(props: pageListType) {
                 />
             </li>
             {showLastButton && (
-                <li css={listStyle}>
+                <li css={paginationStyle.listStyle}>
                     <PageButton
                         icon={<ChevronDoubleRightIcon />}
                         isDisabled={page === totalCount}

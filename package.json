@@ -23,7 +23,7 @@
         "eject": "react-scripts eject",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build",
-        "prettier": "prettier --write './src/**/*.{ts,tsx,js,jsx}'",
+        "prettier": "prettier --write src",
         "lint": "eslint './src/**/*.{ts,tsx,js,jsx}'",
         "lint:fix": "eslint --fix './src/**/*.{ts,tsx,js,jsx}'"
     },
@@ -93,7 +93,7 @@
         "eslint-plugin-react-hooks": "^4.3.0",
         "eslint-plugin-storybook": "^0.6.13",
         "gh-pages": "^6.1.1",
-        "prettier": "^2.8.8",
+        "prettier": "^3.2.4",
         "prop-types": "^15.8.1",
         "remark-gfm": "^3.0.1",
         "storybook": "^7.3.2",

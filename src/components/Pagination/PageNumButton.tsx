@@ -1,6 +1,9 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from '@emotion/react';
+import { palette } from 'styles';
+
+import { paginationStyle } from './style';
 
 type pageNumButtonPropType = {
     pageNum: number;
@@ -16,21 +19,13 @@ export default function PageNumButton({ pageNum, isSelected, onClick }: pageNumB
             {...props}
             type="button"
             onClick={onClick}
-            // TODO: styles.ts로 파일 분리
-            css={css({
-                width: 32,
-                height: 32,
-                padding: 0,
-                borderRadius: 4,
-                fontSize: 15,
-                fontWeight: 600,
-                cursor: 'pointer',
-                color: isSelected ? 'white' : '#8D8D8D', // TODO: palette 색상으로 변경
-                backgroundColor: isSelected ? '#3378FF' : '', // TODO: palette 색상으로 변경
-                '&:hover': {
-                    backgroundColor: '#3378FF4D' // TODO: palette 색상으로 변경
+            css={css([
+                paginationStyle.pageButton,
+                {
+                    color: isSelected ? 'white' : `${palette.gray[500]}`,
+                    backgroundColor: isSelected ? `${palette.primary[600]}` : ''
                 }
-            })}
+            ])}
         >
             {pageNum}
         </button>
