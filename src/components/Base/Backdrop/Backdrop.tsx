@@ -42,7 +42,7 @@ export default function Backdrop(props: BackdropType) {
 
     // shift + tab -> backward
     // tab -> forward
-    const handleKeyPress = useCallback((e: KeyboardEvent) => {
+    const handleFocusTrap = useCallback((e: KeyboardEvent) => {
         const focusable = portalRef.current?.querySelectorAll(FOCUSABLE) || [];
         const firstElement = [...focusable].shift() as HTMLElement;
         const lastElement = [...focusable].pop() as HTMLElement;
@@ -65,9 +65,9 @@ export default function Backdrop(props: BackdropType) {
 
     useEffect(() => {
         if (isOpen) {
-            document.addEventListener('keydown', handleKeyPress);
+            document.addEventListener('keydown', handleFocusTrap);
         }
-        return () => document.removeEventListener('keydown', handleKeyPress);
+        return () => document.removeEventListener('keydown', handleFocusTrap);
     }, [isOpen]);
 
     return isOpen ? (

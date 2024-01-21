@@ -4,7 +4,7 @@ import Markdown from 'react-markdown';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import accordion from 'components/Accordion/Accordion.md';
-import { FlexBox } from 'components/Base';
+import { Box, FlexBox } from 'components/Base';
 import base from 'components/Base/Base.md';
 
 import { guideStyle } from './styles';
@@ -37,9 +37,9 @@ const Guide = () => {
 
     return (
         <FlexBox flexDirection="column" customCSS={guideStyle.container}>
-            <div css={guideStyle.markdown}>
+            <Box customCSS={guideStyle.markdown}>
                 <Markdown>{markdown}</Markdown>
-            </div>
+            </Box>
         </FlexBox>
     );
 };

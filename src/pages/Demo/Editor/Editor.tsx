@@ -15,7 +15,7 @@ import {
 } from '@fluentui/react-icons';
 import { palette } from 'styles';
 
-import { FlexBox } from 'components/Base';
+import { Box, FlexBox } from 'components/Base';
 import IconButton from 'components/Button/IconButton';
 import { ToggleButton, ToggleButtonGroup } from 'components/Button/ToggleButton';
 import Popover from 'components/Shared/Popover';
@@ -34,7 +34,7 @@ const Editor = () => {
     const { isOpen, anchorElement, handleOpen, handleClose } = usePopOver();
 
     return (
-        <div css={editorStyle.container}>
+        <Box customCSS={editorStyle.container}>
             <FlexBox gap={10} justifyContent="flex-end" flexWrap="wrap" customCSS={editorStyle.toolbarContainer}>
                 <ToggleButtonGroup
                     value={style}
@@ -120,7 +120,7 @@ const Editor = () => {
                 readOnly
                 defaultValue={DEFAULT_VALUE}
             />
-        </div>
+        </Box>
     );
 };
 
