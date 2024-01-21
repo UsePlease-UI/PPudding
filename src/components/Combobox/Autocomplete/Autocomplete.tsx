@@ -3,9 +3,10 @@
 import { useRef, useEffect, useState, ChangeEvent, Fragment } from 'react';
 
 import { css } from '@emotion/react';
-import palette from 'styles/palette';
 
 import FlexBox from 'components/Base/FlexBox';
+
+import { autoCompleteStyle } from './styles';
 
 type ListType = {
     idx: number;
@@ -21,68 +22,16 @@ type AutocompleteType = {
     listArr: ListType[];
 };
 
-// TODO: styles.ts 파일 분리
-const flexBoxCustom = css({
-    maxWidth: 200,
-    height: 40,
-    borderRadius: 4,
-    border: `1px solid ${palette.gray[100]}`,
-    background: palette.neutral.white,
-    padding: 10
-});
-
-// TODO: styles.ts 파일 분리
-const inputStyle = css({
-    width: '100%',
-    height: '100%',
-    border: 0
-});
-
-// TODO: styles.ts 파일 분리
-const listItemStyle = css({
-    width: '100%',
-    minWidth: 120,
-    fontSize: 14,
-    fontWeight: 400,
-    lineHeight: 1.5,
-    padding: '0 12px',
-    '& button': {
-        width: '100%',
-        height: 40,
-        textAlign: 'left',
-        textOverflow: 'ellipsis',
-        overflow: 'hidden',
-        whiteSpace: 'nowrap'
-    },
-    '&:hover, &:hover button': {
-        fontWeight: 600,
-        color: palette.neutral.white,
-        backgroundColor: palette.tertiary[400]
-    }
-});
-
-// TODO: styles.ts 파일 분리
-const ulStyle = css({
-    maxWidth: 200,
-    display: 'block',
-    background: 'white',
-    borderRadius: 4,
-    border: '1px solid #e0e0e0', // TODO: palette 색상으로 변경
-    boxSizing: 'border-box',
-    padding: '10px 0'
-});
-
-// TODO: 문서
 /**
  *  [UI Component] Autocomplete Component
- *  @param inputValue
- *  @param label
- *  @param label
- *  @param onChange
- *  @param onSelect
- *  @param listArr
+ *  @param inputValue: input component에서 사용되는 value
+ *  @param label: autocomplete에서 사용할 label
+ *  @param onChange: input component event listener
+ *  @param onSelect: autocomplete 하위 list event listener
+ *  @param listArr: autocomplete 하위 list item 타입
  *  @returns JSX.Element
  */
+
 export default function Autocomplete(props: AutocompleteType) {
     const { inputValue, onChange, label, listArr, onSelect } = props;
     const listRef = useRef<HTMLUListElement | null>(null);
@@ -126,7 +75,13 @@ export default function Autocomplete(props: AutocompleteType) {
     return (
         <div>
             <label htmlFor={label} css={css({ display: 'none' })} />
-            <FlexBox justifyContent="center" alignItems="center" flexDirection="row" gap={5} customCSS={flexBoxCustom}>
+            <FlexBox
+                justifyContent="center"
+                alignItems="center"
+                flexDirection="row"
+                gap={5}
+                customCSS={autoCompleteStyle.flexBoxCustom}
+            >
                 <input
                     id={label}
                     ref={inputRef}
@@ -140,14 +95,14 @@ export default function Autocomplete(props: AutocompleteType) {
                     onChange={onChange}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
-                    css={inputStyle}
+                    css={autoCompleteStyle.input}
                 />
             </FlexBox>
             {Boolean(listArr.length > 0 && isOpen) && (
-                <ul ref={listRef} id="listbox" role="listbox" aria-label="States" css={ulStyle}>
+                <ul ref={listRef} id="listbox" role="listbox" aria-label="States" css={autoCompleteStyle.ul}>
                     {listArr.map((el) => {
                         return (
-                            <li key={`list-${el.idx}`} css={listItemStyle}>
+                            <li key={`list-${el.idx}`} css={autoCompleteStyle.listItem}>
                                 <button type="button" onMouseDown={() => handleItemClick(el)}>
                                     {[...el.label].map((letter, idx) =>
                                         inputValue.includes(letter) ? (

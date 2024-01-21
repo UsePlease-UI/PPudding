@@ -36,12 +36,14 @@
 ### v1.1 (TO-BE)
 
 ![Alert](https://img.shields.io/badge/akffkdahffkdgo77-Alert-red?style=flat-square)
-![Alert and Message Dialog](https://img.shields.io/badge/Kimyerim1935-Alert%20and%20Message%20Dialog-blue?style=flat-square)
-![Carousel](https://img.shields.io/badge/Kimyerim1935-Carousel-blue?style=flat-square)
-![Date Picker](https://img.shields.io/badge/Kimyerim1935-Date%20Picker-blue?style=flat-square)
-![List](https://img.shields.io/badge/Kimyerim1935-List-blue?style=flat-square)
+![Date Picker](https://img.shields.io/badge/akffkdahffkdgo77-Date%20Picker-red?style=flat-square)
+![List](https://img.shields.io/badge/akffkdahffkdgo77-List-red?style=flat-square)
 ![Range Slider](https://img.shields.io/badge/akffkdahffkdgo77-Range%20Slider-red?style=flat-square)
 ![Switch](https://img.shields.io/badge/akffkdahffkdgo77-Switch-red?style=flat-square)
+
+![Alert and Message Dialog](https://img.shields.io/badge/Kimyerim1935-Alert%20and%20Message%20Dialog-blue?style=flat-square)
+![Carousel](https://img.shields.io/badge/Kimyerim1935-Carousel-blue?style=flat-square)
+![Calendar](https://img.shields.io/badge/Kimyerim1935-Calendar-blue?style=flat-square)
 ![Tooltip](https://img.shields.io/badge/Kimyerim1935-Tooltip-blue?style=flat-square)
 ![Tree View](https://img.shields.io/badge/Kimyerim1935-Tree%20View-blue?style=flat-square)
 

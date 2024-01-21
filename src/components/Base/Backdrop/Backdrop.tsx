@@ -19,16 +19,30 @@ const FOCUSABLE = 'button, a, input, select, textarea, [tabindex]:not([tabindex=
  *  [Base Component] Backdrop(Overlay) Component
  *  @param children 컴포넌트
  *  @param onClose Click Away Handler
- *  @param backgroundColor [CSS] 배경 색상
+ *  @param isOpen 노출 여부 [optional]
  *  @param isDimmed 배경 색상 설정 여부 [optional]
- *  @param containerId DOM id [optional]
+ *  @param backgroundColor [CSS] 배경 색상
  *  @returns JSX.Element
  */
 export default function Backdrop(props: BackdropType) {
     const { children, isOpen, isDimmed = false, backgroundColor, onClose } = props;
     const portalRef = useRef<HTMLDivElement>(null);
 
-    const handleKeyPress = useCallback((e: KeyboardEvent) => {
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.removeProperty('overflow');
+        }
+
+        return () => {
+            document.body.style.removeProperty('overflow');
+        };
+    }, [isOpen]);
+
+    // shift + tab -> backward
+    // tab -> forward
+    const handleFocusTrap = useCallback((e: KeyboardEvent) => {
         const focusable = portalRef.current?.querySelectorAll(FOCUSABLE) || [];
         const firstElement = [...focusable].shift() as HTMLElement;
         const lastElement = [...focusable].pop() as HTMLElement;
@@ -51,11 +65,9 @@ export default function Backdrop(props: BackdropType) {
 
     useEffect(() => {
         if (isOpen) {
-            // shift + tab -> backward
-            // tab -> forward
-            document.addEventListener('keydown', handleKeyPress);
+            document.addEventListener('keydown', handleFocusTrap);
         }
-        return () => document.removeEventListener('keydown', handleKeyPress);
+        return () => document.removeEventListener('keydown', handleFocusTrap);
     }, [isOpen]);
 
     return isOpen ? (

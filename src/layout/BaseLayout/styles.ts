@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import { palette } from 'styles';
 
 export const baseLayoutStyle = {
@@ -27,6 +27,54 @@ export const baseLayoutStyle = {
         '@media (max-width: 425px)': {
             padding: 10,
             minHeight: 'calc(100vh - 120px)'
+        }
+    })
+};
+
+const stroke = keyframes`
+0% {
+    stroke-dashoffset: 350px;
+}
+50% {
+    stroke-dashoffset: 0px;
+}
+100% {
+    stroke-dashoffset: 350px;
+}
+`;
+
+export const headerStyle = {
+    header: css({
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1,
+        height: 80,
+        borderBottom: `1px dashed ${palette.neutral.white}`,
+        backgroundColor: palette.primary[600],
+        padding: '0 20px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    }),
+    headerText: {
+        display: 'flex',
+        alignItems: 'center'
+    },
+    svg: css({
+        fill: palette.neutral.white
+    }),
+    svgText: css({
+        fontFamily: 'monospace',
+        fontSize: 70,
+        letterSpacing: -5,
+        stroke: palette.secondary[600],
+        strokeWidth: 2,
+        strokeDasharray: 350,
+        animation: `${stroke} 3s infinite`,
+        '@media (max-width: 425px)': {
+            fontSize: 200
         }
     })
 };
