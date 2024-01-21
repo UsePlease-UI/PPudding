@@ -1,4 +1,4 @@
-# Toggle Button
+# Toggle Button Component
 
 ## Anatomy
 
@@ -13,8 +13,8 @@
 
 ## Variants
 
--   Contained (filled)
 -   [TO-BE] Outlined
+-   Contained (filled)
 
 ## Size
 

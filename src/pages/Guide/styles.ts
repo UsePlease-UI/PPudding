@@ -8,6 +8,7 @@ export const guideStyle = {
         padding: 80
     },
     markdown: {
+        width: '100%',
         maxWidth: 1024,
         margin: '0 auto',
         '& h1': {

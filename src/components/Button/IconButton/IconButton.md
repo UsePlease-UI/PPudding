@@ -1,4 +1,4 @@
-# Icon Button
+# Icon Button Component
 
 ## Anatomy
 
@@ -13,7 +13,7 @@
 ## Variants
 
 -   Outlined
--   Contained(filled)
+-   Contained (filled)
 -   Text
 
 ## Size

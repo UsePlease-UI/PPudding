@@ -1,6 +1,8 @@
 import { css } from '@emotion/react';
 import palette from 'styles/palette';
 
+import { commonStyle } from '../styles';
+
 export type SizeType = 'small' | 'medium' | 'large';
 
 export const toggleButtonStyle = {
@@ -79,54 +81,29 @@ const sizeStyle = {
         fontSize: 12,
         fontWeight: 600
     }),
-    miniButton: css({
-        padding: 6,
-        '& svg': {
-            width: 16,
-            height: 16
-        }
-    }),
     smallText: css({
-        padding: 6
-    }),
-    smallButton: css({
-        padding: 8,
-        '& svg': {
-            width: 20,
-            height: 20
-        }
+        padding: 6,
+        fontSize: 14
     }),
     mediumText: css({
-        padding: 8
-    }),
-    mediumButton: css({
         padding: 8,
-        '& svg': {
-            width: 24,
-            height: 24
-        }
+        fontSize: 16
     }),
     largeText: css({
-        padding: 10
-    }),
-    largeButton: css({
-        padding: 8,
-        '& svg': {
-            width: 28,
-            height: 28
-        }
+        padding: 8.5,
+        fontSize: 18
     })
 };
 
 export function getSizeStyle(size?: SizeType) {
     switch (size) {
         case 'small':
-            return { icon: sizeStyle.smallButton, text: sizeStyle.smallText };
+            return { icon: commonStyle.smallIcon, text: sizeStyle.smallText };
         case 'medium':
-            return { icon: sizeStyle.mediumButton, text: sizeStyle.mediumText };
+            return { icon: commonStyle.mediumIcon, text: sizeStyle.mediumText };
         case 'large':
-            return { icon: sizeStyle.largeButton, text: sizeStyle.largeText };
+            return { icon: commonStyle.largeIcon, text: sizeStyle.largeText };
         default:
-            return { icon: sizeStyle.miniButton, text: sizeStyle.miniText };
+            return { icon: commonStyle.miniIcon, text: sizeStyle.miniText };
     }
 }

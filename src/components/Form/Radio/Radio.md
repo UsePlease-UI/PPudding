@@ -1,4 +1,4 @@
-# Radio
+# Radio Component
 
 ## Anatomy
 
