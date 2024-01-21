@@ -15,15 +15,14 @@ type DragNDropType = {
     onDrop?: (event: DragEvent<HTMLLIElement>, targetItem: ListItemType) => void;
 };
 
-// TODO:
 /**
  *  [UI Component] Drag and Drop Component
- *  @param title
- *  @param render
- *  @param items
- *  @param onDragStart
- *  @param onDragOver
- *  @param onDrop
+ *  @param title: DnD component title [optional]
+ *  @param render: render props [optional]
+ *  @param items: DnD에서 보여주고자 하는 list items(render props로 넘기면 사용하지 않아도 됨)
+ *  @param onDragStart: mouse down event listener
+ *  @param onDragOver: mouse over event listener
+ *  @param onDrop: mouse drop event listener
  *  @returns JSX.Element
  */
 export default function DragNDrop(props: DragNDropType) {
