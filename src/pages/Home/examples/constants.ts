@@ -34,6 +34,29 @@ export const AUTOCOMPLETE = [
     }
 ];
 
+export const CALENDER = [
+    {
+        idx: 1,
+        label: 'daily',
+        value: 'daily'
+    },
+    {
+        idx: 2,
+        label: 'weekly',
+        value: 'weekly'
+    },
+    {
+        idx: 3,
+        label: 'monthly',
+        value: 'monthly'
+    },
+    {
+        idx: 4,
+        label: 'yearly',
+        value: 'yearly'
+    },
+]
+
 export const COMBOBOX = [
     {
         idx: 1,
