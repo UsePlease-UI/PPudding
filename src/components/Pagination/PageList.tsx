@@ -40,9 +40,9 @@ export default function PageList(props: pageListType) {
         handleLastClick
     } = props;
     return (
-        <ul css={paginationStyle.ulStyle}>
+        <ul css={paginationStyle.ul}>
             {showFirstButton && (
-                <li css={paginationStyle.listStyle}>
+                <li css={paginationStyle.list}>
                     <PageButton
                         icon={<ChevronDoubleLeftIcon />}
                         isDisabled={page === 1}
@@ -51,7 +51,7 @@ export default function PageList(props: pageListType) {
                     />
                 </li>
             )}
-            <li css={paginationStyle.listStyle}>
+            <li css={paginationStyle.list}>
                 <PageButton
                     icon={<ChevronLeftIcon />}
                     isDisabled={page === 1}
@@ -65,7 +65,7 @@ export default function PageList(props: pageListType) {
                 .map((_, idx) => idx + (blockNum - 1) * pageLimit)
                 .map((el, index) =>
                     el + 1 > totalCount ? null : (
-                        <li key={el} role="presentation" css={paginationStyle.listStyle}>
+                        <li key={el} role="presentation" css={paginationStyle.list}>
                             <PageNumButton
                                 pageNum={el + 1}
                                 isSelected={page === el + 1}
@@ -74,7 +74,7 @@ export default function PageList(props: pageListType) {
                         </li>
                     )
                 )}
-            <li css={paginationStyle.listStyle}>
+            <li css={paginationStyle.list}>
                 <PageButton
                     icon={<ChevronRightIcon />}
                     isDisabled={page === totalCount}
@@ -83,7 +83,7 @@ export default function PageList(props: pageListType) {
                 />
             </li>
             {showLastButton && (
-                <li css={paginationStyle.listStyle}>
+                <li css={paginationStyle.list}>
                     <PageButton
                         icon={<ChevronDoubleRightIcon />}
                         isDisabled={page === totalCount}

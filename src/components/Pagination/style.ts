@@ -2,13 +2,13 @@ import { css } from '@emotion/react';
 import { palette } from 'styles';
 
 export const paginationStyle = {
-    ulStyle: css({
+    ul: css({
         display: 'flex',
         flexDirection: 'row',
         gap: '5px',
         flexWrap: 'wrap'
     }),
-    listStyle: css({
+    list: css({
         width: 32,
         height: 32,
         display: 'flex',
@@ -20,7 +20,7 @@ export const paginationStyle = {
             height: 'inherit'
         }
     }),
-    navStyle: css({
+    nav: css({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',

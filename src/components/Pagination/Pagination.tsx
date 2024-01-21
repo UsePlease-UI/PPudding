@@ -50,7 +50,7 @@ export default function Pagination({ totalCount, page, blockNum, onChange, custo
     };
 
     return (
-        <nav aria-label="pagination" id="pagination" css={css([paginationStyle.navStyle, customCSS])}>
+        <nav aria-label="pagination" id="pagination" css={css([paginationStyle.nav, customCSS])}>
             <PageList
                 showFirstButton
                 showLastButton

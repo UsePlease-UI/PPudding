@@ -10,12 +10,12 @@ export const autoCompleteStyle = {
         background: palette.neutral.white,
         padding: 10
     }),
-    inputStyle: css({
+    input: css({
         width: '100%',
         height: '100%',
         border: 0
     }),
-    listItemStyle: css({
+    listItem: css({
         width: '100%',
         minWidth: 120,
         fontSize: 14,
@@ -36,7 +36,7 @@ export const autoCompleteStyle = {
             backgroundColor: palette.tertiary[400]
         }
     }),
-    ulStyle: css({
+    ul: css({
         maxWidth: 200,
         display: 'block',
         background: 'white',
