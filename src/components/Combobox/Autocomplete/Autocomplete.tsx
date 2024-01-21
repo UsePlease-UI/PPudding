@@ -95,14 +95,14 @@ export default function Autocomplete(props: AutocompleteType) {
                     onChange={onChange}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
-                    css={autoCompleteStyle.inputStyle}
+                    css={autoCompleteStyle.input}
                 />
             </FlexBox>
             {Boolean(listArr.length > 0 && isOpen) && (
-                <ul ref={listRef} id="listbox" role="listbox" aria-label="States" css={autoCompleteStyle.ulStyle}>
+                <ul ref={listRef} id="listbox" role="listbox" aria-label="States" css={autoCompleteStyle.ul}>
                     {listArr.map((el) => {
                         return (
-                            <li key={`list-${el.idx}`} css={autoCompleteStyle.listItemStyle}>
+                            <li key={`list-${el.idx}`} css={autoCompleteStyle.listItem}>
                                 <button type="button" onMouseDown={() => handleItemClick(el)}>
                                     {[...el.label].map((letter, idx) =>
                                         inputValue.includes(letter) ? (
