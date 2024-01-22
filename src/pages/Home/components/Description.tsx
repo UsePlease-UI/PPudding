@@ -70,6 +70,12 @@ const DESCRIPTION = {
         name: 'Button',
         description: 'A component that triggers an action or event'
     },
+    Calender: {
+        link: '',
+        icon: 'C',
+        name: 'Calender',
+        description: ''
+    },
     Checkbox: {
         link: 'https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/',
         icon: 'C',

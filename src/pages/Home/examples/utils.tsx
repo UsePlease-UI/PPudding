@@ -1,6 +1,7 @@
 import AccordionExample from './AccordionExample';
 import AutoCompleteExample from './AutoCompleteExample';
 import ButtonExample from './ButtonExample';
+import CalenderExample from './CalenderExample';
 import CheckboxExample from './CheckboxExample';
 import ChipExample from './ChipExample';
 import DragNDropExample from './DragNDropExample';
@@ -23,6 +24,8 @@ export function getComponents(type: string) {
             return <AutoCompleteExample />;
         case 'Button':
             return <ButtonExample />;
+         case 'Calender':
+            return <CalenderExample />;
         case 'Checkbox':
             return <CheckboxExample />;
         case 'Chip':

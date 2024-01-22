@@ -2,6 +2,7 @@ export const COMPONENT_LIST = [
     'Accordion',
     'Autocomplete',
     'Button',
+    'Calender',
     'Checkbox',
     'Chip',
     'Drag N Drop API',

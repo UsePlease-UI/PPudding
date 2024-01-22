@@ -1,6 +1,7 @@
 export { default as AccordionExample } from 'pages/Home/examples/AccordionExample';
 export { default as AutoCompleteExample } from 'pages/Home/examples/AutoCompleteExample';
 export { default as ButtonExample } from 'pages/Home/examples/ButtonExample';
+export { default as CalenderExample } from 'pages/Home/examples/CalenderExample';
 export { default as CheckboxExample } from 'pages/Home/examples/CheckboxExample';
 export { default as ChipExample } from 'pages/Home/examples/ChipExample';
 export { default as DragNDropExample } from 'pages/Home/examples/DragNDropExample';
