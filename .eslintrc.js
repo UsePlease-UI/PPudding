@@ -43,6 +43,7 @@ module.exports = {
         'react/jsx-props-no-spreading': 'off',
         'import/prefer-default-export': 'off',
         'react/require-default-props': 'off',
+        'no-plusplus': 'off',
         'import/order': [
             'error',
             {
