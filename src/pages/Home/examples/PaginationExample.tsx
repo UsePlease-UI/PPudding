@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import FlexBox from 'components/Base/FlexBox';
 import Pagination from 'components/Pagination/Pagination';
+import SharedPagination from 'components/Shared/Pagination';
 
 export default function PaginationExample() {
     const [page, setPage] = useState<number>(1);
@@ -21,6 +22,7 @@ export default function PaginationExample() {
                 onChange={handlePaginationChange}
                 customCSS={{ padding: 0 }}
             />
+            <SharedPagination totalCount={280} pageRange={10} />
         </FlexBox>
     );
 }

@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
 
-import { SizeType } from '../styles';
+import { ShapeType, SizeType, commonStyle } from '../styles';
 
 export const buttonStyle = {
     button: css({
-        borderRadius: 4
+        fontFamily: 'inherit'
     }),
     container: css({
         textAlign: 'center'
@@ -63,18 +63,46 @@ export const buttonStyle = {
         width: 20,
         height: 20,
         marginRight: -2
+    }),
+    smallCircular: css({
+        minWidth: 32,
+        minHeight: 32,
+        borderRadius: '50%',
+        padding: 0
+    }),
+    mediumCircular: css({
+        minWidth: 40,
+        minHeight: 40,
+        borderRadius: '50%',
+        padding: 0
+    }),
+    largeCircular: css({
+        minWidth: 45,
+        minHeight: 45,
+        borderRadius: '50%',
+        padding: 0
     })
 };
 
 export function getSizeStyle(size?: SizeType) {
-    switch (size) {
-        case 'large':
-            return buttonStyle.large;
-        case 'medium':
-            return buttonStyle.medium;
-        case 'small':
-            return buttonStyle.small;
-        default:
-            return {};
+    return size ? buttonStyle[size] : null;
+}
+
+export function getIconShapeStyle(shape: ShapeType = 'rounded') {
+    return shape ? commonStyle[shape] : commonStyle.rounded;
+}
+
+export function getShapeStyle(size?: SizeType, shape: ShapeType = 'rounded') {
+    if (shape === 'circular') {
+        switch (size) {
+            case 'large':
+                return buttonStyle.largeCircular;
+            case 'medium':
+                return buttonStyle.mediumCircular;
+            default:
+                return buttonStyle.smallCircular;
+        }
     }
+
+    return commonStyle[shape];
 }

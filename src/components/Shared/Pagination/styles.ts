@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { palette } from 'styles';
 
 export const paginationStyle = {
     list: css({
@@ -11,5 +12,13 @@ export const paginationStyle = {
             width: 22,
             height: 22
         }
+    },
+    button: {
+        minWidth: 40,
+        padding: 8
+    },
+    activeButton: {
+        fontWeight: 900,
+        color: palette.primary[600]
     }
 };

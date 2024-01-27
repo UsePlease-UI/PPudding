@@ -4,7 +4,7 @@ export const iconButtonStyle = {
     iconButton: css({
         width: 'max-content',
         height: 'max-content',
-        borderRadius: 4,
+        fontFamily: 'inherit',
         '& svg': {
             display: 'block'
         }

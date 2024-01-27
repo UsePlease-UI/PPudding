@@ -4,6 +4,7 @@ import { palette } from 'styles';
 export type SizeType = 'large' | 'medium' | 'small';
 export type IconButtonSizeType = SizeType | 'mini';
 export type VariantType = 'outlined' | 'contained' | 'text';
+export type ShapeType = 'square' | 'rounded' | 'circular';
 
 export const commonStyle = {
     outlined: css({
@@ -30,11 +31,11 @@ export const commonStyle = {
         backgroundColor: palette.primary[600],
         border: `1px solid ${palette.primary[600]}`,
         '&:hover': {
-            backgroundColor: palette.primary[500]
+            backgroundColor: palette.primary[700]
         },
         '&:focus': {
-            backgroundColor: palette.primary[700],
-            border: `1px solid ${palette.primary[700]}`
+            backgroundColor: palette.primary[800],
+            border: `1px solid ${palette.primary[800]}`
         },
         '&:disabled': {
             color: palette.gray[200],
@@ -83,20 +84,20 @@ export const commonStyle = {
             width: 28,
             height: 28
         }
+    }),
+    rounded: css({
+        borderRadius: 4
+    }),
+    circular: css({
+        borderRadius: '50%'
+    }),
+    square: css({
+        borderRadius: 0
     })
 };
 
 export function getVariantStyle(variant?: VariantType) {
-    switch (variant) {
-        case 'outlined':
-            return commonStyle.outlined;
-        case 'contained':
-            return commonStyle.contained;
-        case 'text':
-            return commonStyle.text;
-        default:
-            return {};
-    }
+    return variant ? commonStyle[variant] : null;
 }
 
 export function getSizeStyle(size?: IconButtonSizeType) {
@@ -110,4 +111,8 @@ export function getSizeStyle(size?: IconButtonSizeType) {
         default:
             return commonStyle.miniIcon;
     }
+}
+
+export function getShapeStyle(shape?: ShapeType) {
+    return shape ? commonStyle[shape] : commonStyle.rounded;
 }
