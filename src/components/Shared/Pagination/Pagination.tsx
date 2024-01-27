@@ -12,7 +12,7 @@ import Button from 'components/Button/Button';
 import IconButton from 'components/Button/IconButton';
 import { ShapeType, SizeType, VariantType } from 'components/Button/styles';
 
-import { paginationStyle } from './styles';
+import { getActiveVariant, getButtonSizeStyle, paginationStyle } from './styles';
 
 type PaginationType = {
     variant?: VariantType;
@@ -30,16 +30,6 @@ type PaginationType = {
     nextIcon?: ReactNode;
     prevIcon?: ReactNode;
 };
-
-function getActiveVariant(isActive: boolean, variant: VariantType) {
-    let activeVariant = 'outlined';
-    if (variant === 'text') {
-        activeVariant = 'text';
-    } else if ((variant === 'contained' && !isActive) || (variant === 'outlined' && isActive)) {
-        activeVariant = 'contained';
-    }
-    return activeVariant as VariantType;
-}
 
 /**
  *  Pagination Component
@@ -145,7 +135,6 @@ export default function Pagination(props: PaginationType) {
                             aria-label="처음 페이지로 이동하기"
                             isDisabled={page === 1}
                             onClick={handlePrevPageGroup}
-                            customCSS={paginationStyle.iconButton}
                         >
                             {firstIcon || <ChevronDoubleLeftIcon />}
                         </IconButton>
@@ -159,7 +148,6 @@ export default function Pagination(props: PaginationType) {
                         aria-label="이전 페이지로 이동하기"
                         isDisabled={page === 1}
                         onClick={handlePreviousPage}
-                        customCSS={paginationStyle.iconButton}
                     >
                         {prevIcon || <ChevronLeftIcon />}
                     </IconButton>
@@ -174,7 +162,7 @@ export default function Pagination(props: PaginationType) {
                             aria-current={page === currentPage ? 'page' : undefined}
                             onClick={() => handlePageChange(currentPage)}
                             customCSS={{
-                                ...paginationStyle.button,
+                                ...getButtonSizeStyle(size),
                                 ...(variant === 'text' && page === currentPage && paginationStyle.activeButton)
                             }}
                         >
@@ -190,7 +178,6 @@ export default function Pagination(props: PaginationType) {
                         aria-label="다음 페이지로 이동하기"
                         isDisabled={page === totalPage}
                         onClick={handleNextPage}
-                        customCSS={paginationStyle.iconButton}
                     >
                         {nextIcon || <ChevronRightIcon />}
                     </IconButton>
@@ -204,7 +191,6 @@ export default function Pagination(props: PaginationType) {
                             aria-label="마지막 페이지로 이동하기"
                             isDisabled={page === totalPage}
                             onClick={handleLastPageGroup}
-                            customCSS={paginationStyle.iconButton}
                         >
                             {lastIcon || <ChevronDoubleRightIcon />}
                         </IconButton>
