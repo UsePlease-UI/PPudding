@@ -10,11 +10,12 @@ type weekDaysType = {
 
 export default function WeekDays({ children, day, date }: weekDaysType) {
     const isToday = day === String(date);
+
     return (
         <Typography
             component="span"
-            width="300px"
-            height="300px"
+            width="100%"
+            height="100px"
             color={isToday ? 'tomato' : ''}
             customCSS={{ border: '1px solid black' }}
         >
