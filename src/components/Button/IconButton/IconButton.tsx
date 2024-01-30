@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import type { CustomCSSType } from 'styles/types';
 
 import { iconButtonStyle } from './styles';
-import { IconButtonSizeType, VariantType, getVariantStyle, getSizeStyle } from '../styles';
+import { IconButtonSizeType, VariantType, getVariantStyle, getSizeStyle, ShapeType, getShapeStyle } from '../styles';
 
 type BaseType = ButtonHTMLAttributes<HTMLButtonElement> & CustomCSSType;
 
@@ -14,6 +14,7 @@ type IconButtonType = BaseType & {
     isDisabled?: boolean;
     size?: IconButtonSizeType;
     variant?: VariantType;
+    shape?: ShapeType;
 };
 
 /**
@@ -22,11 +23,11 @@ type IconButtonType = BaseType & {
  *  @param isDisabled 비활성화 여부 [optional]
  *  @param size [CSS] 버튼 크기 (large | medium | small)
  *  @param variant [CSS] 버튼 스타일 (outlined | contained | text)
+ *  @param variant [CSS] 버튼 형태 (rounded | square | circular)
  *  @returns JSX.Element
  */
-
 const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(function createIconButton(props, ref) {
-    const { type = 'button', children, isDisabled, size, variant, onClick, customCSS, ...rest } = props;
+    const { type = 'button', children, isDisabled, size, variant, shape, onClick, customCSS, ...rest } = props;
 
     const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
         e.currentTarget.blur();
@@ -43,7 +44,13 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(function create
             type={type}
             disabled={isDisabled}
             onClick={handleClick}
-            css={css([iconButtonStyle.iconButton, getSizeStyle(size), getVariantStyle(variant), customCSS])}
+            css={css([
+                iconButtonStyle.iconButton,
+                getSizeStyle(size),
+                getVariantStyle(variant),
+                getShapeStyle(shape),
+                customCSS
+            ])}
         >
             {children}
         </button>

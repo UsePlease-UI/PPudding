@@ -22,3 +22,9 @@
 -   Small (38 x 38)
 -   Medium (42 x 42)
 -   Large (46 x 46)
+
+## Shape
+
+-   Rounded
+-   Square
+-   Circular

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import FlexBox from 'components/Base/FlexBox';
+import { Typography, FlexBox } from 'components/Base';
 import Pagination from 'components/Pagination/Pagination';
+import SharedPagination from 'components/Shared/Pagination';
 
 export default function PaginationExample() {
     const [page, setPage] = useState<number>(1);
@@ -13,7 +14,7 @@ export default function PaginationExample() {
     };
 
     return (
-        <FlexBox flexDirection="column" gap={10} customCSS={{ margin: '20px 0' }}>
+        <FlexBox flexDirection="column" gap={40} customCSS={{ margin: '20px 0' }}>
             <Pagination
                 totalCount={32}
                 page={page}
@@ -21,6 +22,30 @@ export default function PaginationExample() {
                 onChange={handlePaginationChange}
                 customCSS={{ padding: 0 }}
             />
+            <FlexBox flexDirection="column" gap={10}>
+                <Typography fontSize={16} fontWeight="700">
+                    Variant
+                </Typography>
+                <SharedPagination totalCount={280} pageRange={10} />
+                <SharedPagination variant="contained" totalCount={280} pageRange={10} />
+                <SharedPagination variant="text" totalCount={280} pageRange={10} />
+            </FlexBox>
+            <FlexBox flexDirection="column" gap={10}>
+                <Typography fontSize={16} fontWeight="700">
+                    Shape
+                </Typography>
+                <SharedPagination shape="square" totalCount={280} pageRange={10} />
+                <SharedPagination shape="rounded" totalCount={280} pageRange={10} />
+                <SharedPagination shape="circular" totalCount={280} pageRange={10} />
+            </FlexBox>
+            <FlexBox flexDirection="column" gap={10}>
+                <Typography fontSize={16} fontWeight="700">
+                    Size
+                </Typography>
+                <SharedPagination size="large" totalCount={280} pageRange={10} />
+                <SharedPagination size="medium" totalCount={280} pageRange={10} />
+                <SharedPagination size="small" totalCount={280} pageRange={10} />
+            </FlexBox>
         </FlexBox>
     );
 }
