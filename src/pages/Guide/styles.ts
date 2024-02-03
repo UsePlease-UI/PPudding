@@ -4,12 +4,10 @@ export const guideStyle = {
     container: {
         width: '100%',
         minHeight: '100vh',
-        backgroundColor: palette.neutral.white,
-        padding: 80
+        backgroundColor: palette.neutral.white
     },
     markdown: {
         width: '100%',
-        maxWidth: 1024,
         margin: '0 auto',
         '& h1': {
             display: 'inline-block',

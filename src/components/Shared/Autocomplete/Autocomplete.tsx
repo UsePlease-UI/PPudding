@@ -4,12 +4,11 @@ import { useRef, useState, useId, ChangeEvent } from 'react';
 import { CustomCSSType } from 'styles';
 import palette from 'styles/palette';
 
-import { Backdrop, Typography } from 'components/Base';
+import { Backdrop, Typography, Listbox, OptionType, ListboxItem } from 'components/Base';
 import Box from 'components/Base/Box';
 import FlexBox from 'components/Base/FlexBox';
 import usePosition from 'components/Combobox/usePosition';
 import TextField from 'components/Form/TextField';
-import { Listbox, OptionType, ListboxItem } from 'components/Listbox';
 
 import { autoCompleteStyle } from './styles';
 
@@ -90,9 +89,11 @@ export default function Autocomplete(props: AutocompleteType) {
                     aria-autocomplete="list"
                     aria-expanded={isVisible}
                     aria-controls={listBoxId}
+                    isFullWidth
                     value={inputValue}
                     onChange={handleChange}
                     onClick={handleClick}
+                    customCSS={autoCompleteStyle.input}
                 />
             </FlexBox>
             {isVisible && (

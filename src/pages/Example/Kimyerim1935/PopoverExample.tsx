@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { css } from '@emotion/react';
 import palette from 'styles/palette';
 
+import { Box, Typography } from 'components/Base';
 import FlexBox from 'components/Base/FlexBox';
 import PopOver from 'components/Menu/PopOver';
 
@@ -12,7 +13,8 @@ const popoverStyle = css({
     fontWeight: 700,
     color: palette.tertiary[400],
     border: `1px solid ${palette.tertiary[400]}`,
-    borderRadius: 4
+    borderRadius: 4,
+    padding: '4px 12px'
 });
 
 const ulStyle = css({
@@ -40,7 +42,7 @@ const ulStyle = css({
 });
 
 // FIXME: handleClickOutside 수정
-export default function PopOverExample() {
+export default function PopoverExample() {
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
     const isOpen = Boolean(anchorEl);
 
@@ -73,20 +75,25 @@ export default function PopOverExample() {
     }, [isOpen]);
 
     return (
-        <FlexBox flexDirection="column" gap={10} customCSS={{ margin: '20px 0' }}>
-            <button type="button" ref={buttonRef} onClick={handleOpen} css={popoverStyle}>
-                메뉴 보기
-            </button>
-            <PopOver isOpen={isOpen} customCSS={{ padding: 0 }}>
-                <ul css={ulStyle}>
-                    <li>
-                        <a href="/">Hello</a>
-                    </li>
-                    <li>
-                        <a href="/">Hi</a>
-                    </li>
-                </ul>
-            </PopOver>
+        <FlexBox flexDirection="column" gap={20}>
+            <Typography component="h2" fontSize={24}>
+                Popover
+            </Typography>
+            <Box>
+                <button type="button" ref={buttonRef} onClick={handleOpen} css={popoverStyle}>
+                    메뉴 보기
+                </button>
+                <PopOver isOpen={isOpen} customCSS={{ padding: 0 }}>
+                    <ul css={ulStyle}>
+                        <li>
+                            <a href="/">Hello</a>
+                        </li>
+                        <li>
+                            <a href="/">Hi</a>
+                        </li>
+                    </ul>
+                </PopOver>
+            </Box>
         </FlexBox>
     );
 }

@@ -33,8 +33,8 @@ export const layoutStyle = {
     }),
     gnbContainer: {
         position: 'fixed' as const,
-        top: 20,
-        right: 20
+        top: 0,
+        right: 0
     },
     container: {
         width: '100%',

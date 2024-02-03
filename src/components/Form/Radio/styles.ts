@@ -65,6 +65,7 @@ const sizeStyle = {
 
 export const radioStyle = {
     label: css({
+        width: 'max-content',
         display: 'inline-flex',
         alignItems: 'center',
         cursor: 'pointer',

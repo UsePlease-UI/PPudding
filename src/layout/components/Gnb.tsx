@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Bars3Icon, BookOpenIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon } from '@heroicons/react/24/outline';
 import { palette } from 'styles';
 
 import { Backdrop, Box, Typography } from 'components/Base';
@@ -10,7 +10,7 @@ import Button from 'components/Button/Button';
 import IconButton from 'components/Button/IconButton';
 import useMobile from 'hooks/useMobile';
 
-import { COMPONENT_LIST, DEMO_LIST } from './constants';
+import { A_LIST, K_LIST, DEMO_LIST } from './constants';
 import { gnbStyle } from './styles';
 
 type GnbType = {
@@ -33,7 +33,7 @@ export default function Gnb({ onClick }: GnbType) {
                 onClick={() => setIsOpen((prev) => !prev)}
                 customCSS={gnbStyle.menuButton}
             >
-                둘러보기
+                MENU
             </Button>
             <Backdrop isOpen={isOpen} isDimmed onClose={() => setIsOpen(false)}>
                 <nav css={gnbStyle.menuNav}>
@@ -44,23 +44,51 @@ export default function Gnb({ onClick }: GnbType) {
                             fontWeight="900"
                             align="center"
                             backgroundColor={palette.neutral.white}
-                            customCSS={gnbStyle.componentHeading}
+                            customCSS={gnbStyle.shortHeading}
                         >
-                            컴포넌트
+                            Kimyerim1935
                         </Typography>
                         <ul css={gnbStyle.menuList}>
-                            {COMPONENT_LIST.map((component) => (
+                            {K_LIST.map((component) => (
                                 <li key={component} css={gnbStyle.menuListItem}>
-                                    <Link to={`/?component=${component}`} css={gnbStyle.linkText}>
+                                    <Link to={`/example/${component.toLowerCase()}`} css={gnbStyle.linkText}>
                                         {component}
                                     </Link>
-                                    <Link
+                                    {/* <Link
                                         title="가이드 보러가기"
                                         to={`/guide/${component.toLowerCase()}`}
                                         css={gnbStyle.icon}
                                     >
                                         <BookOpenIcon width={16} height={16} color={palette.neutral.black} />
+                                    </Link> */}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div css={gnbStyle.menuListContainer}>
+                        <Typography
+                            component="h2"
+                            fontSize={16}
+                            fontWeight="900"
+                            align="center"
+                            backgroundColor={palette.neutral.white}
+                            customCSS={gnbStyle.longHeading}
+                        >
+                            akffkdahffkdgo77
+                        </Typography>
+                        <ul css={gnbStyle.menuList}>
+                            {A_LIST.map((component) => (
+                                <li key={component} css={gnbStyle.menuListItem}>
+                                    <Link to={`/example/${component.toLowerCase()}`} css={gnbStyle.linkText}>
+                                        {component}
                                     </Link>
+                                    {/* <Link
+                                        title="가이드 보러가기"
+                                        to={`/guide/${component.toLowerCase()}`}
+                                        css={gnbStyle.icon}
+                                    >
+                                        <BookOpenIcon width={16} height={16} color={palette.neutral.black} />
+                                    </Link> */}
                                 </li>
                             ))}
                         </ul>

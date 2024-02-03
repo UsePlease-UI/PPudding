@@ -7,6 +7,7 @@ import accordion from 'components/Accordion/Accordion.md';
 import { Box, FlexBox } from 'components/Base';
 import base from 'components/Base/Base.md';
 import button from 'components/Button/Button/Button.md';
+import chip from 'components/Button/Chip/Chip.md';
 import iconButton from 'components/Button/IconButton/IconButton.md';
 import toggleButton from 'components/Button/ToggleButton/ToggleButton.md';
 import select from 'components/Combobox/Select/Select.md';
@@ -27,6 +28,8 @@ function getMD(name?: string) {
             return base;
         case 'button':
             return button;
+        case 'chip':
+            return chip;
         case 'icon button':
             return iconButton;
         case 'toggle button':

@@ -53,12 +53,16 @@ export const headerStyle = {
         height: 80,
         borderBottom: `1px dashed ${palette.neutral.white}`,
         backgroundColor: palette.primary[600],
-        padding: '0 20px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
+        padding: '0 20px'
     }),
+    headerContainer: {
+        width: '100%',
+        height: '100%',
+        maxWidth: 1536,
+        margin: '0 auto'
+    },
     headerText: {
+        width: 600,
         display: 'flex',
         alignItems: 'center'
     },
@@ -74,7 +78,7 @@ export const headerStyle = {
         strokeDasharray: 350,
         animation: `${stroke} 3s infinite`,
         '@media (max-width: 425px)': {
-            fontSize: 200
+            fontSize: 160
         }
     })
 };

@@ -3,12 +3,16 @@ import { palette } from 'styles';
 
 export const gnbStyle = {
     hamburgerButton: {
+        position: 'absolute' as const,
+        right: 20,
         color: palette.primary[600],
         backgroundColor: palette.primary[50],
         border: `1px dashed ${palette.primary[600]}`
     },
     menuContainer: {
-        position: 'relative' as const
+        position: 'absolute' as const,
+        top: 24,
+        right: 20
     },
     menuButton: {
         fontWeight: 900,
@@ -33,11 +37,17 @@ export const gnbStyle = {
         borderRadius: 4,
         border: `1px solid ${palette.primary[600]}`
     }),
-    componentHeading: {
+    shortHeading: {
         position: 'absolute' as const,
         left: 10,
         top: -12,
-        width: 60
+        width: 120
+    },
+    longHeading: {
+        position: 'absolute' as const,
+        left: 10,
+        top: -12,
+        width: 150
     },
     menuList: css({
         width: 280,
@@ -166,11 +176,17 @@ export const asideStyle = {
         borderRadius: 4,
         border: `1px solid ${palette.primary[600]}`
     }),
-    componentHeading: {
+    shortHeading: {
         position: 'absolute' as const,
         left: 10,
         top: -18,
-        width: 100
+        width: 180
+    },
+    longHeading: {
+        position: 'absolute' as const,
+        left: 10,
+        top: -18,
+        width: 210
     },
     menuList: css({
         width: '100%',

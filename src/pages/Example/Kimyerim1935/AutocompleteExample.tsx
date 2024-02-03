@@ -2,16 +2,12 @@ import { useState, useCallback, ChangeEvent } from 'react';
 
 import _ from 'lodash';
 
-import { Box, FlexBox, Typography } from 'components/Base';
+import { FlexBox, Typography } from 'components/Base';
 import Autocomplete from 'components/Combobox/Autocomplete';
-import SharedAutoComplete from 'components/Shared/Autocomplete';
 
 import { AUTOCOMPLETE as LIST, AutocompleteType } from './constants';
 
 const autoCompleteStyle = {
-    container: {
-        margin: '20px 0'
-    },
     text: {
         width: '100%',
         display: 'block',
@@ -21,7 +17,7 @@ const autoCompleteStyle = {
     }
 };
 
-export default function AutoCompleteExample() {
+export default function AutocompleteExample() {
     const [listArr, setListArr] = useState<AutocompleteType[]>(LIST);
     const [inputValue, setInputValue] = useState<string>('');
     const [selectedItem, setSelectedItem] = useState<AutocompleteType>();
@@ -44,14 +40,12 @@ export default function AutoCompleteExample() {
         handleSearch(value);
     };
 
-    const handleShareChange = (newValue: string | number) => {
-        setInputValue(String(newValue));
-        handleSearch(String(newValue));
-    };
-
     return (
-        <FlexBox flexDirection="column" gap={10} customCSS={autoCompleteStyle.container}>
-            <Box>
+        <FlexBox flexDirection="column" gap={10}>
+            <Typography component="h2" fontSize={24}>
+                Autocomplete
+            </Typography>
+            <FlexBox flexDirection="column" gap={20}>
                 <Typography>
                     선택된 항목 :{' '}
                     <Typography component="strong" customCSS={autoCompleteStyle.text}>
@@ -65,23 +59,7 @@ export default function AutoCompleteExample() {
                     onChange={handleChange}
                     onSelect={(e) => setSelectedItem(e as AutocompleteType)}
                 />
-            </Box>
-            <Box>
-                <Typography>
-                    선택된 항목 :{' '}
-                    <Typography component="strong" customCSS={autoCompleteStyle.text}>
-                        {selectedItem?.label}
-                    </Typography>
-                </Typography>
-                <SharedAutoComplete
-                    labelText="Lorem Ipsum"
-                    name="lorem ipsum"
-                    options={listArr}
-                    inputValue={inputValue}
-                    onChange={handleShareChange}
-                    onSelect={(e) => setSelectedItem(e as AutocompleteType)}
-                />
-            </Box>
+            </FlexBox>
         </FlexBox>
     );
 }
