@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Bars3Icon } from '@heroicons/react/24/outline';
+import { A_LIST, K_LIST, DEMO_LIST } from 'constants/constants';
 import { palette } from 'styles';
 
 import { Backdrop, Box, Typography } from 'components/Base';
@@ -10,7 +11,6 @@ import Button from 'components/Button/Button';
 import IconButton from 'components/Button/IconButton';
 import useMobile from 'hooks/useMobile';
 
-import { A_LIST, K_LIST, DEMO_LIST } from './constants';
 import { gnbStyle } from './styles';
 
 type GnbType = {

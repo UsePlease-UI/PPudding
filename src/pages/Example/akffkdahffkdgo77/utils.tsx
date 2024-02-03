@@ -3,6 +3,7 @@ import ComboboxExample from './ComboboxExample';
 import DataDisplayExample from './DataDisplayExample';
 import FeedbackExample from './FeedbackExample';
 import FormInputExample from './FormInputExample';
+import UtilitiesExample from './UtilitiesExample';
 
 export function getComponents(type?: string) {
     switch (type) {
@@ -16,6 +17,8 @@ export function getComponents(type?: string) {
             return <FeedbackExample />;
         case 'form input':
             return <FormInputExample />;
+        case 'utilities':
+            return <UtilitiesExample />;
         default:
             break;
     }

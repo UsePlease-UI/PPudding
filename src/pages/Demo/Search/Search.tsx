@@ -10,8 +10,8 @@ import Chip from 'components/Button/Chip';
 import { Checkbox, CheckboxGroup } from 'components/Form/Checkbox';
 import { Radio, RadioGroup } from 'components/Form/Radio';
 import TextField from 'components/Form/TextField';
-import PopOver from 'components/Shared/Popover/Popover';
-import usePopOver from 'components/Shared/usePopover/usePopover';
+import Popover from 'components/Shared/Popover';
+import usePopOver from 'components/Shared/usePopover';
 import useMobile from 'hooks/useMobile';
 
 import { searchStyle } from './styles';
@@ -53,7 +53,7 @@ const Search = () => {
                     더보기
                 </Button>
             </FlexBox>
-            <PopOver
+            <Popover
                 isOpen={isOpen}
                 anchorPosition={{ vertical: 'bottom', horizontal: 'right' }}
                 anchorElement={anchorElement}
@@ -135,7 +135,7 @@ const Search = () => {
                         적용
                     </Button>
                 </FlexBox>
-            </PopOver>
+            </Popover>
             <FlexBox gap={10} flexWrap="wrap" customCSS={searchStyle.marginHorizontal20}>
                 {confirmed.state && (
                     <Chip

@@ -2,18 +2,17 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { BeakerIcon, ChevronLeftIcon, ChevronRightIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
+import { BeakerIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { palette } from 'styles';
 
 import { FlexBox, Typography } from 'components/Base';
 import IconButton from 'components/Button/IconButton';
 
 type ListType = {
-    isShared?: boolean;
     data: string[];
 };
 
-export default function List({ isShared, data }: ListType) {
+export default function List({ data }: ListType) {
     const [page, setPage] = useState(1);
     const [offset, setOffset] = useState(1);
     const [totalPage, setTotalPage] = useState(0);
@@ -56,7 +55,7 @@ export default function List({ isShared, data }: ListType) {
                         }}
                     >
                         <Typography
-                            fontSize={32}
+                            fontSize={28}
                             fontWeight="900"
                             height="150px"
                             lineHeight="150px"
@@ -76,15 +75,15 @@ export default function List({ isShared, data }: ListType) {
                             {name}
                         </Typography>
                         <FlexBox gap={10} alignItems="center" justifyContent="flex-end" customCSS={{ padding: 5 }}>
-                            <Link title="가이드 보기" to={`/guide/${name}`}>
+                            {/* <Link title="가이드 보기" to={`/guide/${name}`}>
                                 <DocumentTextIcon
                                     width={24}
                                     height={24}
                                     color={palette.primary[600]}
                                     css={{ '&:hover': { strokeWidth: 2 } }}
                                 />
-                            </Link>
-                            <Link title="컴포넌트 확인하기" to={isShared ? `/shared/${name}` : `/example/${name}`}>
+                            </Link> */}
+                            <Link title="컴포넌트 확인하기" to={`/example/${name.toLowerCase()}`}>
                                 <BeakerIcon
                                     width={24}
                                     height={24}

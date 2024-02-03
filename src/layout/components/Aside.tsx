@@ -4,13 +4,13 @@ import { Link, useSearchParams } from 'react-router-dom';
 
 import { css } from '@emotion/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { A_LIST, DEMO_LIST, K_LIST } from 'constants/constants';
 import { palette } from 'styles';
 
 import { Backdrop, Typography } from 'components/Base';
 import FlexBox from 'components/Base/FlexBox';
 import IconButton from 'components/Button/IconButton';
 
-import { A_LIST, DEMO_LIST, K_LIST } from './constants';
 import { asideStyle } from './styles';
 
 type AsideType = {
