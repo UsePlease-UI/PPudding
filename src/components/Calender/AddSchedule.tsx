@@ -33,7 +33,7 @@ type AddScheduleType = {
 };
 
 export default function AddSchedule({ setIsOpenAddForm, setAddArr, length }: AddScheduleType) {
-    const [color, setColor] = useState('red');
+    const [color, setColor] = useState(palette.pastel['01']);
     const today = new Date().toISOString().substring(0, 10);
     const [addContents, setAddContents] = useState({
         idx: 0,
@@ -114,6 +114,7 @@ export default function AddSchedule({ setIsOpenAddForm, setAddArr, length }: Add
                     label={CALENDER_LABEL_COLOR.filter((val) => val.value === color)?.[0]?.label}
                     options={CALENDER_LABEL_COLOR}
                     onChange={(e) => setColor(e.currentTarget.value)}
+                    customCSS={{ color }}
                 />
 
                 <TextField
