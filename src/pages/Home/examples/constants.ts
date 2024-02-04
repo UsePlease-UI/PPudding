@@ -1,3 +1,5 @@
+import { palette } from 'styles';
+
 export const OPTIONS = [
     { label: '선택', value: '' },
     { label: '딸기', value: '1' },
@@ -65,25 +67,66 @@ export const CALENDER = [
 export const CALENDER_LABEL_COLOR = [
     {
         idx: 1,
-        label: '빨강',
-        value: 'red'
+        label: 'pick-me',
+        value: palette.pastel['01']
     },
     {
         idx: 2,
-        label: '주황',
-        value: 'orange'
+        label: 'pick-me',
+        value: palette.pastel['02']
     },
     {
         idx: 3,
-        label: '노랑',
-        value: 'yellow'
+        label: 'pick-me',
+        value: palette.pastel['03']
     },
     {
         idx: 4,
-        label: '초록',
-        value: 'green'
+        label: 'pick-me',
+        value: palette.pastel['04']
+    },
+    {
+        idx: 5,
+        label: 'pick-me',
+        value: palette.pastel['05']
+    },
+    {
+        idx: 6,
+        label: 'pick-me',
+        value: palette.pastel['06']
+    },
+    {
+        idx: 7,
+        label: 'pick-me',
+        value: palette.pastel['07']
+    },
+    {
+        idx: 8,
+        label: 'pick-me',
+        value: palette.pastel['08']
+    },
+    {
+        idx: 9,
+        label: 'pick-me',
+        value: palette.pastel['09']
+    },
+    {
+        idx: 10,
+        label: 'pick-me',
+        value: palette.pastel['10']
+    },
+    {
+        idx: 11,
+        label: 'pick-me',
+        value: palette.pastel['11']
+    },
+    {
+        idx: 12,
+        label: 'pick-me',
+        value: palette.pastel['12']
     }
 ];
+
 export const DRAG_N_DROP = [
     {
         idx: 1,
