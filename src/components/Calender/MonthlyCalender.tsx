@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import { Typography, FlexBox } from 'components/Base';
 import Button from 'components/Button/Button';
 import AddSchedule from 'components/Calender/AddSchedule';
+import ScheduleDetail from 'components/Calender/ScheduleDetail';
 import WeekDays from 'components/Calender/WeekDays';
 import PopOver from 'components/Menu/PopOver';
 import useCalender from 'hooks/useCalender';
@@ -16,7 +17,7 @@ const DUMMY_DATA = [
         idx: 1,
         startDate: '2024-01-22',
         endDate: '2024-01-22',
-        color: 'red',
+        color: 'yellowgreen',
         isAllDay: false,
         title: '공부하기',
         description: '열심히 공부하기'
@@ -25,7 +26,7 @@ const DUMMY_DATA = [
         idx: 2,
         startDate: '2024-01-13',
         endDate: '2024-01-18',
-        color: 'yellow',
+        color: 'plum',
         isAllDay: true,
         title: '병원',
         description: '건강검진 받기'
@@ -34,7 +35,7 @@ const DUMMY_DATA = [
         idx: 3,
         startDate: '2024-01-13',
         endDate: '2024-01-13',
-        color: 'red',
+        color: 'salmon',
         isAllDay: false,
         title: '과제',
         description: '캘린더 만들기'
@@ -43,7 +44,7 @@ const DUMMY_DATA = [
         idx: 4,
         startDate: '2024-02-10',
         endDate: '2024-02-19',
-        color: 'red',
+        color: 'mistyrose',
         isAllDay: true,
         title: '학교',
         description: '수강신청하기'
@@ -53,9 +54,9 @@ const DUMMY_DATA = [
 export default function MonthlyCalender() {
     const { month, setMonth, year, setYear, date, getWeeks } = useCalender();
     const [isOpenAddForm, setIsOpenAddForm] = useState(false);
-    const [isOpenSchedule, setIsOpenSchedule] = useState(false);
-
+    const [isOpenSchedule, setIsOpenSchedule] = useState({ isOpen: '', index: -1 });
     const [addArr, setAddArr] = useState(DUMMY_DATA);
+
     const prevMonth = () => {
         if (month === 1) {
             setMonth(12);
@@ -73,9 +74,25 @@ export default function MonthlyCalender() {
             setMonth((prev) => prev + 1);
         }
     };
+
     const handleAddContent = () => {
+        if (isOpenSchedule) {
+            setIsOpenSchedule({ isOpen: '', index: -1 });
+        }
         setIsOpenAddForm((prev) => !prev);
     };
+
+    const handleClickDetail = (type: 'open' | 'close', day: string, index: number) => {
+        if (isOpenAddForm) {
+            setIsOpenAddForm(false);
+        } else if (type === 'close') {
+            setIsOpenSchedule({ isOpen: '', index: -1 });
+        }
+        setIsOpenSchedule((prev) => {
+            return { ...prev, isOpen: day, index };
+        });
+    };
+
     const handleDeleteSchedule = (idx: number) => {
         // eslint-disable-next-line no-alert
         if (window.confirm('일정을 삭제하시겠습니까?')) {
@@ -120,33 +137,42 @@ export default function MonthlyCalender() {
                         {el.map((day: string) => (
                             <WeekDays day={day} date={date}>
                                 {day}
-                                {addArr.map((todo) => {
+                                {addArr.map((todo, index) => {
                                     if (
                                         dayjs(todo.startDate) <= dayjs(`${year}-${month}-${day}`) &&
                                         dayjs(todo.endDate) >= dayjs(`${year}-${month}-${day}`)
                                     ) {
+                                        const isStartDate = dayjs(todo.startDate).isSame(
+                                            dayjs(`${year}-${month}-${day}`)
+                                        );
+                                        const isOpenDetail =
+                                            isOpenSchedule.isOpen === day && isOpenSchedule.index === index;
                                         return (
-                                            <FlexBox flexDirection="column" customCSS={{ background: 'lightPink' }}>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setIsOpenSchedule((prev) => !prev)}
+                                            <>
+                                                <FlexBox flexDirection="column" customCSS={{ background: todo.color }}>
+                                                    <Button onClick={() => handleClickDetail('open', day, index)}>
+                                                        {isStartDate ? todo.title : 'ㅤ'}
+                                                    </Button>
+                                                </FlexBox>
+                                                <PopOver
+                                                    isOpen={isOpenDetail}
+                                                    customCSS={{
+                                                        width: 200,
+                                                        position: 'absolute',
+                                                        background: 'white'
+                                                    }}
                                                 >
-                                                    {todo.title}
-                                                </button>
-                                                <PopOver isOpen={isOpenSchedule}>
-                                                    <div>
-                                                        <span style={{ color: 'green' }}>{todo.description}</span>
-                                                        <Button
-                                                            size="small"
-                                                            variant="outlined"
-                                                            onClick={() => handleDeleteSchedule(todo.idx)}
-                                                            customCSS={{ marginTop: 20 }}
-                                                        >
-                                                            X
-                                                        </Button>
-                                                    </div>
+                                                    <ScheduleDetail
+                                                        idx={todo.idx}
+                                                        title={todo.title}
+                                                        description={todo.description}
+                                                        day={day}
+                                                        isStartDate={isStartDate}
+                                                        handleDeleteSchedule={handleDeleteSchedule}
+                                                        handleClickDetail={handleClickDetail}
+                                                    />
                                                 </PopOver>
-                                            </FlexBox>
+                                            </>
                                         );
                                     }
                                     return undefined;
