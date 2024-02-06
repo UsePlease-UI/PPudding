@@ -18,9 +18,22 @@ const reset = css`
     }
 
     body {
-        font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-            'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-            'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+        font-family:
+            'Pretendard Variable',
+            Pretendard,
+            -apple-system,
+            BlinkMacSystemFont,
+            system-ui,
+            Roboto,
+            'Helvetica Neue',
+            'Segoe UI',
+            'Apple SD Gothic Neo',
+            'Noto Sans KR',
+            'Malgun Gothic',
+            'Apple Color Emoji',
+            'Segoe UI Emoji',
+            'Segoe UI Symbol',
+            sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         font-size: 16px;
@@ -65,6 +78,14 @@ const reset = css`
     p,
     span {
         word-break: break-all;
+    }
+
+    main {
+        -ms-overflow-style: none; /* 익스플로러, 앳지 */
+        scrollbar-width: none; /* 파이어폭스 */
+    }
+    ::-webkit-scrollbar {
+        display: none;
     }
 `;
 
