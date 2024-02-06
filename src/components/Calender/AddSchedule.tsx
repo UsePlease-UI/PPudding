@@ -71,12 +71,13 @@ export default function AddSchedule({ setIsOpenAddForm, setAddArr, length }: Add
     };
 
     return (
-        <div style={{ background: 'white', padding: 20 }}>
-            <FlexBox flexDirection="column" gap={20}>
+        <div style={{ background: 'white', padding: 20, width: 300 }}>
+            <FlexBox flexDirection="column" gap={20} customCSS={{ width: '100%' }}>
                 <TextField
                     labelText="시작일"
                     type="date"
                     name="startDate"
+                    isFullWidth
                     value={addContents.startDate}
                     onChange={(e) => handleContents('startDate', e.target.value)}
                     customCSS={{
@@ -91,6 +92,7 @@ export default function AddSchedule({ setIsOpenAddForm, setAddArr, length }: Add
                     labelText="종료일"
                     type="date"
                     name="endDate"
+                    isFullWidth
                     value={addContents.endDate}
                     onChange={(e) => handleContents('endDate', e.target.value)}
                     customCSS={{
@@ -119,8 +121,10 @@ export default function AddSchedule({ setIsOpenAddForm, setAddArr, length }: Add
 
                 <TextField
                     labelText="일정 제목"
+                    helperText="10글자 이내로 입력해주세요."
                     name="title"
                     value={addContents.title}
+                    isFullWidth
                     maxLength={10}
                     onChange={(e) => handleContents('title', e.target.value)}
                     customCSS={{
@@ -133,9 +137,11 @@ export default function AddSchedule({ setIsOpenAddForm, setAddArr, length }: Add
                 />
                 <TextField
                     labelText="상세 내용"
+                    helperText="20글자 이내로 입력해주세요."
                     name="description"
                     value={addContents.description}
-                    maxLength={10}
+                    isFullWidth
+                    maxLength={20}
                     onChange={(e) => handleContents('description', e.target.value)}
                     customCSS={{
                         borderColor: palette.secondary[600],
