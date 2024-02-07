@@ -1,4 +1,4 @@
-# Icon Button
+# Icon Button Component
 
 ## Anatomy
 
@@ -13,7 +13,7 @@
 ## Variants
 
 -   Outlined
--   Contained(filled)
+-   Contained (filled)
 -   Text
 
 ## Size
@@ -22,3 +22,9 @@
 -   Small (38 x 38)
 -   Medium (42 x 42)
 -   Large (46 x 46)
+
+## Shape
+
+-   Rounded
+-   Square
+-   Circular

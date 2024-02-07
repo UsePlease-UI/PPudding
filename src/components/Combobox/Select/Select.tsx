@@ -5,8 +5,7 @@ import { css } from '@emotion/react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import type { CustomCSSType } from 'styles/types';
 
-import { Backdrop, FormControl } from 'components/Base';
-import { Listbox, OptionType } from 'components/Listbox';
+import { Backdrop, Box, FormControl, Listbox, OptionType } from 'components/Base';
 
 import { selectStyle } from './styles';
 import usePosition from '../usePosition';
@@ -73,69 +72,71 @@ export default function Select(props: SelectType) {
     const handleClick = () => setIsVisible((prev) => !prev);
 
     return (
-        <FormControl id={labelId} labelText={labelText} helperText={helperText} helperTextId={helperTextId}>
-            <div css={selectStyle.container}>
-                <button
-                    id={buttonId}
-                    ref={ref}
-                    type="button"
-                    disabled={isDisabled || isReadOnly}
-                    aria-expanded={isVisible}
-                    aria-controls={listBoxId}
-                    aria-haspopup="listbox"
-                    aria-describedby={helperText ? helperTextId : undefined}
-                    role="combobox"
-                    tabIndex={0}
-                    onClick={handleClick}
-                    css={css([
-                        selectStyle.button,
-                        {
-                            ...(isReadOnly && selectStyle.buttonReadOnly)
-                        },
-                        css(customCSS)
-                    ])}
-                >
-                    <span css={selectStyle.buttonText}>{label}</span>
-                    <span
+        <Box customCSS={selectStyle.box}>
+            <FormControl id={labelId} labelText={labelText} helperText={helperText} helperTextId={helperTextId}>
+                <div css={selectStyle.container}>
+                    <button
+                        id={buttonId}
+                        ref={ref}
+                        type="button"
+                        disabled={isDisabled || isReadOnly}
+                        aria-expanded={isVisible}
+                        aria-controls={listBoxId}
+                        aria-haspopup="listbox"
+                        aria-describedby={helperText ? helperTextId : undefined}
+                        role="combobox"
+                        tabIndex={0}
+                        onClick={handleClick}
                         css={css([
-                            selectStyle.icon,
+                            selectStyle.button,
                             {
-                                '& svg': {
-                                    transform: isVisible ? 'rotate(180deg)' : 'unset'
-                                }
-                            }
+                                ...(isReadOnly && selectStyle.buttonReadOnly)
+                            },
+                            css(customCSS)
                         ])}
                     >
-                        <ChevronDownIcon width={16} height={16} />
-                    </span>
-                </button>
-                {isVisible && (
-                    <Backdrop isOpen={isVisible} onClose={() => handleClick()}>
-                        <div
+                        <span css={selectStyle.buttonText}>{label}</span>
+                        <span
                             css={css([
-                                selectStyle.listContainer,
+                                selectStyle.icon,
                                 {
-                                    top,
-                                    left,
-                                    marginTop,
-                                    '& > ul': {
-                                        maxWidth
+                                    '& svg': {
+                                        transform: isVisible ? 'rotate(180deg)' : 'unset'
                                     }
                                 }
                             ])}
                         >
-                            <Listbox
-                                id={listBoxId}
-                                labelId={labelId}
-                                name={name}
-                                value={value}
-                                options={options}
-                                onClick={onChange}
-                            />
-                        </div>
-                    </Backdrop>
-                )}
-            </div>
-        </FormControl>
+                            <ChevronDownIcon width={16} height={16} />
+                        </span>
+                    </button>
+                    {isVisible && (
+                        <Backdrop isOpen={isVisible} onClose={() => handleClick()}>
+                            <div
+                                css={css([
+                                    selectStyle.listContainer,
+                                    {
+                                        top,
+                                        left,
+                                        marginTop,
+                                        '& > ul': {
+                                            maxWidth
+                                        }
+                                    }
+                                ])}
+                            >
+                                <Listbox
+                                    id={listBoxId}
+                                    labelId={labelId}
+                                    name={name}
+                                    value={value}
+                                    options={options}
+                                    onClick={onChange}
+                                />
+                            </div>
+                        </Backdrop>
+                    )}
+                </div>
+            </FormControl>
+        </Box>
     );
 }
