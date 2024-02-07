@@ -1,17 +1,22 @@
 /** @jsxImportSource @emotion/react */
-import { useSearchParams } from 'react-router-dom';
+import { A_LIST, K_LIST } from 'constants/constants';
+import { palette } from 'styles';
 
-import Description from './components/Description';
-import { getComponents } from './examples/utils';
+import { FlexBox, Typography } from 'components/Base';
+
+import List from './components/List';
 
 export default function Home() {
-    const [params] = useSearchParams();
-    const selected = params.get('component') || 'Accordion';
-
     return (
-        <>
-            <Description />
-            {getComponents(selected)}
-        </>
+        <FlexBox flexDirection="column" gap={40}>
+            <Typography component="h2" fontSize={24} fontWeight="900" color={palette.primary[600]} gutterBottom={-20}>
+                Kimyerim1935
+            </Typography>
+            <List data={K_LIST} />
+            <Typography component="h2" fontSize={24} fontWeight="900" color={palette.primary[600]} gutterBottom={-20}>
+                akffkdahffkdgo77
+            </Typography>
+            <List data={A_LIST} />
+        </FlexBox>
     );
 }

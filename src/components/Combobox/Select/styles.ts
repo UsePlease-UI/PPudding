@@ -6,6 +6,9 @@ export const AVG_OPTION_HEIGHT = 24;
 export const MIN_OFFSET = 20;
 
 export const selectStyle = {
+    box: {
+        width: 'max-content'
+    },
     container: css({
         position: 'relative',
         '&:hover > button': {

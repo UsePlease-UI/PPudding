@@ -11,7 +11,8 @@ import { MonthlyCalenderStyle } from 'components/Calender/styles';
 import Select from 'components/Combobox/Select';
 import { Checkbox } from 'components/Form/Checkbox';
 import TextField from 'components/Form/TextField';
-import { CALENDER_LABEL_COLOR } from 'pages/Home/examples/constants';
+
+import { CALENDER_LABEL_COLOR } from './constants';
 
 type addFormType = {
     idx: number;

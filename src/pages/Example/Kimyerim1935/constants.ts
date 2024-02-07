@@ -64,6 +64,7 @@ export const CALENDER = [
         value: 'yearly'
     }
 ];
+
 export const CALENDER_LABEL_COLOR = [
     {
         idx: 1,
