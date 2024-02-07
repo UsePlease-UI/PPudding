@@ -4,8 +4,8 @@ import { Typography } from 'components/Base';
 
 type weekDaysType = {
     children: ReactNode;
-    day?: string;
-    date?: number;
+    day: string;
+    date: number;
 };
 
 export default function WeekDays({ children, day, date }: weekDaysType) {

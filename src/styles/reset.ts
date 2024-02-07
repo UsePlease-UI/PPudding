@@ -79,6 +79,14 @@ const reset = css`
     span {
         word-break: break-all;
     }
+
+    main {
+        -ms-overflow-style: none; /* 익스플로러, 앳지 */
+        scrollbar-width: none; /* 파이어폭스 */
+    }
+    ::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 export default reset;
