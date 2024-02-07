@@ -15,5 +15,8 @@ export const MonthlyCalenderStyle = {
     }),
     scheduleDetailDesc: css({
         color: palette.gray[800]
+    }),
+    scheduleDetailTerms: css({
+        fontSize: 13
     })
 };

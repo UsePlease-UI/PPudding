@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import dayjs from 'dayjs';
 
 import { TrashIcon, XCircleIcon, PencilIcon } from '@heroicons/react/24/outline';
 
@@ -43,16 +42,18 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
                     </Typography>
                 )}
                 <Typography css={MonthlyCalenderStyle.scheduleDetailDesc}>{todo.description}</Typography>
-                <Typography>{`${todo.startDate} ~ ${dayjs(todo.endDate).date()}`}</Typography>
+                <Typography
+                    css={MonthlyCalenderStyle.scheduleDetailTerms}
+                >{`${todo.startDate} ~ ${todo.endDate}`}</Typography>
             </FlexBox>
             <FlexBox justifyContent="flex-end">
-                <Button customCSS={{ width: 24, height: 24 }}>
+                <Button customCSS={{ width: 24, height: 24, margin: 5 }}>
                     <PencilIcon />
                 </Button>
                 <Button
                     type="button"
                     onClick={() => handleDeleteSchedule(todo.idx)}
-                    customCSS={{ width: 24, height: 24 }}
+                    customCSS={{ width: 24, height: 24, margin: 5 }}
                 >
                     <TrashIcon />
                 </Button>

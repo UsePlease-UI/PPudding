@@ -184,7 +184,7 @@ export default function MonthlyCalender() {
                                                 <PopOver
                                                     isOpen={isOpenDetail}
                                                     customCSS={{
-                                                        width: 200,
+                                                        width: 250,
                                                         position: 'absolute',
                                                         background: 'white'
                                                     }}
