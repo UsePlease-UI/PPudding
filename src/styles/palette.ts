@@ -67,6 +67,20 @@ const palette = {
     neutral: {
         black: '#000000',
         white: '#ffffff'
+    },
+    pastel: {
+        '01': '#2178ae',
+        '02': '#ed8e83',
+        '03': '#fac92c',
+        '04': '#cfe5cc',
+        '05': '#AEDCF8',
+        '06': '#f7b0be',
+        '07': '#00bcb4',
+        '08': '#D4BBD6',
+        '09': '#D9E5AB',
+        '10': '#F2967C',
+        '11': '#CBD1EF',
+        '12': '#F08FB0'
     }
 };
 

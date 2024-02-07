@@ -21,7 +21,7 @@ type FlexBoxType = BaseType & {
 /**
  *  [Base] Flex Component
  *  @param children 컴포넌트
- *  @param fledDirection [CSS] flex-direction
+ *  @param flexDirection [CSS] flex-direction
  *  @param alignItems [CSS] align-items
  *  @param justifyContent [CSS] justify-content
  *  @param gap [CSS] gap
