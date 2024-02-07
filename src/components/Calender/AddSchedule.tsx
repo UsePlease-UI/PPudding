@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
 import dayjs from 'dayjs';
@@ -6,6 +7,7 @@ import { palette } from 'styles';
 
 import { FlexBox } from 'components/Base';
 import Button from 'components/Button/Button';
+import { MonthlyCalenderStyle } from 'components/Calender/styles';
 import Select from 'components/Combobox/Select';
 import { Checkbox } from 'components/Form/Checkbox';
 import TextField from 'components/Form/TextField';
@@ -29,21 +31,23 @@ type TodoType = addFormType & addSelectType;
 type AddScheduleType = {
     setIsOpenAddForm: React.Dispatch<React.SetStateAction<boolean>>;
     setAddArr: React.Dispatch<React.SetStateAction<TodoType[]>>;
+    handleCancel: () => void;
     length: number;
 };
 
-export default function AddSchedule({ setIsOpenAddForm, setAddArr, length }: AddScheduleType) {
+const today = new Date().toISOString().substring(0, 10);
+const initialContent = {
+    idx: 0,
+    startDate: today,
+    endDate: today,
+    isAllDay: false,
+    color: '',
+    title: '',
+    description: ''
+};
+export default function AddSchedule({ setIsOpenAddForm, setAddArr, length, handleCancel }: AddScheduleType) {
     const [color, setColor] = useState(palette.pastel['01']);
-    const today = new Date().toISOString().substring(0, 10);
-    const [addContents, setAddContents] = useState({
-        idx: 0,
-        startDate: today,
-        endDate: today,
-        isAllDay: false,
-        color: '',
-        title: '',
-        description: ''
-    });
+    const [addContents, setAddContents] = useState(initialContent);
     const [isAllDay, setIsAllDay] = useState(false);
     const handleContents = (type: string, value: string) => {
         if (type === 'startDate' || type === 'endDate') {
@@ -57,8 +61,17 @@ export default function AddSchedule({ setIsOpenAddForm, setAddArr, length }: Add
             [type]: value
         }));
     };
-    const handleAddEvent = () => {
-        setIsOpenAddForm((prev) => !prev);
+    const handleAddEvent = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (addContents === initialContent) {
+            return;
+        }
+        if (addContents.startDate > addContents.endDate) {
+            // eslint-disable-next-line no-alert
+            window.alert('시작일은 종료일보다 클 수 없습니다');
+            return;
+        }
+
         setAddArr((prev) => [
             ...prev,
             {
@@ -68,10 +81,11 @@ export default function AddSchedule({ setIsOpenAddForm, setAddArr, length }: Add
                 color
             }
         ]);
+        setIsOpenAddForm((prev) => !prev);
     };
 
     return (
-        <div style={{ background: 'white', padding: 20, width: 300 }}>
+        <form onSubmit={handleAddEvent} css={MonthlyCalenderStyle.form}>
             <FlexBox flexDirection="column" gap={20} customCSS={{ width: '100%' }}>
                 <TextField
                     labelText="시작일"
@@ -118,12 +132,12 @@ export default function AddSchedule({ setIsOpenAddForm, setAddArr, length }: Add
                     onChange={(e) => setColor(e.currentTarget.value)}
                     customCSS={{ color }}
                 />
-
                 <TextField
                     labelText="일정 제목"
                     helperText="10글자 이내로 입력해주세요."
                     name="title"
                     value={addContents.title}
+                    required
                     isFullWidth
                     maxLength={10}
                     onChange={(e) => handleContents('title', e.target.value)}
@@ -140,6 +154,7 @@ export default function AddSchedule({ setIsOpenAddForm, setAddArr, length }: Add
                     helperText="20글자 이내로 입력해주세요."
                     name="description"
                     value={addContents.description}
+                    required
                     isFullWidth
                     maxLength={20}
                     onChange={(e) => handleContents('description', e.target.value)}
@@ -152,9 +167,14 @@ export default function AddSchedule({ setIsOpenAddForm, setAddArr, length }: Add
                     }}
                 />
             </FlexBox>
-            <Button size="small" variant="outlined" onClick={() => handleAddEvent()} customCSS={{ marginTop: 20 }}>
-                추가하기
-            </Button>
-        </div>
+            <FlexBox gap={10}>
+                <Button type="submit" size="small" variant="contained" customCSS={{ marginTop: 20 }}>
+                    추가하기
+                </Button>
+                <Button size="small" variant="outlined" customCSS={{ marginTop: 20 }} onClick={() => handleCancel()}>
+                    취소
+                </Button>
+            </FlexBox>
+        </form>
     );
 }

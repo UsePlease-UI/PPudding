@@ -121,8 +121,13 @@ export default function MonthlyCalender() {
                     <Button size="medium" variant="contained" onClick={() => handleAddContent()}>
                         일정 추가하기
                     </Button>
-                    <PopOver isOpen={isOpenAddForm} customCSS={{ padding: 0, position: 'absolute' }}>
-                        <AddSchedule setIsOpenAddForm={setIsOpenAddForm} setAddArr={setAddArr} length={addArr.length} />
+                    <PopOver isOpen={isOpenAddForm} customCSS={{ padding: 0, position: 'absolute', right: 0 }}>
+                        <AddSchedule
+                            setIsOpenAddForm={setIsOpenAddForm}
+                            setAddArr={setAddArr}
+                            length={addArr.length}
+                            handleCancel={handleAddContent}
+                        />
                     </PopOver>
                 </div>
             </FlexBox>
@@ -149,8 +154,30 @@ export default function MonthlyCalender() {
                                             isOpenSchedule.isOpen === day && isOpenSchedule.index === index;
                                         return (
                                             <>
-                                                <FlexBox flexDirection="column" customCSS={{ background: todo.color }}>
-                                                    <Button onClick={() => handleClickDetail('open', day, index)}>
+                                                <FlexBox
+                                                    flexDirection="column"
+                                                    alignItems="flex-start"
+                                                    justifyContent="center"
+                                                    customCSS={{
+                                                        background: todo.color,
+                                                        transition: 'opacity',
+                                                        '&:hover': {
+                                                            opacity: 0.8
+                                                        }
+                                                    }}
+                                                >
+                                                    <Button
+                                                        onClick={() => handleClickDetail('open', day, index)}
+                                                        customCSS={{
+                                                            textAlign: 'left',
+                                                            width: '100%',
+                                                            paddingLeft: 15,
+                                                            height: 30,
+                                                            '&:hover': {
+                                                                fontWeight: 800
+                                                            }
+                                                        }}
+                                                    >
                                                         {isStartDate ? todo.title : 'ㅤ'}
                                                     </Button>
                                                 </FlexBox>
@@ -163,9 +190,7 @@ export default function MonthlyCalender() {
                                                     }}
                                                 >
                                                     <ScheduleDetail
-                                                        idx={todo.idx}
-                                                        title={todo.title}
-                                                        description={todo.description}
+                                                        todo={todo}
                                                         day={day}
                                                         isStartDate={isStartDate}
                                                         handleDeleteSchedule={handleDeleteSchedule}
