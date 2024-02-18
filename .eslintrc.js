@@ -36,6 +36,7 @@ module.exports = {
                 ignore: ['css']
             }
         ],
+        'no-nested-ternary': 'off',
         'react/no-array-index-key': 'off',
         'react/react-in-jsx-scope': 'off',
         'import/no-extraneous-dependencies': 'off',

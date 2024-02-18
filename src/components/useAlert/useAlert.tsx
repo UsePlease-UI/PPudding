@@ -1,0 +1,100 @@
+/** @jsxImportSource @emotion/react */
+import { ReactNode, createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
+
+import { v4 as uuid } from 'uuid';
+
+import { css } from '@emotion/react';
+
+import Alert from 'components/Alert';
+
+import { getPositionStyle, providerStyle } from './styles';
+
+export type OptionsType = {
+    canDismiss?: boolean;
+    delay?: number;
+    variant?: 'info' | 'error' | 'warning' | 'success' | 'default';
+};
+
+type AlertContextType = {
+    setMessage: (content: string, options?: OptionsType) => void;
+};
+
+const AlertContext = createContext<AlertContextType | undefined>(undefined);
+
+export const useAlert = () => {
+    const context = useContext(AlertContext);
+
+    if (!context) {
+        throw new Error('should use Alert within Alert Provider');
+    }
+
+    return context;
+};
+
+type MessageType = {
+    id: string;
+    content: string;
+    options?: OptionsType;
+};
+
+type AlertProviderType = {
+    children: ReactNode;
+    icon?: ReactNode;
+    position?: 'top-right' | 'top-center' | 'top-left' | 'bottom-right' | 'bottom-center' | 'bottom-left';
+};
+
+export function AlertProvider({ children, icon, position }: AlertProviderType) {
+    const [modalElement, setModalElement] = useState<HTMLElement>();
+    const [messages, setMessages] = useState<MessageType[]>([]);
+
+    const handleOpen = useCallback(
+        (content: string, options?: OptionsType) => {
+            const newMessage = { id: uuid(), content, options };
+            if (position?.includes('top')) {
+                setMessages((prev) => [...prev, newMessage]);
+            } else {
+                setMessages((prev) => [newMessage, ...prev]);
+            }
+        },
+        [position]
+    );
+
+    const handleClose = useCallback(
+        (id: string) => setMessages((prev) => prev.filter((message) => message.id !== id)),
+        []
+    );
+
+    const context: AlertContextType = useMemo(() => ({ setMessage: handleOpen }), [handleOpen]);
+
+    useEffect(() => {
+        if (messages.length > 0) {
+            setModalElement(document.getElementById('portal') as HTMLElement);
+        } else {
+            setModalElement(undefined);
+        }
+    }, [messages]);
+
+    return (
+        <AlertContext.Provider value={context}>
+            {children}
+            {modalElement
+                ? createPortal(
+                      <div css={css([getPositionStyle(position), providerStyle.container])}>
+                          {messages.map((message) => (
+                              <Alert
+                                  key={message.id}
+                                  icon={icon}
+                                  options={message.options}
+                                  onClose={() => handleClose(message.id)}
+                              >
+                                  {message.content}
+                              </Alert>
+                          ))}
+                      </div>,
+                      modalElement as HTMLElement
+                  )
+                : null}
+        </AlertContext.Provider>
+    );
+}
