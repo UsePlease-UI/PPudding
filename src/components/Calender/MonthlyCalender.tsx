@@ -8,70 +8,30 @@ import AddSchedule from 'components/Calender/AddSchedule';
 import ScheduleDetail from 'components/Calender/ScheduleDetail';
 import WeekDays from 'components/Calender/WeekDays';
 import PopOver from 'components/Menu/PopOver';
-import useCalender from 'hooks/useCalender';
+import { useCalender } from 'hooks/useCalender';
 
 const SEVEN_DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
-const DUMMY_DATA = [
-    {
-        idx: 1,
-        startDate: '2024-01-22',
-        endDate: '2024-01-22',
-        color: 'yellowgreen',
-        isAllDay: false,
-        title: '공부하기',
-        description: '열심히 공부하기'
-    },
-    {
-        idx: 2,
-        startDate: '2024-01-13',
-        endDate: '2024-01-18',
-        color: 'plum',
-        isAllDay: true,
-        title: '병원',
-        description: '건강검진 받기'
-    },
-    {
-        idx: 3,
-        startDate: '2024-01-13',
-        endDate: '2024-01-13',
-        color: 'salmon',
-        isAllDay: false,
-        title: '과제',
-        description: '캘린더 만들기'
-    },
-    {
-        idx: 4,
-        startDate: '2024-02-10',
-        endDate: '2024-02-19',
-        color: 'mistyrose',
-        isAllDay: true,
-        title: '학교',
-        description: '수강신청하기'
-    }
-];
-
 export default function MonthlyCalender() {
-    const { month, setMonth, year, setYear, date, getWeeks } = useCalender();
+    const { context, getWeeks } = useCalender();
     const [isOpenAddForm, setIsOpenAddForm] = useState(false);
     const [isOpenSchedule, setIsOpenSchedule] = useState({ isOpen: '', index: -1 });
-    const [addArr, setAddArr] = useState(DUMMY_DATA);
-
+    const { date, year, month, scheduleList, setYear, setMonth, setScheduleList } = context;
     const prevMonth = () => {
-        if (month === 1) {
-            setMonth(12);
-            setYear((prev) => prev - 1);
+        if (context?.month === 1) {
+            context.setMonth(12);
+            context.setYear((prev) => prev - 1);
         } else {
-            setMonth((prev) => prev - 1);
+            context?.setMonth((prev) => prev - 1);
         }
     };
 
     const nextMonth = () => {
-        if (month === 12) {
-            setMonth(1);
-            setYear((prev) => prev + 1);
+        if (context?.month === 12) {
+            context.setMonth(1);
+            context.setYear((prev) => prev + 1);
         } else {
-            setMonth((prev) => prev + 1);
+            context?.setMonth((prev) => prev + 1);
         }
     };
 
@@ -96,8 +56,8 @@ export default function MonthlyCalender() {
     const handleDeleteSchedule = (idx: number) => {
         // eslint-disable-next-line no-alert
         if (window.confirm('일정을 삭제하시겠습니까?')) {
-            const newArr = addArr.filter((el) => el.idx !== idx);
-            setAddArr(newArr);
+            // const newArr = setScheduleList.filter((el) => el.idx !== idx);
+            context?.setScheduleList([]);
         }
     };
 
@@ -124,8 +84,8 @@ export default function MonthlyCalender() {
                     <PopOver isOpen={isOpenAddForm} customCSS={{ padding: 0, position: 'absolute', right: 0 }}>
                         <AddSchedule
                             setIsOpenAddForm={setIsOpenAddForm}
-                            setAddArr={setAddArr}
-                            length={addArr.length}
+                            setAddArr={setScheduleList}
+                            length={scheduleList.length || 0}
                             handleCancel={handleAddContent}
                         />
                     </PopOver>
@@ -140,9 +100,9 @@ export default function MonthlyCalender() {
                 {getWeeks().map((el: string[]) => (
                     <FlexBox>
                         {el.map((day: string) => (
-                            <WeekDays day={day} date={date}>
+                            <WeekDays day={day} date={date || 0}>
                                 {day}
-                                {addArr.map((todo, index) => {
+                                {scheduleList.map((todo, index) => {
                                     if (
                                         dayjs(todo.startDate) <= dayjs(`${year}-${month}-${day}`) &&
                                         dayjs(todo.endDate) >= dayjs(`${year}-${month}-${day}`)

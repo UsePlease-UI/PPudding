@@ -1,10 +1,10 @@
 import { FlexBox } from 'components/Base';
 import WeekDays from 'components/Calender/WeekDays';
-import useCalender from 'hooks/useCalender';
+import { useCalender } from 'hooks/useCalender';
 
 export default function WeeklyCalender() {
-    const { date, getWeeks } = useCalender();
-
+    const { context, getWeeks } = useCalender();
+    const { date } = context;
     const week = getWeeks()
         .map((elem, index) => {
             if (elem.includes(String(date))) {
