@@ -1,4 +1,4 @@
-import { useCalender } from 'hooks/useCalender';
+import { useCalender } from 'components/useCalender';
 
 export default function DailyCalender() {
     const { context } = useCalender();

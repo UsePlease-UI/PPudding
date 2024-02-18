@@ -1,6 +1,6 @@
 import { FlexBox } from 'components/Base';
 import WeekDays from 'components/Calender/WeekDays';
-import { useCalender } from 'hooks/useCalender';
+import { useCalender } from 'components/useCalender';
 
 export default function WeeklyCalender() {
     const { context, getWeeks } = useCalender();

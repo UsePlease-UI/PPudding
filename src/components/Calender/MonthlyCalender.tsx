@@ -8,7 +8,7 @@ import AddSchedule from 'components/Calender/AddSchedule';
 import ScheduleDetail from 'components/Calender/ScheduleDetail';
 import WeekDays from 'components/Calender/WeekDays';
 import PopOver from 'components/Menu/PopOver';
-import { useCalender } from 'hooks/useCalender';
+import { useCalender } from 'components/useCalender';
 
 const SEVEN_DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
@@ -18,18 +18,18 @@ export default function MonthlyCalender() {
     const [isOpenSchedule, setIsOpenSchedule] = useState({ isOpen: '', index: -1 });
     const { date, year, month, scheduleList, setYear, setMonth, setScheduleList } = context;
     const prevMonth = () => {
-        if (context?.month === 1) {
-            context.setMonth(12);
-            context.setYear((prev) => prev - 1);
+        if (month === 1) {
+            setMonth(12);
+            setYear((prev) => prev - 1);
         } else {
-            context?.setMonth((prev) => prev - 1);
+            setMonth((prev) => prev - 1);
         }
     };
 
     const nextMonth = () => {
-        if (context?.month === 12) {
-            context.setMonth(1);
-            context.setYear((prev) => prev + 1);
+        if (month === 12) {
+            setMonth(1);
+            setYear((prev) => prev + 1);
         } else {
             context?.setMonth((prev) => prev + 1);
         }
@@ -56,8 +56,8 @@ export default function MonthlyCalender() {
     const handleDeleteSchedule = (idx: number) => {
         // eslint-disable-next-line no-alert
         if (window.confirm('일정을 삭제하시겠습니까?')) {
-            // const newArr = setScheduleList.filter((el) => el.idx !== idx);
-            context?.setScheduleList([]);
+            const newArr = setScheduleList.filter((el) => el.idx !== idx);
+            setScheduleList(newArr);
         }
     };
 

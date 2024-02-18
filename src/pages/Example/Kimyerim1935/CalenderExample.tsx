@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { FlexBox, Typography } from 'components/Base';
 import { DailyCalender, MonthlyCalender, WeeklyCalender, YearlyCalender } from 'components/Calender';
 import Select from 'components/Combobox/Select';
-import { CalenderProvider } from 'hooks/useCalender';
+import { CalenderProvider } from 'components/useCalender/useCalender';
 
 import { CALENDER } from './constants';
 
