@@ -3,8 +3,7 @@ import WeekDays from 'components/Calender/WeekDays';
 import { useCalender } from 'components/useCalender';
 
 export default function WeeklyCalender() {
-    const { context, getWeeks } = useCalender();
-    const { date } = context;
+    const { date, getWeeks } = useCalender();
     const week = getWeeks()
         .map((elem, index) => {
             if (elem.includes(String(date))) {

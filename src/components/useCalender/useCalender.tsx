@@ -67,7 +67,7 @@ export const useCalender = () => {
     }, [month]);
 
     return {
-        context,
+        ...context,
         getWeeks
     };
 };

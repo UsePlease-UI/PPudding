@@ -13,10 +13,9 @@ import { useCalender } from 'components/useCalender';
 const SEVEN_DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
 export default function MonthlyCalender() {
-    const { context, getWeeks } = useCalender();
+    const { date, year, month, scheduleList, setYear, setMonth, setScheduleList, getWeeks } = useCalender();
     const [isOpenAddForm, setIsOpenAddForm] = useState(false);
     const [isOpenSchedule, setIsOpenSchedule] = useState({ isOpen: '', index: -1 });
-    const { date, year, month, scheduleList, setYear, setMonth, setScheduleList } = context;
     const prevMonth = () => {
         if (month === 1) {
             setMonth(12);
@@ -31,7 +30,7 @@ export default function MonthlyCalender() {
             setMonth(1);
             setYear((prev) => prev + 1);
         } else {
-            context?.setMonth((prev) => prev + 1);
+            setMonth((prev) => prev + 1);
         }
     };
 
