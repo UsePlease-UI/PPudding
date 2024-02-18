@@ -1,8 +1,8 @@
-import { ReactNode, createContext, useContext, useMemo, useState } from 'react';
+import { ReactNode, createContext, useCallback, useContext, useMemo, useState } from 'react';
 
 import dayjs from 'dayjs';
 
-import { DUMMY_DATA } from 'components/useCalender/common';
+import { CALENDER_DUMMY_DATA } from 'pages/Example/Kimyerim1935/constants';
 
 type ScheduleListType = {
     idx: number;
@@ -37,7 +37,7 @@ export const useCalender = () => {
     const firstDay = dayjs(`${year}-${month}-${date}`).startOf('month').locale('ko').get('day');
     const lastDay = dayjs(`${year}-${month}`).daysInMonth();
 
-    const getWeeks = () => {
+    const getWeeks = useCallback(() => {
         const weeks = [];
         const week = [];
         const chunkSize = 7;
@@ -64,7 +64,7 @@ export const useCalender = () => {
         }
 
         return weeks;
-    };
+    }, [month]);
 
     return {
         context,
@@ -77,7 +77,7 @@ export function CalenderProvider({ children }: { children: ReactNode }) {
     const date = today.get('date');
     const [year, setYear] = useState(today.get('year'));
     const [month, setMonth] = useState(today.get('month') + 1);
-    const [scheduleList, setScheduleList] = useState<ScheduleListType[]>(DUMMY_DATA);
+    const [scheduleList, setScheduleList] = useState<ScheduleListType[]>(CALENDER_DUMMY_DATA);
 
     const context: CalenderContextType = useMemo(
         () => ({
