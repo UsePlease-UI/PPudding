@@ -56,7 +56,7 @@ export default function MonthlyCalender() {
     const handleDeleteSchedule = (idx: number) => {
         // eslint-disable-next-line no-alert
         if (window.confirm('일정을 삭제하시겠습니까?')) {
-            const newArr = setScheduleList.filter((el) => el.idx !== idx);
+            const newArr = scheduleList.filter((el) => el.idx !== idx);
             setScheduleList(newArr);
         }
     };
