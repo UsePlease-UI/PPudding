@@ -45,10 +45,9 @@ export const useCalender = () => {
     }
 
     const { year, month, date } = context;
-    const firstDay = dayjs(`${year}-${month}-${date}`).startOf('month').locale('ko').get('day');
-    const lastDay = dayjs(`${year}-${month}`).daysInMonth();
-
     const getWeeks = useCallback(() => {
+        const firstDay = dayjs(`${year}-${month}-${date}`).startOf('month').locale('ko').get('day');
+        const lastDay = dayjs(`${year}-${month}`).daysInMonth();
         const weeks = [];
         const week = [];
         const chunkSize = 7;
@@ -85,30 +84,38 @@ export const useCalender = () => {
 };
 
 const calenderReducer = (state: CalenderContextType, action: CalenderActionType) => {
+    let newState = null;
     switch (action.type) {
         case 'PREV_MONTH':
             if (state.month === 1) {
-                return { ...state, month: 12, year: state.year - 1 };
+                newState = { ...state, month: 12, year: state.year - 1 };
+            } else {
+                newState = { ...state, month: state.month - 1 };
             }
-            return { ...state, month: state.month - 1 };
+            break;
         case 'NEXT_MONTH':
             if (state.month === 12) {
-                return { ...state, month: 1, year: state.year + 1 };
+                newState = { ...state, month: 1, year: state.year + 1 };
+            } else {
+                newState = { ...state, month: state.month + 1 };
             }
-            return { ...state, month: state.month + 1 };
+            break;
         case 'ADD_SCHEDULE':
-            return {
+            newState = {
                 ...state,
                 scheduleList: [...state.scheduleList, { ...action.payload, idx: state.scheduleList.length + 1 }]
             };
+            break;
         case 'DELETE_SCHEDULE':
-            return {
+            newState = {
                 ...state,
                 scheduleList: state.scheduleList.filter((el: ScheduleListType) => el.idx !== action.idx)
             };
+            break;
         default:
             throw new Error('Unhandled action type');
     }
+    return newState;
 };
 
 export function CalenderProvider({ children }: { children: ReactNode }) {
