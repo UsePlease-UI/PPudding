@@ -23,7 +23,7 @@ type IconButtonType = BaseType & {
  *  @param isDisabled 비활성화 여부 [optional]
  *  @param size [CSS] 버튼 크기 (large | medium | small)
  *  @param variant [CSS] 버튼 스타일 (outlined | contained | text)
- *  @param variant [CSS] 버튼 형태 (rounded | square | circular)
+ *  @param shape [CSS] 버튼 형태 (rounded | square | circular)
  *  @returns JSX.Element
  */
 const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(function createIconButton(props, ref) {
