@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { useState } from 'react';
 
 import dayjs from 'dayjs';
@@ -13,25 +14,16 @@ import { useCalender } from 'components/useCalender';
 const SEVEN_DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
 export default function MonthlyCalender() {
-    const { date, year, month, scheduleList, setYear, setMonth, setScheduleList, getWeeks } = useCalender();
+    const { date, year, month, scheduleList, getWeeks, dispatch: calenderDispatch } = useCalender();
     const [isOpenAddForm, setIsOpenAddForm] = useState(false);
     const [isOpenSchedule, setIsOpenSchedule] = useState({ isOpen: '', index: -1 });
+
     const prevMonth = () => {
-        if (month === 1) {
-            setMonth(12);
-            setYear((prev) => prev - 1);
-        } else {
-            setMonth((prev) => prev - 1);
-        }
+        calenderDispatch({ type: 'PREV_MONTH' });
     };
 
     const nextMonth = () => {
-        if (month === 12) {
-            setMonth(1);
-            setYear((prev) => prev + 1);
-        } else {
-            setMonth((prev) => prev + 1);
-        }
+        calenderDispatch({ type: 'NEXT_MONTH' });
     };
 
     const handleAddContent = () => {
@@ -53,10 +45,11 @@ export default function MonthlyCalender() {
     };
 
     const handleDeleteSchedule = (idx: number) => {
-        // eslint-disable-next-line no-alert
         if (window.confirm('일정을 삭제하시겠습니까?')) {
-            const newArr = scheduleList.filter((el) => el.idx !== idx);
-            setScheduleList(newArr);
+            calenderDispatch({
+                type: 'DELETE_SCHEDULE',
+                idx
+            });
         }
     };
 
@@ -83,7 +76,6 @@ export default function MonthlyCalender() {
                     <PopOver isOpen={isOpenAddForm} customCSS={{ padding: 0, position: 'absolute', right: 0 }}>
                         <AddSchedule
                             setIsOpenAddForm={setIsOpenAddForm}
-                            setAddArr={setScheduleList}
                             length={scheduleList.length || 0}
                             handleCancel={handleAddContent}
                         />

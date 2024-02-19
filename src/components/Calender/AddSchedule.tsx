@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
@@ -11,26 +12,11 @@ import { MonthlyCalenderStyle } from 'components/Calender/styles';
 import Select from 'components/Combobox/Select';
 import { Checkbox } from 'components/Form/Checkbox';
 import TextField from 'components/Form/TextField';
+import { useCalender } from 'components/useCalender';
 import { CALENDER_LABEL_COLOR } from 'pages/Example/Kimyerim1935/constants';
-
-type addFormType = {
-    idx: number;
-    startDate: string;
-    endDate: string;
-    title: string;
-    description: string;
-};
-
-type addSelectType = {
-    color: string;
-    isAllDay: boolean;
-};
-
-type TodoType = addFormType & addSelectType;
 
 type AddScheduleType = {
     setIsOpenAddForm: React.Dispatch<React.SetStateAction<boolean>>;
-    setAddArr: React.Dispatch<React.SetStateAction<TodoType[]>>;
     handleCancel: () => void;
     length: number;
 };
@@ -45,10 +31,12 @@ const initialContent = {
     title: '',
     description: ''
 };
-export default function AddSchedule({ setIsOpenAddForm, setAddArr, length, handleCancel }: AddScheduleType) {
+export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: AddScheduleType) {
+    const { dispatch: calenderDispatch } = useCalender();
     const [color, setColor] = useState(palette.pastel['01']);
     const [addContents, setAddContents] = useState(initialContent);
     const [isAllDay, setIsAllDay] = useState(false);
+
     const handleContents = (type: string, value: string) => {
         if (type === 'startDate' || type === 'endDate') {
             setAddContents((prev) => ({
@@ -61,26 +49,26 @@ export default function AddSchedule({ setIsOpenAddForm, setAddArr, length, handl
             [type]: value
         }));
     };
+
     const handleAddEvent = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (addContents === initialContent) {
             return;
         }
         if (addContents.startDate > addContents.endDate) {
-            // eslint-disable-next-line no-alert
             window.alert('시작일은 종료일보다 클 수 없습니다');
             return;
         }
 
-        setAddArr((prev) => [
-            ...prev,
-            {
+        calenderDispatch({
+            type: 'ADD_SCHEDULE',
+            payload: {
                 ...addContents,
                 idx: length + 1,
                 isAllDay,
                 color
             }
-        ]);
+        });
         setIsOpenAddForm((prev) => !prev);
     };
 

@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useCallback, useContext, useMemo, useState } from 'react';
+import { Dispatch, ReactNode, createContext, useCallback, useContext, useMemo, useReducer } from 'react';
 
 import dayjs from 'dayjs';
 
@@ -13,6 +13,11 @@ type ScheduleListType = {
     title: string;
     description: string;
 };
+type CalenderActionType =
+    | { type: 'PREV_MONTH' }
+    | { type: 'NEXT_MONTH' }
+    | { type: 'ADD_SCHEDULE'; payload: ScheduleListType }
+    | { type: 'DELETE_SCHEDULE'; idx: number };
 
 export type CalenderContextType = {
     today: dayjs.Dayjs;
@@ -26,12 +31,16 @@ export type CalenderContextType = {
 };
 
 export const CalenderContext = createContext<CalenderContextType | undefined>(undefined);
+export const DispatchContext = createContext<Dispatch<CalenderActionType> | undefined>(undefined);
 
 export const useCalender = () => {
     const context = useContext(CalenderContext);
-
+    const calenderDispatch = useContext(DispatchContext);
     if (!context) {
         throw new Error('context가 없습니다');
+    }
+    if (!calenderDispatch) {
+        throw new Error('dispatch가 없습니다');
     }
     const { year, month, date } = context;
     const firstDay = dayjs(`${year}-${month}-${date}`).startOf('month').locale('ko').get('day');
@@ -68,16 +77,44 @@ export const useCalender = () => {
 
     return {
         ...context,
-        getWeeks
+        getWeeks,
+        dispatch: calenderDispatch
     };
+};
+
+const calenderReducer = (state: CalenderContextType, action: CalenderActionType) => {
+    switch (action?.type) {
+        case 'PREV_MONTH':
+            if (state.month === 1) {
+                return { ...state, month: 12, year: state.year - 1 };
+            }
+            return { ...state, month: state.month - 1 };
+        case 'NEXT_MONTH':
+            if (state.month === 12) {
+                return { ...state, month: 1, year: state.year + 1 };
+            }
+            return { ...state, month: state.month + 1 };
+        case 'ADD_SCHEDULE':
+            return {
+                ...state,
+                scheduleList: [...state.scheduleList, { ...action.payload, idx: state.scheduleList.length + 1 }]
+            };
+        case 'DELETE_SCHEDULE':
+            return {
+                ...state,
+                scheduleList: state.scheduleList.filter((el: ScheduleListType) => el.idx !== action.idx)
+            };
+        default:
+            throw new Error('Unhandled action type');
+    }
 };
 
 export function CalenderProvider({ children }: { children: ReactNode }) {
     const today = dayjs();
     const date = today.get('date');
-    const [year, setYear] = useState(today.get('year'));
-    const [month, setMonth] = useState(today.get('month') + 1);
-    const [scheduleList, setScheduleList] = useState<ScheduleListType[]>(CALENDER_DUMMY_DATA);
+    const year = today.get('year');
+    const month = today.get('month') + 1;
+    const scheduleList: ScheduleListType[] = CALENDER_DUMMY_DATA;
 
     const context: CalenderContextType = useMemo(
         () => ({
@@ -85,12 +122,19 @@ export function CalenderProvider({ children }: { children: ReactNode }) {
             date,
             year,
             month,
-            scheduleList,
-            setYear,
-            setMonth,
-            setScheduleList
+            scheduleList
         }),
-        [today, date, year, month, scheduleList, setYear, setMonth, setScheduleList]
+        [today, date, year, month, scheduleList]
+    ) as CalenderContextType;
+
+    const [state, dispatch] = useReducer<React.Reducer<CalenderContextType, CalenderActionType>>(
+        calenderReducer,
+        context
     );
-    return <CalenderContext.Provider value={context}>{children}</CalenderContext.Provider>;
+
+    return (
+        <DispatchContext.Provider value={dispatch}>
+            <CalenderContext.Provider value={state}>{children}</CalenderContext.Provider>
+        </DispatchContext.Provider>
+    );
 }
