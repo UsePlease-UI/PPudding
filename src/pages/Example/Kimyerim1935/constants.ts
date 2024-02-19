@@ -164,6 +164,24 @@ export const CALENDER_DUMMY_DATA = [
         isAllDay: true,
         title: '학교',
         description: '수강신청하기'
+    },
+    {
+        idx: 5,
+        startDate: '2024-02-01',
+        endDate: '2024-02-01',
+        color: 'mistyrose',
+        isAllDay: true,
+        title: '2월 테스트',
+        description: '테스트'
+    },
+    {
+        idx: 6,
+        startDate: '2024-01-01',
+        endDate: '2024-01-01',
+        color: 'mistyrose',
+        isAllDay: true,
+        title: '1월 테스트',
+        description: '테스트'
     }
 ];
 

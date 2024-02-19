@@ -93,66 +93,68 @@ export default function MonthlyCalender() {
                         {el.map((day: string) => (
                             <WeekDays day={day} date={date || 0}>
                                 {day}
-                                {scheduleList.map((todo, index) => {
-                                    if (
-                                        dayjs(todo.startDate) <= dayjs(`${year}-${month}-${day}`) &&
-                                        dayjs(todo.endDate) >= dayjs(`${year}-${month}-${day}`)
-                                    ) {
-                                        const isStartDate = dayjs(todo.startDate).isSame(
-                                            dayjs(`${year}-${month}-${day}`)
-                                        );
-                                        const isOpenDetail =
-                                            isOpenSchedule.isOpen === day && isOpenSchedule.index === index;
-                                        return (
-                                            <>
-                                                <FlexBox
-                                                    flexDirection="column"
-                                                    alignItems="flex-start"
-                                                    justifyContent="center"
-                                                    customCSS={{
-                                                        background: todo.color,
-                                                        transition: 'opacity',
-                                                        '&:hover': {
-                                                            opacity: 0.8
-                                                        }
-                                                    }}
-                                                >
-                                                    <Button
-                                                        onClick={() => handleClickDetail('open', day, index)}
+                                {day !== '' &&
+                                    day !== ' ' &&
+                                    scheduleList.map((todo, index) => {
+                                        if (
+                                            dayjs(todo.startDate) <= dayjs(`${year}-${month}-${day}`) &&
+                                            dayjs(todo.endDate) >= dayjs(`${year}-${month}-${day}`)
+                                        ) {
+                                            const isStartDate = dayjs(todo.startDate).isSame(
+                                                dayjs(`${year}-${month}-${day}`)
+                                            );
+                                            const isOpenDetail =
+                                                isOpenSchedule.isOpen === day && isOpenSchedule.index === index;
+                                            return (
+                                                <>
+                                                    <FlexBox
+                                                        flexDirection="column"
+                                                        alignItems="flex-start"
+                                                        justifyContent="center"
                                                         customCSS={{
-                                                            textAlign: 'left',
-                                                            width: '100%',
-                                                            paddingLeft: 15,
-                                                            height: 30,
+                                                            background: todo.color,
+                                                            transition: 'opacity',
                                                             '&:hover': {
-                                                                fontWeight: 800
+                                                                opacity: 0.8
                                                             }
                                                         }}
                                                     >
-                                                        {isStartDate ? todo.title : 'ㅤ'}
-                                                    </Button>
-                                                </FlexBox>
-                                                <PopOver
-                                                    isOpen={isOpenDetail}
-                                                    customCSS={{
-                                                        width: 250,
-                                                        position: 'absolute',
-                                                        background: 'white'
-                                                    }}
-                                                >
-                                                    <ScheduleDetail
-                                                        todo={todo}
-                                                        day={day}
-                                                        isStartDate={isStartDate}
-                                                        handleDeleteSchedule={handleDeleteSchedule}
-                                                        handleClickDetail={handleClickDetail}
-                                                    />
-                                                </PopOver>
-                                            </>
-                                        );
-                                    }
-                                    return undefined;
-                                })}
+                                                        <Button
+                                                            onClick={() => handleClickDetail('open', day, index)}
+                                                            customCSS={{
+                                                                textAlign: 'left',
+                                                                width: '100%',
+                                                                paddingLeft: 15,
+                                                                height: 30,
+                                                                '&:hover': {
+                                                                    fontWeight: 800
+                                                                }
+                                                            }}
+                                                        >
+                                                            {isStartDate ? todo.title : 'ㅤ'}
+                                                        </Button>
+                                                    </FlexBox>
+                                                    <PopOver
+                                                        isOpen={isOpenDetail}
+                                                        customCSS={{
+                                                            width: 250,
+                                                            position: 'absolute',
+                                                            background: 'white'
+                                                        }}
+                                                    >
+                                                        <ScheduleDetail
+                                                            todo={todo}
+                                                            day={day}
+                                                            isStartDate={isStartDate}
+                                                            handleDeleteSchedule={handleDeleteSchedule}
+                                                            handleClickDetail={handleClickDetail}
+                                                        />
+                                                    </PopOver>
+                                                </>
+                                            );
+                                        }
+                                        return undefined;
+                                    })}
                             </WeekDays>
                         ))}
                     </FlexBox>
