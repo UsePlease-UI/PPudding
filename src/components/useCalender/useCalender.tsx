@@ -83,7 +83,7 @@ export const useCalender = () => {
 };
 
 const calenderReducer = (state: CalenderContextType, action: CalenderActionType) => {
-    switch (action?.type) {
+    switch (action.type) {
         case 'PREV_MONTH':
             if (state.month === 1) {
                 return { ...state, month: 12, year: state.year - 1 };
