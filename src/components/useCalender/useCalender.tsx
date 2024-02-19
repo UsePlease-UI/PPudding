@@ -36,12 +36,14 @@ export const DispatchContext = createContext<Dispatch<CalenderActionType> | unde
 export const useCalender = () => {
     const context = useContext(CalenderContext);
     const calenderDispatch = useContext(DispatchContext);
+
     if (!context) {
-        throw new Error('context가 없습니다. CalenderContext를 사용해주세요');
+        throw new Error('CalenderContext.Provider를 사용해주세요');
     }
     if (!calenderDispatch) {
-        throw new Error('dispatch가 없습니다. DispatchContext를 사용해주세요');
+        throw new Error('DispatchContext.Provider를 사용해주세요');
     }
+
     const { year, month, date } = context;
     const firstDay = dayjs(`${year}-${month}-${date}`).startOf('month').locale('ko').get('day');
     const lastDay = dayjs(`${year}-${month}`).daysInMonth();
