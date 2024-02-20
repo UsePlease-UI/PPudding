@@ -170,7 +170,7 @@ export const CALENDER_DUMMY_DATA = [
         startDate: '2024-02-01',
         endDate: '2024-02-01',
         color: 'mistyrose',
-        isAllDay: true,
+        isAllDay: false,
         title: '2월 테스트',
         description: '테스트'
     },

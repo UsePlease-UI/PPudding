@@ -8,6 +8,7 @@ import { palette } from 'styles';
 
 import { FlexBox } from 'components/Base';
 import Button from 'components/Button/Button';
+import { initialContent } from 'components/Calender/constants';
 import { MonthlyCalenderStyle } from 'components/Calender/styles';
 import Select from 'components/Combobox/Select';
 import { Checkbox } from 'components/Form/Checkbox';
@@ -21,16 +22,6 @@ type AddScheduleType = {
     length: number;
 };
 
-const today = new Date().toISOString().substring(0, 10);
-const initialContent = {
-    idx: 0,
-    startDate: today,
-    endDate: today,
-    isAllDay: false,
-    color: '',
-    title: '',
-    description: ''
-};
 export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: AddScheduleType) {
     const { dispatch: calenderDispatch } = useCalender();
     const [color, setColor] = useState(palette.pastel['01']);

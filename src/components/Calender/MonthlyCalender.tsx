@@ -17,6 +17,7 @@ export default function MonthlyCalender() {
     const { date, year, month, scheduleList, getWeeks, dispatch: calenderDispatch } = useCalender();
     const [isOpenAddForm, setIsOpenAddForm] = useState(false);
     const [isOpenSchedule, setIsOpenSchedule] = useState({ isOpen: '', index: -1 });
+    const [isEdited, setIsEdited] = useState(false);
 
     const prevMonth = () => {
         calenderDispatch({ type: 'PREV_MONTH' });
@@ -29,6 +30,7 @@ export default function MonthlyCalender() {
     const handleAddContent = () => {
         if (isOpenSchedule) {
             setIsOpenSchedule({ isOpen: '', index: -1 });
+            setIsEdited(false);
         }
         setIsOpenAddForm((prev) => !prev);
     };
@@ -38,6 +40,7 @@ export default function MonthlyCalender() {
             setIsOpenAddForm(false);
         } else if (type === 'close') {
             setIsOpenSchedule({ isOpen: '', index: -1 });
+            setIsEdited(false);
         }
         setIsOpenSchedule((prev) => {
             return { ...prev, isOpen: day, index };
@@ -137,7 +140,6 @@ export default function MonthlyCalender() {
                                                     <PopOver
                                                         isOpen={isOpenDetail}
                                                         customCSS={{
-                                                            width: 250,
                                                             position: 'absolute',
                                                             background: 'white'
                                                         }}
@@ -146,6 +148,8 @@ export default function MonthlyCalender() {
                                                             todo={todo}
                                                             day={day}
                                                             isStartDate={isStartDate}
+                                                            isEdited={isEdited}
+                                                            setIsEdited={setIsEdited}
                                                             handleDeleteSchedule={handleDeleteSchedule}
                                                             handleClickDetail={handleClickDetail}
                                                         />
