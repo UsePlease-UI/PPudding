@@ -10,8 +10,7 @@ import ScheduleDetail from 'components/Calender/ScheduleDetail';
 import WeekDays from 'components/Calender/WeekDays';
 import PopOver from 'components/Menu/PopOver';
 import { useCalender } from 'components/useCalender';
-
-const SEVEN_DAYS = ['일', '월', '화', '수', '목', '금', '토'];
+import { CALENDER_SEVEN_DAYS } from 'pages/Example/Kimyerim1935/constants';
 
 export default function MonthlyCalender() {
     const { date, year, month, scheduleList, getWeeks, dispatch: calenderDispatch } = useCalender();
@@ -86,7 +85,7 @@ export default function MonthlyCalender() {
                 </div>
             </FlexBox>
             <FlexBox>
-                {SEVEN_DAYS.map((el: string) => (
+                {CALENDER_SEVEN_DAYS.map((el: string) => (
                     <Typography customCSS={{ width: '100%', height: '30px', textAlign: 'center' }}>{el}</Typography>
                 ))}
             </FlexBox>
