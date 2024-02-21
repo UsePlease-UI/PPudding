@@ -44,12 +44,6 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
         handleContents
     } = useSchedule(todo.color, todo);
 
-    useEffect(() => {
-        setIsAllDay(initialContent.isAllDay);
-        setColor(labelColor);
-        setAddContents(initialContent);
-    }, [isEdited]);
-
     const handleEditSchedule = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (addContents.startDate > addContents.endDate) {
@@ -68,6 +62,12 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
         });
         handleClickDetail('close', day, -1);
     };
+
+    useEffect(() => {
+        setIsAllDay(initialContent.isAllDay);
+        setColor(labelColor);
+        setAddContents(initialContent);
+    }, [isEdited]);
 
     return (
         <div css={MonthlyCalenderStyle.scheduleDetailWrapper}>
