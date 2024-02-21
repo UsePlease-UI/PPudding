@@ -1,8 +1,7 @@
+/* eslint-disable no-alert */
 /** @jsxImportSource @emotion/react */
 
-import { useState } from 'react';
-
-import dayjs from 'dayjs';
+import { useEffect } from 'react';
 
 import { TrashIcon, XCircleIcon, PencilIcon } from '@heroicons/react/24/outline';
 import { palette } from 'styles';
@@ -10,21 +9,14 @@ import { palette } from 'styles';
 import { FlexBox, Typography } from 'components/Base';
 import Button from 'components/Button/Button';
 import IconButton from 'components/Button/IconButton';
-import { initialContent } from 'components/Calender/constants';
+import Select from 'components/Combobox/Select';
 import { Checkbox } from 'components/Form/Checkbox';
 import TextField from 'components/Form/TextField';
+import { useCalender } from 'components/useCalender';
+import { type TodoType, useSchedule } from 'components/useSchedule';
+import { CALENDER_LABEL_COLOR } from 'pages/Example/Kimyerim1935/constants';
 
 import { MonthlyCalenderStyle } from './styles';
-
-type TodoType = {
-    idx: number;
-    startDate: string;
-    endDate: string;
-    color: string;
-    isAllDay: boolean;
-    title: string;
-    description: string;
-};
 
 type ScheduleDetailType = {
     todo: TodoType;
@@ -38,24 +30,43 @@ type ScheduleDetailType = {
 
 export default function ScheduleDetail(props: ScheduleDetailType) {
     const { todo, day, isStartDate, isEdited, setIsEdited, handleDeleteSchedule, handleClickDetail } = props;
+    const { dispatch: calenderDispatch } = useCalender();
 
-    const [isAllDay, setIsAllDay] = useState(false);
-    const [addContents, setAddContents] = useState(initialContent);
+    const {
+        isAllDay,
+        setIsAllDay,
+        addContents,
+        setAddContents,
+        color,
+        setColor,
+        labelColor,
+        initialContent,
+        handleContents
+    } = useSchedule(todo.color, todo);
 
-    const handleContents = (type: string, value: string) => {
-        if (type === 'startDate' || type === 'endDate') {
-            setAddContents((prev) => ({
-                ...prev,
-                [type]: dayjs(value)
-            }));
+    useEffect(() => {
+        setIsAllDay(initialContent.isAllDay);
+        setColor(labelColor);
+        setAddContents(initialContent);
+    }, [isEdited]);
+
+    const handleEditSchedule = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (addContents.startDate > addContents.endDate) {
+            window.alert('시작일은 종료일보다 클 수 없습니다');
+            return;
         }
-        setAddContents((prev) => ({
-            ...prev,
-            [type]: value
-        }));
-    };
-    const handleEditSchedule = () => {
-        return null;
+
+        calenderDispatch({
+            type: 'UPDATE_SCHEDULE',
+            payload: {
+                ...addContents,
+                idx: todo.idx,
+                isAllDay,
+                color
+            }
+        });
+        handleClickDetail('close', day, -1);
     };
 
     return (
@@ -73,12 +84,11 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
                     </IconButton>
                 </FlexBox>
                 {isEdited ? (
-                    <>
+                    <form onSubmit={handleEditSchedule}>
                         <TextField
-                            labelText="일정 제목"
                             helperText="10글자 이내로 입력해주세요."
                             name="title"
-                            value={todo.title}
+                            value={addContents.title}
                             required
                             isFullWidth
                             maxLength={10}
@@ -92,10 +102,9 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
                             }}
                         />
                         <TextField
-                            labelText="상세 내용"
                             helperText="20글자 이내로 입력해주세요."
                             name="description"
-                            value={todo.description}
+                            value={addContents.description}
                             required
                             isFullWidth
                             maxLength={20}
@@ -114,7 +123,7 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
                                 type="date"
                                 name="startDate"
                                 isFullWidth
-                                value={todo.startDate}
+                                value={addContents.startDate}
                                 onChange={(e) => handleContents('startDate', e.target.value)}
                                 customCSS={{
                                     borderColor: palette.secondary[600],
@@ -129,7 +138,7 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
                                 type="date"
                                 name="endDate"
                                 isFullWidth
-                                value={todo.endDate}
+                                value={addContents.endDate}
                                 onChange={(e) => handleContents('endDate', e.target.value)}
                                 customCSS={{
                                     borderColor: palette.secondary[600],
@@ -140,10 +149,19 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
                                 }}
                             />
                         </FlexBox>
+                        <Select
+                            labelText="라벨 색상"
+                            name="label-color"
+                            value={color}
+                            label={CALENDER_LABEL_COLOR.filter((val) => val.value === color)?.[0]?.label}
+                            options={CALENDER_LABEL_COLOR}
+                            onChange={(e) => setColor(e.currentTarget.value)}
+                            customCSS={{ color }}
+                        />
                         <Checkbox
                             label="종일"
                             value="isAllDay"
-                            checked={todo.isAllDay}
+                            checked={isAllDay}
                             onChange={() => setIsAllDay((prev) => !prev)}
                             customCSS={{ marginTop: 10 }}
                         />
@@ -151,11 +169,11 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
                             <Button onClick={() => setIsEdited(false)} variant="outlined" size="small">
                                 취소
                             </Button>
-                            <Button onClick={() => handleEditSchedule()} variant="contained" size="small">
+                            <Button type="submit" variant="contained" size="small">
                                 수정하기
                             </Button>
                         </FlexBox>
-                    </>
+                    </form>
                 ) : (
                     <>
                         <FlexBox flexDirection="column">

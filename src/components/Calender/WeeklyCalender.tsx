@@ -18,9 +18,7 @@ export default function WeeklyCalender() {
     return (
         <FlexBox gap={20}>
             {getWeeks()[weeklyWeek].map((day) => (
-                <WeekDays day={day} date={date}>
-                    {day}
-                </WeekDays>
+                <WeekDays>{day}</WeekDays>
             ))}
         </FlexBox>
     );

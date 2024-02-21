@@ -133,7 +133,7 @@ export const CALENDER_DUMMY_DATA = [
         idx: 1,
         startDate: '2024-01-22',
         endDate: '2024-01-22',
-        color: 'yellowgreen',
+        color: palette.pastel['01'],
         isAllDay: false,
         title: '공부하기',
         description: '열심히 공부하기'
@@ -142,7 +142,7 @@ export const CALENDER_DUMMY_DATA = [
         idx: 2,
         startDate: '2024-01-13',
         endDate: '2024-01-18',
-        color: 'plum',
+        color: palette.pastel['02'],
         isAllDay: true,
         title: '병원',
         description: '건강검진 받기'
@@ -151,7 +151,7 @@ export const CALENDER_DUMMY_DATA = [
         idx: 3,
         startDate: '2024-01-13',
         endDate: '2024-01-13',
-        color: 'salmon',
+        color: palette.pastel['03'],
         isAllDay: false,
         title: '과제',
         description: '캘린더 만들기'
@@ -160,7 +160,7 @@ export const CALENDER_DUMMY_DATA = [
         idx: 4,
         startDate: '2024-02-10',
         endDate: '2024-02-19',
-        color: 'mistyrose',
+        color: palette.pastel['04'],
         isAllDay: true,
         title: '학교',
         description: '수강신청하기'
@@ -169,7 +169,7 @@ export const CALENDER_DUMMY_DATA = [
         idx: 5,
         startDate: '2024-02-01',
         endDate: '2024-02-01',
-        color: 'mistyrose',
+        color: palette.pastel['05'],
         isAllDay: false,
         title: '2월 테스트',
         description: '테스트'
@@ -178,7 +178,7 @@ export const CALENDER_DUMMY_DATA = [
         idx: 6,
         startDate: '2024-01-01',
         endDate: '2024-01-01',
-        color: 'mistyrose',
+        color: palette.pastel['05'],
         isAllDay: true,
         title: '1월 테스트',
         description: '테스트'

@@ -1,8 +1,5 @@
 /* eslint-disable no-alert */
 /** @jsxImportSource @emotion/react */
-import { useState } from 'react';
-
-import dayjs from 'dayjs';
 
 import { palette } from 'styles';
 
@@ -14,6 +11,7 @@ import Select from 'components/Combobox/Select';
 import { Checkbox } from 'components/Form/Checkbox';
 import TextField from 'components/Form/TextField';
 import { useCalender } from 'components/useCalender';
+import { useSchedule } from 'components/useSchedule';
 import { CALENDER_LABEL_COLOR } from 'pages/Example/Kimyerim1935/constants';
 
 type AddScheduleType = {
@@ -24,22 +22,10 @@ type AddScheduleType = {
 
 export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: AddScheduleType) {
     const { dispatch: calenderDispatch } = useCalender();
-    const [color, setColor] = useState(palette.pastel['01']);
-    const [addContents, setAddContents] = useState(initialContent);
-    const [isAllDay, setIsAllDay] = useState(false);
-
-    const handleContents = (type: string, value: string) => {
-        if (type === 'startDate' || type === 'endDate') {
-            setAddContents((prev) => ({
-                ...prev,
-                [type]: dayjs(value)
-            }));
-        }
-        setAddContents((prev) => ({
-            ...prev,
-            [type]: value
-        }));
-    };
+    const { isAllDay, setIsAllDay, addContents, color, setColor, handleContents } = useSchedule(
+        palette.pastel['01'],
+        initialContent
+    );
 
     const handleAddEvent = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

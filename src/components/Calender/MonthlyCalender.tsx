@@ -94,8 +94,13 @@ export default function MonthlyCalender() {
                 {getWeeks().map((el: string[]) => (
                     <FlexBox>
                         {el.map((day: string) => (
-                            <WeekDays day={day} date={date || 0}>
-                                {day}
+                            <WeekDays>
+                                <Typography
+                                    component="span"
+                                    customCSS={{ color: day === String(date) ? 'tomato' : '' }}
+                                >
+                                    {day}
+                                </Typography>
                                 {day !== '' &&
                                     day !== ' ' &&
                                     scheduleList.map((todo, index) => {
