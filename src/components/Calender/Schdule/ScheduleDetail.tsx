@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 /** @jsxImportSource @emotion/react */
 
 import { useEffect } from 'react';
@@ -12,6 +11,7 @@ import IconButton from 'components/Button/IconButton';
 import Select from 'components/Combobox/Select';
 import { Checkbox } from 'components/Form/Checkbox';
 import TextField from 'components/Form/TextField';
+import { useAlert } from 'components/useAlert';
 import { useCalender } from 'components/useCalender';
 import { type TodoType, useSchedule } from 'components/useSchedule';
 import { CALENDER_LABEL_COLOR } from 'pages/Example/Kimyerim1935/constants';
@@ -31,7 +31,7 @@ type ScheduleDetailType = {
 export default function ScheduleDetail(props: ScheduleDetailType) {
     const { todo, day, isStartDate, isEdited, setIsEdited, handleDeleteSchedule, handleClickDetail } = props;
     const { dispatch: calenderDispatch } = useCalender();
-
+    const { setMessage } = useAlert();
     const {
         isAllDay,
         setIsAllDay,
@@ -47,7 +47,7 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
     const handleEditSchedule = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (addContents.startDate > addContents.endDate) {
-            window.alert('시작일은 종료일보다 클 수 없습니다');
+            setMessage('시작일은 종료일보다 클 수 없습니다', { variant: 'error' });
             return;
         }
 

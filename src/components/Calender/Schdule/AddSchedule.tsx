@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 /** @jsxImportSource @emotion/react */
 
 import { palette } from 'styles';
@@ -10,6 +9,7 @@ import { MonthlyCalenderStyle } from 'components/Calender/styles';
 import Select from 'components/Combobox/Select';
 import { Checkbox } from 'components/Form/Checkbox';
 import TextField from 'components/Form/TextField';
+import { useAlert } from 'components/useAlert';
 import { useCalender } from 'components/useCalender';
 import { useSchedule } from 'components/useSchedule';
 import { CALENDER_LABEL_COLOR } from 'pages/Example/Kimyerim1935/constants';
@@ -22,6 +22,7 @@ type AddScheduleType = {
 
 export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: AddScheduleType) {
     const { dispatch: calenderDispatch } = useCalender();
+    const { setMessage } = useAlert();
     const { isAllDay, setIsAllDay, addContents, color, setColor, handleContents } = useSchedule(
         palette.pastel['01'],
         initialContent
@@ -33,7 +34,7 @@ export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: 
             return;
         }
         if (addContents.startDate > addContents.endDate) {
-            window.alert('시작일은 종료일보다 클 수 없습니다');
+            setMessage('시작일은 종료일보다 클 수 없습니다', { variant: 'error' });
             return;
         }
 
