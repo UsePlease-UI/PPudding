@@ -16,7 +16,7 @@ import { useCalender } from 'components/useCalender';
 import { type TodoType, useSchedule } from 'components/useSchedule';
 import { CALENDER_LABEL_COLOR } from 'pages/Example/Kimyerim1935/constants';
 
-import { MonthlyCalenderStyle } from './styles';
+import { MonthlyCalenderStyle } from '../styles';
 
 type ScheduleDetailType = {
     todo: TodoType;

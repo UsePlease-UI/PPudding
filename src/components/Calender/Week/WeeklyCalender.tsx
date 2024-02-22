@@ -1,5 +1,5 @@
 import { FlexBox } from 'components/Base';
-import WeekDays from 'components/Calender/WeekDays';
+import WeekDays from 'components/Calender/Week/WeekDays';
 import { useCalender } from 'components/useCalender';
 
 export default function WeeklyCalender() {

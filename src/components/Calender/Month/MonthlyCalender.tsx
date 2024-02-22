@@ -5,9 +5,9 @@ import dayjs from 'dayjs';
 
 import { Typography, FlexBox } from 'components/Base';
 import Button from 'components/Button/Button';
-import AddSchedule from 'components/Calender/AddSchedule';
-import ScheduleDetail from 'components/Calender/ScheduleDetail';
-import WeekDays from 'components/Calender/WeekDays';
+import AddSchedule from 'components/Calender/Schdule/AddSchedule';
+import ScheduleDetail from 'components/Calender/Schdule/ScheduleDetail';
+import WeekDays from 'components/Calender/Week/WeekDays';
 import PopOver from 'components/Menu/PopOver';
 import { useCalender } from 'components/useCalender';
 import { CALENDER_SEVEN_DAYS } from 'pages/Example/Kimyerim1935/constants';
