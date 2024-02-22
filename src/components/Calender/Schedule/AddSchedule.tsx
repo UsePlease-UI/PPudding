@@ -1,18 +1,17 @@
-/* eslint-disable no-alert */
 /** @jsxImportSource @emotion/react */
-import { useState } from 'react';
-
-import dayjs from 'dayjs';
 
 import { palette } from 'styles';
 
 import { FlexBox } from 'components/Base';
 import Button from 'components/Button/Button';
+import { initialContent } from 'components/Calender/constants';
 import { MonthlyCalenderStyle } from 'components/Calender/styles';
 import Select from 'components/Combobox/Select';
 import { Checkbox } from 'components/Form/Checkbox';
 import TextField from 'components/Form/TextField';
+import { useAlert } from 'components/useAlert';
 import { useCalender } from 'components/useCalender';
+import { useSchedule } from 'components/useSchedule';
 import { CALENDER_LABEL_COLOR } from 'pages/Example/Kimyerim1935/constants';
 
 type AddScheduleType = {
@@ -21,34 +20,13 @@ type AddScheduleType = {
     length: number;
 };
 
-const today = new Date().toISOString().substring(0, 10);
-const initialContent = {
-    idx: 0,
-    startDate: today,
-    endDate: today,
-    isAllDay: false,
-    color: '',
-    title: '',
-    description: ''
-};
 export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: AddScheduleType) {
     const { dispatch: calenderDispatch } = useCalender();
-    const [color, setColor] = useState(palette.pastel['01']);
-    const [addContents, setAddContents] = useState(initialContent);
-    const [isAllDay, setIsAllDay] = useState(false);
-
-    const handleContents = (type: string, value: string) => {
-        if (type === 'startDate' || type === 'endDate') {
-            setAddContents((prev) => ({
-                ...prev,
-                [type]: dayjs(value)
-            }));
-        }
-        setAddContents((prev) => ({
-            ...prev,
-            [type]: value
-        }));
-    };
+    const { setMessage } = useAlert();
+    const { isAllDay, setIsAllDay, addContents, color, setColor, handleContents } = useSchedule(
+        palette.pastel['01'],
+        initialContent
+    );
 
     const handleAddEvent = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -56,7 +34,7 @@ export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: 
             return;
         }
         if (addContents.startDate > addContents.endDate) {
-            window.alert('시작일은 종료일보다 클 수 없습니다');
+            setMessage('시작일은 종료일보다 클 수 없습니다', { variant: 'error' });
             return;
         }
 

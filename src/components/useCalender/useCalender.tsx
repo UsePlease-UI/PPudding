@@ -16,7 +16,7 @@ type ScheduleListType = {
 type CalenderActionType =
     | { type: 'PREV_MONTH' }
     | { type: 'NEXT_MONTH' }
-    | { type: 'ADD_SCHEDULE'; payload: ScheduleListType }
+    | { type: 'ADD_SCHEDULE' | 'UPDATE_SCHEDULE'; payload: ScheduleListType }
     | { type: 'DELETE_SCHEDULE'; idx: number };
 
 export type CalenderContextType = {
@@ -104,6 +104,20 @@ const calenderReducer = (state: CalenderContextType, action: CalenderActionType)
             newState = {
                 ...state,
                 scheduleList: [...state.scheduleList, { ...action.payload, idx: state.scheduleList.length + 1 }]
+            };
+            break;
+        case 'UPDATE_SCHEDULE':
+            newState = {
+                ...state,
+                scheduleList: state.scheduleList.map((el) => {
+                    if (el.idx === action.payload.idx) {
+                        return {
+                            ...el,
+                            ...action.payload
+                        };
+                    }
+                    return el;
+                })
             };
             break;
         case 'DELETE_SCHEDULE':

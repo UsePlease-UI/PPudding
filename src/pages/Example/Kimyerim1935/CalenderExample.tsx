@@ -1,17 +1,25 @@
-import { useState } from 'react';
-
 import { FlexBox, Typography } from 'components/Base';
 import { DailyCalender, MonthlyCalender, WeeklyCalender, YearlyCalender } from 'components/Calender';
-import Select from 'components/Combobox/Select';
 import { CalenderProvider } from 'components/useCalender/useCalender';
-
-import { CALENDER } from './constants';
 
 // 일정 데이터
 // onclick
-export default function CalenderExample() {
-    const [select, setSelect] = useState('daily');
+function ShowComponent({ type }: { type: string }) {
+    switch (type) {
+        case 'daily':
+            return <DailyCalender />;
+        case 'weekly':
+            return <WeeklyCalender />;
+        case 'monthly':
+            return <MonthlyCalender />;
+        case 'yearly':
+            return <YearlyCalender />;
+        default:
+            return <MonthlyCalender />;
+    }
+}
 
+export default function CalenderExample() {
     return (
         <CalenderProvider>
             <FlexBox flexDirection="column" gap={10}>
@@ -19,17 +27,7 @@ export default function CalenderExample() {
                     Calender
                 </Typography>
                 <FlexBox flexDirection="column" gap={10}>
-                    <Select
-                        name="calender"
-                        value={select}
-                        label={CALENDER.filter((val) => val.value === select)?.[0]?.label}
-                        options={CALENDER}
-                        onChange={(e) => setSelect(e.currentTarget.value)}
-                    />
-                    {select === 'daily' && <DailyCalender />}
-                    {select === 'weekly' && <WeeklyCalender />}
-                    {select === 'monthly' && <MonthlyCalender />}
-                    {select === 'yearly' && <YearlyCalender />}
+                    <ShowComponent type="monthly" />
                 </FlexBox>
             </FlexBox>
         </CalenderProvider>
