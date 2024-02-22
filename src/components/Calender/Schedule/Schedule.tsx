@@ -1,5 +1,4 @@
 /* eslint-disable no-alert */
-import { useState } from 'react';
 
 import dayjs from 'dayjs';
 
@@ -10,16 +9,29 @@ import WeekDays from 'components/Calender/Week/WeekDays';
 import PopOver from 'components/Menu/PopOver';
 import { useCalender } from 'components/useCalender';
 
-export default function Schedule({
-    isEdited,
-    setIsEdited
-}: {
+type OpenScheduleType = {
+    isOpen: string;
+    index: number;
+};
+
+type ScheduleType = {
     isEdited: boolean;
     setIsEdited: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
+    isOpenAddForm: boolean;
+    setIsOpenAddForm: React.Dispatch<React.SetStateAction<boolean>>;
+    isOpenSchedule: OpenScheduleType;
+    setIsOpenSchedule: React.Dispatch<React.SetStateAction<OpenScheduleType>>;
+};
+
+export default function Schedule({
+    isEdited,
+    setIsEdited,
+    isOpenAddForm,
+    setIsOpenAddForm,
+    isOpenSchedule,
+    setIsOpenSchedule
+}: ScheduleType) {
     const { date, year, month, scheduleList, getWeeks, dispatch: calenderDispatch } = useCalender();
-    const [isOpenAddForm, setIsOpenAddForm] = useState(false);
-    const [isOpenSchedule, setIsOpenSchedule] = useState({ isOpen: '', index: -1 });
 
     const handleClickDetail = (type: 'open' | 'close', day: string, index: number) => {
         if (isOpenAddForm) {

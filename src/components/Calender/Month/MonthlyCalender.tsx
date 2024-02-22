@@ -65,7 +65,14 @@ export default function MonthlyCalender() {
                     <Typography customCSS={{ width: '100%', height: '30px', textAlign: 'center' }}>{el}</Typography>
                 ))}
             </FlexBox>
-            <Schedule isEdited={isEdited} setIsEdited={setIsEdited} />
+            <Schedule
+                isEdited={isEdited}
+                setIsEdited={setIsEdited}
+                isOpenAddForm={isOpenAddForm}
+                setIsOpenAddForm={setIsOpenAddForm}
+                isOpenSchedule={isOpenSchedule}
+                setIsOpenSchedule={setIsOpenSchedule}
+            />
         </div>
     );
 }
