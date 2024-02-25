@@ -27,6 +27,9 @@ export const baseLayoutStyle = {
         '@media (max-width: 425px)': {
             padding: 10,
             minHeight: 'calc(100vh - 120px)'
+        },
+        '@media (max-width: 1920px)': {
+            overflow: 'hidden'
         }
     })
 };
