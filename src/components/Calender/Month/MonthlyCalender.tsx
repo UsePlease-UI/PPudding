@@ -85,6 +85,6 @@ export default function MonthlyCalender() {
                 isOpenSchedule={isOpenSchedule}
                 setIsOpenSchedule={setIsOpenSchedule}
             />
-        </FlexBox>
+        </div>
     );
 }
