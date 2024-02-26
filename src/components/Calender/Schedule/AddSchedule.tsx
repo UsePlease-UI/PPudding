@@ -75,7 +75,7 @@ export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: 
                     onChange={(e) => handleContents('startDate', e.target.value)}
                     customCSS={{
                         borderColor: palette.secondary[600],
-                        '@media (max-width: 425px)': {
+                        '@media (max-width: 430px)': {
                             minWidth: 0,
                             width: '100%'
                         }
@@ -90,7 +90,7 @@ export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: 
                     onChange={(e) => handleContents('endDate', e.target.value)}
                     customCSS={{
                         borderColor: palette.secondary[600],
-                        '@media (max-width: 425px)': {
+                        '@media (max-width: 430px)': {
                             minWidth: 0,
                             width: '100%'
                         }
@@ -122,7 +122,7 @@ export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: 
                     onChange={(e) => handleContents('title', e.target.value)}
                     customCSS={{
                         borderColor: palette.secondary[600],
-                        '@media (max-width: 425px)': {
+                        '@media (max-width: 430px)': {
                             minWidth: 0,
                             width: '100%'
                         }
@@ -139,7 +139,7 @@ export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: 
                     onChange={(e) => handleContents('description', e.target.value)}
                     customCSS={{
                         borderColor: palette.secondary[600],
-                        '@media (max-width: 425px)': {
+                        '@media (max-width: 430px)': {
                             minWidth: 0,
                             width: '100%'
                         }

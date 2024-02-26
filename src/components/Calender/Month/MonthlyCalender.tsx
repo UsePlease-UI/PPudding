@@ -5,12 +5,11 @@ import { Typography, FlexBox } from 'components/Base';
 import Button from 'components/Button/Button';
 import AddSchedule from 'components/Calender/Schedule/AddSchedule';
 import Schedule from 'components/Calender/Schedule/Schedule';
+import { MonthlyCalenderStyle } from 'components/Calender/styles';
 import PopOver from 'components/Menu/PopOver';
 import { useCalender } from 'components/useCalender';
 import useMobile from 'hooks/useMobile';
 import { CALENDER_SEVEN_DAYS } from 'pages/Example/Kimyerim1935/constants';
-
-import { MonthlyCalenderStyle } from '../styles';
 
 export default function MonthlyCalender() {
     const isMobile = useMobile();

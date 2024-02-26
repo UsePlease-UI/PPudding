@@ -29,3 +29,19 @@ export const MonthlyCalenderStyle = {
         fontSize: 13
     })
 };
+
+export const scheduleStyle = {
+    scheduleTitle: css({
+        textAlign: 'left',
+        width: '100%',
+        display: 'block',
+        '&:hover': {
+            fontWeight: 800
+        }
+    })
+};
+export const WeekDaysStyle = {
+    title: css({
+        border: '1px solid black'
+    })
+};
