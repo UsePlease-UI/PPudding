@@ -5,11 +5,14 @@ import { Typography, FlexBox } from 'components/Base';
 import Button from 'components/Button/Button';
 import AddSchedule from 'components/Calender/Schedule/AddSchedule';
 import Schedule from 'components/Calender/Schedule/Schedule';
+import { MonthlyCalenderStyle } from 'components/Calender/styles';
 import PopOver from 'components/Menu/PopOver';
 import { useCalender } from 'components/useCalender';
+import useMobile from 'hooks/useMobile';
 import { CALENDER_SEVEN_DAYS } from 'pages/Example/Kimyerim1935/constants';
 
 export default function MonthlyCalender() {
+    const isMobile = useMobile();
     const { year, month, scheduleList, dispatch: calenderDispatch } = useCalender();
     const [isOpenAddForm, setIsOpenAddForm] = useState(false);
     const [isOpenSchedule, setIsOpenSchedule] = useState({ isOpen: '', index: -1 });
@@ -32,12 +35,8 @@ export default function MonthlyCalender() {
     };
 
     return (
-        <div>
-            <FlexBox
-                alignItems="center"
-                justifyContent="center"
-                customCSS={{ position: 'relative', marginBottom: '20px' }}
-            >
+        <FlexBox flexDirection="column" customCSS={MonthlyCalenderStyle.wrapper}>
+            <FlexBox alignItems="center" justifyContent="center" customCSS={MonthlyCalenderStyle.buttonWrapper}>
                 <Button size="small" variant="outlined" onClick={() => prevMonth()}>
                     prev
                 </Button>
@@ -48,10 +47,22 @@ export default function MonthlyCalender() {
                     next
                 </Button>
                 <div style={{ position: 'absolute', right: 0 }}>
-                    <Button size="medium" variant="contained" onClick={() => handleAddContent()}>
-                        일정 추가하기
-                    </Button>
-                    <PopOver isOpen={isOpenAddForm} customCSS={{ padding: 0, position: 'absolute', right: 0 }}>
+                    {isMobile ? (
+                        <Button
+                            size="medium"
+                            shape="circular"
+                            variant="contained"
+                            onClick={() => handleAddContent()}
+                            customCSS={MonthlyCalenderStyle.addSchedule}
+                        >
+                            +
+                        </Button>
+                    ) : (
+                        <Button size="medium" variant="contained" onClick={() => handleAddContent()}>
+                            일정 추가하기
+                        </Button>
+                    )}
+                    <PopOver isOpen={isOpenAddForm} customCSS={{ padding: 0, position: 'absolute', right: 0, top: 20 }}>
                         <AddSchedule
                             setIsOpenAddForm={setIsOpenAddForm}
                             length={scheduleList.length || 0}
@@ -73,6 +84,6 @@ export default function MonthlyCalender() {
                 isOpenSchedule={isOpenSchedule}
                 setIsOpenSchedule={setIsOpenSchedule}
             />
-        </div>
+        </FlexBox>
     );
 }

@@ -2,12 +2,16 @@
 
 import dayjs from 'dayjs';
 
+import { css } from '@emotion/react';
+
 import { FlexBox, Typography } from 'components/Base';
 import Button from 'components/Button/Button';
 import ScheduleDetail from 'components/Calender/Schedule/ScheduleDetail';
+import { scheduleStyle } from 'components/Calender/styles';
 import WeekDays from 'components/Calender/Week/WeekDays';
 import PopOver from 'components/Menu/PopOver';
 import { useCalender } from 'components/useCalender';
+import useMobile from 'hooks/useMobile';
 
 type OpenScheduleType = {
     isOpen: string;
@@ -33,6 +37,7 @@ export default function Schedule({
 }: ScheduleType) {
     const { date, year, month, scheduleList, getWeeks, dispatch: calenderDispatch } = useCalender();
 
+    const isMobile = useMobile();
     const handleClickDetail = (type: 'open' | 'close', day: string, index: number) => {
         if (isOpenAddForm) {
             setIsOpenAddForm(false);
@@ -91,36 +96,38 @@ export default function Schedule({
                                                 >
                                                     <Button
                                                         onClick={() => handleClickDetail('open', day, index)}
-                                                        customCSS={{
-                                                            textAlign: 'left',
-                                                            width: '100%',
-                                                            paddingLeft: 15,
-                                                            height: 30,
-                                                            '&:hover': {
-                                                                fontWeight: 800
+                                                        customCSS={css([
+                                                            scheduleStyle.scheduleTitle,
+                                                            {
+                                                                padding: isMobile ? '5px' : '10px 15px',
+                                                                whiteSpace: isMobile ? 'break-spaces' : 'normal',
+                                                                overflow: isMobile ? 'hidden' : 'visible',
+                                                                fontSize: isMobile ? 11 : 16
                                                             }
-                                                        }}
+                                                        ])}
                                                     >
                                                         {isStartDate ? todo.title : 'ㅤ'}
                                                     </Button>
                                                 </FlexBox>
-                                                <PopOver
-                                                    isOpen={isOpenDetail}
-                                                    customCSS={{
-                                                        position: 'absolute',
-                                                        background: 'white'
-                                                    }}
-                                                >
-                                                    <ScheduleDetail
-                                                        todo={todo}
-                                                        day={day}
-                                                        isStartDate={isStartDate}
-                                                        isEdited={isEdited}
-                                                        setIsEdited={setIsEdited}
-                                                        handleDeleteSchedule={handleDeleteSchedule}
-                                                        handleClickDetail={handleClickDetail}
-                                                    />
-                                                </PopOver>
+                                                {!isMobile && (
+                                                    <PopOver
+                                                        isOpen={isOpenDetail}
+                                                        customCSS={{
+                                                            position: 'absolute',
+                                                            background: 'white'
+                                                        }}
+                                                    >
+                                                        <ScheduleDetail
+                                                            todo={todo}
+                                                            day={day}
+                                                            isStartDate={isStartDate}
+                                                            isEdited={isEdited}
+                                                            setIsEdited={setIsEdited}
+                                                            handleDeleteSchedule={handleDeleteSchedule}
+                                                            handleClickDetail={handleClickDetail}
+                                                        />
+                                                    </PopOver>
+                                                )}
                                             </>
                                         );
                                     }

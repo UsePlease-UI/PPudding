@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
+import { css } from '@emotion/react';
 import { palette } from 'styles';
 
 import { FlexBox } from 'components/Base';
@@ -12,6 +13,7 @@ import TextField from 'components/Form/TextField';
 import { useAlert } from 'components/useAlert';
 import { useCalender } from 'components/useCalender';
 import { useSchedule } from 'components/useSchedule';
+import useMobile from 'hooks/useMobile';
 import { CALENDER_LABEL_COLOR } from 'pages/Example/Kimyerim1935/constants';
 
 type AddScheduleType = {
@@ -21,6 +23,7 @@ type AddScheduleType = {
 };
 
 export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: AddScheduleType) {
+    const isMobile = useMobile();
     const { dispatch: calenderDispatch } = useCalender();
     const { setMessage } = useAlert();
     const { isAllDay, setIsAllDay, addContents, color, setColor, handleContents } = useSchedule(
@@ -51,7 +54,17 @@ export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: 
     };
 
     return (
-        <form onSubmit={handleAddEvent} css={MonthlyCalenderStyle.form}>
+        <form
+            onSubmit={handleAddEvent}
+            css={css([
+                MonthlyCalenderStyle.form,
+                {
+                    width: isMobile ? '100%' : 300,
+                    height: isMobile ? '50vh' : '100%',
+                    overflow: 'scroll'
+                }
+            ])}
+        >
             <FlexBox flexDirection="column" gap={20} customCSS={{ width: '100%' }}>
                 <TextField
                     labelText="시작일"
@@ -62,7 +75,7 @@ export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: 
                     onChange={(e) => handleContents('startDate', e.target.value)}
                     customCSS={{
                         borderColor: palette.secondary[600],
-                        '@media (max-width: 425px)': {
+                        '@media (max-width: 430px)': {
                             minWidth: 0,
                             width: '100%'
                         }
@@ -77,7 +90,7 @@ export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: 
                     onChange={(e) => handleContents('endDate', e.target.value)}
                     customCSS={{
                         borderColor: palette.secondary[600],
-                        '@media (max-width: 425px)': {
+                        '@media (max-width: 430px)': {
                             minWidth: 0,
                             width: '100%'
                         }
@@ -109,7 +122,7 @@ export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: 
                     onChange={(e) => handleContents('title', e.target.value)}
                     customCSS={{
                         borderColor: palette.secondary[600],
-                        '@media (max-width: 425px)': {
+                        '@media (max-width: 430px)': {
                             minWidth: 0,
                             width: '100%'
                         }
@@ -126,7 +139,7 @@ export default function AddSchedule({ setIsOpenAddForm, length, handleCancel }: 
                     onChange={(e) => handleContents('description', e.target.value)}
                     customCSS={{
                         borderColor: palette.secondary[600],
-                        '@media (max-width: 425px)': {
+                        '@media (max-width: 430px)': {
                             minWidth: 0,
                             width: '100%'
                         }
