@@ -10,7 +10,7 @@ export const baseLayoutStyle = {
         marginTop: 80,
         padding: 60,
         transition: 'margin 0.5s ease-in-out',
-        '@media (max-width: 425px)': {
+        '@media (max-width: 430px)': {
             padding: 20
         },
         '@media (max-width: 768px)': {
@@ -24,7 +24,7 @@ export const baseLayoutStyle = {
         padding: 40,
         borderRadius: 5,
         backgroundColor: palette.neutral.white,
-        '@media (max-width: 425px)': {
+        '@media (max-width: 430px)': {
             padding: 10,
             minHeight: 'calc(100vh - 120px)'
         },
@@ -80,7 +80,7 @@ export const headerStyle = {
         strokeWidth: 2,
         strokeDasharray: 350,
         animation: `${stroke} 3s infinite`,
-        '@media (max-width: 425px)': {
+        '@media (max-width: 430px)': {
             fontSize: 160
         }
     })

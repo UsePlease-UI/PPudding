@@ -22,7 +22,7 @@ export const textfieldStyle = {
                 border: `1px solid ${palette.gray[600]}`,
                 backgroundColor: palette.gray[100]
             },
-            '@media (max-width: 425px)': {
+            '@media (max-width: 430px)': {
                 minWidth: 0
             }
         }
