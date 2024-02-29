@@ -23,8 +23,8 @@ export default function List({ data }: ListType) {
             const listWidth = window.innerWidth < 768 ? 260 : 313;
             const num = Math.floor((document.body.clientWidth - 120 - 80) / listWidth) || listWidth;
             setWidth(listWidth);
-            setOffset(num);
-            setTotalPage(Math.ceil(data.length / num));
+            setOffset(window.innerWidth > 1536 ? Math.min(num, 4) : num);
+            setTotalPage(Math.ceil(data.length / (window.innerWidth > 1536 ? Math.min(num, 4) : num)));
         };
 
         handleResize();
@@ -35,7 +35,7 @@ export default function List({ data }: ListType) {
     }, []);
 
     return (
-        <FlexBox flexDirection="column">
+        <FlexBox flexDirection="column" customCSS={{ width: 'max-content', margin: '0 auto' }}>
             <FlexBox
                 gap={20}
                 customCSS={{
@@ -55,9 +55,9 @@ export default function List({ data }: ListType) {
                         }}
                     >
                         <Typography
+                            height="150px"
                             fontSize={28}
                             fontWeight="900"
-                            height="150px"
                             lineHeight="150px"
                             align="center"
                             color={palette.primary[50]}
