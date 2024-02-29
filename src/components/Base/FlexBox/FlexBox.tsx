@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { HTMLAttributes, ReactNode } from 'react';
+import { HTMLAttributes, ReactNode, forwardRef } from 'react';
 
 import { css } from '@emotion/react';
 import type { CustomCSSType } from 'styles/types';
@@ -30,7 +30,7 @@ type FlexBoxType = BaseType & {
  *  @param customCSS 커스텀 CSS [optional]
  *  @returns JSX.Element
  */
-export default function FlexBox(props: FlexBoxType) {
+const FlexBox = forwardRef<HTMLDivElement, FlexBoxType>(function createFlexBox(props, ref) {
     const {
         children,
         flexDirection = 'row',
@@ -45,6 +45,7 @@ export default function FlexBox(props: FlexBoxType) {
 
     return (
         <div
+            ref={ref}
             {...rest}
             css={css([
                 flexBoxStyle,
@@ -62,4 +63,6 @@ export default function FlexBox(props: FlexBoxType) {
             {children}
         </div>
     );
-}
+});
+
+export default FlexBox;
