@@ -8,11 +8,13 @@
         "@fluentui/react-icons": "^2.0.224",
         "@heroicons/react": "^2.1.1",
         "dayjs": "^1.11.10",
+        "framer-motion": "^11.0.8",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-markdown": "^9.0.1",
         "react-router-dom": "^6.21.1",
-        "react-scripts": "5.0.1"
+        "react-scripts": "5.0.1",
+        "react-spring-bottom-sheet": "^3.4.1"
     },
     "scripts": {
         "predeploy": "npm run build",
