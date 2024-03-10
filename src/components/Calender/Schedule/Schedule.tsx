@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import { css } from '@emotion/react';
 
 import { FlexBox, Typography } from 'components/Base';
+import BottomSheet from 'components/BottomSheet';
 import Button from 'components/Button/Button';
 import ScheduleDetail from 'components/Calender/Schedule/ScheduleDetail';
 import { scheduleStyle } from 'components/Calender/styles';
@@ -36,8 +37,8 @@ export default function Schedule({
     setIsOpenSchedule
 }: ScheduleType) {
     const { date, year, month, scheduleList, getWeeks, dispatch: calenderDispatch } = useCalender();
-
     const isMobile = useMobile();
+
     const handleClickDetail = (type: 'open' | 'close', day: string, index: number) => {
         if (isOpenAddForm) {
             setIsOpenAddForm(false);
@@ -45,6 +46,7 @@ export default function Schedule({
             setIsOpenSchedule({ isOpen: '', index: -1 });
             setIsEdited(false);
         }
+
         setIsOpenSchedule((prev) => {
             return { ...prev, isOpen: day, index };
         });
@@ -61,10 +63,10 @@ export default function Schedule({
 
     return (
         <section>
-            {getWeeks().map((el: string[]) => (
-                <FlexBox>
-                    {el.map((day: string) => (
-                        <WeekDays>
+            {getWeeks().map((el: string[], idx: number) => (
+                <FlexBox key={`week-${idx}`}>
+                    {el.map((day: string, elIdx: number) => (
+                        <WeekDays key={`day-${elIdx}`}>
                             <Typography component="span" customCSS={{ color: day === String(date) ? 'tomato' : '' }}>
                                 {day}
                             </Typography>
@@ -80,12 +82,14 @@ export default function Schedule({
                                         );
                                         const isOpenDetail =
                                             isOpenSchedule.isOpen === day && isOpenSchedule.index === index;
+
                                         return (
                                             <>
                                                 <FlexBox
                                                     flexDirection="column"
                                                     alignItems="flex-start"
                                                     justifyContent="center"
+                                                    key={index}
                                                     customCSS={{
                                                         background: todo.color,
                                                         transition: 'opacity',
@@ -109,12 +113,28 @@ export default function Schedule({
                                                         {isStartDate ? todo.title : 'ㅤ'}
                                                     </Button>
                                                 </FlexBox>
-                                                {!isMobile && (
+                                                {isMobile && isOpenDetail ? (
+                                                    <BottomSheet
+                                                        isOpen={isOpenDetail}
+                                                        onClose={() => setIsOpenSchedule({ isOpen: '', index: -1 })}
+                                                    >
+                                                        <ScheduleDetail
+                                                            todo={todo}
+                                                            day={day}
+                                                            isStartDate={isStartDate}
+                                                            isEdited={isEdited}
+                                                            setIsEdited={setIsEdited}
+                                                            handleDeleteSchedule={handleDeleteSchedule}
+                                                            handleClickDetail={handleClickDetail}
+                                                        />
+                                                    </BottomSheet>
+                                                ) : (
                                                     <PopOver
                                                         isOpen={isOpenDetail}
                                                         customCSS={{
                                                             position: 'absolute',
-                                                            background: 'white'
+                                                            background: 'white',
+                                                            padding: 0
                                                         }}
                                                     >
                                                         <ScheduleDetail

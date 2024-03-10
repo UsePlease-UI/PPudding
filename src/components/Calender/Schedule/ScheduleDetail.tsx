@@ -14,6 +14,7 @@ import TextField from 'components/Form/TextField';
 import { useAlert } from 'components/useAlert';
 import { useCalender } from 'components/useCalender';
 import { type TodoType, useSchedule } from 'components/useSchedule';
+import useMobile from 'hooks/useMobile';
 import { CALENDER_LABEL_COLOR } from 'pages/Example/Kimyerim1935/constants';
 
 import { MonthlyCalenderStyle } from '../styles';
@@ -44,6 +45,8 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
         handleContents
     } = useSchedule(todo.color, todo);
 
+    const isMobile = useMobile();
+
     const handleEditSchedule = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (addContents.startDate > addContents.endDate) {
@@ -73,15 +76,17 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
         <div css={MonthlyCalenderStyle.scheduleDetailWrapper}>
             <FlexBox flexDirection="column" gap={5}>
                 <FlexBox justifyContent="flex-end">
-                    <IconButton
-                        variant="text"
-                        size="medium"
-                        shape="circular"
-                        onClick={() => handleClickDetail('close', day, -1)}
-                        customCSS={{ padding: 0 }}
-                    >
-                        <XCircleIcon width={24} height={24} />
-                    </IconButton>
+                    {!isMobile && (
+                        <IconButton
+                            variant="text"
+                            size="medium"
+                            shape="circular"
+                            onClick={() => handleClickDetail('close', day, -1)}
+                            customCSS={{ padding: 0 }}
+                        >
+                            <XCircleIcon width={24} height={24} />
+                        </IconButton>
+                    )}
                 </FlexBox>
                 {isEdited ? (
                     <form onSubmit={handleEditSchedule}>
