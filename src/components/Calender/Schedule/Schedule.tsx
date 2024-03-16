@@ -1,5 +1,7 @@
 /* eslint-disable no-alert */
 
+import { Fragment } from 'react';
+
 import dayjs from 'dayjs';
 
 import { css } from '@emotion/react';
@@ -84,7 +86,7 @@ export default function Schedule({
                                             isOpenSchedule.isOpen === day && isOpenSchedule.index === index;
 
                                         return (
-                                            <>
+                                            <Fragment key={`scheduleList-${index}`}>
                                                 <FlexBox
                                                     flexDirection="column"
                                                     alignItems="flex-start"
@@ -115,6 +117,7 @@ export default function Schedule({
                                                 </FlexBox>
                                                 {isMobile && isOpenDetail ? (
                                                     <BottomSheet
+                                                        isCloseClickOutside
                                                         isOpen={isOpenDetail}
                                                         onClose={() => setIsOpenSchedule({ isOpen: '', index: -1 })}
                                                     >
@@ -148,7 +151,7 @@ export default function Schedule({
                                                         />
                                                     </PopOver>
                                                 )}
-                                            </>
+                                            </Fragment>
                                         );
                                     }
                                     return undefined;
