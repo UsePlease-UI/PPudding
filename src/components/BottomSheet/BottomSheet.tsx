@@ -12,6 +12,13 @@ type BottomSheetType = {
     children: ReactNode;
 };
 
+/**
+ *  BottomSheet Component
+ *  @param isCloseClickOutside boolean
+ *  @param isOpen component open state
+ *  @param onClose component close handler
+ *  @returns JSX.Element
+ */
 export default function BottomSheet({ isCloseClickOutside = false, isOpen, onClose, children }: BottomSheetType) {
     const controls = useAnimation();
     const sheetRef = useRef<HTMLDivElement | null>(null);
@@ -57,7 +64,7 @@ export default function BottomSheet({ isCloseClickOutside = false, isOpen, onClo
                     bottom: 0,
                     left: 0,
                     right: 0,
-                    borderRadius: 8,
+                    borderRadius: '8px 8px 0 0',
                     background: '#fff',
                     boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.6)',
                     margin: ' 0 auto',
