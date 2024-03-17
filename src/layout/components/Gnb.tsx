@@ -22,7 +22,7 @@ export default function Gnb({ onClick }: GnbType) {
     const [isOpen, setIsOpen] = useState(false);
 
     return isMobile ? (
-        <IconButton size="medium" onClick={onClick} customCSS={gnbStyle.hamburgerButton}>
+        <IconButton size="small" onClick={onClick} customCSS={gnbStyle.hamburgerButton}>
             <Bars3Icon />
         </IconButton>
     ) : (
