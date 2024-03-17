@@ -23,7 +23,7 @@ export default function BottomSheet({ isCloseClickOutside = false, isOpen, onClo
     const controls = useAnimation();
     const sheetRef = useRef<HTMLDivElement | null>(null);
 
-    if (isCloseClickOutside) useClickOutside(isOpen, () => onClose(), sheetRef);
+    if (isCloseClickOutside && isOpen) useClickOutside(isOpen, () => onClose(), sheetRef);
 
     useEffect(() => {
         controls.start(isOpen ? 'visible' : 'hidden');
