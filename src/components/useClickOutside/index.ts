@@ -12,9 +12,18 @@ export default function useClickOutside<T extends HTMLElement>(
             }
         }
 
+        function handleEscapeKey(event: KeyboardEvent) {
+            if (isOpen && event.key === 'Escape') {
+                handleClose();
+            }
+        }
+
         document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('keydown', handleEscapeKey);
+
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('keydown', handleEscapeKey);
         };
     }, [isOpen, handleClose, ref]);
 }
