@@ -1,16 +1,19 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { ReactNode, useEffect, useRef } from 'react';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/** @jsxImportSource @emotion/react */
 
-import { motion, useAnimation } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 
+import { useAnimation } from 'framer-motion';
+
+import BottomSheetChildren, { type BottomSheetChildrenType } from 'components/BottomSheet/BottomSheetChildren';
 import useClickOutside from 'components/useClickOutside';
+
+import { bottomSheetStyle } from './styles';
 
 type BottomSheetType = {
     isCloseClickOutside?: boolean;
-    isOpen: boolean;
-    onClose: () => void;
-    children: ReactNode;
-};
+} & BottomSheetChildrenType;
 
 /**
  *  BottomSheet Component
@@ -19,61 +22,30 @@ type BottomSheetType = {
  *  @param onClose component close handler
  *  @returns JSX.Element
  */
+
 export default function BottomSheet({ isCloseClickOutside = false, isOpen, onClose, children }: BottomSheetType) {
     const controls = useAnimation();
     const sheetRef = useRef<HTMLDivElement | null>(null);
 
-    if (isCloseClickOutside && isOpen) useClickOutside(isOpen, () => onClose(), sheetRef);
+    if (isCloseClickOutside && isOpen) useClickOutside(isCloseClickOutside && isOpen, () => onClose(), sheetRef);
 
     useEffect(() => {
         controls.start(isOpen ? 'visible' : 'hidden');
     }, [controls, isOpen]);
 
-    const onDragEnd = (info: any) => {
-        const shouldClose = info?.y > 20 || (info?.y >= 0 && info.point.y > 45);
-
-        if (shouldClose) {
-            controls.start('hidden');
-            onClose();
-        } else {
-            controls.start('visible');
-        }
-    };
-
-    return (
-        <div ref={sheetRef}>
-            <motion.div
-                drag="y"
-                initial="hidden"
-                animate={controls}
-                onDragEnd={onDragEnd}
-                variants={{
-                    visible: { y: 0 },
-                    hidden: { y: '100%' }
-                }}
-                transition={{
-                    type: 'spring',
-                    damping: 40,
-                    stiffness: 400
-                }}
-                dragConstraints={{ top: 0 }}
-                dragElastic={0.2}
-                style={{
-                    position: 'fixed',
-                    zIndex: 10,
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    borderRadius: '8px 8px 0 0',
-                    background: '#fff',
-                    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.6)',
-                    margin: ' 0 auto',
-                    overflow: 'auto',
-                    padding: '20px'
-                }}
-            >
+    return isOpen ? (
+        isCloseClickOutside ? (
+            <div css={bottomSheetStyle.overlayWrapper} onClick={onClose}>
+                <div style={{ backgroundColor: 'white', borderRadius: '5px' }}>
+                    <BottomSheetChildren isOpen={isOpen} onClose={onClose}>
+                        {children}
+                    </BottomSheetChildren>
+                </div>
+            </div>
+        ) : (
+            <BottomSheetChildren isOpen={isOpen} onClose={onClose}>
                 {children}
-            </motion.div>
-        </div>
-    );
+            </BottomSheetChildren>
+        )
+    ) : null;
 }

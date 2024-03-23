@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
 
-import { Fragment, useRef } from 'react';
+import { Fragment } from 'react';
 
 import dayjs from 'dayjs';
 
@@ -13,7 +13,6 @@ import ScheduleDetail from 'components/Calender/Schedule/ScheduleDetail';
 import { scheduleStyle } from 'components/Calender/styles';
 import WeekDays from 'components/Calender/Week/WeekDays';
 import PopOver from 'components/Menu/PopOver';
-import Overlay from 'components/Overlay';
 import { useCalender } from 'components/useCalender';
 import useMobile from 'hooks/useMobile';
 
@@ -41,7 +40,6 @@ export default function Schedule({
 }: ScheduleType) {
     const { date, year, month, scheduleList, getWeeks, dispatch: calenderDispatch } = useCalender();
     const isMobile = useMobile();
-    const overlayRef = useRef<HTMLDivElement | null>(null);
     const handleClickDetail = (type: 'open' | 'close', day: string, index: number) => {
         if (isOpenAddForm) {
             setIsOpenAddForm(false);
@@ -117,27 +115,21 @@ export default function Schedule({
                                                     </Button>
                                                 </FlexBox>
                                                 {isMobile && isOpenDetail ? (
-                                                    <Overlay
-                                                        overlayRef={overlayRef}
+                                                    <BottomSheet
+                                                        isCloseClickOutside
                                                         isOpen={isOpenDetail}
-                                                        handleClose={() => setIsOpenSchedule({ isOpen: '', index: -1 })}
+                                                        onClose={() => setIsOpenSchedule({ isOpen: '', index: -1 })}
                                                     >
-                                                        <BottomSheet
-                                                            isCloseClickOutside
-                                                            isOpen={isOpenDetail}
-                                                            onClose={() => setIsOpenSchedule({ isOpen: '', index: -1 })}
-                                                        >
-                                                            <ScheduleDetail
-                                                                todo={todo}
-                                                                day={day}
-                                                                isStartDate={isStartDate}
-                                                                isEdited={isEdited}
-                                                                setIsEdited={setIsEdited}
-                                                                handleDeleteSchedule={handleDeleteSchedule}
-                                                                handleClickDetail={handleClickDetail}
-                                                            />
-                                                        </BottomSheet>
-                                                    </Overlay>
+                                                        <ScheduleDetail
+                                                            todo={todo}
+                                                            day={day}
+                                                            isStartDate={isStartDate}
+                                                            isEdited={isEdited}
+                                                            setIsEdited={setIsEdited}
+                                                            handleDeleteSchedule={handleDeleteSchedule}
+                                                            handleClickDetail={handleClickDetail}
+                                                        />
+                                                    </BottomSheet>
                                                 ) : (
                                                     <PopOver
                                                         isOpen={isOpenDetail}
