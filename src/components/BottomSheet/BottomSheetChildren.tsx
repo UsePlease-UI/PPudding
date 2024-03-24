@@ -3,12 +3,11 @@ import { ReactNode, useEffect, useRef } from 'react';
 import { motion, useAnimation, PanInfo } from 'framer-motion';
 
 export type BottomSheetChildrenType = {
-    isOpen: boolean;
     onClose: () => void;
     children: ReactNode;
 };
 
-export default function BottomSheetChildren({ isOpen, onClose, children }: BottomSheetChildrenType) {
+export default function BottomSheetChildren({ onClose, children }: BottomSheetChildrenType) {
     const controls = useAnimation();
     const sheetRef = useRef<HTMLDivElement | null>(null);
 
@@ -24,8 +23,8 @@ export default function BottomSheetChildren({ isOpen, onClose, children }: Botto
     };
 
     useEffect(() => {
-        controls.start(isOpen ? 'visible' : 'hidden');
-    }, [controls, isOpen]);
+        controls.start('visible');
+    }, [controls]);
 
     return (
         <div ref={sheetRef}>

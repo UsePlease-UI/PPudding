@@ -8,6 +8,7 @@ import { bottomSheetStyle } from './styles';
 
 type BottomSheetType = {
     isCloseClickOutside?: boolean;
+    isOpen: boolean;
 } & BottomSheetChildrenType;
 
 /**
@@ -23,15 +24,11 @@ export default function BottomSheet({ isCloseClickOutside = false, isOpen, onClo
         isCloseClickOutside ? (
             <div css={bottomSheetStyle.overlayWrapper} onClick={onClose}>
                 <div style={{ backgroundColor: 'white', borderRadius: '5px' }}>
-                    <BottomSheetChildren isOpen={isOpen} onClose={onClose}>
-                        {children}
-                    </BottomSheetChildren>
+                    <BottomSheetChildren onClose={onClose}>{children}</BottomSheetChildren>
                 </div>
             </div>
         ) : (
-            <BottomSheetChildren isOpen={isOpen} onClose={onClose}>
-                {children}
-            </BottomSheetChildren>
+            <BottomSheetChildren onClose={onClose}>{children}</BottomSheetChildren>
         )
     ) : null;
 }
