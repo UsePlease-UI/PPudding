@@ -1,10 +1,6 @@
 import { ReactNode, useEffect, useRef } from 'react';
 
-import { motion, useAnimation } from 'framer-motion';
-
-type infoType = {
-    point: { x: number; y: number };
-};
+import { motion, useAnimation, PanInfo } from 'framer-motion';
 
 export type BottomSheetChildrenType = {
     isOpen: boolean;
@@ -16,7 +12,7 @@ export default function BottomSheetChildren({ isOpen, onClose, children }: Botto
     const controls = useAnimation();
     const sheetRef = useRef<HTMLDivElement | null>(null);
 
-    const onDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: infoType) => {
+    const onDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
         const shouldClose = info ? info.point.y > 20 || (info.point.y >= 0 && info.point.y > 45) : null;
 
         if (event && shouldClose) {
