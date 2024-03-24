@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { css } from '@emotion/react';
 import palette from 'styles/palette';
@@ -7,6 +7,7 @@ import palette from 'styles/palette';
 import { Box, Typography } from 'components/Base';
 import FlexBox from 'components/Base/FlexBox';
 import PopOver from 'components/Menu/PopOver';
+import useClickOutside from 'components/useClickOutside';
 
 const popoverStyle = css({
     height: 30,
@@ -60,19 +61,7 @@ export default function PopoverExample() {
 
     const handleClose = () => setAnchorEl(null);
 
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
-            if (isOpen && !buttonRef.current?.contains(event.target as Node)) {
-                handleClose();
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [isOpen]);
+    useClickOutside(isOpen, handleClose, buttonRef);
 
     return (
         <FlexBox flexDirection="column" gap={20}>

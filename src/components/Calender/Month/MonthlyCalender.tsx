@@ -72,8 +72,10 @@ export default function MonthlyCalender() {
                 </div>
             </FlexBox>
             <FlexBox>
-                {CALENDER_SEVEN_DAYS.map((el: string) => (
-                    <Typography customCSS={{ width: '100%', height: '30px', textAlign: 'center' }}>{el}</Typography>
+                {CALENDER_SEVEN_DAYS.map((el: string, idx: number) => (
+                    <Typography customCSS={{ width: '100%', height: '30px', textAlign: 'center' }} key={idx}>
+                        {el}
+                    </Typography>
                 ))}
             </FlexBox>
             <Schedule

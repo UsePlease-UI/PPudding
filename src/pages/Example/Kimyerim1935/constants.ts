@@ -42,6 +42,8 @@ export const AUTOCOMPLETE = [
     }
 ];
 
+export const BOTTOM_SHEET_HEIGHT = window.innerHeight;
+
 export const CALENDER = [
     {
         idx: 1,
@@ -183,6 +185,24 @@ export const CALENDER_DUMMY_DATA = [
         isAllDay: true,
         title: '1월 테스트',
         description: '테스트'
+    },
+    {
+        idx: 7,
+        startDate: '2024-03-01',
+        endDate: '2024-03-05',
+        color: palette.pastel['02'],
+        isAllDay: true,
+        title: '캘린더 만들기',
+        description: '캘린더 디자인 수정'
+    },
+    {
+        idx: 8,
+        startDate: '2024-03-15',
+        endDate: '2024-03-16',
+        color: palette.pastel['03'],
+        isAllDay: false,
+        title: '책읽기',
+        description: '책 2권 읽기'
     }
 ];
 
