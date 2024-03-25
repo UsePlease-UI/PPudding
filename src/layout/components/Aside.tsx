@@ -10,6 +10,7 @@ import { palette } from 'styles';
 import { Backdrop, Typography } from 'components/Base';
 import FlexBox from 'components/Base/FlexBox';
 import IconButton from 'components/Button/IconButton';
+import useMobile from 'hooks/useMobile';
 
 import { asideStyle } from './styles';
 
@@ -19,6 +20,7 @@ type AsideType = {
 };
 
 export default function Aside({ isVisible, onClose }: AsideType) {
+    const isMobile = useMobile();
     const [searchParams] = useSearchParams();
     const [selected, setSelected] = useState('');
 
@@ -42,7 +44,7 @@ export default function Aside({ isVisible, onClose }: AsideType) {
                     <FlexBox justifyContent="flex-end" customCSS={asideStyle.closeIconContainer}>
                         <IconButton
                             aria-label="close"
-                            size="medium"
+                            size={isMobile ? 'small' : 'medium'}
                             variant="text"
                             customCSS={asideStyle.iconButton}
                             onClick={(e) => {
@@ -56,11 +58,11 @@ export default function Aside({ isVisible, onClose }: AsideType) {
                     <div css={asideStyle.menuListContainer}>
                         <Typography
                             component="h2"
-                            fontSize={24}
+                            fontSize={isMobile ? 16 : 24}
                             fontWeight="900"
-                            align="center"
+                            align={isMobile ? 'left' : 'center'}
                             backgroundColor={palette.neutral.white}
-                            customCSS={asideStyle.shortHeading}
+                            customCSS={asideStyle.heading}
                         >
                             Kimyerim1935
                         </Typography>
@@ -92,11 +94,11 @@ export default function Aside({ isVisible, onClose }: AsideType) {
                     <div css={asideStyle.menuListContainer}>
                         <Typography
                             component="h2"
-                            fontSize={24}
+                            fontSize={isMobile ? 16 : 24}
                             fontWeight="900"
-                            align="center"
+                            align={isMobile ? 'left' : 'center'}
                             backgroundColor={palette.neutral.white}
-                            customCSS={asideStyle.longHeading}
+                            customCSS={asideStyle.heading}
                         >
                             akffkdahffkdgo77
                         </Typography>
@@ -128,11 +130,11 @@ export default function Aside({ isVisible, onClose }: AsideType) {
                     <div css={asideStyle.menuListContainer}>
                         <Typography
                             component="h2"
-                            fontSize={24}
+                            fontSize={isMobile ? 16 : 24}
                             fontWeight="900"
-                            align="center"
+                            align={isMobile ? 'left' : 'center'}
                             backgroundColor={palette.neutral.white}
-                            customCSS={asideStyle.demoHeading}
+                            customCSS={asideStyle.heading}
                         >
                             데모
                         </Typography>

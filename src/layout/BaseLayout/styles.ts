@@ -8,25 +8,25 @@ export const baseLayoutStyle = {
     }),
     main: css({
         marginTop: 80,
-        padding: 60,
+        padding: 20,
         transition: 'margin 0.5s ease-in-out',
-        '@media (max-width: 430px)': {
-            padding: 20
-        },
         '@media (max-width: 768px)': {
-            marginLeft: 0
+            marginTop: 56,
+            marginLeft: 0,
+            padding: 0
         }
     }),
     section: css({
         width: '100%',
         maxWidth: 1536,
         margin: '0 auto',
-        padding: 40,
+        padding: 20,
         borderRadius: 5,
         backgroundColor: palette.neutral.white,
-        '@media (max-width: 430px)': {
+        '@media (max-width: 768px)': {
+            minHeight: 'calc(100vh - 56px)',
             padding: 10,
-            minHeight: 'calc(100vh - 120px)'
+            borderRadius: 0
         },
         '@media (max-width: 1920px)': {
             overflow: 'hidden'
@@ -35,15 +35,15 @@ export const baseLayoutStyle = {
 };
 
 const stroke = keyframes`
-0% {
-    stroke-dashoffset: 350px;
-}
-50% {
-    stroke-dashoffset: 0px;
-}
-100% {
-    stroke-dashoffset: 350px;
-}
+    0% {
+        stroke-dashoffset: 350px;
+    }
+    50% {
+        stroke-dashoffset: 0px;
+    }
+    100% {
+        stroke-dashoffset: 350px;
+    }
 `;
 
 export const headerStyle = {
@@ -56,7 +56,11 @@ export const headerStyle = {
         height: 80,
         borderBottom: `1px dashed ${palette.neutral.white}`,
         backgroundColor: palette.primary[600],
-        padding: '0 20px'
+        padding: '0 20px',
+        '@media (max-width: 768px)': {
+            height: 56,
+            padding: '0 10px'
+        }
     }),
     headerContainer: {
         width: '100%',
@@ -79,9 +83,6 @@ export const headerStyle = {
         stroke: palette.secondary[600],
         strokeWidth: 2,
         strokeDasharray: 350,
-        animation: `${stroke} 3s infinite`,
-        '@media (max-width: 430px)': {
-            fontSize: 160
-        }
+        animation: `${stroke} 3s infinite`
     })
 };

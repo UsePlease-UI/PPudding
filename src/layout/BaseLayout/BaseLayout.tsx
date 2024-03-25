@@ -19,8 +19,13 @@ export default function BaseLayout() {
                 <FlexBox alignItems="center" justifyContent="space-between" customCSS={headerStyle.headerContainer}>
                     <Link to="/">
                         <Typography component="h1" customCSS={headerStyle.headerText}>
-                            <svg viewBox="0 0 1200 80" width="100%" height={80} css={headerStyle.svg}>
-                                <text x="0" y={isMobile ? '100' : '60'} css={headerStyle.svgText}>
+                            <svg
+                                viewBox={`0 0 1200 ${isMobile ? '56' : '80'}`}
+                                width="100%"
+                                height={isMobile ? 56 : 80}
+                                css={headerStyle.svg}
+                            >
+                                <text x="0" y={isMobile ? '56' : '60'} css={headerStyle.svgText}>
                                     {isMobile ? 'RC' : 'React Components'}
                                 </text>
                             </svg>

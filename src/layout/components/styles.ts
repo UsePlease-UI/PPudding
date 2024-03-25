@@ -4,7 +4,7 @@ import { palette } from 'styles';
 export const gnbStyle = {
     hamburgerButton: {
         position: 'absolute' as const,
-        right: 20,
+        right: 10,
         color: palette.primary[600],
         backgroundColor: palette.primary[50],
         border: `1px dashed ${palette.primary[600]}`
@@ -168,7 +168,12 @@ export const asideStyle = {
         overflowY: 'auto',
         borderRadius: 4,
         padding: 30,
-        gap: 20
+        gap: 20,
+        '@media (max-width:768px)': {
+            maxWidth: 'calc(500px - 40px)',
+            padding: 20,
+            margin: '0 auto'
+        }
     }),
     menuListContainer: css({
         width: '100%',
@@ -176,17 +181,14 @@ export const asideStyle = {
         borderRadius: 4,
         border: `1px solid ${palette.primary[600]}`
     }),
-    shortHeading: {
+    heading: {
         position: 'absolute' as const,
         left: 10,
         top: -18,
-        width: 180
-    },
-    longHeading: {
-        position: 'absolute' as const,
-        left: 10,
-        top: -18,
-        width: 210
+        width: 'max-content',
+        '@media (max-width:768px)': {
+            top: -13
+        }
     },
     menuList: css({
         width: '100%',
@@ -245,11 +247,5 @@ export const asideStyle = {
             color: palette.neutral.white,
             backgroundColor: palette.primary[600]
         }
-    }),
-    demoHeading: {
-        position: 'absolute' as const,
-        left: 10,
-        top: -18,
-        width: 60
-    }
+    })
 };

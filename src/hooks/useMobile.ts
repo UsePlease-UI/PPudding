@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const MOBILE_WIDTH = 430;
+const MOBILE_WIDTH = 768;
 
 const useMobile = () => {
     const [isMobile, setIsMobile] = useState(false);
