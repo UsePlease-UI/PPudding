@@ -1,4 +1,4 @@
-export const K_LIST = ['Autocomplete', 'Calender', 'Drag N Drop API', 'Pagination', 'Popover'];
+export const K_LIST = ['Autocomplete', 'Calender', 'Drag N Drop API', 'Pagination'];
 
 export const A_LIST = ['Button', 'Combobox', 'Data Display', 'Feedback', 'Form Input', 'Utilities'];
 

@@ -8,7 +8,6 @@
 
 -   Hovered
 -   Focused
--   Active
 -   Disabled
 -   Read Only
 

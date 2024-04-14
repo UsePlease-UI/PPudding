@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { expect } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
 
-import { Radio, RadioGroup } from 'components/Form/Radio';
+import { Radio, RadioGroup } from '@components/Form/Radio';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -11,56 +11,14 @@ const meta: Meta<typeof RadioGroup> = {
     title: 'Form/RadioGroup',
     component: RadioGroup,
     tags: ['autodocs'],
-    // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-    argTypes: {
-        children: {
-            type: { name: 'string', required: true },
-            description: '컴포넌트',
-            control: false,
-            table: {
-                type: { summary: 'React.ReactNode' },
-                category: 'required'
-            }
-        },
-        onChange: {
-            type: { name: 'function', required: true },
-            description: 'Change Event Handler',
-            control: true,
-            table: {
-                type: { summary: '(e: React.ChangeEvent<HTMLInputElement>) => void' },
-                category: 'required'
-            }
-        },
-        value: {
-            type: { name: 'string', required: false },
-            description: '선택된 라디오 버튼 값',
-            control: false,
-            table: {
-                type: { summary: 'string | number' },
-                category: 'optional'
-            }
-        },
-        isRow: {
-            type: { name: 'string', required: false },
-            description: '[CSS] flex direction (row | column)',
-            control: 'boolean',
-            table: {
-                type: { summary: 'boolean' },
-                category: 'optional'
-            }
-        },
-        customCSS: {
-            control: { type: 'object' },
-            description: 'Custom CSS',
-            table: {
-                category: 'style',
-                defaultValue: { summary: '{}' },
-                type: {
-                    summary: 'CSSInterpolation'
-                }
-            }
+    parameters: {
+        docs: {
+            argTypes: { exclude: ['children', 'onChange'] },
+            controls: { exclude: ['children', 'onChange'] }
         }
-    }
+    },
+    // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+    argTypes: {}
 };
 
 export default meta;
@@ -78,11 +36,8 @@ export const Default: Story = {
         );
     },
     args: {
-        // eslint-disable-next-line react/jsx-no-useless-fragment
-        children: <></>,
         value: 'red',
-        isRow: true,
-        customCSS: {}
+        isRow: true
     }
 };
 
@@ -91,7 +46,7 @@ Default.play = async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const radioGroup = canvas.getByRole('radiogroup');
     await expect(radioGroup).toBeInTheDocument();
-    await expect(radioGroup).toHaveStyle('flex-flexDirection: row');
+    await expect(radioGroup).toHaveStyle('flex-direction: row');
 
     const radio1 = canvas.getByRole('radio', { name: '빨강' });
     await expect(radio1).toBeChecked();

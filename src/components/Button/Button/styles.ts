@@ -1,87 +1,12 @@
-import { css } from '@emotion/react';
-
 import { ShapeType, SizeType, commonStyle } from '../styles';
 
 export const buttonStyle = {
-    button: css({
-        fontFamily: 'inherit'
-    }),
-    container: css({
-        textAlign: 'center'
-    }),
-    small: css({
-        minHeight: 32,
-        height: 'max-content',
-        minWidth: 48,
-        width: 'max-content',
-        padding: '4px 12px',
-        fontSize: 13,
-        fontWeight: 400,
-        '& svg': {
-            width: 14,
-            height: 14
-        }
-    }),
-    medium: css({
-        minHeight: 40,
-        height: 'max-content',
-        minWidth: 56,
-        width: 'max-content',
-        fontSize: 14,
-        fontWeight: 500,
-        padding: '4px 16px',
-        '& svg': {
-            width: 16,
-            height: 16
-        }
-    }),
-    large: css({
-        minHeight: 45,
-        height: 'max-content',
-        minWidth: 96,
-        width: 'max-content',
-        fontSize: 15,
-        fontWeight: 500,
-        padding: '4px 16px',
-        '& svg': {
-            width: 20,
-            height: 20
-        }
-    }),
-    startIcon: css({
-        display: 'inline-flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 20,
-        height: 20,
-        marginLeft: -2
-    }),
-    endIcon: css({
-        display: 'inline-flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 20,
-        height: 20,
-        marginRight: -2
-    }),
-    smallCircular: css({
-        minWidth: 32,
-        minHeight: 32,
-        borderRadius: '50%',
-        padding: 0
-    }),
-    mediumCircular: css({
-        minWidth: 40,
-        minHeight: 40,
-        borderRadius: '50%',
-        padding: 0
-    }),
-    largeCircular: css({
-        minWidth: 45,
-        minHeight: 45,
-        borderRadius: '50%',
-        padding: 0
-    })
+    small: 'min-h-32 h-max min-w-48 w-max px-12 py-4 text-14 leading-14 font-normal child-svg:w-16 child-svg:h-16',
+    medium: 'min-h-40 h-max min-w-56 w-max px-16 py-4 text-16 leading-16 font-medium child-svg:w-18 child-svg:h-18',
+    large: 'min-h-45 h-max min-w-96 w-max px-16 py-4 text-18 leading-18 font-medium child-svg:w-20 child-svg:h-20',
+    smallCircular: 'min-w-32 min-h-32 text-12 leading-12 rounded-full p-0',
+    mediumCircular: 'min-w-40 min-h-40 text-14 leading-14 rounded-full p-0',
+    largeCircular: 'min-w-45 min-h-45 text-16 leading-16 rounded-full p-0'
 };
 
 export function getSizeStyle(size?: SizeType) {

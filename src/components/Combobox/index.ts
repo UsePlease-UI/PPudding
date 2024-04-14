@@ -1,3 +1,2 @@
-export * from './Autocomplete';
-
-export * from './Select';
+export { default as Autocomplete } from './Autocomplete';
+export { default as Select } from './Select';

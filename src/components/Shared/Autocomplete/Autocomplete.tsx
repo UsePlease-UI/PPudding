@@ -1,23 +1,16 @@
-/** @jsxImportSource @emotion/react */
-import { useRef, useState, useId, ChangeEvent } from 'react';
+import { useRef, useState, useId, ChangeEvent, useEffect } from 'react';
 
-import { CustomCSSType } from 'styles';
-import palette from 'styles/palette';
+import { Backdrop, FlexBox, Typography, Listbox, ListboxItem } from '@components/Base';
+import { TextField } from '@components/Form';
+import { CommonListDataType } from '@components/types';
+import usePosition from '@components/usePosition';
 
-import { Backdrop, Typography, Listbox, OptionType, ListboxItem } from 'components/Base';
-import Box from 'components/Base/Box';
-import FlexBox from 'components/Base/FlexBox';
-import usePosition from 'components/Combobox/usePosition';
-import TextField from 'components/Form/TextField';
-
-import { autoCompleteStyle } from './styles';
-
-type AutocompleteType = CustomCSSType & {
+type AutocompleteType = {
     name: string;
-    options: OptionType[];
+    options: CommonListDataType[];
     inputValue: string;
     onChange: (newValue: string | number) => void;
-    onSelect: (newOption?: OptionType) => void;
+    onSelect: (newOption?: CommonListDataType) => void;
     labelText?: string;
     helperText?: string;
 };
@@ -34,25 +27,37 @@ type AutocompleteType = CustomCSSType & {
  *  @returns JSX.Element
  */
 export default function Autocomplete(props: AutocompleteType) {
-    const { labelText, helperText, options, name, inputValue, onChange, onSelect, customCSS } = props;
+    const { labelText, helperText, options, name, inputValue, onChange, onSelect } = props;
 
-    const inputRef = useRef<HTMLInputElement | null>(null);
+    const listContainerRef = useRef<HTMLDivElement>(null);
 
     const [isVisible, setIsVisible] = useState<boolean>(false);
-    const [selected, setSelected] = useState<OptionType>();
+    const [selected, setSelected] = useState<CommonListDataType>();
 
     const labelId = useId();
     const listBoxId = useId();
     const inputId = useId();
 
-    const { top, left, marginTop, maxWidth } = usePosition({
+    const position = usePosition({
         inputId,
         listBoxId,
         isVisible,
         totalLength: options.length
     });
 
-    const handleSelect = (newOption: OptionType) => {
+    useEffect(() => {
+        const element = listContainerRef.current;
+        if (isVisible && element) {
+            const { top, left, marginTop, maxWidth } = position;
+            element.style.top = `${top}px`;
+            element.style.left = `${left}px`;
+            element.style.marginTop = `${marginTop}px`;
+            const list = element.getElementsByTagName('ul')[0];
+            list.style.maxWidth = `${maxWidth}px`;
+        }
+    }, [isVisible, position]);
+
+    const handleSelect = (newOption: CommonListDataType) => {
         setSelected(newOption);
         onSelect(newOption);
         onChange(newOption.label);
@@ -76,10 +81,15 @@ export default function Autocomplete(props: AutocompleteType) {
     };
 
     return (
-        <Box customCSS={customCSS}>
-            <FlexBox alignItems="center" justifyContent="center" gap={5} customCSS={autoCompleteStyle.inputContainer}>
+        <div>
+            <FlexBox
+                alignItems="items-center"
+                justifyContent="justify-center"
+                gap="gap-5"
+                width="w-full"
+                backgroundColor="bg-white"
+            >
                 <TextField
-                    ref={inputRef}
                     aria-label={!labelText ? `${name}` : undefined}
                     id={inputId}
                     labelText={labelText}
@@ -93,36 +103,21 @@ export default function Autocomplete(props: AutocompleteType) {
                     value={inputValue}
                     onChange={handleChange}
                     onClick={handleClick}
-                    customCSS={autoCompleteStyle.input}
                 />
             </FlexBox>
             {isVisible && (
                 <Backdrop isOpen={isVisible} onClose={handleClick}>
-                    <Box
-                        customCSS={{
-                            ...autoCompleteStyle.listContainer,
-                            ...{
-                                top,
-                                left,
-                                marginTop,
-                                '& > ul': {
-                                    maxWidth
-                                }
-                            }
-                        }}
-                    >
+                    <div ref={listContainerRef} className="fixed w-full">
                         <Listbox
                             id={listBoxId}
                             labelId={labelText ? labelId : undefined}
-                            aria-label={labelText ? undefined : `${name}`}
-                            name={name}
+                            aria-label={labelText ? undefined : name}
                             value={selected?.value || ''}
                             options={options}
                             renderItem={(option) => (
                                 <ListboxItem
                                     key={option.label}
                                     currentValue={selected?.value || ''}
-                                    name={name}
                                     label={
                                         inputValue
                                             ? (option.label as string)
@@ -133,14 +128,16 @@ export default function Autocomplete(props: AutocompleteType) {
                                                           key={letter + idx}
                                                           component="span"
                                                           color={
-                                                              new RegExp(`(${inputValue})`, 'gi').test(letter)
-                                                                  ? palette.primary[600]
-                                                                  : palette.neutral.black
+                                                              selected?.value === option.value
+                                                                  ? 'text-white'
+                                                                  : new RegExp(`(${inputValue})`, 'gi').test(letter)
+                                                                    ? 'text-primary-600'
+                                                                    : 'text-black'
                                                           }
                                                           fontWeight={
                                                               new RegExp(`(${inputValue})`, 'gi').test(letter)
-                                                                  ? '700'
-                                                                  : '400'
+                                                                  ? 'font-semibold'
+                                                                  : 'font-normal'
                                                           }
                                                       >
                                                           {letter}
@@ -153,9 +150,9 @@ export default function Autocomplete(props: AutocompleteType) {
                                 />
                             )}
                         />
-                    </Box>
+                    </div>
                 </Backdrop>
             )}
-        </Box>
+        </div>
     );
 }

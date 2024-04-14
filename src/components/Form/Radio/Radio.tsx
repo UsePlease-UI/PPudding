@@ -1,19 +1,16 @@
-/** @jsxImportSource @emotion/react */
 import { InputHTMLAttributes, forwardRef, useId } from 'react';
 
-import { css } from '@emotion/react';
-import { CustomCSSType, visuallyHidden } from 'styles';
+import { joinClassNames } from '@utils/format';
 
-import Typography from 'components/Base/Typography';
+import { SizeType, getSizeStyle } from './styles';
 
-import { SizeType, getSizeStyle, radioStyle } from './styles';
-
-type BaseType = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & CustomCSSType;
+type BaseType = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>;
 
 type RadioType = BaseType & {
-    name: string;
     label: string;
+    name: string;
     value: string;
+    isDisabled?: boolean;
     size?: SizeType;
     currentValue?: string;
 };
@@ -24,45 +21,74 @@ type RadioType = BaseType & {
  *  @param label 라디오 텍스트 값
  *  @param value 라디오 버튼 값
  *  @param size [CSS] 라디오 크기 (small | medium | large)
- *  @param customCSS 커스텀 CSS [optional]
  *  @returns JSX.Element
  */
-const Radio = forwardRef<HTMLInputElement, RadioType>(function createRadio(
-    { name, label, value, size = 'medium', currentValue, onChange, customCSS, ...props },
+const Radio = forwardRef<HTMLInputElement, RadioType>(function Radio(
+    { name, label, value, size = 'medium', isDisabled, currentValue, onChange, ...props },
     ref
 ) {
     const id = useId();
 
     return (
-        <label htmlFor={id} css={css([radioStyle.label, getSizeStyle(size).container, customCSS])}>
-            <span>
+        <label
+            htmlFor={id}
+            className={joinClassNames(
+                'group inline-flex w-max cursor-pointer items-center',
+                isDisabled && 'pointer-events-none'
+            )}
+        >
+            <span
+                className={joinClassNames(
+                    getSizeStyle(size).container,
+                    'inline-flex items-center group-focus-within:rounded-full group-focus-within:bg-blue-gray-100 group-hover:rounded-full group-hover:bg-blue-gray-50'
+                )}
+            >
                 <input
                     {...props}
                     id={id}
                     ref={ref}
                     type="radio"
+                    disabled={isDisabled}
                     name={name}
                     value={value}
                     checked={value !== undefined ? value === currentValue : undefined}
-                    onChange={onChange}
-                    css={css([visuallyHidden, radioStyle.input])}
+                    onChange={(e) => {
+                        e.currentTarget.blur();
+                        if (onChange) {
+                            onChange(e);
+                        }
+                    }}
+                    onClick={(e) => e.currentTarget.blur()}
+                    className="peer sr-only"
                 />
-                <span css={css([radioStyle.checkedRadio, getSizeStyle(size).default])}>
-                    <span />
+                <span
+                    className={joinClassNames(
+                        'hidden items-center justify-center rounded-full border-2 border-primary-600 bg-white peer-checked:inline-flex',
+                        getSizeStyle(size).default,
+                        isDisabled && 'border-gray-400'
+                    )}
+                >
+                    <span
+                        className={joinClassNames('block rounded-full bg-primary-600', isDisabled && 'bg-gray-400')}
+                    />
                 </span>
-                <span css={css([radioStyle.radio, getSizeStyle(size).default])} />
+                <span
+                    className={joinClassNames(
+                        'block rounded-full border-2 border-primary-600 bg-white peer-checked:hidden',
+                        getSizeStyle(size).default,
+                        isDisabled && 'border-gray-400'
+                    )}
+                />
             </span>
-            <Typography
-                component="span"
-                fontWeight="500"
-                lineHeight="1.5"
-                customCSS={{
-                    ...radioStyle.labelText,
-                    ...getSizeStyle(size).text
-                }}
+            <span
+                className={joinClassNames(
+                    'font-medium leading-normal',
+                    getSizeStyle(size).text,
+                    isDisabled && 'text-gray-400'
+                )}
             >
                 {label}
-            </Typography>
+            </span>
         </label>
     );
 });

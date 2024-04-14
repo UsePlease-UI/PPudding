@@ -1,34 +1,29 @@
-/** @jsxImportSource @emotion/react */
 import { ReactNode } from 'react';
 
-import type { CustomCSSType } from 'styles/types';
+import { FlexBox } from '@components/Base';
 
-import FlexBox from 'components/Base/FlexBox';
-
-type CheckboxGroupType = CustomCSSType & {
+type CheckboxGroupType = {
     children: ReactNode;
     isRow?: boolean;
-    gap?: number;
+    gap?: string;
 };
 
 /**
  *  [UI Component] Checkbox Group Component
- *  @param children 컴포넌트
- *  @param isRow [CSS] flex direction (row | column)
- *  @param gap [CSS] flex gap
- *  @param customCSS 커스텀 CSS [optional]
+ *  @param children ReactNode
+ *  @param isRow [CSS] Flex Direction (row | column)
+ *  @param gap [CSS] Flex Gap
  *  @returns JSX.Element
  */
 export default function CheckboxGroup(props: CheckboxGroupType) {
-    const { children, isRow = true, gap = 10, customCSS } = props;
+    const { children, isRow = true, gap = 'gap-10' } = props;
 
     return (
         <FlexBox
-            alignItems={isRow ? 'center' : 'unset'}
-            justifyContent={isRow ? 'flex-start' : 'unset'}
-            flexDirection={isRow ? 'row' : 'column'}
+            alignItems={isRow ? 'items-center' : undefined}
+            justifyContent={isRow ? 'justify-start' : undefined}
+            flexDirection={isRow ? 'flex-row' : 'flex-col'}
             gap={gap}
-            customCSS={customCSS}
         >
             {children}
         </FlexBox>

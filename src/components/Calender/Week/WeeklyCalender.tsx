@@ -1,9 +1,12 @@
-import { FlexBox, Typography } from 'components/Base';
-import WeekDays from 'components/Calender/Week/WeekDays';
-import { useCalender } from 'components/useCalender';
+import { FlexBox, Typography } from '@components/Base';
+import { useCalender } from '@components/useCalender';
 
+import WeekDays from './WeekDays';
+
+// TODO
 export default function WeeklyCalender() {
     const { date, getWeeks } = useCalender();
+
     const week = getWeeks()
         .map((elem, index) => {
             if (elem.includes(String(date))) {
@@ -16,10 +19,10 @@ export default function WeeklyCalender() {
     const weeklyWeek = Number(week);
 
     return (
-        <FlexBox gap={20}>
+        <FlexBox gap="gap-20">
             {getWeeks()[weeklyWeek].map((day) => (
-                <WeekDays>
-                    <Typography component="span" customCSS={{ color: day === String(date) ? 'tomato' : '' }}>
+                <WeekDays key={day}>
+                    <Typography component="span" color={day === String(date) ? 'text-red-600' : undefined}>
                         {day}
                     </Typography>
                 </WeekDays>

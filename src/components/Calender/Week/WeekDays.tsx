@@ -1,16 +1,9 @@
 import { ReactNode } from 'react';
 
-import { Typography } from 'components/Base';
-import { WeekDaysStyle } from 'components/Calender/styles';
-
-type weekDaysType = {
+type WeekDaysType = {
     children: ReactNode;
 };
 
-export default function WeekDays({ children }: weekDaysType) {
-    return (
-        <Typography component="span" width="100%" height="100px" customCSS={WeekDaysStyle.title}>
-            {children}
-        </Typography>
-    );
+export default function WeekDays({ children }: WeekDaysType) {
+    return <div className="inline-block h-100 w-full bg-white">{children}</div>;
 }

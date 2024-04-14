@@ -1,33 +1,31 @@
-/** @jsxImportSource @emotion/react */
-import { MouseEvent } from 'react';
+import { HTMLAttributes, MouseEvent } from 'react';
 
-import { css } from '@emotion/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
-import type { CustomCSSType } from 'styles/types';
+import { Typography } from '@components/Base';
 
-import Typography from 'components/Base/Typography';
-import IconButton from 'components/Button/IconButton';
+import { DismissFilled } from '@fluentui/react-icons';
+import { joinClassNames } from '@utils/format';
 
-import { chipStyle } from './styles';
+import { VariantType, getVariantStyle } from '../styles';
 
-type ChipType = CustomCSSType & {
+type ChipType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
     label: string;
     value: string;
+    variant?: VariantType;
     isDeletable?: boolean;
     onDelete?: (value: string) => void;
 };
 
 /**
  *  [UI Component] Chip Component
- *  @param label 텍스트 값
- *  @param value 값
- *  @param isDeletable 삭제 가능여부 [optional]
- *  @param onDelete Delete Handler [optional]
- *  @param customCSS 커스텀 CSS [optional]
+ *  @param label Chip Label
+ *  @param value Chip Value
+ *  @param variant [CSS] Chip Style Variant (outlined | contained | text)
+ *  @param isDeletable Is Deletable? [optional]
+ *  @param onDelete Delete Event Handler [optional]
  *  @returns JSX.Element
  */
 export default function Chip(props: ChipType) {
-    const { label, value, isDeletable = true, onDelete, customCSS } = props;
+    const { label, value, isDeletable = true, variant = 'outlined', onDelete } = props;
 
     const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
         if (isDeletable && onDelete) {
@@ -40,21 +38,30 @@ export default function Chip(props: ChipType) {
 
     return (
         <div
-            css={css([
-                chipStyle.chip,
-                {
-                    padding: isDeletable ? '4px 8px 4px 14px' : '4px 12px'
-                },
-                customCSS
-            ])}
+            className={joinClassNames(
+                'flex w-max items-center gap-8 rounded-full',
+                variant === 'outlined' && 'border border-primary-600 bg-white',
+                variant === 'text' && 'border-[0.3px] border-gray-200 bg-white',
+                variant === 'contained' && 'border border-primary-100 bg-primary-100',
+                isDeletable ? 'pointer-events-auto py-4 pl-14 pr-8' : 'pointer-events-none px-12 py-4'
+            )}
         >
-            <Typography component="span" fontSize={14} fontWeight="600" lineHeight="1.5">
+            <Typography component="span" fontSize="text-16" fontWeight="font-medium" lineHeight="leading-normal">
                 {label}
             </Typography>
             {isDeletable && (
-                <IconButton type="button" aria-label="delete" onClick={handleClick} customCSS={chipStyle.button}>
-                    <XMarkIcon />
-                </IconButton>
+                <button
+                    type="button"
+                    aria-label="delete"
+                    onClick={handleClick}
+                    className={joinClassNames(
+                        'group flex cursor-pointer items-center justify-center rounded-full p-2',
+                        getVariantStyle(variant),
+                        variant === 'text' && 'border border-gray-200'
+                    )}
+                >
+                    <DismissFilled className="!block h-12 w-12 text-inherit" />
+                </button>
             )}
         </div>
     );

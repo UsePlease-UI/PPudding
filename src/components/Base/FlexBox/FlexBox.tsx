@@ -1,45 +1,52 @@
-/** @jsxImportSource @emotion/react */
 import { HTMLAttributes, ReactNode, forwardRef } from 'react';
 
-import { css } from '@emotion/react';
-import type { CustomCSSType } from 'styles/types';
+import { joinClassNames } from '@utils/format';
 
-import { flexBoxStyle } from './styles';
+import { BaseStyleType } from '../types';
 
-type BaseType = HTMLAttributes<HTMLDivElement> & CustomCSSType;
-
-type FlexBoxType = BaseType & {
-    children: ReactNode;
-    flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
-    alignItems?: string;
-    justifyContent?: string;
-    gap?: number;
-    flex?: string;
-    flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse' | 'unset';
-};
+type FlexBoxType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> &
+    BaseStyleType & {
+        children: ReactNode;
+        flexDirection?: string;
+        alignItems?: string;
+        justifyContent?: string;
+        gap?: string;
+        flex?: string;
+        flexWrap?: string;
+    };
 
 /**
- *  [Base] Flex Component
+ *  [Base Component] FlexBox
  *  @param children 컴포넌트
- *  @param flexDirection [CSS] flex-direction
- *  @param alignItems [CSS] align-items
- *  @param justifyContent [CSS] justify-content
- *  @param gap [CSS] gap
- *  @param flex [CSS] flex
- *  @param flexWrap [CSS] flex wrap
- *  @param customCSS 커스텀 CSS [optional]
+ *  @param flexDirection [TailwindCSS] flex-direction
+ *  @param alignItems [TailwindCSS] align-items
+ *  @param justifyContent [TailwindCSS] justify-content
+ *  @param gap [TailwindCSS] gap
+ *  @param flex [TailwindCSS] flex
+ *  @param flexWrap [TailwindCSS] flex wrap
  *  @returns JSX.Element
  */
-const FlexBox = forwardRef<HTMLDivElement, FlexBoxType>(function createFlexBox(props, ref) {
+const FlexBox = forwardRef<HTMLDivElement, FlexBoxType>(function FlexBox(props, ref) {
     const {
         children,
-        flexDirection = 'row',
-        alignItems = 'unset',
-        justifyContent = 'unset',
-        gap = 0,
-        flex = 'none',
-        flexWrap = 'unset',
-        customCSS,
+        flexDirection,
+        alignItems,
+        justifyContent,
+        gap,
+        flex,
+        flexWrap,
+        width,
+        minWidth,
+        maxWidth,
+        height,
+        minHeight,
+        maxHeight,
+        backgroundColor,
+        padding,
+        margin,
+        border,
+        borderColor,
+        borderRadius,
         ...rest
     } = props;
 
@@ -47,18 +54,27 @@ const FlexBox = forwardRef<HTMLDivElement, FlexBoxType>(function createFlexBox(p
         <div
             ref={ref}
             {...rest}
-            css={css([
-                flexBoxStyle,
-                {
-                    justifyContent,
-                    alignItems,
-                    flexDirection,
-                    gap,
-                    flex,
-                    flexWrap
-                },
-                customCSS
-            ])}
+            className={joinClassNames(
+                'flex',
+                justifyContent,
+                alignItems,
+                flexDirection,
+                gap,
+                flex,
+                flexWrap,
+                width,
+                minWidth,
+                maxWidth,
+                height,
+                minHeight,
+                maxHeight,
+                backgroundColor,
+                padding,
+                margin,
+                border,
+                borderColor,
+                borderRadius
+            )}
         >
             {children}
         </div>

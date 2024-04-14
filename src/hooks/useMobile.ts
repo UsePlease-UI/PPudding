@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react';
 
-const MOBILE_WIDTH = 768;
+const TABLET_WIDTH = 768;
+const MOBILE_WIDTH = 320;
 
 const useMobile = () => {
+    const [isTablet, setIsTablet] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         if (window.innerWidth <= MOBILE_WIDTH) {
             setIsMobile(true);
+            setIsTablet(true);
+        } else if (window.innerWidth <= TABLET_WIDTH) {
+            setIsTablet(true);
         } else {
+            setIsTablet(false);
             setIsMobile(false);
         }
     }, []);
@@ -17,7 +23,10 @@ const useMobile = () => {
         const handleResize = () => {
             if (window.innerWidth <= MOBILE_WIDTH) {
                 setIsMobile(true);
+            } else if (window.innerWidth <= TABLET_WIDTH) {
+                setIsTablet(true);
             } else {
+                setIsTablet(false);
                 setIsMobile(false);
             }
         };
@@ -29,7 +38,7 @@ const useMobile = () => {
         };
     }, []);
 
-    return isMobile;
+    return { isMobile, isTablet };
 };
 
 export default useMobile;

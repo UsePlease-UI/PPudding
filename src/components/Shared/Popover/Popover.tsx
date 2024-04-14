@@ -1,12 +1,8 @@
-/** @jsxImportSource @emotion/react */
-import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useRef } from 'react';
 
-import { css } from '@emotion/react';
-import { CSSInterpolation } from '@emotion/serialize';
+import { ClickAwayListener } from '@components/Base';
 
-import ClickAway from 'components/Base/ClickAwayListener';
-
-import { popoverStyle } from './styles';
+import { joinClassNames } from '@utils/format';
 
 type PopoverType = {
     children: ReactNode;
@@ -17,7 +13,6 @@ type PopoverType = {
         vertical: 'top' | 'bottom';
         horizontal: 'left' | 'right';
     };
-    customCSS?: CSSInterpolation;
 };
 
 /**
@@ -27,18 +22,24 @@ type PopoverType = {
  *  @param onClose Click Away Listener
  *  @param anchorElement HTMLElement
  *  @param anchorPosition { vertical : top | bottom; horizontal : left | right }
- *  @param customCSS 커스텀 CSS [optional]
  *  @returns JSX.Element
  */
-export default function Popover({ children, isOpen, anchorPosition, anchorElement, onClose, customCSS }: PopoverType) {
+export default function Popover({ children, isOpen, anchorPosition, anchorElement, onClose }: PopoverType) {
     const ref = useRef<HTMLDivElement>(null);
-    const [dimensions, setDimensions] = useState<DOMRect>();
 
     const handlePosition = useCallback(() => {
-        if (anchorElement) {
-            setDimensions(anchorElement.getBoundingClientRect());
+        if (anchorElement && ref.current) {
+            const dimensions = anchorElement.getBoundingClientRect();
+            ref.current.style.top = dimensions.bottom - dimensions.height - ref.current.offsetHeight + 'px';
+            ref.current.style.left = dimensions.left + 'px';
+            if (anchorPosition.vertical === 'bottom') {
+                ref.current.style.top = dimensions.top + dimensions.height + 'px';
+            }
+            if (anchorPosition.horizontal === 'right') {
+                ref.current.style.left = dimensions.right - ref.current.offsetWidth + 'px';
+            }
         }
-    }, [anchorElement]);
+    }, [anchorElement, anchorPosition]);
 
     useEffect(() => {
         handlePosition();
@@ -51,27 +52,13 @@ export default function Popover({ children, isOpen, anchorPosition, anchorElemen
     }, [handlePosition]);
 
     return (
-        <ClickAway isOpen={isOpen} element={ref.current} anchorElement={anchorElement} onClose={onClose}>
+        <ClickAwayListener isOpen={isOpen} element={ref.current} anchorElement={anchorElement} onClose={onClose}>
             <div
                 ref={ref}
-                css={css([
-                    popoverStyle,
-                    {
-                        display: isOpen ? 'block' : 'none',
-                        top: (dimensions?.bottom || 0) - (dimensions?.height || 0) - (ref.current?.offsetHeight || 0),
-                        ...(anchorPosition.vertical === 'bottom' && {
-                            top: (dimensions?.top || 0) + (dimensions?.height || 0)
-                        }),
-                        left: dimensions?.left,
-                        ...(anchorPosition.horizontal === 'right' && {
-                            left: (dimensions?.right || 0) - (ref.current?.offsetWidth || 0)
-                        })
-                    },
-                    customCSS
-                ])}
+                className={joinClassNames('fixed z-10000 rounded bg-white p-10 shadow-01', isOpen ? 'block' : 'hidden')}
             >
                 {children}
             </div>
-        </ClickAway>
+        </ClickAwayListener>
     );
 }

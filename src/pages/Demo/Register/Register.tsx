@@ -1,16 +1,11 @@
-/** @jsxImportSource @emotion/react */
 import { FormEvent, useState } from 'react';
 
-import { Typography, FlexBox, Box } from 'components/Base';
-import Button from 'components/Button/Button';
-import { ToggleButton, ToggleButtonGroup } from 'components/Button/ToggleButton';
-import Select from 'components/Combobox/Select';
-import { Checkbox, CheckboxGroup } from 'components/Form/Checkbox';
-import { Radio, RadioGroup } from 'components/Form/Radio';
-import TextField from 'components/Form/TextField';
+import { Typography, FlexBox } from '@components/Base';
+import { Button, ToggleButton, ToggleButtonGroup } from '@components/Button';
+import { Select } from '@components/Combobox';
+import { Radio, RadioGroup, Checkbox, CheckboxGroup, TextField } from '@components/Form';
 
 import { DAY_OPTIONS, MONTH_OPTIONS, PASSWORD_REG_EXP, YEAR_OPTIONS } from './constants';
-import { registerStyle } from './styles';
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -42,9 +37,15 @@ const Register = () => {
     };
 
     return (
-        <Box customCSS={registerStyle.container}>
-            <form onSubmit={handleSubmit} css={registerStyle.form}>
-                <FlexBox flexDirection="column" gap={10} customCSS={registerStyle.formInnerContainer}>
+        <FlexBox
+            alignItems="items-center"
+            justifyContent="justify-center"
+            width="w-full"
+            height="h-full"
+            backgroundColor="bg-white"
+        >
+            <form onSubmit={handleSubmit} className="flex w-full items-center justify-center">
+                <FlexBox flexDirection="flex-col" gap="gap-20" width="w-full" maxWidth="max-w-[425px]" padding="p-20">
                     <TextField
                         labelText="닉네임"
                         helperText="닉네임은 최소 10자 이상 최대 100자 이하로 입력해 주세요"
@@ -82,7 +83,7 @@ const Register = () => {
                         onChange={(e) => setPassword(e.currentTarget.value)}
                         isFullWidth
                     />
-                    <FlexBox gap={20}>
+                    <FlexBox gap="gap-20">
                         <Select
                             id="year-select"
                             aria-labelledby="year"
@@ -114,39 +115,47 @@ const Register = () => {
                             onChange={(e) => setDay(e.currentTarget.value)}
                         />
                     </FlexBox>
-                    <FlexBox flexDirection="column" gap={5}>
-                        <Typography component="span" fontSize={12} fontWeight="600">
+                    <FlexBox flexDirection="flex-col" gap="gap-5">
+                        <Typography component="span" fontSize="text-12" fontWeight="font-semibold">
                             성별
                         </Typography>
                         <RadioGroup value={gender} onChange={(e) => setGender(e.currentTarget.value)}>
-                            <Radio name="gender" label="선택안함" value="N/A" />
-                            <Radio name="gender" label="여성" value="F" />
-                            <Radio name="gender" label="남성" value="M" />
+                            <Radio size="medium" name="gender" label="선택안함" value="N/A" />
+                            <Radio size="medium" name="gender" label="여성" value="F" />
+                            <Radio size="medium" name="gender" label="남성" value="M" />
                         </RadioGroup>
                     </FlexBox>
-                    <FlexBox flexDirection="column" gap={5}>
-                        <Typography component="span" fontSize={12} fontWeight="600">
+                    <FlexBox flexDirection="flex-col" gap="gap-5">
+                        <Typography component="span" fontSize="text-12" fontWeight="font-semibold">
                             이메일 수신여부
                         </Typography>
                         <ToggleButtonGroup value={useYn} onChange={(e) => setUseYn(e.currentTarget.value)}>
-                            <ToggleButton size="small" name="useYn" value="Y">
+                            <ToggleButton size="large" name="useYn" value="Y">
                                 사용
                             </ToggleButton>
-                            <ToggleButton size="small" name="useYn" value="N">
+                            <ToggleButton size="large" name="useYn" value="N">
                                 미사용
                             </ToggleButton>
                         </ToggleButtonGroup>
                     </FlexBox>
-                    <FlexBox flexDirection="column" gap={10}>
-                        <Checkbox label="전체 동의" value="terms" checked={terms && policy} onChange={handleCheck} />
-                        <CheckboxGroup isRow={false} gap={5}>
+                    <FlexBox flexDirection="flex-col" gap="gap-10">
+                        <Checkbox
+                            size="medium"
+                            label="전체 동의"
+                            value="terms"
+                            checked={terms && policy}
+                            onChange={handleCheck}
+                        />
+                        <CheckboxGroup isRow={false} gap="gap-5">
                             <Checkbox
+                                size="medium"
                                 label="이용약관 동의"
                                 value="terms"
                                 checked={terms}
                                 onChange={() => setTerms((prev) => !prev)}
                             />
                             <Checkbox
+                                size="medium"
                                 label="(선택) 마케팅 동의"
                                 value="policy"
                                 checked={policy}
@@ -154,18 +163,12 @@ const Register = () => {
                             />
                         </CheckboxGroup>
                     </FlexBox>
-                    <Button
-                        isDisabled={isDisabled}
-                        type="submit"
-                        variant="contained"
-                        size="large"
-                        customCSS={registerStyle.button}
-                    >
+                    <Button isDisabled={isDisabled} type="submit" variant="contained" size="large" isFullWidth>
                         REGISTER
                     </Button>
                 </FlexBox>
             </form>
-        </Box>
+        </FlexBox>
     );
 };
 

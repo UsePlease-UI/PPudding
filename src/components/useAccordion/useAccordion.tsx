@@ -34,7 +34,7 @@ export const useAccordion = () => {
  *  @param onChange Change Event Handler [optional]
  *  @returns JSX.Element
  */
-export function AccordionProvider({ children, isExpanded, isDisabled = false, onChange }: AccordionProviderType) {
+export function AccordionProvider({ children, isExpanded, isDisabled, onChange }: AccordionProviderType) {
     const accordionId = useId();
     const [selected, setSelected] = useState<boolean>(isExpanded ?? false);
 
@@ -49,7 +49,12 @@ export function AccordionProvider({ children, isExpanded, isDisabled = false, on
     );
 
     const context: AccordionContextType = useMemo(
-        () => ({ accordionId, isExpanded: isDisabled ? true : selected, isDisabled, onChange: handleChange }),
+        () => ({
+            accordionId,
+            isExpanded: isDisabled ? true : selected,
+            isDisabled: isDisabled || false,
+            onChange: handleChange
+        }),
         [accordionId, isExpanded, isDisabled, handleChange]
     );
 

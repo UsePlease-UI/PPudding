@@ -1,18 +1,11 @@
-/** @jsxImportSource @emotion/react */
 import { ReactNode, useMemo, useState } from 'react';
 
-import {
-    ChevronDoubleLeftIcon,
-    ChevronDoubleRightIcon,
-    ChevronLeftIcon,
-    ChevronRightIcon
-} from '@heroicons/react/24/solid';
+import { IconButton, ShapeType, SizeType, VariantType } from '@components/Button';
 
-import Button from 'components/Button/Button';
-import IconButton from 'components/Button/IconButton';
-import { ShapeType, SizeType, VariantType } from 'components/Button/styles';
+import { ArrowNextFilled, ArrowPreviousFilled, ChevronLeftFilled, ChevronRightFilled } from '@fluentui/react-icons';
+import { joinClassNames } from '@utils/format';
 
-import { getActiveVariant, getButtonSizeStyle, paginationStyle } from './styles';
+import { getActiveVariant } from './styles';
 
 type PaginationType = {
     variant?: VariantType;
@@ -125,7 +118,7 @@ export default function Pagination(props: PaginationType) {
 
     return (
         <nav aria-label="pagination">
-            <ul css={paginationStyle.list}>
+            <ul className="flex items-center gap-10">
                 {hasFirstIcon && (
                     <li>
                         <IconButton
@@ -136,7 +129,7 @@ export default function Pagination(props: PaginationType) {
                             isDisabled={page === 1}
                             onClick={handlePrevPageGroup}
                         >
-                            {firstIcon || <ChevronDoubleLeftIcon />}
+                            {firstIcon || <ArrowPreviousFilled />}
                         </IconButton>
                     </li>
                 )}
@@ -149,25 +142,28 @@ export default function Pagination(props: PaginationType) {
                         isDisabled={page === 1}
                         onClick={handlePreviousPage}
                     >
-                        {prevIcon || <ChevronLeftIcon />}
+                        {prevIcon || <ChevronLeftFilled />}
                     </IconButton>
                 </li>
                 {pageList.map((currentPage) => (
                     <li key={currentPage}>
-                        <Button
+                        <IconButton
                             size={size}
                             variant={getActiveVariant(page === currentPage, variant)}
                             shape={shape}
                             aria-label={page === currentPage ? undefined : `page ${currentPage}`}
                             aria-current={page === currentPage ? 'page' : undefined}
                             onClick={() => handlePageChange(currentPage)}
-                            customCSS={{
-                                ...getButtonSizeStyle(size),
-                                ...(variant === 'text' && page === currentPage && paginationStyle.activeButton)
-                            }}
                         >
-                            {currentPage}
-                        </Button>
+                            <p
+                                className={joinClassNames(
+                                    'flex items-center justify-center',
+                                    variant === 'text' && page === currentPage && 'font-semibold text-primary-600'
+                                )}
+                            >
+                                {currentPage}
+                            </p>
+                        </IconButton>
                     </li>
                 ))}
                 <li>
@@ -179,7 +175,7 @@ export default function Pagination(props: PaginationType) {
                         isDisabled={page === totalPage}
                         onClick={handleNextPage}
                     >
-                        {nextIcon || <ChevronRightIcon />}
+                        {nextIcon || <ChevronRightFilled />}
                     </IconButton>
                 </li>
                 {hasLastIcon && (
@@ -192,7 +188,7 @@ export default function Pagination(props: PaginationType) {
                             isDisabled={page === totalPage}
                             onClick={handleLastPageGroup}
                         >
-                            {lastIcon || <ChevronDoubleRightIcon />}
+                            {lastIcon || <ArrowNextFilled />}
                         </IconButton>
                     </li>
                 )}

@@ -1,8 +1,8 @@
 import { expect, jest } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
 
-import { PASSWORD_REG_EXP } from 'pages/Demo/Register/constants';
-import RegisterPage from 'pages/Demo/Register/Register';
+import { PASSWORD_REG_EXP } from '@pages/Demo/Register/constants';
+import RegisterPage from '@pages/Demo/Register/Register';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

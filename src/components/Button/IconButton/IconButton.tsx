@@ -1,13 +1,10 @@
-/** @jsxImportSource @emotion/react */
 import { ButtonHTMLAttributes, MouseEvent, ReactNode, forwardRef } from 'react';
 
-import { css } from '@emotion/react';
-import type { CustomCSSType } from 'styles/types';
+import { joinClassNames } from '@utils/format';
 
-import { iconButtonStyle } from './styles';
 import { IconButtonSizeType, VariantType, getVariantStyle, getSizeStyle, ShapeType, getShapeStyle } from '../styles';
 
-type BaseType = ButtonHTMLAttributes<HTMLButtonElement> & CustomCSSType;
+type BaseType = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'>;
 
 type IconButtonType = BaseType & {
     children: ReactNode;
@@ -26,8 +23,8 @@ type IconButtonType = BaseType & {
  *  @param shape [CSS] 버튼 형태 (rounded | square | circular)
  *  @returns JSX.Element
  */
-const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(function createIconButton(props, ref) {
-    const { type = 'button', children, isDisabled, size, variant, shape, onClick, customCSS, ...rest } = props;
+const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(function IconButton(props, ref) {
+    const { type = 'button', children, isDisabled, size, variant, shape, onClick, ...rest } = props;
 
     const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
         e.currentTarget.blur();
@@ -44,13 +41,12 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(function create
             type={type}
             disabled={isDisabled}
             onClick={handleClick}
-            css={css([
-                iconButtonStyle.iconButton,
+            className={joinClassNames(
+                'h-max w-max font-inherit child-svg:block',
                 getSizeStyle(size),
                 getVariantStyle(variant),
-                getShapeStyle(shape),
-                customCSS
-            ])}
+                getShapeStyle(shape)
+            )}
         >
             {children}
         </button>

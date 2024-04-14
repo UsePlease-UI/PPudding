@@ -1,4 +1,6 @@
-import { ToggleButton } from 'components/Button/ToggleButton';
+import { ToggleButton } from '@components/Button/ToggleButton';
+
+import { TextBoldFilled, TextItalicFilled } from '@fluentui/react-icons';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -12,54 +14,13 @@ const meta = {
             controls: { exclude: ['currentValue', 'onChange'] }
         }
     },
-    argTypes: {
-        name: {
-            type: { name: 'function', required: true },
-            control: { type: 'text' },
-            description: 'ToggleButton 이름',
-            table: {
-                category: 'required',
-                type: { summary: 'string' }
-            }
-        },
-        value: {
-            type: { name: 'function', required: true },
-            control: false,
-            description: 'ToggleButton 값',
-            table: { category: 'required', type: { summary: 'string' } }
-        },
-        currentValue: {
-            control: false,
-            description: '현재 선택된 Toggle Button 값',
-            table: {
-                category: 'optional',
-                type: { summary: 'string' }
-            }
-        },
-        onChange: {
-            control: false,
-            description: 'Change Event Handler',
-            table: {
-                category: 'optional',
-                type: { summary: 'function' }
-            }
-        },
-        customCSS: {
-            control: { type: 'object' },
-            description: 'Custom CSS',
-            table: {
-                category: 'style',
-                defaultValue: { summary: '{}' },
-                type: { summary: 'CSSInterpolation' }
-            }
-        }
-    }
+    argTypes: {}
 } satisfies Meta<typeof ToggleButton>;
 
 export default meta;
 type Story = StoryObj<typeof ToggleButton>;
 
-export const Selected: Story = {
+export const TextSelected: Story = {
     render: (args) => {
         return <ToggleButton {...args}>Banana</ToggleButton>;
     },
@@ -67,11 +28,12 @@ export const Selected: Story = {
         name: 'fruits',
         value: 'banana',
         currentValue: 'banana',
-        customCSS: {}
+        disabled: true,
+        size: 'large'
     }
 };
 
-export const NotSelected: Story = {
+export const TextNotSelected: Story = {
     render: (args) => {
         return <ToggleButton {...args}>Orange</ToggleButton>;
     },
@@ -79,6 +41,41 @@ export const NotSelected: Story = {
         name: 'fruits',
         value: 'orange',
         currentValue: 'banana',
-        customCSS: {}
+        disabled: true,
+        size: 'large'
+    }
+};
+
+export const IconSelected: Story = {
+    render: (args) => {
+        return (
+            <ToggleButton {...args}>
+                <TextBoldFilled />
+            </ToggleButton>
+        );
+    },
+    args: {
+        name: 'text',
+        value: 'bold',
+        currentValue: 'bold',
+        disabled: true,
+        size: 'large'
+    }
+};
+
+export const IconNotSelected: Story = {
+    render: (args) => {
+        return (
+            <ToggleButton {...args}>
+                <TextItalicFilled />
+            </ToggleButton>
+        );
+    },
+    args: {
+        name: 'text',
+        value: 'italic',
+        currentValue: 'bold',
+        disabled: true,
+        size: 'large'
     }
 };

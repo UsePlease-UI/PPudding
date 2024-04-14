@@ -1,60 +1,52 @@
-/** @jsxImportSource @emotion/react */
 import { HTMLAttributes, MouseEvent, ReactNode, forwardRef } from 'react';
 
-import { css } from '@emotion/react';
-import { CustomCSSType } from 'styles';
+import { CommonListDataType } from '@components/types';
 
 import ListboxItem from './ListboxItem';
-import { listBoxStyle } from './styles';
+import { listStyle } from './styles';
 
-export type OptionType = { [key: string]: string | number };
-
-type BaseType = Omit<HTMLAttributes<HTMLUListElement>, 'onClick'> & CustomCSSType;
+type BaseType = Omit<HTMLAttributes<HTMLUListElement>, 'onClick' | 'className'>;
 
 type ListboxType = BaseType & {
     id: string;
-    labelId?: string;
-    name: string;
     value: string | number;
-    options: OptionType[];
+    options: CommonListDataType[];
+    labelId?: string;
     onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
-    renderItem?: (option: OptionType) => ReactNode;
+    renderItem?: (option: CommonListDataType) => ReactNode;
 };
 
 /**
- *  Listbox Component
- *  @param id Listbox Id
- *  @param name Autocomplete Name
+ *  [Base Component] Listbox Component
+ *  @param id [웹 접근성] Listbox Id
  *  @param value Selected value
  *  @param options Option List
- *  @param labelId Label Id [optional]
+ *  @param labelId [웹 접근성] Label Id [optional]
  *  @param onClick Click Event Handler for list option [optional]
  *  @param renderItem Custom Listbox Item Component [optional]
  *  @returns JSX.Element
  */
-const Listbox = forwardRef<HTMLUListElement, ListboxType>(function createListbox(
-    { id, labelId, value, options, renderItem, customCSS, name, onClick, ...props },
-    ref
-) {
+const Listbox = forwardRef<HTMLUListElement, ListboxType>(function Listbox(props, ref) {
+    const { id, labelId, value, options, renderItem, onClick, ...rest } = props;
+
     return (
         <ul
-            {...props}
+            {...rest}
             ref={ref}
             id={id}
             role="listbox"
             aria-labelledby={labelId}
             tabIndex={-1}
-            css={css([listBoxStyle.list, customCSS])}
+            className={listStyle.list}
         >
             {options.map(
                 (option) =>
                     renderItem?.(option) || (
                         <ListboxItem
                             key={`${option.label}-${option.value}`}
-                            name={name}
-                            currentValue={value}
                             label={option.label}
                             value={option.value}
+                            currentValue={value}
                             onClick={onClick}
                         />
                     )
