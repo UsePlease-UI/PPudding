@@ -78,9 +78,9 @@ export default {
             boxShadow: {
                 '01': '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
                 '02': '1px 1px 10px 1px #e3ecfb',
-                '03': '0 0 8px 0px #eeeeee',
+                '03': '0px 0px 8px 0px #eeeeee',
                 '04': '5px 5px 5px 5px rgba(0,0,0,0.2), -7px 1px 11px 1px rgba(0,0,0,0.14), 0px -6px 14px -10px rgba(0,0,0,0.12)',
-                inset01: 'inset 0px -1px 0px 0 #eeeeee'
+                inset01: 'inset 0px -1px 0px 0px #eeeeee'
             },
             colors: {
                 primary: {
