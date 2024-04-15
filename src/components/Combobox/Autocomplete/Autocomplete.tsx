@@ -1,52 +1,37 @@
-/** @jsxImportSource @emotion/react */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import { useRef, useEffect, useState, ChangeEvent, Fragment } from 'react';
+import { useRef, useEffect, useState, ChangeEvent, Fragment, useId } from 'react';
 
-import { css } from '@emotion/react';
+import { FlexBox, listStyle } from '@components/Base';
+import { TextField } from '@components/Form';
 
-import FlexBox from 'components/Base/FlexBox';
+import { joinClassNames } from '@utils/format';
 
-import { autoCompleteStyle } from './styles';
-
-type ListType = {
-    idx: number;
-    label: string;
-    value: string;
-};
+import { CommonListDataType } from '../../types';
 
 type AutocompleteType = {
-    inputValue: string;
     label: string;
+    inputValue: string;
+    listArr: CommonListDataType[];
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    onSelect: (el: ListType) => void;
-    listArr: ListType[];
+    onSelect: (el: CommonListDataType) => void;
 };
 
 /**
  *  [UI Component] Autocomplete Component
- *  @param inputValue: input component에서 사용되는 value
- *  @param label: autocomplete에서 사용할 label
- *  @param onChange: input component event listener
- *  @param onSelect: autocomplete 하위 list event listener
- *  @param listArr: autocomplete 하위 list item 타입
+ *  @param inputValue Input component에서 사용되는 value
+ *  @param label Autocomplete에서 사용할 label
+ *  @param onChange Input component event listener
+ *  @param onSelect Autocomplete 하위 list event listener
+ *  @param listArr Autocomplete 하위 list item 타입
  *  @returns JSX.Element
  */
-
-export default function Autocomplete(props: AutocompleteType) {
-    const { inputValue, onChange, label, listArr, onSelect } = props;
+export default function Autocomplete({ inputValue, onChange, label, listArr, onSelect }: AutocompleteType) {
     const listRef = useRef<HTMLUListElement | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    const handleFocus = () => {
-        setIsOpen(true);
-    };
+    const listboxId = useId();
 
-    const handleBlur = () => {
-        setIsOpen(false);
-    };
-
-    const handleItemClick = (e: ListType) => {
+    const handleItemClick = (e: CommonListDataType) => {
         onSelect(e);
         setIsOpen(false);
     };
@@ -73,51 +58,58 @@ export default function Autocomplete(props: AutocompleteType) {
     }, [isOpen]);
 
     return (
-        <div>
-            <label htmlFor={label} css={css({ display: 'none' })} />
+        <label htmlFor={label} className="block w-full">
             <FlexBox
-                justifyContent="center"
-                alignItems="center"
-                flexDirection="row"
-                gap={5}
-                customCSS={autoCompleteStyle.flexBoxCustom}
+                justifyContent="justify-center"
+                alignItems="items-center"
+                flexDirection="flex-row"
+                gap="gap-5"
+                width="w-full"
             >
-                <input
+                <TextField
+                    isFullWidth
                     id={label}
                     ref={inputRef}
                     type="text"
                     role="combobox"
                     aria-autocomplete="list"
-                    aria-expanded="true"
-                    aria-controls="listbox"
-                    autoComplete="off"
+                    aria-expanded={Boolean(listArr.length > 0 && isOpen)}
+                    aria-controls={listboxId}
+                    autoComplete="new-password"
                     value={inputValue}
-                    onChange={onChange}
-                    onFocus={handleFocus}
-                    onBlur={handleBlur}
-                    css={autoCompleteStyle.input}
+                    onChange={(e) => {
+                        onChange(e);
+                        if (e.currentTarget.value) {
+                            setIsOpen(true);
+                        } else {
+                            setIsOpen(false);
+                        }
+                    }}
                 />
             </FlexBox>
             {Boolean(listArr.length > 0 && isOpen) && (
-                <ul ref={listRef} id="listbox" role="listbox" aria-label="States" css={autoCompleteStyle.ul}>
-                    {listArr.map((el) => {
-                        return (
-                            <li key={`list-${el.idx}`} css={autoCompleteStyle.listItem}>
-                                <button type="button" onMouseDown={() => handleItemClick(el)}>
-                                    {[...el.label].map((letter, idx) =>
-                                        inputValue.includes(letter) ? (
-                                            <span css={css({ color: 'hotPink', fontWeight: 700 })}>{letter}</span>
-                                        ) : (
-                                            // eslint-disable-next-line react/no-array-index-key
-                                            <Fragment key={`letter-${idx}`}>{letter}</Fragment>
-                                        )
-                                    )}
-                                </button>
-                            </li>
-                        );
-                    })}
+                <ul id={listboxId} ref={listRef} role="listbox" aria-label={label} className={listStyle.list}>
+                    {listArr.map((el) => (
+                        <li key={`list-${el.idx}`} className={joinClassNames('group px-12', listStyle.listItem)}>
+                            <button
+                                type="button"
+                                onClick={() => handleItemClick(el)}
+                                className={joinClassNames(listStyle.listItemButton)}
+                            >
+                                {[...el.label].map((letter, idx) =>
+                                    inputValue.includes(letter) ? (
+                                        <span key={`letter-${idx}`} className="font-semibold text-primary-600">
+                                            {letter}
+                                        </span>
+                                    ) : (
+                                        <Fragment key={`letter-${idx}`}>{letter}</Fragment>
+                                    )
+                                )}
+                            </button>
+                        </li>
+                    ))}
                 </ul>
             )}
-        </div>
+        </label>
     );
 }

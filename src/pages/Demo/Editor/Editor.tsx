@@ -1,7 +1,10 @@
-/** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
-import { css } from '@emotion/react';
+import { FlexBox } from '@components/Base';
+import { IconButton, ToggleButton, ToggleButtonGroup } from '@components/Button';
+import Popover from '@components/Shared/Popover';
+import usePopover from '@components/Shared/usePopover';
+
 import {
     ColorFilled,
     TextAlignCenterRegular,
@@ -13,29 +16,29 @@ import {
     TextItalicRegular,
     TextUnderlineRegular
 } from '@fluentui/react-icons';
-import { palette } from 'styles';
-
-import { Box, FlexBox } from 'components/Base';
-import IconButton from 'components/Button/IconButton';
-import { ToggleButton, ToggleButtonGroup } from 'components/Button/ToggleButton';
-import Popover from 'components/Shared/Popover';
-import usePopOver from 'components/Shared/usePopover/usePopover';
+import { joinClassNames } from '@utils/format';
 
 import { COLOR_LIST, DEFAULT_VALUE } from './constants';
-import { editorStyle } from './styles';
 
 type TextAlignType = 'center' | 'right' | 'left' | 'justify';
 
 const Editor = () => {
     const [style, setStyle] = useState<string[]>([]);
     const [align, setAlign] = useState<TextAlignType>();
-    const [color, setColor] = useState(palette.primary[600]);
+    const [color, setColor] = useState('text-primary-600');
 
-    const { isOpen, anchorElement, handleOpen, handleClose } = usePopOver();
+    const { isOpen, anchorElement, handleOpen, handleClose } = usePopover();
 
     return (
-        <Box customCSS={editorStyle.container}>
-            <FlexBox gap={10} justifyContent="flex-end" flexWrap="wrap" customCSS={editorStyle.toolbarContainer}>
+        <div className="under-tablet:p-10">
+            <FlexBox
+                gap="gap-10"
+                justifyContent="justify-end"
+                flexWrap="flex-wrap"
+                borderRadius="rounded-t"
+                padding="p-10"
+                backgroundColor="bg-blue-gray-100"
+            >
                 <ToggleButtonGroup
                     value={style}
                     onChange={(e) => {
@@ -57,7 +60,7 @@ const Editor = () => {
                         <TextUnderlineRegular />
                     </ToggleButton>
                 </ToggleButtonGroup>
-                <FlexBox gap={5}>
+                <FlexBox gap="gap-5">
                     <IconButton variant="outlined" onClick={handleOpen}>
                         <TextColorFilled />
                     </IconButton>
@@ -68,15 +71,15 @@ const Editor = () => {
                         onClose={handleClose}
                     >
                         <FlexBox
-                            alignItems="center"
-                            justifyContent="center"
-                            gap={10}
-                            flexWrap="wrap"
-                            css={editorStyle.colorContainer}
+                            alignItems="items-center"
+                            justifyContent="justify-center"
+                            gap="gap-10"
+                            flexWrap="flex-wrap"
+                            maxWidth="max-w-120"
                         >
                             {COLOR_LIST.map((val) => (
                                 <IconButton key={val} variant="outlined" onClick={() => setColor(val)}>
-                                    <ColorFilled css={{ color: val }} />
+                                    <ColorFilled className={val} />
                                 </IconButton>
                             ))}
                         </FlexBox>
@@ -89,16 +92,16 @@ const Editor = () => {
                         setAlign((prev) => (prev === newValue ? '' : newValue) as TextAlignType);
                     }}
                 >
-                    <ToggleButton name="textAlign" value="left">
+                    <ToggleButton name="textAlign" value="text-left">
                         <TextAlignLeftRegular />
                     </ToggleButton>
-                    <ToggleButton name="textAlign" value="center">
+                    <ToggleButton name="textAlign" value="text-center">
                         <TextAlignCenterRegular />
                     </ToggleButton>
-                    <ToggleButton name="textAlign" value="right">
+                    <ToggleButton name="textAlign" value="text-right">
                         <TextAlignRightRegular />
                     </ToggleButton>
-                    <ToggleButton name="textAlign" value="justify">
+                    <ToggleButton name="textAlign" value="text-justify">
                         <TextAlignJustifyRegular />
                     </ToggleButton>
                     <ToggleButton name="textAlign" value="">
@@ -106,21 +109,21 @@ const Editor = () => {
                     </ToggleButton>
                 </ToggleButtonGroup>
             </FlexBox>
-            <textarea
-                css={css([
-                    {
+            <div className="h-[calc(100vh-158px)] w-full tablet:h-500">
+                <textarea
+                    className={joinClassNames(
+                        'h-full w-full resize-none rounded-b border border-t-0 border-blue-gray-100 p-20 outline-none',
                         color,
-                        textAlign: align,
-                        fontWeight: style.includes('bold') ? 600 : 400,
-                        fontStyle: style.includes('italic') ? 'italic' : '',
-                        textDecoration: style.includes('underline') ? 'underline' : ''
-                    },
-                    editorStyle.textarea
-                ])}
-                readOnly
-                defaultValue={DEFAULT_VALUE}
-            />
-        </Box>
+                        align,
+                        style.includes('bold') ? 'font-semibold' : 'font-normal',
+                        style.includes('italic') && 'italic',
+                        style.includes('underline') && 'underline'
+                    )}
+                    readOnly
+                    defaultValue={DEFAULT_VALUE}
+                />
+            </div>
+        </div>
     );
 };
 

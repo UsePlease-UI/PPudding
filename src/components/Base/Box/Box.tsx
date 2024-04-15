@@ -1,21 +1,68 @@
-/** @jsxImportSource @emotion/react */
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
-import { css } from '@emotion/react';
-import type { CustomCSSType } from 'styles/types';
+import { joinClassNames } from '@utils/format';
 
-type BoxType = CustomCSSType & {
-    children: ReactNode;
-};
+import { BaseStyleType } from '../types';
+
+export type BoxType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> &
+    BaseStyleType & {
+        children?: ReactNode;
+    };
 
 /**
- *  Styled Div Component
+ *  [Base Component] Box
  *  @param children ReactNode
- *  @param customCSS 커스텀 css [optional]
+ *  @param width [TailwindCSS] Width
+ *  @param minWidth [TailwindCSS] Min Width
+ *  @param maxWidth [TailwindCSS] Max Width
+ *  @param height [TailwindCSS] Height
+ *  @param minHeight [TailwindCSS] Min Height
+ *  @param maxHeight [TailwindCSS] Max Height
+ *  @param margin [TailwindCSS] Margin
+ *  @param padding [TailwindCSS] Padding
+ *  @param border [TailwindCSS] Border Width + Border Style
+ *  @param borderColor [TailwindCSS] Border Color
+ *  @param borderRadius [TailwindCSS] Border Radius
+ *  @param backgroundColor [TailwindCSS] Background Color
  *  @returns JSX.Element
  */
-const Box = ({ children, customCSS }: BoxType) => {
-    return <div css={css(customCSS)}>{children}</div>;
+const Box = (props: BoxType) => {
+    const {
+        width,
+        minWidth,
+        maxWidth,
+        height,
+        minHeight,
+        maxHeight,
+        backgroundColor,
+        padding,
+        margin,
+        border,
+        borderColor,
+        borderRadius,
+        children
+    } = props;
+
+    return (
+        <div
+            className={joinClassNames(
+                width,
+                minWidth,
+                maxWidth,
+                height,
+                minHeight,
+                maxHeight,
+                backgroundColor,
+                padding,
+                margin,
+                border,
+                borderColor,
+                borderRadius
+            )}
+        >
+            {children}
+        </div>
+    );
 };
 
 export default Box;

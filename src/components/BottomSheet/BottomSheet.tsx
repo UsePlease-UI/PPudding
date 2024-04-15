@@ -1,34 +1,42 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/** @jsxImportSource @emotion/react */
+import { useRef } from 'react';
 
-import BottomSheetChildren, { type BottomSheetChildrenType } from 'components/BottomSheet/BottomSheetChildren';
+import { ClickAwayListener } from '@components/Base';
 
-import { bottomSheetStyle } from './styles';
+import { joinClassNames } from '@utils/format';
 
-type BottomSheetType = {
-    isCloseClickOutside?: boolean;
+import BottomSheetContents, { BottomSheetContentsType } from './BottomSheetContents';
+
+type BottomSheetType = BottomSheetContentsType & {
     isOpen: boolean;
-} & BottomSheetChildrenType;
+    canClickOutside?: boolean;
+};
 
 /**
  *  BottomSheet Component
- *  @param isCloseClickOutside boolean
- *  @param isOpen component open state
- *  @param onClose component close handler
+ *  @param canClickOutside Bottom Sheet can close when clicked outside
+ *  @param isOpen Open State
+ *  @param onClose Close Event Handler
  *  @returns JSX.Element
  */
+export default function BottomSheet({ canClickOutside, isOpen, onClose, children }: BottomSheetType) {
+    const ref = useRef<HTMLDivElement>(null);
 
-export default function BottomSheet({ isCloseClickOutside = false, isOpen, onClose, children }: BottomSheetType) {
-    return isOpen ? (
-        isCloseClickOutside ? (
-            <div css={bottomSheetStyle.overlayWrapper} onClick={onClose}>
-                <div style={{ backgroundColor: 'white', borderRadius: '5px' }}>
-                    <BottomSheetChildren onClose={onClose}>{children}</BottomSheetChildren>
-                </div>
-            </div>
-        ) : (
-            <BottomSheetChildren onClose={onClose}>{children}</BottomSheetChildren>
-        )
-    ) : null;
+    return canClickOutside ? (
+        <ClickAwayListener element={ref.current} isOpen={isOpen} onClose={onClose}>
+            <div
+                role="presentation"
+                className={joinClassNames(
+                    'fixed bottom-0 left-0 right-0 top-0 z-100 bg-black/10',
+                    !isOpen && 'sr-only'
+                )}
+            />
+            <BottomSheetContents ref={ref} isOpen={isOpen} onClose={onClose}>
+                {children}
+            </BottomSheetContents>
+        </ClickAwayListener>
+    ) : (
+        <BottomSheetContents isOpen={isOpen} onClose={onClose}>
+            {children}
+        </BottomSheetContents>
+    );
 }

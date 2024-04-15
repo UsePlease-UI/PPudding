@@ -1,18 +1,14 @@
-/** @jsxImportSource @emotion/react */
-import { ReactNode } from 'react';
+import { ReactElement, ReactNode, cloneElement } from 'react';
 
-import { css } from '@emotion/react';
-import type { CustomCSSType } from 'styles/types';
+import { FlexBox } from '@components/Base';
+import { useTab } from '@components/useTab';
 
-import FlexBox from 'components/Base/FlexBox';
-import { useTab } from 'components/useTab';
+import { joinClassNames } from '@utils/format';
 
-import { tabStyle } from './styles';
-
-type TabItemType = CustomCSSType & {
-    label: string;
+type TabItemType = {
     value: number;
     index: number;
+    label?: string | ReactNode;
     icon?: ReactNode;
     onChange?: (newValue: number) => void;
 };
@@ -30,14 +26,13 @@ function a11yProps(index: number, value: number) {
 /**
  *  [UI Component] Tab Item Component
  *  @param value 선택된 탭 인덱스
- *  @param label 탭 Text
  *  @param index 탭 인덱스
- *  @param icon 아이콘  [optional]
- *  @param customCSS 커스텀 CSS [optional]
+ *  @param label 탭 Text [optional]
+ *  @param icon 아이콘 [optional]
  *  @returns JSX.Element
  */
 export default function TabItem(props: TabItemType) {
-    const { label, value, index, icon, customCSS, onChange } = props;
+    const { label, value, index, icon, onChange } = props;
     const { linkRefs } = useTab();
 
     const handleClick = (newValue: number) => {
@@ -52,30 +47,34 @@ export default function TabItem(props: TabItemType) {
             {...a11yProps(index, value)}
             ref={linkRefs[index - 1]}
             onClick={() => handleClick(index)}
-            css={css([tabStyle.button, customCSS])}
+            className="flex h-full min-h-56 w-full cursor-pointer flex-col items-center justify-center"
         >
-            <FlexBox alignItems="center" justifyContent="center">
-                {!!icon && <span css={tabStyle.icon}>{icon}</span>}
-                <p
-                    css={css([
-                        tabStyle.text,
-                        {
-                            fontWeight: value === index ? 700 : 500
-                        }
-                    ])}
-                >
-                    {label}
-                </p>
+            <FlexBox alignItems="items-center" justifyContent="justify-center">
+                {icon && (
+                    <span className="my-12 block h-18 w-18">
+                        {cloneElement(icon as ReactElement, { className: '!block w-18 h-18 text-primary-50' })}
+                    </span>
+                )}
+                {label &&
+                    (typeof label === 'string' ? (
+                        <p
+                            className={joinClassNames(
+                                'mx-4 my-9 text-16 font-medium text-primary-50',
+                                value === index ? 'font-bold' : 'font-medium'
+                            )}
+                        >
+                            {label}
+                        </p>
+                    ) : (
+                        label
+                    ))}
             </FlexBox>
             <div
                 id={`tab-indicator-${index}`}
-                css={css([
-                    tabStyle.indicator,
-                    {
-                        transition: 'all ease-in-out 0.1s',
-                        visibility: value === index ? 'visible' : 'hidden'
-                    }
-                ])}
+                className={joinClassNames(
+                    'h-2 w-4/5 rounded-full bg-primary-100 transition-all duration-75',
+                    value === index ? 'visible' : 'invisible'
+                )}
             />
         </button>
     );

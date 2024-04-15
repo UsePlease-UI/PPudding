@@ -1,24 +1,17 @@
-/** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
-import { palette } from 'styles';
+import { FlexBox, Typography } from '@components/Base';
+import { Button, Chip } from '@components/Button';
+import { Radio, RadioGroup, Checkbox, CheckboxGroup, TextField } from '@components/Form';
+import Popover from '@components/Shared/Popover';
+import usePopover from '@components/Shared/usePopover';
 
-import { FlexBox, Typography } from 'components/Base';
-import Button from 'components/Button/Button';
-import Chip from 'components/Button/Chip';
-import { Checkbox, CheckboxGroup } from 'components/Form/Checkbox';
-import { Radio, RadioGroup } from 'components/Form/Radio';
-import TextField from 'components/Form/TextField';
-import Popover from 'components/Shared/Popover';
-import usePopOver from 'components/Shared/usePopover';
-import useMobile from 'hooks/useMobile';
-
-import { searchStyle } from './styles';
+import { ChevronDownFilled, ChevronUpFilled } from '@fluentui/react-icons';
+import useMobile from '@hooks/useMobile';
 
 const Search = () => {
-    const isMobile = useMobile();
-    const { isOpen, anchorElement, handleOpen, handleClose } = usePopOver();
+    const { isTablet } = useMobile();
+    const { isOpen, anchorElement, handleOpen, handleClose } = usePopover();
 
     const [state, setState] = useState('Y');
     const [selected, setSelected] = useState<string[]>([]);
@@ -28,27 +21,30 @@ const Search = () => {
     });
 
     return (
-        <FlexBox flexDirection="column">
+        <FlexBox flexDirection="flex-col">
             <FlexBox
-                gap={10}
-                flexDirection={isMobile ? 'column' : 'row'}
+                width="w-full"
+                padding="px-20"
+                gap="gap-10"
+                flexDirection={isTablet ? 'flex-col' : 'flex-row'}
                 justifyContent="center"
-                alignItems={isMobile ? 'flex-start' : 'center'}
-                customCSS={searchStyle.container}
+                alignItems={isTablet ? 'flex-start' : 'center'}
             >
-                <Typography fontSize={24} fontWeight="900" color={palette.primary[600]} customCSS={searchStyle.logo}>
-                    RC
-                </Typography>
+                <div className="shrink-0 rounded border border-primary-600 px-8">
+                    <Typography fontSize="text-24" fontWeight="font-black" color="text-primary-600">
+                        RC
+                    </Typography>
+                </div>
                 <TextField type="search" aria-label="검색" placeholder="검색어를 입력해 주세요" />
             </FlexBox>
-            <FlexBox justifyContent="flex-end" flex="1" customCSS={searchStyle.moreButtonContainer}>
+            <FlexBox justifyContent="justify-end" flex="flex-1" width="w-full" padding="px-20">
                 <Button
+                    size="small"
                     hasEndIcon
                     icon={
-                        isOpen ? <ChevronUpIcon width={12} height={12} /> : <ChevronDownIcon width={12} height={12} />
+                        isOpen ? <ChevronUpFilled className="h-12 w-12" /> : <ChevronDownFilled className="h-12 w-12" />
                     }
                     onClick={handleOpen}
-                    customCSS={searchStyle.button}
                 >
                     더보기
                 </Button>
@@ -58,13 +54,12 @@ const Search = () => {
                 anchorPosition={{ vertical: 'bottom', horizontal: 'right' }}
                 anchorElement={anchorElement}
                 onClose={handleClose}
-                customCSS={searchStyle.popover}
             >
-                <FlexBox flexDirection="column" customCSS={searchStyle.popoverContent}>
-                    <Typography component="p" fontWeight="600" gutterBottom={10}>
+                <FlexBox flexDirection="flex-col" width="w-200" padding="p-10" borderRadius="rounded-lg">
+                    <Typography component="p" fontWeight="600" margin="mb-10">
                         브랜드
                     </Typography>
-                    <CheckboxGroup isRow={false} gap={10} customCSS={searchStyle.marginBottom20}>
+                    <CheckboxGroup isRow={false} gap="gap-10">
                         <Checkbox
                             label="Channel"
                             value="channel"
@@ -114,29 +109,30 @@ const Search = () => {
                             }}
                         />
                     </CheckboxGroup>
-                    <Typography component="p" fontWeight="600" gutterBottom={10}>
+                    <Typography component="p" fontWeight="600" margin="mt-20 mb-10">
                         판매여부
                     </Typography>
-                    <FlexBox customCSS={searchStyle.marginBottom20}>
-                        <RadioGroup gap={20} value={state} onChange={(e) => setState(e.currentTarget.value)}>
+                    <FlexBox margin="mb-20">
+                        <RadioGroup gap="gap-20" value={state} onChange={(e) => setState(e.currentTarget.value)}>
                             <Radio name="state" label="판매 중" value="Y" />
                             <Radio name="state" label="품절" value="N" />
                         </RadioGroup>
                     </FlexBox>
-                    <Button
-                        variant="outlined"
-                        size="medium"
-                        customCSS={searchStyle.marginLeftAuto}
-                        onClick={() => {
-                            handleClose();
-                            setConfirmed({ state, selected });
-                        }}
-                    >
-                        적용
-                    </Button>
+                    <div className="ml-auto w-max">
+                        <Button
+                            variant="outlined"
+                            size="medium"
+                            onClick={() => {
+                                handleClose();
+                                setConfirmed({ state, selected });
+                            }}
+                        >
+                            적용
+                        </Button>
+                    </div>
                 </FlexBox>
             </Popover>
-            <FlexBox gap={10} flexWrap="wrap" customCSS={searchStyle.marginHorizontal20}>
+            <FlexBox gap="gap-10" flexWrap="flex-wrap" margin="my-20" padding="px-20">
                 {confirmed.state && (
                     <Chip
                         label={confirmed.state === 'Y' ? '판매 중' : '품절'}
@@ -149,10 +145,9 @@ const Search = () => {
                     confirmed.selected.map((val) => (
                         <Chip
                             key={val}
-                            label={val}
+                            label={val.toUpperCase()}
                             value={val}
                             isDeletable
-                            customCSS={searchStyle.chipText}
                             onDelete={() =>
                                 setConfirmed((prev) => ({ ...prev, selected: prev.selected.filter((v) => v !== val) }))
                             }

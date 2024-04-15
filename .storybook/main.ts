@@ -1,34 +1,33 @@
-import remarkGfm from 'remark-gfm';
+import { mergeConfig } from 'vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
-import type { StorybookConfig } from '@storybook/react-webpack5';
+import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
-    stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+    stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
     addons: [
         '@storybook/addon-links',
         '@storybook/addon-essentials',
-        '@storybook/preset-create-react-app',
+        '@chromatic-com/storybook',
         '@storybook/addon-interactions',
-        '@storybook/addon-styling',
-        '@storybook/addon-a11y',
-        {
-            name: '@storybook/addon-docs',
-            options: {
-                mdxPluginOptions: {
-                    mdxCompileOptions: {
-                        remarkPlugins: [remarkGfm]
-                    }
-                }
-            }
-        }
+        '@storybook/addon-themes',
+        '@storybook/addon-a11y'
     ],
     framework: {
-        name: '@storybook/react-webpack5',
+        name: '@storybook/react-vite',
         options: {}
     },
     docs: {
         autodocs: 'tag'
     },
-    staticDirs: ['../public']
+    core: {
+        disableTelemetry: true // 👈 Disables telemetry
+    },
+    // https://github.com/aleclarson/vite-tsconfig-paths/issues/65#issuecomment-1221271942
+    async viteFinal(config) {
+        return mergeConfig(config, {
+            plugins: [tsconfigPaths()]
+        });
+    }
 };
 export default config;

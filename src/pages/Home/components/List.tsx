@@ -1,12 +1,10 @@
-/** @jsxImportSource @emotion/react */
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { BeakerIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
-import { palette } from 'styles';
+import { FlexBox, Typography } from '@components/Base';
+import IconButton from '@components/Button/IconButton';
 
-import { Box, FlexBox, Typography } from 'components/Base';
-import IconButton from 'components/Button/IconButton';
+import { ChevronLeftFilled, ChevronRightFilled } from '@fluentui/react-icons';
 
 type ListType = {
     data: string[];
@@ -30,87 +28,61 @@ export default function List({ data }: ListType) {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, []);
+    }, [data.length]);
 
-    const list = useMemo(() => data.slice((page - 1) * offset, page * offset), [page, offset]);
+    const list = useMemo(() => data.slice((page - 1) * offset, page * offset), [data, page, offset]);
 
     return (
-        <FlexBox flexDirection="column" customCSS={{ width: '100%', margin: '0 auto' }}>
+        <FlexBox flexDirection="flex-col" width="w-full" margin="mx-auto">
             <FlexBox
-                gap={list.length < 3 ? 10 : 0}
-                customCSS={{
-                    justifyContent: offset === 1 ? 'center' : list.length >= 3 ? 'space-between' : 'flex-start'
-                }}
+                gap={list.length < 3 ? 'gap-10' : 'gap-0'}
+                justifyContent={
+                    offset === 1 ? 'justify-center' : list.length >= 3 ? 'justify-between' : 'justify-start'
+                }
             >
                 {list.map((name) => (
                     <FlexBox
                         key={name}
-                        flexDirection="column"
-                        customCSS={{
-                            width: offset === 1 ? '100%' : `calc(${(1 / offset) * 100}% - 10px)`,
-                            border: `1px dashed ${palette.primary[600]}`
+                        flexDirection="flex-col"
+                        style={{
+                            width: offset === 1 ? '100%' : `calc(${(1 / offset) * 100}% - 10px)`
                         }}
                     >
-                        <Box customCSS={{ position: 'relative', paddingBottom: '57.69%' }}>
-                            <Typography
-                                fontSize={28}
-                                fontWeight="900"
-                                align="center"
-                                color={palette.primary[50]}
-                                backgroundColor={palette.primary[600]}
-                                customCSS={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    width: '100%',
-                                    height: '100%',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    textTransform: 'uppercase',
-                                    borderBottom: `1px dashed ${palette.neutral.white}`,
-                                    '&:hover': {
-                                        color: palette.primary[600],
-                                        backgroundColor: palette.primary[50],
-                                        borderBottom: `1px dashed ${palette.primary[600]}`
-                                    }
-                                }}
-                            >
-                                {name}
-                            </Typography>
-                        </Box>
-                        <FlexBox gap={10} alignItems="center" justifyContent="flex-end" customCSS={{ padding: 5 }}>
-                            {/* <Link title="가이드 보기" to={`/guide/${name}`}>
-                                <DocumentTextIcon
-                                    width={24}
-                                    height={24}
-                                    color={palette.primary[600]}
-                                    css={{ '&:hover': { strokeWidth: 2 } }}
-                                />
-                            </Link> */}
-                            <Link title="컴포넌트 확인하기" to={`/example/${name.toLowerCase()}`}>
-                                <BeakerIcon
-                                    width={24}
-                                    height={24}
-                                    color={palette.primary[600]}
-                                    css={{ '&:hover': { strokeWidth: 2 } }}
-                                />
-                            </Link>
-                        </FlexBox>
+                        <Link title="컴포넌트 확인하기" to={`/example/${name.toLowerCase()}`}>
+                            <div className="relative pb-[57.69%]">
+                                <div className="absolute top-0 flex h-full w-full items-center justify-center bg-primary-600 uppercase text-primary-50 hover:border-b-primary-600 hover:bg-primary-50 hover:text-primary-600">
+                                    <Typography
+                                        fontSize="text-28"
+                                        fontWeight="font-black"
+                                        align="text-center"
+                                        color="text-inherit"
+                                    >
+                                        {name}
+                                    </Typography>
+                                </div>
+                            </div>
+                        </Link>
                     </FlexBox>
                 ))}
             </FlexBox>
             {totalPage > 1 && (
-                <FlexBox gap={20} flex="1" alignItems="center" justifyContent="flex-end" customCSS={{ marginTop: 20 }}>
+                <FlexBox
+                    gap="gap-20"
+                    flex="flex-1"
+                    alignItems="items-center"
+                    justifyContent="justify-end"
+                    margin="mt-20"
+                >
                     <IconButton
                         size="small"
                         variant="outlined"
                         shape="circular"
                         onClick={() => setPage((prev) => (prev === 1 ? totalPage : prev - 1))}
                     >
-                        <ChevronLeftIcon />
+                        <ChevronLeftFilled />
                     </IconButton>
-                    <Typography fontSize={16}>
-                        {page} / {totalPage}
+                    <Typography fontSize="text-16" fontWeight="font-medium">
+                        <strong className="text-primary-600">{page}</strong> / {totalPage}
                     </Typography>
                     <IconButton
                         size="small"
@@ -118,7 +90,7 @@ export default function List({ data }: ListType) {
                         shape="circular"
                         onClick={() => setPage((prev) => (prev === totalPage ? 1 : prev + 1))}
                     >
-                        <ChevronRightIcon />
+                        <ChevronRightFilled />
                     </IconButton>
                 </FlexBox>
             )}

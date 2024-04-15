@@ -1,6 +1,4 @@
-import MonthlyCalender from 'components/Calender/Month/MonthlyCalender';
-import YearlyCalender from 'components/Calender/Month/YearlyCalender';
-import DailyCalender from 'components/Calender/Week/DailyCalender';
-import WeeklyCalender from 'components/Calender/Week/WeeklyCalender';
-
-export { DailyCalender, MonthlyCalender, WeeklyCalender, YearlyCalender };
+export { default as YearlyCalender } from './Year/YearlyCalendar';
+export { default as MonthlyCalender } from './Month/MonthlyCalender';
+export { default as WeeklyCalender } from './Week/WeeklyCalender';
+export { default as DailyCalender } from './Daily/DailyCalender';

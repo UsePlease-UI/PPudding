@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { Table, TableBody, TableCell, TableHead, TableRow } from 'components/Table';
 
 import type { Meta, StoryObj } from '@storybook/react';
@@ -7,26 +6,7 @@ const meta = {
     title: 'Table/Table',
     component: Table,
     tags: ['autodocs'],
-    argTypes: {
-        children: {
-            type: { name: 'string', required: true },
-            control: false,
-            description: '컴포넌트',
-            table: {
-                category: 'required',
-                type: { summary: 'React.ReactNode' }
-            }
-        },
-        customCSS: {
-            control: { type: 'object' },
-            description: 'Custom CSS',
-            table: {
-                category: 'style',
-                defaultValue: { summary: '{}' },
-                type: { summary: 'CSSInterpolation' }
-            }
-        }
-    }
+    argTypes: {}
 } satisfies Meta<typeof Table>;
 
 export default meta;
@@ -45,17 +25,16 @@ export const Default: Story = {
                 </TableRow>
             </TableHead>
             <TableBody>
-                <TableRow>
-                    <TableCell align="center">1</TableCell>
-                    <TableCell align="center">바나나</TableCell>
-                    <TableCell align="center">바나나차차</TableCell>
-                    <TableCell align="center">1010101010</TableCell>
-                    <TableCell align="center">바나나나나나나나나나</TableCell>
-                </TableRow>
+                {Array.from({ length: 20 }, (_, idx) => (
+                    <TableRow key={idx}>
+                        <TableCell align="center">{idx + 1}</TableCell>
+                        <TableCell align="center">바나나</TableCell>
+                        <TableCell align="center">바나나차차</TableCell>
+                        <TableCell align="center">1010101010</TableCell>
+                        <TableCell align="center">바나나나나나나나나나</TableCell>
+                    </TableRow>
+                ))}
             </TableBody>
         </Table>
-    ),
-    args: {
-        customCSS: {}
-    }
+    )
 };

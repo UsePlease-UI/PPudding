@@ -1,5 +1,6 @@
 import { MouseEvent, useCallback, useMemo, useState } from 'react';
 
+// TODO: overflow?
 const usePopover = () => {
     const [anchorElement, setAnchorElement] = useState<HTMLElement | null>(null);
 
@@ -9,10 +10,10 @@ const usePopover = () => {
         (e: MouseEvent<HTMLElement>) => {
             if (anchorElement) {
                 setAnchorElement(null);
-                document.body.style.removeProperty('overflow');
+                // document.body.style.removeProperty('overflow');
             } else {
                 setAnchorElement(e.currentTarget);
-                document.body.style.overflow = 'hidden';
+                // document.body.style.overflow = 'hidden';
             }
         },
         [anchorElement]

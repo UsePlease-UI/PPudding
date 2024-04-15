@@ -1,4 +1,4 @@
-import { ToggleButton, ToggleButtonGroup } from 'components/Button/ToggleButton';
+import { ToggleButton, ToggleButtonGroup } from '@components/Button/ToggleButton';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -6,44 +6,7 @@ const meta = {
     title: 'Button/ToggleButtonGroup',
     component: ToggleButtonGroup,
     tags: ['autodocs'],
-    argTypes: {
-        children: {
-            type: { name: 'function', required: true },
-            control: false,
-            description: 'Toggle Button',
-            table: {
-                category: 'required',
-                type: { summary: 'React.ReactNode' }
-            }
-        },
-        value: {
-            type: { name: 'function', required: true },
-            control: false,
-            description: '선택된 Toggle Button 값',
-            table: {
-                category: 'required',
-                type: { summary: 'string' }
-            }
-        },
-        onChange: {
-            type: { name: 'function', required: true },
-            control: false,
-            description: 'Change Event Handler',
-            table: {
-                category: 'required',
-                type: { summary: ' (e: React.ChangeEvent<HTMLInputElement>) => void;' }
-            }
-        },
-        customCSS: {
-            control: { type: 'object' },
-            description: 'Custom CSS',
-            table: {
-                category: 'style',
-                defaultValue: { summary: '{}' },
-                type: { summary: 'CSSInterpolation' }
-            }
-        }
-    }
+    argTypes: {}
 } satisfies Meta<typeof ToggleButtonGroup>;
 
 export default meta;
@@ -63,7 +26,6 @@ export const Default: Story = {
         );
     },
     args: {
-        value: 'banana',
-        customCSS: {}
+        value: 'banana'
     }
 };

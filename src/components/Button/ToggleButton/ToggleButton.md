@@ -5,16 +5,16 @@
 -   Toggle Button
 -   Toggle Button Group
 
+## Variants
+
+-   Icon
+-   Text
+
 ## States
 
 -   Hovered
 -   Focused
 -   Disabled
-
-## Variants
-
--   [TO-BE] Outlined
--   Contained (filled)
 
 ## Size
 

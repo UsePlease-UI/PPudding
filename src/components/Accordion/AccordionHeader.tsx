@@ -1,15 +1,11 @@
-/** @jsxImportSource @emotion/react */
 import { HTMLAttributes, ReactNode } from 'react';
 
-import { css } from '@emotion/react';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import { palette, CustomCSSType } from 'styles';
+import { useAccordion } from '@components/useAccordion';
 
-import { useAccordion } from 'components/useAccordion';
+import { ChevronDownFilled } from '@fluentui/react-icons';
+import { joinClassNames } from '@utils/format';
 
-import { accordionStyle } from './styles';
-
-type BaseType = HTMLAttributes<HTMLHeadingElement> & CustomCSSType;
+type BaseType = Omit<HTMLAttributes<HTMLHeadingElement>, 'className'>;
 
 export type AccordionHeaderType = BaseType & {
     children: ReactNode;
@@ -22,27 +18,20 @@ export type AccordionHeaderType = BaseType & {
  *  @param children 헤더 텍스트 | 컴포넌트
  *  @param icon 아이콘 [optional]
  *  @param hasIcon 아이콘 사용여부 [optional]
- *  @param customCSS 커스텀 css [optional]
  *  @returns JSX.Element
  */
 export default function AccordionHeader(props: AccordionHeaderType) {
-    const { children, hasIcon = true, icon, customCSS, ...rest } = props;
+    const { children, hasIcon = true, icon, ...rest } = props;
     const { accordionId, isExpanded, isDisabled, onChange } = useAccordion();
 
     return (
         <h3
             {...rest}
-            css={css([
-                accordionStyle.heading,
-                {
-                    borderBottomLeftRadius: isExpanded ? 0 : 4,
-                    borderBottomRightRadius: isExpanded ? 0 : 4,
-                    ...(isDisabled && {
-                        backgroundColor: palette.gray[400]
-                    })
-                },
-                customCSS
-            ])}
+            className={joinClassNames(
+                'min-h-60 w-full min-w-250 rounded border border-gray-100 under-mobile:min-w-0',
+                isExpanded && 'rounded-b-none border-primary-600 bg-primary-600',
+                isDisabled && 'border-gray-400 bg-gray-400'
+            )}
         >
             <button
                 type="button"
@@ -52,36 +41,24 @@ export default function AccordionHeader(props: AccordionHeaderType) {
                 aria-disabled={isDisabled}
                 disabled={isDisabled}
                 onClick={(e) => onChange(e, isExpanded)}
-                css={accordionStyle.button}
+                className="h-full min-h-inherit w-full px-20 py-5"
             >
                 <div
-                    css={css([
-                        accordionStyle.title,
-                        {
-                            fontWeight: isExpanded ? 700 : 500,
-                            '& *': {
-                                fontWeight: isExpanded ? 700 : 500
-                            },
-                            ...(isDisabled && {
-                                color: palette.gray[900],
-                                '& *': {
-                                    color: palette.gray[900]
-                                }
-                            })
-                        }
-                    ])}
+                    className={joinClassNames(
+                        'flex items-center justify-between text-left text-18 font-medium leading-normal text-primary-600 *:text-left *:text-18 *:font-medium *:leading-normal',
+                        isExpanded && 'text-bold *:text-bold text-white *:text-white',
+                        isDisabled && 'cursor-not-allowed text-gray-950 *:text-gray-950'
+                    )}
                 >
                     {children}
                     {hasIcon && (
                         <span
-                            css={css([
-                                accordionStyle.icon,
-                                {
-                                    transform: isExpanded ? 'rotate(180deg)' : 'initial'
-                                }
-                            ])}
+                            className={joinClassNames(
+                                'h-20 w-20 child-svg:block child-svg:h-20 child-svg:w-20',
+                                isExpanded && 'rotate-180'
+                            )}
                         >
-                            {icon ?? <ChevronDownIcon />}
+                            {icon ?? <ChevronDownFilled />}
                         </span>
                     )}
                 </div>
