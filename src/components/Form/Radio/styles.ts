@@ -1,4 +1,5 @@
 export type SizeType = 'small' | 'medium' | 'large';
+export type PositionType = 'start' | 'end';
 
 const sizeStyle = {
     smallContainer: 'w-28 h-28 p-4',

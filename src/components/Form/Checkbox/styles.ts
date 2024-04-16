@@ -1,4 +1,5 @@
 export type SizeType = 'small' | 'medium' | 'large';
+export type PositionType = 'start' | 'end';
 
 // default -> 16px
 // custom -> 20px
