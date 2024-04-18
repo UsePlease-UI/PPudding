@@ -38,7 +38,7 @@ export const CollapsedList: Story = {
         });
 
         return (
-            <List>
+            <List hasDivider>
                 {['schedule', 'mail', 'folder'].map((val) => (
                     <Fragment key={val}>
                         <List.ItemButton isDense onClick={() => setOpen((prev) => ({ ...prev, [val]: !prev[val] }))}>
@@ -46,7 +46,7 @@ export const CollapsedList: Story = {
                             <List.ItemIcon>{open[val] ? <ChevronUpFilled /> : <ChevronDownFilled />}</List.ItemIcon>
                         </List.ItemButton>
                         <List.Collapse isOpen={open[val]}>
-                            <List.CollapsedList isDense>
+                            <List.CollapsedList hasDivider isDense>
                                 <List.Item>
                                     <List.ItemText primaryText="Hello" />
                                 </List.Item>
