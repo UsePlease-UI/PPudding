@@ -21,9 +21,11 @@ type CheckboxType = BaseType & {
  *  [UI Component] Checkbox Component
  *  @param label Checkbox Label
  *  @param isDisabled Is Disabled? [optional]
- *  @param size [CSS] Checkbox Size Style (small | medium | large)
+ *  @param position Position of Label Text (Is it before or after checkbox)?
  *  @param icon Checkbox Custom Icon [optional]
  *  @param checkedIcon Checkbox Custom Checked Icon [optional]
+ *  @param size [CSS] Checkbox Size Style (small | medium | large)
+ *  @param labelMargin [CSS] Margin value for label
  *  @returns JSX.Element
  */
 const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(

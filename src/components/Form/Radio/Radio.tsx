@@ -21,6 +21,9 @@ type RadioType = BaseType & {
  *  @param name 라디오 버튼 이름
  *  @param label 라디오 텍스트 값
  *  @param value 라디오 버튼 값
+ *  @param isDisabled Is Disabled? [optional]
+ *  @param position Position of Label Text (Is it before or after radio)?
+ *  @param labelMargin [CSS] Margin value for label
  *  @param size [CSS] 라디오 크기 (small | medium | large)
  *  @returns JSX.Element
  */
