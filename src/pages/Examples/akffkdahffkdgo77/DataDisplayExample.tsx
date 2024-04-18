@@ -11,6 +11,8 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from '@components/Ta
 import { HomeFilled } from '@fluentui/react-icons';
 import useMobile from '@hooks/useMobile';
 
+import ListExample from './ListExample';
+
 const SIZE = ['small', 'medium', 'large'];
 const VARIANT = ['outlined', 'contained', 'text'];
 const SHAPE = ['square', 'rounded', 'circular'];
@@ -67,6 +69,20 @@ export default function DataDisplayExample() {
                     <ToggleButton
                         size={isMobile ? 'small' : isTablet ? 'medium' : 'large'}
                         name="components"
+                        value="List"
+                    >
+                        List
+                    </ToggleButton>
+                    <ToggleButton
+                        size={isMobile ? 'small' : isTablet ? 'medium' : 'large'}
+                        name="components"
+                        value="Pagination"
+                    >
+                        Pagination
+                    </ToggleButton>
+                    <ToggleButton
+                        size={isMobile ? 'small' : isTablet ? 'medium' : 'large'}
+                        name="components"
                         value="Tab"
                     >
                         Tab
@@ -77,13 +93,6 @@ export default function DataDisplayExample() {
                         value="Table"
                     >
                         Table
-                    </ToggleButton>
-                    <ToggleButton
-                        size={isMobile ? 'small' : isTablet ? 'medium' : 'large'}
-                        name="components"
-                        value="Pagination"
-                    >
-                        Pagination
                     </ToggleButton>
                 </ToggleButtonGroup>
             </div>
@@ -234,6 +243,8 @@ export default function DataDisplayExample() {
                     </div>
                 </FlexBox>
             )}
+
+            {selected === 'List' && <ListExample />}
         </FlexBox>
     );
 }
