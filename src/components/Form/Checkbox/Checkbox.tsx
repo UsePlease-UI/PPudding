@@ -1,41 +1,71 @@
-import { InputHTMLAttributes, ReactElement, ReactNode, cloneElement, forwardRef } from 'react';
+import { InputHTMLAttributes, ReactElement, ReactNode, cloneElement, forwardRef, useId } from 'react';
 
 import { CheckmarkFilled } from '@fluentui/react-icons';
 import { joinClassNames } from '@utils/format';
 
-import { SizeType, getSizeStyle } from './styles';
+import { PositionType, SizeType, getSizeStyle } from './styles';
 
 type BaseType = Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'className'>;
 
 type CheckboxType = BaseType & {
-    label: string;
+    label: string | ReactNode;
     isDisabled?: boolean;
     size?: SizeType;
+    position?: PositionType;
     icon?: ReactNode;
     checkedIcon?: ReactNode;
+    labelMargin?: string;
 };
 
 /**
  *  [UI Component] Checkbox Component
  *  @param label Checkbox Label
  *  @param isDisabled Is Disabled? [optional]
- *  @param size [CSS] Checkbox Size Style (small | medium | large)
+ *  @param position Position of Label Text (Is it before or after checkbox)?
  *  @param icon Checkbox Custom Icon [optional]
  *  @param checkedIcon Checkbox Custom Checked Icon [optional]
+ *  @param size [CSS] Checkbox Size Style (small | medium | large)
+ *  @param labelMargin [CSS] Margin value for label
  *  @returns JSX.Element
  */
 const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
-    { label, size = 'medium', isDisabled, icon, checkedIcon, onChange, ...props }: CheckboxType,
+    {
+        label,
+        position = 'end',
+        size = 'medium',
+        labelMargin = position === 'start' ? 'mr-20' : 'ml-20',
+        isDisabled,
+        icon,
+        checkedIcon,
+        onChange,
+        ...props
+    }: CheckboxType,
     ref
 ) {
+    const labelId = useId();
     return (
         <label
-            htmlFor={label}
+            htmlFor={labelId}
             className={joinClassNames(
                 'group inline-flex w-max cursor-pointer items-center',
-                isDisabled && 'pointer-events-none'
+                isDisabled && 'pointer-events-none',
+                typeof label !== 'string' && 'w-full'
             )}
         >
+            {position === 'start' &&
+                (typeof label === 'string' ? (
+                    <span
+                        className={joinClassNames(
+                            'font-medium leading-normal',
+                            getSizeStyle(size).text,
+                            isDisabled && 'text-gray-400'
+                        )}
+                    >
+                        {label}
+                    </span>
+                ) : (
+                    <div className={joinClassNames('w-full', labelMargin)}>{label}</div>
+                ))}
             <span
                 className={joinClassNames(
                     size === 'small' && 'p-2',
@@ -46,7 +76,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
             >
                 <input
                     {...props}
-                    id={label}
+                    id={labelId}
                     ref={ref}
                     type="checkbox"
                     disabled={isDisabled}
@@ -102,15 +132,20 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
                     />
                 )}
             </span>
-            <span
-                className={joinClassNames(
-                    'font-medium leading-normal',
-                    getSizeStyle(size).text,
-                    isDisabled && 'text-gray-400'
-                )}
-            >
-                {label}
-            </span>
+            {position === 'end' &&
+                (typeof label === 'string' ? (
+                    <span
+                        className={joinClassNames(
+                            'font-medium leading-normal',
+                            getSizeStyle(size).text,
+                            isDisabled && 'text-gray-400'
+                        )}
+                    >
+                        {label}
+                    </span>
+                ) : (
+                    <div className={joinClassNames('w-full', labelMargin)}>{label}</div>
+                ))}
         </label>
     );
 });

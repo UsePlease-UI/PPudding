@@ -1,18 +1,19 @@
-import { InputHTMLAttributes, forwardRef, useId } from 'react';
+import { InputHTMLAttributes, ReactNode, forwardRef, useId } from 'react';
 
 import { joinClassNames } from '@utils/format';
 
-import { SizeType, getSizeStyle } from './styles';
+import { PositionType, SizeType, getSizeStyle } from './styles';
 
 type BaseType = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>;
 
 type RadioType = BaseType & {
-    label: string;
+    label: string | ReactNode;
     name: string;
-    value: string;
+    currentValue?: string;
     isDisabled?: boolean;
     size?: SizeType;
-    currentValue?: string;
+    position?: PositionType;
+    labelMargin?: string;
 };
 
 /**
@@ -20,11 +21,25 @@ type RadioType = BaseType & {
  *  @param name 라디오 버튼 이름
  *  @param label 라디오 텍스트 값
  *  @param value 라디오 버튼 값
+ *  @param isDisabled Is Disabled? [optional]
+ *  @param position Position of Label Text (Is it before or after radio)?
+ *  @param labelMargin [CSS] Margin value for label
  *  @param size [CSS] 라디오 크기 (small | medium | large)
  *  @returns JSX.Element
  */
 const Radio = forwardRef<HTMLInputElement, RadioType>(function Radio(
-    { name, label, value, size = 'medium', isDisabled, currentValue, onChange, ...props },
+    {
+        name,
+        label,
+        value,
+        size = 'medium',
+        position = 'end',
+        labelMargin = 'ml-20',
+        isDisabled,
+        currentValue,
+        onChange,
+        ...props
+    },
     ref
 ) {
     const id = useId();
@@ -34,9 +49,24 @@ const Radio = forwardRef<HTMLInputElement, RadioType>(function Radio(
             htmlFor={id}
             className={joinClassNames(
                 'group inline-flex w-max cursor-pointer items-center',
-                isDisabled && 'pointer-events-none'
+                isDisabled && 'pointer-events-none',
+                typeof label !== 'string' && 'w-full'
             )}
         >
+            {position === 'start' &&
+                (typeof label === 'string' ? (
+                    <span
+                        className={joinClassNames(
+                            'font-medium leading-normal',
+                            getSizeStyle(size).text,
+                            isDisabled && 'text-gray-400'
+                        )}
+                    >
+                        {label}
+                    </span>
+                ) : (
+                    <div className={joinClassNames('w-full', labelMargin)}>{label}</div>
+                ))}
             <span
                 className={joinClassNames(
                     getSizeStyle(size).container,
@@ -80,15 +110,20 @@ const Radio = forwardRef<HTMLInputElement, RadioType>(function Radio(
                     )}
                 />
             </span>
-            <span
-                className={joinClassNames(
-                    'font-medium leading-normal',
-                    getSizeStyle(size).text,
-                    isDisabled && 'text-gray-400'
-                )}
-            >
-                {label}
-            </span>
+            {position === 'end' &&
+                (typeof label === 'string' ? (
+                    <span
+                        className={joinClassNames(
+                            'font-medium leading-normal',
+                            getSizeStyle(size).text,
+                            isDisabled && 'text-gray-400'
+                        )}
+                    >
+                        {label}
+                    </span>
+                ) : (
+                    <div className={joinClassNames('w-full', labelMargin)}>{label}</div>
+                ))}
         </label>
     );
 });
