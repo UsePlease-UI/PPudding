@@ -6,7 +6,7 @@ import { listStyle } from './styles';
 
 type ListboxItemType = {
     currentValue: string | number;
-    label: string | ReactNode;
+    label: ReactNode;
     value: string | number;
     onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 };

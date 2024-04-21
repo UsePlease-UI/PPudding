@@ -9,7 +9,11 @@ type FlexBoxType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> &
         children: ReactNode;
         flexDirection?: string;
         alignItems?: string;
+        alignSelf?: string;
+        alignContent?: string;
         justifyContent?: string;
+        justifySelf?: string;
+        justifyItems?: string;
         gap?: string;
         flex?: string;
         flexWrap?: string;
@@ -31,7 +35,11 @@ const FlexBox = forwardRef<HTMLDivElement, FlexBoxType>(function FlexBox(props, 
         children,
         flexDirection,
         alignItems,
+        alignSelf,
+        alignContent,
         justifyContent,
+        justifyItems,
+        justifySelf,
         gap,
         flex,
         flexWrap,
@@ -57,7 +65,11 @@ const FlexBox = forwardRef<HTMLDivElement, FlexBoxType>(function FlexBox(props, 
             className={joinClassNames(
                 'flex',
                 justifyContent,
+                justifyItems,
+                justifySelf,
                 alignItems,
+                alignSelf,
+                alignContent,
                 flexDirection,
                 gap,
                 flex,

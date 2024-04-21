@@ -5,7 +5,7 @@ import { AccordionProvider } from '@components/useAccordion';
 
 import { BaseStyleType, FlexType } from '../Base/types';
 
-export type AccordionType = BaseStyleType &
+type AccordionType = BaseStyleType &
     FlexType & {
         children: ReactNode;
         isExpanded?: boolean;

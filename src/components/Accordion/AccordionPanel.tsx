@@ -6,7 +6,7 @@ import { joinClassNames } from '@utils/format';
 
 type BaseType = Omit<HTMLAttributes<HTMLDivElement>, 'className'>;
 
-export type AccordionPanelType = BaseType & {
+type AccordionPanelType = BaseType & {
     children: ReactNode;
 };
 
@@ -27,7 +27,7 @@ export default function AccordionPanel(props: AccordionPanelType) {
             role="region"
             className={joinClassNames(
                 'invisible -mt-1 h-0 w-full bg-white p-0 text-14 *:text-14 *:leading-normal',
-                isExpanded && 'visible h-auto rounded-b border border-gray-50 p-20'
+                isExpanded && 'visible h-auto rounded-b border border-gray-100 p-20'
             )}
         >
             {children}

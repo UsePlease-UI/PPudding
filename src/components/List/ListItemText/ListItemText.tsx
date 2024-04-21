@@ -3,8 +3,8 @@ import { HTMLAttributes, ReactNode } from 'react';
 import { joinClassNames } from '@utils/format';
 
 type ListItemTextType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
-    primaryText: string | ReactNode;
-    secondaryText?: string | ReactNode;
+    primaryText: ReactNode;
+    secondaryText?: ReactNode;
 };
 
 /**

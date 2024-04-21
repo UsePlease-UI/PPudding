@@ -7,7 +7,7 @@ import { PositionType, SizeType, getSizeStyle } from './styles';
 type BaseType = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>;
 
 type RadioType = BaseType & {
-    label: string | ReactNode;
+    label: ReactNode;
     name: string;
     currentValue?: string;
     isDisabled?: boolean;

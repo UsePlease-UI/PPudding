@@ -8,7 +8,7 @@ import { joinClassNames } from '@utils/format';
 type TabItemType = {
     value: number;
     index: number;
-    label?: string | ReactNode;
+    label?: ReactNode;
     icon?: ReactNode;
     onChange?: (newValue: number) => void;
 };
