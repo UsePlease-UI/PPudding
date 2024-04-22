@@ -11,8 +11,8 @@ type TextFieldType = BaseType & {
     isReadOnly?: boolean;
     isDisabled?: boolean;
     isFullWidth?: boolean;
-    labelText?: string | ReactNode;
-    helperText?: string | ReactNode;
+    labelText?: ReactNode;
+    helperText?: ReactNode;
 };
 
 /**

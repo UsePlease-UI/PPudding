@@ -7,7 +7,7 @@ import { joinClassNames } from '@utils/format';
 
 type BaseType = Omit<HTMLAttributes<HTMLHeadingElement>, 'className'>;
 
-export type AccordionHeaderType = BaseType & {
+type AccordionHeaderType = BaseType & {
     children: ReactNode;
     hasIcon?: boolean;
     icon?: ReactNode;

@@ -3,7 +3,7 @@ import { ReactNode, TdHTMLAttributes, ThHTMLAttributes } from 'react';
 type BaseType = ThHTMLAttributes<HTMLTableCellElement> & TdHTMLAttributes<HTMLTableCellElement>;
 
 type TableCellType = BaseType & {
-    children: string | ReactNode;
+    children: ReactNode;
     component?: 'th' | 'td';
 };
 

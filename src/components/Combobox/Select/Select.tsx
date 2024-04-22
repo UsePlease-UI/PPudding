@@ -18,8 +18,8 @@ type SelectType = BaseType & {
     options?: CommonListDataType[];
     isDisabled?: boolean;
     isReadOnly?: boolean;
-    labelText?: string | ReactNode;
-    helperText?: string | ReactNode;
+    labelText?: ReactNode;
+    helperText?: ReactNode;
 };
 
 /**

@@ -8,12 +8,10 @@ import Autocomplete from '@components/Shared/Autocomplete';
 import { Tab, TabContainer, TabItem, TabPanel } from '@components/Tab';
 import { CommonListDataType } from '@components/types';
 
-import useMobile from '@hooks/useMobile';
-
 import { AUTOCOMPLETE as LIST, OPTIONS } from './constants';
+import Heading from '../Common/Heading';
 
 export default function ComboboxExample() {
-    const { isTablet } = useMobile();
     const [tab, setTab] = useState(1);
 
     const [dataList, setDataList] = useState<CommonListDataType[]>(LIST);
@@ -43,20 +41,11 @@ export default function ComboboxExample() {
 
     return (
         <FlexBox flexDirection="flex-col" gap="gap-10">
-            <Typography
-                component="h2"
-                fontSize="text-24"
-                fontWeight="font-black"
-                color="text-primary-600"
-                textTransform="uppercase"
-                margin={isTablet ? 'mb-10' : 'mb-20'}
-            >
-                Combobox Playground
-            </Typography>
+            <Heading title="Combobox Playground" />
             <TabContainer>
                 <Tab aria-label="combobox tab" value={tab} onChange={setTab}>
-                    <TabItem label="Autocomplete" index={1} value={tab} />
-                    <TabItem label="Select" index={2} value={tab} />
+                    <TabItem label="AUTOCOMPLETE" index={1} value={tab} />
+                    <TabItem label="SELECT" index={2} value={tab} />
                 </Tab>
                 <TabPanel index={1} value={tab}>
                     <Typography margin="mb-20" fontWeight="font-medium">

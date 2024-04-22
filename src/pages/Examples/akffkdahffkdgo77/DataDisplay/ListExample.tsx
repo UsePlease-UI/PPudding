@@ -51,7 +51,10 @@ export default function ListExample() {
                     borderRadius="rounded"
                 >
                     <Typography component="strong" fontSize={isTablet ? 'text-14' : 'text-16'}>
-                        Choose List <span className="text-primary-600">Type</span>
+                        Choose List{' '}
+                        <Typography component="strong" color="text-primary-600">
+                            Type
+                        </Typography>
                     </Typography>
                     <RadioGroup isRow={false} value={type} onChange={(e) => setType(e.currentTarget.value)}>
                         {['text', 'button', 'action item', 'metadata', 'collapsed'].map((key) => (
@@ -61,7 +64,10 @@ export default function ListExample() {
                     {(type === 'action item' || type === 'metadata') && (
                         <>
                             <Typography component="strong" fontSize={isTablet ? 'text-14' : 'text-16'}>
-                                Choose List <span className="text-primary-600">Position</span>
+                                Choose List{' '}
+                                <Typography component="strong" color="text-primary-600">
+                                    Position
+                                </Typography>
                             </Typography>
                             <RadioGroup
                                 isRow={!isTablet}
@@ -83,7 +89,10 @@ export default function ListExample() {
                     {type === 'button' && hasIcon && (
                         <>
                             <Typography component="strong" fontSize={isTablet ? 'text-14' : 'text-16'}>
-                                Choose List Icon <span className="text-primary-600">Align</span>
+                                Choose List Icon{' '}
+                                <Typography component="strong" color="text-primary-600">
+                                    Align
+                                </Typography>
                             </Typography>
                             <RadioGroup
                                 isRow={!isTablet}
@@ -105,7 +114,10 @@ export default function ListExample() {
                     {type !== 'collapsed' && (
                         <>
                             <Typography component="strong" fontSize={isTablet ? 'text-14' : 'text-16'}>
-                                Choose List <span className="text-primary-600">Options</span>
+                                Choose List{' '}
+                                <Typography component="strong" color="text-primary-600">
+                                    Options
+                                </Typography>
                             </Typography>
                             <CheckboxGroup isRow={!isTablet}>
                                 <Checkbox

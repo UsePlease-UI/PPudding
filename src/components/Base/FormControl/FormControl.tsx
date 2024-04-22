@@ -4,9 +4,9 @@ import { Typography } from '@components/Base';
 
 type FormControlType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
     children: ReactNode;
-    labelText?: string | ReactNode;
+    labelText?: ReactNode;
     helperTextId?: string;
-    helperText?: string | ReactNode;
+    helperText?: ReactNode;
 };
 
 /**

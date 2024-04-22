@@ -22,8 +22,8 @@ type TextareaType = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'className
         isError?: boolean;
         isReadOnly?: boolean;
         isDisabled?: boolean;
-        labelText?: string | ReactNode;
-        helperText?: string | ReactNode;
+        labelText?: ReactNode;
+        helperText?: ReactNode;
     };
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaType>(function Textarea({ value, onChange, ...props }, ref) {

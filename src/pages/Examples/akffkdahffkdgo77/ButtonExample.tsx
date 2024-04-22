@@ -17,6 +17,8 @@ import { Tab, TabContainer, TabItem, TabPanel } from '@components/Tab';
 import { AddFilled, CheckmarkFilled, DeleteFilled } from '@fluentui/react-icons';
 import useMobile from '@hooks/useMobile';
 
+import Heading from '../Common/Heading';
+
 const SIZE = ['small', 'medium', 'large'];
 const VARIANT = ['outlined', 'contained', 'text'];
 const SHAPE = ['square', 'rounded', 'circular'];
@@ -46,16 +48,7 @@ export default function ButtonExample() {
 
     return (
         <FlexBox flexDirection="flex-col" gap="gap-10">
-            <Typography
-                component="h2"
-                fontSize="text-24"
-                fontWeight="font-black"
-                color="text-primary-600"
-                textTransform="uppercase"
-                margin={isTablet ? 'mb-10' : 'mb-20'}
-            >
-                Button Playground
-            </Typography>
+            <Heading title="Button Playground" />
             <TabContainer>
                 <Tab
                     aria-label="button example tab"
@@ -66,9 +59,9 @@ export default function ButtonExample() {
                     }}
                 >
                     <TabItem label="BUTTON" value={tab} index={1} />
+                    <TabItem label="CHIP" value={tab} index={4} />
                     <TabItem label="ICON" value={tab} index={2} />
                     <TabItem label="TOGGLE" value={tab} index={3} />
-                    <TabItem label="CHIP" value={tab} index={4} />
                 </Tab>
                 <TabPanel index={1} value={tab}>
                     <FlexBox width="w-full" flexDirection={isTablet ? 'flex-col-reverse' : 'flex-row'} gap="gap-20">

@@ -8,7 +8,7 @@ import { PositionType, SizeType, getSizeStyle } from './styles';
 type BaseType = Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'className'>;
 
 type CheckboxType = BaseType & {
-    label: string | ReactNode;
+    label: ReactNode;
     isDisabled?: boolean;
     size?: SizeType;
     position?: PositionType;
