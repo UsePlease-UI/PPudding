@@ -210,11 +210,12 @@ export default {
             animation: {
                 stroke: 'stroke 3s infinite',
                 blink: 'blink 2s ease-in-out infinite',
-                fadeInOut: 'fadeIn 0.5s, fadeOut 0.5s 4.5s'
+                fadeInOut: 'fadeIn 0.5s, fadeOut 0.5s 4.5s forwards'
             },
             screens: {
                 mobile: '321px',
                 tablet: '769px',
+                laptop: '1281px',
                 desktop: '1513px',
                 '4k': '1920px',
                 'under-tablet': { max: '768px' },

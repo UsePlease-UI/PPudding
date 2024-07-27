@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, MouseEvent, ReactNode, useCallback, useEffect, useId, useRef, useState } from 'react';
 
-import { Backdrop, Box, FormControl, Listbox } from '@components/Base';
+import { Backdrop, FormControl, Listbox } from '@components/Base';
 import { getVariantStyle } from '@components/Button';
 import { CommonListDataType } from '@components/types';
 import usePosition from '@components/usePosition';
@@ -80,7 +80,7 @@ export default function Select(props: SelectType) {
     const handleClick = useCallback(() => setIsVisible((prev) => !prev), []);
 
     return (
-        <Box width="w-max">
+        <div className="w-max">
             <FormControl
                 id={rest['aria-labelledby'] || labelId}
                 labelText={labelText}
@@ -135,6 +135,6 @@ export default function Select(props: SelectType) {
                     )}
                 </div>
             </FormControl>
-        </Box>
+        </div>
     );
 }

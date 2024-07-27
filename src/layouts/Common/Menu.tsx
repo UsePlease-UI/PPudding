@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Backdrop, Typography } from '@components/Base';
+import { Backdrop } from '@components/Base';
 import { Button, IconButton } from '@components/Button';
 
-import { A_LIST, DEMO_LIST, K_LIST } from '@constants/constants';
+import { COMPONENT_LIST, DEMO_LIST } from '@constants/constants';
 import { AppsListFilled } from '@fluentui/react-icons';
 import useMobile from '@hooks/useMobile';
 
@@ -23,26 +23,15 @@ const Menu = ({ onClick }: MenuType) => {
         </div>
     ) : (
         <div className="absolute right-20 top-24">
-            <Button size="small" variant="outlined" onClick={() => setIsOpen((prev) => !prev)}>
+            <Button size="small" variant="contained" onClick={() => setIsOpen((prev) => !prev)}>
                 <strong>MENU</strong>
             </Button>
             <Backdrop isOpen={isOpen} canFocusTrap isDimmed onClose={() => setIsOpen(false)}>
                 <nav className="absolute right-20 top-57 flex w-max flex-col items-start gap-20 rounded bg-white p-20">
-                    {[
-                        { name: 'akffkdahffkdgo77', list: A_LIST },
-                        { name: 'Kimyerim1935', list: K_LIST }
-                    ].map((val) => (
+                    {[{ name: 'Components', list: COMPONENT_LIST }].map((val) => (
                         <div key={val.name} className="relative max-w-full rounded border border-primary-600">
                             <div className="absolute -top-12 left-10 w-max">
-                                <Typography
-                                    component="h2"
-                                    fontSize="text-16"
-                                    fontWeight="font-black"
-                                    align="text-center"
-                                    backgroundColor="bg-white"
-                                >
-                                    {val.name}
-                                </Typography>
+                                <h2 className="bg-white text-center text-16 font-black">{val.name}</h2>
                             </div>
                             <ul className="row-auto grid w-280 grid-cols-2 gap-4 p-14">
                                 {val.list.map((component) => (
@@ -63,15 +52,7 @@ const Menu = ({ onClick }: MenuType) => {
                     ))}
                     <div className="relative max-w-full rounded border border-primary-600">
                         <div className="absolute -top-12 left-10 w-max">
-                            <Typography
-                                component="h2"
-                                fontSize="text-16"
-                                fontWeight="font-black"
-                                align="text-center"
-                                backgroundColor="bg-white"
-                            >
-                                데모
-                            </Typography>
+                            <h2 className="bg-white text-center text-16 font-black">데모</h2>
                         </div>
                         <ul className="row-auto grid w-280 grid-cols-2 gap-4 p-14">
                             {DEMO_LIST.map((component) => (

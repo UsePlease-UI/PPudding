@@ -1,7 +1,5 @@
 import { HTMLAttributes, ReactNode } from 'react';
 
-import { FlexBox, Typography } from '@components/Base';
-
 type CardTitleType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
     title: ReactNode;
     subtitle?: ReactNode;
@@ -15,21 +13,13 @@ type CardTitleType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
  */
 export default function CardTitle({ title, subtitle, ...rest }: CardTitleType) {
     return (
-        <FlexBox {...rest} flexDirection="flex-col" width="w-full">
-            {typeof title === 'string' ? (
-                <Typography component="h4" fontSize="text-16" fontWeight="font-semibold">
-                    {title}
-                </Typography>
-            ) : (
-                title
-            )}
+        <div {...rest} className="flex w-full flex-col">
+            {typeof title === 'string' ? <h4 className="text-16 font-semibold">{title}</h4> : title}
             {subtitle && typeof subtitle === 'string' ? (
-                <Typography component="small" fontSize="text-12" fontWeight="font-medium">
-                    {subtitle}
-                </Typography>
+                <small className="text-12 font-medium">{subtitle}</small>
             ) : (
                 subtitle
             )}
-        </FlexBox>
+        </div>
     );
 }

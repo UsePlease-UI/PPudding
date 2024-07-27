@@ -11,15 +11,14 @@ const config: StorybookConfig = {
         '@chromatic-com/storybook',
         '@storybook/addon-interactions',
         '@storybook/addon-themes',
-        '@storybook/addon-a11y'
+        '@storybook/addon-a11y',
+        '@storybook/addon-mdx-gfm'
     ],
     framework: {
         name: '@storybook/react-vite',
         options: {}
     },
-    docs: {
-        autodocs: 'tag'
-    },
+    docs: {},
     core: {
         disableTelemetry: true // 👈 Disables telemetry
     },
@@ -28,6 +27,9 @@ const config: StorybookConfig = {
         return mergeConfig(config, {
             plugins: [tsconfigPaths()]
         });
+    },
+    typescript: {
+        reactDocgen: 'react-docgen-typescript'
     }
 };
 export default config;

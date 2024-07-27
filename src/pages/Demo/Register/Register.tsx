@@ -1,6 +1,5 @@
 import { FormEvent, useState } from 'react';
 
-import { Typography, FlexBox } from '@components/Base';
 import { Button, ToggleButton, ToggleButtonGroup } from '@components/Button';
 import { Select } from '@components/Combobox';
 import { Radio, RadioGroup, Checkbox, CheckboxGroup, TextField } from '@components/Form';
@@ -20,7 +19,7 @@ const Register = () => {
     const [terms, setTerms] = useState(false);
     const [policy, setPolicy] = useState(false);
 
-    const isDisabled = !(name && email && password && year && day && gender && useYn && terms);
+    const isDisabled = !(name && email && password && year && month && day && gender && useYn && terms && policy);
 
     const handleCheck = () => {
         if (terms && policy) {
@@ -34,18 +33,13 @@ const Register = () => {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        console.log('Submit Event Called');
     };
 
     return (
-        <FlexBox
-            alignItems="items-center"
-            justifyContent="justify-center"
-            width="w-full"
-            height="h-full"
-            backgroundColor="bg-white"
-        >
+        <div className="flex h-full w-full items-center justify-center bg-white">
             <form onSubmit={handleSubmit} className="flex w-full items-center justify-center">
-                <FlexBox flexDirection="flex-col" gap="gap-20" width="w-full" maxWidth="max-w-[425px]" padding="p-20">
+                <div className="w-full space-y-20 p-20">
                     <TextField
                         labelText="닉네임"
                         helperText="닉네임은 최소 10자 이상 최대 100자 이하로 입력해 주세요"
@@ -83,7 +77,7 @@ const Register = () => {
                         onChange={(e) => setPassword(e.currentTarget.value)}
                         isFullWidth
                     />
-                    <FlexBox gap="gap-20">
+                    <div className="flex gap-20">
                         <Select
                             id="year-select"
                             aria-labelledby="year"
@@ -114,21 +108,17 @@ const Register = () => {
                             options={DAY_OPTIONS}
                             onChange={(e) => setDay(e.currentTarget.value)}
                         />
-                    </FlexBox>
-                    <FlexBox flexDirection="flex-col" gap="gap-5">
-                        <Typography component="span" fontSize="text-12" fontWeight="font-semibold">
-                            성별
-                        </Typography>
+                    </div>
+                    <div className="space-y-5">
+                        <span className="text-12 font-semibold">성별</span>
                         <RadioGroup value={gender} onChange={(e) => setGender(e.currentTarget.value)}>
                             <Radio size="medium" name="gender" label="선택안함" value="N/A" />
                             <Radio size="medium" name="gender" label="여성" value="F" />
                             <Radio size="medium" name="gender" label="남성" value="M" />
                         </RadioGroup>
-                    </FlexBox>
-                    <FlexBox flexDirection="flex-col" gap="gap-5">
-                        <Typography component="span" fontSize="text-12" fontWeight="font-semibold">
-                            이메일 수신여부
-                        </Typography>
+                    </div>
+                    <div className="space-y-5">
+                        <span className="text-12 font-semibold">이메일 수신여부</span>
                         <ToggleButtonGroup value={useYn} onChange={(e) => setUseYn(e.currentTarget.value)}>
                             <ToggleButton size="large" name="useYn" value="Y">
                                 사용
@@ -137,8 +127,8 @@ const Register = () => {
                                 미사용
                             </ToggleButton>
                         </ToggleButtonGroup>
-                    </FlexBox>
-                    <FlexBox flexDirection="flex-col" gap="gap-10">
+                    </div>
+                    <div className="space-y-10">
                         <Checkbox
                             size="medium"
                             label="전체 동의"
@@ -146,7 +136,7 @@ const Register = () => {
                             checked={terms && policy}
                             onChange={handleCheck}
                         />
-                        <CheckboxGroup isRow={false} gap="gap-5">
+                        <CheckboxGroup isRow={false} gap={5}>
                             <Checkbox
                                 size="medium"
                                 label="이용약관 동의"
@@ -162,13 +152,13 @@ const Register = () => {
                                 onChange={() => setPolicy((prev) => !prev)}
                             />
                         </CheckboxGroup>
-                    </FlexBox>
+                    </div>
                     <Button isDisabled={isDisabled} type="submit" variant="contained" size="large" isFullWidth>
-                        REGISTER
+                        등록
                     </Button>
-                </FlexBox>
+                </div>
             </form>
-        </FlexBox>
+        </div>
     );
 };
 

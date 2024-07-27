@@ -1,6 +1,5 @@
 import { ReactElement, ReactNode, cloneElement, useEffect, useMemo } from 'react';
 
-import { FlexBox, Typography } from '@components/Base';
 import type { OptionsType } from '@components/useAlert';
 
 import { DismissFilled } from '@fluentui/react-icons';
@@ -9,7 +8,7 @@ import { joinClassNames } from '@utils/format';
 import { getVariantStyle } from './styles';
 
 type AlertType = {
-    children: ReactNode;
+    message: string;
     onClose: () => void;
     icon?: ReactNode;
     options?: OptionsType;
@@ -17,13 +16,13 @@ type AlertType = {
 
 /**
  *  Alert Component
- *  @param children ReactNode
+ *  @param message Message to be displayed
  *  @param onClose Icon Button Click Handler
  *  @param icon ReactNode [optional]
  *  @param options [optional]
  *  @returns JSX.Element
  */
-export default function Alert({ children, options, icon, onClose }: AlertType) {
+export default function Alert({ message, options, icon, onClose }: AlertType) {
     const animationTime = useMemo(() => {
         let total = 4.5;
         if (options?.delay) {
@@ -46,17 +45,9 @@ export default function Alert({ children, options, icon, onClose }: AlertType) {
             )}
             style={{ animationDelay: options?.delay ? `${animationTime}s` : '4.5s' }}
         >
-            <Typography
-                fontSize="text-16"
-                fontWeight="font-medium"
-                lineHeight="leading-20"
-                color="text-inherit"
-                padding="pr-2.5"
-            >
-                {children}
-            </Typography>
+            <p className="pr-2.5 text-16 font-medium leading-20 text-inherit">{message}</p>
             {(options?.canDismiss === undefined || options?.canDismiss === true) && (
-                <FlexBox alignItems="items-center">
+                <div className="flex items-center">
                     <div
                         className={joinClassNames(
                             'mx-10 h-12 w-1',
@@ -64,6 +55,7 @@ export default function Alert({ children, options, icon, onClose }: AlertType) {
                         )}
                     />
                     <button
+                        aria-label="dismiss button"
                         type="button"
                         className={joinClassNames(
                             'rounded-full bg-transparent text-inherit',
@@ -81,7 +73,7 @@ export default function Alert({ children, options, icon, onClose }: AlertType) {
                             <DismissFilled className="!block size-18 stroke-2 text-inherit" />
                         )}
                     </button>
-                </FlexBox>
+                </div>
             )}
         </div>
     );

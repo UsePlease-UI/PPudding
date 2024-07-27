@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState, ChangeEvent, Fragment, useId } from 'react';
 
-import { FlexBox, listStyle } from '@components/Base';
+import { listStyle } from '@components/Base';
 import { TextField } from '@components/Form';
 
 import { joinClassNames } from '@utils/format';
@@ -59,13 +59,7 @@ export default function Autocomplete({ inputValue, onChange, label, listArr, onS
 
     return (
         <label htmlFor={label} className="block w-full">
-            <FlexBox
-                justifyContent="justify-center"
-                alignItems="items-center"
-                flexDirection="flex-row"
-                gap="gap-5"
-                width="w-full"
-            >
+            <div className="flex w-full items-center justify-center gap-5">
                 <TextField
                     isFullWidth
                     id={label}
@@ -86,7 +80,7 @@ export default function Autocomplete({ inputValue, onChange, label, listArr, onS
                         }
                     }}
                 />
-            </FlexBox>
+            </div>
             {Boolean(listArr.length > 0 && isOpen) && (
                 <ul id={listboxId} ref={listRef} role="listbox" aria-label={label} className={listStyle.list}>
                     {listArr.map((el) => (

@@ -1,6 +1,4 @@
-import { expect } from '@storybook/jest';
-import { fn } from '@storybook/test';
-import { userEvent, within } from '@storybook/testing-library';
+import { expect, fn, userEvent, within } from '@storybook/test';
 
 import IconButton from '@components/Button/IconButton';
 

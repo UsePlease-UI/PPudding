@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
-import { Backdrop, Typography } from '@components/Base';
+import { Backdrop } from '@components/Base';
 import { IconButton } from '@components/Button';
 
-import { A_LIST, DEMO_LIST, K_LIST } from '@constants/constants';
+import { DEMO_LIST, COMPONENT_LIST } from '@constants/constants';
 import { DismissFilled } from '@fluentui/react-icons';
 import useMobile from '@hooks/useMobile';
 import { joinClassNames } from '@utils/format';
@@ -47,21 +47,12 @@ export default function Lnb({ isVisible, onClose }: LnbType) {
                             <DismissFilled />
                         </IconButton>
                     </div>
-                    {[
-                        { name: 'akffkdahffkdgo77', list: A_LIST },
-                        { name: 'Kimyerim1935', list: K_LIST }
-                    ].map((val) => (
+                    {[{ name: 'Components', list: COMPONENT_LIST }].map((val) => (
                         <div key={val.name} className="relative w-full rounded border border-primary-600">
                             <div className="absolute -top-18 left-10 w-max under-tablet:-top-13">
-                                <Typography
-                                    component="h2"
-                                    fontSize={isTablet ? 'text-16' : 'text-24'}
-                                    fontWeight="font-black"
-                                    align={isTablet ? 'text-left' : 'text-center'}
-                                    backgroundColor="bg-white"
-                                >
+                                <h2 className="bg-white text-center text-24 font-black under-tablet:text-left under-tablet:text-16">
                                     {val.name}
-                                </Typography>
+                                </h2>
                             </div>
                             <ul className="row-auto grid w-full grid-cols-1 gap-4 p-20">
                                 {val.list.map((component) => (
@@ -85,15 +76,9 @@ export default function Lnb({ isVisible, onClose }: LnbType) {
                     ))}
                     <div className="relative w-full rounded border border-primary-600">
                         <div className="absolute -top-18 left-10 w-max under-tablet:-top-13">
-                            <Typography
-                                component="h2"
-                                fontSize={isTablet ? 'text-16' : 'text-24'}
-                                fontWeight="font-black"
-                                align={isTablet ? 'text-left' : 'text-center'}
-                                backgroundColor="bg-white"
-                            >
+                            <h2 className="bg-white text-center text-24 font-black under-tablet:text-left under-tablet:text-16">
                                 데모
-                            </Typography>
+                            </h2>
                         </div>
                         <ul className="row-auto grid w-full grid-cols-1 gap-4 p-20">
                             {DEMO_LIST.map((demo) => (
@@ -102,7 +87,7 @@ export default function Lnb({ isVisible, onClose }: LnbType) {
                                     className="group h-full w-full rounded bg-primary-50 font-medium hover:font-semibold"
                                 >
                                     <Link
-                                        to={`/demo/${demo}`}
+                                        to={`/demo/${demo.toLowerCase()}`}
                                         className="block h-full w-full px-4 py-8 text-center capitalize group-hover:text-primary-600 group-hover:outline-none group-focus:text-primary-600 group-focus:outline-none"
                                     >
                                         {demo}

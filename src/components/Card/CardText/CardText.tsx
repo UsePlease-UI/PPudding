@@ -1,6 +1,5 @@
 import { ReactNode, useCallback, useState } from 'react';
 
-import { Typography } from '@components/Base';
 import { IconButton } from '@components/Button';
 
 import { ChevronDownFilled, ChevronUpFilled } from '@fluentui/react-icons';
@@ -40,27 +39,12 @@ export default function CardText({
             <div {...rest} className="flex items-center justify-between px-12 py-9">
                 <div>
                     {typeof primaryText === 'string' ? (
-                        <Typography
-                            fontSize="text-16"
-                            fontWeight="font-semibold"
-                            lineHeight="leading-20"
-                            color="text-gray-950"
-                        >
-                            {primaryText}
-                        </Typography>
+                        <p className="text-16 font-semibold leading-20 text-gray-950">{primaryText}</p>
                     ) : (
                         primaryText
                     )}
                     {typeof secondaryText === 'string' ? (
-                        <Typography
-                            component="small"
-                            fontSize="text-12"
-                            fontWeight="font-normal"
-                            lineHeight="leading-16"
-                            color="text-gray-600"
-                        >
-                            {secondaryText}
-                        </Typography>
+                        <small className="text-12 font-normal leading-16 text-gray-900">{secondaryText}</small>
                     ) : (
                         secondaryText
                     )}
