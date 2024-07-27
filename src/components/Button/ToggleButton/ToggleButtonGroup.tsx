@@ -1,8 +1,6 @@
 import { ChangeEvent, Children, HTMLAttributes, ReactElement, ReactNode, cloneElement } from 'react';
 
-import { FlexBox } from '@components/Base';
-
-type ToggleButtonGroupType = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> & {
+type ToggleButtonGroupType = Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'className'> & {
     children: ReactNode;
     value?: string | string[];
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -19,7 +17,7 @@ export default function ToggleButtonGroup({ children, value, onChange }: ToggleB
     const isMultiple = typeof value !== 'string';
 
     return (
-        <FlexBox {...(!isMultiple && { role: 'radiogroup' })}>
+        <div {...(!isMultiple && { role: 'radiogroup' })} className="flex">
             {Children.toArray(children).map((child) =>
                 cloneElement(child as ReactElement, {
                     isMultiple,
@@ -27,6 +25,6 @@ export default function ToggleButtonGroup({ children, value, onChange }: ToggleB
                     onChange
                 })
             )}
-        </FlexBox>
+        </div>
     );
 }

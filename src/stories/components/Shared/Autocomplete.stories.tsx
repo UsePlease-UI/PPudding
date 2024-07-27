@@ -2,7 +2,6 @@ import { useState, useCallback } from 'react';
 
 import _ from 'lodash';
 
-import { FlexBox } from '@components/Base';
 import Autocomplete from '@components/Shared/Autocomplete';
 import { CommonListDataType } from '@components/types';
 
@@ -49,7 +48,7 @@ const DefaultAutocomplete: Story = {
         const handleSelect = useCallback((e?: CommonListDataType) => setSelectedItem(e as CommonListDataType), []);
 
         return (
-            <FlexBox flexDirection="flex-col" gap="gap-10">
+            <>
                 <div className="w-full">
                     선택된 항목 :<strong className="ml-4 w-full truncate">{selectedItem?.label}</strong>
                 </div>
@@ -63,7 +62,7 @@ const DefaultAutocomplete: Story = {
                         onSelect={handleSelect}
                     />
                 </div>
-            </FlexBox>
+            </>
         );
     }
 };

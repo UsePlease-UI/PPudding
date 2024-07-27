@@ -87,10 +87,9 @@ export function AlertProvider({ children, icon, position }: AlertProviderType) {
                                   key={message.id}
                                   icon={icon}
                                   options={message.options}
+                                  message={message.content}
                                   onClose={() => handleClose(message.id)}
-                              >
-                                  {message.content}
-                              </Alert>
+                              />
                           ))}
                       </div>,
                       modalElement as HTMLElement

@@ -1,7 +1,5 @@
 import { HTMLAttributes, ReactNode } from 'react';
 
-import { Typography } from '@components/Base';
-
 type FormControlType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
     children: ReactNode;
     labelText?: ReactNode;
@@ -24,29 +22,15 @@ export default function FormControl(props: FormControlType) {
     return (
         <div className="w-full">
             {labelText && (
-                <Typography
-                    component="label"
-                    htmlFor={id}
-                    fontFamily="text-12"
-                    fontWeight="font-semibold"
-                    margin="mb-4"
-                    display="block"
-                >
+                <label htmlFor={id} className="mb-4 block text-12 font-semibold">
                     {labelText}
-                </Typography>
+                </label>
             )}
             {children}
             {helperText && (
-                <Typography
-                    component="small"
-                    id={helperTextId}
-                    fontSize="text-10"
-                    fontWeight="font-medium"
-                    margin="mt-1"
-                    display="block"
-                >
+                <small id={helperTextId} className="mt-1 block text-10 font-medium">
                     {helperText}
-                </Typography>
+                </small>
             )}
         </div>
     );

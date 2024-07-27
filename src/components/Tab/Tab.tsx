@@ -1,6 +1,5 @@
 import { Children, ReactElement, ReactNode, cloneElement } from 'react';
 
-import { FlexBox } from '@components/Base';
 import { TabProvider } from '@components/useTab';
 
 type TabType = {
@@ -22,10 +21,10 @@ export default function Tab(props: TabType) {
     return (
         <TabProvider value={value} onChange={onChange}>
             <div {...rest} role="tablist" className="w-full bg-primary-600">
-                <FlexBox justifyContent="justify-evenly" alignItems="items-center" width="w-full" height="h-full">
+                <div className="flex h-full w-full items-center justify-evenly">
                     {/* https://fe-developers.kakaoent.com/2021/211022-react-children-tip/ */}
                     {Children.toArray(children).map((child) => cloneElement(child as ReactElement, { onChange }))}
-                </FlexBox>
+                </div>
             </div>
         </TabProvider>
     );

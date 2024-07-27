@@ -1,6 +1,5 @@
 import { ReactElement, ReactNode, cloneElement } from 'react';
 
-import { FlexBox } from '@components/Base';
 import { useTab } from '@components/useTab';
 
 import { joinClassNames } from '@utils/format';
@@ -49,7 +48,7 @@ export default function TabItem(props: TabItemType) {
             onClick={() => handleClick(index)}
             className="flex h-full min-h-56 w-full cursor-pointer flex-col items-center justify-center"
         >
-            <FlexBox alignItems="items-center" justifyContent="justify-center">
+            <div className="flex items-center justify-center">
                 {icon && (
                     <span className="my-12 block h-18 w-18">
                         {cloneElement(icon as ReactElement, { className: '!block w-18 h-18 text-primary-50' })}
@@ -68,7 +67,7 @@ export default function TabItem(props: TabItemType) {
                     ) : (
                         label
                     ))}
-            </FlexBox>
+            </div>
             <div
                 id={`tab-indicator-${index}`}
                 className={joinClassNames(

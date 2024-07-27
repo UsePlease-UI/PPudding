@@ -2,7 +2,6 @@ import { FormEvent, MouseEvent } from 'react';
 
 import { v4 as uuid } from 'uuid';
 
-import { FlexBox } from '@components/Base';
 import { Button } from '@components/Button';
 import { Select } from '@components/Combobox';
 import { Checkbox, TextField } from '@components/Form';
@@ -52,7 +51,7 @@ export default function AddSchedule({ onClose, onCancel }: AddScheduleType) {
             onSubmit={handleAddEvent}
             className={joinClassNames('h-full w-300 overflow-y-auto bg-white p-20', isTablet && 'h-[50vh] w-full')}
         >
-            <FlexBox flexDirection="flex-col" gap="gap-20" width="w-full">
+            <div className="flex w-full flex-col gap-20">
                 <TextField
                     labelText="시작일"
                     type="date"
@@ -98,15 +97,15 @@ export default function AddSchedule({ onClose, onCancel }: AddScheduleType) {
                     maxLength={20}
                     onChange={(e) => handleContents('description', e.target.value)}
                 />
-            </FlexBox>
-            <FlexBox justifyContent="justify-end" gap="gap-10" margin="mt-20">
+            </div>
+            <div className="mt-20 flex items-center justify-end gap-10">
                 <Button size="small" variant="outlined" onClick={onCancel}>
                     취소
                 </Button>
                 <Button type="submit" size="small" variant="contained">
                     추가
                 </Button>
-            </FlexBox>
+            </div>
         </form>
     );
 }

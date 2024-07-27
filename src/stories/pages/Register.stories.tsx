@@ -1,8 +1,9 @@
-import { expect, jest } from '@storybook/jest';
-import { userEvent, within } from '@storybook/testing-library';
+import { expect, userEvent, within, spyOn } from '@storybook/test';
 
 import { PASSWORD_REG_EXP } from '@pages/Demo/Register/constants';
 import RegisterPage from '@pages/Demo/Register/Register';
+
+import { sleep } from '../utils/common';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -19,25 +20,21 @@ export const Default: Story = {
     args: {}
 };
 
-// Function to emulate pausing between interactions
-function sleep(ms: number) {
-    // eslint-disable-next-line no-promise-executor-return
-    return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 Default.play = async ({ canvasElement, step }) => {
+    // https://github.com/storybookjs/storybook/issues/16971#issuecomment-1186028103
+    const body = canvasElement.parentElement!;
     const canvas = within(canvasElement);
 
-    const name = canvas.getByLabelText('name');
-    const email = canvas.getByLabelText('email');
-    const password = canvas.getByLabelText('password');
+    const name = canvas.getByLabelText('닉네임');
+    const email = canvas.getByLabelText('이메일');
+    const password = canvas.getByLabelText('비밀번호');
     const [year, month, day] = canvas.getAllByRole('combobox');
-    const registerButton = canvas.getByRole('button', { name: /register/i });
+    const registerButton = canvas.getByRole('button', { name: /등록/i });
     const gender = canvas.getByRole('radio', { name: '여성' });
     const useYn = canvas.getByRole('radio', { name: '미사용' });
     const terms = canvas.getByRole('checkbox', { name: '이용약관 동의' });
     const policy = canvas.getByRole('checkbox', { name: '(선택) 마케팅 동의' });
-    const consoleSpy = jest.spyOn(console, 'log');
+    const consoleSpy = spyOn(console, 'log');
 
     await step('닉네임 입력', async () => {
         expect(name).toHaveAttribute('type', 'text');
@@ -61,26 +58,25 @@ Default.play = async ({ canvasElement, step }) => {
         expect('Supersecret123!').toEqual(expect.stringMatching(PASSWORD_REG_EXP));
     });
 
-    // select tag가 아니라서 selectOptions 사용 불가
-
+    // portal에서 값을 찾아오도록 body에서 findByText
     await step('연도 선택', async () => {
         await userEvent.click(year);
         await sleep(500);
-        await userEvent.click(canvas.getByText('2022년'));
+        await userEvent.click(await within(body).findByText('2021년'));
         await sleep(500);
     });
 
     await step('월 선택', async () => {
         await userEvent.click(month);
         await sleep(500);
-        await userEvent.click(canvas.getByText('7월'));
+        await userEvent.click(await within(body).findByText('7월'));
         await sleep(500);
     });
 
     await step('일 선택', async () => {
         await userEvent.click(day);
         await sleep(500);
-        await userEvent.click(canvas.getByText('7일'));
+        await userEvent.click(await within(body).findByText('7일'));
         await sleep(500);
     });
 
@@ -98,19 +94,19 @@ Default.play = async ({ canvasElement, step }) => {
         await userEvent.click(terms);
         await sleep(500);
         await userEvent.click(policy);
-        await sleep(500);
     });
 
     await step('회원가입 버튼 활성화 및 폼 양식 제출', async () => {
+        await sleep(1000);
         expect(registerButton).toBeEnabled();
         await userEvent.click(registerButton);
         await sleep(1000);
     });
 
     await step('이메일 형식 오류 확인 및 이메일 재입력', async () => {
-        await userEvent.clear(canvas.getByLabelText('email'));
+        await userEvent.clear(canvas.getByLabelText('이메일'));
         await sleep(1000);
-        await userEvent.type(canvas.getByLabelText('email'), 'hi@example.com', { delay: 100 });
+        await userEvent.type(canvas.getByLabelText('이메일'), 'hi@example.com', { delay: 100 });
     });
 
     await step('회원가입 성공', async () => {
@@ -118,6 +114,6 @@ Default.play = async ({ canvasElement, step }) => {
         expect(registerButton).toBeEnabled();
         await userEvent.click(registerButton);
         await sleep(1000);
-        expect(consoleSpy).toHaveBeenCalledWith('hello i am submitted!');
+        expect(consoleSpy).toHaveBeenCalledWith('Submit Event Called');
     });
 };

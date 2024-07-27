@@ -1,4 +1,4 @@
-import { Box, Divider, FlexBox, Typography } from '@components/Base';
+import { Divider } from '@components/Base';
 import { Button, IconButton } from '@components/Button';
 import Card from '@components/Card';
 
@@ -44,62 +44,35 @@ export const ExpandableCard: Story = {
                 secondaryText="First Session of UI/UX Class"
                 expandedContents={
                     <>
-                        <FlexBox alignItems="items-center" gap="gap-10">
-                            <Box
-                                width="w-40"
-                                height="h-40"
-                                backgroundColor="bg-primary-600"
-                                borderRadius="rounded-full"
-                            >
+                        <div className="flex items-center gap-10">
+                            <div className="h-40 w-40 rounded-full bg-primary-600">
                                 <CallFilled className="m-10 h-20 w-20 text-white" />
-                            </Box>
-                            <FlexBox flexDirection="flex-col" alignSelf="flex-start">
-                                <Typography fontSize="text-14" fontWeight="font-normal">
-                                    (00) 0000-0000
-                                </Typography>
-                                <Typography component="small" fontSize="text-12" color="text-gray-600">
-                                    TEL
-                                </Typography>
-                            </FlexBox>
-                        </FlexBox>
+                            </div>
+                            <div className="flex flex-col self-start">
+                                <p className="text-14 font-normal">(00) 0000-0000</p>
+                                <small className="text-12 text-gray-600">TEL</small>
+                            </div>
+                        </div>
                         <Divider orientation="horizontal" margin="my-10" backgroundColor="bg-gray-100" />
-                        <FlexBox alignItems="items-center" gap="gap-10">
-                            <Box
-                                width="w-40"
-                                height="h-40"
-                                backgroundColor="bg-primary-600"
-                                borderRadius="rounded-full"
-                            >
+                        <div className="flex items-center gap-10">
+                            <div className="h-40 w-40 rounded-full bg-primary-600">
                                 <MailFilled className="m-10 h-20 w-20 text-white" />
-                            </Box>
-                            <FlexBox flexDirection="flex-col" alignSelf="flex-start">
-                                <Typography fontSize="text-14" fontWeight="font-normal">
-                                    example-email@test.com
-                                </Typography>
-                                <Typography component="small" fontSize="text-12" color="text-gray-600">
-                                    E-MAIL
-                                </Typography>
-                            </FlexBox>
-                        </FlexBox>
+                            </div>
+                            <div className="flex flex-col self-start">
+                                <p className="text-14 font-normal">example-email@test.com</p>
+                                <small className="text-12 text-gray-600">E-MAIL</small>
+                            </div>
+                        </div>
                         <Divider orientation="horizontal" margin="my-10" backgroundColor="bg-gray-100" />
-                        <FlexBox alignItems="items-center" gap="gap-10">
-                            <Box
-                                width="w-40"
-                                height="h-40"
-                                backgroundColor="bg-primary-600"
-                                borderRadius="rounded-full"
-                            >
+                        <div className="flex items-center gap-10">
+                            <div className="h-40 w-40 rounded-full bg-primary-600">
                                 <CalendarFilled className="m-10 h-20 w-20 text-white" />
-                            </Box>
-                            <FlexBox flexDirection="flex-col" alignSelf="flex-start">
-                                <Typography fontSize="text-14" fontWeight="font-normal">
-                                    Every Monday, Wednesday
-                                </Typography>
-                                <Typography component="small" fontSize="text-12" color="text-gray-600">
-                                    SCHEDULE
-                                </Typography>
-                            </FlexBox>
-                        </FlexBox>
+                            </div>
+                            <div className="flex flex-col self-start">
+                                <p className="text-14 font-normal">Every Monday, Wednesday</p>
+                                <small className="text-12 text-gray-600">SCHEDULE</small>
+                            </div>
+                        </div>
                     </>
                 }
             />
@@ -121,11 +94,11 @@ export const ActionCard: Story = {
                     primaryText="멋진 UI를 위한 CSS 스터디"
                     secondaryText="UX/UI"
                     actions={
-                        <FlexBox alignItems="items-center" justifyContent="justify-between">
+                        <div className="flex items-center justify-between">
                             <Button size="small" variant="outlined">
                                 신청하기
                             </Button>
-                            <FlexBox alignItems="items-center" gap="gap-10">
+                            <div className="flex items-center gap-10">
                                 <IconButton aria-label="좋아요" size="small" variant="text">
                                     <HeartRegular />
                                 </IconButton>
@@ -135,8 +108,8 @@ export const ActionCard: Story = {
                                 <IconButton aria-label="더보기" size="small" variant="text">
                                     <MoreVerticalRegular />
                                 </IconButton>
-                            </FlexBox>
-                        </FlexBox>
+                            </div>
+                        </div>
                     }
                 />
             </Card>

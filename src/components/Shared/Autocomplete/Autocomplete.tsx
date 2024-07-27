@@ -1,9 +1,11 @@
 import { useRef, useState, useId, ChangeEvent, useEffect } from 'react';
 
-import { Backdrop, FlexBox, Typography, Listbox, ListboxItem } from '@components/Base';
+import { Backdrop, Listbox, ListboxItem } from '@components/Base';
 import { TextField } from '@components/Form';
 import { CommonListDataType } from '@components/types';
 import usePosition from '@components/usePosition';
+
+import { joinClassNames } from '@utils/format';
 
 type AutocompleteType = {
     name: string;
@@ -82,13 +84,7 @@ export default function Autocomplete(props: AutocompleteType) {
 
     return (
         <div>
-            <FlexBox
-                alignItems="items-center"
-                justifyContent="justify-center"
-                gap="gap-5"
-                width="w-full"
-                backgroundColor="bg-white"
-            >
+            <div className="flex w-full items-center justify-center gap-5 bg-white">
                 <TextField
                     aria-label={!labelText ? `${name}` : undefined}
                     id={inputId}
@@ -104,7 +100,7 @@ export default function Autocomplete(props: AutocompleteType) {
                     onChange={handleChange}
                     onClick={handleClick}
                 />
-            </FlexBox>
+            </div>
             {isVisible && (
                 <Backdrop isOpen={isVisible} onClose={handleClick}>
                     <div ref={listContainerRef} className="fixed w-full">
@@ -124,24 +120,21 @@ export default function Autocomplete(props: AutocompleteType) {
                                                   .split(new RegExp(`(${inputValue})`, 'gi'))
                                                   .filter((val) => val)
                                                   .map((letter, idx) => (
-                                                      <Typography
+                                                      <span
                                                           key={letter + idx}
-                                                          component="span"
-                                                          color={
+                                                          className={joinClassNames(
                                                               selected?.value === option.value
                                                                   ? 'text-white'
                                                                   : new RegExp(`(${inputValue})`, 'gi').test(letter)
                                                                     ? 'text-primary-600'
-                                                                    : 'text-black'
-                                                          }
-                                                          fontWeight={
+                                                                    : 'text-black',
                                                               new RegExp(`(${inputValue})`, 'gi').test(letter)
                                                                   ? 'font-semibold'
                                                                   : 'font-normal'
-                                                          }
+                                                          )}
                                                       >
                                                           {letter}
-                                                      </Typography>
+                                                      </span>
                                                   ))
                                             : option.label
                                     }

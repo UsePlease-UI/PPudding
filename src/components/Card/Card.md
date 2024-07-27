@@ -20,11 +20,11 @@
         primaryText="멋진 UI를 위한 CSS 스터디"
         secondaryText="UX/UI"
         actions={
-            <FlexBox alignItems="items-center" justifyContent="justify-between">
+            <div className="flex items-center justify-between">
                 <Button size="small" variant="outlined">
                     신청하기
                 </Button>
-                <FlexBox alignItems="items-center" gap="gap-10">
+                <div className="flex items-center gap-10">
                     <IconButton aria-label="좋아요" size="small" variant="text">
                         <HeartRegular />
                     </IconButton>
@@ -34,8 +34,8 @@
                     <IconButton aria-label="더보기" size="small" variant="text">
                         <MoreVerticalRegular />
                     </IconButton>
-                </FlexBox>
-            </FlexBox>
+                </div>
+            </div>
         }
     />
 </Card>

@@ -1,6 +1,5 @@
 import { MouseEvent, useCallback, useState } from 'react';
 
-import { Typography, FlexBox } from '@components/Base';
 import BottomSheet from '@components/BottomSheet';
 import { Button, IconButton } from '@components/Button';
 import Popover from '@components/Shared/Popover';
@@ -81,9 +80,9 @@ export default function MonthlyCalender() {
                 >
                     <ChevronLeftFilled />
                 </IconButton>
-                <Typography fontSize="text-18" fontWeight="font-medium">
+                <p className="text-18 font-medium">
                     {year}년 {month}월
-                </Typography>
+                </p>
                 <IconButton
                     aria-label="next month"
                     size={isTablet ? 'mini' : 'small'}
@@ -93,20 +92,13 @@ export default function MonthlyCalender() {
                     <ChevronRightFilled />
                 </IconButton>
             </div>
-            <FlexBox>
+            <ul className="flex items-center">
                 {CALENDER_SEVEN_DAYS.map((el: string) => (
-                    <Typography
-                        key={el}
-                        width="w-full"
-                        height="h-30"
-                        align="text-center"
-                        fontSize="text-18"
-                        fontWeight="font-medium"
-                    >
-                        {el}
-                    </Typography>
+                    <li key={el} className="h-30 w-full">
+                        <span className="block text-center text-18 font-medium">{el}</span>
+                    </li>
                 ))}
-            </FlexBox>
+            </ul>
             <Schedule
                 isEdited={isEdited}
                 onEdit={handleEdit}

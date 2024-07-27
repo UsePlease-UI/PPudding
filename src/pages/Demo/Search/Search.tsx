@@ -1,16 +1,13 @@
 import { useState } from 'react';
 
-import { FlexBox, Typography } from '@components/Base';
 import { Button, Chip } from '@components/Button';
 import { Radio, RadioGroup, Checkbox, CheckboxGroup, TextField } from '@components/Form';
 import Popover from '@components/Shared/Popover';
 import usePopover from '@components/Shared/usePopover';
 
 import { ChevronDownFilled, ChevronUpFilled } from '@fluentui/react-icons';
-import useMobile from '@hooks/useMobile';
 
 const Search = () => {
-    const { isTablet } = useMobile();
     const { isOpen, anchorElement, handleOpen, handleClose } = usePopover();
 
     const [state, setState] = useState('Y');
@@ -21,45 +18,33 @@ const Search = () => {
     });
 
     return (
-        <FlexBox flexDirection="flex-col">
-            <FlexBox
-                width="w-full"
-                padding="px-20"
-                gap="gap-10"
-                flexDirection={isTablet ? 'flex-col' : 'flex-row'}
-                justifyContent="center"
-                alignItems={isTablet ? 'flex-start' : 'center'}
-            >
-                <div className="shrink-0 rounded border border-primary-600 px-8">
-                    <Typography fontSize="text-24" fontWeight="font-black" color="text-primary-600">
-                        RC
-                    </Typography>
+        <div className="flex flex-col">
+            <div className="flex-start mb-20 mt-20 flex w-full flex-col justify-center gap-10 px-20 tablet:mt-0 tablet:flex-row tablet:items-center">
+                <div className="shrink-0 rounded border border-primary-600 px-8 under-tablet:w-max">
+                    <p className="text-24 font-black text-primary-600">RC</p>
                 </div>
-                <TextField type="search" aria-label="검색" placeholder="검색어를 입력해 주세요" />
-            </FlexBox>
-            <FlexBox justifyContent="justify-end" flex="flex-1" width="w-full" padding="px-20">
+                <TextField isFullWidth type="search" aria-label="검색" placeholder="검색어를 입력해 주세요" />
+            </div>
+            <div className="flex w-full flex-1 items-center justify-end px-20">
                 <Button
                     size="small"
-                    hasEndIcon
-                    icon={
+                    endIcon={
                         isOpen ? <ChevronUpFilled className="h-12 w-12" /> : <ChevronDownFilled className="h-12 w-12" />
                     }
                     onClick={handleOpen}
                 >
                     더보기
                 </Button>
-            </FlexBox>
+            </div>
             <Popover
                 isOpen={isOpen}
                 anchorPosition={{ vertical: 'bottom', horizontal: 'right' }}
                 anchorElement={anchorElement}
                 onClose={handleClose}
             >
-                <FlexBox flexDirection="flex-col" width="w-200" padding="p-10" borderRadius="rounded-lg">
-                    <Typography component="p" fontWeight="600" margin="mb-10">
-                        브랜드
-                    </Typography>
-                    <CheckboxGroup isRow={false} gap="gap-10">
+                <div className="flex w-200 flex-col rounded-lg p-10">
+                    <p className="mb-10 font-semibold">브랜드</p>
+                    <CheckboxGroup isRow={false} gap={10}>
                         <Checkbox
                             label="Channel"
                             value="channel"
@@ -109,15 +94,13 @@ const Search = () => {
                             }}
                         />
                     </CheckboxGroup>
-                    <Typography component="p" fontWeight="600" margin="mt-20 mb-10">
-                        판매여부
-                    </Typography>
-                    <FlexBox margin="mb-20">
-                        <RadioGroup gap="gap-20" value={state} onChange={(e) => setState(e.currentTarget.value)}>
+                    <p className="mb-10 mt-20 font-semibold">판매여부</p>
+                    <div className="mb-20">
+                        <RadioGroup gap={20} value={state} onChange={(e) => setState(e.currentTarget.value)}>
                             <Radio name="state" label="판매 중" value="Y" />
                             <Radio name="state" label="품절" value="N" />
                         </RadioGroup>
-                    </FlexBox>
+                    </div>
                     <div className="ml-auto w-max">
                         <Button
                             variant="outlined"
@@ -130,9 +113,9 @@ const Search = () => {
                             적용
                         </Button>
                     </div>
-                </FlexBox>
+                </div>
             </Popover>
-            <FlexBox gap="gap-10" flexWrap="flex-wrap" margin="my-20" padding="px-20">
+            <div className="my-20 flex flex-wrap gap-10 px-20">
                 {confirmed.state && (
                     <Chip
                         label={confirmed.state === 'Y' ? '판매 중' : '품절'}
@@ -153,8 +136,8 @@ const Search = () => {
                             }
                         />
                     ))}
-            </FlexBox>
-        </FlexBox>
+            </div>
+        </div>
     );
 };
 

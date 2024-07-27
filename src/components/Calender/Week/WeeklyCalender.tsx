@@ -1,5 +1,6 @@
-import { FlexBox, Typography } from '@components/Base';
 import { useCalender } from '@components/useCalender';
+
+import { joinClassNames } from '@utils/format';
 
 import WeekDays from './WeekDays';
 
@@ -19,14 +20,12 @@ export default function WeeklyCalender() {
     const weeklyWeek = Number(week);
 
     return (
-        <FlexBox gap="gap-20">
+        <div className="flex items-center gap-20">
             {getWeeks()[weeklyWeek].map((day) => (
                 <WeekDays key={day}>
-                    <Typography component="span" color={day === String(date) ? 'text-red-600' : undefined}>
-                        {day}
-                    </Typography>
+                    <span className={joinClassNames(day === String(date) && 'text-red-600')}>{day}</span>
                 </WeekDays>
             ))}
-        </FlexBox>
+        </div>
     );
 }

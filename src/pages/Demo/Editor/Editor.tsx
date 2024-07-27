@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import { FlexBox } from '@components/Base';
 import { IconButton, ToggleButton, ToggleButtonGroup } from '@components/Button';
 import Popover from '@components/Shared/Popover';
 import usePopover from '@components/Shared/usePopover';
@@ -20,25 +19,18 @@ import { joinClassNames } from '@utils/format';
 
 import { COLOR_LIST, DEFAULT_VALUE } from './constants';
 
-type TextAlignType = 'center' | 'right' | 'left' | 'justify';
+type TextAlignType = 'text-center' | 'text-right' | 'text-left' | 'text-justify';
 
 const Editor = () => {
     const [style, setStyle] = useState<string[]>([]);
-    const [align, setAlign] = useState<TextAlignType>();
+    const [align, setAlign] = useState<TextAlignType>('text-left');
     const [color, setColor] = useState('text-primary-600');
 
     const { isOpen, anchorElement, handleOpen, handleClose } = usePopover();
 
     return (
         <div className="under-tablet:p-10">
-            <FlexBox
-                gap="gap-10"
-                justifyContent="justify-end"
-                flexWrap="flex-wrap"
-                borderRadius="rounded-t"
-                padding="p-10"
-                backgroundColor="bg-blue-gray-100"
-            >
+            <div className="flex flex-wrap justify-end gap-10 rounded-t bg-blue-gray-50 p-10">
                 <ToggleButtonGroup
                     value={style}
                     onChange={(e) => {
@@ -60,36 +52,34 @@ const Editor = () => {
                         <TextUnderlineRegular />
                     </ToggleButton>
                 </ToggleButtonGroup>
-                <FlexBox gap="gap-5">
-                    <IconButton variant="outlined" onClick={handleOpen}>
-                        <TextColorFilled />
-                    </IconButton>
-                    <Popover
-                        isOpen={isOpen}
-                        anchorPosition={{ vertical: 'bottom', horizontal: 'right' }}
-                        anchorElement={anchorElement}
-                        onClose={handleClose}
-                    >
-                        <FlexBox
-                            alignItems="items-center"
-                            justifyContent="justify-center"
-                            gap="gap-10"
-                            flexWrap="flex-wrap"
-                            maxWidth="max-w-120"
-                        >
-                            {COLOR_LIST.map((val) => (
-                                <IconButton key={val} variant="outlined" onClick={() => setColor(val)}>
-                                    <ColorFilled className={val} />
-                                </IconButton>
-                            ))}
-                        </FlexBox>
-                    </Popover>
-                </FlexBox>
+                <IconButton variant="outlined" onClick={handleOpen}>
+                    <TextColorFilled />
+                </IconButton>
+                <Popover
+                    isOpen={isOpen}
+                    anchorPosition={{ vertical: 'bottom', horizontal: 'right' }}
+                    anchorElement={anchorElement}
+                    onClose={handleClose}
+                >
+                    <div className="flex max-w-120 flex-wrap items-center justify-center gap-10">
+                        {COLOR_LIST.map((val) => (
+                            <IconButton key={val} variant="outlined" onClick={() => setColor(val)}>
+                                <ColorFilled className={val} />
+                            </IconButton>
+                        ))}
+                    </div>
+                </Popover>
                 <ToggleButtonGroup
                     value={align}
                     onChange={(e) => {
                         const newValue = e.currentTarget.value;
-                        setAlign((prev) => (prev === newValue ? '' : newValue) as TextAlignType);
+                        if (newValue === '') {
+                            setStyle([]);
+                            setAlign('text-left');
+                            setColor('text-primary-600');
+                        } else {
+                            setAlign((prev) => (prev === newValue ? '' : newValue) as TextAlignType);
+                        }
                     }}
                 >
                     <ToggleButton name="textAlign" value="text-left">
@@ -108,7 +98,7 @@ const Editor = () => {
                         RESET
                     </ToggleButton>
                 </ToggleButtonGroup>
-            </FlexBox>
+            </div>
             <div className="h-[calc(100vh-158px)] w-full tablet:h-500">
                 <textarea
                     className={joinClassNames(

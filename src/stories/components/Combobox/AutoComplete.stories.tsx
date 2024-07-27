@@ -2,7 +2,6 @@ import { useState, useCallback, ChangeEvent } from 'react';
 
 import _ from 'lodash';
 
-import { FlexBox, Typography } from '@components/Base';
 import { Autocomplete } from '@components/Combobox';
 import { CommonListDataType } from '@components/types';
 
@@ -52,10 +51,10 @@ const AutoCompleteTemplate: Story = {
         const handleSelect = useCallback((item: CommonListDataType) => setSelectedItem(item), []);
 
         return (
-            <FlexBox flexDirection="flex-col" gap="gap-10">
-                <Typography margin="mb-20" fontWeight="font-medium">
+            <div className="flex flex-col gap-10">
+                <p className="mb-20 text-16 font-medium">
                     선택된 항목 :<strong className="block w-full truncate">{selectedItem?.label}</strong>
-                </Typography>
+                </p>
                 <Autocomplete
                     {...args}
                     label="Autocomplete example"
@@ -64,7 +63,7 @@ const AutoCompleteTemplate: Story = {
                     onChange={handleChange}
                     onSelect={handleSelect}
                 />
-            </FlexBox>
+            </div>
         );
     }
 };

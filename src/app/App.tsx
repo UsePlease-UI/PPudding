@@ -1,7 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import BaseLayout from '@layouts/BaseLayout';
-import DemoLayout from '@layouts/DemoLayout';
 
 import Editor from '@pages/Demo/Editor';
 import FAQ from '@pages/Demo/FAQ';
@@ -29,19 +28,11 @@ export default function App() {
                             path: 'example/:component',
                             element: <Example />
                         }
-                        // {
-                        //     path: 'shared/:component',
-                        //     element: <Example />
-                        // },
-                        // {
-                        //     path: 'guide/:component',
-                        //     element: <Guide />
-                        // }
                     ]
                 },
                 {
                     path: '/demo',
-                    element: <DemoLayout />,
+                    element: <BaseLayout />,
                     errorElement: <Error />,
                     children: [
                         {

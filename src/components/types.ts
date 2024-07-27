@@ -1,5 +1,5 @@
 export type CommonListDataType = {
-    idx: string;
+    idx?: string;
     label: string;
     value: string;
 };

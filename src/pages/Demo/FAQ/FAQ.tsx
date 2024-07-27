@@ -1,14 +1,11 @@
 import { Accordion, AccordionHeader, AccordionPanel } from '@components/Accordion';
-import { Box, Typography } from '@components/Base';
 
 import { DismissFilled } from '@fluentui/react-icons';
 
 export default function FAQ() {
     return (
-        <Box height="h-full" width="w-full">
-            <Typography component="h2" fontSize="text-40" fontWeight="font-bold" align="text-center" margin="mb-40">
-                자주 묻는 질문들(FAQ)
-            </Typography>
+        <div className="h-full w-full">
+            <h2 className="mb-40 text-center text-40 font-bold">자주 묻는 질문들(FAQ)</h2>
             <div className="space-y-5">
                 <Accordion isExpanded>
                     <AccordionHeader>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</AccordionHeader>
@@ -72,6 +69,6 @@ export default function FAQ() {
                     </AccordionPanel>
                 </Accordion>
             </div>
-        </Box>
+        </div>
     );
 }

@@ -1,6 +1,6 @@
 import { DragEvent, ReactNode, useCallback, useEffect, useId, useState } from 'react';
 
-import { FlexBox, Typography, listStyle } from '@components/Base';
+import { listStyle } from '@components/Base';
 
 import DragNDropListItem from './DragNDropListItem';
 import { CommonListDataType } from '../../types';
@@ -77,11 +77,11 @@ export default function DragNDrop({ title, items = [], render, onDragStart, onDr
     );
 
     return (
-        <FlexBox flexDirection="flex-col" gap="gap-10">
+        <div className="flex flex-col gap-10">
             {title && (
-                <Typography id={titleId} component="h2" fontSize="text-24" fontWeight="font-semibold">
+                <h2 id={titleId} className="text-24 font-semibold">
                     {title}
-                </Typography>
+                </h2>
             )}
             <ul id="drag-list" aria-labelledby={title ? titleId : undefined} className={listStyle.list}>
                 {render ? (
@@ -95,6 +95,6 @@ export default function DragNDrop({ title, items = [], render, onDragStart, onDr
                     />
                 )}
             </ul>
-        </FlexBox>
+        </div>
     );
 }

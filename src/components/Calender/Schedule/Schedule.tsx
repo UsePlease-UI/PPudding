@@ -2,7 +2,6 @@ import { useCallback } from 'react';
 
 import dayjs from 'dayjs';
 
-import { FlexBox, Typography } from '@components/Base';
 import BottomSheet from '@components/BottomSheet';
 import Popover from '@components/Shared/Popover';
 import usePopover from '@components/Shared/usePopover';
@@ -60,16 +59,17 @@ export default function Schedule(props: ScheduleType) {
     return (
         <section className="flex flex-col gap-1 border border-black bg-black">
             {getWeeks().map((el, idx) => (
-                <FlexBox key={idx} backgroundColor="bg-black" gap="gap-1">
+                <div key={idx} className="flex items-center gap-1 bg-black">
                     {el.map((day, elIdx) => (
                         <WeekDays key={elIdx}>
-                            <Typography
-                                color={String(date) ? 'text-primary-600' : undefined}
-                                fontWeight="font-medium"
-                                margin="my-4 mx-4 tablet:mx-10"
+                            <p
+                                className={joinClassNames(
+                                    'mx-4 my-4 text-16 font-medium tablet:mx-10',
+                                    String(date) && 'text-primary-600'
+                                )}
                             >
                                 {day}
-                            </Typography>
+                            </p>
                             {day !== '' &&
                                 scheduleList.map((todo, index) => {
                                     if (
@@ -97,12 +97,9 @@ export default function Schedule(props: ScheduleType) {
                                                             handleDetailClick('open', day, index);
                                                         }}
                                                     >
-                                                        <Typography
-                                                            fontSize={isTablet ? 'text-10' : 'text-14'}
-                                                            align="text-left h-14 tablet:h-21 under-tablet:whitespace-break-spaces under-tablet:overflow-hidden"
-                                                        >
+                                                        <p className="h-14 text-left text-14 tablet:h-21 under-tablet:overflow-hidden under-tablet:whitespace-break-spaces under-tablet:text-10">
                                                             {isStartDate ? todo.title : ' '}
-                                                        </Typography>
+                                                        </p>
                                                     </button>
                                                 </div>
                                                 {isTablet ? (
@@ -146,7 +143,7 @@ export default function Schedule(props: ScheduleType) {
                                 })}
                         </WeekDays>
                     ))}
-                </FlexBox>
+                </div>
             ))}
         </section>
     );

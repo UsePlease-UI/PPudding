@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
 
-import { FlexBox } from '@components/Base';
+import { joinClassNames } from '@utils/format';
 
 type CheckboxGroupType = {
     children: ReactNode;
     isRow?: boolean;
-    gap?: string;
+    gap?: number;
 };
 
 /**
@@ -19,13 +19,14 @@ export default function CheckboxGroup(props: CheckboxGroupType) {
     const { children, isRow = true, gap = 'gap-10' } = props;
 
     return (
-        <FlexBox
-            alignItems={isRow ? 'items-center' : undefined}
-            justifyContent={isRow ? 'justify-start' : undefined}
-            flexDirection={isRow ? 'flex-row' : 'flex-col'}
-            gap={gap}
+        <div
+            className={joinClassNames(
+                'flex flex-col',
+                isRow && 'flex-row items-center justify-start',
+                gap && `gap-${gap}`
+            )}
         >
             {children}
-        </FlexBox>
+        </div>
     );
 }
