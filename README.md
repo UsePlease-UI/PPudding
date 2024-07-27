@@ -39,7 +39,6 @@
 
 #### TODO
 
-![List](https://img.shields.io/badge/akffkdahffkdgo77-List-red?style=flat-square)
 ![Range Slider](https://img.shields.io/badge/akffkdahffkdgo77-Range%20Slider-red?style=flat-square)
 ![Switch](https://img.shields.io/badge/akffkdahffkdgo77-Switch-red?style=flat-square)
 
@@ -56,6 +55,7 @@
 #### DONE
 
 ![Alert](https://img.shields.io/badge/akffkdahffkdgo77-Alert-red?style=flat-square)
+![List](https://img.shields.io/badge/akffkdahffkdgo77-List-red?style=flat-square)
 ![Textarea](https://img.shields.io/badge/akffkdahffkdgo77-Textarea-red?style=flat-square)
 
 ## Assets
