@@ -1,44 +1,35 @@
-/** @jsxImportSource @emotion/react */
 import { MouseEvent, ReactNode } from 'react';
 
-import { css } from '@emotion/react';
+import { joinClassNames } from '@utils/format';
 
-import Button from 'components/Button/Button';
-
-import { listBoxStyle } from './styles';
+import { listStyle } from './styles';
 
 type ListboxItemType = {
     currentValue: string | number;
-    name: string;
-    label: string | ReactNode;
+    label: ReactNode;
     value: string | number;
     onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 };
 
 /**
- *  Listbox Item Component
- *  @param currentValue
- *  @param name
- *  @param label
- *  @param value
- *  @param onClick
+ *  [Base Component] Listbox Item Component
+ *  @param currentValue 현재 선택된 값
+ *  @param label Listbox Item 텍스트
+ *  @param value Listbox Item 값
+ *  @param onClick Click Event Handler
  *  @returns JSX.Element
  */
-const ListboxItem = ({ currentValue, name, label, value, onClick }: ListboxItemType) => {
+const ListboxItem = ({ currentValue, label, value, onClick }: ListboxItemType) => {
     return (
-        <li
-            role="option"
-            aria-selected={currentValue === value}
-            css={css([
-                listBoxStyle.listItem,
-                {
-                    ...(currentValue === value && listBoxStyle.selectedListItem)
-                }
-            ])}
-        >
-            <Button type="button" name={name} value={value} onClick={onClick}>
+        <li role="option" aria-selected={currentValue === value} className={listStyle.listItem}>
+            <button
+                type="button"
+                value={value}
+                onClick={onClick}
+                className={joinClassNames(listStyle.listItemButton, currentValue === value && listStyle.selected)}
+            >
                 {label}
-            </Button>
+            </button>
         </li>
     );
 };

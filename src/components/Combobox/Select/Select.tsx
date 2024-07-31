@@ -1,32 +1,29 @@
-/** @jsxImportSource @emotion/react */
-import { InputHTMLAttributes, MouseEvent, ReactNode, useId, useRef, useState } from 'react';
+import { InputHTMLAttributes, MouseEvent, ReactNode, useCallback, useEffect, useId, useRef, useState } from 'react';
 
-import { css } from '@emotion/react';
-import { ChevronDownIcon } from '@heroicons/react/24/solid';
-import type { CustomCSSType } from 'styles/types';
+import { Backdrop, FormControl, Listbox } from '@components/Base';
+import { getVariantStyle } from '@components/Button';
+import { CommonListDataType } from '@components/types';
+import usePosition from '@components/usePosition';
 
-import { Backdrop, Box, FormControl, Listbox, OptionType } from 'components/Base';
+import { ChevronDownFilled } from '@fluentui/react-icons';
+import { joinClassNames } from '@utils/format';
 
-import { selectStyle } from './styles';
-import usePosition from '../usePosition';
-
-type BaseType = InputHTMLAttributes<HTMLButtonElement> & CustomCSSType;
+type BaseType = InputHTMLAttributes<HTMLButtonElement>;
 
 type SelectType = BaseType & {
-    name: string;
+    placeholder?: string;
     label: string;
     value: string | number;
     onChange: (e: MouseEvent<HTMLButtonElement>) => void;
-    options?: OptionType[];
+    options?: CommonListDataType[];
     isDisabled?: boolean;
     isReadOnly?: boolean;
-    labelText?: string | ReactNode;
-    helperText?: string | ReactNode;
+    labelText?: ReactNode;
+    helperText?: ReactNode;
 };
 
 /**
  *  [UI Component] Select Component
- *  @param name Select 이름
  *  @param label 선택된 값의 label
  *  @param value 선택된 값의 value
  *  @param onChange Change Event Handler
@@ -35,13 +32,12 @@ type SelectType = BaseType & {
  *  @param isDisabled 활성화여부 [optional]
  *  @param labelText Label Text [optional]
  *  @param helperText Helper Text [optional]
- *  @param customCSS 커스텀 CSS [optional]
  *  @returns JSX.Element
  */
 export default function Select(props: SelectType) {
     const {
+        placeholder,
         id,
-        name,
         label,
         value,
         options = [],
@@ -50,84 +46,86 @@ export default function Select(props: SelectType) {
         labelText,
         helperText,
         onChange,
-        customCSS,
         ...rest
     } = props;
 
-    const buttonId = id || useId();
-    const labelId = rest['aria-labelledby'] || useId();
-    const helperTextId = rest['aria-describedby'] || useId();
+    const buttonId = useId();
+    const labelId = useId();
+    const helperTextId = useId();
     const listBoxId = useId();
 
+    const listContainerRef = useRef<HTMLDivElement>(null);
     const ref = useRef<HTMLButtonElement | null>(null);
     const [isVisible, setIsVisible] = useState(false);
 
-    const { top, left, marginTop, maxWidth } = usePosition({
-        inputId: buttonId,
+    const position = usePosition({
+        inputId: id || buttonId,
         listBoxId,
         isVisible,
         totalLength: options.length
     });
 
-    const handleClick = () => setIsVisible((prev) => !prev);
+    useEffect(() => {
+        const element = listContainerRef.current;
+        if (isVisible && element) {
+            const { top, left, marginTop, maxWidth } = position;
+            element.style.top = `${top}px`;
+            element.style.left = `${left}px`;
+            element.style.marginTop = `${marginTop}px`;
+            const list = element.getElementsByTagName('ul')[0];
+            list.style.maxWidth = `${maxWidth}px`;
+        }
+    }, [isVisible, position]);
+
+    const handleClick = useCallback(() => setIsVisible((prev) => !prev), []);
 
     return (
-        <Box customCSS={selectStyle.box}>
-            <FormControl id={labelId} labelText={labelText} helperText={helperText} helperTextId={helperTextId}>
-                <div css={selectStyle.container}>
+        <div className="w-max">
+            <FormControl
+                id={rest['aria-labelledby'] || labelId}
+                labelText={labelText}
+                helperText={helperText}
+                helperTextId={rest['aria-describedby'] || helperTextId}
+            >
+                <div className="group relative">
                     <button
-                        id={buttonId}
+                        id={id || buttonId}
                         ref={ref}
                         type="button"
                         disabled={isDisabled || isReadOnly}
                         aria-expanded={isVisible}
                         aria-controls={listBoxId}
                         aria-haspopup="listbox"
-                        aria-describedby={helperText ? helperTextId : undefined}
+                        aria-describedby={helperText ? rest['aria-describedby'] || helperTextId : undefined}
                         role="combobox"
                         tabIndex={0}
                         onClick={handleClick}
-                        css={css([
-                            selectStyle.button,
-                            {
-                                ...(isReadOnly && selectStyle.buttonReadOnly)
-                            },
-                            css(customCSS)
-                        ])}
+                        className={joinClassNames(
+                            getVariantStyle('outlined'),
+                            'flex h-40 min-w-120 items-center justify-between rounded pl-12 pr-8 text-black',
+                            placeholder && !value && 'text-gray-400'
+                        )}
                     >
-                        <span css={selectStyle.buttonText}>{label}</span>
-                        <span
-                            css={css([
-                                selectStyle.icon,
-                                {
-                                    '& svg': {
-                                        transform: isVisible ? 'rotate(180deg)' : 'unset'
-                                    }
-                                }
-                            ])}
-                        >
-                            <ChevronDownIcon width={16} height={16} />
+                        <span className="mr-2.5 flex-1 truncate text-left text-14 font-normal leading-normal text-inherit">
+                            {placeholder && !value ? placeholder : label}
+                        </span>
+                        <span className="h-20 w-20">
+                            <ChevronDownFilled
+                                width={16}
+                                height={16}
+                                className={joinClassNames(
+                                    '!block h-20 w-20 text-primary-600',
+                                    isVisible && 'rotate-180'
+                                )}
+                            />
                         </span>
                     </button>
                     {isVisible && (
-                        <Backdrop isOpen={isVisible} onClose={() => handleClick()}>
-                            <div
-                                css={css([
-                                    selectStyle.listContainer,
-                                    {
-                                        top,
-                                        left,
-                                        marginTop,
-                                        '& > ul': {
-                                            maxWidth
-                                        }
-                                    }
-                                ])}
-                            >
+                        <Backdrop isOpen={isVisible} onClose={handleClick}>
+                            <div ref={listContainerRef} className="fixed w-full">
                                 <Listbox
                                     id={listBoxId}
-                                    labelId={labelId}
-                                    name={name}
+                                    labelId={rest['aria-labelledby'] || labelId}
                                     value={value}
                                     options={options}
                                     onClick={onChange}
@@ -137,6 +135,6 @@ export default function Select(props: SelectType) {
                     )}
                 </div>
             </FormControl>
-        </Box>
+        </div>
     );
 }

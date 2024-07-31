@@ -1,20 +1,17 @@
-/* eslint-disable no-alert */
-
-import { Fragment } from 'react';
+import { useCallback } from 'react';
 
 import dayjs from 'dayjs';
 
-import { css } from '@emotion/react';
+import BottomSheet from '@components/BottomSheet';
+import Popover from '@components/Shared/Popover';
+import usePopover from '@components/Shared/usePopover';
+import { useCalender } from '@components/useCalender';
 
-import { FlexBox, Typography } from 'components/Base';
-import BottomSheet from 'components/BottomSheet';
-import Button from 'components/Button/Button';
-import ScheduleDetail from 'components/Calender/Schedule/ScheduleDetail';
-import { scheduleStyle } from 'components/Calender/styles';
-import WeekDays from 'components/Calender/Week/WeekDays';
-import PopOver from 'components/Menu/PopOver';
-import { useCalender } from 'components/useCalender';
-import useMobile from 'hooks/useMobile';
+import useMobile from '@hooks/useMobile';
+import { joinClassNames } from '@utils/format';
+
+import ScheduleDetail from '../Schedule/ScheduleDetail';
+import WeekDays from '../Week/WeekDays';
 
 type OpenScheduleType = {
     isOpen: string;
@@ -23,56 +20,57 @@ type OpenScheduleType = {
 
 type ScheduleType = {
     isEdited: boolean;
-    setIsEdited: React.Dispatch<React.SetStateAction<boolean>>;
-    isOpenAddForm: boolean;
-    setIsOpenAddForm: React.Dispatch<React.SetStateAction<boolean>>;
-    isOpenSchedule: OpenScheduleType;
-    setIsOpenSchedule: React.Dispatch<React.SetStateAction<OpenScheduleType>>;
+    onEdit: (isEdited: boolean) => void;
+    isAddFormOpen: boolean;
+    onAddFormOpen: (isOpen: boolean) => void;
+    isScheduleOpen: OpenScheduleType;
+    onScheduleOpen: (obj: OpenScheduleType) => void;
 };
 
-export default function Schedule({
-    isEdited,
-    setIsEdited,
-    isOpenAddForm,
-    setIsOpenAddForm,
-    isOpenSchedule,
-    setIsOpenSchedule
-}: ScheduleType) {
-    const { date, year, month, scheduleList, getWeeks, dispatch: calenderDispatch } = useCalender();
-    const isMobile = useMobile();
-    const handleClickDetail = (type: 'open' | 'close', day: string, index: number) => {
-        if (isOpenAddForm) {
-            setIsOpenAddForm(false);
-        } else if (type === 'close') {
-            setIsOpenSchedule({ isOpen: '', index: -1 });
-            setIsEdited(false);
-        }
+export default function Schedule(props: ScheduleType) {
+    const { isEdited, onEdit, isAddFormOpen, onAddFormOpen, isScheduleOpen, onScheduleOpen } = props;
 
-        setIsOpenSchedule((prev) => {
-            return { ...prev, isOpen: day, index };
-        });
-    };
+    const { isTablet } = useMobile();
+    const { isOpen, anchorElement, handleOpen, handleClose } = usePopover();
+    const { date, year, month, scheduleList, getWeeks, handleCalendar } = useCalender();
 
-    const handleDeleteSchedule = (idx: number) => {
+    const handleDetailClick = useCallback(
+        (type: 'open' | 'close', day: string, index: number) => {
+            if (isAddFormOpen) {
+                onAddFormOpen(false);
+            } else if (type === 'close') {
+                onScheduleOpen({ isOpen: '', index: -1 });
+                onEdit(false);
+                if (!isTablet) {
+                    handleClose();
+                }
+            }
+            onScheduleOpen({ isOpen: day, index });
+        },
+        [isAddFormOpen, isTablet]
+    );
+
+    const handleScheduleDelete = useCallback((idx: string) => {
         if (window.confirm('일정을 삭제하시겠습니까?')) {
-            calenderDispatch({
-                type: 'DELETE_SCHEDULE',
-                idx
-            });
+            handleCalendar({ type: 'DELETE_SCHEDULE', idx });
         }
-    };
+    }, []);
 
     return (
-        <section>
-            {getWeeks().map((el: string[], idx: number) => (
-                <FlexBox key={`week-${idx}`}>
-                    {el.map((day: string, elIdx: number) => (
-                        <WeekDays key={`day-${elIdx}`}>
-                            <Typography component="span" customCSS={{ color: day === String(date) ? 'tomato' : '' }}>
+        <section className="flex flex-col gap-1 border border-black bg-black">
+            {getWeeks().map((el, idx) => (
+                <div key={idx} className="flex items-center gap-1 bg-black">
+                    {el.map((day, elIdx) => (
+                        <WeekDays key={elIdx}>
+                            <p
+                                className={joinClassNames(
+                                    'mx-4 my-4 text-16 font-medium tablet:mx-10',
+                                    String(date) && 'text-primary-600'
+                                )}
+                            >
                                 {day}
-                            </Typography>
+                            </p>
                             {day !== '' &&
-                                day !== ' ' &&
                                 scheduleList.map((todo, index) => {
                                     if (
                                         dayjs(todo.startDate) <= dayjs(`${year}-${month}-${day}`) &&
@@ -81,83 +79,71 @@ export default function Schedule({
                                         const isStartDate = dayjs(todo.startDate).isSame(
                                             dayjs(`${year}-${month}-${day}`)
                                         );
-                                        const isOpenDetail =
-                                            isOpenSchedule.isOpen === day && isOpenSchedule.index === index;
-
+                                        const isDetailOpen =
+                                            isScheduleOpen.isOpen === day && isScheduleOpen.index === index;
                                         return (
-                                            <Fragment key={`scheduleList-${index}`}>
-                                                <FlexBox
-                                                    flexDirection="column"
-                                                    alignItems="flex-start"
-                                                    justifyContent="center"
-                                                    key={index}
-                                                    customCSS={{
-                                                        background: todo.color,
-                                                        transition: 'opacity',
-                                                        '&:hover': {
-                                                            opacity: 0.8
-                                                        }
-                                                    }}
+                                            <div key={todo.idx} className="w-full">
+                                                <div
+                                                    className={joinClassNames(
+                                                        'flex flex-col items-start justify-center transition-opacity hover:opacity-80',
+                                                        todo.color
+                                                    )}
                                                 >
-                                                    <Button
-                                                        onClick={() => handleClickDetail('open', day, index)}
-                                                        customCSS={css([
-                                                            scheduleStyle.scheduleTitle,
-                                                            {
-                                                                padding: isMobile ? '5px' : '10px 15px',
-                                                                whiteSpace: isMobile ? 'break-spaces' : 'normal',
-                                                                overflow: isMobile ? 'hidden' : 'visible',
-                                                                fontSize: isMobile ? 11 : 16
-                                                            }
-                                                        ])}
+                                                    <button
+                                                        type="button"
+                                                        className="w-full p-4 hover:font-bold tablet:px-12 tablet:py-4"
+                                                        onClick={(e) => {
+                                                            handleOpen(e);
+                                                            handleDetailClick('open', day, index);
+                                                        }}
                                                     >
-                                                        {isStartDate ? todo.title : 'ㅤ'}
-                                                    </Button>
-                                                </FlexBox>
-                                                {isMobile && isOpenDetail ? (
+                                                        <p className="h-14 text-left text-14 tablet:h-21 under-tablet:overflow-hidden under-tablet:whitespace-break-spaces under-tablet:text-10">
+                                                            {isStartDate ? todo.title : ' '}
+                                                        </p>
+                                                    </button>
+                                                </div>
+                                                {isTablet ? (
                                                     <BottomSheet
-                                                        isCloseClickOutside
-                                                        isOpen={isOpenDetail}
-                                                        onClose={() => setIsOpenSchedule({ isOpen: '', index: -1 })}
+                                                        canClickOutside
+                                                        isOpen={isDetailOpen}
+                                                        onClose={() => onScheduleOpen({ isOpen: '', index: -1 })}
                                                     >
                                                         <ScheduleDetail
                                                             todo={todo}
                                                             day={day}
                                                             isStartDate={isStartDate}
                                                             isEdited={isEdited}
-                                                            setIsEdited={setIsEdited}
-                                                            handleDeleteSchedule={handleDeleteSchedule}
-                                                            handleClickDetail={handleClickDetail}
+                                                            onEdit={onEdit}
+                                                            onScheduleDelete={handleScheduleDelete}
+                                                            onDetailClick={handleDetailClick}
                                                         />
                                                     </BottomSheet>
                                                 ) : (
-                                                    <PopOver
-                                                        isOpen={isOpenDetail}
-                                                        customCSS={{
-                                                            position: 'absolute',
-                                                            background: 'white',
-                                                            padding: 0
-                                                        }}
+                                                    <Popover
+                                                        isOpen={isOpen && isDetailOpen}
+                                                        anchorElement={anchorElement}
+                                                        anchorPosition={{ horizontal: 'right', vertical: 'bottom' }}
+                                                        onClose={handleClose}
                                                     >
                                                         <ScheduleDetail
                                                             todo={todo}
                                                             day={day}
                                                             isStartDate={isStartDate}
                                                             isEdited={isEdited}
-                                                            setIsEdited={setIsEdited}
-                                                            handleDeleteSchedule={handleDeleteSchedule}
-                                                            handleClickDetail={handleClickDetail}
+                                                            onEdit={onEdit}
+                                                            onScheduleDelete={handleScheduleDelete}
+                                                            onDetailClick={handleDetailClick}
                                                         />
-                                                    </PopOver>
+                                                    </Popover>
                                                 )}
-                                            </Fragment>
+                                            </div>
                                         );
                                     }
                                     return undefined;
                                 })}
                         </WeekDays>
                     ))}
-                </FlexBox>
+                </div>
             ))}
         </section>
     );

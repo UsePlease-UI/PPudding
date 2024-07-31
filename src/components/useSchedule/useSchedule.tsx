@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import dayjs from 'dayjs';
 
 export type TodoType = {
-    idx: number;
+    idx: string;
     startDate: string;
     endDate: string;
     color: string;
@@ -17,28 +17,30 @@ export const useSchedule = (labelColor: string, initialContent: TodoType) => {
     const [addContents, setAddContents] = useState(initialContent);
     const [color, setColor] = useState(labelColor);
 
-    const handleContents = (type: string, value: string) => {
+    useEffect(() => {
+        setIsAllDay(initialContent.isAllDay);
+        setColor(labelColor);
+        setAddContents(initialContent);
+    }, [initialContent, labelColor]);
+
+    const handleContents = useCallback((type: string, value: string) => {
         if (type === 'startDate' || type === 'endDate') {
-            setAddContents((prev) => ({
-                ...prev,
-                [type]: dayjs(value)
-            }));
+            setAddContents((prev) => ({ ...prev, [type]: dayjs(value) }));
         }
-        setAddContents((prev) => ({
-            ...prev,
-            [type]: value
-        }));
-    };
+        setAddContents((prev) => ({ ...prev, [type]: value }));
+    }, []);
+
+    const handleDayChange = useCallback(() => setIsAllDay((prev) => !prev), []);
+    const handleColorChange = useCallback((newValue: string) => setColor(newValue), []);
 
     return {
-        isAllDay,
-        setIsAllDay,
-        addContents,
-        setAddContents,
-        color,
-        setColor,
         initialContent,
+        color,
+        isAllDay,
         labelColor,
+        addContents,
+        handleColorChange,
+        handleDayChange,
         handleContents
     };
 };

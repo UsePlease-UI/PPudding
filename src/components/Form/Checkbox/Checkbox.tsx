@@ -1,53 +1,82 @@
-/** @jsxImportSource @emotion/react */
-import { InputHTMLAttributes, ReactNode, forwardRef } from 'react';
+import { InputHTMLAttributes, ReactElement, ReactNode, cloneElement, forwardRef, useId } from 'react';
 
-import { css } from '@emotion/react';
-import { CheckIcon } from '@heroicons/react/24/outline';
-import { CustomCSSType, visuallyHidden } from 'styles';
+import { CheckmarkFilled } from '@fluentui/react-icons';
+import { joinClassNames } from '@utils/format';
 
-import Typography from 'components/Base/Typography';
+import { PositionType, SizeType, getSizeStyle } from './styles';
 
-import { SizeType, checkboxStyle, getSizeStyle } from './styles';
-
-type BaseType = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & CustomCSSType;
+type BaseType = Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'className'>;
 
 type CheckboxType = BaseType & {
-    label: string;
+    label: ReactNode;
     isDisabled?: boolean;
     size?: SizeType;
+    position?: PositionType;
     icon?: ReactNode;
     checkedIcon?: ReactNode;
+    labelMargin?: string;
 };
 
 /**
  *  [UI Component] Checkbox Component
- *  @param label 체크박스 텍스트 값
- *  @param isDisabled 비활성화 여부 [optional]
- *  @param size [CSS] 체크박스 크기 (small | medium | large)
- *  @param icon 아이콘 [optional]
- *  @param checkedIcon 선택 아이콘 [optional]
- *  @param customCSS 커스텀 CSS [optional]
+ *  @param label Checkbox Label
+ *  @param isDisabled Is Disabled? [optional]
+ *  @param position Position of Label Text (Is it before or after checkbox)?
+ *  @param icon Checkbox Custom Icon [optional]
+ *  @param checkedIcon Checkbox Custom Checked Icon [optional]
+ *  @param size [CSS] Checkbox Size Style (small | medium | large)
+ *  @param labelMargin [CSS] Margin value for label
  *  @returns JSX.Element
  */
-const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function createCheckbox(
-    { label, size = 'medium', isDisabled, icon, checkedIcon, onChange, customCSS, ...props }: CheckboxType,
+const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
+    {
+        label,
+        position = 'end',
+        size = 'medium',
+        labelMargin = position === 'start' ? 'mr-20' : 'ml-20',
+        isDisabled,
+        icon,
+        checkedIcon,
+        onChange,
+        ...props
+    }: CheckboxType,
     ref
 ) {
+    const labelId = useId();
     return (
         <label
-            htmlFor={label}
-            css={css([
-                checkboxStyle.label,
-                {
-                    ...(isDisabled && checkboxStyle.pointer)
-                },
-                customCSS
-            ])}
+            htmlFor={labelId}
+            className={joinClassNames(
+                'group inline-flex w-max cursor-pointer items-center',
+                isDisabled && 'pointer-events-none',
+                typeof label !== 'string' && 'w-full'
+            )}
         >
-            <span>
+            {position === 'start' &&
+                (typeof label === 'string' ? (
+                    <span
+                        className={joinClassNames(
+                            'font-medium leading-normal',
+                            getSizeStyle(size).text,
+                            isDisabled && 'text-gray-400'
+                        )}
+                    >
+                        {label}
+                    </span>
+                ) : (
+                    <div className={joinClassNames('w-full', labelMargin)}>{label}</div>
+                ))}
+            <span
+                className={joinClassNames(
+                    size === 'small' && 'p-2',
+                    size === 'medium' && 'p-3',
+                    size === 'large' && 'p-4',
+                    'inline-flex items-center group-focus-within:rounded group-focus-within:bg-blue-gray-100 group-hover:rounded group-hover:bg-blue-gray-50'
+                )}
+            >
                 <input
                     {...props}
-                    id={label}
+                    id={labelId}
                     ref={ref}
                     type="checkbox"
                     disabled={isDisabled}
@@ -57,67 +86,66 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function createCheck
                             onChange(e);
                         }
                     }}
-                    css={css([visuallyHidden, checkboxStyle.input])}
+                    onClick={(e) => e.currentTarget.blur()}
+                    className="peer sr-only"
                 />
                 {checkedIcon ? (
                     <span
-                        css={css([
-                            getSizeStyle(size).custom,
-                            checkboxStyle.checkedIconContainer,
-                            checkboxStyle.customCheckedIcon,
-                            {
-                                ...(isDisabled && checkboxStyle.disabledIcon)
-                            }
-                        ])}
+                        className={joinClassNames(
+                            'hidden items-center justify-center peer-checked:inline-flex',
+                            getSizeStyle(size).custom
+                        )}
                     >
-                        {checkedIcon}
+                        {cloneElement(checkedIcon as ReactElement, {
+                            className: isDisabled ? 'text-gray-400' : 'text-primary-600'
+                        })}
                     </span>
                 ) : (
                     <span
-                        css={css([
+                        className={joinClassNames(
+                            'hidden items-center justify-center rounded bg-primary-600 peer-checked:inline-flex',
                             getSizeStyle(size).default,
-                            checkboxStyle.checkedIconContainer,
-                            checkboxStyle.defaultCheckedIcon,
-                            {
-                                ...(isDisabled && checkboxStyle.disabledDefaultIcon)
-                            }
-                        ])}
+                            isDisabled && 'border-2 border-gray-400 bg-gray-400'
+                        )}
                     >
-                        <CheckIcon />
+                        <CheckmarkFilled className={joinClassNames('text-white', isDisabled && 'text-white')} />
                     </span>
                 )}
                 {icon ? (
                     <span
-                        css={css([
-                            getSizeStyle(size).custom,
-                            checkboxStyle.customCheckboxContainer,
-                            {
-                                ...(isDisabled && checkboxStyle.disabledIcon)
-                            }
-                        ])}
+                        className={joinClassNames(
+                            'inline-flex items-center justify-center peer-checked:hidden',
+                            getSizeStyle(size).custom
+                        )}
                     >
-                        {icon}
+                        {cloneElement(icon as ReactElement, {
+                            className: joinClassNames('text-primary-600', isDisabled && 'text-gray-400')
+                        })}
                     </span>
                 ) : (
                     <span
-                        css={css([
+                        className={joinClassNames(
+                            'inline-block rounded border-2 border-primary-600 bg-white peer-checked:hidden',
                             getSizeStyle(size).default,
-                            checkboxStyle.defaultCheckboxContainer,
-                            {
-                                ...(isDisabled && checkboxStyle.disabledCheckbox)
-                            }
-                        ])}
+                            isDisabled && 'border-gray-400'
+                        )}
                     />
                 )}
             </span>
-            <Typography
-                component="span"
-                lineHeight="1.5"
-                fontWeight="500"
-                customCSS={{ ...checkboxStyle.labelText, ...getSizeStyle(size).text }}
-            >
-                {label}
-            </Typography>
+            {position === 'end' &&
+                (typeof label === 'string' ? (
+                    <span
+                        className={joinClassNames(
+                            'font-medium leading-normal',
+                            getSizeStyle(size).text,
+                            isDisabled && 'text-gray-400'
+                        )}
+                    >
+                        {label}
+                    </span>
+                ) : (
+                    <div className={joinClassNames('w-full', labelMargin)}>{label}</div>
+                ))}
         </label>
     );
 });

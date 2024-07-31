@@ -1,22 +1,38 @@
-/** @jsxImportSource @emotion/react */
-import { A_LIST, K_LIST } from 'constants/constants';
-import { palette } from 'styles';
+import { Link } from 'react-router-dom';
 
-import { FlexBox, Typography } from 'components/Base';
-
-import List from './components/List';
+import { HOME_LIST } from '@constants/constants';
 
 export default function Home() {
     return (
-        <FlexBox flexDirection="column" gap={40}>
-            <Typography component="h2" fontSize={24} fontWeight="900" color={palette.primary[600]} gutterBottom={-20}>
-                Kimyerim1935
-            </Typography>
-            <List data={K_LIST} />
-            <Typography component="h2" fontSize={24} fontWeight="900" color={palette.primary[600]} gutterBottom={-20}>
-                akffkdahffkdgo77
-            </Typography>
-            <List data={A_LIST} />
-        </FlexBox>
+        <div className="w-full space-y-20">
+            {HOME_LIST.map(({ name, list }) => (
+                <div key={name} className="flex w-full flex-col">
+                    <p className="mb-20 text-28 font-black uppercase text-primary-600">{name}</p>
+                    <div className="flex flex-wrap gap-20">
+                        {list.map((data) => (
+                            <div
+                                key={data}
+                                className="flex w-full flex-col tablet:w-[calc(50%-10px)] laptop:w-[calc(33%-10.5px)]"
+                            >
+                                <Link
+                                    title="컴포넌트 확인하기"
+                                    to={
+                                        name === 'Demo'
+                                            ? `/demo/${data.toLowerCase()}`
+                                            : `/example/${name.toLowerCase()}?component=${data}`
+                                    }
+                                >
+                                    <div className="relative pb-[57.69%]">
+                                        <div className="absolute top-0 flex h-full w-full items-center justify-center rounded-md bg-primary-600 uppercase text-primary-50 hover:border-b-primary-600 hover:bg-primary-50 hover:text-primary-600">
+                                            <p className="text-center text-28 font-black text-inherit">{data}</p>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </div>
     );
 }

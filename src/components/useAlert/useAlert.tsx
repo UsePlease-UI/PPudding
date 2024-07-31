@@ -1,14 +1,13 @@
-/** @jsxImportSource @emotion/react */
 import { ReactNode, createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { v4 as uuid } from 'uuid';
 
-import { css } from '@emotion/react';
+import Alert from '@components/Alert';
 
-import Alert from 'components/Alert';
+import { joinClassNames } from '@utils/format';
 
-import { getPositionStyle, providerStyle } from './styles';
+import { getPositionStyle } from './styles';
 
 export type OptionsType = {
     canDismiss?: boolean;
@@ -17,7 +16,7 @@ export type OptionsType = {
 };
 
 type AlertContextType = {
-    setMessage: (content: string, options?: OptionsType) => void;
+    handleMessage: (content: string, options?: OptionsType) => void;
 };
 
 const AlertContext = createContext<AlertContextType | undefined>(undefined);
@@ -65,7 +64,7 @@ export function AlertProvider({ children, icon, position }: AlertProviderType) {
         []
     );
 
-    const context: AlertContextType = useMemo(() => ({ setMessage: handleOpen }), [handleOpen]);
+    const context: AlertContextType = useMemo(() => ({ handleMessage: handleOpen }), [handleOpen]);
 
     useEffect(() => {
         if (messages.length > 0) {
@@ -80,16 +79,17 @@ export function AlertProvider({ children, icon, position }: AlertProviderType) {
             {children}
             {modalElement
                 ? createPortal(
-                      <div css={css([getPositionStyle(position), providerStyle.container])}>
+                      <div
+                          className={joinClassNames(getPositionStyle(position), 'absolute z-1000 flex flex-col gap-10')}
+                      >
                           {messages.map((message) => (
                               <Alert
                                   key={message.id}
                                   icon={icon}
                                   options={message.options}
+                                  message={message.content}
                                   onClose={() => handleClose(message.id)}
-                              >
-                                  {message.content}
-                              </Alert>
+                              />
                           ))}
                       </div>,
                       modalElement as HTMLElement

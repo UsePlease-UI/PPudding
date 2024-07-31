@@ -1,18 +1,44 @@
-/** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import { CSSInterpolation } from '@emotion/serialize';
+import { joinClassNames } from '@utils/format';
 
-import { loaderStyle } from './styles';
+import { SizeType, VariantType, getCircularStyle, getSizeStyle, getVariantStyle } from './styles';
 
 type SkeletonType = {
-    customCSS?: CSSInterpolation;
+    size?: SizeType;
+    variant?: VariantType;
+    width?: string;
+    height?: string;
+    borderRadius?: string;
+    backgroundColor?: string;
 };
 
 /**
  *  [UI Component] Skeleton Component
- *  @param customCSS 커스텀 CSS [optional]
+ *  @param width [TailwindCSS] Width
+ *  @param height [TailwindCSS] Height
+ *  @param borderRadius [TailwindCSS] Border Radius
+ *  @param backgroundColor [TailwindCSS] Background Color
  *  @returns JSX.Element
  */
-export default function Skeleton({ customCSS }: SkeletonType) {
-    return <div css={css([loaderStyle.skeleton, customCSS])} />;
+export default function Skeleton({
+    size = 'medium',
+    variant = 'rounded',
+    width,
+    height,
+    borderRadius,
+    backgroundColor
+}: SkeletonType) {
+    return (
+        <div
+            className={joinClassNames(
+                'h-30 w-full animate-blink cursor-progress rounded bg-gray-100',
+                getSizeStyle(size),
+                variant !== 'circular' && getVariantStyle(variant),
+                variant === 'circular' && getCircularStyle(size),
+                width,
+                height,
+                borderRadius,
+                backgroundColor
+            )}
+        />
+    );
 }

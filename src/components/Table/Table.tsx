@@ -1,12 +1,6 @@
-/** @jsxImportSource @emotion/react */
 import { ReactNode, TableHTMLAttributes } from 'react';
 
-import { css } from '@emotion/react';
-import type { CustomCSSType } from 'styles/types';
-
-import { tableStyle } from './styles';
-
-type BaseType = TableHTMLAttributes<HTMLTableElement> & CustomCSSType;
+type BaseType = TableHTMLAttributes<HTMLTableElement>;
 
 type TableType = BaseType & {
     children: ReactNode;
@@ -15,14 +9,13 @@ type TableType = BaseType & {
 /**
  *  [UI Component] Table Component
  *  @param children 컴포넌트
- *  @param customCSS 커스텀 CSS [optional]
  *  @returns JSX.Element
  */
 export default function Table(props: TableType) {
-    const { children, customCSS, ...rest } = props;
+    const { children, ...rest } = props;
 
     return (
-        <table {...rest} css={css([tableStyle.table, customCSS])}>
+        <table {...rest} className="h-full w-full border border-primary-100 bg-white">
             {children}
         </table>
     );

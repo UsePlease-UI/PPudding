@@ -1,9 +1,8 @@
 import { useState } from 'react';
 
-import { expect } from '@storybook/jest';
-import { within } from '@storybook/testing-library';
+import { expect, within } from '@storybook/test';
 
-import { Radio } from 'components/Form/Radio';
+import { Radio } from '@components/Form/Radio';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -18,64 +17,7 @@ const meta: Meta<typeof Radio> = {
         }
     },
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-    argTypes: {
-        name: {
-            type: { name: 'string', required: true },
-            description: '라디오 버튼 이름',
-            control: 'text',
-            table: {
-                type: { summary: 'string' },
-                category: 'required'
-            }
-        },
-        label: {
-            type: { name: 'string', required: true },
-            description: '라디오 텍스트 값',
-            control: false,
-            table: {
-                type: { summary: 'string' },
-                category: 'required'
-            }
-        },
-        value: {
-            type: { name: 'string', required: true },
-            description: '라디오 버튼 값',
-            control: false,
-            table: {
-                type: { summary: 'string | number' },
-                category: 'required'
-            }
-        },
-        currentValue: {
-            type: { name: 'string', required: false },
-            description: '선택된 라디오 버튼 값',
-            control: false,
-            table: {
-                type: { summary: 'string | number' },
-                category: 'optional'
-            }
-        },
-        onChange: {
-            type: { name: 'function', required: false },
-            description: 'Change Handler',
-            control: false,
-            table: {
-                type: { summary: '(e: React.ChangeEvent<HTMLInputElement>) => void' },
-                category: 'optional'
-            }
-        },
-        customCSS: {
-            control: { type: 'object' },
-            description: 'Custom CSS',
-            table: {
-                category: 'style',
-                defaultValue: { summary: '{}' },
-                type: {
-                    summary: 'CSSInterpolation'
-                }
-            }
-        }
-    }
+    argTypes: {}
 };
 
 export default meta;
@@ -85,14 +27,14 @@ type Story = StoryObj<typeof Radio>;
 export const Default: Story = {
     render: (args) => {
         const [value, setValue] = useState('red');
-        return <Radio {...args} value={value} onChange={(e) => setValue(e.currentTarget.value)} />;
+        return <Radio {...args} currentValue={value} onChange={(e) => setValue(e.currentTarget.value)} />;
     },
     args: {
         name: 'color',
         label: '빨강',
         value: 'red',
-        currentValue: 'red',
-        customCSS: {}
+        size: 'small',
+        isDisabled: false
     }
 };
 

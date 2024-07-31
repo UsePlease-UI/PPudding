@@ -1,14 +1,10 @@
-/** @jsxImportSource @emotion/react */
-import { ChangeEvent, InputHTMLAttributes, ReactNode, forwardRef, useId } from 'react';
+import { ChangeEvent, InputHTMLAttributes, ReactElement, ReactNode, cloneElement, forwardRef, useId } from 'react';
 
-import { css } from '@emotion/react';
-import { visuallyHidden, CustomCSSType, palette } from 'styles';
+import { joinClassNames } from '@utils/format';
 
-import Typography from 'components/Base/Typography';
+import { SizeType, getSizeStyle } from './styles';
 
-import { SizeType, getSizeStyle, toggleButtonStyle } from './styles';
-
-type BaseType = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & CustomCSSType;
+type BaseType = Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'className'>;
 
 type ToggleButtonType = BaseType & {
     children: ReactNode;
@@ -25,12 +21,13 @@ type ToggleButtonType = BaseType & {
  *  @param name Toggle Button 이름
  *  @param value Toggle Button 값
  *  @param size [CSS] 버튼 사이즈 (small | medium | large)
- *  @param customCSS 커스텀 CSS [optional]
  *  @returns JSX.Element
  */
-const ToggleButton = forwardRef<HTMLInputElement, ToggleButtonType>(function createToggleButton(props, ref) {
-    const { size, name, currentValue = '', isMultiple, value, onChange, children, customCSS, ...rest } = props;
+const ToggleButton = forwardRef<HTMLInputElement, ToggleButtonType>(function ToggleButton(props, ref) {
+    const { size, name, currentValue = '', isMultiple, value, onChange, children, ...rest } = props;
     const id = useId();
+
+    const isChecked = typeof currentValue === 'string' ? value === currentValue : currentValue.includes(value);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         e.currentTarget.blur();
@@ -40,7 +37,14 @@ const ToggleButton = forwardRef<HTMLInputElement, ToggleButtonType>(function cre
     };
 
     return (
-        <label htmlFor={id} css={css([toggleButtonStyle.label, customCSS])}>
+        <label
+            htmlFor={id}
+            className={joinClassNames(
+                'group flex h-max w-max shrink-0 cursor-pointer items-center overflow-hidden border-y border-primary-600 bg-white first:rounded-l first:border-l last:rounded-r last:border-r focus-within:border-primary-700 focus-within:bg-primary-100',
+                !isChecked && rest.disabled && 'cursor-not-allowed border-blue-gray-400',
+                isChecked && rest.disabled && 'cursor-not-allowed border-gray-400'
+            )}
+        >
             <input
                 {...rest}
                 id={id}
@@ -48,29 +52,30 @@ const ToggleButton = forwardRef<HTMLInputElement, ToggleButtonType>(function cre
                 type={isMultiple ? 'checkbox' : 'radio'}
                 name={name}
                 value={value}
-                checked={typeof currentValue === 'string' ? value === currentValue : currentValue.includes(value)}
+                checked={isChecked}
                 onChange={handleChange}
-                css={visuallyHidden}
+                className="peer sr-only"
             />
             {typeof children === 'string' ? (
-                <Typography
-                    component="span"
-                    height="inherit"
-                    fontSize={16}
-                    fontWeight="500"
-                    lineHeight="inherit"
-                    align="center"
-                    color={palette.primary[600]}
-                    textTransform="uppercase"
-                    customCSS={{
-                        ...toggleButtonStyle.labelText,
-                        ...getSizeStyle(size).text
-                    }}
+                <span
+                    className={joinClassNames(
+                        'flex items-center justify-center text-16 font-medium uppercase text-primary-600 group-focus-within:text-primary-700 group-hover:bg-primary-50 group-hover:text-primary-700 peer-checked:bg-primary-600 peer-checked:text-white peer-checked:hover:bg-primary-700 peer-disabled:bg-blue-gray-50 peer-disabled:text-blue-gray-600 peer-disabled:peer-checked:bg-gray-400 peer-disabled:peer-checked:text-gray-200',
+                        getSizeStyle(size).text
+                    )}
                 >
                     {children}
-                </Typography>
+                </span>
             ) : (
-                <span css={css([toggleButtonStyle.iconButton, getSizeStyle(size).icon])}>{children}</span>
+                <span
+                    className={joinClassNames(
+                        'flex items-center justify-center text-primary-600 group-focus-within:text-primary-700 group-hover:bg-primary-50 group-hover:text-primary-700 peer-checked:bg-primary-600 peer-checked:text-white peer-checked:hover:bg-primary-700 peer-disabled:bg-blue-gray-50 peer-disabled:text-blue-gray-600 peer-disabled:peer-checked:bg-gray-400 peer-disabled:peer-checked:text-gray-200',
+                        getSizeStyle(size).icon
+                    )}
+                >
+                    {cloneElement(children as ReactElement, {
+                        className: 'block text-inherit'
+                    })}
+                </span>
             )}
         </label>
     );

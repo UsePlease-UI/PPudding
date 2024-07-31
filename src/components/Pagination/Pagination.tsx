@@ -1,64 +1,89 @@
-/** @jsxImportSource @emotion/react */
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { css } from '@emotion/react';
-import { CSSInterpolation } from '@emotion/serialize';
-
-import PageList from 'components/Pagination/PageList';
-
-import { paginationStyle } from './style';
+import PageList from './PaginationList';
 
 type PaginationType = {
     totalCount: number;
     page: number;
-    blockNum: number;
-    onChange: (page: number, blockNum: number) => void;
-    customCSS?: CSSInterpolation;
+    pageLimit?: number;
+    onChange?: (page: number) => void;
+    showFirstButton?: boolean;
+    showLastButton?: boolean;
 };
-
-const PAGE_LIMIT = 10;
 
 /**
  *  [UI Component] Pagination Component
- *  @param totalCount: pagination 전체 count value
- *  @param page: 선택된 현재 page value
- *  @param blockNum: (totalCount / page) limit 한 값
- *  @param onChange: page가 변경될 때 실행될 event listener
- *  @param customCSS 커스텀 CSS [optional]
+ *  @param showFirstButton 첫 페이지로 이동 버튼 노출여부
+ *  @param showLastButton 마지막 페이지로 이동 버튼 노출여부
+ *  @param pageLimit 페이지 당 수
+ *  @param totalCount 전체 게시물/아이템 수
+ *  @param page 현재 선택된 페이지 번호
+ *  @param onChange Change Event Listener
  *  @returns JSX.Element
  */
+export default function Pagination(props: PaginationType) {
+    const { showFirstButton = true, showLastButton = true, pageLimit = 10, totalCount, page, onChange } = props;
 
-export default function Pagination({ totalCount, page, blockNum, onChange, customCSS }: PaginationType) {
-    const pageMaxCount = Math.ceil(totalCount / 10);
+    const pageMaxCount = useMemo(() => Math.ceil(totalCount / pageLimit), [totalCount, pageLimit]);
+    const [currentPage, setCurrentPage] = useState(page);
+    const [currentBlockNum, setCurrentBlockNum] = useState(1);
 
-    const handleFirstClick = () => onChange(1, 1);
-    const handleLastClick = () => onChange(totalCount, pageMaxCount);
+    useEffect(() => {
+        setCurrentPage(page);
+        setCurrentBlockNum(Math.ceil(page / pageLimit));
+    }, [page, pageLimit]);
 
-    const handlePrevClick = () => {
-        let newNum = blockNum;
-        if ((page - 1) % PAGE_LIMIT === 0 && page !== 1) {
-            newNum = +blockNum - 1;
+    const handlePageChange = useCallback((newPage: number) => {
+        setCurrentPage(newPage);
+    }, []);
+
+    const handleFirstClick = useCallback(() => {
+        setCurrentPage(1);
+        setCurrentBlockNum(1);
+        if (onChange) {
+            onChange(1);
         }
-        onChange(page - 1, newNum);
-    };
+    }, []);
 
-    const handleNextClick = () => {
-        let newNum = blockNum;
-        if ((page + 1) % PAGE_LIMIT === 1) {
-            newNum = blockNum + 1;
+    const handlePrevClick = useCallback(() => {
+        setCurrentPage((prev) => prev - 1);
+        if ((currentPage - 1) % pageLimit === 0 && currentPage !== 1) {
+            setCurrentBlockNum((prev) => prev - 1);
         }
-        onChange(page + 1, newNum);
-    };
+
+        if (onChange) {
+            onChange(currentPage - 1);
+        }
+    }, [currentBlockNum, currentPage, pageLimit, onChange]);
+
+    const handleNextClick = useCallback(() => {
+        setCurrentPage((prev) => prev + 1);
+        if ((currentPage + 1) % pageLimit === 1) {
+            setCurrentBlockNum((prev) => prev + 1);
+        }
+        if (onChange) {
+            onChange(currentPage + 1);
+        }
+    }, [currentPage, pageLimit, onChange]);
+
+    const handleLastClick = useCallback(() => {
+        setCurrentPage(totalCount);
+        setCurrentBlockNum(pageMaxCount);
+        if (onChange) {
+            onChange(totalCount);
+        }
+    }, [totalCount, onChange]);
 
     return (
-        <nav aria-label="pagination" id="pagination" css={css([paginationStyle.nav, customCSS])}>
+        <nav aria-label="pagination" className="flex w-full items-center justify-start p-20">
             <PageList
-                showFirstButton
-                showLastButton
-                page={page}
-                blockNum={blockNum}
-                pageLimit={10}
+                showFirstButton={showFirstButton}
+                showLastButton={showLastButton}
+                pageLimit={pageLimit}
                 totalCount={totalCount}
-                onChange={onChange}
+                blockNum={currentBlockNum}
+                page={currentPage}
+                onChange={handlePageChange}
                 handleFirstClick={handleFirstClick}
                 handlePrevClick={handlePrevClick}
                 handleNextClick={handleNextClick}

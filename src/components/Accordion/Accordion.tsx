@@ -1,12 +1,8 @@
-/** @jsxImportSource @emotion/react */
 import { MouseEvent, ReactNode } from 'react';
 
-import type { CustomCSSType } from 'styles/types';
+import { AccordionProvider } from '@components/useAccordion';
 
-import FlexBox from 'components/Base/FlexBox';
-import { AccordionProvider } from 'components/useAccordion';
-
-export type AccordionType = CustomCSSType & {
+type AccordionType = {
     children: ReactNode;
     isExpanded?: boolean;
     isDisabled?: boolean;
@@ -19,17 +15,14 @@ export type AccordionType = CustomCSSType & {
  *  @param isExpanded Panel 선택 여부 [optional]
  *  @param isDisabled Panel 비활성화 여부 [optional]
  *  @param onChange Change Event Handler [optional]
- *  @param customCSS 커스텀 css [optional]
  *  @returns JSX.Element
  */
 export default function Accordion(props: AccordionType) {
-    const { children, customCSS = { width: '100%' }, ...rest } = props;
+    const { children, ...rest } = props;
 
     return (
         <AccordionProvider {...rest}>
-            <FlexBox flexDirection="column" customCSS={customCSS}>
-                {children}
-            </FlexBox>
+            <div className="w-full">{children}</div>
         </AccordionProvider>
     );
 }

@@ -1,4 +1,10 @@
-import Button from 'components/Button/Button';
+import { expect, userEvent, within, spyOn } from '@storybook/test';
+
+import { getShapeStyle, getVariantStyle } from '@components/Button';
+import Button from '@components/Button/Button';
+import { getSizeStyle } from '@components/Button/Button/styles';
+
+import { DeleteFilled } from '@fluentui/react-icons';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -6,96 +12,77 @@ const meta = {
     title: 'Button/Button',
     component: Button,
     tags: ['autodocs'],
+    parameters: {
+        docs: {
+            argTypes: {
+                sort: 'requiredFirst'
+            }
+        }
+    },
+    args: {
+        children: '삭제',
+        startIcon: <DeleteFilled />,
+        size: 'large',
+        variant: 'outlined',
+        shape: 'rounded',
+        isDisabled: false,
+        isFullWidth: false,
+        onClick: () => console.log('Clicked!')
+    },
     argTypes: {
+        startIcon: { table: { disable: true } },
+        endIcon: { table: { disable: true } },
+        onClick: { table: { disable: true } },
         children: {
-            type: { name: 'string', required: true },
-            control: false,
-            description: '컴포넌트',
             table: {
-                category: 'required',
-                type: { summary: 'React.ReactNode' }
-            }
-        },
-        hasStartIcon: {
-            control: { type: 'boolean' },
-            description: 'Start Icon',
-            table: {
-                category: 'optional',
-                type: { summary: 'boolean' }
-            }
-        },
-        hasEndIcon: {
-            control: { type: 'boolean' },
-            description: 'End Icon',
-            table: {
-                category: 'optional',
-                type: { summary: 'boolean' }
-            }
-        },
-        icon: {
-            control: false,
-            description: '아이콘',
-            table: {
-                category: 'optional',
-                type: { summary: 'React.ReactNode' }
-            }
+                category: 'required'
+            },
+            description: 'content of button',
+            control: 'text'
         },
         isDisabled: {
-            control: { type: 'boolean' },
-            description: '활성화여부',
             table: {
-                category: 'optional',
-                defaultValue: { summary: false },
-                type: { summary: 'boolean' }
-            }
+                category: 'optional'
+            },
+            control: 'boolean',
+            description: 'disabled state'
         },
-        type: {
-            control: { type: 'inline-radio' },
-            description: '버튼 타입',
-            options: ['button', 'reset', 'submit'],
+        isFullWidth: {
             table: {
-                category: 'optional',
-                defaultValue: { summary: 'button' },
-                type: { summary: 'button | reset | submit' }
-            }
+                category: 'optional'
+            },
+            control: 'boolean',
+            description: 'determines width of the button'
         },
         variant: {
-            control: { type: 'inline-radio' },
-            description: '[CSS] 버튼 스타일',
-            options: ['outlined', 'contained', 'text'],
             table: {
-                category: 'optional',
-                defaultValue: { summary: 'outlined' },
-                type: { summary: 'outlined | contained | text' }
-            }
+                category: 'optional'
+            },
+            description: 'style of the button',
+            control: {
+                type: 'inline-radio'
+            },
+            options: ['outlined', 'contained', 'text']
         },
         size: {
-            control: { type: 'inline-radio' },
-            description: '[CSS] 버튼 크기',
-            options: ['large', 'medium', 'small'],
             table: {
-                category: 'optional',
-                defaultValue: { summary: 'large' },
-                type: { summary: 'large | medium | small' }
-            }
+                category: 'optional'
+            },
+            description: 'size of the button',
+            control: {
+                type: 'inline-radio'
+            },
+            options: ['large', 'medium', 'small']
         },
-        onClick: {
-            control: false,
-            description: 'Click Event Handler',
+        shape: {
             table: {
-                category: 'optional',
-                defaultValue: { summary: '() => {}' },
-                type: { summary: '(e: React.MouseEvent<HTMLButtonElement>) => void' }
-            }
-        },
-        customCSS: {
-            control: { type: 'object' },
-            description: 'Custom CSS',
-            table: {
-                category: 'style',
-                defaultValue: { summary: '{}' },
-                type: { summary: 'CSSInterpolation' }
-            }
+                category: 'optional'
+            },
+            description: 'shape of the button',
+            control: {
+                type: 'inline-radio'
+            },
+            options: ['rounded', 'square', 'circular']
         }
     }
 } satisfies Meta<typeof Button>;
@@ -104,16 +91,32 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
-    render: (args) => <Button {...args}>{args.children}</Button>,
-    args: {
-        children: '버튼',
-        hasStartIcon: false,
-        hasEndIcon: false,
-        icon: null,
-        type: 'button',
-        size: 'large',
-        variant: 'outlined',
-        isDisabled: false,
-        customCSS: {}
+    play: async ({ args, canvasElement, step }) => {
+        const canvas = within(canvasElement);
+        const consoleSpy = spyOn(console, 'log');
+
+        await step('button should render its children (text or node)', async () => {
+            await expect(await canvas.findByRole('button')).toBeInTheDocument();
+            await expect(canvas.getByRole('button')).toHaveTextContent(args.children as string);
+        });
+        await step(`button variant : ${args.variant}`, async () => {
+            await expect(canvas.getByRole('button')).toHaveClass(getVariantStyle(args.variant) as string);
+        });
+        await step(`button shape : ${args.shape}`, async () => {
+            await expect(canvas.getByRole('button')).toHaveClass(getShapeStyle(args.shape) as string);
+        });
+        if (args.isFullWidth) {
+            await step(`when set to full width, its width is overridden to fit the width of its parent`, async () => {
+                await expect(canvas.getByRole('button')).toHaveClass('w-full');
+            });
+        } else {
+            await step(`button size : ${args.size}`, async () => {
+                await expect(canvas.getByRole('button')).toHaveClass(getSizeStyle(args.size) as string);
+            });
+        }
+        await step('when clicked, it should fire onclick event', async () => {
+            await userEvent.click(canvas.getByRole('button'));
+            await expect(consoleSpy).toHaveBeenCalledWith('Clicked!');
+        });
     }
 };

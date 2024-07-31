@@ -1,29 +1,22 @@
-/** @jsxImportSource @emotion/react */
 import { HTMLAttributes, ReactNode } from 'react';
 
-import { css } from '@emotion/react';
-import { CSSInterpolation } from '@emotion/serialize';
-import { palette, CustomCSSType } from 'styles';
+import { useAccordion } from '@components/useAccordion';
 
-import { useAccordion } from 'components/useAccordion';
+import { joinClassNames } from '@utils/format';
 
-import { accordionStyle } from './styles';
+type BaseType = Omit<HTMLAttributes<HTMLDivElement>, 'className'>;
 
-type BaseType = HTMLAttributes<HTMLDivElement> & CustomCSSType;
-
-export type AccordionPanelType = BaseType & {
+type AccordionPanelType = BaseType & {
     children: ReactNode;
-    customCSS?: CSSInterpolation;
 };
 
 /**
  *  [UI Component] Accordion Panel Component
  *  @param children 컴포넌트
- *  @param customCSS 커스텀 css [optional]
  *  @returns JSX.Element
  */
 export default function AccordionPanel(props: AccordionPanelType) {
-    const { children, customCSS, ...rest } = props;
+    const { children, ...rest } = props;
     const { accordionId, isExpanded } = useAccordion();
 
     return (
@@ -32,16 +25,10 @@ export default function AccordionPanel(props: AccordionPanelType) {
             id={`panel-${accordionId}`}
             aria-labelledby={`accordion-panel-${accordionId}`}
             role="region"
-            css={css([
-                {
-                    height: isExpanded ? 'auto' : 0,
-                    padding: isExpanded ? 20 : 0,
-                    border: isExpanded ? `1px solid ${palette.gray[100]}` : 0,
-                    visibility: isExpanded ? 'visible' : 'hidden'
-                },
-                accordionStyle.panel,
-                customCSS
-            ])}
+            className={joinClassNames(
+                'invisible -mt-1 h-0 w-full bg-white p-0 text-14 *:text-14 *:leading-normal',
+                isExpanded && 'visible h-auto rounded-b border border-gray-100 p-20'
+            )}
         >
             {children}
         </div>

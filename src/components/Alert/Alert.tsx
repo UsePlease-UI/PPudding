@@ -1,19 +1,14 @@
-/** @jsxImportSource @emotion/react */
-import { ReactNode, useEffect, useMemo } from 'react';
+import { ReactElement, ReactNode, cloneElement, useEffect, useMemo } from 'react';
 
-import { css } from '@emotion/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
-import { palette } from 'styles';
+import type { OptionsType } from '@components/useAlert';
 
-import { FlexBox, Typography } from 'components/Base';
-import IconButton from 'components/Button/IconButton';
+import { DismissFilled } from '@fluentui/react-icons';
+import { joinClassNames } from '@utils/format';
 
-import { alertStyle, fadeIn, fadeOut, getVariantStyle } from './styles';
-
-import type { OptionsType } from 'components/useAlert/useAlert';
+import { getVariantStyle } from './styles';
 
 type AlertType = {
-    children: ReactNode;
+    message: string;
     onClose: () => void;
     icon?: ReactNode;
     options?: OptionsType;
@@ -21,13 +16,13 @@ type AlertType = {
 
 /**
  *  Alert Component
- *  @param children ReactNode
+ *  @param message Message to be displayed
  *  @param onClose Icon Button Click Handler
  *  @param icon ReactNode [optional]
  *  @param options [optional]
  *  @returns JSX.Element
  */
-export default function Alert({ children, options, icon, onClose }: AlertType) {
+export default function Alert({ message, options, icon, onClose }: AlertType) {
     const animationTime = useMemo(() => {
         let total = 4.5;
         if (options?.delay) {
@@ -44,32 +39,41 @@ export default function Alert({ children, options, icon, onClose }: AlertType) {
     return (
         <div
             role="alert"
-            css={css([
-                alertStyle.alert,
-                getVariantStyle(options?.variant),
-                {
-                    animation: `${fadeIn} 0.5s, ${fadeOut} 0.5s ${animationTime}s`
-                }
-            ])}
+            className={joinClassNames(
+                'flex min-h-48 w-max animate-fadeInOut items-center justify-between whitespace-pre-wrap break-all rounded-xl px-12 py-9',
+                getVariantStyle(options?.variant)
+            )}
+            style={{ animationDelay: options?.delay ? `${animationTime}s` : '4.5s' }}
         >
-            <Typography fontSize={16} fontWeight="600" lineHeight="20px" color="inherit" customCSS={alertStyle.text}>
-                {children}
-            </Typography>
-            {(!options?.canDismiss || options?.canDismiss === true) && (
-                <FlexBox alignItems="center">
+            <p className="pr-2.5 text-16 font-medium leading-20 text-inherit">{message}</p>
+            {(options?.canDismiss === undefined || options?.canDismiss === true) && (
+                <div className="flex items-center">
                     <div
-                        css={css([
-                            alertStyle.divider,
-                            {
-                                backgroundColor:
-                                    options?.variant === 'warning' ? palette.neutral.black : 'rgb(250 250 250 / 50%)'
-                            }
-                        ])}
+                        className={joinClassNames(
+                            'mx-10 h-12 w-1',
+                            options?.variant === 'warning' ? 'bg-black' : 'bg-white'
+                        )}
                     />
-                    <IconButton size="small" customCSS={alertStyle.iconButton} onClick={onClose}>
-                        {icon || <XMarkIcon />}
-                    </IconButton>
-                </FlexBox>
+                    <button
+                        aria-label="dismiss button"
+                        type="button"
+                        className={joinClassNames(
+                            'rounded-full bg-transparent text-inherit',
+                            options?.variant === 'warning' &&
+                                'hover:border-black focus:border-black active:border-black'
+                        )}
+                        onClick={(e) => {
+                            e.currentTarget.blur();
+                            onClose();
+                        }}
+                    >
+                        {icon ? (
+                            cloneElement(icon as ReactElement, { className: 'stroke-2 text-inherit !block size-18' })
+                        ) : (
+                            <DismissFilled className="!block size-18 stroke-2 text-inherit" />
+                        )}
+                    </button>
+                </div>
             )}
         </div>
     );

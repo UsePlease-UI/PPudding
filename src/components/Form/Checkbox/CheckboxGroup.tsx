@@ -1,11 +1,8 @@
-/** @jsxImportSource @emotion/react */
 import { ReactNode } from 'react';
 
-import type { CustomCSSType } from 'styles/types';
+import { joinClassNames } from '@utils/format';
 
-import FlexBox from 'components/Base/FlexBox';
-
-type CheckboxGroupType = CustomCSSType & {
+type CheckboxGroupType = {
     children: ReactNode;
     isRow?: boolean;
     gap?: number;
@@ -13,24 +10,23 @@ type CheckboxGroupType = CustomCSSType & {
 
 /**
  *  [UI Component] Checkbox Group Component
- *  @param children 컴포넌트
- *  @param isRow [CSS] flex direction (row | column)
- *  @param gap [CSS] flex gap
- *  @param customCSS 커스텀 CSS [optional]
+ *  @param children ReactNode
+ *  @param isRow [CSS] Flex Direction (row | column)
+ *  @param gap [CSS] Flex Gap
  *  @returns JSX.Element
  */
 export default function CheckboxGroup(props: CheckboxGroupType) {
-    const { children, isRow = true, gap = 10, customCSS } = props;
+    const { children, isRow = true, gap = 'gap-10' } = props;
 
     return (
-        <FlexBox
-            alignItems={isRow ? 'center' : 'unset'}
-            justifyContent={isRow ? 'flex-start' : 'unset'}
-            flexDirection={isRow ? 'row' : 'column'}
-            gap={gap}
-            customCSS={customCSS}
+        <div
+            className={joinClassNames(
+                'flex flex-col',
+                isRow && 'flex-row items-center justify-start',
+                gap && `gap-${gap}`
+            )}
         >
             {children}
-        </FlexBox>
+        </div>
     );
 }

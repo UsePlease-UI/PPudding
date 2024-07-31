@@ -1,36 +1,27 @@
-/** @jsxImportSource @emotion/react */
 import { ReactNode, TdHTMLAttributes, ThHTMLAttributes } from 'react';
 
-import { css } from '@emotion/react';
-import { CSSInterpolation } from '@emotion/serialize';
-import type { CustomCSSType } from 'styles/types';
-
-import { tableStyle } from './styles';
-
-type BaseType = ThHTMLAttributes<HTMLTableCellElement> & TdHTMLAttributes<HTMLTableCellElement> & CustomCSSType;
+type BaseType = ThHTMLAttributes<HTMLTableCellElement> & TdHTMLAttributes<HTMLTableCellElement>;
 
 type TableCellType = BaseType & {
-    children: string | ReactNode;
+    children: ReactNode;
     component?: 'th' | 'td';
-    customCSS?: CSSInterpolation;
 };
 
 /**
  *  [UI Component] Table Cell Component
- *  @param children 컴포넌트
- *  @param component 컴포넌트 타입 (td | th) [optional]
- *  @param customCSS 커스텀 CSS [optional]
+ *  @param children ReactNode
+ *  @param component Table Cell Type (td | th) [optional]
  *  @returns JSX.Element
  */
 export default function TableCell(props: TableCellType) {
-    const { children, component = 'td', customCSS, ...rest } = props;
+    const { children, component = 'td', ...rest } = props;
 
     return component === 'td' ? (
-        <td {...rest} css={css([tableStyle.tableCell, customCSS])}>
+        <td {...rest} className="h-full px-10 py-8 text-14 font-normal leading-normal">
             {children}
         </td>
     ) : (
-        <th {...rest} css={css([tableStyle.tableCell, tableStyle.text, customCSS])}>
+        <th {...rest} className="text-medium h-full px-10 py-8 text-14 leading-normal">
             {children}
         </th>
     );

@@ -1,25 +1,33 @@
-import { css, keyframes } from '@emotion/react';
-import { palette } from 'styles';
+export type SizeType = 'small' | 'medium' | 'large';
+export type VariantType = 'circular' | 'square' | 'rounded';
 
-const blink = keyframes`
-    0% {
-        opacity: 0.4;
+export function getSizeStyle(size: SizeType) {
+    switch (size) {
+        case 'large':
+            return 'w-full h-60';
+        case 'small':
+            return 'w-full h-20';
+        default:
+            return 'w-full h-40';
     }
-    50%{
-        opacity: 1;
-    }
-    100% {
-        opacity: 0.4;
-    }
-`;
+}
 
-export const loaderStyle = {
-    skeleton: css({
-        cursor: 'progress',
-        width: '100%',
-        height: 30,
-        borderRadius: 4,
-        backgroundColor: palette.gray[100],
-        animation: `${blink} 2s ease-in-out infinite`
-    })
-};
+export function getCircularStyle(size: SizeType) {
+    switch (size) {
+        case 'large':
+            return 'rounded-full w-60 h-60 shrink-0';
+        case 'small':
+            return 'rounded-full w-20 h-20 shrink-0';
+        default:
+            return 'rounded-full w-40 h-40 shrink-0';
+    }
+}
+
+export function getVariantStyle(variant: VariantType) {
+    switch (variant) {
+        case 'square':
+            return 'rounded-none';
+        default:
+            return 'rounded-md';
+    }
+}

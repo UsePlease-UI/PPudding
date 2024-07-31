@@ -1,9 +1,10 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&height=350&text=React%20Components&color=gradient&customColorList=0,2,2,5,30)
 
-![v1.0](https://img.shields.io/badge/v1.0-2023--05~2023--08-blue?style=flat-square)
-![Create React App](https://img.shields.io/badge/create_react_app-303846?style=flat-square&logo=createreactapp&logoColor=09D3AC)
+![v1.0](https://img.shields.io/badge/v1.0-2023--05~2023--08-e3ecfb?style=flat-square)
+![v1.1](https://img.shields.io/badge/v1.1-2024--01~-c0d9f7?style=flat-square)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat-square&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat-square&logo=react&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=flat-square&logo=vite&logoColor=white)
 ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=flat-square&logo=yarn&logoColor=white)
 ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=flat-square&logo=eslint&logoColor=white)
 ![Airbnb](https://img.shields.io/badge/Airbnb-%23ff5a5f.svg?style=flat-square&logo=Airbnb&logoColor=white)
@@ -15,6 +16,7 @@
 ### v1.0
 
 ![Accordion](https://img.shields.io/badge/akffkdahffkdgo77-Accordion-pink?style=flat-square)
+![Autocomplete](https://img.shields.io/badge/akffkdahffkdgo77-Autocomplete-c8a2c8?style=flat-square)
 ![Button](https://img.shields.io/badge/akffkdahffkdgo77-Button-pink?style=flat-square)
 ![Icon Button](https://img.shields.io/badge/akffkdahffkdgo77-Icon%20Button-pink?style=flat-square)
 ![Checkbox](https://img.shields.io/badge/akffkdahffkdgo77-Checkbox-pink?style=flat-square)
@@ -33,110 +35,30 @@
 ![Pagination](https://img.shields.io/badge/Kimyerim1935-Pagination-lightblue?style=flat-square)
 ![Popover](https://img.shields.io/badge/Kimyerim1935-Popover-lightblue?style=flat-square)
 
-### v1.1 (TO-BE)
+### v1.1 (~ing)
 
-![Alert](https://img.shields.io/badge/akffkdahffkdgo77-Alert-red?style=flat-square)
-![Date Picker](https://img.shields.io/badge/akffkdahffkdgo77-Date%20Picker-red?style=flat-square)
-![List](https://img.shields.io/badge/akffkdahffkdgo77-List-red?style=flat-square)
+#### TODO
+
 ![Range Slider](https://img.shields.io/badge/akffkdahffkdgo77-Range%20Slider-red?style=flat-square)
 ![Switch](https://img.shields.io/badge/akffkdahffkdgo77-Switch-red?style=flat-square)
 
 ![Alert and Message Dialog](https://img.shields.io/badge/Kimyerim1935-Alert%20and%20Message%20Dialog-blue?style=flat-square)
 ![Carousel](https://img.shields.io/badge/Kimyerim1935-Carousel-blue?style=flat-square)
-![Calendar](https://img.shields.io/badge/Kimyerim1935-Calendar-blue?style=flat-square)
 ![Tooltip](https://img.shields.io/badge/Kimyerim1935-Tooltip-blue?style=flat-square)
 ![Tree View](https://img.shields.io/badge/Kimyerim1935-Tree%20View-blue?style=flat-square)
 
-<details>
-  <summary>
-    <h2>Convention</h2>  
-  </summary>
-  
-  ### Git
-  
-  <code>feat/[주제명]</code>으로 브랜치 생성
-  
-  ```
-  GIT COMMIT
-  
-  feat : …
-  mod : …
-  fix : …
-  chore : …
-  doc : …
-  refact : …
-  ```
-  
-  ### PR 규칙
-  
-  1. main branch로 PR을 보낸다.
-  2. PR은 다른 참여자의 승인을 받아야 한다.
-  
-  ```
-  PR 메시지
-  
-  [깃허브 아이디] 컴포넌트명 추가
-  
-  ```
+#### IN PROGRESS
 
-</details>
+![Calendar](https://img.shields.io/badge/Kimyerim1935-Calendar-blue?style=flat-square)
+![Date Picker](https://img.shields.io/badge/akffkdahffkdgo77-Date%20Picker-red?style=flat-square)
 
-<details>
-  <summary>
-    <h2>Folder Structure</h2>
-  </summary>
+#### DONE
 
-    ```
-    .
-    ├── app
-    ├── components
-    │   ├── Accordion
-    │   ├── Base
-    │   │   ├── Backdrop
-    │   │   ├── ClickAwayListener
-    │   │   ├── FlexBox
-    │   │   ├── FormControl
-    │   │   └── Typography
-    │   ├── Button
-    │   │   ├── Button
-    │   │   ├── Chip
-    │   │   ├── IconButton
-    │   │   └── ToggleButton
-    │   ├── Combobox
-    │   │   ├── Autocomplete
-    │   │   └── Select
-    │   ├── DatePicker
-    │   ├── DragNDrop
-    │   ├── Form
-    │   │   ├── Checkbox
-    │   │   ├── Radio
-    │   │   └── TextField
-    │   ├── Listbox
-    │   ├── Loader
-    │   ├── Menu
-    │   ├── Pagination
-    │   ├── Shared
-    │   │   ├── Popover
-    │   │   └── usePopover
-    │   ├── Tab
-    │   ├── Table
-    │   ├── useAccordion
-    │   └── useTab
-    ├── hooks
-    │   └── useMobile.ts
-    ├── index.tsx
-    ├── layout
-    ├── pages
-    │   ├── Demo
-    │   ├── Guide
-    │   └── Home
-    ├── stories
-    └── styles
-    ```
-</details>
+![Alert](https://img.shields.io/badge/akffkdahffkdgo77-Alert-red?style=flat-square)
+![List](https://img.shields.io/badge/akffkdahffkdgo77-List-red?style=flat-square)
+![Textarea](https://img.shields.io/badge/akffkdahffkdgo77-Textarea-red?style=flat-square)
 
 ## Assets
 
--   [Heroicons](https://heroicons.com/)
 -   [Fluent Icons](https://github.com/microsoft/fluentui-system-icons)
 -   [Pretendard Font](https://github.com/orioncactus/pretendard)

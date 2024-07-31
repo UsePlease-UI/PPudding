@@ -1,218 +1,137 @@
-/** @jsxImportSource @emotion/react */
+import { FormEvent } from 'react';
 
-import { useEffect } from 'react';
+import { Button, IconButton } from '@components/Button';
+import { Select } from '@components/Combobox';
+import { Checkbox, TextField } from '@components/Form';
+import { useAlert } from '@components/useAlert';
+import { useCalender } from '@components/useCalender';
+import { type TodoType, useSchedule } from '@components/useSchedule';
 
-import { TrashIcon, XCircleIcon, PencilIcon } from '@heroicons/react/24/outline';
-import { palette } from 'styles';
+import { DeleteFilled, DismissFilled, EditFilled } from '@fluentui/react-icons';
 
-import { FlexBox, Typography } from 'components/Base';
-import Button from 'components/Button/Button';
-import IconButton from 'components/Button/IconButton';
-import Select from 'components/Combobox/Select';
-import { Checkbox } from 'components/Form/Checkbox';
-import TextField from 'components/Form/TextField';
-import { useAlert } from 'components/useAlert';
-import { useCalender } from 'components/useCalender';
-import { type TodoType, useSchedule } from 'components/useSchedule';
-import useMobile from 'hooks/useMobile';
-import { CALENDER_LABEL_COLOR } from 'pages/Example/Kimyerim1935/constants';
-
-import { MonthlyCalenderStyle } from '../styles';
+import { CALENDER_LABEL_COLOR } from '../constants';
 
 type ScheduleDetailType = {
     todo: TodoType;
     day: string;
     isStartDate: boolean;
     isEdited: boolean;
-    setIsEdited: React.Dispatch<React.SetStateAction<boolean>>;
-    handleDeleteSchedule: (index: number) => void;
-    handleClickDetail: (type: 'open' | 'close', day: string, index: number) => void;
+    onEdit: (isEdited: boolean) => void;
+    onScheduleDelete: (index: string) => void;
+    onDetailClick: (type: 'open' | 'close', day: string, index: number) => void;
 };
 
 export default function ScheduleDetail(props: ScheduleDetailType) {
-    const { todo, day, isStartDate, isEdited, setIsEdited, handleDeleteSchedule, handleClickDetail } = props;
-    const { dispatch: calenderDispatch } = useCalender();
-    const { setMessage } = useAlert();
-    const {
-        isAllDay,
-        setIsAllDay,
-        addContents,
-        setAddContents,
-        color,
-        setColor,
-        labelColor,
-        initialContent,
-        handleContents
-    } = useSchedule(todo.color, todo);
+    const { todo, day, isStartDate, isEdited, onEdit, onScheduleDelete, onDetailClick } = props;
+    const { handleMessage } = useAlert();
 
-    const isMobile = useMobile();
+    const { handleCalendar } = useCalender();
+    const { isAllDay, handleDayChange, addContents, color, handleColorChange, handleContents } = useSchedule(
+        todo.color,
+        todo
+    );
 
-    const handleEditSchedule = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleEditSchedule = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (addContents.startDate > addContents.endDate) {
-            setMessage('시작일은 종료일보다 클 수 없습니다', { variant: 'error' });
+            handleMessage('시작일은 종료일보다 클 수 없습니다', { variant: 'error' });
             return;
         }
 
-        calenderDispatch({
+        handleCalendar({
             type: 'UPDATE_SCHEDULE',
-            payload: {
-                ...addContents,
-                idx: todo.idx,
-                isAllDay,
-                color
-            }
+            payload: { ...addContents, idx: todo.idx, isAllDay, color }
         });
-        handleClickDetail('close', day, -1);
+        onDetailClick('close', day, -1);
     };
 
-    useEffect(() => {
-        setIsAllDay(initialContent.isAllDay);
-        setColor(labelColor);
-        setAddContents(initialContent);
-    }, [isEdited]);
-
     return (
-        <div css={MonthlyCalenderStyle.scheduleDetailWrapper}>
-            <FlexBox flexDirection="column" gap={5}>
-                <FlexBox justifyContent="flex-end">
-                    {!isMobile && (
-                        <IconButton
-                            variant="text"
-                            size="medium"
-                            shape="circular"
-                            onClick={() => handleClickDetail('close', day, -1)}
-                            customCSS={{ padding: 0 }}
-                        >
-                            <XCircleIcon width={24} height={24} />
+        <div className="relative">
+            <div className="absolute right-0 top-0">
+                <IconButton
+                    variant="text"
+                    size="small"
+                    shape="circular"
+                    onClick={() => onDetailClick('close', day, -1)}
+                >
+                    <DismissFilled />
+                </IconButton>
+            </div>
+            {isEdited ? (
+                <form onSubmit={handleEditSchedule} className="mt-35 space-y-10 px-10 pb-10">
+                    <TextField
+                        helperText="10글자 이내로 입력해주세요."
+                        name="title"
+                        value={addContents.title}
+                        required
+                        isFullWidth
+                        maxLength={10}
+                        onChange={(e) => handleContents('title', e.target.value)}
+                    />
+                    <TextField
+                        helperText="20글자 이내로 입력해주세요."
+                        name="description"
+                        value={addContents.description}
+                        required
+                        isFullWidth
+                        maxLength={20}
+                        onChange={(e) => handleContents('description', e.target.value)}
+                    />
+                    <div className="flex flex-col gap-10">
+                        <TextField
+                            labelText="시작일"
+                            type="date"
+                            name="startDate"
+                            isFullWidth
+                            value={addContents.startDate}
+                            onChange={(e) => handleContents('startDate', e.target.value)}
+                        />
+                        <TextField
+                            labelText="종료일"
+                            type="date"
+                            name="endDate"
+                            isFullWidth
+                            value={addContents.endDate}
+                            onChange={(e) => handleContents('endDate', e.target.value)}
+                        />
+                    </div>
+                    <Select
+                        labelText="라벨 색상"
+                        name="label-color"
+                        value={color}
+                        label={CALENDER_LABEL_COLOR.filter((val) => val.value === color)?.[0]?.label}
+                        options={CALENDER_LABEL_COLOR}
+                        onChange={(e) => handleColorChange(e.currentTarget.value)}
+                    />
+                    <Checkbox label="종일" value="isAllDay" checked={isAllDay} onChange={handleDayChange} />
+                    <div className="flex items-center justify-end gap-5">
+                        <Button onClick={() => onEdit(false)} variant="outlined" size="small">
+                            취소
+                        </Button>
+                        <Button type="submit" variant="contained" size="small">
+                            수정
+                        </Button>
+                    </div>
+                </form>
+            ) : (
+                <div className="min-w-250">
+                    <div className="flex flex-col">
+                        {!isStartDate && (
+                            <h3 className="mb-10 mr-45 mt-5 text-18 font-semibold text-gray-950">{todo.title}</h3>
+                        )}
+                        <p className="text-16 text-gray-950">{todo.description}</p>
+                        <p className="text-13 text-gray-950">{`${todo.startDate} ~ ${todo.endDate}`}</p>
+                    </div>
+                    <div className="mt-20 flex items-center justify-end">
+                        <IconButton variant="text" size="small" onClick={() => onEdit(true)}>
+                            <EditFilled className="text-primary-600" />
                         </IconButton>
-                    )}
-                </FlexBox>
-                {isEdited ? (
-                    <form onSubmit={handleEditSchedule}>
-                        <TextField
-                            helperText="10글자 이내로 입력해주세요."
-                            name="title"
-                            value={addContents.title}
-                            required
-                            isFullWidth
-                            maxLength={10}
-                            onChange={(e) => handleContents('title', e.target.value)}
-                            customCSS={{
-                                borderColor: palette.secondary[600],
-                                '@media (max-width: 430px)': {
-                                    minWidth: 0,
-                                    width: '100%'
-                                }
-                            }}
-                        />
-                        <TextField
-                            helperText="20글자 이내로 입력해주세요."
-                            name="description"
-                            value={addContents.description}
-                            required
-                            isFullWidth
-                            maxLength={20}
-                            onChange={(e) => handleContents('description', e.target.value)}
-                            customCSS={{
-                                borderColor: palette.secondary[600],
-                                '@media (max-width: 430px)': {
-                                    minWidth: 0,
-                                    width: '100%'
-                                }
-                            }}
-                        />
-                        <FlexBox gap={10}>
-                            <TextField
-                                labelText="시작일"
-                                type="date"
-                                name="startDate"
-                                isFullWidth
-                                value={addContents.startDate}
-                                onChange={(e) => handleContents('startDate', e.target.value)}
-                                customCSS={{
-                                    borderColor: palette.secondary[600],
-                                    '@media (max-width: 430px)': {
-                                        minWidth: 0,
-                                        width: '100%'
-                                    }
-                                }}
-                            />
-                            <TextField
-                                labelText="종료일"
-                                type="date"
-                                name="endDate"
-                                isFullWidth
-                                value={addContents.endDate}
-                                onChange={(e) => handleContents('endDate', e.target.value)}
-                                customCSS={{
-                                    borderColor: palette.secondary[600],
-                                    '@media (max-width: 430px)': {
-                                        minWidth: 0,
-                                        width: '100%'
-                                    }
-                                }}
-                            />
-                        </FlexBox>
-                        <Select
-                            labelText="라벨 색상"
-                            name="label-color"
-                            value={color}
-                            label={CALENDER_LABEL_COLOR.filter((val) => val.value === color)?.[0]?.label}
-                            options={CALENDER_LABEL_COLOR}
-                            onChange={(e) => setColor(e.currentTarget.value)}
-                            customCSS={{ color }}
-                        />
-                        <Checkbox
-                            label="종일"
-                            value="isAllDay"
-                            checked={isAllDay}
-                            onChange={() => setIsAllDay((prev) => !prev)}
-                            customCSS={{ marginTop: 10 }}
-                        />
-                        <FlexBox justifyContent="right" gap={5}>
-                            <Button onClick={() => setIsEdited(false)} variant="outlined" size="small">
-                                취소
-                            </Button>
-                            <Button type="submit" variant="contained" size="small">
-                                수정하기
-                            </Button>
-                        </FlexBox>
-                    </form>
-                ) : (
-                    <>
-                        <FlexBox flexDirection="column">
-                            {!isStartDate && (
-                                <Typography component="h3" css={MonthlyCalenderStyle.scheduleDetailTitle}>
-                                    {todo.title}
-                                </Typography>
-                            )}
-                            <Typography css={MonthlyCalenderStyle.scheduleDetailDesc}>{todo.description}</Typography>
-                            <Typography
-                                css={MonthlyCalenderStyle.scheduleDetailTerms}
-                            >{`${todo.startDate} ~ ${todo.endDate}`}</Typography>
-                        </FlexBox>
-                        <FlexBox justifyContent="flex-end">
-                            <IconButton
-                                variant="text"
-                                size="medium"
-                                onClick={() => setIsEdited(true)}
-                                customCSS={{ padding: 5 }}
-                            >
-                                <PencilIcon width={24} height={24} />
-                            </IconButton>
-                            <IconButton
-                                variant="text"
-                                size="medium"
-                                onClick={() => handleDeleteSchedule(todo.idx)}
-                                customCSS={{ padding: 5 }}
-                            >
-                                <TrashIcon width={24} height={24} />
-                            </IconButton>
-                        </FlexBox>
-                    </>
-                )}
-            </FlexBox>
+                        <IconButton variant="text" size="small" onClick={() => onScheduleDelete(todo.idx)}>
+                            <DeleteFilled className="text-red-600" />
+                        </IconButton>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

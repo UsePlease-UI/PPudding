@@ -9,7 +9,7 @@
 -   Default (Non-interactive)
 -   Deletable (Interactive)
 
-## Variants [TO-BE]
+## Variants
 
 -   Outlined
 -   Contained
