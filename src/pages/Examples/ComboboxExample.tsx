@@ -10,8 +10,8 @@ import { Tab, TabContainer, TabItem, TabPanel } from '@components/Tab';
 import { CommonListDataType } from '@components/types';
 
 import { AutocompleteExample } from './Combobox';
-import { AUTOCOMPLETE as LIST, OPTIONS } from './constants';
 import Heading from './components/Heading';
+import { AUTOCOMPLETE as LIST, OPTIONS } from './constants';
 
 const EXAMPLE_LIST = ['Autocomplete', 'Select'];
 
