@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createHashRouter } from 'react-router-dom';
 
 import BaseLayout from '@layouts/BaseLayout';
 
@@ -14,49 +14,46 @@ import Error from './Error';
 export default function App() {
     return (
         <RouterProvider
-            router={createBrowserRouter(
-                [
-                    {
-                        path: '',
-                        element: <BaseLayout />,
-                        errorElement: <Error />,
-                        children: [
-                            {
-                                index: true,
-                                element: <Home />
-                            },
-                            {
-                                path: 'example/:component',
-                                element: <Example />
-                            }
-                        ]
-                    },
-                    {
-                        path: '/demo',
-                        element: <BaseLayout />,
-                        errorElement: <Error />,
-                        children: [
-                            {
-                                path: 'faq',
-                                element: <FAQ />
-                            },
-                            {
-                                path: 'search',
-                                element: <Search />
-                            },
-                            {
-                                path: 'editor',
-                                element: <Editor />
-                            },
-                            {
-                                path: 'register',
-                                element: <Register />
-                            }
-                        ]
-                    }
-                ],
-                { basename: '/react-components' }
-            )}
+            router={createHashRouter([
+                {
+                    path: '',
+                    element: <BaseLayout />,
+                    errorElement: <Error />,
+                    children: [
+                        {
+                            index: true,
+                            element: <Home />
+                        },
+                        {
+                            path: 'example/:component',
+                            element: <Example />
+                        }
+                    ]
+                },
+                {
+                    path: '/demo',
+                    element: <BaseLayout />,
+                    errorElement: <Error />,
+                    children: [
+                        {
+                            path: 'faq',
+                            element: <FAQ />
+                        },
+                        {
+                            path: 'search',
+                            element: <Search />
+                        },
+                        {
+                            path: 'editor',
+                            element: <Editor />
+                        },
+                        {
+                            path: 'register',
+                            element: <Register />
+                        }
+                    ]
+                }
+            ])}
         />
     );
 }
