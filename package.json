@@ -3,7 +3,6 @@
     "private": true,
     "version": "1.0.1",
     "type": "module",
-    "homepage": "https://useplease-ui.github.io/react-components/",
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
