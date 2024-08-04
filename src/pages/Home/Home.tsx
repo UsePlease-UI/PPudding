@@ -7,7 +7,7 @@ export default function Home() {
         <div className="w-full space-y-20">
             {HOME_LIST.map(({ name, list }) => (
                 <div key={name} className="flex w-full flex-col">
-                    <p className="mb-20 text-28 font-black uppercase text-primary-600">{name}</p>
+                    <p className="mb-20 text-28 font-black uppercase text-primary-800">{name}</p>
                     <div className="flex flex-wrap gap-20">
                         {list.map((data) => (
                             <div
@@ -23,7 +23,7 @@ export default function Home() {
                                     }
                                 >
                                     <div className="relative pb-[57.69%]">
-                                        <div className="absolute top-0 flex h-full w-full items-center justify-center rounded-md bg-primary-600 uppercase text-primary-50 hover:border-b-primary-600 hover:bg-primary-50 hover:text-primary-600">
+                                        <div className="absolute top-0 flex h-full w-full items-center justify-center rounded-md bg-primary-600 uppercase text-primary-950 hover:border-b-primary-600 hover:bg-primary-50 hover:text-primary-950">
                                             <p className="text-center text-28 font-black text-inherit">{data}</p>
                                         </div>
                                     </div>

@@ -158,7 +158,7 @@ export default function Pagination(props: PaginationType) {
                             <p
                                 className={joinClassNames(
                                     'flex items-center justify-center',
-                                    variant === 'text' && page === currentPage && 'font-semibold text-primary-600'
+                                    variant === 'text' && page === currentPage && 'font-semibold text-primary-800'
                                 )}
                             >
                                 {currentPage}

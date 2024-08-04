@@ -34,7 +34,7 @@ export default function ListExample() {
         <div className={customStyles.playgroundContainer}>
             <div className={customStyles.playgroundControlContainer}>
                 <strong className="text-14 tablet:text-16">
-                    Choose List <span className="text-primary-600">Type</span>
+                    Choose List <span className="text-primary-800">Type</span>
                 </strong>
                 <RadioGroup isRow={false} value={type} onChange={(e) => setType(e.currentTarget.value)}>
                     {['text', 'button', 'action item', 'metadata', 'collapsed'].map((key) => (
@@ -44,7 +44,7 @@ export default function ListExample() {
                 {(type === 'action item' || type === 'metadata') && (
                     <>
                         <strong className="text-14 tablet:text-16">
-                            Choose List <span className="text-primary-600">Position</span>
+                            Choose List <span className="text-primary-800">Position</span>
                         </strong>
                         <RadioGroup
                             isRow={!isTablet}
@@ -60,7 +60,7 @@ export default function ListExample() {
                 {type === 'button' && hasIcon && (
                     <>
                         <strong className="text-14 tablet:text-16">
-                            Choose List Icon <span className="text-primary-600">Align</span>
+                            Choose List Icon <span className="text-primary-800">Align</span>
                         </strong>
                         <RadioGroup isRow={!isTablet} value={align} onChange={(e) => setAlign(e.currentTarget.value)}>
                             {['top', 'bottom', ''].map((key) => (
@@ -78,7 +78,7 @@ export default function ListExample() {
                 {type !== 'collapsed' && (
                     <>
                         <strong className="text-14 tablet:text-16">
-                            Choose List <span className="text-primary-600">Options</span>
+                            Choose List <span className="text-primary-800">Options</span>
                         </strong>
                         <CheckboxGroup isRow={!isTablet}>
                             <Checkbox

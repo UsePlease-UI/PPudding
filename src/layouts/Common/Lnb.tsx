@@ -63,8 +63,8 @@ export default function Lnb({ isVisible, onClose }: LnbType) {
                                         <Link
                                             to={`/example/${component.toLowerCase()}`}
                                             className={joinClassNames(
-                                                'block h-full w-full px-4 py-8 text-center group-hover:text-primary-600 group-hover:outline-none group-focus:text-primary-600 group-focus:outline-none',
-                                                component === selected && 'font-semibold text-primary-600'
+                                                'block h-full w-full px-4 py-8 text-center group-hover:text-primary-900 group-hover:outline-none group-focus:text-primary-800 group-focus:outline-none',
+                                                component === selected && 'font-semibold text-primary-800'
                                             )}
                                         >
                                             {component}
@@ -88,7 +88,7 @@ export default function Lnb({ isVisible, onClose }: LnbType) {
                                 >
                                     <Link
                                         to={`/demo/${demo.toLowerCase()}`}
-                                        className="block h-full w-full px-4 py-8 text-center capitalize group-hover:text-primary-600 group-hover:outline-none group-focus:text-primary-600 group-focus:outline-none"
+                                        className="block h-full w-full px-4 py-8 text-center capitalize group-hover:text-primary-900 group-hover:outline-none group-focus:text-primary-800 group-focus:outline-none"
                                     >
                                         {demo}
                                     </Link>

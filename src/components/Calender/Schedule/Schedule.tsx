@@ -65,7 +65,7 @@ export default function Schedule(props: ScheduleType) {
                             <p
                                 className={joinClassNames(
                                     'mx-4 my-4 text-16 font-medium tablet:mx-10',
-                                    String(date) && 'text-primary-600'
+                                    String(date) && 'text-primary-800'
                                 )}
                             >
                                 {day}

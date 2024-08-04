@@ -124,7 +124,7 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
                     </div>
                     <div className="mt-20 flex items-center justify-end">
                         <IconButton variant="text" size="small" onClick={() => onEdit(true)}>
-                            <EditFilled className="text-primary-600" />
+                            <EditFilled className="text-primary-800" />
                         </IconButton>
                         <IconButton variant="text" size="small" onClick={() => onScheduleDelete(todo.idx)}>
                             <DeleteFilled className="text-red-600" />

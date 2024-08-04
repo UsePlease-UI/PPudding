@@ -10,7 +10,10 @@ const meta = {
     title: 'Button/IconButton',
     component: IconButton,
     tags: ['autodocs'],
-    argTypes: {}
+    argTypes: {
+        children: { table: { disable: true } },
+        onClick: { table: { disable: true } }
+    }
 } satisfies Meta<typeof IconButton>;
 
 export default meta;

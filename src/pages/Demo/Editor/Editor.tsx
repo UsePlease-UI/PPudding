@@ -24,13 +24,13 @@ type TextAlignType = 'text-center' | 'text-right' | 'text-left' | 'text-justify'
 const Editor = () => {
     const [style, setStyle] = useState<string[]>([]);
     const [align, setAlign] = useState<TextAlignType>('text-left');
-    const [color, setColor] = useState('text-primary-600');
+    const [color, setColor] = useState('text-primary-800');
 
     const { isOpen, anchorElement, handleOpen, handleClose } = usePopover();
 
     return (
         <div className="under-tablet:p-10">
-            <div className="flex flex-wrap justify-end gap-10 rounded-t bg-blue-gray-50 p-10">
+            <div className="bg-yellow-gray-50 flex flex-wrap justify-end gap-10 rounded-t p-10">
                 <ToggleButtonGroup
                     value={style}
                     onChange={(e) => {
@@ -76,7 +76,7 @@ const Editor = () => {
                         if (newValue === '') {
                             setStyle([]);
                             setAlign('text-left');
-                            setColor('text-primary-600');
+                            setColor('text-primary-800');
                         } else {
                             setAlign((prev) => (prev === newValue ? '' : newValue) as TextAlignType);
                         }
@@ -102,7 +102,7 @@ const Editor = () => {
             <div className="h-[calc(100vh-158px)] w-full tablet:h-500">
                 <textarea
                     className={joinClassNames(
-                        'h-full w-full resize-none rounded-b border border-t-0 border-blue-gray-100 p-20 outline-none',
+                        'border-yellow-gray-100 h-full w-full resize-none rounded-b border border-t-0 p-20 outline-none',
                         color,
                         align,
                         style.includes('bold') ? 'font-semibold' : 'font-normal',

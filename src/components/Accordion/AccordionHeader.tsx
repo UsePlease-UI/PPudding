@@ -45,8 +45,8 @@ export default function AccordionHeader(props: AccordionHeaderType) {
             >
                 <div
                     className={joinClassNames(
-                        'flex items-center justify-between text-left text-18 font-medium leading-normal text-primary-600 *:text-left *:text-18 *:font-medium *:leading-normal',
-                        isExpanded && 'text-bold *:text-bold text-white *:text-white',
+                        'flex items-center justify-between text-left text-18 font-medium leading-normal text-primary-800 *:text-left *:text-18 *:font-medium *:leading-normal',
+                        isExpanded && 'text-bold *:text-bold text-primary-950 *:text-primary-950',
                         isDisabled && 'cursor-not-allowed text-gray-950 *:text-gray-950'
                     )}
                 >

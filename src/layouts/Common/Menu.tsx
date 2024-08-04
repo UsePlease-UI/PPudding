@@ -41,7 +41,7 @@ const Menu = ({ onClick }: MenuType) => {
                                     >
                                         <Link
                                             to={`/example/${component.toLowerCase()}`}
-                                            className="block px-4 py-8 text-center text-12 capitalize outline-none focus:font-black focus:text-primary-600 focus:outline-none group-hover:text-primary-600"
+                                            className="block px-4 py-8 text-center text-12 capitalize outline-none focus:font-black focus:text-primary-800 focus:outline-none group-hover:text-primary-900"
                                         >
                                             {component}
                                         </Link>
@@ -62,7 +62,7 @@ const Menu = ({ onClick }: MenuType) => {
                                 >
                                     <Link
                                         to={`/demo/${component.toLowerCase()}`}
-                                        className="block px-4 py-8 text-center text-12 capitalize outline-none focus:font-black focus:text-primary-600 focus:outline-none group-hover:text-primary-600"
+                                        className="block px-4 py-8 text-center text-12 capitalize outline-none focus:font-black focus:text-primary-800 focus:outline-none group-hover:text-primary-900"
                                     >
                                         {component}
                                     </Link>
