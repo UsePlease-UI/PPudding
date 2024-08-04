@@ -1,7 +1,7 @@
-import '../src/styles/index.css'; // tailwind css file
-
-import type { Preview } from '@storybook/react';
 import { withThemeByClassName } from '@storybook/addon-themes';
+import type { Preview } from '@storybook/react';
+
+import '../src/styles/index.css'; // tailwind css file
 
 export const decorators = [
     withThemeByClassName({

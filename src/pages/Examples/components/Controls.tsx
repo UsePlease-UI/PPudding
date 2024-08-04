@@ -15,7 +15,7 @@ export const RadioControls = ({ options, name, value, onChange }: Props) => {
     return (
         <div>
             <strong className="text-14 tablet:text-16">
-                Choose <span className="capitalize text-primary-600">{name}</span>
+                Choose <span className="capitalize text-primary-800">{name}</span>
             </strong>
             <RadioGroup
                 value={value}
@@ -49,7 +49,7 @@ export const CheckboxControl = ({ label, name, checked, onChange }: CheckboxCont
     return (
         <div>
             <strong className="block text-14 tablet:text-16">
-                Choose Button <span className="capitalize text-primary-600">{name}</span>
+                Choose Button <span className="capitalize text-primary-800">{name}</span>
             </strong>
             <Checkbox
                 label={label}

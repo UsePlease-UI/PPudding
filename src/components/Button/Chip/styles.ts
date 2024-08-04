@@ -1,8 +1,8 @@
 import { VariantType } from '../styles';
 
 const style = {
-    outlined: 'border border-primary-600 bg-white',
-    contained: 'border border-primary-100 bg-primary-100',
+    outlined: 'border border-primary-700 bg-white',
+    contained: 'border border-primary-600 bg-primary-600',
     text: 'border-[0.3px] border-gray-200 bg-white'
 };
 

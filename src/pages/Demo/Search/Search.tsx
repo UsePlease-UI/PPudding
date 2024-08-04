@@ -21,7 +21,7 @@ const Search = () => {
         <div className="flex flex-col">
             <div className="flex-start mb-20 mt-20 flex w-full flex-col justify-center gap-10 px-20 tablet:mt-0 tablet:flex-row tablet:items-center">
                 <div className="shrink-0 rounded border border-primary-600 px-8 under-tablet:w-max">
-                    <p className="text-24 font-black text-primary-600">RC</p>
+                    <p className="text-24 font-black text-primary-800">RC</p>
                 </div>
                 <TextField isFullWidth type="search" aria-label="검색" placeholder="검색어를 입력해 주세요" />
             </div>

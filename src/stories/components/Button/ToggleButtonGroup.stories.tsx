@@ -6,7 +6,10 @@ const meta = {
     title: 'Button/ToggleButtonGroup',
     component: ToggleButtonGroup,
     tags: ['autodocs'],
-    argTypes: {}
+    argTypes: {
+        children: { table: { disable: true } },
+        onChange: { table: { disable: true } }
+    }
 } satisfies Meta<typeof ToggleButtonGroup>;
 
 export default meta;

@@ -26,7 +26,7 @@ export default function CardExample() {
         <div className={customStyles.playgroundContainer}>
             <div className={customStyles.playgroundControlContainer}>
                 <strong className="text-14 tablet:text-16">
-                    Choose Card <span color="text-primary-600">Variant</span>
+                    Choose Card <span color="text-primary-800">Variant</span>
                 </strong>
                 <RadioGroup value={variantType} isRow gap={10} onChange={(e) => setVariantType(e.currentTarget.value)}>
                     {VARIANT.map((val) => (

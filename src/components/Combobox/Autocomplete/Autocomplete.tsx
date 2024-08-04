@@ -92,7 +92,7 @@ export default function Autocomplete({ inputValue, onChange, label, listArr, onS
                             >
                                 {[...el.label].map((letter, idx) =>
                                     inputValue.includes(letter) ? (
-                                        <span key={`letter-${idx}`} className="font-semibold text-primary-600">
+                                        <span key={`letter-${idx}`} className="font-semibold text-primary-800">
                                             {letter}
                                         </span>
                                     ) : (
