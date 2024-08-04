@@ -71,7 +71,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
                     size === 'small' && 'p-2',
                     size === 'medium' && 'p-3',
                     size === 'large' && 'p-4',
-                    'inline-flex items-center group-focus-within:rounded group-focus-within:bg-blue-gray-100 group-hover:rounded group-hover:bg-blue-gray-50'
+                    'group-focus-within:bg-yellow-gray-100 group-hover:bg-yellow-gray-50 inline-flex items-center group-focus-within:rounded group-hover:rounded'
                 )}
             >
                 <input

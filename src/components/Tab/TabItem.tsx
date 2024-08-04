@@ -51,14 +51,14 @@ export default function TabItem(props: TabItemType) {
             <div className="flex items-center justify-center">
                 {icon && (
                     <span className="my-12 block h-18 w-18">
-                        {cloneElement(icon as ReactElement, { className: '!block w-18 h-18 text-primary-50' })}
+                        {cloneElement(icon as ReactElement, { className: '!block w-18 h-18 text-primary-950' })}
                     </span>
                 )}
                 {label &&
                     (typeof label === 'string' ? (
                         <p
                             className={joinClassNames(
-                                'mx-4 my-9 text-16 font-medium text-primary-50',
+                                'mx-4 my-9 text-16 font-medium text-primary-950',
                                 value === index ? 'font-bold' : 'font-medium'
                             )}
                         >

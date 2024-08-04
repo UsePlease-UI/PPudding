@@ -126,8 +126,8 @@ export default function Autocomplete(props: AutocompleteType) {
                                                               selected?.value === option.value
                                                                   ? 'text-white'
                                                                   : new RegExp(`(${inputValue})`, 'gi').test(letter)
-                                                                    ? 'text-primary-600'
-                                                                    : 'text-black',
+                                                                    ? 'text-primary-800'
+                                                                    : 'text-primary-950',
                                                               new RegExp(`(${inputValue})`, 'gi').test(letter)
                                                                   ? 'font-semibold'
                                                                   : 'font-normal'

@@ -16,7 +16,10 @@ export default function PaginationButton({ pageNum, isSelected, onClick }: Pagin
             {...props}
             type="button"
             onClick={onClick}
-            className={joinClassNames('h-32 w-32 rounded font-normal text-black', isSelected && commonStyle.contained)}
+            className={joinClassNames(
+                'h-32 w-32 rounded font-normal text-primary-950',
+                isSelected && commonStyle.contained
+            )}
         >
             {pageNum}
         </button>

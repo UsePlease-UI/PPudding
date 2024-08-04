@@ -51,6 +51,13 @@
 }
 
 @layer utilities {
+    .logo {
+        background: linear-gradient(#754112 0%, #dccd14 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
     .custom-scrollbar::-webkit-scrollbar {
         width: 6px;
     }

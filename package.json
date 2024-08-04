@@ -1,5 +1,5 @@
 {
-    "name": "react-components",
+    "name": "ppudding",
     "private": true,
     "version": "1.0.1",
     "type": "module",
@@ -23,8 +23,7 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-router-dom": "^6.22.3",
-        "tailwind-merge": "^2.2.2",
-        "tailwind-scrollbar-hide": "^1.1.7"
+        "tailwind-merge": "^2.2.2"
     },
     "devDependencies": {
         "@chromatic-com/storybook": "^1.2.25",
@@ -61,6 +60,7 @@
         "prettier-plugin-tailwindcss": "^0.5.12",
         "storybook": "^8.1.11",
         "tailwindcss": "^3.4.1",
+        "tailwind-scrollbar-hide": "^1.1.7",
         "typescript": "^5.2.2",
         "vite": "^5.2.0",
         "vite-tsconfig-paths": "^4.3.2"

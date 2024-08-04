@@ -23,7 +23,7 @@ const PaginationExample = () => {
         <div className={customStyles.playgroundContainer}>
             <div className={customStyles.playgroundControlContainer}>
                 <strong className="text-14 tablet:text-16">
-                    Choose Button <span className="text-primary-600">Variant</span>
+                    Choose Button <span className="text-primary-800">Variant</span>
                 </strong>
                 <RadioGroup
                     value={variantType}
@@ -42,7 +42,7 @@ const PaginationExample = () => {
                     ))}
                 </RadioGroup>
                 <strong className="text-14 tablet:text-16">
-                    Choose Button <span className="text-primary-600">Size</span>
+                    Choose Button <span className="text-primary-800">Size</span>
                 </strong>
                 <RadioGroup
                     value={sizeType}
@@ -61,7 +61,7 @@ const PaginationExample = () => {
                     ))}
                 </RadioGroup>
                 <strong className="text-14 tablet:text-16">
-                    Choose Button <span className="text-primary-600">Shape</span>
+                    Choose Button <span className="text-primary-800">Shape</span>
                 </strong>
                 <RadioGroup
                     value={shapeType}

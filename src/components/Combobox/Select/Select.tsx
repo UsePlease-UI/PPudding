@@ -102,7 +102,7 @@ export default function Select(props: SelectType) {
                         onClick={handleClick}
                         className={joinClassNames(
                             getVariantStyle('outlined'),
-                            'flex h-40 min-w-120 items-center justify-between rounded pl-12 pr-8 text-black',
+                            'flex h-40 min-w-120 items-center justify-between rounded pl-12 pr-8 text-primary-950',
                             placeholder && !value && 'text-gray-400'
                         )}
                     >
@@ -114,7 +114,7 @@ export default function Select(props: SelectType) {
                                 width={16}
                                 height={16}
                                 className={joinClassNames(
-                                    '!block h-20 w-20 text-primary-600',
+                                    '!block h-20 w-20 text-primary-800',
                                     isVisible && 'rotate-180'
                                 )}
                             />
