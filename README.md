@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=waving&height=350&text=React%20Components&color=gradient&customColorList=0,2,2,5,30)
+![header](https://capsule-render.vercel.app/api?type=waving&height=350&text=PPudding&color=DCCD14&fontColor=754112)
 
 ![v1.0](https://img.shields.io/badge/v1.0-2023--05~2023--08-e3ecfb?style=flat-square)
 ![v1.1](https://img.shields.io/badge/v1.1-2024--01~-c0d9f7?style=flat-square)
