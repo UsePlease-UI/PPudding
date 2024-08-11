@@ -13,9 +13,9 @@ type DividerType = {
 
 function getOrientationStyle(orientation?: OrientationType) {
     if (orientation === 'vertical') {
-        return 'h-auto w-px self-stretch flex-shrink-0 mx-20';
+        return 'h-auto w-px self-stretch shrink-0 mx-5';
     }
-    return 'w-full h-px my-20';
+    return 'w-full h-px my-5';
 }
 
 /**

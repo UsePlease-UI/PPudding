@@ -1,8 +1,9 @@
 import { ReactNode, useMemo, useState } from 'react';
 
+import { ArrowNextFilled, ArrowPreviousFilled, ChevronLeftFilled, ChevronRightFilled } from '@fluentui/react-icons';
+
 import { IconButton, ShapeType, SizeType, VariantType } from '@components/Button';
 
-import { ArrowNextFilled, ArrowPreviousFilled, ChevronLeftFilled, ChevronRightFilled } from '@fluentui/react-icons';
 import { joinClassNames } from '@utils/format';
 
 import { getActiveVariant } from './styles';
@@ -118,7 +119,7 @@ export default function Pagination(props: PaginationType) {
 
     return (
         <nav aria-label="pagination">
-            <ul className="flex items-center gap-10">
+            <ul className="flex items-center gap-2.5">
                 {hasFirstIcon && (
                     <li>
                         <IconButton

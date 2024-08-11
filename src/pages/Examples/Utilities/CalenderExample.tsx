@@ -1,7 +1,7 @@
 import { DailyCalender, MonthlyCalender, WeeklyCalender, YearlyCalender } from '@components/Calender';
 import { CalenderProvider } from '@components/useCalender';
 
-import { customStyles } from '../components/styles';
+import { customStyles } from '../Common/styles';
 
 // 일정 데이터
 // onclick

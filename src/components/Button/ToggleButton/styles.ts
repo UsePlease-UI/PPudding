@@ -3,9 +3,9 @@ import { commonStyle } from '../styles';
 export type SizeType = 'small' | 'medium' | 'large';
 
 const sizeStyle = {
-    miniText: 'p-5 text-12 font-semibold',
-    smallText: 'p-6 text-14',
-    mediumText: 'p-8 text-16',
+    miniText: 'p-1.25 text-12 font-semibold',
+    smallText: 'p-1.5 text-14',
+    mediumText: 'p-2 text-16',
     largeText: 'p-[8.5px] text-18'
 };
 

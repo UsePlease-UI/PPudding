@@ -8,7 +8,7 @@ export type BottomSheetContentsType = {
     children: ReactNode;
 };
 
-const BottomSheetChildren = forwardRef<HTMLDivElement, BottomSheetContentsType>(function BottomSheetChildren(
+const BottomSheetContents = forwardRef<HTMLDivElement, BottomSheetContentsType>(function BottomSheetContents(
     { isOpen, onClose, children },
     ref
 ) {
@@ -47,11 +47,11 @@ const BottomSheetChildren = forwardRef<HTMLDivElement, BottomSheetContentsType>(
             }}
             dragConstraints={{ top: 0 }}
             dragElastic={0.2}
-            className="fixed bottom-0 left-0 right-0 z-100 mx-auto overflow-y-auto rounded-t-lg bg-white p-20 shadow-01"
+            className="fixed bottom-0 left-0 right-0 z-100 mx-auto overflow-y-auto rounded-t-lg bg-white p-5 shadow-01"
         >
             {children}
         </motion.div>
     );
 });
 
-export default BottomSheetChildren;
+export default BottomSheetContents;

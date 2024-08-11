@@ -1,8 +1,9 @@
 import { ReactElement, ReactNode, cloneElement, useEffect, useMemo } from 'react';
 
-import type { OptionsType } from '@components/useAlert';
-
 import { DismissFilled } from '@fluentui/react-icons';
+
+import { OptionsType } from '@components/useAlert';
+
 import { joinClassNames } from '@utils/format';
 
 import { getVariantStyle } from './styles';
@@ -40,7 +41,7 @@ export default function Alert({ message, options, icon, onClose }: AlertType) {
         <div
             role="alert"
             className={joinClassNames(
-                'flex min-h-48 w-max animate-fadeInOut items-center justify-between whitespace-pre-wrap break-all rounded-xl px-12 py-9',
+                'flex min-h-12 w-max animate-fadeInOut items-center justify-between whitespace-pre-wrap break-all rounded-xl px-3 py-2.25',
                 getVariantStyle(options?.variant)
             )}
             style={{ animationDelay: options?.delay ? `${animationTime}s` : '4.5s' }}
@@ -50,7 +51,7 @@ export default function Alert({ message, options, icon, onClose }: AlertType) {
                 <div className="flex items-center">
                     <div
                         className={joinClassNames(
-                            'mx-10 h-12 w-1',
+                            'mx-5 h-3 w-px',
                             options?.variant === 'warning' ? 'bg-black' : 'bg-white'
                         )}
                     />
@@ -68,9 +69,11 @@ export default function Alert({ message, options, icon, onClose }: AlertType) {
                         }}
                     >
                         {icon ? (
-                            cloneElement(icon as ReactElement, { className: 'stroke-2 text-inherit !block size-18' })
+                            cloneElement(icon as ReactElement, {
+                                className: 'stroke-2 text-inherit !block w-4.5 h-4.5'
+                            })
                         ) : (
-                            <DismissFilled className="!block size-18 stroke-2 text-inherit" />
+                            <DismissFilled className="!block h-4.5 w-4.5 stroke-2 text-inherit" />
                         )}
                     </button>
                 </div>

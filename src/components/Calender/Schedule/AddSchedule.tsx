@@ -2,8 +2,8 @@ import { FormEvent, MouseEvent } from 'react';
 
 import { v4 as uuid } from 'uuid';
 
-import { Button } from '@components/Button';
-import { Select } from '@components/Combobox';
+import Button from '@components/Button/Button';
+import Select from '@components/Combobox/Select';
 import { Checkbox, TextField } from '@components/Form';
 import { useAlert } from '@components/useAlert';
 import { useCalender } from '@components/useCalender';
@@ -21,7 +21,7 @@ type AddScheduleType = {
 
 export default function AddSchedule({ onClose, onCancel }: AddScheduleType) {
     const { isTablet } = useMobile();
-    const { handleMessage } = useAlert();
+    const { onAlert } = useAlert();
 
     const { handleCalendar } = useCalender();
     const { isAllDay, handleDayChange, addContents, color, handleColorChange, handleContents } = useSchedule(
@@ -35,7 +35,7 @@ export default function AddSchedule({ onClose, onCancel }: AddScheduleType) {
             return;
         }
         if (addContents.startDate > addContents.endDate) {
-            handleMessage('시작일은 종료일보다 클 수 없습니다', { variant: 'error' });
+            onAlert('시작일은 종료일보다 클 수 없습니다', { variant: 'error' });
             return;
         }
 
@@ -49,9 +49,9 @@ export default function AddSchedule({ onClose, onCancel }: AddScheduleType) {
     return (
         <form
             onSubmit={handleAddEvent}
-            className={joinClassNames('h-full w-300 overflow-y-auto bg-white p-20', isTablet && 'h-[50vh] w-full')}
+            className={joinClassNames('h-full w-75 overflow-y-auto bg-white p-5', isTablet && 'h-[50vh] w-full')}
         >
-            <div className="flex w-full flex-col gap-20">
+            <div className="flex w-full flex-col gap-5">
                 <TextField
                     labelText="시작일"
                     type="date"
@@ -98,7 +98,7 @@ export default function AddSchedule({ onClose, onCancel }: AddScheduleType) {
                     onChange={(e) => handleContents('description', e.target.value)}
                 />
             </div>
-            <div className="mt-20 flex items-center justify-end gap-10">
+            <div className="mt-5 flex items-center justify-end gap-2.5">
                 <Button size="small" variant="outlined" onClick={onCancel}>
                     취소
                 </Button>

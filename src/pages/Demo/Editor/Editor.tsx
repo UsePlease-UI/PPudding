@@ -1,9 +1,5 @@
 import { useState } from 'react';
 
-import { IconButton, ToggleButton, ToggleButtonGroup } from '@components/Button';
-import Popover from '@components/Shared/Popover';
-import usePopover from '@components/Shared/usePopover';
-
 import {
     ColorFilled,
     TextAlignCenterRegular,
@@ -15,11 +11,13 @@ import {
     TextItalicRegular,
     TextUnderlineRegular
 } from '@fluentui/react-icons';
+
+import { IconButton, ToggleButton, ToggleButtonGroup } from '@components/Button';
+import { Popover, usePopover } from '@components/Shared';
+
 import { joinClassNames } from '@utils/format';
 
-import { COLOR_LIST, DEFAULT_VALUE } from './constants';
-
-type TextAlignType = 'text-center' | 'text-right' | 'text-left' | 'text-justify';
+import { COLOR_LIST, DEFAULT_VALUE, TextAlignType } from './constants';
 
 const Editor = () => {
     const [style, setStyle] = useState<string[]>([]);
@@ -29,8 +27,8 @@ const Editor = () => {
     const { isOpen, anchorElement, handleOpen, handleClose } = usePopover();
 
     return (
-        <div className="under-tablet:p-10">
-            <div className="bg-yellow-gray-50 flex flex-wrap justify-end gap-10 rounded-t p-10">
+        <div className="under-tablet:p-2.5">
+            <div className="flex flex-wrap justify-end gap-2.5 rounded-t bg-yellow-gray-50 p-2.5">
                 <ToggleButtonGroup
                     value={style}
                     onChange={(e) => {
@@ -61,7 +59,7 @@ const Editor = () => {
                     anchorElement={anchorElement}
                     onClose={handleClose}
                 >
-                    <div className="flex max-w-120 flex-wrap items-center justify-center gap-10">
+                    <div className="flex max-w-30 flex-wrap items-center justify-center gap-2.5">
                         {COLOR_LIST.map((val) => (
                             <IconButton key={val} variant="outlined" onClick={() => setColor(val)}>
                                 <ColorFilled className={val} />
@@ -99,10 +97,10 @@ const Editor = () => {
                     </ToggleButton>
                 </ToggleButtonGroup>
             </div>
-            <div className="h-[calc(100vh-158px)] w-full tablet:h-500">
+            <div className="tablet:h-500 h-[calc(100vh-158px)] w-full">
                 <textarea
                     className={joinClassNames(
-                        'border-yellow-gray-100 h-full w-full resize-none rounded-b border border-t-0 p-20 outline-none',
+                        'h-full w-full resize-none rounded-b border border-t-0 border-yellow-gray-100 p-5 outline-none',
                         color,
                         align,
                         style.includes('bold') ? 'font-semibold' : 'font-normal',

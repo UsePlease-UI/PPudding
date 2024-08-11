@@ -17,11 +17,11 @@ export default function TableCell(props: TableCellType) {
     const { children, component = 'td', ...rest } = props;
 
     return component === 'td' ? (
-        <td {...rest} className="h-full px-10 py-8 text-14 font-normal leading-normal">
+        <td {...rest} className="h-full px-2.5 py-2 text-14 font-normal leading-normal">
             {children}
         </td>
     ) : (
-        <th {...rest} className="text-medium h-full px-10 py-8 text-14 leading-normal">
+        <th {...rest} className="text-medium h-full px-2.5 py-2 text-14 leading-normal">
             {children}
         </th>
     );

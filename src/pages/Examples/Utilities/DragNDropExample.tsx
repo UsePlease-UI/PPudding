@@ -1,49 +1,13 @@
 import { DragEvent, useCallback, useState } from 'react';
 
-import { v4 as uuid } from 'uuid';
-
 import { listStyle } from '@components/Base';
 import { Tab, TabContainer, TabItem, TabPanel } from '@components/Tab';
 import { CommonListDataType } from '@components/types';
-import DragNDrop from '@components/WebAPI/DragNDrop';
+import { DragNDrop } from '@components/WebAPI';
 
 import { joinClassNames } from '@utils/format';
 
-const DRAG_N_DROP = [
-    {
-        idx: uuid(),
-        label: '사과',
-        value: 'apple'
-    },
-    {
-        idx: uuid(),
-        label: '바나나',
-        value: 'banana'
-    },
-    {
-        idx: uuid(),
-        label: '키위',
-        value: 'kiwi'
-    }
-];
-
-const DRAG_N_DROP_2 = [
-    {
-        idx: uuid(),
-        label: '오렌지',
-        value: 'orange'
-    },
-    {
-        idx: uuid(),
-        label: '망고',
-        value: 'mango'
-    },
-    {
-        idx: uuid(),
-        label: '복숭아',
-        value: 'peach'
-    }
-];
+import { DRAG_N_DROP, DRAG_N_DROP_2 } from './constants';
 
 export default function DragNDropExample() {
     const [tab, setTab] = useState(1);

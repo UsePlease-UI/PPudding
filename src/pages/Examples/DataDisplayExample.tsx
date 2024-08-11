@@ -3,10 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { ToggleButton, ToggleButtonGroup } from '@components/Button';
 
-import useMobile from '@hooks/useMobile';
-
-import Heading from './components/Heading';
-import { customStyles } from './components/styles';
+import { Heading, Toggle } from './Common';
 import {
     AccordionExample,
     CardExample,
@@ -14,42 +11,25 @@ import {
     ListExample,
     PaginationExample,
     TabExample,
-    TableExample
+    TableExample,
+    DATA_DISPLAY_LIST
 } from './DataDisplay';
-
-const EXAMPLE_LIST = ['Accordion', 'Card', 'List', 'Pagination', 'Tab', 'Table'];
 
 export default function DataDisplayExample() {
     const [searchParams] = useSearchParams();
-    const component = searchParams.get('component');
+    const [selected, setSelected] = useState(searchParams.get('component') || 'Accordion');
 
-    const { isMobile, isTablet } = useMobile();
-
-    const [selected, setSelected] = useState(component || 'Accordion');
     const [type, setType] = useState<'A' | 'K'>('A');
 
     return (
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-2.5">
             <Heading title="Data Display Playground" />
-            <div className={customStyles.toggleContainer}>
-                <ToggleButtonGroup value={selected} onChange={(e) => setSelected(e.currentTarget.value)}>
-                    {EXAMPLE_LIST.map((val) => (
-                        <ToggleButton
-                            key={val}
-                            size={isMobile ? 'small' : isTablet ? 'medium' : 'large'}
-                            name="components"
-                            value={val}
-                        >
-                            {val}
-                        </ToggleButton>
-                    ))}
-                </ToggleButtonGroup>
-            </div>
+            <Toggle selected={selected} onChange={setSelected} options={DATA_DISPLAY_LIST} />
             {selected === 'Accordion' && <AccordionExample />}
             {selected === 'Card' && <CardExample />}
             {selected === 'List' && <ListExample />}
             {selected === 'Pagination' && (
-                <div className="space-y-20">
+                <div className="space-y-5">
                     <ToggleButtonGroup value={type} onChange={(e) => setType(e.currentTarget.value as typeof type)}>
                         <ToggleButton name="type" value="A" size="small">
                             A Type

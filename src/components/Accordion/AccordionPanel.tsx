@@ -26,8 +26,8 @@ export default function AccordionPanel(props: AccordionPanelType) {
             aria-labelledby={`accordion-panel-${accordionId}`}
             role="region"
             className={joinClassNames(
-                'invisible -mt-1 h-0 w-full bg-white p-0 text-14 *:text-14 *:leading-normal',
-                isExpanded && 'visible h-auto rounded-b border border-gray-100 p-20'
+                'invisible -mt-px h-0 w-full bg-white p-0 text-14 *:text-14 *:leading-normal',
+                isExpanded && 'visible h-auto rounded-b border border-gray-100 p-5'
             )}
         >
             {children}

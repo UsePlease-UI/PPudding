@@ -1,19 +1,18 @@
 import { DragEvent } from 'react';
 
 import { listStyle } from '@components/Base';
+import { CommonListDataType } from '@components/types';
 
 import { joinClassNames } from '@utils/format';
 
-import { CommonListDataType } from '../../types';
-
-type DragNDropCommonListDataType = {
+type DragNDropListItemType = {
     items: CommonListDataType[];
     onDragStart?: (event: DragEvent<HTMLLIElement>, item: CommonListDataType) => void;
     onDragOver?: (event: DragEvent<HTMLLIElement>) => void;
     onDrop?: (event: DragEvent<HTMLLIElement>, targetItem: CommonListDataType) => void;
 };
 
-export default function DragNDropListItem({ items, onDragStart, onDragOver, onDrop }: DragNDropCommonListDataType) {
+export default function DragNDropListItem({ items, onDragStart, onDragOver, onDrop }: DragNDropListItemType) {
     return items.map((el) => (
         <li
             key={el.idx}

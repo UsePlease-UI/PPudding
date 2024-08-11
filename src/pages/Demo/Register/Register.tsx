@@ -39,7 +39,7 @@ const Register = () => {
     return (
         <div className="flex h-full w-full items-center justify-center bg-white">
             <form onSubmit={handleSubmit} className="flex w-full items-center justify-center">
-                <div className="w-full space-y-20 p-20">
+                <div className="w-full space-y-5 p-5">
                     <TextField
                         labelText="닉네임"
                         helperText="닉네임은 최소 10자 이상 최대 100자 이하로 입력해 주세요"
@@ -77,7 +77,7 @@ const Register = () => {
                         onChange={(e) => setPassword(e.currentTarget.value)}
                         isFullWidth
                     />
-                    <div className="flex gap-20">
+                    <div className="flex gap-5">
                         <Select
                             id="year-select"
                             aria-labelledby="year"
@@ -109,7 +109,7 @@ const Register = () => {
                             onChange={(e) => setDay(e.currentTarget.value)}
                         />
                     </div>
-                    <div className="space-y-5">
+                    <div className="space-y-1.25">
                         <span className="text-12 font-semibold">성별</span>
                         <RadioGroup value={gender} onChange={(e) => setGender(e.currentTarget.value)}>
                             <Radio size="medium" name="gender" label="선택안함" value="N/A" />
@@ -117,7 +117,7 @@ const Register = () => {
                             <Radio size="medium" name="gender" label="남성" value="M" />
                         </RadioGroup>
                     </div>
-                    <div className="space-y-5">
+                    <div className="space-y-1.25">
                         <span className="text-12 font-semibold">이메일 수신여부</span>
                         <ToggleButtonGroup value={useYn} onChange={(e) => setUseYn(e.currentTarget.value)}>
                             <ToggleButton size="large" name="useYn" value="Y">
@@ -128,7 +128,7 @@ const Register = () => {
                             </ToggleButton>
                         </ToggleButtonGroup>
                     </div>
-                    <div className="space-y-10">
+                    <div className="space-y-2.5">
                         <Checkbox
                             size="medium"
                             label="전체 동의"

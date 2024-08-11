@@ -13,6 +13,9 @@ const meta = {
     title: 'Combobox/Autocomplete',
     component: Autocomplete,
     tags: ['autodocs'],
+    parameters: {
+        layout: 'centered'
+    },
     argTypes: {}
 } satisfies Meta<typeof Autocomplete>;
 
@@ -51,8 +54,8 @@ const AutoCompleteTemplate: Story = {
         const handleSelect = useCallback((item: CommonListDataType) => setSelectedItem(item), []);
 
         return (
-            <div className="flex flex-col gap-10">
-                <p className="mb-20 text-16 font-medium">
+            <div className="flex flex-col gap-2.5">
+                <p className="text-16 font-medium">
                     선택된 항목 :<strong className="block w-full truncate">{selectedItem?.label}</strong>
                 </p>
                 <Autocomplete

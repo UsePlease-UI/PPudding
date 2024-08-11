@@ -34,7 +34,7 @@ const Radio = forwardRef<HTMLInputElement, RadioType>(function Radio(
         value,
         size = 'medium',
         position = 'end',
-        labelMargin = 'ml-20',
+        labelMargin = 'ml-5',
         isDisabled,
         currentValue,
         onChange,
@@ -70,7 +70,7 @@ const Radio = forwardRef<HTMLInputElement, RadioType>(function Radio(
             <span
                 className={joinClassNames(
                     getSizeStyle(size).container,
-                    'group-focus-within:bg-yellow-gray-100 group-hover:bg-yellow-gray-50 inline-flex items-center group-focus-within:rounded-full group-hover:rounded-full'
+                    'inline-flex items-center group-focus-within:rounded-full group-focus-within:bg-yellow-gray-100 group-hover:rounded-full group-hover:bg-yellow-gray-50'
                 )}
             >
                 <input

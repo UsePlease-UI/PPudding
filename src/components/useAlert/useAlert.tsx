@@ -16,7 +16,7 @@ export type OptionsType = {
 };
 
 type AlertContextType = {
-    handleMessage: (content: string, options?: OptionsType) => void;
+    onAlert: (content: string, options?: OptionsType) => void;
 };
 
 const AlertContext = createContext<AlertContextType | undefined>(undefined);
@@ -64,7 +64,7 @@ export function AlertProvider({ children, icon, position }: AlertProviderType) {
         []
     );
 
-    const context: AlertContextType = useMemo(() => ({ handleMessage: handleOpen }), [handleOpen]);
+    const context: AlertContextType = useMemo(() => ({ onAlert: handleOpen }), [handleOpen]);
 
     useEffect(() => {
         if (messages.length > 0) {
@@ -80,7 +80,10 @@ export function AlertProvider({ children, icon, position }: AlertProviderType) {
             {modalElement
                 ? createPortal(
                       <div
-                          className={joinClassNames(getPositionStyle(position), 'absolute z-1000 flex flex-col gap-10')}
+                          className={joinClassNames(
+                              getPositionStyle(position),
+                              'absolute z-1000 flex flex-col gap-2.5'
+                          )}
                       >
                           {messages.map((message) => (
                               <Alert

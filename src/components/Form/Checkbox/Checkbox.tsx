@@ -1,6 +1,7 @@
 import { InputHTMLAttributes, ReactElement, ReactNode, cloneElement, forwardRef, useId } from 'react';
 
 import { CheckmarkFilled } from '@fluentui/react-icons';
+
 import { joinClassNames } from '@utils/format';
 
 import { PositionType, SizeType, getSizeStyle } from './styles';
@@ -33,7 +34,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
         label,
         position = 'end',
         size = 'medium',
-        labelMargin = position === 'start' ? 'mr-20' : 'ml-20',
+        labelMargin = position === 'start' ? 'mr-5' : 'ml-5',
         isDisabled,
         icon,
         checkedIcon,
@@ -68,10 +69,10 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
                 ))}
             <span
                 className={joinClassNames(
-                    size === 'small' && 'p-2',
-                    size === 'medium' && 'p-3',
-                    size === 'large' && 'p-4',
-                    'group-focus-within:bg-yellow-gray-100 group-hover:bg-yellow-gray-50 inline-flex items-center group-focus-within:rounded group-hover:rounded'
+                    size === 'small' && 'p-0.5',
+                    size === 'medium' && 'p-0.75',
+                    size === 'large' && 'p-1',
+                    'inline-flex items-center group-focus-within:rounded group-focus-within:bg-yellow-gray-100 group-hover:rounded group-hover:bg-yellow-gray-50'
                 )}
             >
                 <input

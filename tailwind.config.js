@@ -3,6 +3,8 @@ const px1000 = Array.from({ length: 1000 }, (_, idx) => idx + 1);
 const pxToRem = (px, base = 16) => `${px / base}rem`;
 const rem1000 = px1000.reduce((acc, px) => ({ ...acc, [px]: pxToRem(px) }), { 0: '0rem' });
 
+const spacing1000 = px1000.reduce((acc, px) => ({ ...acc, [px / 4]: pxToRem(px) }), { 0: '0rem' });
+
 const px10000 = Array.from({ length: 10000 }, (_, idx) => idx + 1);
 
 /** @type {import('tailwindcss').Config} */
@@ -20,50 +22,46 @@ export default {
                 pretendard: ['Pretendard', 'sans-serif']
             },
             fontSize: {
-                ...rem1000,
-                h1: [pxToRem(72), { lineHeight: 'normal', fontWeight: 700, letterSpacing: 'normal' }],
-                h2: [pxToRem(60), { lineHeight: 'normal', fontWeight: 700, letterSpacing: 'normal' }],
-                h3: [pxToRem(48), { lineHeight: 'normal', fontWeight: 700, letterSpacing: 'normal' }],
-                h4: [pxToRem(36), { lineHeight: 'normal', fontWeight: 600, letterSpacing: 'normal' }],
-                h5: [pxToRem(24), { lineHeight: 'normal', fontWeight: 600, letterSpacing: 'normal' }],
-                h6: [pxToRem(18), { lineHeight: 'normal', fontWeight: 600, letterSpacing: 'normal' }],
-                b24: [pxToRem(24), { lineHeight: 'normal', fontWeight: 500, letterSpacing: 'normal' }],
-                b18: [pxToRem(18), { lineHeight: 'normal', fontWeight: 500, letterSpacing: 'normal' }],
-                b16: [pxToRem(16), { lineHeight: 'normal', fontWeight: 400, letterSpacing: 'normal' }],
-                b14: [pxToRem(14), { lineHeight: 'normal', fontWeight: 400, letterSpacing: 'normal' }],
-                b12: [pxToRem(12), { lineHeight: 'normal', fontWeight: 400, letterSpacing: 'normal' }],
-                c11: [pxToRem(11), { lineHeight: 'normal', fontWeight: 400, letterSpacing: 'normal' }],
-                c8: [pxToRem(8), { lineHeight: 'normal', fontWeight: 400, letterSpacing: 'normal' }]
+                ...rem1000
             },
             fontWeight: {
                 inherit: 'inherit'
             },
-            spacing: {
-                ...rem1000
-            },
-            width: {
-                ...rem1000,
-                inherit: 'inherit'
+            minHeight: {
+                inherit: 'inherit',
+                ...spacing1000
             },
             height: {
-                ...rem1000,
-                inherit: 'inherit'
-            },
-            maxWidth: {
-                ...rem1000,
-                inherit: 'inherit'
+                inherit: 'inherit',
+                ...spacing1000
             },
             maxHeight: {
-                ...rem1000,
-                inherit: 'inherit'
+                inherit: 'inherit',
+                ...spacing1000
+            },
+            width: {
+                inherit: 'inherit',
+                ...spacing1000
             },
             minWidth: {
-                ...rem1000,
-                inherit: 'inherit'
+                inherit: 'inherit',
+                ...spacing1000
             },
-            minHeight: {
-                ...rem1000,
-                inherit: 'inherit'
+            maxWidth: {
+                inherit: 'inherit',
+                ...spacing1000
+            },
+            padding: {
+                ...spacing1000
+            },
+            margin: {
+                ...spacing1000
+            },
+            borderRadius: {
+                ...spacing1000
+            },
+            spacing: {
+                ...spacing1000
             },
             lineHeight: {
                 ...rem1000,
@@ -71,9 +69,6 @@ export default {
             },
             zIndex: {
                 ...px10000.reduce((acc, px) => ({ ...acc, [px]: `${px}` }), {})
-            },
-            strokeWidth: {
-                4: '4px'
             },
             boxShadow: {
                 '01': '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
@@ -164,17 +159,6 @@ export default {
                 }
             },
             keyframes: {
-                stroke: {
-                    '0%': {
-                        strokeDashoffset: 350
-                    },
-                    '50%': {
-                        strokeDashoffset: 0
-                    },
-                    '100%': {
-                        strokeDashoffset: 350
-                    }
-                },
                 blink: {
                     '0%': {
                         opacity: 0.4
@@ -208,7 +192,6 @@ export default {
                 }
             },
             animation: {
-                stroke: 'stroke 3s infinite',
                 blink: 'blink 2s ease-in-out infinite',
                 fadeInOut: 'fadeIn 0.5s, fadeOut 0.5s 4.5s forwards'
             },

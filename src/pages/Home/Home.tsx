@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 
-import { HOME_LIST } from '@constants/constants';
+import { HOME_LIST } from './constants';
 
 export default function Home() {
     return (
-        <div className="w-full space-y-20">
+        <div className="w-full space-y-5">
             {HOME_LIST.map(({ name, list }) => (
                 <div key={name} className="flex w-full flex-col">
-                    <p className="mb-20 text-28 font-black uppercase text-primary-800">{name}</p>
-                    <div className="flex flex-wrap gap-20">
+                    <p className="mb-5 text-28 font-black uppercase text-primary-800">{name}</p>
+                    <div className="flex flex-wrap gap-5">
                         {list.map((data) => (
                             <div
                                 key={data}

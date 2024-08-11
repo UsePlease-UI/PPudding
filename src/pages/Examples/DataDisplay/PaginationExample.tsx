@@ -6,18 +6,15 @@ import Pagination from '@components/Shared/Pagination';
 
 import useMobile from '@hooks/useMobile';
 
-import { customStyles } from '../components/styles';
-
-const SIZE = ['small', 'medium', 'large'];
-const VARIANT = ['outlined', 'contained', 'text'];
-const SHAPE = ['square', 'rounded', 'circular'];
+import { PAGINATION_SHAPE, PAGINATION_SIZE, PAGINATION_VARIANT } from './constants';
+import { customStyles } from '../Common';
 
 const PaginationExample = () => {
     const { isTablet } = useMobile();
 
-    const [sizeType, setSizeType] = useState(SIZE[0]);
-    const [shapeType, setShapeType] = useState(SHAPE[0]);
-    const [variantType, setVariantType] = useState(VARIANT[0]);
+    const [variantType, setVariantType] = useState(PAGINATION_VARIANT[0]);
+    const [sizeType, setSizeType] = useState(PAGINATION_SIZE[0]);
+    const [shapeType, setShapeType] = useState(PAGINATION_SHAPE[0]);
 
     return (
         <div className={customStyles.playgroundContainer}>
@@ -28,10 +25,10 @@ const PaginationExample = () => {
                 <RadioGroup
                     value={variantType}
                     isRow={!isTablet}
-                    gap={isTablet ? 0 : 10}
+                    gap={isTablet ? 0 : 2.5}
                     onChange={(e) => setVariantType(e.currentTarget.value)}
                 >
-                    {VARIANT.map((val) => (
+                    {PAGINATION_VARIANT.map((val) => (
                         <Radio
                             key={val}
                             size={isTablet ? 'small' : 'medium'}
@@ -47,10 +44,10 @@ const PaginationExample = () => {
                 <RadioGroup
                     value={sizeType}
                     isRow={!isTablet}
-                    gap={isTablet ? 0 : 10}
+                    gap={isTablet ? 0 : 2.5}
                     onChange={(e) => setSizeType(e.currentTarget.value)}
                 >
-                    {SIZE.map((val) => (
+                    {PAGINATION_SIZE.map((val) => (
                         <Radio
                             key={val}
                             size={isTablet ? 'small' : 'medium'}
@@ -66,10 +63,10 @@ const PaginationExample = () => {
                 <RadioGroup
                     value={shapeType}
                     isRow={!isTablet}
-                    gap={isTablet ? 0 : 10}
+                    gap={isTablet ? 0 : 2.5}
                     onChange={(e) => setShapeType(e.currentTarget.value)}
                 >
-                    {SHAPE.map((val) => (
+                    {PAGINATION_SHAPE.map((val) => (
                         <Radio
                             key={val}
                             size={isTablet ? 'small' : 'medium'}

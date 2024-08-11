@@ -8,6 +8,9 @@ const meta: Meta<typeof Checkbox> = {
     title: 'Form/Checkbox',
     component: Checkbox,
     tags: ['autodocs'],
+    parameters: {
+        layout: 'centered'
+    },
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     argTypes: {}
 };

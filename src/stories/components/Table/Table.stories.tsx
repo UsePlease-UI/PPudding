@@ -6,6 +6,9 @@ const meta = {
     title: 'Table/Table',
     component: Table,
     tags: ['autodocs'],
+    parameters: {
+        layout: 'centered'
+    },
     argTypes: {}
 } satisfies Meta<typeof Table>;
 
