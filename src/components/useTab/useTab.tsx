@@ -1,11 +1,11 @@
-import { createContext, createRef, useContext, useEffect, useMemo } from 'react';
+import { createContext, createRef, ReactNode, RefObject, useContext, useEffect, useMemo } from 'react';
 
 export type TabContextType = {
-    linkRefs: React.RefObject<HTMLButtonElement>[];
+    linkRefs: RefObject<HTMLButtonElement>[];
 };
 
 export type TabProviderType = {
-    children: React.ReactNode;
+    children: ReactNode;
     value: number;
     onChange: (newValue: number) => void;
 };

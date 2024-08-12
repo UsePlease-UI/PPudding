@@ -30,7 +30,7 @@ export default function Skeleton({
     return (
         <div
             className={joinClassNames(
-                'h-30 w-full animate-blink cursor-progress rounded bg-gray-100',
+                'h-7.5 w-full animate-blink cursor-progress rounded bg-gray-100',
                 getSizeStyle(size),
                 variant !== 'circular' && getVariantStyle(variant),
                 variant === 'circular' && getCircularStyle(size),

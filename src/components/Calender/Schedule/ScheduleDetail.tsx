@@ -1,13 +1,13 @@
 import { FormEvent } from 'react';
 
+import { DeleteFilled, DismissFilled, EditFilled } from '@fluentui/react-icons';
+
 import { Button, IconButton } from '@components/Button';
 import { Select } from '@components/Combobox';
 import { Checkbox, TextField } from '@components/Form';
 import { useAlert } from '@components/useAlert';
 import { useCalender } from '@components/useCalender';
-import { type TodoType, useSchedule } from '@components/useSchedule';
-
-import { DeleteFilled, DismissFilled, EditFilled } from '@fluentui/react-icons';
+import { TodoType, useSchedule } from '@components/useSchedule';
 
 import { CALENDER_LABEL_COLOR } from '../constants';
 
@@ -23,7 +23,7 @@ type ScheduleDetailType = {
 
 export default function ScheduleDetail(props: ScheduleDetailType) {
     const { todo, day, isStartDate, isEdited, onEdit, onScheduleDelete, onDetailClick } = props;
-    const { handleMessage } = useAlert();
+    const { onAlert } = useAlert();
 
     const { handleCalendar } = useCalender();
     const { isAllDay, handleDayChange, addContents, color, handleColorChange, handleContents } = useSchedule(
@@ -34,7 +34,7 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
     const handleEditSchedule = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (addContents.startDate > addContents.endDate) {
-            handleMessage('시작일은 종료일보다 클 수 없습니다', { variant: 'error' });
+            onAlert('시작일은 종료일보다 클 수 없습니다', { variant: 'error' });
             return;
         }
 
@@ -58,7 +58,7 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
                 </IconButton>
             </div>
             {isEdited ? (
-                <form onSubmit={handleEditSchedule} className="mt-35 space-y-10 px-10 pb-10">
+                <form onSubmit={handleEditSchedule} className="mt-8.75 space-y-2.5 px-2.5 pb-2.5">
                     <TextField
                         helperText="10글자 이내로 입력해주세요."
                         name="title"
@@ -77,7 +77,7 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
                         maxLength={20}
                         onChange={(e) => handleContents('description', e.target.value)}
                     />
-                    <div className="flex flex-col gap-10">
+                    <div className="flex flex-col gap-2.5">
                         <TextField
                             labelText="시작일"
                             type="date"
@@ -104,7 +104,7 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
                         onChange={(e) => handleColorChange(e.currentTarget.value)}
                     />
                     <Checkbox label="종일" value="isAllDay" checked={isAllDay} onChange={handleDayChange} />
-                    <div className="flex items-center justify-end gap-5">
+                    <div className="flex items-center justify-end gap-1.25">
                         <Button onClick={() => onEdit(false)} variant="outlined" size="small">
                             취소
                         </Button>
@@ -114,15 +114,17 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
                     </div>
                 </form>
             ) : (
-                <div className="min-w-250">
+                <div className="min-w-62.5">
                     <div className="flex flex-col">
                         {!isStartDate && (
-                            <h3 className="mb-10 mr-45 mt-5 text-18 font-semibold text-gray-950">{todo.title}</h3>
+                            <h3 className="mb-2.5 mr-11.25 mt-1.25 text-18 font-semibold text-gray-950">
+                                {todo.title}
+                            </h3>
                         )}
                         <p className="text-16 text-gray-950">{todo.description}</p>
                         <p className="text-13 text-gray-950">{`${todo.startDate} ~ ${todo.endDate}`}</p>
                     </div>
-                    <div className="mt-20 flex items-center justify-end">
+                    <div className="mt-5 flex items-center justify-end">
                         <IconButton variant="text" size="small" onClick={() => onEdit(true)}>
                             <EditFilled className="text-primary-800" />
                         </IconButton>

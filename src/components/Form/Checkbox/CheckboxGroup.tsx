@@ -16,7 +16,7 @@ type CheckboxGroupType = {
  *  @returns JSX.Element
  */
 export default function CheckboxGroup(props: CheckboxGroupType) {
-    const { children, isRow = true, gap = 'gap-10' } = props;
+    const { children, isRow = true, gap = 2.5 } = props;
 
     return (
         <div

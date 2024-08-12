@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { AppsListFilled } from '@fluentui/react-icons';
+
 import { Backdrop } from '@components/Base';
 import { Button, IconButton } from '@components/Button';
 
-import { COMPONENT_LIST, DEMO_LIST } from '@constants/constants';
-import { AppsListFilled } from '@fluentui/react-icons';
 import useMobile from '@hooks/useMobile';
+
+import { COMPONENT_LIST, DEMO_LIST } from './constants';
 
 type MenuType = {
     onClick: () => void;
@@ -16,24 +18,24 @@ const Menu = ({ onClick }: MenuType) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return isTablet ? (
-        <div className="absolute right-10">
+        <div className="absolute right-2.5">
             <IconButton size="small" variant="outlined" onClick={onClick}>
                 <AppsListFilled className="h-inherit w-inherit text-inherit" />
             </IconButton>
         </div>
     ) : (
-        <div className="absolute right-20 top-24">
+        <div className="absolute right-5 top-6">
             <Button size="small" variant="contained" onClick={() => setIsOpen((prev) => !prev)}>
                 <strong>MENU</strong>
             </Button>
             <Backdrop isOpen={isOpen} canFocusTrap isDimmed onClose={() => setIsOpen(false)}>
-                <nav className="absolute right-20 top-57 flex w-max flex-col items-start gap-20 rounded bg-white p-20">
+                <nav className="absolute right-5 top-14.25 flex w-max flex-col items-start gap-5 rounded bg-white p-5">
                     {[{ name: 'Components', list: COMPONENT_LIST }].map((val) => (
                         <div key={val.name} className="relative max-w-full rounded border border-primary-600">
-                            <div className="absolute -top-12 left-10 w-max">
+                            <div className="absolute -top-3 left-2.5 w-max">
                                 <h2 className="bg-white text-center text-16 font-black">{val.name}</h2>
                             </div>
-                            <ul className="row-auto grid w-280 grid-cols-2 gap-4 p-14">
+                            <ul className="row-auto grid w-70 grid-cols-2 gap-1 p-3.5">
                                 {val.list.map((component) => (
                                     <li
                                         key={component}
@@ -41,7 +43,7 @@ const Menu = ({ onClick }: MenuType) => {
                                     >
                                         <Link
                                             to={`/example/${component.toLowerCase()}`}
-                                            className="block px-4 py-8 text-center text-12 capitalize outline-none focus:font-black focus:text-primary-800 focus:outline-none group-hover:text-primary-900"
+                                            className="block px-1 py-2 text-center text-12 capitalize outline-none focus:font-black focus:text-primary-800 focus:outline-none group-hover:text-primary-900"
                                         >
                                             {component}
                                         </Link>
@@ -51,10 +53,10 @@ const Menu = ({ onClick }: MenuType) => {
                         </div>
                     ))}
                     <div className="relative max-w-full rounded border border-primary-600">
-                        <div className="absolute -top-12 left-10 w-max">
+                        <div className="absolute -top-3 left-2.5 w-max">
                             <h2 className="bg-white text-center text-16 font-black">데모</h2>
                         </div>
-                        <ul className="row-auto grid w-280 grid-cols-2 gap-4 p-14">
+                        <ul className="row-auto grid w-70 grid-cols-2 gap-1 p-3.5">
                             {DEMO_LIST.map((component) => (
                                 <li
                                     key={component}
@@ -62,7 +64,7 @@ const Menu = ({ onClick }: MenuType) => {
                                 >
                                     <Link
                                         to={`/demo/${component.toLowerCase()}`}
-                                        className="block px-4 py-8 text-center text-12 capitalize outline-none focus:font-black focus:text-primary-800 focus:outline-none group-hover:text-primary-900"
+                                        className="block px-1 py-2 text-center text-12 capitalize outline-none focus:font-black focus:text-primary-800 focus:outline-none group-hover:text-primary-900"
                                     >
                                         {component}
                                     </Link>

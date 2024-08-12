@@ -20,7 +20,7 @@ type RadioGroupType = {
  *  @returns JSX.Element
  */
 export default function RadioGroup(props: RadioGroupType) {
-    const { children, value, onChange, isRow = true, gap = 10 } = props;
+    const { children, value, onChange, isRow = true, gap = 2.5 } = props;
 
     return (
         <div

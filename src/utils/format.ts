@@ -12,40 +12,10 @@ const pastelColors = Array.from({ length: 12 }, (_, idx) => `${idx + 1}`.padStar
 const twMerge = extendTailwindMerge({
     extend: {
         classGroups: {
-            'font-size': [
-                ...rem1000,
-                'text-h1',
-                'text-h2',
-                'text-h3',
-                'text-h4',
-                'text-h5',
-                'text-h6',
-                'text-b24',
-                'text-b18',
-                'text-b16',
-                'text-b14',
-                'text-b12',
-                'text-c11',
-                'text-c8'
-            ],
-            'text-color': [
-                ...colors.map((val) => `primary-${val}`),
-                ...colors.map((val) => `secondary-${val}`),
-                ...colors.map((val) => `tertiary-${val}`),
-                ...pastelColors.map((val) => `pastel-${val}`)
-            ],
-            'border-color': [
-                ...colors.map((val) => `primary-${val}`),
-                ...colors.map((val) => `secondary-${val}`),
-                ...colors.map((val) => `tertiary-${val}`),
-                ...pastelColors.map((val) => `pastel-${val}`)
-            ],
-            'bg-color': [
-                ...colors.map((val) => `primary-${val}`),
-                ...colors.map((val) => `secondary-${val}`),
-                ...colors.map((val) => `tertiary-${val}`),
-                ...pastelColors.map((val) => `pastel-${val}`)
-            ]
+            'font-size': [...rem1000],
+            'text-color': [...colors.map((val) => `primary-${val}`), ...pastelColors.map((val) => `pastel-${val}`)],
+            'border-color': [...colors.map((val) => `primary-${val}`), ...pastelColors.map((val) => `pastel-${val}`)],
+            'bg-color': [...colors.map((val) => `primary-${val}`), ...pastelColors.map((val) => `pastel-${val}`)]
         }
     }
 });

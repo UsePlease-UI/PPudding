@@ -9,10 +9,10 @@ export const commonStyle = {
     contained:
         'text-primary-950 hover:text-white focus:text-white bg-primary-600 border border-primary-600 hover:bg-primary-700 focus:bg-primary-800 focus:border-primary-800 disabled:text-gray-200 disabled:border-gray-400 disabled:bg-gray-400',
     text: 'text-primary-950 border border-transparent bg-white hover:bg-gray-50 focus:bg-gray-100 disabled:text-gray-600',
-    miniIcon: 'p-6 *:w-16 *:h-16',
-    smallIcon: 'p-[6.5px] *:w-20 *:h-20',
-    mediumIcon: 'p-8 *:w-24 *:h-24',
-    largeIcon: 'p-8 *:w-28 *:h-28',
+    miniIcon: 'p-1.5 *:w-4 *:h-4',
+    smallIcon: 'p-[6.5px] *:w-5 *:h-5',
+    mediumIcon: 'p-2 *:w-6 *:h-6',
+    largeIcon: 'p-2 *:w-7 *:h-7',
     rounded: 'rounded-lg',
     circular: 'rounded-full',
     square: 'rounded'

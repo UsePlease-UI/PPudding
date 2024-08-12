@@ -72,21 +72,21 @@ const Button = forwardRef<HTMLButtonElement, ButtonType>(function Button(props, 
             )}
         >
             {startIcon || endIcon ? (
-                <div className="flex items-center justify-center gap-4">
+                <div className="flex items-center justify-center gap-1">
                     {startIcon && (
-                        <span className="-ml-8 inline-flex h-20 w-20 shrink-0 items-center justify-center">
+                        <span className="-ml-2 inline-flex h-5 w-5 shrink-0 items-center justify-center">
                             {startIcon}
                         </span>
                     )}
-                    <p className="mt-2 shrink-0 text-center">{children}</p>
+                    <p className="mt-0.5 shrink-0 text-center">{children}</p>
                     {endIcon && (
-                        <span className="-mr-8 inline-flex h-20 w-20 shrink-0 items-center justify-center">
+                        <span className="-mr-2 inline-flex h-5 w-5 shrink-0 items-center justify-center">
                             {endIcon}
                         </span>
                     )}
                 </div>
             ) : typeof children === 'string' ? (
-                <p className="mt-2 w-full text-center">{children}</p>
+                <p className="mt-0.5 w-full text-center">{children}</p>
             ) : (
                 children
             )}

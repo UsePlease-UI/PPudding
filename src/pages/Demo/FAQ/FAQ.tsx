@@ -1,12 +1,12 @@
-import { Accordion, AccordionHeader, AccordionPanel } from '@components/Accordion';
-
 import { DismissFilled } from '@fluentui/react-icons';
+
+import { Accordion, AccordionHeader, AccordionPanel } from '@components/Accordion';
 
 export default function FAQ() {
     return (
         <div className="h-full w-full">
-            <h2 className="mb-40 text-center text-40 font-bold">자주 묻는 질문들(FAQ)</h2>
-            <div className="space-y-5">
+            <h2 className="mb-10 text-center text-40 font-bold">자주 묻는 질문들(FAQ)</h2>
+            <div className="space-y-1.25">
                 <Accordion isExpanded>
                     <AccordionHeader>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</AccordionHeader>
                     <AccordionPanel>

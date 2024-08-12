@@ -1,10 +1,10 @@
+import { PeopleFilled } from '@fluentui/react-icons';
+
 import { Button } from '@components/Button';
 import Popover from '@components/Shared/Popover';
 import usePopover from '@components/Shared/usePopover';
 
-import { PeopleFilled } from '@fluentui/react-icons';
-
-import { customStyles } from '../components/styles';
+import { customStyles } from '../Common/styles';
 
 const PopoverExample = () => {
     const { isOpen, anchorElement, handleOpen, handleClose } = usePopover();

@@ -1,9 +1,9 @@
 import { DragEvent, ReactNode, useCallback, useEffect, useId, useState } from 'react';
 
 import { listStyle } from '@components/Base';
+import { CommonListDataType } from '@components/types';
 
 import DragNDropListItem from './DragNDropListItem';
-import { CommonListDataType } from '../../types';
 
 type DragNDropType = {
     title?: string;
@@ -77,7 +77,7 @@ export default function DragNDrop({ title, items = [], render, onDragStart, onDr
     );
 
     return (
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-2.5">
             {title && (
                 <h2 id={titleId} className="text-24 font-semibold">
                     {title}

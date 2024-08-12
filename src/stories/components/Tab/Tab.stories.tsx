@@ -8,6 +8,9 @@ const meta = {
     title: 'Tab/Tab',
     component: Tab,
     tags: ['autodocs'],
+    parameters: {
+        layout: 'centered'
+    },
     argTypes: {}
 } satisfies Meta<typeof Tab>;
 

@@ -8,14 +8,20 @@ import { Meta } from '@storybook/blocks';
       box-sizing: border-box;
     }
 
-    .subheading {
-      color: #999999;
-      font-size: 13px;
+    .heading { 
+      font-size: 40px;
+      font-weight: 900;
+      margin-bottom: 40px;
+    }
+
+    h2.subheading {
+      color: #3f2909;
+      font-size: 24px;
       font-weight: 700;
       letter-spacing: 3px;
       line-height: 24px;
       text-transform: uppercase;
-      margin: 10px auto;
+      margin: 0 auto 20px;
     }
 
     .link-list {
@@ -33,7 +39,7 @@ import { Meta } from '@storybook/blocks';
       border: 1px solid #00000010;
       border-radius: 5px;
       transition: background 150ms ease-out, border 150ms ease-out, transform 150ms ease-out;
-      color: #333333;
+      color: #3f2909;
       display: flex;
       align-items: flex-start;
     }
@@ -47,19 +53,19 @@ import { Meta } from '@storybook/blocks';
     }
 
     .link-item:hover {
-      border-color: #145CB1;
+      border-color: #bfa40f;
       transform: translate3d(0, -3px, 0);
       box-shadow: rgba(0, 0, 0, 0.08) 0 3px 10px 0;
     }
     
     .link-item:active {
-      border-color: #145CB1;
+      border-color: #bfa40f;
       transform: translate3d(0, 0, 0);
     }
 
     .link-item:hover .link-icon, .link-item:active .link-icon {
-      border-color: #145CB1;
-      background-color: #8BBCE4;
+      border-color: #bfa40f;
+      background-color: #fcfde9;
     }
 
     .link-item strong {
@@ -81,9 +87,9 @@ import { Meta } from '@storybook/blocks';
 
     .link-item strong + p {
       width: 100%;
-      border-left: 2px solid #eeeeee;
+      border-left: 2px solid #6c4d17;
       padding: 2px 0px 2px 10px;
-      background-color: #fbfbfb;
+      background-color: #fcfde9;
       font-weight: 300;
     }
 
@@ -108,7 +114,7 @@ import { Meta } from '@storybook/blocks';
 
     .chip {
       border-radius: 25px;
-      border: 1px solid #145CB1;
+      border: 1px solid #bfa40f;
       padding: 2px 10px;
       font-weight: 600;
       font-size: 12px;
@@ -118,7 +124,7 @@ import { Meta } from '@storybook/blocks';
     }
 
     .chip:hover {
-       background-color: #ffeef1;
+       background-color: #f7fbc6;
     }
 
     .chip p {
@@ -131,9 +137,9 @@ import { Meta } from '@storybook/blocks';
   `}
 </style>
 
-<h1> Welcome to React Components</h1>
+<h1 className="heading">Welcome to PPudding</h1>
 
-<div className="subheading">컴포넌트 구현</div>
+<h2 className="subheading">컴포넌트 구현</h2>
 
 <ul className="link-list">
     <li className="link-item">

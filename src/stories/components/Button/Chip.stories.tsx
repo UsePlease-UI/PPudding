@@ -14,7 +14,8 @@ const meta: Meta<typeof Chip> = {
             argTypes: {
                 sort: 'requiredFirst'
             }
-        }
+        },
+        layout: 'centered'
     },
     argTypes: {
         label: {

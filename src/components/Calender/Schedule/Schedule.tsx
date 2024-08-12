@@ -3,8 +3,7 @@ import { useCallback } from 'react';
 import dayjs from 'dayjs';
 
 import BottomSheet from '@components/BottomSheet';
-import Popover from '@components/Shared/Popover';
-import usePopover from '@components/Shared/usePopover';
+import { Popover, usePopover } from '@components/Shared';
 import { useCalender } from '@components/useCalender';
 
 import useMobile from '@hooks/useMobile';
@@ -57,14 +56,14 @@ export default function Schedule(props: ScheduleType) {
     }, []);
 
     return (
-        <section className="flex flex-col gap-1 border border-black bg-black">
+        <section className="flex flex-col gap-px border border-black bg-black">
             {getWeeks().map((el, idx) => (
-                <div key={idx} className="flex items-center gap-1 bg-black">
+                <div key={idx} className="flex items-center gap-px bg-black">
                     {el.map((day, elIdx) => (
                         <WeekDays key={elIdx}>
                             <p
                                 className={joinClassNames(
-                                    'mx-4 my-4 text-16 font-medium tablet:mx-10',
+                                    'm-1 text-16 font-medium tablet:mx-2.5',
                                     String(date) && 'text-primary-800'
                                 )}
                             >
@@ -91,13 +90,13 @@ export default function Schedule(props: ScheduleType) {
                                                 >
                                                     <button
                                                         type="button"
-                                                        className="w-full p-4 hover:font-bold tablet:px-12 tablet:py-4"
+                                                        className="w-full p-1 hover:font-bold tablet:px-3 tablet:py-1"
                                                         onClick={(e) => {
                                                             handleOpen(e);
                                                             handleDetailClick('open', day, index);
                                                         }}
                                                     >
-                                                        <p className="h-14 text-left text-14 tablet:h-21 under-tablet:overflow-hidden under-tablet:whitespace-break-spaces under-tablet:text-10">
+                                                        <p className="h-3.5 text-left text-14 tablet:h-5.25 under-tablet:overflow-hidden under-tablet:whitespace-break-spaces under-tablet:text-10">
                                                             {isStartDate ? todo.title : ' '}
                                                         </p>
                                                     </button>

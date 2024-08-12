@@ -6,6 +6,9 @@ const meta = {
     title: 'Loader/Skeleton',
     component: Skeleton,
     tags: ['autodocs'],
+    parameters: {
+        layout: 'centered'
+    },
     argTypes: {}
 } satisfies Meta<typeof Skeleton>;
 

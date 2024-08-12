@@ -1,12 +1,12 @@
 import { ShapeType, SizeType, commonStyle } from '../styles';
 
 export const buttonStyle = {
-    small: 'min-h-32 h-max min-w-48 w-max px-12 py-4 text-14 leading-14 font-normal child-svg:w-16 child-svg:h-16',
-    medium: 'min-h-40 h-max min-w-56 w-max px-16 py-4 text-16 leading-16 font-medium child-svg:w-18 child-svg:h-18',
-    large: 'min-h-45 h-max min-w-96 w-max px-16 py-4 text-18 leading-18 font-medium child-svg:w-20 child-svg:h-20',
-    smallCircular: 'min-w-32 min-h-32 text-12 leading-12 rounded-full p-0',
-    mediumCircular: 'min-w-40 min-h-40 text-14 leading-14 rounded-full p-0',
-    largeCircular: 'min-w-45 min-h-45 text-16 leading-16 rounded-full p-0'
+    small: 'min-h-8 h-max min-w-12 w-max px-3 py-1 text-14 leading-14 font-normal child-svg:w-4 child-svg:h-4',
+    medium: 'min-h-10 h-max min-w-14 w-max px-4 py-1 text-16 leading-16 font-medium child-svg:w-4.5 child-svg:h-4.5',
+    large: 'min-h-11.25 h-max min-w-24 w-max px-4 py-1 text-18 leading-18 font-medium child-svg:w-5 child-svg:h-5',
+    smallCircular: 'min-w-8 min-h-8 text-3 leading-3 rounded-full p-0',
+    mediumCircular: 'min-w-10 min-h-10 text-14 leading-14 rounded-full p-0',
+    largeCircular: 'min-w-11.25 min-h-11.25 text-16 leading-16 rounded-full p-0'
 };
 
 export function getSizeStyle(size?: SizeType) {

@@ -2,10 +2,9 @@ import { useRef, useEffect, useState, ChangeEvent, Fragment, useId } from 'react
 
 import { listStyle } from '@components/Base';
 import { TextField } from '@components/Form';
+import { CommonListDataType } from '@components/types';
 
 import { joinClassNames } from '@utils/format';
-
-import { CommonListDataType } from '../../types';
 
 type AutocompleteType = {
     label: string;
@@ -59,7 +58,7 @@ export default function Autocomplete({ inputValue, onChange, label, listArr, onS
 
     return (
         <label htmlFor={label} className="block w-full">
-            <div className="flex w-full items-center justify-center gap-5">
+            <div className="flex w-full items-center justify-center gap-1.25">
                 <TextField
                     isFullWidth
                     id={label}
@@ -84,7 +83,7 @@ export default function Autocomplete({ inputValue, onChange, label, listArr, onS
             {Boolean(listArr.length > 0 && isOpen) && (
                 <ul id={listboxId} ref={listRef} role="listbox" aria-label={label} className={listStyle.list}>
                     {listArr.map((el) => (
-                        <li key={`list-${el.idx}`} className={joinClassNames('group px-12', listStyle.listItem)}>
+                        <li key={`list-${el.idx}`} className={joinClassNames('group px-3', listStyle.listItem)}>
                             <button
                                 type="button"
                                 onClick={() => handleItemClick(el)}

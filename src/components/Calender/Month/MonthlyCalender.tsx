@@ -1,12 +1,12 @@
 import { MouseEvent, useCallback, useState } from 'react';
 
+import { AddFilled, ChevronLeftFilled, ChevronRightFilled } from '@fluentui/react-icons';
+
 import BottomSheet from '@components/BottomSheet';
 import { Button, IconButton } from '@components/Button';
-import Popover from '@components/Shared/Popover';
-import usePopover from '@components/Shared/usePopover';
+import { Popover, usePopover } from '@components/Shared';
 import { useCalender } from '@components/useCalender';
 
-import { AddFilled, ChevronLeftFilled, ChevronRightFilled } from '@fluentui/react-icons';
 import useMobile from '@hooks/useMobile';
 
 import { CALENDER_SEVEN_DAYS } from '../constants';
@@ -71,7 +71,7 @@ export default function MonthlyCalender() {
                     </Popover>
                 )}
             </div>
-            <div className="mb-20 flex items-center justify-start gap-20 tablet:justify-center">
+            <div className="mb-5 flex items-center justify-start gap-5 tablet:justify-center">
                 <IconButton
                     aria-label="prev month"
                     size={isTablet ? 'mini' : 'small'}
@@ -94,7 +94,7 @@ export default function MonthlyCalender() {
             </div>
             <ul className="flex items-center">
                 {CALENDER_SEVEN_DAYS.map((el: string) => (
-                    <li key={el} className="h-30 w-full">
+                    <li key={el} className="h-7.5 w-full">
                         <span className="block text-center text-18 font-medium">{el}</span>
                     </li>
                 ))}

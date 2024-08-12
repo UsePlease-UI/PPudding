@@ -9,3 +9,5 @@ export const COLOR_LIST = [
     'text-gray-600',
     'text-black'
 ];
+
+export type TextAlignType = 'text-center' | 'text-right' | 'text-left' | 'text-justify';

@@ -8,6 +8,9 @@ const meta: Meta<typeof DragNDrop> = {
     title: 'Web API/Drag N Drop API',
     component: DragNDrop,
     tags: ['autodocs'],
+    parameters: {
+        layout: 'centered'
+    },
     argTypes: {}
 };
 

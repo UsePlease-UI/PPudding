@@ -6,6 +6,9 @@ const meta = {
     title: 'Button/ToggleButtonGroup',
     component: ToggleButtonGroup,
     tags: ['autodocs'],
+    parameters: {
+        layout: 'centered'
+    },
     argTypes: {
         children: { table: { disable: true } },
         onChange: { table: { disable: true } }

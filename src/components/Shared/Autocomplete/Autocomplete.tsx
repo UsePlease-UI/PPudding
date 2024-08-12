@@ -1,7 +1,7 @@
 import { useRef, useState, useId, ChangeEvent, useEffect } from 'react';
 
 import { Backdrop, Listbox, ListboxItem } from '@components/Base';
-import { TextField } from '@components/Form';
+import TextField from '@components/Form/TextField';
 import { CommonListDataType } from '@components/types';
 import usePosition from '@components/usePosition';
 
@@ -84,7 +84,7 @@ export default function Autocomplete(props: AutocompleteType) {
 
     return (
         <div>
-            <div className="flex w-full items-center justify-center gap-5 bg-white">
+            <div className="flex w-full items-center justify-center gap-1.25 bg-white">
                 <TextField
                     aria-label={!labelText ? `${name}` : undefined}
                     id={inputId}

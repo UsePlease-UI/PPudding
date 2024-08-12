@@ -33,9 +33,9 @@ export default function PaginationList(props: PaginationListType) {
     } = props;
 
     return (
-        <ul className="flex flex-wrap items-center gap-5">
+        <ul className="flex flex-wrap items-center gap-1.25">
             {showFirstButton && (
-                <li className="flex h-32 w-32 items-center justify-center">
+                <li className="flex h-8 w-8 items-center justify-center">
                     <PaginationIconButton
                         icon={<ArrowPreviousFilled />}
                         isDisabled={page === 1}
@@ -44,7 +44,7 @@ export default function PaginationList(props: PaginationListType) {
                     />
                 </li>
             )}
-            <li className="flex h-32 w-32 items-center justify-center">
+            <li className="flex h-8 w-8 items-center justify-center">
                 <PaginationIconButton
                     icon={<ChevronLeftFilled />}
                     isDisabled={page === 1}
@@ -58,7 +58,7 @@ export default function PaginationList(props: PaginationListType) {
                 .map((_, idx) => idx + (blockNum - 1) * pageLimit)
                 .map((el, index) =>
                     el + 1 > totalCount ? null : (
-                        <li key={el} role="presentation" className="flex h-32 w-32 items-center justify-center">
+                        <li key={el} role="presentation" className="flex h-8 w-8 items-center justify-center">
                             <PaginationButton
                                 pageNum={el + 1}
                                 isSelected={page === el + 1}
@@ -67,7 +67,7 @@ export default function PaginationList(props: PaginationListType) {
                         </li>
                     )
                 )}
-            <li className="flex h-32 w-32 items-center justify-center">
+            <li className="flex h-8 w-8 items-center justify-center">
                 <PaginationIconButton
                     icon={<ChevronRightFilled />}
                     isDisabled={page === totalCount}
@@ -76,7 +76,7 @@ export default function PaginationList(props: PaginationListType) {
                 />
             </li>
             {showLastButton && (
-                <li className="flex h-32 w-32 items-center justify-center">
+                <li className="flex h-8 w-8 items-center justify-center">
                     <PaginationIconButton
                         icon={<ArrowNextFilled />}
                         isDisabled={page === totalCount}

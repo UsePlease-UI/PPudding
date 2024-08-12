@@ -10,6 +10,9 @@ const meta = {
     title: 'Combobox/Select',
     component: Select,
     tags: ['autodocs'],
+    parameters: {
+        layout: 'centered'
+    },
     argTypes: {}
 } satisfies Meta<typeof Select>;
 

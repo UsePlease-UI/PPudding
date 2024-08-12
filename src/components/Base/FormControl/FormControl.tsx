@@ -22,13 +22,13 @@ export default function FormControl(props: FormControlType) {
     return (
         <div className="w-full">
             {labelText && (
-                <label htmlFor={id} className="mb-4 block text-12 font-semibold">
+                <label htmlFor={id} className="mb-1 block text-12 font-semibold">
                     {labelText}
                 </label>
             )}
             {children}
             {helperText && (
-                <small id={helperTextId} className="mt-1 block text-10 font-medium">
+                <small id={helperTextId} className="mt-px block text-10 font-medium">
                     {helperText}
                 </small>
             )}

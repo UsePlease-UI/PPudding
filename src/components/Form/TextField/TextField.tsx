@@ -84,8 +84,8 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(function TextField
                     }
                 }}
                 className={joinClassNames(
-                    'h-40 truncate rounded border border-gray-100 px-12 py-10 text-14 font-normal leading-normal tracking-normal text-gray-950 placeholder:text-gray-400 hover:border-primary-600 focus:border-primary-700 focus:bg-primary-100 disabled:pointer-events-none disabled:border-gray-300 disabled:bg-gray-300 disabled:text-gray-950 under-tablet:min-w-0',
-                    isFullWidth ? 'w-full min-w-0' : 'min-w-320',
+                    'h-10 truncate rounded border border-gray-100 px-3 py-2.5 text-14 font-normal leading-normal tracking-normal text-gray-950 placeholder:text-gray-400 hover:border-primary-600 focus:border-primary-700 focus:bg-primary-100 disabled:pointer-events-none disabled:border-gray-300 disabled:bg-gray-300 disabled:text-gray-950 under-tablet:min-w-0',
+                    isFullWidth ? 'w-full min-w-0' : 'min-w-80',
                     isReadOnly && 'pointer-events-none border-gray-500 bg-gray-50',
                     isError && 'border-red-500'
                 )}
