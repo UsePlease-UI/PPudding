@@ -1,3 +1,5 @@
+export * from './constants';
+
 export { default as AccordionExample } from './AccordionExample';
 export { default as CardExample } from './CardExample';
 export { default as KPaginationExample } from './KPaginationExample';

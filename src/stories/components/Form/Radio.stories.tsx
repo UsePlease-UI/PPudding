@@ -14,7 +14,8 @@ const meta: Meta<typeof Radio> = {
         docs: {
             argTypes: { exclude: ['currentValue', 'onChange'] },
             controls: { exclude: ['currentValue', 'onChange'] }
-        }
+        },
+        layout: 'centered'
     },
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     argTypes: {}

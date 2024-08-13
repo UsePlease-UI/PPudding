@@ -55,7 +55,10 @@ export default function Popover({ children, isOpen, anchorPosition, anchorElemen
         <ClickAwayListener isOpen={isOpen} element={ref.current} anchorElement={anchorElement} onClose={onClose}>
             <div
                 ref={ref}
-                className={joinClassNames('fixed z-10000 rounded bg-white p-10 shadow-01', isOpen ? 'block' : 'hidden')}
+                className={joinClassNames(
+                    'fixed z-10000 rounded bg-white p-2.5 shadow-01',
+                    isOpen ? 'block' : 'hidden'
+                )}
             >
                 {children}
             </div>

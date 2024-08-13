@@ -1,8 +1,8 @@
 import { expect, fn, userEvent, within } from '@storybook/test';
 
-import IconButton from '@components/Button/IconButton';
-
 import { StarFilled } from '@fluentui/react-icons';
+
+import IconButton from '@components/Button/IconButton';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -10,6 +10,9 @@ const meta = {
     title: 'Button/IconButton',
     component: IconButton,
     tags: ['autodocs'],
+    parameters: {
+        layout: 'centered'
+    },
     argTypes: {
         children: { table: { disable: true } },
         onClick: { table: { disable: true } }

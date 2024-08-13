@@ -75,7 +75,7 @@ export default function Pagination(props: PaginationType) {
     }, [totalCount, onChange]);
 
     return (
-        <nav aria-label="pagination" className="flex w-full items-center justify-start p-20">
+        <nav aria-label="pagination" className="flex w-full items-center justify-start p-5">
             <PageList
                 showFirstButton={showFirstButton}
                 showLastButton={showLastButton}

@@ -1,6 +1,7 @@
 import { HTMLAttributes, MouseEvent } from 'react';
 
 import { DismissFilled } from '@fluentui/react-icons';
+
 import { joinClassNames } from '@utils/format';
 
 import { getVariantStyle } from './styles';
@@ -38,9 +39,9 @@ export default function Chip(props: ChipType) {
     return (
         <div
             className={joinClassNames(
-                'flex w-max items-center gap-8 rounded-full',
+                'flex w-max items-center gap-2 rounded-full',
                 getVariantStyle(variant),
-                isDeletable ? 'pointer-events-auto py-4 pl-14 pr-8' : 'pointer-events-none px-12 py-4'
+                isDeletable ? 'pointer-events-auto py-1 pl-3.5 pr-2' : 'pointer-events-none px-3 py-1'
             )}
         >
             <span className="text-16 font-medium leading-normal">{label}</span>
@@ -50,12 +51,12 @@ export default function Chip(props: ChipType) {
                     aria-label="delete"
                     onClick={handleClick}
                     className={joinClassNames(
-                        'group flex cursor-pointer items-center justify-center rounded-full p-2',
+                        'group flex cursor-pointer items-center justify-center rounded-full p-0.5',
                         getButtonVariantStyle(variant),
                         variant === 'text' && 'border border-gray-200'
                     )}
                 >
-                    <DismissFilled className="!block h-12 w-12 text-inherit" />
+                    <DismissFilled className="!block h-3 w-3 text-inherit" />
                 </button>
             )}
         </div>

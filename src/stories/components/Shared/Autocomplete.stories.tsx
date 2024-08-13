@@ -13,6 +13,9 @@ const meta = {
     title: 'Shared/Autocomplete',
     component: Autocomplete,
     tags: ['autodocs'],
+    parameters: {
+        layout: 'centered'
+    },
     argTypes: {}
 } satisfies Meta<typeof Autocomplete>;
 
@@ -50,9 +53,9 @@ const DefaultAutocomplete: Story = {
         return (
             <>
                 <div className="w-full">
-                    선택된 항목 :<strong className="ml-4 w-full truncate">{selectedItem?.label}</strong>
+                    선택된 항목 :<strong className="ml-1 w-full truncate">{selectedItem?.label}</strong>
                 </div>
-                <div className="max-w-320">
+                <div className="max-w-80">
                     <Autocomplete
                         labelText="Lorem Ipsum"
                         name="lorem ipsum"

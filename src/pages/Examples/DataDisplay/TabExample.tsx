@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { TabContainer, Tab, TabItem, TabPanel } from '@components/Tab';
-
 import { HomeFilled } from '@fluentui/react-icons';
+
+import { TabContainer, Tab, TabItem, TabPanel } from '@components/Tab';
 
 const TabExample = () => {
     const [value, setValue] = useState(1);

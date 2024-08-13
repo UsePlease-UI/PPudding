@@ -1,10 +1,8 @@
 import { expect, userEvent, within, spyOn } from '@storybook/test';
 
-import { getShapeStyle, getVariantStyle } from '@components/Button';
-import Button from '@components/Button/Button';
-import { getSizeStyle } from '@components/Button/Button/styles';
-
 import { DeleteFilled } from '@fluentui/react-icons';
+
+import { getShapeStyle, getVariantStyle, Button, getSizeStyle } from '@components/Button';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -17,7 +15,8 @@ const meta = {
             argTypes: {
                 sort: 'requiredFirst'
             }
-        }
+        },
+        layout: 'centered'
     },
     args: {
         children: '삭제',

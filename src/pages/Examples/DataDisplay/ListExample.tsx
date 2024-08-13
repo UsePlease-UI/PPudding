@@ -1,13 +1,15 @@
 import { Fragment, useState } from 'react';
 
-import { Checkbox, CheckboxGroup, Radio, RadioGroup, TextField } from '@components/Form';
-import List from '@components/List';
-import type { AlignType } from '@components/List';
-
 import { ChevronDownFilled, ChevronUpFilled, HomeFilled } from '@fluentui/react-icons';
+
+import { Checkbox, CheckboxGroup, Radio, TextField } from '@components/Form';
+import List from '@components/List';
+import { AlignType } from '@components/List';
+
 import useMobile from '@hooks/useMobile';
 
-import { customStyles } from '../components/styles';
+import { LIST_ALIGN, LIST_POSITION, LIST_TYPE } from './constants';
+import { RadioControls, customStyles } from '../Common';
 
 export default function ListExample() {
     const { isTablet } = useMobile();
@@ -33,76 +35,47 @@ export default function ListExample() {
     return (
         <div className={customStyles.playgroundContainer}>
             <div className={customStyles.playgroundControlContainer}>
-                <strong className="text-14 tablet:text-16">
-                    Choose List <span className="text-primary-800">Type</span>
-                </strong>
-                <RadioGroup isRow={false} value={type} onChange={(e) => setType(e.currentTarget.value)}>
-                    {['text', 'button', 'action item', 'metadata', 'collapsed'].map((key) => (
-                        <Radio key={key} name="type" size="medium" label={key} value={key} checked={key === type} />
-                    ))}
-                </RadioGroup>
+                <RadioControls name="list type" value={type} onChange={setType} options={LIST_TYPE} />
                 {(type === 'action item' || type === 'metadata') && (
-                    <>
-                        <strong className="text-14 tablet:text-16">
-                            Choose List <span className="text-primary-800">Position</span>
-                        </strong>
-                        <RadioGroup
-                            isRow={!isTablet}
-                            value={position}
-                            onChange={(e) => setPosition(e.currentTarget.value)}
-                        >
-                            {['start', 'end'].map((key) => (
-                                <Radio key={key} name="position" label={key} value={key} checked={key === position} />
-                            ))}
-                        </RadioGroup>
-                    </>
+                    <RadioControls
+                        name="list position"
+                        value={position}
+                        onChange={setPosition}
+                        options={LIST_POSITION}
+                    />
                 )}
                 {type === 'button' && hasIcon && (
-                    <>
-                        <strong className="text-14 tablet:text-16">
-                            Choose List Icon <span className="text-primary-800">Align</span>
-                        </strong>
-                        <RadioGroup isRow={!isTablet} value={align} onChange={(e) => setAlign(e.currentTarget.value)}>
-                            {['top', 'bottom', ''].map((key) => (
-                                <Radio
-                                    key={key}
-                                    name="align"
-                                    label={key || 'none'}
-                                    value={key}
-                                    checked={key === align}
-                                />
-                            ))}
-                        </RadioGroup>
-                    </>
+                    <RadioControls name="list icon align" value={align} onChange={setAlign} options={LIST_ALIGN} />
                 )}
                 {type !== 'collapsed' && (
                     <>
-                        <strong className="text-14 tablet:text-16">
-                            Choose List <span className="text-primary-800">Options</span>
-                        </strong>
-                        <CheckboxGroup isRow={!isTablet}>
-                            <Checkbox
-                                name="list-icon"
-                                label="Icon"
-                                checked={hasIcon}
-                                disabled={type === 'collapsed'}
-                                onChange={() => setHasIcon((prev) => !prev)}
-                            />
-                            <Checkbox
-                                name="list-dense"
-                                label="Dense"
-                                checked={isDense}
-                                onChange={() => setIsDense((prev) => !prev)}
-                            />
-                            <Checkbox
-                                name="list-secondary-text"
-                                label="Secondary Text"
-                                checked={hasSecondaryText}
-                                onChange={() => setHasSecondaryText((prev) => !prev)}
-                            />
-                        </CheckboxGroup>
+                        <div>
+                            <strong className="text-14 tablet:text-16">
+                                Choose List <span className="text-primary-800">Options</span>
+                            </strong>
+                            <CheckboxGroup isRow={!isTablet}>
+                                <Checkbox
+                                    name="list-icon"
+                                    label="Icon"
+                                    checked={hasIcon}
+                                    onChange={() => setHasIcon((prev) => !prev)}
+                                />
+                                <Checkbox
+                                    name="list-dense"
+                                    label="Dense"
+                                    checked={isDense}
+                                    onChange={() => setIsDense((prev) => !prev)}
+                                />
+                                <Checkbox
+                                    name="list-secondary-text"
+                                    label="Secondary Text"
+                                    checked={hasSecondaryText}
+                                    onChange={() => setHasSecondaryText((prev) => !prev)}
+                                />
+                            </CheckboxGroup>
+                        </div>
                         <TextField
-                            labelText="Type Primary Text"
+                            labelText="Primary Text"
                             name="primaryText"
                             value={primaryText}
                             isFullWidth={isTablet}
@@ -110,7 +83,7 @@ export default function ListExample() {
                             onChange={(e) => setPrimaryText(e.currentTarget.value)}
                         />
                         <TextField
-                            labelText="Type Secondary Text"
+                            labelText="Secondary Text"
                             name="secondaryText"
                             value={secondaryText}
                             isFullWidth={isTablet}

@@ -23,7 +23,8 @@ const meta = {
             argTypes: {
                 sort: 'requiredFirst'
             }
-        }
+        },
+        layout: 'centered'
     },
     argTypes: {
         options: { table: { disable: true } },

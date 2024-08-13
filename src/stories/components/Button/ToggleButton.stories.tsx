@@ -1,6 +1,6 @@
-import { ToggleButton } from '@components/Button/ToggleButton';
-
 import { TextBoldFilled, TextItalicFilled } from '@fluentui/react-icons';
+
+import { ToggleButton } from '@components/Button/ToggleButton';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -12,7 +12,8 @@ const meta = {
         docs: {
             argTypes: { exclude: ['currentValue', 'onChange'] },
             controls: { exclude: ['currentValue', 'onChange'] }
-        }
+        },
+        layout: 'centered'
     },
     argTypes: {}
 } satisfies Meta<typeof ToggleButton>;

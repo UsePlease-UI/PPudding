@@ -20,7 +20,7 @@ export default function WeeklyCalender() {
     const weeklyWeek = Number(week);
 
     return (
-        <div className="flex items-center gap-20">
+        <div className="flex items-center gap-5">
             {getWeeks()[weeklyWeek].map((day) => (
                 <WeekDays key={day}>
                     <span className={joinClassNames(day === String(date) && 'text-red-600')}>{day}</span>

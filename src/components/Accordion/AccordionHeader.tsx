@@ -1,8 +1,9 @@
 import { HTMLAttributes, ReactNode } from 'react';
 
+import { ChevronDownFilled } from '@fluentui/react-icons';
+
 import { useAccordion } from '@components/useAccordion';
 
-import { ChevronDownFilled } from '@fluentui/react-icons';
 import { joinClassNames } from '@utils/format';
 
 type BaseType = Omit<HTMLAttributes<HTMLHeadingElement>, 'className'>;
@@ -28,7 +29,7 @@ export default function AccordionHeader(props: AccordionHeaderType) {
         <h3
             {...rest}
             className={joinClassNames(
-                'min-h-60 w-full min-w-250 rounded border border-gray-100 under-mobile:min-w-0',
+                'min-h-15 w-full min-w-62.5 rounded border border-gray-100 under-mobile:min-w-0',
                 isExpanded && 'rounded-b-none border-primary-600 bg-primary-600',
                 isDisabled && 'border-gray-400 bg-gray-400'
             )}
@@ -41,7 +42,7 @@ export default function AccordionHeader(props: AccordionHeaderType) {
                 aria-disabled={isDisabled}
                 disabled={isDisabled}
                 onClick={(e) => onChange(e, isExpanded)}
-                className="h-full min-h-inherit w-full px-20 py-5"
+                className="h-full min-h-inherit w-full px-5 py-1.25"
             >
                 <div
                     className={joinClassNames(
@@ -54,7 +55,7 @@ export default function AccordionHeader(props: AccordionHeaderType) {
                     {hasIcon && (
                         <span
                             className={joinClassNames(
-                                'h-20 w-20 child-svg:block child-svg:h-20 child-svg:w-20',
+                                'h-5 w-5 child-svg:block child-svg:h-5 child-svg:w-5',
                                 isExpanded && 'rotate-180'
                             )}
                         >

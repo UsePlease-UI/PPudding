@@ -8,6 +8,9 @@ const meta = {
     title: 'Pagination/Pagination',
     component: Pagination,
     tags: ['autodocs'],
+    parameters: {
+        layout: 'centered'
+    },
     argTypes: {}
 } satisfies Meta<typeof Pagination>;
 

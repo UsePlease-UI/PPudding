@@ -1,6 +1,6 @@
-import { joinClassNames } from '@utils/format';
+import { commonStyle } from '@components/Button';
 
-import { commonStyle } from '../Button';
+import { joinClassNames } from '@utils/format';
 
 type PaginationButtonPropType = {
     pageNum: number;
@@ -17,7 +17,7 @@ export default function PaginationButton({ pageNum, isSelected, onClick }: Pagin
             type="button"
             onClick={onClick}
             className={joinClassNames(
-                'h-32 w-32 rounded font-normal text-primary-950',
+                'h-8 w-8 rounded font-normal text-primary-950',
                 isSelected && commonStyle.contained
             )}
         >

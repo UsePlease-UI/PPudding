@@ -1,8 +1,8 @@
 import { useState, Fragment } from 'react';
 
-import List from '@components/List';
-
 import { ChevronDownFilled, ChevronUpFilled } from '@fluentui/react-icons';
+
+import List from '@components/List';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -10,6 +10,9 @@ const meta = {
     title: 'List/List',
     component: List,
     tags: ['autodocs'],
+    parameters: {
+        layout: 'centered'
+    },
     argTypes: {}
 } satisfies Meta<typeof List>;
 

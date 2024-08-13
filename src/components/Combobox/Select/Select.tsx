@@ -1,11 +1,12 @@
 import { InputHTMLAttributes, MouseEvent, ReactNode, useCallback, useEffect, useId, useRef, useState } from 'react';
 
+import { ChevronDownFilled } from '@fluentui/react-icons';
+
 import { Backdrop, FormControl, Listbox } from '@components/Base';
 import { getVariantStyle } from '@components/Button';
 import { CommonListDataType } from '@components/types';
 import usePosition from '@components/usePosition';
 
-import { ChevronDownFilled } from '@fluentui/react-icons';
 import { joinClassNames } from '@utils/format';
 
 type BaseType = InputHTMLAttributes<HTMLButtonElement>;
@@ -102,21 +103,18 @@ export default function Select(props: SelectType) {
                         onClick={handleClick}
                         className={joinClassNames(
                             getVariantStyle('outlined'),
-                            'flex h-40 min-w-120 items-center justify-between rounded pl-12 pr-8 text-primary-950',
+                            'flex h-10 min-w-30 items-center justify-between rounded pl-3 pr-2 text-primary-950',
                             placeholder && !value && 'text-gray-400'
                         )}
                     >
                         <span className="mr-2.5 flex-1 truncate text-left text-14 font-normal leading-normal text-inherit">
                             {placeholder && !value ? placeholder : label}
                         </span>
-                        <span className="h-20 w-20">
+                        <span className="h-5 w-5">
                             <ChevronDownFilled
                                 width={16}
                                 height={16}
-                                className={joinClassNames(
-                                    '!block h-20 w-20 text-primary-800',
-                                    isVisible && 'rotate-180'
-                                )}
+                                className={joinClassNames('!block h-5 w-5 text-primary-800', isVisible && 'rotate-180')}
                             />
                         </span>
                     </button>

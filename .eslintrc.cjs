@@ -30,12 +30,17 @@ module.exports = {
                         position: 'before'
                     },
                     {
-                        pattern: '@components/**',
+                        pattern: '{@assets/**,@fluentui/react-icons}',
+                        group: 'internal',
+                        position: 'before'
+                    },
+                    {
+                        pattern: '{@components/**,@layouts/**}',
                         group: 'internal',
                         position: 'after'
                     },
                     {
-                        pattern: '{@assets/**,@constants/**,@hooks/**,@utils/**,@styles/**,@fluentui/react-icons}',
+                        pattern: '{@hooks/**,@lib/**,@utils/**}',
                         group: 'internal',
                         position: 'after'
                     },

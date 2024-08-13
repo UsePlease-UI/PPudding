@@ -14,7 +14,8 @@ const meta: Meta<typeof RadioGroup> = {
         docs: {
             argTypes: { exclude: ['children', 'onChange'] },
             controls: { exclude: ['children', 'onChange'] }
-        }
+        },
+        layout: 'centered'
     },
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     argTypes: {}

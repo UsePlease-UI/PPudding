@@ -1,8 +1,8 @@
 import { InputHTMLAttributes, ReactElement, ReactNode, cloneElement } from 'react';
 
-import { joinClassNames } from '@utils/format';
+import { commonStyle } from '@components/Button';
 
-import { commonStyle } from '../Button';
+import { joinClassNames } from '@utils/format';
 
 type PaginationIconButtonType = InputHTMLAttributes<HTMLButtonElement> & {
     isDisabled: boolean;
@@ -16,11 +16,11 @@ export default function PaginationIconButton({ icon, isDisabled, onClick, ...pro
             {...props}
             type="button"
             onClick={() => onClick()}
-            className={joinClassNames('h-32 w-32 rounded', commonStyle.text)}
+            className={joinClassNames('h-8 w-8 rounded', commonStyle.text)}
             disabled={isDisabled}
         >
             {cloneElement(icon as ReactElement, {
-                className: joinClassNames('w-24 h-24 text-inherit')
+                className: joinClassNames('w-6 h-6 text-inherit')
             })}
         </button>
     );
