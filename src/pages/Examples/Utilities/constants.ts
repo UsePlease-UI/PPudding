@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 
-export const UTILITIES_LIST = ['Calendar', 'Drag N Drop', 'Popover'];
+export const UTILITIES_LIST = ['Calendar', 'Date Picker', 'Drag N Drop', 'Popover'];
 
 export const DRAG_N_DROP = [
     {
