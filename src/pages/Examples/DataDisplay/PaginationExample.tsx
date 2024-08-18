@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { ShapeType, SizeType, VariantType } from '@components/Button';
-import { Radio, RadioGroup } from '@components/Form';
+import { ShapeType, SizeType, VariantType } from '@components/Button/styles';
+import { Radio, RadioGroup } from '@components/Form/Radio';
 import Pagination from '@components/Shared/Pagination';
 
 import useMobile from '@hooks/useMobile';

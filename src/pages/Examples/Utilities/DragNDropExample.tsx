@@ -1,9 +1,9 @@
 import { DragEvent, useCallback, useState } from 'react';
 
-import { listStyle } from '@components/Base';
+import { listStyle } from '@components/Base/Listbox';
 import { Tab, TabContainer, TabItem, TabPanel } from '@components/Tab';
 import { CommonListDataType } from '@components/types';
-import { DragNDrop } from '@components/WebAPI';
+import DragNDrop from '@components/WebAPI/DragNDrop';
 
 import { joinClassNames } from '@utils/format';
 

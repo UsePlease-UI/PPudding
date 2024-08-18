@@ -1,4 +1,4 @@
-import { Skeleton } from '@components/Loader';
+import Skeleton from '@components/Loader/Skeleton';
 
 import useMobile from '@hooks/useMobile';
 

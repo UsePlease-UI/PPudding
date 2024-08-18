@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { ToggleButton, ToggleButtonGroup } from '@components/Button';
+import { ToggleButton, ToggleButtonGroup } from '@components/Button/ToggleButton';
 import Picker from '@components/Picker';
 
 import { customStyles } from '../Common';

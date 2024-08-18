@@ -1,6 +1,6 @@
 import { WarningFilled } from '@fluentui/react-icons';
 
-import { IconButton } from '@components/Button';
+import IconButton from '@components/Button/IconButton';
 import { useAlert } from '@components/useAlert';
 
 export default function AlertExample() {

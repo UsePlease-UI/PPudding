@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, ReactNode, forwardRef, useId } from 'react';
 
-import { FormControl } from '@components/Base';
+import FormControl from '@components/Base/FormControl';
 
 import { joinClassNames } from '@utils/format';
 

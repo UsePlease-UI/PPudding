@@ -1,4 +1,4 @@
-import { DragNDrop } from '@components/WebAPI';
+import DragNDrop from '@components/WebAPI/DragNDrop';
 
 import { DRAG_N_DROP_LIST } from '../constants';
 

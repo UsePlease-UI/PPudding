@@ -2,7 +2,8 @@ import { useState } from 'react';
 
 import { CheckmarkFilled } from '@fluentui/react-icons';
 
-import { IconButton, ShapeType, SizeType, VariantType } from '@components/Button';
+import IconButton from '@components/Button/IconButton';
+import { ShapeType, SizeType, VariantType } from '@components/Button/styles';
 
 import { BUTTON_SHAPE, BUTTON_SIZE, BUTTON_VARIANT } from './constants';
 import { customStyles, RadioControls } from '../Common';

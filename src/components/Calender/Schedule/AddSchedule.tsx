@@ -4,7 +4,8 @@ import { v4 as uuid } from 'uuid';
 
 import Button from '@components/Button/Button';
 import Select from '@components/Combobox/Select';
-import { Checkbox, TextField } from '@components/Form';
+import { Checkbox } from '@components/Form/Checkbox';
+import TextField from '@components/Form/TextField';
 import { useAlert } from '@components/useAlert';
 import { useCalender } from '@components/useCalender';
 import { useSchedule } from '@components/useSchedule';

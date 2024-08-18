@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Radio, RadioGroup } from '@components/Form';
+import { Radio, RadioGroup } from '@components/Form/Radio';
 
 export default function RadioExample() {
     const [color, setColor] = useState('red');

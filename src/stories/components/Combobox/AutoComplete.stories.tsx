@@ -1,8 +1,8 @@
 import { useState, useCallback, ChangeEvent } from 'react';
 
-import _ from 'lodash';
+import debounce from 'lodash.debounce';
 
-import { Autocomplete } from '@components/Combobox';
+import Autocomplete from '@components/Combobox/Autocomplete';
 import { CommonListDataType } from '@components/types';
 
 import { AUTOCOMPLETE } from '../constants';
@@ -31,7 +31,7 @@ const AutoCompleteTemplate: Story = {
         const [listArr, setListArr] = useState<CommonListDataType[]>(list);
 
         const handleSearch = useCallback(
-            _.debounce((value: string) => {
+            debounce((value: string) => {
                 let newArr = [];
                 if (value.length !== 0 || value !== '') {
                     newArr = list.filter((el: CommonListDataType) => el.label.includes(value));

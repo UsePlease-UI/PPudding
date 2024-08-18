@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { HeartFilled, HeartRegular } from '@fluentui/react-icons';
 
-import { Checkbox, CheckboxGroup } from '@components/Form';
+import { Checkbox, CheckboxGroup } from '@components/Form/Checkbox';
 
 export default function CheckboxExample() {
     const [chocolate, setChocolate] = useState(false);

@@ -1,6 +1,6 @@
 import { ChevronLeftRegular, ChevronRightRegular } from '@fluentui/react-icons';
 
-import { IconButton } from '@components/Button';
+import IconButton from '@components/Button/IconButton';
 
 type PickerHeaderType = {
     onClick: (isPrev: boolean) => void;

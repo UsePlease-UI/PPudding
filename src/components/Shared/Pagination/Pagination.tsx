@@ -2,7 +2,8 @@ import { ReactNode, useMemo, useState } from 'react';
 
 import { ArrowNextFilled, ArrowPreviousFilled, ChevronLeftFilled, ChevronRightFilled } from '@fluentui/react-icons';
 
-import { IconButton, ShapeType, SizeType, VariantType } from '@components/Button';
+import IconButton from '@components/Button/IconButton';
+import { ShapeType, SizeType, VariantType } from '@components/Button/styles';
 
 import { joinClassNames } from '@utils/format';
 

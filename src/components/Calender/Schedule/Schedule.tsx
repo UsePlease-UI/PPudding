@@ -3,7 +3,8 @@ import { useCallback } from 'react';
 import dayjs from 'dayjs';
 
 import BottomSheet from '@components/BottomSheet';
-import { Popover, usePopover } from '@components/Shared';
+import Popover from '@components/Shared/Popover';
+import usePopover from '@components/Shared/usePopover';
 import { useCalender } from '@components/useCalender';
 
 import useMobile from '@hooks/useMobile';

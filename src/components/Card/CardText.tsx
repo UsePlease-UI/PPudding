@@ -2,7 +2,7 @@ import { ReactNode, useCallback, useState } from 'react';
 
 import { ChevronDownFilled, ChevronUpFilled } from '@fluentui/react-icons';
 
-import { IconButton } from '@components/Button';
+import IconButton from '@components/Button/IconButton';
 
 import { TextType } from './types';
 

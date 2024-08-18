@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, ReactElement, ReactNode, cloneElement } from 'react';
 
-import { commonStyle } from '@components/Button';
+import { commonStyle } from '@components/Button/styles';
 
 import { joinClassNames } from '@utils/format';
 

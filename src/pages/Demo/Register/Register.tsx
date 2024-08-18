@@ -1,8 +1,11 @@
 import { FormEvent, useState } from 'react';
 
-import { Button, ToggleButton, ToggleButtonGroup } from '@components/Button';
-import { Select } from '@components/Combobox';
-import { Radio, RadioGroup, Checkbox, CheckboxGroup, TextField } from '@components/Form';
+import Button from '@components/Button/Button';
+import { ToggleButton, ToggleButtonGroup } from '@components/Button/ToggleButton';
+import Select from '@components/Combobox/Select';
+import { Checkbox, CheckboxGroup } from '@components/Form/Checkbox';
+import { Radio, RadioGroup } from '@components/Form/Radio';
+import TextField from '@components/Form/TextField';
 
 import { DAY_OPTIONS, MONTH_OPTIONS, PASSWORD_REG_EXP, YEAR_OPTIONS } from './constants';
 

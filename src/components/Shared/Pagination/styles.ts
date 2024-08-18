@@ -1,4 +1,4 @@
-import { VariantType } from '@components/Button';
+import { VariantType } from '@components/Button/styles';
 
 export function getActiveVariant(isActive: boolean, variant: VariantType) {
     let activeVariant = 'outlined';

@@ -3,8 +3,8 @@ import { Link, useSearchParams } from 'react-router-dom';
 
 import { DismissFilled } from '@fluentui/react-icons';
 
-import { Backdrop } from '@components/Base';
-import { IconButton } from '@components/Button';
+import Backdrop from '@components/Base/Backdrop';
+import IconButton from '@components/Button/IconButton';
 
 import useMobile from '@hooks/useMobile';
 import { joinClassNames } from '@utils/format';

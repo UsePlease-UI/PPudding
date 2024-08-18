@@ -1,4 +1,4 @@
-import { ToggleButton, ToggleButtonGroup } from '@components/Button';
+import { ToggleButton, ToggleButtonGroup } from '@components/Button/ToggleButton';
 
 import useMobile from '@hooks/useMobile';
 

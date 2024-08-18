@@ -2,9 +2,13 @@ import { useState } from 'react';
 
 import { ChevronDownFilled, ChevronUpFilled } from '@fluentui/react-icons';
 
-import { Button, Chip } from '@components/Button';
-import { Radio, RadioGroup, Checkbox, CheckboxGroup, TextField } from '@components/Form';
-import { Popover, usePopover } from '@components/Shared';
+import Button from '@components/Button/Button';
+import Chip from '@components/Button/Chip';
+import { Checkbox, CheckboxGroup } from '@components/Form/Checkbox';
+import { Radio, RadioGroup } from '@components/Form/Radio';
+import TextField from '@components/Form/TextField';
+import Popover from '@components/Shared/Popover';
+import usePopover from '@components/Shared/usePopover';
 
 const Search = () => {
     const { isOpen, anchorElement, handleOpen, handleClose } = usePopover();

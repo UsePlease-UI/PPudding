@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Textarea } from '@components/Form';
+import Textarea from '@components/Form/Textarea';
 
 export default function TextareaExample() {
     const [description, setDescription] = useState('');

@@ -13,6 +13,8 @@ export default function Error() {
     }, []);
 
     return (
-        <div className="flex min-h-screen w-full items-center justify-center text-3xl text-primary-900">Sorry...</div>
+        <div className="flex min-h-screen w-full items-center justify-center text-3xl font-black text-primary-900">
+            Sorry...
+        </div>
     );
 }

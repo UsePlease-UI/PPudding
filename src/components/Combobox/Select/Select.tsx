@@ -2,8 +2,10 @@ import { InputHTMLAttributes, MouseEvent, ReactNode, useCallback, useEffect, use
 
 import { ChevronDownFilled } from '@fluentui/react-icons';
 
-import { Backdrop, FormControl, Listbox } from '@components/Base';
-import { getVariantStyle } from '@components/Button';
+import Backdrop from '@components/Base/Backdrop';
+import FormControl from '@components/Base/FormControl';
+import { Listbox } from '@components/Base/Listbox';
+import { getVariantStyle } from '@components/Button/styles';
 import { CommonListDataType } from '@components/types';
 import usePosition from '@components/usePosition';
 
