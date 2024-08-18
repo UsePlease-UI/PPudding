@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { ToggleButton, ToggleButtonGroup } from '@components/Button';
+import { ToggleButton, ToggleButtonGroup } from '@components/Button/ToggleButton';
 import { Tab, TabContainer, TabItem, TabPanel } from '@components/Tab';
 
 import { KAutocompleteExample, COMBOBOX_LIST, AAutocompleteExample, SelectExample } from './Combobox';

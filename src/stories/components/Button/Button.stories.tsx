@@ -2,7 +2,8 @@ import { expect, userEvent, within, spyOn } from '@storybook/test';
 
 import { DeleteFilled } from '@fluentui/react-icons';
 
-import { getShapeStyle, getVariantStyle, Button, getSizeStyle } from '@components/Button';
+import Button from '@components/Button/Button';
+import { getShapeStyle, getVariantStyle, getSizeStyle } from '@components/Button/styles';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

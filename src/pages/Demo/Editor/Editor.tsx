@@ -12,8 +12,10 @@ import {
     TextUnderlineRegular
 } from '@fluentui/react-icons';
 
-import { IconButton, ToggleButton, ToggleButtonGroup } from '@components/Button';
-import { Popover, usePopover } from '@components/Shared';
+import IconButton from '@components/Button/IconButton';
+import { ToggleButton, ToggleButtonGroup } from '@components/Button/ToggleButton';
+import Popover from '@components/Shared/Popover';
+import usePopover from '@components/Shared/usePopover';
 
 import { joinClassNames } from '@utils/format';
 

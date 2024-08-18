@@ -1,9 +1,11 @@
-import ButtonExample from './ButtonExample';
-import ComboboxExample from './ComboboxExample';
-import DataDisplayExample from './DataDisplayExample';
-import FeedbackExample from './FeedbackExample';
-import FormInputExample from './FormInputExample';
-import UtilitiesExample from './UtilitiesExample';
+import { lazy } from 'react';
+
+const ButtonExample = lazy(() => import('./ButtonExample'));
+const ComboboxExample = lazy(() => import('./ComboboxExample'));
+const DataDisplayExample = lazy(() => import('./DataDisplayExample'));
+const FeedbackExample = lazy(() => import('./FeedbackExample'));
+const FormInputExample = lazy(() => import('./FormInputExample'));
+const UtilitiesExample = lazy(() => import('./UtilitiesExample'));
 
 export function getComponents(type?: string) {
     switch (type) {

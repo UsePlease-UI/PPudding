@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import { Chip, VariantType } from '@components/Button';
-import { TextField } from '@components/Form';
+import Chip from '@components/Button/Chip';
+import { VariantType } from '@components/Button/styles';
+import TextField from '@components/Form/TextField';
 
 import { BUTTON_VARIANT } from './constants';
 import { CheckboxControl, customStyles, RadioControls } from '../Common';

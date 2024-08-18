@@ -1,6 +1,6 @@
 import { PeopleFilled } from '@fluentui/react-icons';
 
-import { Button } from '@components/Button';
+import Button from '@components/Button/Button';
 import Popover from '@components/Shared/Popover';
 import usePopover from '@components/Shared/usePopover';
 

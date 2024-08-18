@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { TextField } from '@components/Form';
+import TextField from '@components/Form/TextField';
 
 export default function TextFieldExample() {
     const [name, setName] = useState('');

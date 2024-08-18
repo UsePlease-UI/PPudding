@@ -2,8 +2,9 @@ import { useState } from 'react';
 
 import { AddFilled, DeleteFilled } from '@fluentui/react-icons';
 
-import { Button, ShapeType, SizeType, VariantType } from '@components/Button';
-import { TextField } from '@components/Form';
+import Button from '@components/Button/Button';
+import { ShapeType, SizeType, VariantType } from '@components/Button/styles';
+import TextField from '@components/Form/TextField';
 
 import { BUTTON_ICON, BUTTON_SHAPE, BUTTON_SIZE, BUTTON_VARIANT } from './constants';
 import { CheckboxControl, customStyles, RadioControls } from '../Common';

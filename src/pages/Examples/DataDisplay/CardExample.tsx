@@ -10,8 +10,9 @@ import {
     ShareRegular
 } from '@fluentui/react-icons';
 
-import { Divider } from '@components/Base';
-import { Button, IconButton } from '@components/Button';
+import Divider from '@components/Base/Divider';
+import Button from '@components/Button/Button';
+import IconButton from '@components/Button/IconButton';
 import Card from '@components/Card';
 
 import { CARD_VARIANT } from './constants';

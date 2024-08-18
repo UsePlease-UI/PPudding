@@ -1,6 +1,6 @@
 import { ReactNode, TextareaHTMLAttributes, forwardRef, useEffect, useId } from 'react';
 
-import { FormControl } from '@components/Base';
+import FormControl from '@components/Base/FormControl';
 
 import useForwardRef from '@hooks/useForwardRef';
 import { joinClassNames } from '@utils/format';

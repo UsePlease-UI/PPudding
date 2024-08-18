@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 
 import { CalendarRegular } from '@fluentui/react-icons';
 
-import { IconButton } from '@components/Button';
+import IconButton from '@components/Button/IconButton';
 import { DateType } from '@components/usePicker';
 
 import { joinClassNames } from '@utils/format';

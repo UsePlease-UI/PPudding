@@ -1,15 +1,18 @@
+import { lazy, Suspense } from 'react';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 
 import BaseLayout from '@layouts/BaseLayout';
 
-import Editor from '@pages/Demo/Editor';
-import FAQ from '@pages/Demo/FAQ';
-import Register from '@pages/Demo/Register';
-import Search from '@pages/Demo/Search';
-import Example from '@pages/Examples';
 import Home from '@pages/Home';
 
 import Error from './Error';
+import Loader from './Loader';
+
+const Editor = lazy(() => import('@pages/Demo/Editor'));
+const FAQ = lazy(() => import('@pages/Demo/FAQ'));
+const Register = lazy(() => import('@pages/Demo/Register'));
+const Search = lazy(() => import('@pages/Demo/Search'));
+const Examples = lazy(() => import('@pages/Examples'));
 
 export default function App() {
     return (
@@ -26,7 +29,11 @@ export default function App() {
                         },
                         {
                             path: 'example/:component',
-                            element: <Example />
+                            element: (
+                                <Suspense fallback={<Loader />}>
+                                    <Examples />
+                                </Suspense>
+                            )
                         }
                     ]
                 },
@@ -37,19 +44,35 @@ export default function App() {
                     children: [
                         {
                             path: 'faq',
-                            element: <FAQ />
+                            element: (
+                                <Suspense fallback={<Loader />}>
+                                    <FAQ />
+                                </Suspense>
+                            )
                         },
                         {
                             path: 'search',
-                            element: <Search />
+                            element: (
+                                <Suspense fallback={<Loader />}>
+                                    <Search />
+                                </Suspense>
+                            )
                         },
                         {
                             path: 'editor',
-                            element: <Editor />
+                            element: (
+                                <Suspense fallback={<Loader />}>
+                                    <Editor />
+                                </Suspense>
+                            )
                         },
                         {
                             path: 'register',
-                            element: <Register />
+                            element: (
+                                <Suspense fallback={<Loader />}>
+                                    <Register />
+                                </Suspense>
+                            )
                         }
                     ]
                 }

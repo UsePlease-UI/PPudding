@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState, ChangeEvent, Fragment, useId } from 'react';
 
-import { listStyle } from '@components/Base';
-import { TextField } from '@components/Form';
+import { listStyle } from '@components/Base/Listbox';
+import TextField from '@components/Form/TextField';
 import { CommonListDataType } from '@components/types';
 
 import { joinClassNames } from '@utils/format';

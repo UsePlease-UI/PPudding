@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 
 import { AppsListFilled } from '@fluentui/react-icons';
 
-import { Backdrop } from '@components/Base';
-import { Button, IconButton } from '@components/Button';
+import Backdrop from '@components/Base/Backdrop';
+import Button from '@components/Button/Button';
+import IconButton from '@components/Button/IconButton';
 
 import useMobile from '@hooks/useMobile';
 

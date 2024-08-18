@@ -1,6 +1,6 @@
 import { DragEvent, ReactNode, useCallback, useEffect, useId, useState } from 'react';
 
-import { listStyle } from '@components/Base';
+import { listStyle } from '@components/Base/Listbox';
 import { CommonListDataType } from '@components/types';
 
 import DragNDropListItem from './DragNDropListItem';

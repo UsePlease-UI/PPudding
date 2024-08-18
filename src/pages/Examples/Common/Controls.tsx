@@ -1,4 +1,5 @@
-import { Checkbox, Radio, RadioGroup } from '@components/Form';
+import { Checkbox } from '@components/Form/Checkbox';
+import { Radio, RadioGroup } from '@components/Form/Radio';
 
 import useMobile from '@hooks/useMobile';
 

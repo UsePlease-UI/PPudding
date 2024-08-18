@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-import { SizeType, ToggleButton, ToggleButtonGroup } from '@components/Button';
+import { SizeType } from '@components/Button/styles';
+import { ToggleButton, ToggleButtonGroup } from '@components/Button/ToggleButton';
 
 import { BUTTON_SIZE } from './constants';
 import { customStyles, RadioControls } from '../Common';

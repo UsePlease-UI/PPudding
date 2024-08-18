@@ -1,8 +1,8 @@
 import { useState, useCallback, ChangeEvent } from 'react';
 
-import _ from 'lodash';
+import debounce from 'lodash.debounce';
 
-import { Autocomplete } from '@components/Combobox';
+import Autocomplete from '@components/Combobox/Autocomplete';
 import { CommonListDataType } from '@components/types';
 
 import { K_AUTOCOMPLETE_LIST } from './constants';
@@ -13,7 +13,7 @@ export default function KAutocompleteExample() {
     const [selectedItem, setSelectedItem] = useState<CommonListDataType>();
 
     const handleSearch = useCallback(
-        _.debounce((value: string) => {
+        debounce((value: string) => {
             if (value.length !== 0 && value !== '') {
                 const newArr = K_AUTOCOMPLETE_LIST.filter((el) => el.label.includes(value as string));
                 setListArr(newArr);

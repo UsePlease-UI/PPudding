@@ -1,6 +1,6 @@
 import { HTMLAttributes, useState } from 'react';
 
-import { Skeleton } from '@components/Loader';
+import Skeleton from '@components/Loader/Skeleton';
 
 type CardMediaType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
     type: 'image' | 'video';

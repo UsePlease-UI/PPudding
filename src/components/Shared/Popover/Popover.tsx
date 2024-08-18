@@ -1,6 +1,6 @@
 import { ReactNode, useCallback, useEffect, useRef } from 'react';
 
-import { ClickAwayListener } from '@components/Base';
+import ClickAwayListener from '@components/Base/ClickAwayListener';
 
 import { joinClassNames } from '@utils/format';
 
