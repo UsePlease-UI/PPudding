@@ -2,22 +2,22 @@
 
 ## Anatomy
 
--   Radio
--   Radio Group
+- Radio
+- Radio Group
 
 ## States
 
--   Hovered
--   Focused
--   Disabled
+- Hovered
+- Focused
+- Disabled
 
 ## Size
 
--   Small
--   Medium
--   Large
+- Small
+- Medium
+- Large
 
 ## Orientation
 
--   Row
--   Column
+- Row
+- Column

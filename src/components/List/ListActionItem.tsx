@@ -2,10 +2,10 @@ import { HTMLAttributes, ReactNode } from 'react';
 
 import { joinClassNames } from '@utils/format';
 
-type ListActionItemType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
-    children: ReactNode;
-    isDense?: boolean;
-};
+type ListActionItemType = {
+  children: ReactNode;
+  isDense?: boolean;
+} & Omit<HTMLAttributes<HTMLDivElement>, 'className'>;
 
 /**
  *  [UI Component] List Action Item
@@ -14,9 +14,9 @@ type ListActionItemType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
  *  @returns JSX.Element
  */
 export default function ListActionItem({ children, isDense, ...rest }: ListActionItemType) {
-    return (
-        <div {...rest} className={joinClassNames('w-full py-2', isDense && 'py-4')}>
-            {children}
-        </div>
-    );
+  return (
+    <div {...rest} className={joinClassNames('w-full py-2', isDense && 'py-4')}>
+      {children}
+    </div>
+  );
 }

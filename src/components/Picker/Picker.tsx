@@ -1,22 +1,22 @@
 import { ReactNode } from 'react';
 
+import { DateType, PickerProvider } from '../usePicker';
 import DatePicker from './DatePicker';
 import MonthPicker from './MonthPicker';
-import { DateType, PickerProvider } from '../usePicker';
 
 type PickerType = {
-    dateFormat?: string;
-    helperText?: string;
-    icon?: ReactNode;
-    labelText?: string;
-    maxDate?: DateType;
-    minDate?: DateType;
-    onCancel?: () => void;
-    onChange?: (date: Date) => void;
-    onSelect?: (date: DateType) => void;
-    placeholder?: string;
-    showMonthPicker?: boolean;
-    value?: DateType;
+  dateFormat?: string;
+  helperText?: string;
+  icon?: ReactNode;
+  labelText?: string;
+  maxDate?: DateType;
+  minDate?: DateType;
+  placeholder?: string;
+  showMonthPicker?: boolean;
+  value?: DateType;
+  onCancel?: () => void;
+  onChange?: (date: Date) => void;
+  onSelect?: (date: DateType) => void;
 };
 
 /**
@@ -36,18 +36,18 @@ type PickerType = {
  *  @returns JSX.Element
  */
 export default function Picker({ showMonthPicker, ...props }: PickerType) {
-    const { maxDate, minDate, onCancel, onChange, onSelect, value } = props;
+  const { maxDate, minDate, onCancel, onChange, onSelect, value } = props;
 
-    return (
-        <PickerProvider
-            maxDate={maxDate}
-            minDate={minDate}
-            value={value}
-            onCancel={onCancel}
-            onChange={onChange}
-            onSelect={onSelect}
-        >
-            {showMonthPicker ? <MonthPicker {...props} /> : <DatePicker {...props} />}
-        </PickerProvider>
-    );
+  return (
+    <PickerProvider
+      maxDate={maxDate}
+      minDate={minDate}
+      value={value}
+      onCancel={onCancel}
+      onChange={onChange}
+      onSelect={onSelect}
+    >
+      {showMonthPicker ? <MonthPicker {...props} /> : <DatePicker {...props} />}
+    </PickerProvider>
+  );
 }

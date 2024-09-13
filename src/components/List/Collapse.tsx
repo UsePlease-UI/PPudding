@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 
 type CollapseType = {
-    children: ReactNode;
-    isOpen: boolean;
+  children: ReactNode;
+  isOpen: boolean;
 };
 
 /**
@@ -12,5 +12,5 @@ type CollapseType = {
  *  @returns ReactNode | null
  */
 export default function Collapse({ children, isOpen }: CollapseType) {
-    return isOpen ? children : null;
+  return isOpen ? children : null;
 }

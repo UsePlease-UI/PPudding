@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 
 type PopoverType = {
-    children: ReactNode;
-    isOpen: boolean;
+  children: ReactNode;
+  isOpen: boolean;
 };
 
 /**
@@ -13,5 +13,5 @@ type PopoverType = {
  */
 // FIXME: Position 수정
 export default function Popover({ children, isOpen }: PopoverType) {
-    return isOpen ? <div className="relative whitespace-nowrap rounded bg-white p-5 shadow-04">{children}</div> : null;
+  return isOpen ? <div className="relative whitespace-nowrap rounded bg-white p-5 shadow-04">{children}</div> : null;
 }

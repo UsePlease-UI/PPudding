@@ -2,17 +2,17 @@
 
 ## Anatomy
 
--   TextField
+- TextField
 
 ## States
 
--   Hovered
--   Focused
--   Disabled
--   Read Only
+- Hovered
+- Focused
+- Disabled
+- Read Only
 
 ## Variants
 
--   Outlined
--   [TO-BE] Contained (filled)
--   [TO-BE] Text
+- Outlined
+- [TO-BE] Contained (filled)
+- [TO-BE] Text

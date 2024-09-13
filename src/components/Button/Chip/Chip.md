@@ -2,20 +2,20 @@
 
 ## Anatomy
 
--   Chip
+- Chip
 
 ## Type
 
--   Default (Non-interactive)
--   Deletable (Interactive)
+- Default (Non-interactive)
+- Deletable (Interactive)
 
 ## Variants
 
--   Outlined
--   Contained
+- Outlined
+- Contained
 
 ## Size [TO-BE]
 
--   Small
--   Medium
--   Large
+- Small
+- Medium
+- Large

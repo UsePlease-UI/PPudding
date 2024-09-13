@@ -2,4 +2,4 @@
 
 ## Anatomy
 
--   Skeleton
+- Skeleton

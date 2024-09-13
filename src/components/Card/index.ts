@@ -8,10 +8,10 @@ import CardTitle from './CardTitle';
 
 export * from './types';
 export default Object.assign(Card, {
-    Header: CardHeader,
-    Title: CardTitle,
-    SupportingVisual: CardSupportingVisual,
-    Text: CardText,
-    Media: CardMedia,
-    Actions: CardActions,
+  Header: CardHeader,
+  Title: CardTitle,
+  SupportingVisual: CardSupportingVisual,
+  Text: CardText,
+  Media: CardMedia,
+  Actions: CardActions,
 });

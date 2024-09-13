@@ -6,13 +6,13 @@ import { getShapeStyle, getSizeStyle, getVariantStyle, IconButtonSizeType, Shape
 
 type BaseType = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'>;
 
-type IconButtonType = BaseType & {
-    children: ReactNode;
-    isDisabled?: boolean;
-    shape?: ShapeType;
-    size?: IconButtonSizeType;
-    variant?: VariantType;
-};
+type IconButtonType = {
+  children: ReactNode;
+  isDisabled?: boolean;
+  shape?: ShapeType;
+  size?: IconButtonSizeType;
+  variant?: VariantType;
+} & BaseType;
 
 /**
  *  [UI Component] Icon Button
@@ -24,32 +24,32 @@ type IconButtonType = BaseType & {
  *  @returns JSX.Element
  */
 const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(function IconButton(props, ref) {
-    const { children, isDisabled, onClick, shape, size, type = 'button', variant, ...rest } = props;
+  const { children, isDisabled, onClick, shape, size, type = 'button', variant, ...rest } = props;
 
-    const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-        e.currentTarget.blur();
-        if (onClick) {
-            onClick(e);
-        }
-    };
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.currentTarget.blur();
+    if (onClick) {
+      onClick(e);
+    }
+  };
 
-    return (
-        <button
-            {...rest}
-            ref={ref}
-            disabled={isDisabled}
-            type={type}
-            className={joinClassNames(
-                'h-max w-max font-inherit child-svg:block',
-                getSizeStyle(size),
-                getVariantStyle(variant),
-                getShapeStyle(shape),
-            )}
-            onClick={handleClick}
-        >
-            {children}
-        </button>
-    );
+  return (
+    <button
+      {...rest}
+      ref={ref}
+      disabled={isDisabled}
+      type={type}
+      onClick={handleClick}
+      className={joinClassNames(
+        'h-max w-max font-inherit child-svg:block',
+        getSizeStyle(size),
+        getVariantStyle(variant),
+        getShapeStyle(shape),
+      )}
+    >
+      {children}
+    </button>
+  );
 });
 
 export default IconButton;

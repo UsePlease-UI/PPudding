@@ -1,2 +1,2 @@
-export type AlignType = 'top' | 'bottom';
-export type PositionType = 'start' | 'end';
+export type AlignType = 'bottom' | 'top';
+export type PositionType = 'end' | 'start';

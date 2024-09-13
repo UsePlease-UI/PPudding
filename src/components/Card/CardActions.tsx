@@ -3,9 +3,9 @@ import { ReactNode } from 'react';
 import CardText from './CardText';
 import { TextType } from './types';
 
-type CardActionsType = TextType & {
-    actions?: ReactNode;
-};
+type CardActionsType = {
+  actions?: ReactNode;
+} & TextType;
 
 /**
  *  [UI Component] Card Actions
@@ -15,10 +15,10 @@ type CardActionsType = TextType & {
  *  @returns JSX.Element
  */
 export default function CardActions({ actions, primaryText, secondaryText }: CardActionsType) {
-    return (
-        <div className={primaryText || secondaryText ? 'space-y-2.5' : ''}>
-            {(primaryText || secondaryText) && <CardText primaryText={primaryText} secondaryText={secondaryText} />}
-            {actions && <div className="px-3 py-2.25">{actions}</div>}
-        </div>
-    );
+  return (
+    <div className={primaryText || secondaryText ? 'space-y-2.5' : ''}>
+      {(primaryText || secondaryText) && <CardText primaryText={primaryText} secondaryText={secondaryText} />}
+      {actions && <div className="px-3 py-2.25">{actions}</div>}
+    </div>
+  );
 }

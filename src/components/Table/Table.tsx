@@ -2,9 +2,9 @@ import { ReactNode, TableHTMLAttributes } from 'react';
 
 type BaseType = TableHTMLAttributes<HTMLTableElement>;
 
-type TableType = BaseType & {
-    children: ReactNode;
-};
+type TableType = {
+  children: ReactNode;
+} & BaseType;
 
 /**
  *  [UI Component] Table Component
@@ -12,11 +12,11 @@ type TableType = BaseType & {
  *  @returns JSX.Element
  */
 export default function Table(props: TableType) {
-    const { children, ...rest } = props;
+  const { children, ...rest } = props;
 
-    return (
-        <table {...rest} className="size-full border border-primary-100 bg-white">
-            {children}
-        </table>
-    );
+  return (
+    <table {...rest} className="size-full border border-primary-100 bg-white">
+      {children}
+    </table>
+  );
 }

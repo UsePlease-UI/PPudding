@@ -6,147 +6,144 @@ import { v4 as uuid } from 'uuid';
 import { CALENDER_DUMMY_DATA } from './constants';
 
 type ScheduleListType = {
-    color: string;
-    description: string;
-    endDate: string;
-    idx: string;
-    isAllDay: boolean;
-    startDate: string;
-    title: string;
+  color: string;
+  description: string;
+  endDate: string;
+  idx: string;
+  isAllDay: boolean;
+  startDate: string;
+  title: string;
 };
 
 type CalenderActionType =
-    | { type: 'PREV_MONTH' }
-    | { type: 'NEXT_MONTH' }
-    | { payload: ScheduleListType; type: 'ADD_SCHEDULE' | 'UPDATE_SCHEDULE' }
-    | { idx: string; type: 'DELETE_SCHEDULE' };
+  | { idx: string; type: 'DELETE_SCHEDULE' }
+  | { payload: ScheduleListType; type: 'ADD_SCHEDULE' | 'UPDATE_SCHEDULE' }
+  | { type: 'NEXT_MONTH' }
+  | { type: 'PREV_MONTH' };
 
 export type CalenderContextType = {
-    date: number;
-    month: number;
-    scheduleList: ScheduleListType[];
-    today: dayjs.Dayjs;
-    year: number;
+  date: number;
+  month: number;
+  scheduleList: ScheduleListType[];
+  today: dayjs.Dayjs;
+  year: number;
 };
 
 export const CalenderContext = createContext<CalenderContextType | undefined>(undefined);
 export const DispatchContext = createContext<Dispatch<CalenderActionType> | undefined>(undefined);
 
 export const useCalender = () => {
-    const context = useContext(CalenderContext);
-    const calenderDispatch = useContext(DispatchContext);
+  const context = useContext(CalenderContext);
+  const calenderDispatch = useContext(DispatchContext);
 
-    if (!context) {
-        throw new Error('CalenderContext.Provider를 사용해주세요');
+  if (!context) {
+    throw new Error('CalenderContext.Provider를 사용해주세요');
+  }
+
+  if (!calenderDispatch) {
+    throw new Error('DispatchContext.Provider를 사용해주세요');
+  }
+
+  const { date, month, year } = context;
+
+  const getWeeks = useCallback(() => {
+    const firstDay = dayjs(`${year}-${month}-${date}`).startOf('month').locale('ko').get('day');
+    const lastDay = dayjs(`${year}-${month}`).daysInMonth();
+    const weeks = [];
+    const week = [];
+    const chunkSize = 7;
+
+    for (let i = 1; i <= lastDay; i++) {
+      week.push(String(i));
     }
 
-    if (!calenderDispatch) {
-        throw new Error('DispatchContext.Provider를 사용해주세요');
+    for (let i = 0; i < firstDay; i++) {
+      week.splice(0, 0, '');
     }
 
-    const { date, month, year } = context;
+    for (let i = 0; i < week.length; i += chunkSize) {
+      const newArr = week.slice(i, i + chunkSize);
+      if (newArr.length < chunkSize) {
+        const remainder = chunkSize - newArr.length;
 
-    const getWeeks = useCallback(() => {
-        const firstDay = dayjs(`${year}-${month}-${date}`).startOf('month').locale('ko').get('day');
-        const lastDay = dayjs(`${year}-${month}`).daysInMonth();
-        const weeks = [];
-        const week = [];
-        const chunkSize = 7;
-
-        for (let i = 1; i <= lastDay; i++) {
-            week.push(String(i));
+        for (let j = 0; j < remainder; j++) {
+          newArr.push('');
         }
+      }
 
-        for (let i = 0; i < firstDay; i++) {
-            week.splice(0, 0, '');
-        }
+      weeks.push(newArr);
+    }
 
-        for (let i = 0; i < week.length; i += chunkSize) {
-            const newArr = week.slice(i, i + chunkSize);
-            if (newArr.length < chunkSize) {
-                const remainder = chunkSize - newArr.length;
+    return weeks;
+  }, [month]);
 
-                for (let j = 0; j < remainder; j++) {
-                    newArr.push('');
-                }
-            }
-
-            weeks.push(newArr);
-        }
-
-        return weeks;
-    }, [month]);
-
-    return {
-        ...context,
-        getWeeks,
-        handleCalendar: calenderDispatch,
-    };
+  return {
+    ...context,
+    getWeeks,
+    handleCalendar: calenderDispatch,
+  };
 };
 
 const calenderReducer = (state: CalenderContextType, action: CalenderActionType) => {
-    let newState = null;
-    switch (action.type) {
-        case 'PREV_MONTH':
-            if (state.month === 1) {
-                newState = { ...state, month: 12, year: state.year - 1 };
-            } else {
-                newState = { ...state, month: state.month - 1 };
-            }
-            break;
-        case 'NEXT_MONTH':
-            if (state.month === 12) {
-                newState = { ...state, month: 1, year: state.year + 1 };
-            } else {
-                newState = { ...state, month: state.month + 1 };
-            }
-            break;
-        case 'ADD_SCHEDULE':
-            newState = {
-                ...state,
-                scheduleList: [...state.scheduleList, { ...action.payload, idx: uuid() }],
-            };
-            break;
-        case 'UPDATE_SCHEDULE':
-            newState = {
-                ...state,
-                scheduleList: state.scheduleList.map((el) => {
-                    if (el.idx === action.payload.idx) {
-                        return { ...el, ...action.payload };
-                    }
-                    return el;
-                }),
-            };
-            break;
-        case 'DELETE_SCHEDULE':
-            newState = {
-                ...state,
-                scheduleList: state.scheduleList.filter((el: ScheduleListType) => el.idx !== action.idx),
-            };
-            break;
-        default:
-            throw new Error('Unhandled action type');
-    }
-    return newState;
+  let newState = null;
+  switch (action.type) {
+    case 'PREV_MONTH':
+      if (state.month === 1) {
+        newState = { ...state, month: 12, year: state.year - 1 };
+      } else {
+        newState = { ...state, month: state.month - 1 };
+      }
+      break;
+    case 'NEXT_MONTH':
+      if (state.month === 12) {
+        newState = { ...state, month: 1, year: state.year + 1 };
+      } else {
+        newState = { ...state, month: state.month + 1 };
+      }
+      break;
+    case 'ADD_SCHEDULE':
+      newState = {
+        ...state,
+        scheduleList: [...state.scheduleList, { ...action.payload, idx: uuid() }],
+      };
+      break;
+    case 'UPDATE_SCHEDULE':
+      newState = {
+        ...state,
+        scheduleList: state.scheduleList.map((el) => {
+          if (el.idx === action.payload.idx) {
+            return { ...el, ...action.payload };
+          }
+          return el;
+        }),
+      };
+      break;
+    case 'DELETE_SCHEDULE':
+      newState = {
+        ...state,
+        scheduleList: state.scheduleList.filter((el: ScheduleListType) => el.idx !== action.idx),
+      };
+      break;
+    default:
+      throw new Error('Unhandled action type');
+  }
+  return newState;
 };
 
 export function CalenderProvider({ children }: { children: ReactNode }) {
-    const today = dayjs();
-    const date = today.get('date');
-    const year = today.get('year');
-    const month = today.get('month') + 1;
-    const scheduleList = CALENDER_DUMMY_DATA;
+  const today = dayjs();
+  const date = today.get('date');
+  const year = today.get('year');
+  const month = today.get('month') + 1;
+  const scheduleList = CALENDER_DUMMY_DATA;
 
-    const context = useMemo(
-        () => ({ today, date, year, month, scheduleList }),
-        [today, date, year, month, scheduleList],
-    );
+  const context = useMemo(() => ({ today, date, year, month, scheduleList }), [today, date, year, month, scheduleList]);
 
-    const [state, dispatch] = useReducer<Reducer<CalenderContextType, CalenderActionType>>(calenderReducer, context);
+  const [state, dispatch] = useReducer<Reducer<CalenderContextType, CalenderActionType>>(calenderReducer, context);
 
-    return (
-        <DispatchContext.Provider value={dispatch}>
-            <CalenderContext.Provider value={state}>{children}</CalenderContext.Provider>
-        </DispatchContext.Provider>
-    );
+  return (
+    <DispatchContext.Provider value={dispatch}>
+      <CalenderContext.Provider value={state}>{children}</CalenderContext.Provider>
+    </DispatchContext.Provider>
+  );
 }

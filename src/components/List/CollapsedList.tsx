@@ -2,12 +2,12 @@ import { HTMLAttributes, ReactNode } from 'react';
 
 import { joinClassNames } from '@utils/format';
 
-type CollapsedListType = Omit<HTMLAttributes<HTMLUListElement>, 'className'> & {
-    children: ReactNode;
-    hasDivider?: boolean;
-    isDense?: boolean;
-    maxWidth?: number;
-};
+type CollapsedListType = {
+  children: ReactNode;
+  hasDivider?: boolean;
+  isDense?: boolean;
+  maxWidth?: number;
+} & Omit<HTMLAttributes<HTMLUListElement>, 'className'>;
 
 /**
  *  [UI Component] Collapsed List
@@ -18,19 +18,19 @@ type CollapsedListType = Omit<HTMLAttributes<HTMLUListElement>, 'className'> & {
  *  @returns JSX.Element
  */
 export default function CollapsedList({ children, hasDivider, isDense, maxWidth, ...rest }: CollapsedListType) {
-    return (
-        <li>
-            <ul
-                {...rest}
-                className={joinClassNames(
-                    'w-full *:px-4 *:py-0',
-                    hasDivider && 'divide-y divide-gray-100',
-                    isDense && '*:px-8',
-                    maxWidth && { maxWidth },
-                )}
-            >
-                {children}
-            </ul>
-        </li>
-    );
+  return (
+    <li>
+      <ul
+        {...rest}
+        className={joinClassNames(
+          'w-full *:px-4 *:py-0',
+          hasDivider && 'divide-y divide-gray-100',
+          isDense && '*:px-8',
+          maxWidth && { maxWidth },
+        )}
+      >
+        {children}
+      </ul>
+    </li>
+  );
 }

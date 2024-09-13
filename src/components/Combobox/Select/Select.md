@@ -2,14 +2,14 @@
 
 ## Anatomy
 
--   Select
+- Select
 
 ## States
 
--   Hovered
--   Focused
--   Disabled
--   Read Only
+- Hovered
+- Focused
+- Disabled
+- Read Only
 
 ## Accessibility
 

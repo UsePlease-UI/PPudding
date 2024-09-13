@@ -3,10 +3,10 @@ import { MouseEvent, ReactNode } from 'react';
 import { AccordionProvider } from '@components/useAccordion';
 
 type AccordionType = {
-    children: ReactNode;
-    isDisabled?: boolean;
-    isExpanded?: boolean;
-    onChange?: (event: MouseEvent<HTMLButtonElement>, isExpanded: boolean) => void;
+  children: ReactNode;
+  isDisabled?: boolean;
+  isExpanded?: boolean;
+  onChange?: (event: MouseEvent<HTMLButtonElement>, isExpanded: boolean) => void;
 };
 
 /**
@@ -18,11 +18,11 @@ type AccordionType = {
  *  @returns JSX.Element
  */
 export default function Accordion(props: AccordionType) {
-    const { children, ...rest } = props;
+  const { children, ...rest } = props;
 
-    return (
-        <AccordionProvider {...rest}>
-            <div className="w-full">{children}</div>
-        </AccordionProvider>
-    );
+  return (
+    <AccordionProvider {...rest}>
+      <div className="w-full">{children}</div>
+    </AccordionProvider>
+  );
 }

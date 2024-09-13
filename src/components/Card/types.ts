@@ -1,6 +1,6 @@
 import { HTMLAttributes, ReactNode } from 'react';
 
-export type TextType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
-    primaryText?: ReactNode;
-    secondaryText?: ReactNode;
-};
+export type TextType = {
+  primaryText?: ReactNode;
+  secondaryText?: ReactNode;
+} & Omit<HTMLAttributes<HTMLDivElement>, 'className'>;

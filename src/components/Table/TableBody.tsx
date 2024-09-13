@@ -2,9 +2,9 @@ import { HTMLAttributes, ReactNode } from 'react';
 
 type BaseType = HTMLAttributes<HTMLTableSectionElement>;
 
-type TableBodyType = BaseType & {
-    children: ReactNode;
-};
+type TableBodyType = {
+  children: ReactNode;
+} & BaseType;
 
 /**
  *  [UI Component] Table Body Component
@@ -12,7 +12,7 @@ type TableBodyType = BaseType & {
  *  @returns JSX.Element
  */
 export default function TableBody(props: TableBodyType) {
-    const { children } = props;
+  const { children } = props;
 
-    return <tbody>{children}</tbody>;
+  return <tbody>{children}</tbody>;
 }

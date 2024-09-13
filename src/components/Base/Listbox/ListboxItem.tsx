@@ -5,10 +5,10 @@ import { joinClassNames } from '@utils/format';
 import { listStyle } from './styles';
 
 type ListboxItemType = {
-    currentValue: string | number;
-    label: ReactNode;
-    value: string | number;
-    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+  currentValue: number | string;
+  label: ReactNode;
+  value: number | string;
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 };
 
 /**
@@ -20,18 +20,18 @@ type ListboxItemType = {
  *  @returns JSX.Element
  */
 const ListboxItem = ({ currentValue, label, onClick, value }: ListboxItemType) => {
-    return (
-        <li aria-selected={currentValue === value} className={listStyle.listItem} role="option">
-            <button
-                className={joinClassNames(listStyle.listItemButton, currentValue === value && listStyle.selected)}
-                type="button"
-                value={value}
-                onClick={onClick}
-            >
-                {label}
-            </button>
-        </li>
-    );
+  return (
+    <li aria-selected={currentValue === value} className={listStyle.listItem} role="option">
+      <button
+        className={joinClassNames(listStyle.listItemButton, currentValue === value && listStyle.selected)}
+        type="button"
+        value={value}
+        onClick={onClick}
+      >
+        {label}
+      </button>
+    </li>
+  );
 };
 
 export default ListboxItem;

@@ -2,10 +2,10 @@
 
 ## Anatomy
 
--   Tab
--   Tab Item
--   Tab Panel
--   Tab Context API
+- Tab
+- Tab Item
+- Tab Panel
+- Tab Context API
 
 ## Accessibility
 

@@ -2,23 +2,23 @@
 
 ## Anatomy
 
--   Toggle Button
--   Toggle Button Group
+- Toggle Button
+- Toggle Button Group
 
 ## Variants
 
--   Icon
--   Text
+- Icon
+- Text
 
 ## States
 
--   Hovered
--   Focused
--   Disabled
+- Hovered
+- Focused
+- Disabled
 
 ## Size
 
--   Mini
--   Small
--   Medium
--   Large
+- Mini
+- Small
+- Medium
+- Large

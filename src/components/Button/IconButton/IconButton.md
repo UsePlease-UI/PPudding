@@ -2,29 +2,29 @@
 
 ## Anatomy
 
--   Icon Button
+- Icon Button
 
 ## States
 
--   Hovered
--   Focused
--   Disabled
+- Hovered
+- Focused
+- Disabled
 
 ## Variants
 
--   Outlined
--   Contained (filled)
--   Text
+- Outlined
+- Contained (filled)
+- Text
 
 ## Size
 
--   Mini (30 x 30)
--   Small (38 x 38)
--   Medium (42 x 42)
--   Large (46 x 46)
+- Mini (30 x 30)
+- Small (38 x 38)
+- Medium (42 x 42)
+- Large (46 x 46)
 
 ## Shape
 
--   Rounded
--   Square
--   Circular
+- Rounded
+- Square
+- Circular

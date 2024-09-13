@@ -10,12 +10,12 @@ import ListMetadata from './ListMetadata';
 
 export * from './types';
 export default Object.assign(List, {
-    Collapse,
-    CollapsedList,
-    ActionItem: ListActionItem,
-    Item: ListItem,
-    ItemButton: ListItemButton,
-    ItemIcon: ListItemIcon,
-    ItemText: ListItemText,
-    Metadata: ListMetadata,
+  Collapse,
+  CollapsedList,
+  ActionItem: ListActionItem,
+  Item: ListItem,
+  ItemButton: ListItemButton,
+  ItemIcon: ListItemIcon,
+  ItemText: ListItemText,
+  Metadata: ListMetadata,
 });

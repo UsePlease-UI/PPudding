@@ -10,16 +10,16 @@ const pastelColors = Array.from({ length: 12 }, (_, idx) => `${idx + 1}`.padStar
 // https://github.com/dcastil/tailwind-merge/blob/v2.2.2/docs/recipes.md
 // https://github.com/dcastil/tailwind-merge/issues/368
 const twMerge = extendTailwindMerge({
-    extend: {
-        classGroups: {
-            'font-size': [...rem1000],
-            'text-color': [...colors.map((val) => `primary-${val}`), ...pastelColors.map((val) => `pastel-${val}`)],
-            'border-color': [...colors.map((val) => `primary-${val}`), ...pastelColors.map((val) => `pastel-${val}`)],
-            'bg-color': [...colors.map((val) => `primary-${val}`), ...pastelColors.map((val) => `pastel-${val}`)],
-        },
+  extend: {
+    classGroups: {
+      'font-size': [...rem1000],
+      'text-color': [...colors.map((val) => `primary-${val}`), ...pastelColors.map((val) => `pastel-${val}`)],
+      'border-color': [...colors.map((val) => `primary-${val}`), ...pastelColors.map((val) => `pastel-${val}`)],
+      'bg-color': [...colors.map((val) => `primary-${val}`), ...pastelColors.map((val) => `pastel-${val}`)],
     },
+  },
 });
 
 export const joinClassNames = (...inputs: ClassValue[]) => {
-    return twMerge(clsx(...inputs));
+  return twMerge(clsx(...inputs));
 };

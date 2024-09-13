@@ -5,16 +5,16 @@ import { CommonListDataType } from '@components/types';
 import ListboxItem from './ListboxItem';
 import { listStyle } from './styles';
 
-type BaseType = Omit<HTMLAttributes<HTMLUListElement>, 'onClick' | 'className'>;
+type BaseType = Omit<HTMLAttributes<HTMLUListElement>, 'className' | 'onClick'>;
 
-type ListboxType = BaseType & {
-    id: string;
-    options: CommonListDataType[];
-    value: string | number;
-    labelId?: string;
-    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
-    renderItem?: (option: CommonListDataType) => ReactNode;
-};
+type ListboxType = {
+  id: string;
+  options: CommonListDataType[];
+  value: number | string;
+  labelId?: string;
+  renderItem?: (option: CommonListDataType) => ReactNode;
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+} & BaseType;
 
 /**
  *  [Base Component] Listbox Component
@@ -27,32 +27,24 @@ type ListboxType = BaseType & {
  *  @returns JSX.Element
  */
 const Listbox = forwardRef<HTMLUListElement, ListboxType>(function Listbox(props, ref) {
-    const { id, labelId, onClick, options, renderItem, value, ...rest } = props;
+  const { id, labelId, onClick, options, renderItem, value, ...rest } = props;
 
-    return (
-        <ul
-            {...rest}
-            ref={ref}
-            aria-labelledby={labelId}
-            className={listStyle.list}
-            id={id}
-            role="listbox"
-            tabIndex={-1}
-        >
-            {options.map(
-                (option) =>
-                    renderItem?.(option) || (
-                        <ListboxItem
-                            key={`${option.label}-${option.value}`}
-                            currentValue={value}
-                            label={option.label}
-                            value={option.value}
-                            onClick={onClick}
-                        />
-                    ),
-            )}
-        </ul>
-    );
+  return (
+    <ul {...rest} ref={ref} aria-labelledby={labelId} className={listStyle.list} id={id} role="listbox" tabIndex={-1}>
+      {options.map(
+        (option) =>
+          renderItem?.(option) || (
+            <ListboxItem
+              key={`${option.label}-${option.value}`}
+              currentValue={value}
+              label={option.label}
+              value={option.value}
+              onClick={onClick}
+            />
+          ),
+      )}
+    </ul>
+  );
 });
 
 export default Listbox;

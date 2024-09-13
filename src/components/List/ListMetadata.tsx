@@ -4,10 +4,10 @@ import { joinClassNames } from '@utils/format';
 
 import { PositionType } from './types';
 
-type ListMetadataType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
-    children: ReactNode;
-    position?: PositionType;
-};
+type ListMetadataType = {
+  children: ReactNode;
+  position?: PositionType;
+} & Omit<HTMLAttributes<HTMLDivElement>, 'className'>;
 
 /**
  *  [UI Component] List Metadata
@@ -16,16 +16,16 @@ type ListMetadataType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
  *  @returns JSX.Element
  */
 export default function ListMetadata({ children, position = 'end', ...rest }: ListMetadataType) {
-    return (
-        <div
-            {...rest}
-            className={joinClassNames(
-                'flex items-center justify-center',
-                position === 'start' && 'mr-7',
-                position === 'end' && 'ml-7',
-            )}
-        >
-            {children}
-        </div>
-    );
+  return (
+    <div
+      {...rest}
+      className={joinClassNames(
+        'flex items-center justify-center',
+        position === 'start' && 'mr-7',
+        position === 'end' && 'ml-7',
+      )}
+    >
+      {children}
+    </div>
+  );
 }

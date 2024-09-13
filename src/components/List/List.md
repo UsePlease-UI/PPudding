@@ -4,42 +4,42 @@
 
 ```jsx
 <List hasDivider>
-    <List.Item isDense={false}>
-        <List.ItemText primaryText="Hello" secondaryText="This is a list text" />
-    </List.Item>
-    <List.Item isDense={false}>
-        <List.ItemText primaryText="Hi" />
-    </List.Item>
+  <List.Item isDense={false}>
+    <List.ItemText primaryText="Hello" secondaryText="This is a list text" />
+  </List.Item>
+  <List.Item isDense={false}>
+    <List.ItemText primaryText="Hi" />
+  </List.Item>
 </List>
 ```
 
 ```jsx
 <List hasDivider>
-    <List.ItemButton isDense onClick={() => console.log('hello')}>
-        <List.ItemIcon>
-            <PersonIcon />
-        </List.ItemIcon>
-        <List.ItemText primaryText="User Number 1" />
-    </List.ItemButton>
-    <List.ItemButton isDense onClick={() => console.log('hello')}>
-        <List.ItemIcon>
-            <PersonIcon />
-        </List.ItemIcon>
-        <List.ItemText primaryText="User Number 2" />
-    </List.ItemButton>
+  <List.ItemButton isDense onClick={() => console.log('hello')}>
+    <List.ItemIcon>
+      <PersonIcon />
+    </List.ItemIcon>
+    <List.ItemText primaryText="User Number 1" />
+  </List.ItemButton>
+  <List.ItemButton isDense onClick={() => console.log('hello')}>
+    <List.ItemIcon>
+      <PersonIcon />
+    </List.ItemIcon>
+    <List.ItemText primaryText="User Number 2" />
+  </List.ItemButton>
 </List>
 ```
 
 ```jsx
 <List hasDivider>
-    <List.ItemButton isDense onClick={() => console.log('hello')}>
-        <List.ItemText primaryText="List Item" />
-        <List.Metadata position="end">01</List.Metadata>
-    </List.ItemButton>
-    <List.ItemButton isDense onClick={() => console.log('hello')}>
-        <List.ItemText primaryText="List Item" />
-        <List.Metadata position="end">02</List.Metadata>
-    </List.ItemButton>
+  <List.ItemButton isDense onClick={() => console.log('hello')}>
+    <List.ItemText primaryText="List Item" />
+    <List.Metadata position="end">01</List.Metadata>
+  </List.ItemButton>
+  <List.ItemButton isDense onClick={() => console.log('hello')}>
+    <List.ItemText primaryText="List Item" />
+    <List.Metadata position="end">02</List.Metadata>
+  </List.ItemButton>
 </List>
 ```
 
@@ -82,29 +82,29 @@ const [open, setOpen] = useState<Record<string, boolean>>({
 
 ## Anatomy
 
--   [x] List
--   [x] List Item
--   [x] List Item Text
--   [x] List Item Icon (Optional)
--   [x] Action Item (Optional)
--   [x] Metadata (Optional)
+- [x] List
+- [x] List Item
+- [x] List Item Text
+- [x] List Item Icon (Optional)
+- [x] Action Item (Optional)
+- [x] Metadata (Optional)
 
 ## Extra
 
--   [x] Collapse -> Expandable List Container
--   [x] Collapsed List -> Expandable List
--   [x] List Item Button -> Clickable List Item
+- [x] Collapse -> Expandable List Container
+- [x] Collapsed List -> Expandable List
+- [x] List Item Button -> Clickable List Item
 
 ## Variants (List Types)
 
--   [x] Standard List
--   [x] Selection Controls List (Radio/Checkbox List)
--   [x] Expandable List
+- [x] Standard List
+- [x] Selection Controls List (Radio/Checkbox List)
+- [x] Expandable List
 
 ## States
 
--   [x] Enabled (default)
--   [x] Hover (:hover)
--   [x] Focused (:focus)
--   [x] Pressed (:active)
--   [x] Disabled (:disabled)
+- [x] Enabled (default)
+- [x] Hover (:hover)
+- [x] Focused (:focus)
+- [x] Pressed (:active)
+- [x] Disabled (:disabled)

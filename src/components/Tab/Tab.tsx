@@ -3,9 +3,9 @@ import { Children, cloneElement, ReactElement, ReactNode } from 'react';
 import { TabProvider } from '@components/useTab';
 
 type TabType = {
-    children: ReactNode;
-    onChange: (newValue: number) => void;
-    value: number;
+  children: ReactNode;
+  value: number;
+  onChange: (newValue: number) => void;
 };
 
 /**
@@ -16,16 +16,16 @@ type TabType = {
  *  @returns JSX.Element
  */
 export default function Tab(props: TabType) {
-    const { children, onChange, value, ...rest } = props;
+  const { children, onChange, value, ...rest } = props;
 
-    return (
-        <TabProvider value={value} onChange={onChange}>
-            <div {...rest} className="w-full bg-primary-600" role="tablist">
-                <div className="flex size-full items-center justify-evenly">
-                    {/* https://fe-developers.kakaoent.com/2021/211022-react-children-tip/ */}
-                    {Children.toArray(children).map((child) => cloneElement(child as ReactElement, { onChange }))}
-                </div>
-            </div>
-        </TabProvider>
-    );
+  return (
+    <TabProvider value={value} onChange={onChange}>
+      <div {...rest} className="w-full bg-primary-600" role="tablist">
+        <div className="flex size-full items-center justify-evenly">
+          {/* https://fe-developers.kakaoent.com/2021/211022-react-children-tip/ */}
+          {Children.toArray(children).map((child) => cloneElement(child as ReactElement, { onChange }))}
+        </div>
+      </div>
+    </TabProvider>
+  );
 }

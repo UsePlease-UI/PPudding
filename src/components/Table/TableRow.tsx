@@ -2,9 +2,9 @@ import { HTMLAttributes, ReactNode } from 'react';
 
 type BaseType = HTMLAttributes<HTMLTableRowElement>;
 
-type TableRowType = BaseType & {
-    children: ReactNode;
-};
+type TableRowType = {
+  children: ReactNode;
+} & BaseType;
 
 /**
  *  [UI Component] Table Row Component
@@ -12,7 +12,7 @@ type TableRowType = BaseType & {
  *  @returns JSX.Element
  */
 export default function TableRow(props: TableRowType) {
-    const { children } = props;
+  const { children } = props;
 
-    return <tr className="border-b border-b-primary-100 last:border-b-0 hover:bg-primary-50">{children}</tr>;
+  return <tr className="border-b border-b-primary-100 last:border-b-0 hover:bg-primary-50">{children}</tr>;
 }

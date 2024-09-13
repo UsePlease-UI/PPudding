@@ -8,22 +8,22 @@ const FormInputExample = lazy(() => import('./FormInputExample'));
 const UtilitiesExample = lazy(() => import('./UtilitiesExample'));
 
 export function getComponents(type?: string) {
-    switch (type) {
-        case 'button':
-            return <ButtonExample />;
-        case 'combobox':
-            return <ComboboxExample />;
-        case 'data display':
-            return <DataDisplayExample />;
-        case 'feedback':
-            return <FeedbackExample />;
-        case 'form input':
-            return <FormInputExample />;
-        case 'utilities':
-            return <UtilitiesExample />;
-        default:
-            break;
-    }
+  switch (type) {
+    case 'button':
+      return <ButtonExample />;
+    case 'combobox':
+      return <ComboboxExample />;
+    case 'data display':
+      return <DataDisplayExample />;
+    case 'feedback':
+      return <FeedbackExample />;
+    case 'form input':
+      return <FormInputExample />;
+    case 'utilities':
+      return <UtilitiesExample />;
+    default:
+      break;
+  }
 
-    return null;
+  return null;
 }
