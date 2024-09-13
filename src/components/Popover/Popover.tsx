@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 
 type PopoverType = {
-    isOpen: boolean;
     children: ReactNode;
+    isOpen: boolean;
 };
 
 /**

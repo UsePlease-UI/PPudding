@@ -1,4 +1,4 @@
-import { useState, useCallback, ChangeEvent } from 'react';
+import { ChangeEvent, useCallback, useState } from 'react';
 
 import debounce from 'lodash.debounce';
 
@@ -21,7 +21,7 @@ export default function KAutocompleteExample() {
                 setListArr(K_AUTOCOMPLETE_LIST);
             }
         }, 100),
-        []
+        [],
     );
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -37,9 +37,9 @@ export default function KAutocompleteExample() {
                 <strong className="block w-full truncate">{selectedItem?.label}</strong>
             </p>
             <Autocomplete
+                inputValue={inputValue}
                 label="Autocomplete Example"
                 listArr={listArr}
-                inputValue={inputValue}
                 onChange={handleChange}
                 onSelect={(e) => setSelectedItem(e as CommonListDataType)}
             />

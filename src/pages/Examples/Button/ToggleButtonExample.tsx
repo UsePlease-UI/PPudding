@@ -15,32 +15,32 @@ export default function ToggleButtonExample() {
             <div className={customStyles.playgroundControlContainer}>
                 <RadioControls
                     name="toggle button size"
+                    options={BUTTON_SIZE}
                     value={sizeType}
                     onChange={setSizeType}
-                    options={BUTTON_SIZE}
                 />
             </div>
             <div className={customStyles.playgroundDisplayContainer}>
                 <ToggleButtonGroup value={fruits} onChange={(e) => setFruits(e.currentTarget.value)}>
                     <ToggleButton
-                        size={sizeType as SizeType}
                         name="fruits"
+                        size={sizeType as SizeType}
                         value="apple"
                         onChange={(e) => setFruits(e.currentTarget.value)}
                     >
                         Apple
                     </ToggleButton>
                     <ToggleButton
-                        size={sizeType as SizeType}
                         name="fruits"
+                        size={sizeType as SizeType}
                         value="banana"
                         onChange={(e) => setFruits(e.currentTarget.value)}
                     >
                         Banana
                     </ToggleButton>
                     <ToggleButton
-                        size={sizeType as SizeType}
                         name="fruits"
+                        size={sizeType as SizeType}
                         value="orange"
                         onChange={(e) => setFruits(e.currentTarget.value)}
                     >

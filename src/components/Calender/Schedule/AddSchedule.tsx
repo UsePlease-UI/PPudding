@@ -16,18 +16,18 @@ import { joinClassNames } from '@utils/format';
 import { CALENDER_LABEL_COLOR, INITIAL_CONTENTS } from '../constants';
 
 type AddScheduleType = {
-    onClose: () => void;
     onCancel: (e: MouseEvent<HTMLButtonElement>) => void;
+    onClose: () => void;
 };
 
-export default function AddSchedule({ onClose, onCancel }: AddScheduleType) {
+export default function AddSchedule({ onCancel, onClose }: AddScheduleType) {
     const { isTablet } = useMobile();
     const { onAlert } = useAlert();
 
     const { handleCalendar } = useCalender();
-    const { isAllDay, handleDayChange, addContents, color, handleColorChange, handleContents } = useSchedule(
+    const { addContents, color, handleColorChange, handleContents, handleDayChange, isAllDay } = useSchedule(
         CALENDER_LABEL_COLOR[0].value,
-        INITIAL_CONTENTS
+        INITIAL_CONTENTS,
     );
 
     const handleAddEvent = (e: FormEvent<HTMLFormElement>) => {
@@ -42,60 +42,60 @@ export default function AddSchedule({ onClose, onCancel }: AddScheduleType) {
 
         handleCalendar({
             type: 'ADD_SCHEDULE',
-            payload: { ...addContents, idx: uuid(), isAllDay, color }
+            payload: { ...addContents, idx: uuid(), isAllDay, color },
         });
         onClose();
     };
 
     return (
         <form
-            onSubmit={handleAddEvent}
             className={joinClassNames('h-full w-75 overflow-y-auto bg-white p-5', isTablet && 'h-[50vh] w-full')}
+            onSubmit={handleAddEvent}
         >
             <div className="flex w-full flex-col gap-5">
                 <TextField
-                    labelText="시작일"
-                    type="date"
-                    name="startDate"
                     isFullWidth
+                    labelText="시작일"
+                    name="startDate"
+                    type="date"
                     value={addContents.startDate}
                     onChange={(e) => handleContents('startDate', e.target.value)}
                 />
                 <TextField
-                    labelText="종료일"
-                    type="date"
-                    name="endDate"
                     isFullWidth
+                    labelText="종료일"
+                    name="endDate"
+                    type="date"
                     value={addContents.endDate}
                     onChange={(e) => handleContents('endDate', e.target.value)}
                 />
-                <Checkbox size="medium" label="종일" value="isAllDay" checked={isAllDay} onChange={handleDayChange} />
+                <Checkbox checked={isAllDay} label="종일" size="medium" value="isAllDay" onChange={handleDayChange} />
                 <Select
+                    label={CALENDER_LABEL_COLOR.filter((val) => val.value === color)?.[0]?.label}
                     labelText="라벨 색상"
                     name="label-color"
-                    value={color}
-                    label={CALENDER_LABEL_COLOR.filter((val) => val.value === color)?.[0]?.label}
                     options={CALENDER_LABEL_COLOR}
+                    value={color}
                     onChange={(e) => handleColorChange(e.currentTarget.value)}
                 />
                 <TextField
-                    labelText="일정 제목"
+                    isFullWidth
+                    required
                     helperText="10글자 이내로 입력해주세요."
+                    labelText="일정 제목"
+                    maxLength={10}
                     name="title"
                     value={addContents.title}
-                    required
-                    isFullWidth
-                    maxLength={10}
                     onChange={(e) => handleContents('title', e.target.value)}
                 />
                 <TextField
-                    labelText="상세 내용"
+                    isFullWidth
+                    required
                     helperText="20글자 이내로 입력해주세요."
+                    labelText="상세 내용"
+                    maxLength={20}
                     name="description"
                     value={addContents.description}
-                    required
-                    isFullWidth
-                    maxLength={20}
                     onChange={(e) => handleContents('description', e.target.value)}
                 />
             </div>
@@ -103,7 +103,7 @@ export default function AddSchedule({ onClose, onCancel }: AddScheduleType) {
                 <Button size="small" variant="outlined" onClick={onCancel}>
                     취소
                 </Button>
-                <Button type="submit" size="small" variant="contained">
+                <Button size="small" type="submit" variant="contained">
                     추가
                 </Button>
             </div>

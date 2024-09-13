@@ -7,12 +7,12 @@ export default function TextFieldExample() {
 
     return (
         <TextField
-            labelText="닉네임"
-            helperText="10자까지 입력할 수 있습니다."
-            name="name"
             isFullWidth
-            value={name}
+            helperText="10자까지 입력할 수 있습니다."
+            labelText="닉네임"
             maxLength={10}
+            name="name"
+            value={name}
             onChange={(e) => setName(e.currentTarget.value)}
         />
     );

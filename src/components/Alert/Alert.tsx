@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode, cloneElement, useEffect, useMemo } from 'react';
+import { cloneElement, ReactElement, ReactNode, useEffect, useMemo } from 'react';
 
 import { DismissFilled } from '@fluentui/react-icons';
 
@@ -23,7 +23,7 @@ type AlertType = {
  *  @param options [optional]
  *  @returns JSX.Element
  */
-export default function Alert({ message, options, icon, onClose }: AlertType) {
+export default function Alert({ icon, message, onClose, options }: AlertType) {
     const animationTime = useMemo(() => {
         let total = 4.5;
         if (options?.delay) {
@@ -40,11 +40,11 @@ export default function Alert({ message, options, icon, onClose }: AlertType) {
     return (
         <div
             role="alert"
+            style={{ animationDelay: options?.delay ? `${animationTime}s` : '4.5s' }}
             className={joinClassNames(
                 'flex min-h-12 w-max animate-fadeInOut items-center justify-between whitespace-pre-wrap break-all rounded-xl px-3 py-2.25',
-                getVariantStyle(options?.variant)
+                getVariantStyle(options?.variant),
             )}
-            style={{ animationDelay: options?.delay ? `${animationTime}s` : '4.5s' }}
         >
             <p className="pr-2.5 text-16 font-medium leading-20 text-inherit">{message}</p>
             {(options?.canDismiss === undefined || options?.canDismiss === true) && (
@@ -52,7 +52,7 @@ export default function Alert({ message, options, icon, onClose }: AlertType) {
                     <div
                         className={joinClassNames(
                             'mx-5 h-3 w-px',
-                            options?.variant === 'warning' ? 'bg-black' : 'bg-white'
+                            options?.variant === 'warning' ? 'bg-black' : 'bg-white',
                         )}
                     />
                     <button
@@ -61,7 +61,7 @@ export default function Alert({ message, options, icon, onClose }: AlertType) {
                         className={joinClassNames(
                             'rounded-full bg-transparent text-inherit',
                             options?.variant === 'warning' &&
-                                'hover:border-black focus:border-black active:border-black'
+                                'hover:border-black focus:border-black active:border-black',
                         )}
                         onClick={(e) => {
                             e.currentTarget.blur();
@@ -70,10 +70,10 @@ export default function Alert({ message, options, icon, onClose }: AlertType) {
                     >
                         {icon ? (
                             cloneElement(icon as ReactElement, {
-                                className: 'stroke-2 text-inherit !block w-4.5 h-4.5'
+                                className: joinClassNames('!block h-4.5 w-4.5 stroke-2 text-inherit'),
                             })
                         ) : (
-                            <DismissFilled className="!block h-4.5 w-4.5 stroke-2 text-inherit" />
+                            <DismissFilled className="!block size-4.5 stroke-2 text-inherit" />
                         )}
                     </button>
                 </div>

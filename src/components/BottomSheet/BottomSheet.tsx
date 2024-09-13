@@ -18,7 +18,7 @@ type BottomSheetType = BottomSheetContentsType & {
  *  @param onClose Close Event Handler
  *  @returns JSX.Element
  */
-export default function BottomSheet({ canClickOutside, isOpen, onClose, children }: BottomSheetType) {
+export default function BottomSheet({ canClickOutside, children, isOpen, onClose }: BottomSheetType) {
     const ref = useRef<HTMLDivElement>(null);
 
     return canClickOutside ? (
@@ -27,7 +27,7 @@ export default function BottomSheet({ canClickOutside, isOpen, onClose, children
                 role="presentation"
                 className={joinClassNames(
                     'fixed bottom-0 left-0 right-0 top-0 z-100 bg-black/10',
-                    !isOpen && 'sr-only'
+                    !isOpen && 'sr-only',
                 )}
             />
             <BottomSheetContents ref={ref} isOpen={isOpen} onClose={onClose}>

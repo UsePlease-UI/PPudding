@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, ReactNode, forwardRef, useId } from 'react';
+import { forwardRef, InputHTMLAttributes, ReactNode, useId } from 'react';
 
 import FormControl from '@components/Base/FormControl';
 
@@ -7,12 +7,12 @@ import { joinClassNames } from '@utils/format';
 type BaseType = Omit<InputHTMLAttributes<HTMLInputElement>, 'className'>;
 
 type TextFieldType = BaseType & {
-    isError?: boolean;
-    isReadOnly?: boolean;
-    isDisabled?: boolean;
-    isFullWidth?: boolean;
-    labelText?: ReactNode;
     helperText?: ReactNode;
+    isDisabled?: boolean;
+    isError?: boolean;
+    isFullWidth?: boolean;
+    isReadOnly?: boolean;
+    labelText?: ReactNode;
 };
 
 /**
@@ -23,29 +23,35 @@ type TextFieldType = BaseType & {
  *  @returns JSX.Element
  */
 const TextField = forwardRef<HTMLInputElement, TextFieldType>(function TextField(
-    { type = 'text', isError, isReadOnly, isDisabled, isFullWidth, labelText, helperText, ...props },
-    ref
+    { helperText, isDisabled, isError, isFullWidth, isReadOnly, labelText, type = 'text', ...props },
+    ref,
 ) {
     const labelId = useId();
     const helperTextId = useId();
 
     return (
         <FormControl
-            id={props.id || labelId}
-            helperTextId={props['aria-describedby'] || helperTextId}
             helperText={helperText}
+            helperTextId={props['aria-describedby'] || helperTextId}
+            id={props.id || labelId}
             labelText={labelText}
         >
             <input
                 {...props}
-                aria-label={!labelText ? 'outlined-text-input' : undefined}
-                aria-describedby={helperText ? props['aria-describedby'] || helperTextId : undefined}
-                id={props.id || labelId}
-                autoComplete={props.autoComplete || 'new-password'}
                 ref={ref}
-                type={type}
+                aria-describedby={helperText ? props['aria-describedby'] || helperTextId : undefined}
+                aria-label={!labelText ? 'outlined-text-input' : undefined}
+                autoComplete={props.autoComplete || 'new-password'}
                 disabled={isDisabled}
+                id={props.id || labelId}
                 readOnly={isReadOnly}
+                type={type}
+                className={joinClassNames(
+                    'h-10 truncate rounded border border-gray-100 px-3 py-2.5 text-14 font-normal leading-normal tracking-normal text-gray-950 placeholder:text-gray-400 hover:border-primary-600 focus:border-primary-700 focus:bg-primary-100 disabled:pointer-events-none disabled:border-gray-300 disabled:bg-gray-300 disabled:text-gray-950 under-tablet:min-w-0',
+                    isFullWidth ? 'w-full min-w-0' : 'min-w-80',
+                    isReadOnly && 'pointer-events-none border-gray-500 bg-gray-50',
+                    isError && 'border-red-500',
+                )}
                 onChange={(e) => {
                     if (type === 'text') {
                         // 한글 글자수 제한
@@ -83,12 +89,6 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(function TextField
                         props.onKeyDown(e);
                     }
                 }}
-                className={joinClassNames(
-                    'h-10 truncate rounded border border-gray-100 px-3 py-2.5 text-14 font-normal leading-normal tracking-normal text-gray-950 placeholder:text-gray-400 hover:border-primary-600 focus:border-primary-700 focus:bg-primary-100 disabled:pointer-events-none disabled:border-gray-300 disabled:bg-gray-300 disabled:text-gray-950 under-tablet:min-w-0',
-                    isFullWidth ? 'w-full min-w-0' : 'min-w-80',
-                    isReadOnly && 'pointer-events-none border-gray-500 bg-gray-50',
-                    isError && 'border-red-500'
-                )}
             />
         </FormControl>
     );

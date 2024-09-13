@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { TabContainer, Tab, TabItem, TabPanel } from '@components/Tab';
+import { Tab, TabContainer, TabItem, TabPanel } from '@components/Tab';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -9,9 +9,9 @@ const meta = {
     component: Tab,
     tags: ['autodocs'],
     parameters: {
-        layout: 'centered'
+        layout: 'centered',
     },
-    argTypes: {}
+    argTypes: {},
 } satisfies Meta<typeof Tab>;
 
 export default meta;
@@ -28,9 +28,9 @@ export const Default: Story = {
         return (
             <TabContainer>
                 <Tab {...args} aria-label="navigation" value={value} onChange={handleChange}>
-                    <TabItem label="1" value={value} index={1} />
-                    <TabItem label="2" value={value} index={2} />
-                    <TabItem label="3" value={value} index={3} />
+                    <TabItem index={1} label="1" value={value} />
+                    <TabItem index={2} label="2" value={value} />
+                    <TabItem index={3} label="3" value={value} />
                 </Tab>
                 <TabPanel index={1} value={value}>
                     <p>Tab Panel #1</p>
@@ -45,6 +45,6 @@ export const Default: Story = {
         );
     },
     args: {
-        value: 1
-    }
+        value: 1,
+    },
 };

@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, ChangeEvent, Fragment, useId } from 'react';
+import { ChangeEvent, Fragment, useEffect, useId, useRef, useState } from 'react';
 
 import { listStyle } from '@components/Base/Listbox';
 import TextField from '@components/Form/TextField';
@@ -7,8 +7,8 @@ import { CommonListDataType } from '@components/types';
 import { joinClassNames } from '@utils/format';
 
 type AutocompleteType = {
-    label: string;
     inputValue: string;
+    label: string;
     listArr: CommonListDataType[];
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     onSelect: (el: CommonListDataType) => void;
@@ -23,7 +23,7 @@ type AutocompleteType = {
  *  @param listArr Autocomplete 하위 list item 타입
  *  @returns JSX.Element
  */
-export default function Autocomplete({ inputValue, onChange, label, listArr, onSelect }: AutocompleteType) {
+export default function Autocomplete({ inputValue, label, listArr, onChange, onSelect }: AutocompleteType) {
     const listRef = useRef<HTMLUListElement | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -57,18 +57,18 @@ export default function Autocomplete({ inputValue, onChange, label, listArr, onS
     }, [isOpen]);
 
     return (
-        <label htmlFor={label} className="block w-full">
+        <label className="block w-full" htmlFor={label}>
             <div className="flex w-full items-center justify-center gap-1.25">
                 <TextField
-                    isFullWidth
-                    id={label}
                     ref={inputRef}
-                    type="text"
-                    role="combobox"
+                    isFullWidth
                     aria-autocomplete="list"
-                    aria-expanded={Boolean(listArr.length > 0 && isOpen)}
                     aria-controls={listboxId}
+                    aria-expanded={Boolean(listArr.length > 0 && isOpen)}
                     autoComplete="new-password"
+                    id={label}
+                    role="combobox"
+                    type="text"
                     value={inputValue}
                     onChange={(e) => {
                         onChange(e);
@@ -81,13 +81,13 @@ export default function Autocomplete({ inputValue, onChange, label, listArr, onS
                 />
             </div>
             {Boolean(listArr.length > 0 && isOpen) && (
-                <ul id={listboxId} ref={listRef} role="listbox" aria-label={label} className={listStyle.list}>
+                <ul ref={listRef} aria-label={label} className={listStyle.list} id={listboxId} role="listbox">
                     {listArr.map((el) => (
                         <li key={`list-${el.idx}`} className={joinClassNames('group px-3', listStyle.listItem)}>
                             <button
+                                className={joinClassNames(listStyle.listItemButton)}
                                 type="button"
                                 onClick={() => handleItemClick(el)}
-                                className={joinClassNames(listStyle.listItemButton)}
                             >
                                 {[...el.label].map((letter, idx) =>
                                     inputValue.includes(letter) ? (
@@ -96,7 +96,7 @@ export default function Autocomplete({ inputValue, onChange, label, listArr, onS
                                         </span>
                                     ) : (
                                         <Fragment key={`letter-${idx}`}>{letter}</Fragment>
-                                    )
+                                    ),
                                 )}
                             </button>
                         </li>

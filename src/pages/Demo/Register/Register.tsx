@@ -40,123 +40,123 @@ const Register = () => {
     };
 
     return (
-        <div className="flex h-full w-full items-center justify-center bg-white">
-            <form onSubmit={handleSubmit} className="flex w-full items-center justify-center">
+        <div className="flex size-full items-center justify-center bg-white">
+            <form className="flex w-full items-center justify-center" onSubmit={handleSubmit}>
                 <div className="w-full space-y-5 p-5">
                     <TextField
-                        labelText="닉네임"
-                        helperText="닉네임은 최소 10자 이상 최대 100자 이하로 입력해 주세요"
-                        required
-                        placeholder="닉네임을 입력해 주세요"
-                        name="name"
-                        value={name}
-                        maxLength={100}
-                        onChange={(e) => setName(e.currentTarget.value)}
                         isFullWidth
+                        required
+                        helperText="닉네임은 최소 10자 이상 최대 100자 이하로 입력해 주세요"
+                        labelText="닉네임"
+                        maxLength={100}
+                        name="name"
+                        placeholder="닉네임을 입력해 주세요"
+                        value={name}
+                        onChange={(e) => setName(e.currentTarget.value)}
                     />
                     <TextField
-                        labelText="이메일"
-                        helperText="이메일은 아이디로 사용됩니다"
+                        isFullWidth
                         required
-                        type="email"
-                        placeholder="이메일을 입력해 주세요"
+                        helperText="이메일은 아이디로 사용됩니다"
+                        labelText="이메일"
                         name="email"
+                        placeholder="이메일을 입력해 주세요"
+                        type="email"
                         value={email}
                         onChange={(e) => setEmail(e.currentTarget.value)}
-                        isFullWidth
                     />
                     <TextField
-                        labelText="비밀번호"
-                        helperText="비밀번호는 최소 8글자 이상 16글자 이하로 입력해 주세요"
-                        required
-                        type="password"
-                        autoComplete="new-password"
-                        placeholder="비밀번호를 입력해 주세요"
-                        name="password"
-                        value={password}
-                        minLength={8}
-                        maxLength={16}
-                        pattern={PASSWORD_REG_EXP}
-                        onChange={(e) => setPassword(e.currentTarget.value)}
                         isFullWidth
+                        required
+                        autoComplete="new-password"
+                        helperText="비밀번호는 최소 8글자 이상 16글자 이하로 입력해 주세요"
+                        labelText="비밀번호"
+                        maxLength={16}
+                        minLength={8}
+                        name="password"
+                        pattern={PASSWORD_REG_EXP}
+                        placeholder="비밀번호를 입력해 주세요"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.currentTarget.value)}
                     />
                     <div className="flex gap-5">
                         <Select
-                            id="year-select"
                             aria-labelledby="year"
+                            id="year-select"
+                            label={YEAR_OPTIONS.filter((val) => val.value === year)?.[0]?.label}
                             labelText="연도"
                             name="year"
-                            value={year}
-                            label={YEAR_OPTIONS.filter((val) => val.value === year)?.[0]?.label}
                             options={YEAR_OPTIONS}
+                            value={year}
                             onChange={(e) => setYear(e.currentTarget.value)}
                         />
                         <Select
-                            id="month-select"
                             aria-labelledby="month"
+                            id="month-select"
+                            label={MONTH_OPTIONS.filter((val) => val.value === month)?.[0]?.label}
                             labelText="월"
                             name="month"
-                            value={month}
-                            label={MONTH_OPTIONS.filter((val) => val.value === month)?.[0]?.label}
                             options={MONTH_OPTIONS}
+                            value={month}
                             onChange={(e) => setMonth(e.currentTarget.value)}
                         />
                         <Select
-                            id="day-select"
                             aria-labelledby="day"
+                            id="day-select"
+                            label={DAY_OPTIONS.filter((val) => val.value === day)?.[0]?.label}
                             labelText="일"
                             name="day"
-                            value={day}
-                            label={DAY_OPTIONS.filter((val) => val.value === day)?.[0]?.label}
                             options={DAY_OPTIONS}
+                            value={day}
                             onChange={(e) => setDay(e.currentTarget.value)}
                         />
                     </div>
                     <div className="space-y-1.25">
                         <span className="text-12 font-semibold">성별</span>
                         <RadioGroup value={gender} onChange={(e) => setGender(e.currentTarget.value)}>
-                            <Radio size="medium" name="gender" label="선택안함" value="N/A" />
-                            <Radio size="medium" name="gender" label="여성" value="F" />
-                            <Radio size="medium" name="gender" label="남성" value="M" />
+                            <Radio label="선택안함" name="gender" size="medium" value="N/A" />
+                            <Radio label="여성" name="gender" size="medium" value="F" />
+                            <Radio label="남성" name="gender" size="medium" value="M" />
                         </RadioGroup>
                     </div>
                     <div className="space-y-1.25">
                         <span className="text-12 font-semibold">이메일 수신여부</span>
                         <ToggleButtonGroup value={useYn} onChange={(e) => setUseYn(e.currentTarget.value)}>
-                            <ToggleButton size="large" name="useYn" value="Y">
+                            <ToggleButton name="useYn" size="large" value="Y">
                                 사용
                             </ToggleButton>
-                            <ToggleButton size="large" name="useYn" value="N">
+                            <ToggleButton name="useYn" size="large" value="N">
                                 미사용
                             </ToggleButton>
                         </ToggleButtonGroup>
                     </div>
                     <div className="space-y-2.5">
                         <Checkbox
-                            size="medium"
-                            label="전체 동의"
-                            value="terms"
                             checked={terms && policy}
+                            label="전체 동의"
+                            size="medium"
+                            value="terms"
                             onChange={handleCheck}
                         />
-                        <CheckboxGroup isRow={false} gap={5}>
+                        <CheckboxGroup gap={5} isRow={false}>
                             <Checkbox
-                                size="medium"
-                                label="이용약관 동의"
-                                value="terms"
                                 checked={terms}
+                                label="이용약관 동의"
+                                size="medium"
+                                value="terms"
                                 onChange={() => setTerms((prev) => !prev)}
                             />
                             <Checkbox
-                                size="medium"
-                                label="(선택) 마케팅 동의"
-                                value="policy"
                                 checked={policy}
+                                label="(선택) 마케팅 동의"
+                                size="medium"
+                                value="policy"
                                 onChange={() => setPolicy((prev) => !prev)}
                             />
                         </CheckboxGroup>
                     </div>
-                    <Button isDisabled={isDisabled} type="submit" variant="contained" size="large" isFullWidth>
+                    <Button isFullWidth isDisabled={isDisabled} size="large" type="submit" variant="contained">
                         등록
                     </Button>
                 </div>

@@ -7,12 +7,12 @@ import { Heading, Toggle } from './Common';
 import {
     AccordionExample,
     CardExample,
+    DATA_DISPLAY_LIST,
     KPaginationExample,
     ListExample,
     PaginationExample,
     TabExample,
     TableExample,
-    DATA_DISPLAY_LIST
 } from './DataDisplay';
 
 export default function DataDisplayExample() {
@@ -24,17 +24,17 @@ export default function DataDisplayExample() {
     return (
         <div className="flex flex-col gap-2.5">
             <Heading title="Data Display Playground" />
-            <Toggle selected={selected} onChange={setSelected} options={DATA_DISPLAY_LIST} />
+            <Toggle options={DATA_DISPLAY_LIST} selected={selected} onChange={setSelected} />
             {selected === 'Accordion' && <AccordionExample />}
             {selected === 'Card' && <CardExample />}
             {selected === 'List' && <ListExample />}
             {selected === 'Pagination' && (
                 <div className="space-y-5">
                     <ToggleButtonGroup value={type} onChange={(e) => setType(e.currentTarget.value as typeof type)}>
-                        <ToggleButton name="type" value="A" size="small">
+                        <ToggleButton name="type" size="small" value="A">
                             A Type
                         </ToggleButton>
-                        <ToggleButton name="type" value="K" size="small">
+                        <ToggleButton name="type" size="small" value="K">
                             K Type
                         </ToggleButton>
                     </ToggleButtonGroup>

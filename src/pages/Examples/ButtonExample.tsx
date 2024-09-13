@@ -5,10 +5,10 @@ import { Tab, TabContainer, TabItem, TabPanel } from '@components/Tab';
 
 import {
     BUTTON_LIST,
-    ButtonExample as DefaultButtonExample,
     ChipExample,
+    ButtonExample as DefaultButtonExample,
     IconButtonExample,
-    ToggleButtonExample
+    ToggleButtonExample,
 } from './Button';
 import Heading from './Common/Heading';
 
@@ -23,15 +23,15 @@ export default function ButtonExample() {
             <Heading title="Button Playground" />
             <TabContainer>
                 <Tab aria-label="button example tab" value={tab} onChange={setTab}>
-                    <TabItem label="BUTTON" value={tab} index={1} />
-                    <TabItem label="CHIP" value={tab} index={2} />
-                    <TabItem label="ICON" value={tab} index={3} />
-                    <TabItem label="TOGGLE" value={tab} index={4} />
+                    <TabItem index={1} label="BUTTON" value={tab} />
+                    <TabItem index={2} label="CHIP" value={tab} />
+                    <TabItem index={3} label="ICON" value={tab} />
+                    <TabItem index={4} label="TOGGLE" value={tab} />
                 </Tab>
                 <TabPanel index={1} value={tab}>
                     <DefaultButtonExample />
                 </TabPanel>
-                <TabPanel value={tab} index={2}>
+                <TabPanel index={2} value={tab}>
                     <ChipExample />
                 </TabPanel>
                 <TabPanel index={3} value={tab}>

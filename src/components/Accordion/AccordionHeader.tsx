@@ -23,7 +23,7 @@ type AccordionHeaderType = BaseType & {
  */
 export default function AccordionHeader(props: AccordionHeaderType) {
     const { children, hasIcon = true, icon, ...rest } = props;
-    const { accordionId, isExpanded, isDisabled, onChange } = useAccordion();
+    const { accordionId, isDisabled, isExpanded, onChange } = useAccordion();
 
     return (
         <h3
@@ -31,24 +31,24 @@ export default function AccordionHeader(props: AccordionHeaderType) {
             className={joinClassNames(
                 'min-h-15 w-full min-w-62.5 rounded border border-gray-100 under-mobile:min-w-0',
                 isExpanded && 'rounded-b-none border-primary-600 bg-primary-600',
-                isDisabled && 'border-gray-400 bg-gray-400'
+                isDisabled && 'border-gray-400 bg-gray-400',
             )}
         >
             <button
-                type="button"
-                id={`accordion-panel-${accordionId}`}
-                aria-expanded={isExpanded}
                 aria-controls={`panel-${accordionId}`}
                 aria-disabled={isDisabled}
+                aria-expanded={isExpanded}
+                className="size-full min-h-inherit px-5 py-1.25"
                 disabled={isDisabled}
+                id={`accordion-panel-${accordionId}`}
+                type="button"
                 onClick={(e) => onChange(e, isExpanded)}
-                className="h-full min-h-inherit w-full px-5 py-1.25"
             >
                 <div
                     className={joinClassNames(
                         'flex items-center justify-between text-left text-18 font-medium leading-normal text-primary-800 *:text-left *:text-18 *:font-medium *:leading-normal',
                         isExpanded && 'text-bold *:text-bold text-primary-950 *:text-primary-950',
-                        isDisabled && 'cursor-not-allowed text-gray-950 *:text-gray-950'
+                        isDisabled && 'cursor-not-allowed text-gray-950 *:text-gray-950',
                     )}
                 >
                     {children}
@@ -56,7 +56,7 @@ export default function AccordionHeader(props: AccordionHeaderType) {
                         <span
                             className={joinClassNames(
                                 'h-5 w-5 child-svg:block child-svg:h-5 child-svg:w-5',
-                                isExpanded && 'rotate-180'
+                                isExpanded && 'rotate-180',
                             )}
                         >
                             {icon ?? <ChevronDownFilled />}

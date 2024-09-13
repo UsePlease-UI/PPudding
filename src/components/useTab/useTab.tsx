@@ -6,8 +6,8 @@ export type TabContextType = {
 
 export type TabProviderType = {
     children: ReactNode;
-    value: number;
     onChange: (newValue: number) => void;
+    value: number;
 };
 
 const TabContext = createContext<TabContextType | undefined>(undefined);
@@ -23,7 +23,7 @@ export const useTab = () => {
 };
 
 // WAI-ARIA : https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
-export function TabProvider({ children, value, onChange }: TabProviderType) {
+export function TabProvider({ children, onChange, value }: TabProviderType) {
     const linkRefs = Array.from({ length: 3 }).map(() => createRef<HTMLButtonElement>());
 
     /**

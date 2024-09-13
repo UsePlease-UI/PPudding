@@ -1,6 +1,6 @@
 import { ComponentProps } from 'react';
 
-import { expect, userEvent, within, spyOn } from '@storybook/test';
+import { expect, spyOn, userEvent, within } from '@storybook/test';
 
 import Alert from '@components/Alert';
 
@@ -9,8 +9,8 @@ import { sleep } from '../../utils/common';
 import type { Meta, StoryObj } from '@storybook/react';
 
 type AlertPropsAndCustomArgs = ComponentProps<typeof Alert> & {
-    delay: number;
     canDismiss: boolean;
+    delay: number;
     variant: string;
 };
 
@@ -21,10 +21,10 @@ const meta = {
     parameters: {
         docs: {
             argTypes: {
-                sort: 'requiredFirst'
-            }
+                sort: 'requiredFirst',
+            },
         },
-        layout: 'centered'
+        layout: 'centered',
     },
     argTypes: {
         options: { table: { disable: true } },
@@ -32,46 +32,46 @@ const meta = {
         onClose: { table: { disable: true } },
         message: {
             table: {
-                category: 'required'
+                category: 'required',
             },
             description: 'message to be displayed',
-            control: 'text'
+            control: 'text',
         },
         variant: {
             table: {
-                category: 'optional'
+                category: 'optional',
             },
             description: 'style of toast',
             control: {
-                type: 'inline-radio'
+                type: 'inline-radio',
             },
-            options: ['default', 'success', 'error', 'info', 'warning']
+            options: ['default', 'success', 'error', 'info', 'warning'],
         },
         delay: {
             table: {
-                category: 'optional'
+                category: 'optional',
             },
             description: 'duration of display',
-            control: 'number'
+            control: 'number',
         },
         canDismiss: {
             table: {
-                category: 'optional'
+                category: 'optional',
             },
             description: 'dismissible',
-            control: 'boolean'
-        }
+            control: 'boolean',
+        },
     },
     args: {
         message: '로그인되었습니다.',
         variant: 'default',
         canDismiss: true,
         delay: 6000,
-        onClose: () => console.log('Closed!')
+        onClose: () => console.log('Closed!'),
     },
-    render: ({ variant, delay, canDismiss, message, onClose }) => (
-        <Alert message={message} onClose={onClose} options={{ variant, delay, canDismiss }} />
-    )
+    render: ({ canDismiss, delay, message, onClose, variant }) => (
+        <Alert message={message} options={{ variant, delay, canDismiss }} onClose={onClose} />
+    ),
 } satisfies Meta;
 
 export default meta;
@@ -83,7 +83,7 @@ const backgroundColor = {
     success: '#225cce',
     error: '#ff2f2f',
     info: '#3b82f6',
-    warning: '#eab308'
+    warning: '#eab308',
 };
 
 export const Default: Story = {
@@ -97,7 +97,7 @@ export const Default: Story = {
         });
         await step(`variant : ${args.variant}`, async () => {
             await expect(canvas.getByRole('alert')).toHaveStyle({
-                'background-color': backgroundColor[args.variant as keyof typeof backgroundColor]
+                'background-color': backgroundColor[args.variant as keyof typeof backgroundColor],
             });
         });
         if (args.canDismiss) {
@@ -112,5 +112,5 @@ export const Default: Story = {
                 await expect(canvas.getByRole('alert')).not.toHaveStyle({ opacity: 1 });
             });
         }
-    }
+    },
 };

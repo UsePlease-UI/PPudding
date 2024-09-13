@@ -8,12 +8,12 @@ export default function RadioExample() {
     return (
         <div className="flex flex-col gap-10">
             <RadioGroup value={color} onChange={(e) => setColor(e.currentTarget.value)}>
-                <Radio name="color" label="빨강" value="red" />
-                <Radio name="color" label="파랑" value="blue" />
+                <Radio label="빨강" name="color" value="red" />
+                <Radio label="파랑" name="color" value="blue" />
             </RadioGroup>
             <RadioGroup isRow={false} value={color} onChange={(e) => setColor(e.currentTarget.value)}>
-                <Radio name="color" label="핑크" value="pink" />
-                <Radio name="color" label="초록" value="green" />
+                <Radio label="핑크" name="color" value="pink" />
+                <Radio label="초록" name="color" value="green" />
             </RadioGroup>
         </div>
     );

@@ -11,12 +11,12 @@ const meta = {
     component: IconButton,
     tags: ['autodocs'],
     parameters: {
-        layout: 'centered'
+        layout: 'centered',
     },
     argTypes: {
         children: { table: { disable: true } },
-        onClick: { table: { disable: true } }
-    }
+        onClick: { table: { disable: true } },
+    },
 } satisfies Meta<typeof IconButton>;
 
 export default meta;
@@ -32,8 +32,8 @@ export const Default: Story = {
         size: 'large',
         variant: 'outlined',
         // https://github.com/storybookjs/storybook/issues/21551#issuecomment-1889574929
-        onClick: fn()
-    }
+        onClick: fn(),
+    },
 };
 
 Default.play = async ({ args, canvasElement }) => {

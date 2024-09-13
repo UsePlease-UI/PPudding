@@ -22,7 +22,7 @@ export default function List({ children, hasDivider, maxWidth, ...rest }: ListTy
             className={joinClassNames(
                 'w-full rounded border border-gray-100 bg-white px-0 py-1',
                 hasDivider && 'divide-y divide-gray-100',
-                maxWidth && { maxWidth }
+                maxWidth && { maxWidth },
             )}
         >
             {children}

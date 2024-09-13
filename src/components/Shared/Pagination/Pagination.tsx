@@ -10,20 +10,20 @@ import { joinClassNames } from '@utils/format';
 import { getActiveVariant } from './styles';
 
 type PaginationType = {
-    variant?: VariantType;
-    size?: SizeType;
-    shape?: ShapeType;
-    totalCount?: number;
-    itemsPerPage?: number;
-    pageRange?: number;
-    selectedPage?: number;
-    onChange?: (newPage: number) => void;
+    firstIcon?: ReactNode;
     hasFirstIcon?: boolean;
     hasLastIcon?: boolean;
-    firstIcon?: ReactNode;
+    itemsPerPage?: number;
     lastIcon?: ReactNode;
     nextIcon?: ReactNode;
+    onChange?: (newPage: number) => void;
+    pageRange?: number;
     prevIcon?: ReactNode;
+    selectedPage?: number;
+    shape?: ShapeType;
+    size?: SizeType;
+    totalCount?: number;
+    variant?: VariantType;
 };
 
 /**
@@ -46,20 +46,20 @@ type PaginationType = {
  */
 export default function Pagination(props: PaginationType) {
     const {
-        selectedPage,
-        onChange,
-        itemsPerPage = 10,
-        pageRange = 10,
-        totalCount = 100,
-        size = 'medium',
-        variant = 'outlined',
-        shape = 'circular',
+        firstIcon,
         hasFirstIcon = true,
         hasLastIcon = true,
-        firstIcon,
+        itemsPerPage = 10,
         lastIcon,
         nextIcon,
-        prevIcon
+        onChange,
+        pageRange = 10,
+        prevIcon,
+        selectedPage,
+        shape = 'circular',
+        size = 'medium',
+        totalCount = 100,
+        variant = 'outlined',
     } = props;
 
     const totalPage = useMemo(() => Math.ceil(totalCount / itemsPerPage), [totalCount, itemsPerPage]); // 총 페이지 버튼 갯수
@@ -71,7 +71,7 @@ export default function Pagination(props: PaginationType) {
             Array.from({ length: pageRange }, (_, idx) => idx + 1)
                 .map((val) => pageGroup * pageRange + val)
                 .filter((val) => val <= totalPage),
-        [pageGroup, pageRange, totalPage]
+        [pageGroup, pageRange, totalPage],
     );
     const [firstPage, lastPage] = useMemo(() => [pageList[0], pageList[pageList.length - 1]], [pageList]);
 
@@ -124,11 +124,11 @@ export default function Pagination(props: PaginationType) {
                 {hasFirstIcon && (
                     <li>
                         <IconButton
-                            size={size}
-                            variant={variant}
-                            shape={shape}
                             aria-label="처음 페이지로 이동하기"
                             isDisabled={page === 1}
+                            shape={shape}
+                            size={size}
+                            variant={variant}
                             onClick={handlePrevPageGroup}
                         >
                             {firstIcon || <ArrowPreviousFilled />}
@@ -137,11 +137,11 @@ export default function Pagination(props: PaginationType) {
                 )}
                 <li>
                     <IconButton
-                        size={size}
-                        variant={variant}
-                        shape={shape}
                         aria-label="이전 페이지로 이동하기"
                         isDisabled={page === 1}
+                        shape={shape}
+                        size={size}
+                        variant={variant}
                         onClick={handlePreviousPage}
                     >
                         {prevIcon || <ChevronLeftFilled />}
@@ -150,17 +150,17 @@ export default function Pagination(props: PaginationType) {
                 {pageList.map((currentPage) => (
                     <li key={currentPage}>
                         <IconButton
+                            aria-current={page === currentPage ? 'page' : undefined}
+                            aria-label={page === currentPage ? undefined : `page ${currentPage}`}
+                            shape={shape}
                             size={size}
                             variant={getActiveVariant(page === currentPage, variant)}
-                            shape={shape}
-                            aria-label={page === currentPage ? undefined : `page ${currentPage}`}
-                            aria-current={page === currentPage ? 'page' : undefined}
                             onClick={() => handlePageChange(currentPage)}
                         >
                             <p
                                 className={joinClassNames(
                                     'flex items-center justify-center',
-                                    variant === 'text' && page === currentPage && 'font-semibold text-primary-800'
+                                    variant === 'text' && page === currentPage && 'font-semibold text-primary-800',
                                 )}
                             >
                                 {currentPage}
@@ -170,11 +170,11 @@ export default function Pagination(props: PaginationType) {
                 ))}
                 <li>
                     <IconButton
-                        size={size}
-                        variant={variant}
-                        shape={shape}
                         aria-label="다음 페이지로 이동하기"
                         isDisabled={page === totalPage}
+                        shape={shape}
+                        size={size}
+                        variant={variant}
                         onClick={handleNextPage}
                     >
                         {nextIcon || <ChevronRightFilled />}
@@ -183,11 +183,11 @@ export default function Pagination(props: PaginationType) {
                 {hasLastIcon && (
                     <li>
                         <IconButton
-                            size={size}
-                            variant={variant}
-                            shape={shape}
                             aria-label="마지막 페이지로 이동하기"
                             isDisabled={page === totalPage}
+                            shape={shape}
+                            size={size}
+                            variant={variant}
                             onClick={handleLastPageGroup}
                         >
                             {lastIcon || <ArrowNextFilled />}

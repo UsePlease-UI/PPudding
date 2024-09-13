@@ -5,5 +5,5 @@ import { getComponents } from './utils';
 export default function Example() {
     const { component } = useParams();
 
-    return getComponents(component) || <Navigate to="/" replace />;
+    return getComponents(component) || <Navigate replace to="/" />;
 }

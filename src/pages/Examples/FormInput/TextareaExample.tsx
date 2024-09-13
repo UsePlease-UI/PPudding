@@ -7,11 +7,11 @@ export default function TextareaExample() {
 
     return (
         <Textarea
-            labelText="설명"
             helperText="100자까지 입력할 수 있습니다."
+            labelText="설명"
+            maxLength={100}
             name="description"
             value={description}
-            maxLength={100}
             onChange={(e) => setDescription(e.currentTarget.value)}
         />
     );

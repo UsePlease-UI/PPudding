@@ -15,7 +15,7 @@ export const commonStyle = {
     largeIcon: 'p-2 *:w-7 *:h-7',
     rounded: 'rounded-lg',
     circular: 'rounded-full',
-    square: 'rounded'
+    square: 'rounded',
 };
 
 export function getVariantStyle(variant?: VariantType) {

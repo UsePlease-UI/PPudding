@@ -11,10 +11,10 @@ const PickerExample = () => {
         <div className={customStyles.toggleComponentContainer}>
             <div className="w-full space-y-5">
                 <ToggleButtonGroup value={type} onChange={(e) => setType(e.currentTarget.value as typeof type)}>
-                    <ToggleButton name="type" value="date" size="small">
+                    <ToggleButton name="type" size="small" value="date">
                         Date
                     </ToggleButton>
-                    <ToggleButton name="type" value="month" size="small">
+                    <ToggleButton name="type" size="small" value="month">
                         Month
                     </ToggleButton>
                 </ToggleButtonGroup>

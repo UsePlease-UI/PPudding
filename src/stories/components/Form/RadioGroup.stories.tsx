@@ -13,12 +13,12 @@ const meta: Meta<typeof RadioGroup> = {
     parameters: {
         docs: {
             argTypes: { exclude: ['children', 'onChange'] },
-            controls: { exclude: ['children', 'onChange'] }
+            controls: { exclude: ['children', 'onChange'] },
         },
-        layout: 'centered'
+        layout: 'centered',
     },
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-    argTypes: {}
+    argTypes: {},
 };
 
 export default meta;
@@ -30,15 +30,15 @@ export const Default: Story = {
         const [value, setValue] = useState('red');
         return (
             <RadioGroup {...args} value={value} onChange={(e) => setValue(e.currentTarget.value)}>
-                <Radio name="color" label="빨강" value="red" />
-                <Radio name="color" label="파랑" value="blue" />
+                <Radio label="빨강" name="color" value="red" />
+                <Radio label="파랑" name="color" value="blue" />
             </RadioGroup>
         );
     },
     args: {
         value: 'red',
-        isRow: true
-    }
+        isRow: true,
+    },
 };
 
 // https://storybook.js.org/addons/@storybook/addon-interactions/

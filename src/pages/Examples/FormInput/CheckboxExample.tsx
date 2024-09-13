@@ -11,14 +11,14 @@ export default function CheckboxExample() {
     return (
         <CheckboxGroup gap={10}>
             <Checkbox
+                checked={chocolate}
+                checkedIcon={<HeartFilled />}
+                icon={<HeartRegular />}
                 label="초콜릿"
                 value="chocolate"
-                checked={chocolate}
-                icon={<HeartRegular />}
-                checkedIcon={<HeartFilled />}
                 onChange={() => setChocolate((prev) => !prev)}
             />
-            <Checkbox label="사탕" value="candy" checked={candy} onChange={() => setCandy((prev) => !prev)} />
+            <Checkbox checked={candy} label="사탕" value="candy" onChange={() => setCandy((prev) => !prev)} />
         </CheckboxGroup>
     );
 }

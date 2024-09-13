@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { RouterProvider, createHashRouter } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 
 import BaseLayout from '@layouts/BaseLayout';
 
@@ -25,7 +25,7 @@ export default function App() {
                     children: [
                         {
                             index: true,
-                            element: <Home />
+                            element: <Home />,
                         },
                         {
                             path: 'example/:component',
@@ -33,9 +33,9 @@ export default function App() {
                                 <Suspense fallback={<Loader />}>
                                     <Examples />
                                 </Suspense>
-                            )
-                        }
-                    ]
+                            ),
+                        },
+                    ],
                 },
                 {
                     path: '/demo',
@@ -48,7 +48,7 @@ export default function App() {
                                 <Suspense fallback={<Loader />}>
                                     <FAQ />
                                 </Suspense>
-                            )
+                            ),
                         },
                         {
                             path: 'search',
@@ -56,7 +56,7 @@ export default function App() {
                                 <Suspense fallback={<Loader />}>
                                     <Search />
                                 </Suspense>
-                            )
+                            ),
                         },
                         {
                             path: 'editor',
@@ -64,7 +64,7 @@ export default function App() {
                                 <Suspense fallback={<Loader />}>
                                     <Editor />
                                 </Suspense>
-                            )
+                            ),
                         },
                         {
                             path: 'register',
@@ -72,10 +72,10 @@ export default function App() {
                                 <Suspense fallback={<Loader />}>
                                     <Register />
                                 </Suspense>
-                            )
-                        }
-                    ]
-                }
+                            ),
+                        },
+                    ],
+                },
             ])}
         />
     );

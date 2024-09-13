@@ -2,8 +2,8 @@ import { ReactNode } from 'react';
 
 type TabPanelType = {
     children: ReactNode;
-    value: number;
     index: number;
+    value: number;
 };
 
 /**
@@ -14,10 +14,10 @@ type TabPanelType = {
  *  @returns JSX.Element
  */
 export default function TabPanel(props: TabPanelType) {
-    const { children, value, index } = props;
+    const { children, index, value } = props;
 
     return (
-        <div role="tabpanel" hidden={value !== index} className="h-full w-full p-5">
+        <div className="size-full p-5" hidden={value !== index} role="tabpanel">
             {children}
         </div>
     );

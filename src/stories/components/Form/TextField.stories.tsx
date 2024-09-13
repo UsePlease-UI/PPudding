@@ -9,9 +9,9 @@ const meta = {
     component: TextField,
     tags: ['autodocs'],
     parameters: {
-        layout: 'centered'
+        layout: 'centered',
     },
-    argTypes: {}
+    argTypes: {},
 } satisfies Meta<typeof TextField>;
 
 export default meta;
@@ -25,8 +25,8 @@ export const Default: Story = {
     args: {
         type: 'text',
         placeholder: '이름을 입력해주세요.',
-        maxLength: 100
-    }
+        maxLength: 100,
+    },
 };
 
 export const Number: Story = {
@@ -38,6 +38,6 @@ export const Number: Story = {
         type: 'number',
         placeholder: '숫자를 입력해주세요.',
         min: 10,
-        max: 100
-    }
+        max: 100,
+    },
 };

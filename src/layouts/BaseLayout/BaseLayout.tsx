@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Outlet, ScrollRestoration } from 'react-router-dom';
 
-import { Lnb, Gnb } from '@layouts/Common';
+import { Gnb, Lnb } from '@layouts/Common';
 
 import useMobile from '@hooks/useMobile';
 

@@ -8,10 +8,10 @@ type PickerFooterType = {
 export default function PickerFooter({ onCancel, onConfirm }: PickerFooterType) {
     return (
         <div className="flex items-center justify-end">
-            <Button variant="text" size="medium" onClick={onCancel}>
+            <Button size="medium" variant="text" onClick={onCancel}>
                 취소
             </Button>
-            <Button variant="text" size="medium" onClick={onConfirm}>
+            <Button size="medium" variant="text" onClick={onConfirm}>
                 확인
             </Button>
         </div>

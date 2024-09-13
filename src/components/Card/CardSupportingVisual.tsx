@@ -2,9 +2,9 @@ import { HTMLAttributes, ReactNode } from 'react';
 
 type CardSupportingVisualType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
     type: 'image' | 'icon';
+    alt?: string;
     icon?: ReactNode;
     src?: string;
-    alt?: string;
 };
 
 /**
@@ -15,7 +15,7 @@ type CardSupportingVisualType = Omit<HTMLAttributes<HTMLDivElement>, 'className'
  *  @param icon ReactNode
  *  @returns JSX.Element
  */
-export default function CardSupportingVisual({ type, src, alt, icon, ...rest }: CardSupportingVisualType) {
+export default function CardSupportingVisual({ alt, icon, src, type, ...rest }: CardSupportingVisualType) {
     if (type === 'image' && (!src || !alt)) {
         console.warn('Image should have appropriate src and alt values');
     }
@@ -23,10 +23,10 @@ export default function CardSupportingVisual({ type, src, alt, icon, ...rest }: 
     return (
         <div
             {...rest}
-            className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-black"
+            className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-black"
         >
             {type === 'image' ? (
-                <img width={40} height={40} src={src} alt={alt} className="h-10 w-10 rounded-full object-cover" />
+                <img alt={alt} className="size-10 rounded-full object-cover" height={40} src={src} width={40} />
             ) : (
                 icon
             )}

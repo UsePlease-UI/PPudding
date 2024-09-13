@@ -5,14 +5,14 @@ import ClickAwayListener from '@components/Base/ClickAwayListener';
 import { joinClassNames } from '@utils/format';
 
 type PopoverType = {
+    anchorElement: HTMLElement | null;
+    anchorPosition: {
+        horizontal: 'left' | 'right';
+        vertical: 'top' | 'bottom';
+    };
     children: ReactNode;
     isOpen: boolean;
     onClose: () => void;
-    anchorElement: HTMLElement | null;
-    anchorPosition: {
-        vertical: 'top' | 'bottom';
-        horizontal: 'left' | 'right';
-    };
 };
 
 /**
@@ -24,7 +24,7 @@ type PopoverType = {
  *  @param anchorPosition { vertical : top | bottom; horizontal : left | right }
  *  @returns JSX.Element
  */
-export default function Popover({ children, isOpen, anchorPosition, anchorElement, onClose }: PopoverType) {
+export default function Popover({ anchorElement, anchorPosition, children, isOpen, onClose }: PopoverType) {
     const ref = useRef<HTMLDivElement>(null);
 
     const handlePosition = useCallback(() => {
@@ -52,12 +52,12 @@ export default function Popover({ children, isOpen, anchorPosition, anchorElemen
     }, [handlePosition]);
 
     return (
-        <ClickAwayListener isOpen={isOpen} element={ref.current} anchorElement={anchorElement} onClose={onClose}>
+        <ClickAwayListener anchorElement={anchorElement} element={ref.current} isOpen={isOpen} onClose={onClose}>
             <div
                 ref={ref}
                 className={joinClassNames(
                     'fixed z-10000 rounded bg-white p-2.5 shadow-01',
-                    isOpen ? 'block' : 'hidden'
+                    isOpen ? 'block' : 'hidden',
                 )}
             >
                 {children}

@@ -1,21 +1,21 @@
-import { ButtonHTMLAttributes, ReactNode, forwardRef } from 'react';
+import { ButtonHTMLAttributes, forwardRef, MouseEvent, ReactNode } from 'react';
 
 import { joinClassNames } from '@utils/format';
 
-import { getSizeStyle, getShapeStyle, getIconShapeStyle } from './styles';
-import { ShapeType, SizeType, VariantType, getVariantStyle } from '../styles';
+import { getIconShapeStyle, getShapeStyle, getSizeStyle } from './styles';
+import { getVariantStyle, ShapeType, SizeType, VariantType } from '../styles';
 
 type BaseType = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'>;
 
 type ButtonType = BaseType & {
     children: ReactNode;
-    isDisabled?: boolean;
-    startIcon?: ReactNode;
     endIcon?: ReactNode;
+    isDisabled?: boolean;
     isFullWidth?: boolean;
-    size?: SizeType;
-    variant?: VariantType;
     shape?: ShapeType;
+    size?: SizeType;
+    startIcon?: ReactNode;
+    variant?: VariantType;
 };
 
 /**
@@ -31,16 +31,16 @@ type ButtonType = BaseType & {
  */
 const Button = forwardRef<HTMLButtonElement, ButtonType>(function Button(props, ref) {
     const {
-        type = 'button',
         children,
-        isDisabled,
-        startIcon,
         endIcon,
-        size = 'medium',
-        variant = 'outlined',
-        shape = 'square',
+        isDisabled,
         isFullWidth,
         onClick,
+        shape = 'square',
+        size = 'medium',
+        startIcon,
+        type = 'button',
+        variant = 'outlined',
         ...rest
     } = props;
 
@@ -48,7 +48,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonType>(function Button(props, 
         console.warn('Button with either "Start Icon" or "End Icon" does not have default circular style.');
     }
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
         e.currentTarget.blur();
         if (onClick) {
             onClick(e);
@@ -60,29 +60,27 @@ const Button = forwardRef<HTMLButtonElement, ButtonType>(function Button(props, 
             ref={ref}
             {...rest}
             // eslint-disable-next-line react/button-has-type
-            type={type}
             disabled={isDisabled}
-            onClick={handleClick}
+            type={type}
             className={joinClassNames(
                 'font-pretendard',
                 getSizeStyle(size),
                 getVariantStyle(variant),
                 startIcon || endIcon ? getIconShapeStyle(shape) : getShapeStyle(size, shape),
-                isFullWidth && 'w-full'
+                isFullWidth && 'w-full',
             )}
+            onClick={handleClick}
         >
             {startIcon || endIcon ? (
                 <div className="flex items-center justify-center gap-1">
                     {startIcon && (
-                        <span className="-ml-2 inline-flex h-5 w-5 shrink-0 items-center justify-center">
+                        <span className="-ml-2 inline-flex size-5 shrink-0 items-center justify-center">
                             {startIcon}
                         </span>
                     )}
                     <p className="mt-0.5 shrink-0 text-center">{children}</p>
                     {endIcon && (
-                        <span className="-mr-2 inline-flex h-5 w-5 shrink-0 items-center justify-center">
-                            {endIcon}
-                        </span>
+                        <span className="-mr-2 inline-flex size-5 shrink-0 items-center justify-center">{endIcon}</span>
                     )}
                 </div>
             ) : typeof children === 'string' ? (

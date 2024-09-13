@@ -7,9 +7,9 @@ const meta = {
     component: Skeleton,
     tags: ['autodocs'],
     parameters: {
-        layout: 'centered'
+        layout: 'centered',
     },
-    argTypes: {}
+    argTypes: {},
 } satisfies Meta<typeof Skeleton>;
 
 export default meta;
@@ -18,6 +18,6 @@ type Story = StoryObj<typeof Skeleton>;
 export const Default: Story = {
     args: {
         size: 'medium',
-        variant: 'rounded'
-    }
+        variant: 'rounded',
+    },
 };

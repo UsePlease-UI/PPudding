@@ -4,8 +4,8 @@ import { joinClassNames } from '@utils/format';
 
 type CheckboxGroupType = {
     children: ReactNode;
-    isRow?: boolean;
     gap?: number;
+    isRow?: boolean;
 };
 
 /**
@@ -16,14 +16,14 @@ type CheckboxGroupType = {
  *  @returns JSX.Element
  */
 export default function CheckboxGroup(props: CheckboxGroupType) {
-    const { children, isRow = true, gap = 2.5 } = props;
+    const { children, gap = 2.5, isRow = true } = props;
 
     return (
         <div
             className={joinClassNames(
                 'flex flex-col',
                 isRow && 'flex-row items-center justify-start',
-                gap && `gap-${gap}`
+                gap && `gap-${gap}`,
             )}
         >
             {children}

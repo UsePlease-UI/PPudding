@@ -11,9 +11,9 @@ const meta = {
     component: Select,
     tags: ['autodocs'],
     parameters: {
-        layout: 'centered'
+        layout: 'centered',
     },
-    argTypes: {}
+    argTypes: {},
 } satisfies Meta<typeof Select>;
 
 export default meta;
@@ -38,6 +38,6 @@ export const Default: Story = {
         options: OPTIONS,
         isReadOnly: false,
         isDisabled: false,
-        placeholder: '값을 선택해 주세요.'
-    }
+        placeholder: '값을 선택해 주세요.',
+    },
 };

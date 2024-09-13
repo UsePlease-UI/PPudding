@@ -3,17 +3,17 @@ import { HTMLAttributes, useState } from 'react';
 import Skeleton from '@components/Loader/Skeleton';
 
 type CardMediaType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
-    type: 'image' | 'video';
     src: string;
+    type: 'image' | 'video';
+    autoPlay?: boolean;
+    controls?: boolean;
+    height?: number;
+    loop?: boolean;
+    muted?: boolean;
     // Video
     videoType?: string;
-    controls?: boolean;
-    autoPlay?: boolean;
-    muted?: boolean;
-    loop?: boolean;
     // Style
     width?: number;
-    height?: number;
 };
 
 /**
@@ -25,35 +25,35 @@ type CardMediaType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
  *  @returns JSX.Element
  */
 export default function CardMedia(props: CardMediaType) {
-    const { type, videoType, src, loop, autoPlay, muted, controls, width, height, ...rest } = props;
+    const { autoPlay, controls, height, loop, muted, src, type, videoType, width, ...rest } = props;
     const [isLoaded, setIsLoaded] = useState(false);
 
     return (
-        <div {...rest} className="relative h-max w-max">
-            <div className={isLoaded ? 'hidden' : 'absolute bottom-0 left-0 right-0 top-0'}>
-                <Skeleton width="w-full" height="h-full" borderRadius="rounded-none" />
+        <div {...rest} className="relative size-max">
+            <div className={isLoaded ? 'hidden' : 'absolute inset-0'}>
+                <Skeleton borderRadius="rounded-none" height="h-full" width="w-full" />
             </div>
             {type === 'image' ? (
                 <img
-                    onLoad={() => setIsLoaded(true)}
-                    width={width}
-                    height={height}
-                    src={src}
                     alt="card media"
                     className="object-cover"
+                    height={height}
+                    src={src}
                     style={{ width, height }}
+                    width={width}
+                    onLoad={() => setIsLoaded(true)}
                 />
             ) : (
                 <video
-                    width={width}
+                    autoPlay={autoPlay}
+                    className="object-cover"
+                    controls={controls}
                     height={height}
                     loop={loop}
-                    autoPlay={autoPlay}
                     muted={muted}
-                    controls={controls}
-                    className="object-cover"
-                    onLoadedData={() => setIsLoaded(true)}
                     style={{ width, height }}
+                    width={width}
+                    onLoadedData={() => setIsLoaded(true)}
                 >
                     <source src={src} type={videoType} />
                 </video>

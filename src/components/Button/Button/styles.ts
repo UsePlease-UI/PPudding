@@ -1,12 +1,20 @@
-import { ShapeType, SizeType, commonStyle } from '../styles';
+import { joinClassNames } from '@utils/format';
+
+import { commonStyle, ShapeType, SizeType } from '../styles';
 
 export const buttonStyle = {
-    small: 'min-h-8 h-max min-w-12 w-max px-3 py-1 text-14 leading-14 font-normal child-svg:w-4 child-svg:h-4',
-    medium: 'min-h-10 h-max min-w-14 w-max px-4 py-1 text-16 leading-16 font-medium child-svg:w-4.5 child-svg:h-4.5',
-    large: 'min-h-11.25 h-max min-w-24 w-max px-4 py-1 text-18 leading-18 font-medium child-svg:w-5 child-svg:h-5',
-    smallCircular: 'min-w-8 min-h-8 text-3 leading-3 rounded-full p-0',
-    mediumCircular: 'min-w-10 min-h-10 text-14 leading-14 rounded-full p-0',
-    largeCircular: 'min-w-11.25 min-h-11.25 text-16 leading-16 rounded-full p-0'
+    small: joinClassNames(
+        'h-max min-h-8 w-max min-w-12 px-3 py-1 text-14 font-normal leading-14 child-svg:h-4 child-svg:w-4',
+    ),
+    medium: joinClassNames(
+        'h-max min-h-10 w-max min-w-14 px-4 py-1 text-16 font-medium leading-16 child-svg:h-4.5 child-svg:w-4.5',
+    ),
+    large: joinClassNames(
+        'h-max min-h-11.25 w-max min-w-24 px-4 py-1 text-18 font-medium leading-18 child-svg:h-5 child-svg:w-5',
+    ),
+    smallCircular: joinClassNames('min-h-8 min-w-8 rounded-full p-0 text-3 leading-3'),
+    mediumCircular: joinClassNames('min-h-10 min-w-10 rounded-full p-0 text-14 leading-14'),
+    largeCircular: joinClassNames('min-h-11.25 min-w-11.25 rounded-full p-0 text-16 leading-16'),
 };
 
 export function getSizeStyle(size?: SizeType) {

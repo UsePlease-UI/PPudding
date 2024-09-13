@@ -7,17 +7,17 @@ import usePopover from '@components/Shared/usePopover';
 import { customStyles } from '../Common/styles';
 
 const PopoverExample = () => {
-    const { isOpen, anchorElement, handleOpen, handleClose } = usePopover();
+    const { anchorElement, handleClose, handleOpen, isOpen } = usePopover();
 
     return (
         <div className={customStyles.toggleComponentContainer}>
-            <Button startIcon={<PeopleFilled />} size="large" variant="outlined" onClick={handleOpen}>
+            <Button size="large" startIcon={<PeopleFilled />} variant="outlined" onClick={handleOpen}>
                 유저아이디
             </Button>
             <Popover
-                isOpen={isOpen}
-                anchorPosition={{ vertical: 'bottom', horizontal: 'right' }}
                 anchorElement={anchorElement}
+                anchorPosition={{ vertical: 'bottom', horizontal: 'right' }}
+                isOpen={isOpen}
                 onClose={handleClose}
             >
                 <div className="flex w-178 flex-col gap-10">

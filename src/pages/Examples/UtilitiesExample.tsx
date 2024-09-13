@@ -11,7 +11,7 @@ export default function UtilitiesExample() {
     return (
         <div className="flex flex-col gap-2.5">
             <Heading title="Utilities Playground" />
-            <Toggle selected={selected} onChange={setSelected} options={UTILITIES_LIST} />
+            <Toggle options={UTILITIES_LIST} selected={selected} onChange={setSelected} />
             {selected === 'Calendar' && <CalenderExample />}
             {selected === 'Date Picker' && <PickerExample />}
             {selected === 'Drag N Drop' && <DragNDropExample />}

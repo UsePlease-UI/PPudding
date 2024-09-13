@@ -13,7 +13,7 @@ const sizeStyle = {
     mediumCustom: 'w-6 h-6 child-svg:w-6 child-svg:h-6',
     largeText: 'text-20 ml-2',
     largeDefault: 'w-6 h-6 m-0.5 child-svg:w-5 child-svg:h-5',
-    largeCustom: 'w-7 h-7 child-svg:w-7 child-svg:h-7'
+    largeCustom: 'w-7 h-7 child-svg:w-7 child-svg:h-7',
 };
 
 export function getSizeStyle(size?: SizeType) {
@@ -22,19 +22,19 @@ export function getSizeStyle(size?: SizeType) {
             return {
                 text: sizeStyle.mediumText,
                 default: sizeStyle.mediumDefault,
-                custom: sizeStyle.mediumCustom
+                custom: sizeStyle.mediumCustom,
             };
         case 'large':
             return {
                 text: sizeStyle.largeText,
                 default: sizeStyle.largeDefault,
-                custom: sizeStyle.largeCustom
+                custom: sizeStyle.largeCustom,
             };
         default:
             return {
                 text: sizeStyle.smallText,
                 default: sizeStyle.smallDefault,
-                custom: sizeStyle.smallCustom
+                custom: sizeStyle.smallCustom,
             };
     }
 }

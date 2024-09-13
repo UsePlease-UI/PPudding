@@ -21,7 +21,7 @@ export default function TableCell(props: TableCellType) {
             {children}
         </td>
     ) : (
-        <th {...rest} className="text-medium h-full px-2.5 py-2 text-14 leading-normal">
+        <th {...rest} className="h-full px-2.5 py-2 text-14 font-medium leading-normal">
             {children}
         </th>
     );

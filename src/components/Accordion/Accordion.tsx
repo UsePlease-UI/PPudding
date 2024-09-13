@@ -4,8 +4,8 @@ import { AccordionProvider } from '@components/useAccordion';
 
 type AccordionType = {
     children: ReactNode;
-    isExpanded?: boolean;
     isDisabled?: boolean;
+    isExpanded?: boolean;
     onChange?: (event: MouseEvent<HTMLButtonElement>, isExpanded: boolean) => void;
 };
 

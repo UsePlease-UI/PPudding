@@ -9,14 +9,14 @@ export default function SelectExample() {
 
     return (
         <Select
-            id="milk"
             aria-labelledby="milk"
-            labelText="우유"
             helperText="우유 종류를 선택해주세요"
-            name="milk"
-            value={value}
+            id="milk"
             label={SELECT_OPTIONS.filter((val) => val.value === value)?.[0]?.label}
+            labelText="우유"
+            name="milk"
             options={SELECT_OPTIONS}
+            value={value}
             onChange={(e) => setValue(e.currentTarget.value)}
         />
     );

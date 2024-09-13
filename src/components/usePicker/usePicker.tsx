@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useCallback, useContext, useEffect, useId, useMemo, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useEffect, useId, useMemo, useState } from 'react';
 
 import dayjs, { Dayjs } from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
@@ -16,32 +16,32 @@ const TODAY = dayjs();
 export type DateType = Date | null;
 
 type PickerContextType = {
-    dateValue?: DateType;
-    dates?: DateObjType[][];
     containerId: string;
-    datePickerId: string;
-    isOpen: boolean;
     current: Dayjs;
-    selected: DateType;
+    datePickerId: string;
     isDateDisabled: (date: DateObjType) => boolean;
     isMonthDisabled: (date: string) => boolean;
-    onDatePickerClick: () => void;
-    onYearChange: (isPreviousMonth: boolean) => void;
-    onMonthChange: (month: string) => void;
-    onYearMonthChange: (isPreviousMonth: boolean) => void;
-    onDateChange: (formattedDate: string) => void;
+    isOpen: boolean;
     onCancel: () => void;
     onConfirm: () => void;
+    onDateChange: (formattedDate: string) => void;
+    onDatePickerClick: () => void;
+    onMonthChange: (month: string) => void;
+    onYearChange: (isPreviousMonth: boolean) => void;
+    onYearMonthChange: (isPreviousMonth: boolean) => void;
+    selected: DateType;
+    dates?: DateObjType[][];
+    dateValue?: DateType;
 };
 
 type PickerProviderType = {
     children: ReactNode;
-    value?: DateType;
-    minDate?: DateType;
     maxDate?: DateType;
+    minDate?: DateType;
+    onCancel?: () => void;
     onChange?: (date: Date) => void;
     onSelect?: (date: DateType) => void;
-    onCancel?: () => void;
+    value?: DateType;
 };
 
 const PickerContext = createContext<PickerContextType | undefined>(undefined);
@@ -57,7 +57,7 @@ export const usePicker = () => {
 };
 
 export function PickerProvider(props: PickerProviderType) {
-    const { children, value, minDate, maxDate, onChange, onSelect, onCancel } = props;
+    const { children, maxDate, minDate, onCancel, onChange, onSelect, value } = props;
 
     const containerId = useId();
     const datePickerId = useId();
@@ -95,7 +95,7 @@ export function PickerProvider(props: PickerProviderType) {
     }, [isOpen]);
 
     const isDateDisabled = useCallback(
-        ({ year, month, date }: DateObjType) => {
+        ({ date, month, year }: DateObjType) => {
             const now = `${year}-${month}-${date}`;
             let result = false;
 
@@ -122,7 +122,7 @@ export function PickerProvider(props: PickerProviderType) {
 
             return result;
         },
-        [minDate, maxDate, current]
+        [minDate, maxDate, current],
     );
 
     const isMonthDisabled = useCallback(
@@ -141,7 +141,7 @@ export function PickerProvider(props: PickerProviderType) {
             }
             return result;
         },
-        [minDate, maxDate, current]
+        [minDate, maxDate, current],
     );
 
     const handleDatePickerClick = useCallback(() => {
@@ -171,7 +171,7 @@ export function PickerProvider(props: PickerProviderType) {
                 onChange(new Date(dayjs(selectedMonth).format('YYYY-MM')));
             }
         },
-        [onChange]
+        [onChange],
     );
 
     const handleYearMonthChange = useCallback((isPreviousMonth: boolean) => {
@@ -191,7 +191,7 @@ export function PickerProvider(props: PickerProviderType) {
                 onChange(new Date(formattedDate));
             }
         },
-        [onChange]
+        [onChange],
     );
 
     const handleReset = useCallback(() => {
@@ -232,7 +232,7 @@ export function PickerProvider(props: PickerProviderType) {
             onDateChange: handleDateChange,
             onDatePickerClick: handleDatePickerClick,
             onConfirm: handleConfirm,
-            onCancel: handleCancel
+            onCancel: handleCancel,
         }),
         [
             containerId,
@@ -250,8 +250,8 @@ export function PickerProvider(props: PickerProviderType) {
             handleDateChange,
             handleDatePickerClick,
             handleConfirm,
-            handleCancel
-        ]
+            handleCancel,
+        ],
     );
 
     return <PickerContext.Provider value={context}>{children}</PickerContext.Provider>;

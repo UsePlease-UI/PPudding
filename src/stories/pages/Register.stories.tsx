@@ -1,4 +1,4 @@
-import { expect, userEvent, within, spyOn } from '@storybook/test';
+import { expect, spyOn, userEvent, within } from '@storybook/test';
 
 import { PASSWORD_REG_EXP } from '@pages/Demo/Register/constants';
 import RegisterPage from '@pages/Demo/Register/Register';
@@ -10,14 +10,14 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
     title: 'Pages/Register Page',
     component: RegisterPage,
-    argTypes: {}
+    argTypes: {},
 } satisfies Meta<typeof RegisterPage>;
 
 export default meta;
 type Story = StoryObj<typeof RegisterPage>;
 
 export const Default: Story = {
-    args: {}
+    args: {},
 };
 
 Default.play = async ({ canvasElement, step }) => {

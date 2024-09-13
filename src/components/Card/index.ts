@@ -13,5 +13,5 @@ export default Object.assign(Card, {
     SupportingVisual: CardSupportingVisual,
     Text: CardText,
     Media: CardMedia,
-    Actions: CardActions
+    Actions: CardActions,
 });

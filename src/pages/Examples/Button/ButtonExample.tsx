@@ -21,33 +21,33 @@ export default function ButtonExample() {
         <div className={customStyles.playgroundContainer}>
             <div className={customStyles.playgroundControlContainer}>
                 <TextField
-                    labelText="Type Button Text"
-                    helperText="최대 20자까지 입력할 수 있습니다."
-                    name="buttonText"
                     isFullWidth
-                    value={buttonText}
+                    helperText="최대 20자까지 입력할 수 있습니다."
+                    labelText="Type Button Text"
                     maxLength={20}
+                    name="buttonText"
+                    value={buttonText}
                     onChange={(e) => setButtonText(e.currentTarget.value)}
                 />
                 <RadioControls
                     name="button variant"
+                    options={BUTTON_VARIANT}
                     value={variantType}
                     onChange={setVariantType}
-                    options={BUTTON_VARIANT}
                 />
-                <RadioControls name="button size" value={sizeType} onChange={setSizeType} options={BUTTON_SIZE} />
-                <RadioControls name="button shape" value={shapeType} onChange={setShapeType} options={BUTTON_SHAPE} />
-                <RadioControls name="button icon" value={icon} onChange={setIcon} options={BUTTON_ICON} />
-                <CheckboxControl label="Full Width" name="button width" checked={isTrue} onChange={setIsTrue} />
+                <RadioControls name="button size" options={BUTTON_SIZE} value={sizeType} onChange={setSizeType} />
+                <RadioControls name="button shape" options={BUTTON_SHAPE} value={shapeType} onChange={setShapeType} />
+                <RadioControls name="button icon" options={BUTTON_ICON} value={icon} onChange={setIcon} />
+                <CheckboxControl checked={isTrue} label="Full Width" name="button width" onChange={setIsTrue} />
             </div>
             <div className={customStyles.playgroundDisplayContainer}>
                 <Button
-                    isFullWidth={isTrue}
-                    size={sizeType as SizeType}
-                    shape={shapeType as ShapeType}
-                    variant={variantType as VariantType}
-                    startIcon={icon === 'startIcon' && <DeleteFilled />}
                     endIcon={icon === 'endIcon' && <AddFilled />}
+                    isFullWidth={isTrue}
+                    shape={shapeType as ShapeType}
+                    size={sizeType as SizeType}
+                    startIcon={icon === 'startIcon' && <DeleteFilled />}
+                    variant={variantType as VariantType}
                 >
                     {buttonText || '값을 입력해 주세요'}
                 </Button>

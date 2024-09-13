@@ -15,9 +15,9 @@ const twMerge = extendTailwindMerge({
             'font-size': [...rem1000],
             'text-color': [...colors.map((val) => `primary-${val}`), ...pastelColors.map((val) => `pastel-${val}`)],
             'border-color': [...colors.map((val) => `primary-${val}`), ...pastelColors.map((val) => `pastel-${val}`)],
-            'bg-color': [...colors.map((val) => `primary-${val}`), ...pastelColors.map((val) => `pastel-${val}`)]
-        }
-    }
+            'bg-color': [...colors.map((val) => `primary-${val}`), ...pastelColors.map((val) => `pastel-${val}`)],
+        },
+    },
 });
 
 export const joinClassNames = (...inputs: ClassValue[]) => {

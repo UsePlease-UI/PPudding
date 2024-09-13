@@ -1,14 +1,14 @@
 import { joinClassNames } from '@utils/format';
 
-import { SizeType, VariantType, getCircularStyle, getSizeStyle, getVariantStyle } from './styles';
+import { getCircularStyle, getSizeStyle, getVariantStyle, SizeType, VariantType } from './styles';
 
 type SkeletonType = {
+    backgroundColor?: string;
+    borderRadius?: string;
+    height?: string;
     size?: SizeType;
     variant?: VariantType;
     width?: string;
-    height?: string;
-    borderRadius?: string;
-    backgroundColor?: string;
 };
 
 /**
@@ -20,12 +20,12 @@ type SkeletonType = {
  *  @returns JSX.Element
  */
 export default function Skeleton({
+    backgroundColor,
+    borderRadius,
+    height,
     size = 'medium',
     variant = 'rounded',
     width,
-    height,
-    borderRadius,
-    backgroundColor
 }: SkeletonType) {
     return (
         <div
@@ -37,7 +37,7 @@ export default function Skeleton({
                 width,
                 height,
                 borderRadius,
-                backgroundColor
+                backgroundColor,
             )}
         />
     );

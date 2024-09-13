@@ -10,17 +10,17 @@ import { DateType } from '@components/usePicker';
 import { joinClassNames } from '@utils/format';
 
 type PickerButtonType = {
-    labelText?: string;
-    helperText?: string;
-    placeholder?: string;
     dateFormat?: string;
-    value?: DateType;
+    helperText?: string;
     icon?: ReactNode;
+    labelText?: string;
     onClick?: () => void;
+    placeholder?: string;
+    value?: DateType;
 };
 
 export default function PickerButton(props: PickerButtonType) {
-    const { labelText, helperText, placeholder, dateFormat, value, icon, onClick } = props;
+    const { dateFormat, helperText, icon, labelText, onClick, placeholder, value } = props;
 
     return (
         <>
@@ -29,7 +29,7 @@ export default function PickerButton(props: PickerButtonType) {
                 <p
                     className={joinClassNames(
                         'flex-1 pl-2 text-left text-14 font-medium text-primary-950',
-                        !value && placeholder && 'text-gray-400'
+                        !value && placeholder && 'text-gray-400',
                     )}
                 >
                     {value ? dayjs(value).format(dateFormat) : placeholder}

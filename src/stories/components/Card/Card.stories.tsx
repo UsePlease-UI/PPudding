@@ -5,7 +5,7 @@ import {
     MailFilled,
     MoreVerticalRegular,
     PaintBrushFilled,
-    ShareRegular
+    ShareRegular,
 } from '@fluentui/react-icons';
 
 import Divider from '@components/Base/Divider';
@@ -21,8 +21,8 @@ const meta = {
     tags: ['autodocs'],
     argTypes: {},
     parameters: {
-        layout: 'centered'
-    }
+        layout: 'centered',
+    },
 } satisfies Meta<typeof Card>;
 
 export default meta;
@@ -31,17 +31,17 @@ type Story = StoryObj<typeof Card>;
 export const DefaultCard: Story = {
     render: () => (
         <Card>
-            <Card.Media type="image" height={350} width={350} src="https://picsum.photos/id/360/200/300" />
+            <Card.Media height={350} src="https://picsum.photos/id/360/200/300" type="image" width={350} />
             <Card.Text primaryText="멋진 UI를 위한 CSS 스터디" secondaryText="UI/UX" />
         </Card>
     ),
-    args: {}
+    args: {},
 };
 
 export const ExpandableCard: Story = {
     render: () => (
         <Card>
-            <Card.Media type="image" height={350} width={350} src="https://picsum.photos/id/1/200/300" />
+            <Card.Media height={350} src="https://picsum.photos/id/1/200/300" type="image" width={350} />
             <Card.Text
                 isExpandable
                 primaryText="Welcome Class"
@@ -49,28 +49,28 @@ export const ExpandableCard: Story = {
                 expandedContents={
                     <>
                         <div className="flex items-center gap-2.5">
-                            <div className="h-10 w-10 rounded-full bg-primary-600">
-                                <CallFilled className="m-2.5 h-5 w-5 text-white" />
+                            <div className="size-10 rounded-full bg-primary-600">
+                                <CallFilled className="m-2.5 size-5 text-white" />
                             </div>
                             <div className="flex flex-col self-start">
                                 <p className="text-14 font-normal">(00) 0000-0000</p>
                                 <small className="text-12 text-gray-600">TEL</small>
                             </div>
                         </div>
-                        <Divider orientation="horizontal" margin="my-2.5" backgroundColor="bg-gray-100" />
+                        <Divider backgroundColor="bg-gray-100" margin="my-2.5" orientation="horizontal" />
                         <div className="flex items-center gap-2.5">
-                            <div className="h-10 w-10 rounded-full bg-primary-600">
-                                <MailFilled className="m-2.5 h-5 w-5 text-white" />
+                            <div className="size-10 rounded-full bg-primary-600">
+                                <MailFilled className="m-2.5 size-5 text-white" />
                             </div>
                             <div className="flex flex-col self-start">
                                 <p className="text-14 font-normal">example-email@test.com</p>
                                 <small className="text-12 text-gray-600">E-MAIL</small>
                             </div>
                         </div>
-                        <Divider orientation="horizontal" margin="my-2.5" backgroundColor="bg-gray-100" />
+                        <Divider backgroundColor="bg-gray-100" margin="my-2.5" orientation="horizontal" />
                         <div className="flex items-center gap-2.5">
-                            <div className="h-10 w-10 rounded-full bg-primary-600">
-                                <CalendarFilled className="m-2.5 h-5 w-5 text-white" />
+                            <div className="size-10 rounded-full bg-primary-600">
+                                <CalendarFilled className="m-2.5 size-5 text-white" />
                             </div>
                             <div className="flex flex-col self-start">
                                 <p className="text-14 font-normal">Every Monday, Wednesday</p>
@@ -82,7 +82,7 @@ export const ExpandableCard: Story = {
             />
         </Card>
     ),
-    args: {}
+    args: {},
 };
 
 export const ActionCard: Story = {
@@ -90,10 +90,10 @@ export const ActionCard: Story = {
         return (
             <Card>
                 <Card.Header>
-                    <Card.SupportingVisual type="icon" icon={<PaintBrushFilled className="h-5 w-5" />} />
+                    <Card.SupportingVisual icon={<PaintBrushFilled className="size-5" />} type="icon" />
                     <Card.Title title="멋진 UI를 위한 CSS 스터디" />
                 </Card.Header>
-                <Card.Media type="image" height={200} width={350} src="https://picsum.photos/id/464/200/300" />
+                <Card.Media height={200} src="https://picsum.photos/id/464/200/300" type="image" width={350} />
                 <Card.Actions
                     primaryText="멋진 UI를 위한 CSS 스터디"
                     secondaryText="UX/UI"
@@ -119,5 +119,5 @@ export const ActionCard: Story = {
             </Card>
         );
     },
-    args: {}
+    args: {},
 };

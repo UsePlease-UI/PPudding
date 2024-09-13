@@ -11,7 +11,7 @@ type CardTitleType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
  *  @param subtitle Card SubTitle
  *  @return JSX.Element
  */
-export default function CardTitle({ title, subtitle, ...rest }: CardTitleType) {
+export default function CardTitle({ subtitle, title, ...rest }: CardTitleType) {
     return (
         <div {...rest} className="flex w-full flex-col">
             {typeof title === 'string' ? <h4 className="text-16 font-semibold">{title}</h4> : title}

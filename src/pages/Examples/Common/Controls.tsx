@@ -4,13 +4,13 @@ import { Radio, RadioGroup } from '@components/Form/Radio';
 import useMobile from '@hooks/useMobile';
 
 interface Props {
-    options: string[];
     name: string;
-    value: string;
     onChange: (newValue: string) => void;
+    options: string[];
+    value: string;
 }
 
-export const RadioControls = ({ options, name, value, onChange }: Props) => {
+export const RadioControls = ({ name, onChange, options, value }: Props) => {
     const { isTablet } = useMobile();
 
     return (
@@ -19,17 +19,17 @@ export const RadioControls = ({ options, name, value, onChange }: Props) => {
                 Choose <span className="capitalize text-primary-800">{name}</span>
             </strong>
             <RadioGroup
-                value={value}
-                isRow={!isTablet}
                 gap={isTablet ? 0 : 2.5}
+                isRow={!isTablet}
+                value={value}
                 onChange={(e) => onChange(e.currentTarget.value)}
             >
                 {options.map((val) => (
                     <Radio
                         key={val}
-                        size={isTablet ? 'small' : 'medium'}
                         label={val}
                         name={name.replace(' ', '').toLowerCase()}
+                        size={isTablet ? 'small' : 'medium'}
                         value={val}
                     />
                 ))}
@@ -39,12 +39,12 @@ export const RadioControls = ({ options, name, value, onChange }: Props) => {
 };
 
 interface CheckboxControlProps {
+    checked: boolean;
     label: string;
     name: string;
-    checked: boolean;
     onChange: (isChecked: boolean) => void;
 }
-export const CheckboxControl = ({ label, name, checked, onChange }: CheckboxControlProps) => {
+export const CheckboxControl = ({ checked, label, name, onChange }: CheckboxControlProps) => {
     const { isTablet } = useMobile();
 
     return (
@@ -53,8 +53,8 @@ export const CheckboxControl = ({ label, name, checked, onChange }: CheckboxCont
                 Choose <span className="capitalize text-primary-800">{name}</span>
             </strong>
             <Checkbox
-                label={label}
                 checked={checked}
+                label={label}
                 size={isTablet ? 'small' : 'medium'}
                 onChange={(e) => onChange(e.currentTarget.checked)}
             />

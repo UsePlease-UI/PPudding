@@ -2,9 +2,9 @@ import { HTMLAttributes, ReactNode } from 'react';
 
 type FormControlType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
     children: ReactNode;
-    labelText?: ReactNode;
-    helperTextId?: string;
     helperText?: ReactNode;
+    helperTextId?: string;
+    labelText?: ReactNode;
 };
 
 /**
@@ -17,18 +17,18 @@ type FormControlType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
  *  @returns JSX.Element
  */
 export default function FormControl(props: FormControlType) {
-    const { children, id, labelText, helperTextId, helperText } = props;
+    const { children, helperText, helperTextId, id, labelText } = props;
 
     return (
         <div className="w-full">
             {labelText && (
-                <label htmlFor={id} className="mb-1 block text-12 font-semibold">
+                <label className="mb-1 block text-12 font-semibold" htmlFor={id}>
                     {labelText}
                 </label>
             )}
             {children}
             {helperText && (
-                <small id={helperTextId} className="mt-px block text-10 font-medium">
+                <small className="mt-px block text-10 font-medium" id={helperTextId}>
                     {helperText}
                 </small>
             )}

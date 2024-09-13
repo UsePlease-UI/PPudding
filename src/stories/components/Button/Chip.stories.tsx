@@ -12,38 +12,38 @@ const meta: Meta<typeof Chip> = {
     parameters: {
         docs: {
             argTypes: {
-                sort: 'requiredFirst'
-            }
+                sort: 'requiredFirst',
+            },
         },
-        layout: 'centered'
+        layout: 'centered',
     },
     argTypes: {
         label: {
             table: {
-                category: 'required'
+                category: 'required',
             },
             control: 'text',
-            description: 'displayed content'
+            description: 'displayed content',
         },
         value: { table: { disable: true } },
         onDelete: { table: { disable: true } },
         variant: {
             table: {
-                category: 'optional'
+                category: 'optional',
             },
             description: 'style of the chip',
             control: {
-                type: 'inline-radio'
+                type: 'inline-radio',
             },
-            options: ['outlined', 'contained', 'text']
+            options: ['outlined', 'contained', 'text'],
         },
         isDeletable: {
             table: {
-                category: 'optional'
+                category: 'optional',
             },
             control: 'boolean',
-            description: 'can be deleted'
-        }
+            description: 'can be deleted',
+        },
     },
     play: async ({ args, canvasElement, step }) => {
         const canvas = within(canvasElement);
@@ -54,7 +54,7 @@ const meta: Meta<typeof Chip> = {
         });
         await step(`chip variant : ${args.variant}`, async () => {
             await expect((await canvas.findByText(args.label)).parentNode).toHaveClass(
-                getVariantStyle(args.variant) as string
+                getVariantStyle(args.variant) as string,
             );
         });
         if (args.isDeletable) {
@@ -64,7 +64,7 @@ const meta: Meta<typeof Chip> = {
                 await expect(consoleSpy).toHaveBeenCalledWith(args.value);
             });
         }
-    }
+    },
 };
 
 export default meta;
@@ -75,8 +75,8 @@ export const Default: Story = {
         label: '사탕',
         value: 'candy',
         variant: 'outlined',
-        isDeletable: false
-    }
+        isDeletable: false,
+    },
 };
 
 export const Deletable: Story = {
@@ -85,6 +85,6 @@ export const Deletable: Story = {
         value: 'candy',
         variant: 'outlined',
         isDeletable: true,
-        onDelete: (value) => console.log(value)
-    }
+        onDelete: (value) => console.log(value),
+    },
 };

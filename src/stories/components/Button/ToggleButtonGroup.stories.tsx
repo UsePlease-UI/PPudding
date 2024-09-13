@@ -7,12 +7,12 @@ const meta = {
     component: ToggleButtonGroup,
     tags: ['autodocs'],
     parameters: {
-        layout: 'centered'
+        layout: 'centered',
     },
     argTypes: {
         children: { table: { disable: true } },
-        onChange: { table: { disable: true } }
-    }
+        onChange: { table: { disable: true } },
+    },
 } satisfies Meta<typeof ToggleButtonGroup>;
 
 export default meta;
@@ -32,6 +32,6 @@ export const Default: Story = {
         );
     },
     args: {
-        value: 'banana'
-    }
+        value: 'banana',
+    },
 };

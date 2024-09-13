@@ -14,7 +14,7 @@ type CardActionsType = TextType & {
  *  @param actions ex. Buttons, Chips, Slider...
  *  @returns JSX.Element
  */
-export default function CardActions({ primaryText, secondaryText, actions }: CardActionsType) {
+export default function CardActions({ actions, primaryText, secondaryText }: CardActionsType) {
     return (
         <div className={primaryText || secondaryText ? 'space-y-2.5' : ''}>
             {(primaryText || secondaryText) && <CardText primaryText={primaryText} secondaryText={secondaryText} />}

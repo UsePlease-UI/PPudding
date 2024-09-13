@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { customStyles, Heading, Toggle } from './Common';
-import { FEEDBACK_LIST, SkeletonExample, AlertExample } from './Feedback';
+import { AlertExample, FEEDBACK_LIST, SkeletonExample } from './Feedback';
 
 export default function FeedbackExample() {
     const [searchParams] = useSearchParams();
@@ -11,7 +11,7 @@ export default function FeedbackExample() {
     return (
         <div className="flex flex-col gap-2.5">
             <Heading title="Feedback Playground" />
-            <Toggle selected={selected} onChange={setSelected} options={FEEDBACK_LIST} />
+            <Toggle options={FEEDBACK_LIST} selected={selected} onChange={setSelected} />
             <div className={customStyles.toggleComponentContainer}>
                 {selected === 'Alert' && <AlertExample />}
                 {selected === 'Skeleton' && <SkeletonExample />}

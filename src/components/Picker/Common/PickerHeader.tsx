@@ -8,7 +8,7 @@ type PickerHeaderType = {
     month?: string;
 };
 
-export default function PickerHeader({ year, month, onClick }: PickerHeaderType) {
+export default function PickerHeader({ month, onClick, year }: PickerHeaderType) {
     return (
         <div className="mb-5 flex w-full items-center justify-between">
             <IconButton size="small" onClick={() => onClick(true)}>

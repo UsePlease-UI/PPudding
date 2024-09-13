@@ -26,7 +26,7 @@ export default function CollapsedList({ children, hasDivider, isDense, maxWidth,
                     'w-full *:px-4 *:py-0',
                     hasDivider && 'divide-y divide-gray-100',
                     isDense && '*:px-8',
-                    maxWidth && { maxWidth }
+                    maxWidth && { maxWidth },
                 )}
             >
                 {children}

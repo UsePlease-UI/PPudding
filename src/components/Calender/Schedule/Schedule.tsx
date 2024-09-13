@@ -14,25 +14,25 @@ import ScheduleDetail from '../Schedule/ScheduleDetail';
 import WeekDays from '../Week/WeekDays';
 
 type OpenScheduleType = {
-    isOpen: string;
     index: number;
+    isOpen: string;
 };
 
 type ScheduleType = {
-    isEdited: boolean;
-    onEdit: (isEdited: boolean) => void;
     isAddFormOpen: boolean;
-    onAddFormOpen: (isOpen: boolean) => void;
+    isEdited: boolean;
     isScheduleOpen: OpenScheduleType;
+    onAddFormOpen: (isOpen: boolean) => void;
+    onEdit: (isEdited: boolean) => void;
     onScheduleOpen: (obj: OpenScheduleType) => void;
 };
 
 export default function Schedule(props: ScheduleType) {
-    const { isEdited, onEdit, isAddFormOpen, onAddFormOpen, isScheduleOpen, onScheduleOpen } = props;
+    const { isAddFormOpen, isEdited, isScheduleOpen, onAddFormOpen, onEdit, onScheduleOpen } = props;
 
     const { isTablet } = useMobile();
-    const { isOpen, anchorElement, handleOpen, handleClose } = usePopover();
-    const { date, year, month, scheduleList, getWeeks, handleCalendar } = useCalender();
+    const { anchorElement, handleClose, handleOpen, isOpen } = usePopover();
+    const { date, getWeeks, handleCalendar, month, scheduleList, year } = useCalender();
 
     const handleDetailClick = useCallback(
         (type: 'open' | 'close', day: string, index: number) => {
@@ -47,7 +47,7 @@ export default function Schedule(props: ScheduleType) {
             }
             onScheduleOpen({ isOpen: day, index });
         },
-        [isAddFormOpen, isTablet]
+        [isAddFormOpen, isTablet],
     );
 
     const handleScheduleDelete = useCallback((idx: string) => {
@@ -65,7 +65,7 @@ export default function Schedule(props: ScheduleType) {
                             <p
                                 className={joinClassNames(
                                     'm-1 text-16 font-medium tablet:mx-2.5',
-                                    String(date) && 'text-primary-800'
+                                    String(date) && 'text-primary-800',
                                 )}
                             >
                                 {day}
@@ -77,7 +77,7 @@ export default function Schedule(props: ScheduleType) {
                                         dayjs(todo.endDate) >= dayjs(`${year}-${month}-${day}`)
                                     ) {
                                         const isStartDate = dayjs(todo.startDate).isSame(
-                                            dayjs(`${year}-${month}-${day}`)
+                                            dayjs(`${year}-${month}-${day}`),
                                         );
                                         const isDetailOpen =
                                             isScheduleOpen.isOpen === day && isScheduleOpen.index === index;
@@ -86,12 +86,12 @@ export default function Schedule(props: ScheduleType) {
                                                 <div
                                                     className={joinClassNames(
                                                         'flex flex-col items-start justify-center transition-opacity hover:opacity-80',
-                                                        todo.color
+                                                        todo.color,
                                                     )}
                                                 >
                                                     <button
-                                                        type="button"
                                                         className="w-full p-1 hover:font-bold tablet:px-3 tablet:py-1"
+                                                        type="button"
                                                         onClick={(e) => {
                                                             handleOpen(e);
                                                             handleDetailClick('open', day, index);
@@ -109,30 +109,30 @@ export default function Schedule(props: ScheduleType) {
                                                         onClose={() => onScheduleOpen({ isOpen: '', index: -1 })}
                                                     >
                                                         <ScheduleDetail
-                                                            todo={todo}
                                                             day={day}
-                                                            isStartDate={isStartDate}
                                                             isEdited={isEdited}
+                                                            isStartDate={isStartDate}
+                                                            todo={todo}
+                                                            onDetailClick={handleDetailClick}
                                                             onEdit={onEdit}
                                                             onScheduleDelete={handleScheduleDelete}
-                                                            onDetailClick={handleDetailClick}
                                                         />
                                                     </BottomSheet>
                                                 ) : (
                                                     <Popover
-                                                        isOpen={isOpen && isDetailOpen}
                                                         anchorElement={anchorElement}
                                                         anchorPosition={{ horizontal: 'right', vertical: 'bottom' }}
+                                                        isOpen={isOpen && isDetailOpen}
                                                         onClose={handleClose}
                                                     >
                                                         <ScheduleDetail
-                                                            todo={todo}
                                                             day={day}
-                                                            isStartDate={isStartDate}
                                                             isEdited={isEdited}
+                                                            isStartDate={isStartDate}
+                                                            todo={todo}
+                                                            onDetailClick={handleDetailClick}
                                                             onEdit={onEdit}
                                                             onScheduleDelete={handleScheduleDelete}
-                                                            onDetailClick={handleDetailClick}
                                                         />
                                                     </Popover>
                                                 )}

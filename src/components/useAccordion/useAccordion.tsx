@@ -1,16 +1,16 @@
-import { MouseEvent, ReactNode, createContext, useCallback, useContext, useId, useMemo, useState } from 'react';
+import { createContext, MouseEvent, ReactNode, useCallback, useContext, useId, useMemo, useState } from 'react';
 
 type AccordionContextType = {
     accordionId: string;
-    isExpanded: boolean;
     isDisabled: boolean;
+    isExpanded: boolean;
     onChange: (event: MouseEvent<HTMLButtonElement>, isExpanded: boolean) => void;
 };
 
 type AccordionProviderType = {
     children: ReactNode;
-    isExpanded?: boolean;
     isDisabled?: boolean;
+    isExpanded?: boolean;
     onChange?: (event: MouseEvent<HTMLButtonElement>, isExpanded: boolean) => void;
 };
 
@@ -34,7 +34,7 @@ export const useAccordion = () => {
  *  @param onChange Change Event Handler [optional]
  *  @returns JSX.Element
  */
-export function AccordionProvider({ children, isExpanded, isDisabled, onChange }: AccordionProviderType) {
+export function AccordionProvider({ children, isDisabled, isExpanded, onChange }: AccordionProviderType) {
     const accordionId = useId();
     const [selected, setSelected] = useState<boolean>(isExpanded ?? false);
 
@@ -45,7 +45,7 @@ export function AccordionProvider({ children, isExpanded, isDisabled, onChange }
                 onChange(event, curIsExpanded);
             }
         },
-        [selected, onChange]
+        [selected, onChange],
     );
 
     const context: AccordionContextType = useMemo(
@@ -53,9 +53,9 @@ export function AccordionProvider({ children, isExpanded, isDisabled, onChange }
             accordionId,
             isExpanded: isDisabled ? true : selected,
             isDisabled: isDisabled || false,
-            onChange: handleChange
+            onChange: handleChange,
         }),
-        [accordionId, isExpanded, isDisabled, handleChange]
+        [accordionId, isExpanded, isDisabled, handleChange],
     );
 
     return <AccordionContext.Provider value={context}>{children}</AccordionContext.Provider>;

@@ -1,4 +1,4 @@
-import { ChangeEvent, Children, ReactElement, ReactNode, cloneElement } from 'react';
+import { ChangeEvent, Children, cloneElement, ReactElement, ReactNode } from 'react';
 
 import { joinClassNames } from '@utils/format';
 
@@ -6,8 +6,8 @@ type RadioGroupType = {
     children: ReactNode;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     value: string | number;
-    isRow?: boolean;
     gap?: number;
+    isRow?: boolean;
 };
 
 /**
@@ -20,7 +20,7 @@ type RadioGroupType = {
  *  @returns JSX.Element
  */
 export default function RadioGroup(props: RadioGroupType) {
-    const { children, value, onChange, isRow = true, gap = 2.5 } = props;
+    const { children, gap = 2.5, isRow = true, onChange, value } = props;
 
     return (
         <div
@@ -28,11 +28,11 @@ export default function RadioGroup(props: RadioGroupType) {
             className={joinClassNames(
                 'flex flex-col',
                 isRow && 'flex-row items-center justify-start',
-                gap && `gap-${gap}`
+                gap && `gap-${gap}`,
             )}
         >
             {Children.toArray(children).map((child) =>
-                cloneElement(child as ReactElement, { currentValue: value, onChange })
+                cloneElement(child as ReactElement, { currentValue: value, onChange }),
             )}
         </div>
     );

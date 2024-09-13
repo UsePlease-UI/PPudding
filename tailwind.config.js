@@ -10,7 +10,7 @@ const px10000 = Array.from({ length: 10000 }, (_, idx) => idx + 1);
 /** @type {import('tailwindcss').Config} */
 export default {
     future: {
-        hoverOnlyWhenSupported: true
+        hoverOnlyWhenSupported: true,
     },
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
     // Toggle dark-mode based on .dark class or data-mode="dark"
@@ -19,63 +19,63 @@ export default {
         extend: {
             fontFamily: {
                 inherit: 'inherit',
-                pretendard: ['Pretendard', 'sans-serif']
+                pretendard: ['Pretendard', 'sans-serif'],
             },
             fontSize: {
-                ...rem1000
+                ...rem1000,
             },
             fontWeight: {
-                inherit: 'inherit'
+                inherit: 'inherit',
             },
             minHeight: {
                 inherit: 'inherit',
-                ...spacing1000
+                ...spacing1000,
             },
             height: {
                 inherit: 'inherit',
-                ...spacing1000
+                ...spacing1000,
             },
             maxHeight: {
                 inherit: 'inherit',
-                ...spacing1000
+                ...spacing1000,
             },
             width: {
                 inherit: 'inherit',
-                ...spacing1000
+                ...spacing1000,
             },
             minWidth: {
                 inherit: 'inherit',
-                ...spacing1000
+                ...spacing1000,
             },
             maxWidth: {
                 inherit: 'inherit',
-                ...spacing1000
+                ...spacing1000,
             },
             padding: {
-                ...spacing1000
+                ...spacing1000,
             },
             margin: {
-                ...spacing1000
+                ...spacing1000,
             },
             borderRadius: {
-                ...spacing1000
+                ...spacing1000,
             },
             spacing: {
-                ...spacing1000
+                ...spacing1000,
             },
             lineHeight: {
                 ...rem1000,
-                inherit: 'inherit'
+                inherit: 'inherit',
             },
             zIndex: {
-                ...px10000.reduce((acc, px) => ({ ...acc, [px]: `${px}` }), {})
+                ...px10000.reduce((acc, px) => ({ ...acc, [px]: `${px}` }), {}),
             },
             boxShadow: {
                 '01': '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
                 '02': '1px 1px 10px 1px #e3ecfb',
                 '03': '0px 0px 8px 0px #eeeeee',
                 '04': '5px 5px 5px 5px rgba(0,0,0,0.2), -7px 1px 11px 1px rgba(0,0,0,0.14), 0px -6px 14px -10px rgba(0,0,0,0.12)',
-                inset01: 'inset 0px -1px 0px 0px #eeeeee'
+                inset01: 'inset 0px -1px 0px 0px #eeeeee',
             },
             colors: {
                 primary: {
@@ -89,7 +89,7 @@ export default {
                     700: '#99770f',
                     800: '#7f5f14',
                     900: '#6c4d17',
-                    950: '#3f2909'
+                    950: '#3f2909',
                 },
                 blue: {
                     50: '#f1f6fe',
@@ -102,7 +102,7 @@ export default {
                     700: '#124b92',
                     800: '#134079',
                     900: '#153865',
-                    950: '#0e2343'
+                    950: '#0e2343',
                 },
                 'blue-gray': {
                     50: '#f4f8fa',
@@ -115,7 +115,7 @@ export default {
                     700: '#5c7699',
                     800: '#4f617e',
                     900: '#425266',
-                    950: '#2c333f'
+                    950: '#2c333f',
                 },
                 'yellow-gray': {
                     50: '#f4f4f1',
@@ -128,7 +128,7 @@ export default {
                     700: '#4c4c3f',
                     800: '#3f3e35',
                     900: '#373730',
-                    950: '#1c1c17'
+                    950: '#1c1c17',
                 },
                 gray: {
                     50: '#f8f8f8',
@@ -141,7 +141,7 @@ export default {
                     700: '#525252',
                     800: '#464646',
                     900: '#3d3d3d',
-                    950: '#292929'
+                    950: '#292929',
                 },
                 pastel: {
                     '01': '#2178ae',
@@ -155,45 +155,45 @@ export default {
                     '09': '#D9E5AB',
                     10: '#F2967C',
                     11: '#CBD1EF',
-                    12: '#F08FB0'
-                }
+                    12: '#F08FB0',
+                },
             },
             keyframes: {
                 blink: {
                     '0%': {
-                        opacity: 0.4
+                        opacity: 0.4,
                     },
                     '50%': {
-                        opacity: 1
+                        opacity: 1,
                     },
                     '100%': {
-                        opacity: 0.4
-                    }
+                        opacity: 0.4,
+                    },
                 },
                 fadeIn: {
                     '0%': {
                         bottom: 0,
-                        opacity: 0
+                        opacity: 0,
                     },
                     '100%': {
                         bottom: 30,
-                        opacity: 1
-                    }
+                        opacity: 1,
+                    },
                 },
                 fadeOut: {
                     '0%': {
                         bottom: 30,
-                        opacity: 1
+                        opacity: 1,
                     },
                     '100%': {
                         bottom: 0,
-                        opacity: 0
-                    }
-                }
+                        opacity: 0,
+                    },
+                },
             },
             animation: {
                 blink: 'blink 2s ease-in-out infinite',
-                fadeInOut: 'fadeIn 0.5s, fadeOut 0.5s 4.5s forwards'
+                fadeInOut: 'fadeIn 0.5s, fadeOut 0.5s 4.5s forwards',
             },
             screens: {
                 mobile: '321px',
@@ -202,14 +202,14 @@ export default {
                 desktop: '1513px',
                 '4k': '1920px',
                 'under-tablet': { max: '768px' },
-                'under-mobile': { max: '320px' }
-            }
-        }
+                'under-mobile': { max: '320px' },
+            },
+        },
     },
     plugins: [
         require('tailwind-scrollbar-hide'),
         function ({ addVariant }) {
             addVariant('child-svg', '& svg');
-        }
-    ]
+        },
+    ],
 };

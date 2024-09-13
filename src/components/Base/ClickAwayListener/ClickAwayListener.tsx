@@ -2,9 +2,9 @@ import { ReactNode, useEffect } from 'react';
 
 type ClickAwayListenerType = {
     children: ReactNode;
+    element: HTMLElement | null;
     isOpen: boolean;
     onClose: () => void;
-    element: HTMLElement | null;
     anchorElement?: HTMLElement | null;
 };
 
@@ -17,7 +17,7 @@ type ClickAwayListenerType = {
  *  @param anchorElement Element that is wrapped by Click Away Listener (if click outside of this element, the component becomes invisible)
  *  @returns JSX.Element
  */
-const ClickAwayListener = ({ children, isOpen, onClose, element, anchorElement }: ClickAwayListenerType) => {
+const ClickAwayListener = ({ anchorElement, children, element, isOpen, onClose }: ClickAwayListenerType) => {
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (isOpen && !element?.contains(event.target as Node) && !anchorElement?.contains(event.target as Node)) {

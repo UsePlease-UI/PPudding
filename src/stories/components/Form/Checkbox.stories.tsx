@@ -9,10 +9,10 @@ const meta: Meta<typeof Checkbox> = {
     component: Checkbox,
     tags: ['autodocs'],
     parameters: {
-        layout: 'centered'
+        layout: 'centered',
     },
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-    argTypes: {}
+    argTypes: {},
 };
 
 export default meta;
@@ -23,10 +23,10 @@ export const Default: Story = {
     render: (args) => {
         const [candy, setCandy] = useState(false);
         return (
-            <Checkbox {...args} label="사탕" value="candy" checked={candy} onChange={() => setCandy((prev) => !prev)} />
+            <Checkbox {...args} checked={candy} label="사탕" value="candy" onChange={() => setCandy((prev) => !prev)} />
         );
     },
     args: {
-        isDisabled: false
-    }
+        isDisabled: false,
+    },
 };

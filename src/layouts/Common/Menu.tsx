@@ -29,7 +29,7 @@ const Menu = ({ onClick }: MenuType) => {
             <Button size="small" variant="contained" onClick={() => setIsOpen((prev) => !prev)}>
                 <strong>MENU</strong>
             </Button>
-            <Backdrop isOpen={isOpen} canFocusTrap isDimmed onClose={() => setIsOpen(false)}>
+            <Backdrop canFocusTrap isDimmed isOpen={isOpen} onClose={() => setIsOpen(false)}>
                 <nav className="absolute right-5 top-14.25 flex w-max flex-col items-start gap-5 rounded bg-white p-5">
                     {[{ name: 'Components', list: COMPONENT_LIST }].map((val) => (
                         <div key={val.name} className="relative max-w-full rounded border border-primary-600">
@@ -43,8 +43,8 @@ const Menu = ({ onClick }: MenuType) => {
                                         className="group rounded font-medium hover:bg-primary-50 hover:font-semibold"
                                     >
                                         <Link
-                                            to={`/example/${component.toLowerCase()}`}
                                             className="block px-1 py-2 text-center text-12 capitalize outline-none focus:font-black focus:text-primary-800 focus:outline-none group-hover:text-primary-900"
+                                            to={`/example/${component.toLowerCase()}`}
                                         >
                                             {component}
                                         </Link>
@@ -64,8 +64,8 @@ const Menu = ({ onClick }: MenuType) => {
                                     className="group rounded font-medium hover:bg-primary-50 hover:font-semibold"
                                 >
                                     <Link
-                                        to={`/demo/${component.toLowerCase()}`}
                                         className="block px-1 py-2 text-center text-12 capitalize outline-none focus:font-black focus:text-primary-800 focus:outline-none group-hover:text-primary-900"
+                                        to={`/demo/${component.toLowerCase()}`}
                                     >
                                         {component}
                                     </Link>

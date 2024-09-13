@@ -1,9 +1,9 @@
-import { ChangeEvent, Children, HTMLAttributes, ReactElement, ReactNode, cloneElement } from 'react';
+import { ChangeEvent, Children, cloneElement, HTMLAttributes, ReactElement, ReactNode } from 'react';
 
 type ToggleButtonGroupType = Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'className'> & {
     children: ReactNode;
-    value?: string | string[];
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+    value?: string | string[];
 };
 
 /**
@@ -13,7 +13,7 @@ type ToggleButtonGroupType = Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | '
  *  @param onChange Change Event Handler
  *  @returns JSX.Element
  */
-export default function ToggleButtonGroup({ children, value, onChange }: ToggleButtonGroupType) {
+export default function ToggleButtonGroup({ children, onChange, value }: ToggleButtonGroupType) {
     const isMultiple = typeof value !== 'string';
 
     return (
@@ -22,8 +22,8 @@ export default function ToggleButtonGroup({ children, value, onChange }: ToggleB
                 cloneElement(child as ReactElement, {
                     isMultiple,
                     currentValue: value,
-                    onChange
-                })
+                    onChange,
+                }),
             )}
         </div>
     );

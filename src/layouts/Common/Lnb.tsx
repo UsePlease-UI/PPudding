@@ -9,7 +9,7 @@ import IconButton from '@components/Button/IconButton';
 import useMobile from '@hooks/useMobile';
 import { joinClassNames } from '@utils/format';
 
-import { DEMO_LIST, COMPONENT_LIST } from './constants';
+import { COMPONENT_LIST, DEMO_LIST } from './constants';
 
 type LnbType = {
     isVisible: boolean;
@@ -28,14 +28,14 @@ export default function Lnb({ isVisible, onClose }: LnbType) {
     }, [searchParams]);
 
     return (
-        <Backdrop isOpen={isVisible} isDimmed backgroundColor="bg-black/80" onClose={onClose}>
+        <Backdrop isDimmed backgroundColor="bg-black/80" isOpen={isVisible} onClose={onClose}>
             <div
                 className={joinClassNames(
                     'pointer-events-none flex w-0 flex-col items-start overflow-y-auto bg-[unset] transition-all duration-500 ease-in-out',
-                    isVisible && 'pointer-events-auto h-full w-full'
+                    isVisible && 'pointer-events-auto h-full w-full',
                 )}
             >
-                <nav className="absolute left-5 right-5 top-5 mx-auto flex h-[calc(100vh-40px)] max-w-[calc(500px-40px)] flex-col items-start gap-5 overflow-y-auto rounded bg-white p-5 pt-9.5">
+                <nav className="absolute inset-x-5 top-5 mx-auto flex h-[calc(100vh-40px)] max-w-[calc(500px-40px)] flex-col items-start gap-5 overflow-y-auto rounded bg-white p-5 pt-9.5">
                     <div className="absolute right-0.75 top-0.75 z-1 flex justify-end bg-white">
                         <IconButton
                             aria-label="close"
@@ -60,13 +60,13 @@ export default function Lnb({ isVisible, onClose }: LnbType) {
                                 {val.list.map((component) => (
                                     <li
                                         key={component}
-                                        className="group h-full w-full rounded bg-primary-50 font-medium hover:font-semibold"
+                                        className="group size-full rounded bg-primary-50 font-medium hover:font-semibold"
                                     >
                                         <Link
                                             to={`/example/${component.toLowerCase()}`}
                                             className={joinClassNames(
                                                 'block h-full w-full px-1 py-2 text-center group-hover:text-primary-900 group-hover:outline-none group-focus:text-primary-800 group-focus:outline-none',
-                                                component === selected && 'font-semibold text-primary-800'
+                                                component === selected && 'font-semibold text-primary-800',
                                             )}
                                         >
                                             {component}
@@ -86,11 +86,11 @@ export default function Lnb({ isVisible, onClose }: LnbType) {
                             {DEMO_LIST.map((demo) => (
                                 <li
                                     key={demo}
-                                    className="group h-full w-full rounded bg-primary-50 font-medium hover:font-semibold"
+                                    className="group size-full rounded bg-primary-50 font-medium hover:font-semibold"
                                 >
                                     <Link
+                                        className="block size-full px-1 py-2 text-center capitalize group-hover:text-primary-900 group-hover:outline-none group-focus:text-primary-800 group-focus:outline-none"
                                         to={`/demo/${demo.toLowerCase()}`}
-                                        className="block h-full w-full px-1 py-2 text-center capitalize group-hover:text-primary-900 group-hover:outline-none group-focus:text-primary-800 group-focus:outline-none"
                                     >
                                         {demo}
                                     </Link>

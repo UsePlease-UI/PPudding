@@ -5,7 +5,7 @@ import { HOME_LIST } from './constants';
 export default function Home() {
     return (
         <div className="w-full space-y-5">
-            {HOME_LIST.map(({ name, list }) => (
+            {HOME_LIST.map(({ list, name }) => (
                 <div key={name} className="flex w-full flex-col">
                     <p className="mb-5 text-28 font-black uppercase text-primary-800">{name}</p>
                     <div className="flex flex-wrap gap-5">
@@ -23,7 +23,7 @@ export default function Home() {
                                     }
                                 >
                                     <div className="relative pb-[57.69%]">
-                                        <div className="absolute top-0 flex h-full w-full items-center justify-center rounded-md bg-primary-600 uppercase text-primary-950 hover:border-b-primary-600 hover:bg-primary-50 hover:text-primary-950">
+                                        <div className="absolute top-0 flex size-full items-center justify-center rounded-md bg-primary-600 uppercase text-primary-950 hover:border-b-primary-600 hover:bg-primary-50 hover:text-primary-950">
                                             <p className="text-center text-28 font-black text-inherit">{data}</p>
                                         </div>
                                     </div>

@@ -4,7 +4,7 @@ import { Accordion, AccordionHeader, AccordionPanel } from '@components/Accordio
 
 export default function FAQ() {
     return (
-        <div className="h-full w-full">
+        <div className="size-full">
             <h2 className="mb-10 text-center text-40 font-bold">자주 묻는 질문들(FAQ)</h2>
             <div className="space-y-1.25">
                 <Accordion isExpanded>

@@ -5,12 +5,12 @@ import useMobile from '@hooks/useMobile';
 import { customStyles } from './styles';
 
 type ToggleType = {
-    selected: string;
     onChange: (newValue: string) => void;
     options: string[];
+    selected: string;
 };
 
-export default function Toggle({ selected, onChange, options }: ToggleType) {
+export default function Toggle({ onChange, options, selected }: ToggleType) {
     const { isMobile, isTablet } = useMobile();
 
     return (
@@ -19,8 +19,8 @@ export default function Toggle({ selected, onChange, options }: ToggleType) {
                 {options.map((val) => (
                     <ToggleButton
                         key={val}
-                        size={isMobile ? 'small' : isTablet ? 'medium' : 'large'}
                         name="components"
+                        size={isMobile ? 'small' : isTablet ? 'medium' : 'large'}
                         value={val}
                     >
                         {val}

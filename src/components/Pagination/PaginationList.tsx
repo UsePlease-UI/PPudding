@@ -4,52 +4,52 @@ import PaginationButton from './PaginationButton';
 import PaginationIconButton from './PaginationIconButton';
 
 type PaginationListType = {
-    showFirstButton?: boolean;
-    showLastButton?: boolean;
-    page: number;
     blockNum: number;
+    handleFirstClick: () => void;
+    handleLastClick: () => void;
+    handleNextClick: () => void;
+    handlePrevClick: () => void;
+    onChange: (page: number, newBlockNum: number) => void;
+    page: number;
     pageLimit: number;
     totalCount: number;
-    onChange: (page: number, newBlockNum: number) => void;
-    handleFirstClick: () => void;
-    handlePrevClick: () => void;
-    handleNextClick: () => void;
-    handleLastClick: () => void;
+    showFirstButton?: boolean;
+    showLastButton?: boolean;
 };
 
 export default function PaginationList(props: PaginationListType) {
     const {
+        blockNum,
+        handleFirstClick,
+        handleLastClick,
+        handleNextClick,
+        handlePrevClick,
+        onChange,
+        page,
+        pageLimit,
         showFirstButton,
         showLastButton,
-        page,
-        blockNum,
-        pageLimit,
         totalCount,
-        onChange,
-        handleFirstClick,
-        handlePrevClick,
-        handleNextClick,
-        handleLastClick
     } = props;
 
     return (
         <ul className="flex flex-wrap items-center gap-1.25">
             {showFirstButton && (
-                <li className="flex h-8 w-8 items-center justify-center">
+                <li className="flex size-8 items-center justify-center">
                     <PaginationIconButton
+                        aria-label="처음으로 이동"
                         icon={<ArrowPreviousFilled />}
                         isDisabled={page === 1}
                         onClick={handleFirstClick}
-                        aria-label="처음으로 이동"
                     />
                 </li>
             )}
-            <li className="flex h-8 w-8 items-center justify-center">
+            <li className="flex size-8 items-center justify-center">
                 <PaginationIconButton
+                    aria-label="이전으로 이동"
                     icon={<ChevronLeftFilled />}
                     isDisabled={page === 1}
                     onClick={handlePrevClick}
-                    aria-label="이전으로 이동"
                 />
             </li>
             {/* TODO: Array 구현 로직 수정 */}
@@ -58,30 +58,30 @@ export default function PaginationList(props: PaginationListType) {
                 .map((_, idx) => idx + (blockNum - 1) * pageLimit)
                 .map((el, index) =>
                     el + 1 > totalCount ? null : (
-                        <li key={el} role="presentation" className="flex h-8 w-8 items-center justify-center">
+                        <li key={el} className="flex size-8 items-center justify-center" role="presentation">
                             <PaginationButton
-                                pageNum={el + 1}
                                 isSelected={page === el + 1}
+                                pageNum={el + 1}
                                 onClick={() => onChange(index + 1, blockNum)}
                             />
                         </li>
-                    )
+                    ),
                 )}
-            <li className="flex h-8 w-8 items-center justify-center">
+            <li className="flex size-8 items-center justify-center">
                 <PaginationIconButton
+                    aria-label="다음으로 이동"
                     icon={<ChevronRightFilled />}
                     isDisabled={page === totalCount}
                     onClick={handleNextClick}
-                    aria-label="다음으로 이동"
                 />
             </li>
             {showLastButton && (
-                <li className="flex h-8 w-8 items-center justify-center">
+                <li className="flex size-8 items-center justify-center">
                     <PaginationIconButton
+                        aria-label="마지막으로 이동"
                         icon={<ArrowNextFilled />}
                         isDisabled={page === totalCount}
                         onClick={handleLastClick}
-                        aria-label="마지막으로 이동"
                     />
                 </li>
             )}

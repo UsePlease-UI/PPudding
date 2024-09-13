@@ -7,28 +7,28 @@ import { joinClassNames } from '@utils/format';
 
 type DragNDropListItemType = {
     items: CommonListDataType[];
-    onDragStart?: (event: DragEvent<HTMLLIElement>, item: CommonListDataType) => void;
     onDragOver?: (event: DragEvent<HTMLLIElement>) => void;
+    onDragStart?: (event: DragEvent<HTMLLIElement>, item: CommonListDataType) => void;
     onDrop?: (event: DragEvent<HTMLLIElement>, targetItem: CommonListDataType) => void;
 };
 
-export default function DragNDropListItem({ items, onDragStart, onDragOver, onDrop }: DragNDropListItemType) {
+export default function DragNDropListItem({ items, onDragOver, onDragStart, onDrop }: DragNDropListItemType) {
     return items.map((el) => (
         <li
             key={el.idx}
             draggable
+            className={joinClassNames(listStyle.listItem, listStyle.listItemButton, 'leading-40')}
+            onDragOver={onDragOver}
             onDragStart={(e) => {
                 if (onDragStart) {
                     onDragStart(e, el);
                 }
             }}
-            onDragOver={onDragOver}
             onDrop={(e) => {
                 if (onDrop) {
                     onDrop(e, el);
                 }
             }}
-            className={joinClassNames(listStyle.listItem, listStyle.listItemButton, 'leading-40')}
         >
             {el.label}
         </li>

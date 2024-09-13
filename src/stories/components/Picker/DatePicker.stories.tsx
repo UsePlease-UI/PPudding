@@ -14,9 +14,9 @@ const meta = {
         layout: 'fullscreen',
         docs: {
             argTypes: {
-                sort: 'requiredFirst'
-            }
-        }
+                sort: 'requiredFirst',
+            },
+        },
     },
     argTypes: {
         showMonthPicker: { table: { disable: true } },
@@ -27,44 +27,44 @@ const meta = {
         value: {
             table: { category: 'optional' },
             description: 'selected date',
-            control: 'date'
+            control: 'date',
         },
         minDate: {
             table: { category: 'optional' },
             description: 'max date',
-            control: 'date'
+            control: 'date',
         },
         maxDate: {
             table: { category: 'optional' },
             description: 'max date',
-            control: 'date'
+            control: 'date',
         },
         dateFormat: {
             table: { category: 'optional' },
             description: 'date format',
-            control: 'text'
+            control: 'text',
         },
         placeholder: {
             table: { category: 'optional' },
             description: 'placeholder',
-            control: 'text'
+            control: 'text',
         },
         labelText: {
             table: { category: 'optional' },
             description: 'label',
-            control: 'text'
+            control: 'text',
         },
         helperText: {
             table: { category: 'optional' },
             description: 'helper text',
-            control: 'text'
-        }
+            control: 'text',
+        },
     },
     render: (args) => (
-        <div className="flex h-full min-h-screen w-full items-start justify-center p-20">
+        <div className="flex size-full min-h-screen items-start justify-center p-20">
             <Picker {...args} />
         </div>
-    )
+    ),
 } satisfies Meta;
 
 export default meta;
@@ -79,8 +79,8 @@ export const DatePicker: Story = {
         dateFormat: 'YYYY-MM-DD',
         maxDate: new Date('2025-01-01'),
         minDate: new Date(),
-        value: dayjs().add(7, 'day').toDate()
-    }
+        value: dayjs().add(7, 'day').toDate(),
+    },
 };
 
 export const MonthPicker: Story = {
@@ -90,6 +90,6 @@ export const MonthPicker: Story = {
         dateFormat: 'YYYY-MM',
         maxDate: new Date('2025-01-01'),
         minDate: new Date(),
-        value: dayjs().add(7, 'day').toDate()
-    }
+        value: dayjs().add(7, 'day').toDate(),
+    },
 };

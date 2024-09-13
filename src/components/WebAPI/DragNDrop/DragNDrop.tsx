@@ -6,12 +6,12 @@ import { CommonListDataType } from '@components/types';
 import DragNDropListItem from './DragNDropListItem';
 
 type DragNDropType = {
-    title?: string;
-    render?: () => ReactNode;
     items?: CommonListDataType[];
-    onDragStart?: (event: DragEvent<HTMLLIElement>, item: CommonListDataType) => void;
     onDragOver?: (event: DragEvent<HTMLLIElement>) => void;
+    onDragStart?: (event: DragEvent<HTMLLIElement>, item: CommonListDataType) => void;
     onDrop?: (event: DragEvent<HTMLLIElement>, targetItem: CommonListDataType) => void;
+    render?: () => ReactNode;
+    title?: string;
 };
 
 /**
@@ -24,7 +24,7 @@ type DragNDropType = {
  *  @param onDrop Mouse Drop Event Listener [optional]
  *  @returns JSX.Element
  */
-export default function DragNDrop({ title, items = [], render, onDragStart, onDragOver, onDrop }: DragNDropType) {
+export default function DragNDrop({ items = [], onDragOver, onDragStart, onDrop, render, title }: DragNDropType) {
     const titleId = useId();
 
     const [listItems, setListItems] = useState(items);
@@ -43,7 +43,7 @@ export default function DragNDrop({ title, items = [], render, onDragStart, onDr
                 onDragStart(event, data);
             }
         },
-        [onDragStart]
+        [onDragStart],
     );
 
     const handleDragOver = useCallback(
@@ -53,7 +53,7 @@ export default function DragNDrop({ title, items = [], render, onDragStart, onDr
                 onDragOver(event);
             }
         },
-        [onDragOver]
+        [onDragOver],
     );
 
     const handleDrop = useCallback(
@@ -73,24 +73,24 @@ export default function DragNDrop({ title, items = [], render, onDragStart, onDr
                 onDrop(event, targetItem);
             }
         },
-        [draggedItem, listItems, onDrop]
+        [draggedItem, listItems, onDrop],
     );
 
     return (
         <div className="flex flex-col gap-2.5">
             {title && (
-                <h2 id={titleId} className="text-24 font-semibold">
+                <h2 className="text-24 font-semibold" id={titleId}>
                     {title}
                 </h2>
             )}
-            <ul id="drag-list" aria-labelledby={title ? titleId : undefined} className={listStyle.list}>
+            <ul aria-labelledby={title ? titleId : undefined} className={listStyle.list} id="drag-list">
                 {render ? (
                     render()
                 ) : (
                     <DragNDropListItem
                         items={listItems}
-                        onDragStart={handleDragStart}
                         onDragOver={handleDragOver}
+                        onDragStart={handleDragStart}
                         onDrop={handleDrop}
                     />
                 )}

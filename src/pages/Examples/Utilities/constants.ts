@@ -6,34 +6,34 @@ export const DRAG_N_DROP = [
     {
         idx: uuid(),
         label: '사과',
-        value: 'apple'
+        value: 'apple',
     },
     {
         idx: uuid(),
         label: '바나나',
-        value: 'banana'
+        value: 'banana',
     },
     {
         idx: uuid(),
         label: '키위',
-        value: 'kiwi'
-    }
+        value: 'kiwi',
+    },
 ];
 
 export const DRAG_N_DROP_2 = [
     {
         idx: uuid(),
         label: '오렌지',
-        value: 'orange'
+        value: 'orange',
     },
     {
         idx: uuid(),
         label: '망고',
-        value: 'mango'
+        value: 'mango',
     },
     {
         idx: uuid(),
         label: '복숭아',
-        value: 'peach'
-    }
+        value: 'peach',
+    },
 ];

@@ -44,8 +44,8 @@ export default function DragNDropExample() {
     return (
         <TabContainer>
             <Tab aria-label="drag n drop example tab" value={tab} onChange={handleChange}>
-                <TabItem label="Default" value={tab} index={1} />
-                <TabItem label="Custom" value={tab} index={2} />
+                <TabItem index={1} label="Default" value={tab} />
+                <TabItem index={2} label="Custom" value={tab} />
             </Tab>
             <TabPanel index={1} value={tab}>
                 <DragNDrop items={DRAG_N_DROP} />
@@ -57,10 +57,10 @@ export default function DragNDropExample() {
                             <li
                                 key={data.idx}
                                 draggable
-                                onDragStart={(e) => handleDragStart(e, data)}
-                                onDragOver={handleDragOver}
-                                onDrop={(e) => handleDrop(e, data)}
                                 className={joinClassNames(listStyle.listItem, listStyle.listItemButton, 'leading-40')}
+                                onDragOver={handleDragOver}
+                                onDragStart={(e) => handleDragStart(e, data)}
+                                onDrop={(e) => handleDrop(e, data)}
                             >
                                 {data.label}
                             </li>

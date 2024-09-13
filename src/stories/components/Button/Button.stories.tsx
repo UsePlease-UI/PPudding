@@ -1,9 +1,9 @@
-import { expect, userEvent, within, spyOn } from '@storybook/test';
+import { expect, spyOn, userEvent, within } from '@storybook/test';
 
 import { DeleteFilled } from '@fluentui/react-icons';
 
 import Button from '@components/Button/Button';
-import { getShapeStyle, getVariantStyle, getSizeStyle } from '@components/Button/styles';
+import { getShapeStyle, getSizeStyle, getVariantStyle } from '@components/Button/styles';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -14,10 +14,10 @@ const meta = {
     parameters: {
         docs: {
             argTypes: {
-                sort: 'requiredFirst'
-            }
+                sort: 'requiredFirst',
+            },
         },
-        layout: 'centered'
+        layout: 'centered',
     },
     args: {
         children: '삭제',
@@ -27,7 +27,7 @@ const meta = {
         shape: 'rounded',
         isDisabled: false,
         isFullWidth: false,
-        onClick: () => console.log('Clicked!')
+        onClick: () => console.log('Clicked!'),
     },
     argTypes: {
         startIcon: { table: { disable: true } },
@@ -35,56 +35,56 @@ const meta = {
         onClick: { table: { disable: true } },
         children: {
             table: {
-                category: 'required'
+                category: 'required',
             },
             description: 'content of button',
-            control: 'text'
+            control: 'text',
         },
         isDisabled: {
             table: {
-                category: 'optional'
+                category: 'optional',
             },
             control: 'boolean',
-            description: 'disabled state'
+            description: 'disabled state',
         },
         isFullWidth: {
             table: {
-                category: 'optional'
+                category: 'optional',
             },
             control: 'boolean',
-            description: 'determines width of the button'
+            description: 'determines width of the button',
         },
         variant: {
             table: {
-                category: 'optional'
+                category: 'optional',
             },
             description: 'style of the button',
             control: {
-                type: 'inline-radio'
+                type: 'inline-radio',
             },
-            options: ['outlined', 'contained', 'text']
+            options: ['outlined', 'contained', 'text'],
         },
         size: {
             table: {
-                category: 'optional'
+                category: 'optional',
             },
             description: 'size of the button',
             control: {
-                type: 'inline-radio'
+                type: 'inline-radio',
             },
-            options: ['large', 'medium', 'small']
+            options: ['large', 'medium', 'small'],
         },
         shape: {
             table: {
-                category: 'optional'
+                category: 'optional',
             },
             description: 'shape of the button',
             control: {
-                type: 'inline-radio'
+                type: 'inline-radio',
             },
-            options: ['rounded', 'square', 'circular']
-        }
-    }
+            options: ['rounded', 'square', 'circular'],
+        },
+    },
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -118,5 +118,5 @@ export const Default: Story = {
             await userEvent.click(canvas.getByRole('button'));
             await expect(consoleSpy).toHaveBeenCalledWith('Clicked!');
         });
-    }
+    },
 };

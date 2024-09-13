@@ -20,7 +20,7 @@ export default function ListItemText({ primaryText, secondaryText, ...rest }: Li
                 <p
                     className={joinClassNames(
                         'my-auto truncate text-16 font-semibold leading-24 text-gray-950',
-                        secondaryText && 'mt-1'
+                        secondaryText && 'mt-1',
                     )}
                 >
                     {primaryText}

@@ -5,5 +5,5 @@ export const HOME_LIST = [
     { name: 'Feedback', list: ['Alert', 'Skeleton'] },
     { name: 'Form Input', list: ['Checkbox', 'Radio', 'Textarea', 'TextField'] },
     { name: 'Utilities', list: ['Calendar', 'Date Picker', 'Drag N Drop', 'Popover'] },
-    { name: 'Demo', list: ['Editor', 'Faq', 'Register', 'Search'] }
+    { name: 'Demo', list: ['Editor', 'Faq', 'Register', 'Search'] },
 ];

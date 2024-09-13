@@ -7,9 +7,9 @@ const meta = {
     component: Table,
     tags: ['autodocs'],
     parameters: {
-        layout: 'centered'
+        layout: 'centered',
     },
-    argTypes: {}
+    argTypes: {},
 } satisfies Meta<typeof Table>;
 
 export default meta;
@@ -39,5 +39,5 @@ export const Default: Story = {
                 ))}
             </TableBody>
         </Table>
-    )
+    ),
 };

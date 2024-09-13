@@ -3,13 +3,13 @@ import { useCallback, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 
 export type TodoType = {
-    idx: string;
-    startDate: string;
-    endDate: string;
     color: string;
-    isAllDay: boolean;
-    title: string;
     description: string;
+    endDate: string;
+    idx: string;
+    isAllDay: boolean;
+    startDate: string;
+    title: string;
 };
 
 export const useSchedule = (labelColor: string, initialContent: TodoType) => {
@@ -41,6 +41,6 @@ export const useSchedule = (labelColor: string, initialContent: TodoType) => {
         addContents,
         handleColorChange,
         handleDayChange,
-        handleContents
+        handleContents,
     };
 };

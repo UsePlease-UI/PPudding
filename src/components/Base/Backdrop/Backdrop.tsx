@@ -6,10 +6,10 @@ import { joinClassNames } from '@utils/format';
 type BackdropType = {
     children: ReactNode;
     onClose: () => void;
-    isOpen?: boolean;
-    isDimmed?: boolean;
-    canFocusTrap?: boolean;
     backgroundColor?: string;
+    canFocusTrap?: boolean;
+    isDimmed?: boolean;
+    isOpen?: boolean;
 };
 
 const FOCUSABLE = 'button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])';
@@ -24,7 +24,7 @@ const FOCUSABLE = 'button, a, input, select, textarea, [tabindex]:not([tabindex=
  *  @returns JSX.Element
  */
 export default function Backdrop(props: BackdropType) {
-    const { children, isOpen, canFocusTrap, isDimmed, backgroundColor = 'bg-black/10', onClose } = props;
+    const { backgroundColor = 'bg-black/10', canFocusTrap, children, isDimmed, isOpen, onClose } = props;
     const portalRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -71,7 +71,7 @@ export default function Backdrop(props: BackdropType) {
                 }
             }
         },
-        [onClose]
+        [onClose],
     );
 
     useEffect(() => {
@@ -85,13 +85,13 @@ export default function Backdrop(props: BackdropType) {
         ? createPortal(
               <div
                   ref={portalRef}
+                  className={joinClassNames('fixed bottom-0 left-0 right-0 top-0 z-10000', isDimmed && backgroundColor)}
                   role="presentation"
                   onClick={onClose}
-                  className={joinClassNames('fixed bottom-0 left-0 right-0 top-0 z-10000', isDimmed && backgroundColor)}
               >
                   {children}
               </div>,
-              document.getElementById('portal') as HTMLElement
+              document.getElementById('portal') as HTMLElement,
           )
         : null;
 }

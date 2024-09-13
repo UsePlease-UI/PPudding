@@ -17,9 +17,9 @@ import AddSchedule from '../Schedule/AddSchedule';
 
 export default function MonthlyCalender() {
     const { isTablet } = useMobile();
-    const { isOpen, anchorElement, handleOpen, handleClose } = usePopover();
+    const { anchorElement, handleClose, handleOpen, isOpen } = usePopover();
 
-    const { year, month, handleCalendar } = useCalender();
+    const { handleCalendar, month, year } = useCalender();
     const [isAddFormOpen, setIsAddFormOpen] = useState(false);
     const [isScheduleOpen, setIsScheduleOpen] = useState({ isOpen: '', index: -1 });
     const [isEdited, setIsEdited] = useState(false);
@@ -36,7 +36,7 @@ export default function MonthlyCalender() {
                 setIsAddFormOpen((prev) => !prev);
             }
         },
-        [isScheduleOpen, isTablet, handleOpen]
+        [isScheduleOpen, isTablet, handleOpen],
     );
 
     const handlePreviousMonth = useCallback(() => handleCalendar({ type: 'PREV_MONTH' }), []);
@@ -50,7 +50,7 @@ export default function MonthlyCalender() {
         <div className="relative flex w-full flex-col">
             <div className="absolute right-0">
                 {isTablet ? (
-                    <IconButton size="mini" shape="circular" variant="contained" onClick={handleAddContent}>
+                    <IconButton shape="circular" size="mini" variant="contained" onClick={handleAddContent}>
                         <AddFilled />
                     </IconButton>
                 ) : (
@@ -60,16 +60,16 @@ export default function MonthlyCalender() {
                 )}
                 {isTablet ? (
                     <BottomSheet canClickOutside isOpen={isAddFormOpen} onClose={() => handleAddFormOpen(false)}>
-                        <AddSchedule onClose={() => handleAddFormOpen(false)} onCancel={handleAddContent} />
+                        <AddSchedule onCancel={handleAddContent} onClose={() => handleAddFormOpen(false)} />
                     </BottomSheet>
                 ) : (
                     <Popover
-                        isOpen={isOpen}
                         anchorElement={anchorElement}
                         anchorPosition={{ horizontal: 'right', vertical: 'bottom' }}
+                        isOpen={isOpen}
                         onClose={handleClose}
                     >
-                        <AddSchedule onClose={handleClose} onCancel={handleAddContent} />
+                        <AddSchedule onCancel={handleAddContent} onClose={handleClose} />
                     </Popover>
                 )}
             </div>
@@ -102,11 +102,11 @@ export default function MonthlyCalender() {
                 ))}
             </ul>
             <Schedule
-                isEdited={isEdited}
-                onEdit={handleEdit}
                 isAddFormOpen={isAddFormOpen}
-                onAddFormOpen={handleAddFormOpen}
+                isEdited={isEdited}
                 isScheduleOpen={isScheduleOpen}
+                onAddFormOpen={handleAddFormOpen}
+                onEdit={handleEdit}
                 onScheduleOpen={handleScheduleOpen}
             />
         </div>

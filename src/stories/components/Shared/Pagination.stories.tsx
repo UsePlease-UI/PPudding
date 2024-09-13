@@ -7,9 +7,9 @@ const meta = {
     component: Pagination,
     tags: ['autodocs'],
     parameters: {
-        layout: 'centered'
+        layout: 'centered',
     },
-    argTypes: {}
+    argTypes: {},
 } satisfies Meta<typeof Pagination>;
 
 export default meta;
@@ -25,6 +25,6 @@ export const Default: Story = {
         variant: 'outlined',
         shape: 'circular',
         hasFirstIcon: true,
-        hasLastIcon: true
-    }
+        hasLastIcon: true,
+    },
 };

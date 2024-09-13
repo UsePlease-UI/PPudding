@@ -3,12 +3,12 @@ import { joinClassNames } from '@utils/format';
 type OrientationType = 'vertical' | 'horizontal';
 
 type DividerType = {
-    width?: string;
-    height?: string;
-    margin?: string;
     backgroundColor?: string;
     borderRadius?: string;
+    height?: string;
+    margin?: string;
     orientation?: OrientationType;
+    width?: string;
 };
 
 function getOrientationStyle(orientation?: OrientationType) {
@@ -29,7 +29,7 @@ function getOrientationStyle(orientation?: OrientationType) {
  *  @returns JSX.Element
  */
 export default function Divider(props: DividerType) {
-    const { width, height, margin, backgroundColor = 'bg-gray-600', borderRadius, orientation } = props;
+    const { backgroundColor = 'bg-gray-600', borderRadius, height, margin, orientation, width } = props;
 
     return (
         <div
@@ -39,7 +39,7 @@ export default function Divider(props: DividerType) {
                 height,
                 margin,
                 backgroundColor,
-                borderRadius
+                borderRadius,
             )}
         />
     );

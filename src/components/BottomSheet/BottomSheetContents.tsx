@@ -1,16 +1,16 @@
-import { ReactNode, forwardRef, useEffect } from 'react';
+import { forwardRef, ReactNode, useEffect } from 'react';
 
-import { motion, useAnimation, PanInfo } from 'framer-motion';
+import { motion, PanInfo, useAnimation } from 'framer-motion';
 
 export type BottomSheetContentsType = {
+    children: ReactNode;
     isOpen: boolean;
     onClose: () => void;
-    children: ReactNode;
 };
 
 const BottomSheetContents = forwardRef<HTMLDivElement, BottomSheetContentsType>(function BottomSheetContents(
-    { isOpen, onClose, children },
-    ref
+    { children, isOpen, onClose },
+    ref,
 ) {
     const controls = useAnimation();
 
@@ -32,22 +32,22 @@ const BottomSheetContents = forwardRef<HTMLDivElement, BottomSheetContentsType>(
     return (
         <motion.div
             ref={ref}
-            drag="y"
-            initial="hidden"
             animate={controls}
-            onDragEnd={onDragEnd}
-            variants={{
-                visible: { y: 0 },
-                hidden: { y: '100%' }
-            }}
+            className="fixed inset-x-0 bottom-0 z-100 mx-auto overflow-y-auto rounded-t-lg bg-white p-5 shadow-01"
+            drag="y"
+            dragConstraints={{ top: 0 }}
+            dragElastic={0.2}
+            initial="hidden"
             transition={{
                 type: 'spring',
                 damping: 40,
-                stiffness: 400
+                stiffness: 400,
             }}
-            dragConstraints={{ top: 0 }}
-            dragElastic={0.2}
-            className="fixed bottom-0 left-0 right-0 z-100 mx-auto overflow-y-auto rounded-t-lg bg-white p-5 shadow-01"
+            variants={{
+                visible: { y: 0 },
+                hidden: { y: '100%' },
+            }}
+            onDragEnd={onDragEnd}
         >
             {children}
         </motion.div>

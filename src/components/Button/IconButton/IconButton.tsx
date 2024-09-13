@@ -1,17 +1,17 @@
-import { ButtonHTMLAttributes, MouseEvent, ReactNode, forwardRef } from 'react';
+import { ButtonHTMLAttributes, forwardRef, MouseEvent, ReactNode } from 'react';
 
 import { joinClassNames } from '@utils/format';
 
-import { IconButtonSizeType, VariantType, getVariantStyle, getSizeStyle, ShapeType, getShapeStyle } from '../styles';
+import { getShapeStyle, getSizeStyle, getVariantStyle, IconButtonSizeType, ShapeType, VariantType } from '../styles';
 
 type BaseType = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'>;
 
 type IconButtonType = BaseType & {
     children: ReactNode;
     isDisabled?: boolean;
+    shape?: ShapeType;
     size?: IconButtonSizeType;
     variant?: VariantType;
-    shape?: ShapeType;
 };
 
 /**
@@ -24,7 +24,7 @@ type IconButtonType = BaseType & {
  *  @returns JSX.Element
  */
 const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(function IconButton(props, ref) {
-    const { type = 'button', children, isDisabled, size, variant, shape, onClick, ...rest } = props;
+    const { children, isDisabled, onClick, shape, size, type = 'button', variant, ...rest } = props;
 
     const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
         e.currentTarget.blur();
@@ -37,16 +37,15 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonType>(function IconBu
         <button
             {...rest}
             ref={ref}
-            // eslint-disable-next-line react/button-has-type
-            type={type}
             disabled={isDisabled}
-            onClick={handleClick}
+            type={type}
             className={joinClassNames(
                 'h-max w-max font-inherit child-svg:block',
                 getSizeStyle(size),
                 getVariantStyle(variant),
-                getShapeStyle(shape)
+                getShapeStyle(shape),
             )}
+            onClick={handleClick}
         >
             {children}
         </button>

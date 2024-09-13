@@ -7,9 +7,9 @@ import IconButton from '@components/Button/IconButton';
 import { TextType } from './types';
 
 type CardTextType = TextType & {
+    expandedContents?: ReactNode;
     isExpandable?: boolean;
     onClick?: () => void;
-    expandedContents?: ReactNode;
 };
 
 /**
@@ -18,11 +18,11 @@ type CardTextType = TextType & {
  *  @param secondaryText
  */
 export default function CardText({
+    expandedContents,
+    isExpandable,
+    onClick,
     primaryText,
     secondaryText,
-    isExpandable,
-    expandedContents,
-    onClick,
     ...rest
 }: CardTextType) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -50,7 +50,7 @@ export default function CardText({
                     )}
                 </div>
                 {isExpandable && (
-                    <IconButton variant="text" size="small" onClick={handleClick}>
+                    <IconButton size="small" variant="text" onClick={handleClick}>
                         {isExpanded ? <ChevronUpFilled /> : <ChevronDownFilled />}
                     </IconButton>
                 )}

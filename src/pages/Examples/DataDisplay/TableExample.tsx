@@ -17,7 +17,7 @@ const TableExample = () => {
                     <TableCell>바나나나나나나나나</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell colSpan={2} align="center">
+                    <TableCell align="center" colSpan={2}>
                         망고
                     </TableCell>
                     <TableCell>망고고고고고고고고고</TableCell>

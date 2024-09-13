@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react';
+import { Fragment, useState } from 'react';
 
 import { ChevronDownFilled, ChevronUpFilled } from '@fluentui/react-icons';
 
@@ -11,9 +11,9 @@ const meta = {
     component: List,
     tags: ['autodocs'],
     parameters: {
-        layout: 'centered'
+        layout: 'centered',
     },
-    argTypes: {}
+    argTypes: {},
 } satisfies Meta<typeof List>;
 
 export default meta;
@@ -29,7 +29,7 @@ export const DefaultList: Story = {
             ))}
         </List>
     ),
-    args: {}
+    args: {},
 };
 
 export const CollapsedList: Story = {
@@ -37,7 +37,7 @@ export const CollapsedList: Story = {
         const [open, setOpen] = useState<Record<string, boolean>>({
             schedule: true,
             mail: false,
-            folder: false
+            folder: false,
         });
 
         return (
@@ -63,5 +63,5 @@ export const CollapsedList: Story = {
             </List>
         );
     },
-    args: {}
+    args: {},
 };

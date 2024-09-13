@@ -11,7 +11,7 @@ import { AlignType } from '@components/List';
 import useMobile from '@hooks/useMobile';
 
 import { LIST_ALIGN, LIST_POSITION, LIST_TYPE } from './constants';
-import { RadioControls, customStyles } from '../Common';
+import { customStyles, RadioControls } from '../Common';
 
 export default function ListExample() {
     const { isTablet } = useMobile();
@@ -27,7 +27,7 @@ export default function ListExample() {
     const [open, setOpen] = useState<Record<string, boolean>>({
         schedule: true,
         mail: false,
-        folder: false
+        folder: false,
     });
 
     const onClick = () => {
@@ -37,17 +37,17 @@ export default function ListExample() {
     return (
         <div className={customStyles.playgroundContainer}>
             <div className={customStyles.playgroundControlContainer}>
-                <RadioControls name="list type" value={type} onChange={setType} options={LIST_TYPE} />
+                <RadioControls name="list type" options={LIST_TYPE} value={type} onChange={setType} />
                 {(type === 'action item' || type === 'metadata') && (
                     <RadioControls
                         name="list position"
+                        options={LIST_POSITION}
                         value={position}
                         onChange={setPosition}
-                        options={LIST_POSITION}
                     />
                 )}
                 {type === 'button' && hasIcon && (
-                    <RadioControls name="list icon align" value={align} onChange={setAlign} options={LIST_ALIGN} />
+                    <RadioControls name="list icon align" options={LIST_ALIGN} value={align} onChange={setAlign} />
                 )}
                 {type !== 'collapsed' && (
                     <>
@@ -57,39 +57,39 @@ export default function ListExample() {
                             </strong>
                             <CheckboxGroup isRow={!isTablet}>
                                 <Checkbox
-                                    name="list-icon"
-                                    label="Icon"
                                     checked={hasIcon}
+                                    label="Icon"
+                                    name="list-icon"
                                     onChange={() => setHasIcon((prev) => !prev)}
                                 />
                                 <Checkbox
-                                    name="list-dense"
-                                    label="Dense"
                                     checked={isDense}
+                                    label="Dense"
+                                    name="list-dense"
                                     onChange={() => setIsDense((prev) => !prev)}
                                 />
                                 <Checkbox
-                                    name="list-secondary-text"
-                                    label="Secondary Text"
                                     checked={hasSecondaryText}
+                                    label="Secondary Text"
+                                    name="list-secondary-text"
                                     onChange={() => setHasSecondaryText((prev) => !prev)}
                                 />
                             </CheckboxGroup>
                         </div>
                         <TextField
+                            isFullWidth={isTablet}
                             labelText="Primary Text"
+                            maxLength={20}
                             name="primaryText"
                             value={primaryText}
-                            isFullWidth={isTablet}
-                            maxLength={20}
                             onChange={(e) => setPrimaryText(e.currentTarget.value)}
                         />
                         <TextField
+                            isFullWidth={isTablet}
                             labelText="Secondary Text"
+                            maxLength={20}
                             name="secondaryText"
                             value={secondaryText}
-                            isFullWidth={isTablet}
-                            maxLength={20}
                             onChange={(e) => setSecondaryText(e.currentTarget.value)}
                         />
                     </>
@@ -101,8 +101,8 @@ export default function ListExample() {
                         {['Schedule', 'Mail', 'Folder'].map((val) => (
                             <Fragment key={val}>
                                 <List.ItemButton
-                                    isDisabled={val === 'Schedule'}
                                     isDense
+                                    isDisabled={val === 'Schedule'}
                                     onClick={() => setOpen((prev) => ({ ...prev, [val]: !prev[val] }))}
                                 >
                                     <List.ItemText
@@ -133,7 +133,7 @@ export default function ListExample() {
                                 <List.ItemButton key={index} isDense={isDense} onClick={onClick}>
                                     {hasIcon && (
                                         <List.ItemIcon align={align as AlignType}>
-                                            <HomeFilled className="h-5 w-5" />
+                                            <HomeFilled className="size-5" />
                                         </List.ItemIcon>
                                     )}
                                     <List.ItemText
@@ -179,8 +179,8 @@ export default function ListExample() {
                                             {type === 'action item' && position === 'end' && (
                                                 <List.ActionItem isDense={isDense}>
                                                     <Checkbox
-                                                        position="start"
                                                         name={primaryText}
+                                                        position="start"
                                                         label={
                                                             <List.ItemText
                                                                 primaryText={primaryText}
@@ -193,7 +193,7 @@ export default function ListExample() {
                                         </>
                                     )}
                                 </List.Item>
-                            )
+                            ),
                         )}
                     </List>
                 )}

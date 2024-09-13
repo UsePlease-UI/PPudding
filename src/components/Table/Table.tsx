@@ -15,7 +15,7 @@ export default function Table(props: TableType) {
     const { children, ...rest } = props;
 
     return (
-        <table {...rest} className="h-full w-full border border-primary-100 bg-white">
+        <table {...rest} className="size-full border border-primary-100 bg-white">
             {children}
         </table>
     );

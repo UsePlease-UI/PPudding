@@ -21,7 +21,7 @@ export default function AAutocompleteExample() {
                 setDataList(A_AUTOCOMPLETE_LIST);
             }
         }, 100),
-        []
+        [],
     );
 
     const handleChange = useCallback((newValue: string | number) => {
@@ -38,10 +38,10 @@ export default function AAutocompleteExample() {
                 <strong className="block w-full truncate">{selectedItem?.label}</strong>
             </p>
             <Autocomplete
+                inputValue={inputValue}
                 labelText="Lorem Ipsum"
                 name="lorem ipsum"
                 options={dataList}
-                inputValue={inputValue}
                 onChange={handleChange}
                 onSelect={handleSelect}
             />

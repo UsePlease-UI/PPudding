@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { v4 as uuid } from 'uuid';
@@ -32,8 +32,8 @@ export const useAlert = () => {
 };
 
 type MessageType = {
-    id: string;
     content: string;
+    id: string;
     options?: OptionsType;
 };
 
@@ -56,12 +56,12 @@ export function AlertProvider({ children, icon, position }: AlertProviderType) {
                 setMessages((prev) => [newMessage, ...prev]);
             }
         },
-        [position]
+        [position],
     );
 
     const handleClose = useCallback(
         (id: string) => setMessages((prev) => prev.filter((message) => message.id !== id)),
-        []
+        [],
     );
 
     const context: AlertContextType = useMemo(() => ({ onAlert: handleOpen }), [handleOpen]);
@@ -82,20 +82,20 @@ export function AlertProvider({ children, icon, position }: AlertProviderType) {
                       <div
                           className={joinClassNames(
                               getPositionStyle(position),
-                              'absolute z-1000 flex flex-col gap-2.5'
+                              'absolute z-1000 flex flex-col gap-2.5',
                           )}
                       >
                           {messages.map((message) => (
                               <Alert
                                   key={message.id}
                                   icon={icon}
-                                  options={message.options}
                                   message={message.content}
+                                  options={message.options}
                                   onClose={() => handleClose(message.id)}
                               />
                           ))}
                       </div>,
-                      modalElement as HTMLElement
+                      modalElement as HTMLElement,
                   )
                 : null}
         </AlertContext.Provider>

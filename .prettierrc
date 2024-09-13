@@ -5,6 +5,7 @@
     "semi": true,
     "singleQuote": true,
     "bracketSpacing": true,
-    "trailingComma": "none",
+    "trailingComma": "all",
+    "tailwindFunctions": ["joinClassNames"],
     "plugins": ["prettier-plugin-tailwindcss"]
 }

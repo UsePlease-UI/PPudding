@@ -10,7 +10,7 @@ const sizeStyle = {
     mediumDefault: 'w-5 h-5 m-0.5 *:w-2.5 *:h-2.5',
     largeContainer: 'w-9 h-9 p-1',
     largeText: 'text-20 ml-2',
-    largeDefault: 'w-6 h-6 m-0.5 *:w-3 *:h-3'
+    largeDefault: 'w-6 h-6 m-0.5 *:w-3 *:h-3',
 };
 
 export function getSizeStyle(size?: SizeType) {
@@ -19,19 +19,19 @@ export function getSizeStyle(size?: SizeType) {
             return {
                 text: sizeStyle.mediumText,
                 default: sizeStyle.mediumDefault,
-                container: sizeStyle.mediumContainer
+                container: sizeStyle.mediumContainer,
             };
         case 'large':
             return {
                 text: sizeStyle.largeText,
                 default: sizeStyle.largeDefault,
-                container: sizeStyle.largeContainer
+                container: sizeStyle.largeContainer,
             };
         default:
             return {
                 text: sizeStyle.smallText,
                 default: sizeStyle.smallDefault,
-                container: sizeStyle.smallContainer
+                container: sizeStyle.smallContainer,
             };
     }
 }

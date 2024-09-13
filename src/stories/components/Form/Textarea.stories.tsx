@@ -9,9 +9,9 @@ const meta = {
     component: Textarea,
     tags: ['autodocs'],
     parameters: {
-        layout: 'centered'
+        layout: 'centered',
     },
-    argTypes: {}
+    argTypes: {},
 } satisfies Meta<typeof Textarea>;
 
 export default meta;
@@ -25,14 +25,14 @@ export const Default: Story = {
     args: {
         placeholder: 'Lorem Ipsum...',
         maxLength: 100,
-        isAutoHeight: true
-    }
+        isAutoHeight: true,
+    },
 };
 
 export const AutoHeight: Story = {
     render: (args) => {
         const [value, setValue] = useState(
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et iaculis massa, a accumsan ex. In sed velit sagittis, faucibus odio nec, egestas ante. Phasellus aliquet dui a turpis consectetur, a commodo ipsum accumsan. Pellentesque eget est quis dui pellentesque sodales. Donec dictum elit et accumsan posuere. Aliquam pharetra congue sapien. Morbi porttitor dui tortor, ut porttitor neque maximus eu. Duis eu velit ac diam interdum dapibus. Mauris tristique nisl libero, sed porta nisi aliquet vel. Cras hendrerit libero lectus, sed malesuada lacus tempor nec. Nam eget sagittis sem.'
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et iaculis massa, a accumsan ex. In sed velit sagittis, faucibus odio nec, egestas ante. Phasellus aliquet dui a turpis consectetur, a commodo ipsum accumsan. Pellentesque eget est quis dui pellentesque sodales. Donec dictum elit et accumsan posuere. Aliquam pharetra congue sapien. Morbi porttitor dui tortor, ut porttitor neque maximus eu. Duis eu velit ac diam interdum dapibus. Mauris tristique nisl libero, sed porta nisi aliquet vel. Cras hendrerit libero lectus, sed malesuada lacus tempor nec. Nam eget sagittis sem.',
         );
         return <Textarea {...args} value={value} onChange={(e) => setValue(e.currentTarget.value)} />;
     },
@@ -41,6 +41,6 @@ export const AutoHeight: Story = {
         helperText: 'Type Lorem Ipsum',
         placeholder: 'Lorem Ipsum...',
         maxLength: 2000,
-        isAutoHeight: true
-    }
+        isAutoHeight: true,
+    },
 };

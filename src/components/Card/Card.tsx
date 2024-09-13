@@ -11,7 +11,7 @@ type CardType = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
  */
 export default function Card({ children, ...rest }: CardType) {
     return (
-        <div {...rest} className="h-max w-max overflow-hidden rounded bg-white shadow-lg">
+        <div {...rest} className="size-max overflow-hidden rounded bg-white shadow-lg">
             {children}
         </div>
     );

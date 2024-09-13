@@ -17,23 +17,23 @@ export default function IconButtonExample() {
         <div className={customStyles.playgroundContainer}>
             <div className={customStyles.playgroundControlContainer}>
                 <RadioControls
-                    options={BUTTON_VARIANT}
                     name="icon button variant"
+                    options={BUTTON_VARIANT}
                     value={variantType}
                     onChange={setVariantType}
                 />
-                <RadioControls name="icon button size" value={sizeType} onChange={setSizeType} options={BUTTON_SIZE} />
+                <RadioControls name="icon button size" options={BUTTON_SIZE} value={sizeType} onChange={setSizeType} />
                 <RadioControls
                     name="icon button shape"
+                    options={BUTTON_SHAPE}
                     value={shapeType}
                     onChange={setShapeType}
-                    options={BUTTON_SHAPE}
                 />
             </div>
             <div className={customStyles.playgroundDisplayContainer}>
                 <IconButton
-                    size={sizeType as SizeType}
                     shape={shapeType as ShapeType}
+                    size={sizeType as SizeType}
                     variant={variantType as VariantType}
                 >
                     <CheckmarkFilled />

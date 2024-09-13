@@ -14,15 +14,15 @@ import { joinClassNames } from '@utils/format';
 type BaseType = InputHTMLAttributes<HTMLButtonElement>;
 
 type SelectType = BaseType & {
-    placeholder?: string;
     label: string;
-    value: string | number;
     onChange: (e: MouseEvent<HTMLButtonElement>) => void;
-    options?: CommonListDataType[];
+    value: string | number;
+    helperText?: ReactNode;
     isDisabled?: boolean;
     isReadOnly?: boolean;
     labelText?: ReactNode;
-    helperText?: ReactNode;
+    options?: CommonListDataType[];
+    placeholder?: string;
 };
 
 /**
@@ -39,16 +39,16 @@ type SelectType = BaseType & {
  */
 export default function Select(props: SelectType) {
     const {
-        placeholder,
+        helperText,
         id,
-        label,
-        value,
-        options = [],
         isDisabled,
         isReadOnly,
+        label,
         labelText,
-        helperText,
         onChange,
+        options = [],
+        placeholder,
+        value,
         ...rest
     } = props;
 
@@ -65,13 +65,13 @@ export default function Select(props: SelectType) {
         inputId: id || buttonId,
         listBoxId,
         isVisible,
-        totalLength: options.length
+        totalLength: options.length,
     });
 
     useEffect(() => {
         const element = listContainerRef.current;
         if (isVisible && element) {
-            const { top, left, marginTop, maxWidth } = position;
+            const { left, marginTop, maxWidth, top } = position;
             element.style.top = `${top}px`;
             element.style.left = `${left}px`;
             element.style.marginTop = `${marginTop}px`;
@@ -85,38 +85,38 @@ export default function Select(props: SelectType) {
     return (
         <div className="w-max">
             <FormControl
-                id={rest['aria-labelledby'] || labelId}
-                labelText={labelText}
                 helperText={helperText}
                 helperTextId={rest['aria-describedby'] || helperTextId}
+                id={rest['aria-labelledby'] || labelId}
+                labelText={labelText}
             >
                 <div className="group relative">
                     <button
-                        id={id || buttonId}
                         ref={ref}
-                        type="button"
-                        disabled={isDisabled || isReadOnly}
-                        aria-expanded={isVisible}
                         aria-controls={listBoxId}
-                        aria-haspopup="listbox"
                         aria-describedby={helperText ? rest['aria-describedby'] || helperTextId : undefined}
+                        aria-expanded={isVisible}
+                        aria-haspopup="listbox"
+                        disabled={isDisabled || isReadOnly}
+                        id={id || buttonId}
                         role="combobox"
                         tabIndex={0}
-                        onClick={handleClick}
+                        type="button"
                         className={joinClassNames(
                             getVariantStyle('outlined'),
                             'flex h-10 min-w-30 items-center justify-between rounded pl-3 pr-2 text-primary-950',
-                            placeholder && !value && 'text-gray-400'
+                            placeholder && !value && 'text-gray-400',
                         )}
+                        onClick={handleClick}
                     >
                         <span className="mr-2.5 flex-1 truncate text-left text-14 font-normal leading-normal text-inherit">
                             {placeholder && !value ? placeholder : label}
                         </span>
-                        <span className="h-5 w-5">
+                        <span className="size-5">
                             <ChevronDownFilled
-                                width={16}
-                                height={16}
                                 className={joinClassNames('!block h-5 w-5 text-primary-800', isVisible && 'rotate-180')}
+                                height={16}
+                                width={16}
                             />
                         </span>
                     </button>
@@ -126,8 +126,8 @@ export default function Select(props: SelectType) {
                                 <Listbox
                                     id={listBoxId}
                                     labelId={rest['aria-labelledby'] || labelId}
-                                    value={value}
                                     options={options}
+                                    value={value}
                                     onClick={onChange}
                                 />
                             </div>

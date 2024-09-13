@@ -1,4 +1,4 @@
-import { HTMLAttributes, MouseEvent, ReactNode, forwardRef } from 'react';
+import { forwardRef, HTMLAttributes, MouseEvent, ReactNode } from 'react';
 
 import { CommonListDataType } from '@components/types';
 
@@ -9,8 +9,8 @@ type BaseType = Omit<HTMLAttributes<HTMLUListElement>, 'onClick' | 'className'>;
 
 type ListboxType = BaseType & {
     id: string;
-    value: string | number;
     options: CommonListDataType[];
+    value: string | number;
     labelId?: string;
     onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
     renderItem?: (option: CommonListDataType) => ReactNode;
@@ -27,29 +27,29 @@ type ListboxType = BaseType & {
  *  @returns JSX.Element
  */
 const Listbox = forwardRef<HTMLUListElement, ListboxType>(function Listbox(props, ref) {
-    const { id, labelId, value, options, renderItem, onClick, ...rest } = props;
+    const { id, labelId, onClick, options, renderItem, value, ...rest } = props;
 
     return (
         <ul
             {...rest}
             ref={ref}
+            aria-labelledby={labelId}
+            className={listStyle.list}
             id={id}
             role="listbox"
-            aria-labelledby={labelId}
             tabIndex={-1}
-            className={listStyle.list}
         >
             {options.map(
                 (option) =>
                     renderItem?.(option) || (
                         <ListboxItem
                             key={`${option.label}-${option.value}`}
+                            currentValue={value}
                             label={option.label}
                             value={option.value}
-                            currentValue={value}
                             onClick={onClick}
                         />
-                    )
+                    ),
             )}
         </ul>
     );

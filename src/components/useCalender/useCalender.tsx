@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, Reducer, createContext, useCallback, useContext, useMemo, useReducer } from 'react';
+import { createContext, Dispatch, ReactNode, Reducer, useCallback, useContext, useMemo, useReducer } from 'react';
 
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
@@ -6,27 +6,27 @@ import { v4 as uuid } from 'uuid';
 import { CALENDER_DUMMY_DATA } from './constants';
 
 type ScheduleListType = {
-    idx: string;
-    startDate: string;
-    endDate: string;
     color: string;
-    isAllDay: boolean;
-    title: string;
     description: string;
+    endDate: string;
+    idx: string;
+    isAllDay: boolean;
+    startDate: string;
+    title: string;
 };
 
 type CalenderActionType =
     | { type: 'PREV_MONTH' }
     | { type: 'NEXT_MONTH' }
-    | { type: 'ADD_SCHEDULE' | 'UPDATE_SCHEDULE'; payload: ScheduleListType }
-    | { type: 'DELETE_SCHEDULE'; idx: string };
+    | { payload: ScheduleListType; type: 'ADD_SCHEDULE' | 'UPDATE_SCHEDULE' }
+    | { idx: string; type: 'DELETE_SCHEDULE' };
 
 export type CalenderContextType = {
-    today: dayjs.Dayjs;
     date: number;
-    year: number;
     month: number;
     scheduleList: ScheduleListType[];
+    today: dayjs.Dayjs;
+    year: number;
 };
 
 export const CalenderContext = createContext<CalenderContextType | undefined>(undefined);
@@ -44,7 +44,7 @@ export const useCalender = () => {
         throw new Error('DispatchContext.Provider를 사용해주세요');
     }
 
-    const { year, month, date } = context;
+    const { date, month, year } = context;
 
     const getWeeks = useCallback(() => {
         const firstDay = dayjs(`${year}-${month}-${date}`).startOf('month').locale('ko').get('day');
@@ -80,7 +80,7 @@ export const useCalender = () => {
     return {
         ...context,
         getWeeks,
-        handleCalendar: calenderDispatch
+        handleCalendar: calenderDispatch,
     };
 };
 
@@ -104,7 +104,7 @@ const calenderReducer = (state: CalenderContextType, action: CalenderActionType)
         case 'ADD_SCHEDULE':
             newState = {
                 ...state,
-                scheduleList: [...state.scheduleList, { ...action.payload, idx: uuid() }]
+                scheduleList: [...state.scheduleList, { ...action.payload, idx: uuid() }],
             };
             break;
         case 'UPDATE_SCHEDULE':
@@ -115,13 +115,13 @@ const calenderReducer = (state: CalenderContextType, action: CalenderActionType)
                         return { ...el, ...action.payload };
                     }
                     return el;
-                })
+                }),
             };
             break;
         case 'DELETE_SCHEDULE':
             newState = {
                 ...state,
-                scheduleList: state.scheduleList.filter((el: ScheduleListType) => el.idx !== action.idx)
+                scheduleList: state.scheduleList.filter((el: ScheduleListType) => el.idx !== action.idx),
             };
             break;
         default:
@@ -139,7 +139,7 @@ export function CalenderProvider({ children }: { children: ReactNode }) {
 
     const context = useMemo(
         () => ({ today, date, year, month, scheduleList }),
-        [today, date, year, month, scheduleList]
+        [today, date, year, month, scheduleList],
     );
 
     const [state, dispatch] = useReducer<Reducer<CalenderContextType, CalenderActionType>>(calenderReducer, context);

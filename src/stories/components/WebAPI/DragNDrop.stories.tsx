@@ -9,9 +9,9 @@ const meta: Meta<typeof DragNDrop> = {
     component: DragNDrop,
     tags: ['autodocs'],
     parameters: {
-        layout: 'centered'
+        layout: 'centered',
     },
-    argTypes: {}
+    argTypes: {},
 };
 
 export default meta;
@@ -20,6 +20,6 @@ type Story = StoryObj<typeof DragNDrop>;
 export const Default: Story = {
     args: {
         title: 'My Drag N Drop List',
-        items: DRAG_N_DROP_LIST
-    }
+        items: DRAG_N_DROP_LIST,
+    },
 };

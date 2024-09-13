@@ -16,28 +16,28 @@ export default function ChipExample() {
         <div className={customStyles.playgroundContainer}>
             <div className={customStyles.playgroundControlContainer}>
                 <TextField
-                    labelText="Button Text"
-                    helperText="최대 20자까지 입력할 수 있습니다."
-                    name="buttonText"
                     isFullWidth
-                    value={buttonText}
+                    helperText="최대 20자까지 입력할 수 있습니다."
+                    labelText="Button Text"
                     maxLength={20}
+                    name="buttonText"
+                    value={buttonText}
                     onChange={(e) => setButtonText(e.currentTarget.value)}
                 />
                 <RadioControls
-                    options={BUTTON_VARIANT}
                     name="chip variant"
+                    options={BUTTON_VARIANT}
                     value={variantType}
                     onChange={setVariantType}
                 />
-                <CheckboxControl label="Deletable" name="Deletable" checked={isTrue} onChange={setIsTrue} />
+                <CheckboxControl checked={isTrue} label="Deletable" name="Deletable" onChange={setIsTrue} />
             </div>
             <div className={customStyles.playgroundDisplayContainer}>
                 <Chip
-                    variant={variantType as VariantType}
+                    isDeletable={isTrue}
                     label={buttonText || '값을 입력해주세요'}
                     value={buttonText}
-                    isDeletable={isTrue}
+                    variant={variantType as VariantType}
                 />
             </div>
         </div>

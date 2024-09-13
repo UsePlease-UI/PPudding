@@ -22,7 +22,7 @@ export default function ListMetadata({ children, position = 'end', ...rest }: Li
             className={joinClassNames(
                 'flex items-center justify-center',
                 position === 'start' && 'mr-7',
-                position === 'end' && 'ml-7'
+                position === 'end' && 'ml-7',
             )}
         >
             {children}

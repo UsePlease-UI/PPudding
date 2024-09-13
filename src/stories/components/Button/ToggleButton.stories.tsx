@@ -11,11 +11,11 @@ const meta = {
     parameters: {
         docs: {
             argTypes: { exclude: ['currentValue', 'onChange'] },
-            controls: { exclude: ['currentValue', 'onChange'] }
+            controls: { exclude: ['currentValue', 'onChange'] },
         },
-        layout: 'centered'
+        layout: 'centered',
     },
-    argTypes: {}
+    argTypes: {},
 } satisfies Meta<typeof ToggleButton>;
 
 export default meta;
@@ -30,8 +30,8 @@ export const TextSelected: Story = {
         value: 'banana',
         currentValue: 'banana',
         disabled: true,
-        size: 'large'
-    }
+        size: 'large',
+    },
 };
 
 export const TextNotSelected: Story = {
@@ -43,8 +43,8 @@ export const TextNotSelected: Story = {
         value: 'orange',
         currentValue: 'banana',
         disabled: true,
-        size: 'large'
-    }
+        size: 'large',
+    },
 };
 
 export const IconSelected: Story = {
@@ -60,8 +60,8 @@ export const IconSelected: Story = {
         value: 'bold',
         currentValue: 'bold',
         disabled: true,
-        size: 'large'
-    }
+        size: 'large',
+    },
 };
 
 export const IconNotSelected: Story = {
@@ -77,6 +77,6 @@ export const IconNotSelected: Story = {
         value: 'italic',
         currentValue: 'bold',
         disabled: true,
-        size: 'large'
-    }
+        size: 'large',
+    },
 };

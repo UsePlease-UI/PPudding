@@ -3,10 +3,10 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import PageList from './PaginationList';
 
 type PaginationType = {
-    totalCount: number;
     page: number;
-    pageLimit?: number;
+    totalCount: number;
     onChange?: (page: number) => void;
+    pageLimit?: number;
     showFirstButton?: boolean;
     showLastButton?: boolean;
 };
@@ -22,7 +22,7 @@ type PaginationType = {
  *  @returns JSX.Element
  */
 export default function Pagination(props: PaginationType) {
-    const { showFirstButton = true, showLastButton = true, pageLimit = 10, totalCount, page, onChange } = props;
+    const { onChange, page, pageLimit = 10, showFirstButton = true, showLastButton = true, totalCount } = props;
 
     const pageMaxCount = useMemo(() => Math.ceil(totalCount / pageLimit), [totalCount, pageLimit]);
     const [currentPage, setCurrentPage] = useState(page);
@@ -77,17 +77,17 @@ export default function Pagination(props: PaginationType) {
     return (
         <nav aria-label="pagination" className="flex w-full items-center justify-start p-5">
             <PageList
+                blockNum={currentBlockNum}
+                handleFirstClick={handleFirstClick}
+                handleLastClick={handleLastClick}
+                handleNextClick={handleNextClick}
+                handlePrevClick={handlePrevClick}
+                page={currentPage}
+                pageLimit={pageLimit}
                 showFirstButton={showFirstButton}
                 showLastButton={showLastButton}
-                pageLimit={pageLimit}
                 totalCount={totalCount}
-                blockNum={currentBlockNum}
-                page={currentPage}
                 onChange={handlePageChange}
-                handleFirstClick={handleFirstClick}
-                handlePrevClick={handlePrevClick}
-                handleNextClick={handleNextClick}
-                handleLastClick={handleLastClick}
             />
         </nav>
     );

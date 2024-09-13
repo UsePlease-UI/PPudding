@@ -19,14 +19,14 @@ type ListboxItemType = {
  *  @param onClick Click Event Handler
  *  @returns JSX.Element
  */
-const ListboxItem = ({ currentValue, label, value, onClick }: ListboxItemType) => {
+const ListboxItem = ({ currentValue, label, onClick, value }: ListboxItemType) => {
     return (
-        <li role="option" aria-selected={currentValue === value} className={listStyle.listItem}>
+        <li aria-selected={currentValue === value} className={listStyle.listItem} role="option">
             <button
+                className={joinClassNames(listStyle.listItemButton, currentValue === value && listStyle.selected)}
                 type="button"
                 value={value}
                 onClick={onClick}
-                className={joinClassNames(listStyle.listItemButton, currentValue === value && listStyle.selected)}
             >
                 {label}
             </button>

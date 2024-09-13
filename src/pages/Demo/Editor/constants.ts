@@ -7,7 +7,7 @@ export const COLOR_LIST = [
     'text-primary-800',
     'text-purple-600',
     'text-gray-600',
-    'text-black'
+    'text-black',
 ];
 
 export type TextAlignType = 'text-center' | 'text-right' | 'text-left' | 'text-justify';

@@ -13,10 +13,10 @@ const MONTH_LIST = Array.from({ length: 12 }, (_, idx) => `${idx + 1}`);
 
 type MonthPickerType = {
     dateFormat?: string;
-    placeholder?: string;
-    labelText?: string;
     helperText?: string;
     icon?: ReactNode;
+    labelText?: string;
+    placeholder?: string;
 };
 
 /**
@@ -35,37 +35,37 @@ type MonthPickerType = {
  *  @returns JSX.Element
  */
 export default function MonthPicker(props: MonthPickerType) {
-    const { dateFormat = 'YYYY-MM', placeholder = 'YYYY-MM', labelText, helperText, icon } = props;
+    const { dateFormat = 'YYYY-MM', helperText, icon, labelText, placeholder = 'YYYY-MM' } = props;
     const {
         containerId,
-        datePickerId,
-        isOpen,
         current,
+        datePickerId,
         dateValue,
-        selected,
         isMonthDisabled,
-        onYearChange,
-        onMonthChange,
-        onDatePickerClick,
+        isOpen,
+        onCancel,
         onConfirm,
-        onCancel
+        onDatePickerClick,
+        onMonthChange,
+        onYearChange,
+        selected,
     } = usePicker();
 
     return (
         <div>
-            <div id={containerId} className="w-max">
+            <div className="w-max" id={containerId}>
                 <PickerButton
-                    labelText={labelText}
-                    helperText={helperText}
-                    placeholder={placeholder}
                     dateFormat={dateFormat}
-                    value={dateValue}
+                    helperText={helperText}
                     icon={icon}
+                    labelText={labelText}
+                    placeholder={placeholder}
+                    value={dateValue}
                     onClick={onDatePickerClick}
                 />
             </div>
             {isOpen && (
-                <div id={datePickerId} className="fixed z-1000 flex w-max flex-col rounded bg-white p-5 shadow-02">
+                <div className="fixed z-1000 flex w-max flex-col rounded bg-white p-5 shadow-02" id={datePickerId}>
                     <PickerHeader year={current.get('year')} onClick={onYearChange} />
                     <div className="mb-5 grid w-59.5 grid-cols-4 gap-2.5">
                         {MONTH_LIST.map((month) => {
@@ -73,18 +73,18 @@ export default function MonthPicker(props: MonthPickerType) {
                             const isSame = dayjs(selected).isSame(currentMonth, 'month');
 
                             return (
-                                <div key={month} className="my-0.5 flex h-13 w-13 items-center justify-center">
+                                <div key={month} className="my-0.5 flex size-13 items-center justify-center">
                                     <button
-                                        type="button"
                                         disabled={isMonthDisabled(currentMonth)}
-                                        onClick={() => onMonthChange(month)}
+                                        type="button"
                                         className={joinClassNames(
                                             'h-12 w-12 rounded font-normal text-primary-900 hover:border hover:border-primary-900 hover:bg-inherit hover:text-primary-900 disabled:pointer-events-none disabled:text-gray-600',
                                             isSameDate(currentMonth, 'month') &&
                                                 'border border-primary-700 font-semibold text-primary-700 hover:border-primary-800 disabled:pointer-events-none',
                                             isSame &&
-                                                'bg-primary-800 font-semibold text-white hover:border-2 hover:border-primary-900 hover:bg-primary-900 hover:text-white disabled:bg-white'
+                                                'bg-primary-800 font-semibold text-white hover:border-2 hover:border-primary-900 hover:bg-primary-900 hover:text-white disabled:bg-white',
                                         )}
+                                        onClick={() => onMonthChange(month)}
                                     >
                                         {month}월
                                     </button>

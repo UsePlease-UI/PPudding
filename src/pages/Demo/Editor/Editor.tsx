@@ -9,7 +9,7 @@ import {
     TextBoldRegular,
     TextColorFilled,
     TextItalicRegular,
-    TextUnderlineRegular
+    TextUnderlineRegular,
 } from '@fluentui/react-icons';
 
 import IconButton from '@components/Button/IconButton';
@@ -26,7 +26,7 @@ const Editor = () => {
     const [align, setAlign] = useState<TextAlignType>('text-left');
     const [color, setColor] = useState('text-primary-800');
 
-    const { isOpen, anchorElement, handleOpen, handleClose } = usePopover();
+    const { anchorElement, handleClose, handleOpen, isOpen } = usePopover();
 
     return (
         <div className="under-tablet:p-2.5">
@@ -56,9 +56,9 @@ const Editor = () => {
                     <TextColorFilled />
                 </IconButton>
                 <Popover
-                    isOpen={isOpen}
-                    anchorPosition={{ vertical: 'bottom', horizontal: 'right' }}
                     anchorElement={anchorElement}
+                    anchorPosition={{ vertical: 'bottom', horizontal: 'right' }}
+                    isOpen={isOpen}
                     onClose={handleClose}
                 >
                     <div className="flex max-w-30 flex-wrap items-center justify-center gap-2.5">
@@ -99,18 +99,18 @@ const Editor = () => {
                     </ToggleButton>
                 </ToggleButtonGroup>
             </div>
-            <div className="tablet:h-500 h-[calc(100vh-158px)] w-full">
+            <div className="h-[calc(100vh-158px)] w-full tablet:h-125">
                 <textarea
+                    readOnly
+                    defaultValue={DEFAULT_VALUE}
                     className={joinClassNames(
                         'h-full w-full resize-none rounded-b border border-t-0 border-yellow-gray-100 p-5 outline-none',
                         color,
                         align,
                         style.includes('bold') ? 'font-semibold' : 'font-normal',
                         style.includes('italic') && 'italic',
-                        style.includes('underline') && 'underline'
+                        style.includes('underline') && 'underline',
                     )}
-                    readOnly
-                    defaultValue={DEFAULT_VALUE}
                 />
             </div>
         </div>

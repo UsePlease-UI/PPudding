@@ -17,5 +17,5 @@ export default Object.assign(List, {
     ItemButton: ListItemButton,
     ItemIcon: ListItemIcon,
     ItemText: ListItemText,
-    Metadata: ListMetadata
+    Metadata: ListMetadata,
 });

@@ -13,12 +13,12 @@ const meta: Meta<typeof Radio> = {
     parameters: {
         docs: {
             argTypes: { exclude: ['currentValue', 'onChange'] },
-            controls: { exclude: ['currentValue', 'onChange'] }
+            controls: { exclude: ['currentValue', 'onChange'] },
         },
-        layout: 'centered'
+        layout: 'centered',
     },
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-    argTypes: {}
+    argTypes: {},
 };
 
 export default meta;
@@ -35,8 +35,8 @@ export const Default: Story = {
         label: '빨강',
         value: 'red',
         size: 'small',
-        isDisabled: false
-    }
+        isDisabled: false,
+    },
 };
 
 // https://storybook.js.org/addons/@storybook/addon-interactions/

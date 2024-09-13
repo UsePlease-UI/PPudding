@@ -16,7 +16,7 @@ const usePopover = () => {
                 // document.body.style.overflow = 'hidden';
             }
         },
-        [anchorElement]
+        [anchorElement],
     );
 
     const handleClose = useCallback(() => setAnchorElement(null), []);

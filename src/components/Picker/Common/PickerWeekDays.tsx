@@ -10,7 +10,7 @@ export default function PickerWeekDays() {
                     key={val}
                     className={joinClassNames(
                         'my-0.5 h-11 w-11 text-center text-14 font-semibold leading-44 text-primary-950',
-                        (val === '일' || val === '토') && 'bg-primary-900 text-white'
+                        (val === '일' || val === '토') && 'bg-primary-900 text-white',
                     )}
                 >
                     {val}

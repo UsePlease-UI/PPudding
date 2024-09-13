@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { ToggleButton, ToggleButtonGroup } from '@components/Button/ToggleButton';
 import { Tab, TabContainer, TabItem, TabPanel } from '@components/Tab';
 
-import { KAutocompleteExample, COMBOBOX_LIST, AAutocompleteExample, SelectExample } from './Combobox';
+import { AAutocompleteExample, COMBOBOX_LIST, KAutocompleteExample, SelectExample } from './Combobox';
 import Heading from './Common/Heading';
 
 export default function ComboboxExample() {
@@ -19,15 +19,15 @@ export default function ComboboxExample() {
             <Heading title="Combobox Playground" />
             <TabContainer>
                 <Tab aria-label="combobox tab" value={tab} onChange={setTab}>
-                    <TabItem label="AUTOCOMPLETE" index={1} value={tab} />
-                    <TabItem label="SELECT" index={2} value={tab} />
+                    <TabItem index={1} label="AUTOCOMPLETE" value={tab} />
+                    <TabItem index={2} label="SELECT" value={tab} />
                 </Tab>
                 <TabPanel index={1} value={tab}>
                     <ToggleButtonGroup value={type} onChange={(e) => setType(e.currentTarget.value as typeof type)}>
-                        <ToggleButton name="type" value="A" size="small">
+                        <ToggleButton name="type" size="small" value="A">
                             A Type
                         </ToggleButton>
-                        <ToggleButton name="type" value="K" size="small">
+                        <ToggleButton name="type" size="small" value="K">
                             K Type
                         </ToggleButton>
                     </ToggleButtonGroup>

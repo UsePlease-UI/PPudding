@@ -23,17 +23,17 @@ const PaginationExample = () => {
                     Choose Button <span className="text-primary-800">Variant</span>
                 </strong>
                 <RadioGroup
-                    value={variantType}
-                    isRow={!isTablet}
                     gap={isTablet ? 0 : 2.5}
+                    isRow={!isTablet}
+                    value={variantType}
                     onChange={(e) => setVariantType(e.currentTarget.value)}
                 >
                     {PAGINATION_VARIANT.map((val) => (
                         <Radio
                             key={val}
-                            size={isTablet ? 'small' : 'medium'}
                             label={val}
                             name="buttonVariant"
+                            size={isTablet ? 'small' : 'medium'}
                             value={val}
                         />
                     ))}
@@ -42,17 +42,17 @@ const PaginationExample = () => {
                     Choose Button <span className="text-primary-800">Size</span>
                 </strong>
                 <RadioGroup
-                    value={sizeType}
-                    isRow={!isTablet}
                     gap={isTablet ? 0 : 2.5}
+                    isRow={!isTablet}
+                    value={sizeType}
                     onChange={(e) => setSizeType(e.currentTarget.value)}
                 >
                     {PAGINATION_SIZE.map((val) => (
                         <Radio
                             key={val}
-                            size={isTablet ? 'small' : 'medium'}
                             label={val}
                             name="buttonSize"
+                            size={isTablet ? 'small' : 'medium'}
                             value={val}
                         />
                     ))}
@@ -61,17 +61,17 @@ const PaginationExample = () => {
                     Choose Button <span className="text-primary-800">Shape</span>
                 </strong>
                 <RadioGroup
-                    value={shapeType}
-                    isRow={!isTablet}
                     gap={isTablet ? 0 : 2.5}
+                    isRow={!isTablet}
+                    value={shapeType}
                     onChange={(e) => setShapeType(e.currentTarget.value)}
                 >
                     {PAGINATION_SHAPE.map((val) => (
                         <Radio
                             key={val}
-                            size={isTablet ? 'small' : 'medium'}
                             label={val}
                             name="buttonShape"
+                            size={isTablet ? 'small' : 'medium'}
                             value={val}
                         />
                     ))}
@@ -80,11 +80,11 @@ const PaginationExample = () => {
             <div className={customStyles.tabComponentContainer}>
                 <div className="w-max">
                     <Pagination
-                        variant={variantType as VariantType}
-                        size={sizeType as SizeType}
-                        shape={shapeType as ShapeType}
-                        totalCount={280}
                         pageRange={isTablet ? 1 : 3}
+                        shape={shapeType as ShapeType}
+                        size={sizeType as SizeType}
+                        totalCount={280}
+                        variant={variantType as VariantType}
                     />
                 </div>
             </div>

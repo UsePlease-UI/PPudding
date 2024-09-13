@@ -1,21 +1,21 @@
-import { InputHTMLAttributes, ReactElement, ReactNode, cloneElement, forwardRef, useId } from 'react';
+import { cloneElement, forwardRef, InputHTMLAttributes, ReactElement, ReactNode, useId } from 'react';
 
 import { CheckmarkFilled } from '@fluentui/react-icons';
 
 import { joinClassNames } from '@utils/format';
 
-import { PositionType, SizeType, getSizeStyle } from './styles';
+import { getSizeStyle, PositionType, SizeType } from './styles';
 
 type BaseType = Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'className'>;
 
 type CheckboxType = BaseType & {
     label: ReactNode;
-    isDisabled?: boolean;
-    size?: SizeType;
-    position?: PositionType;
-    icon?: ReactNode;
     checkedIcon?: ReactNode;
+    icon?: ReactNode;
+    isDisabled?: boolean;
     labelMargin?: string;
+    position?: PositionType;
+    size?: SizeType;
 };
 
 /**
@@ -41,7 +41,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
         onChange,
         ...props
     }: CheckboxType,
-    ref
+    ref,
 ) {
     const labelId = useId();
     return (
@@ -50,7 +50,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
             className={joinClassNames(
                 'group inline-flex w-max cursor-pointer items-center',
                 isDisabled && 'pointer-events-none',
-                typeof label !== 'string' && 'w-full'
+                typeof label !== 'string' && 'w-full',
             )}
         >
             {position === 'start' &&
@@ -59,7 +59,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
                         className={joinClassNames(
                             'font-medium leading-normal',
                             getSizeStyle(size).text,
-                            isDisabled && 'text-gray-400'
+                            isDisabled && 'text-gray-400',
                         )}
                     >
                         {label}
@@ -72,33 +72,33 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
                     size === 'small' && 'p-0.5',
                     size === 'medium' && 'p-0.75',
                     size === 'large' && 'p-1',
-                    'inline-flex items-center group-focus-within:rounded group-focus-within:bg-yellow-gray-100 group-hover:rounded group-hover:bg-yellow-gray-50'
+                    'inline-flex items-center group-focus-within:rounded group-focus-within:bg-yellow-gray-100 group-hover:rounded group-hover:bg-yellow-gray-50',
                 )}
             >
                 <input
                     {...props}
-                    id={labelId}
                     ref={ref}
-                    type="checkbox"
+                    className="peer sr-only"
                     disabled={isDisabled}
+                    id={labelId}
+                    type="checkbox"
+                    onClick={(e) => e.currentTarget.blur()}
                     onChange={(e) => {
                         e.currentTarget.blur();
                         if (onChange) {
                             onChange(e);
                         }
                     }}
-                    onClick={(e) => e.currentTarget.blur()}
-                    className="peer sr-only"
                 />
                 {checkedIcon ? (
                     <span
                         className={joinClassNames(
                             'hidden items-center justify-center peer-checked:inline-flex',
-                            getSizeStyle(size).custom
+                            getSizeStyle(size).custom,
                         )}
                     >
                         {cloneElement(checkedIcon as ReactElement, {
-                            className: isDisabled ? 'text-gray-400' : 'text-primary-600'
+                            className: joinClassNames(isDisabled ? 'text-gray-400' : 'text-primary-600'),
                         })}
                     </span>
                 ) : (
@@ -106,7 +106,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
                         className={joinClassNames(
                             'hidden items-center justify-center rounded bg-primary-600 peer-checked:inline-flex',
                             getSizeStyle(size).default,
-                            isDisabled && 'border-2 border-gray-400 bg-gray-400'
+                            isDisabled && 'border-2 border-gray-400 bg-gray-400',
                         )}
                     >
                         <CheckmarkFilled className={joinClassNames('text-white', isDisabled && 'text-white')} />
@@ -116,11 +116,11 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
                     <span
                         className={joinClassNames(
                             'inline-flex items-center justify-center peer-checked:hidden',
-                            getSizeStyle(size).custom
+                            getSizeStyle(size).custom,
                         )}
                     >
                         {cloneElement(icon as ReactElement, {
-                            className: joinClassNames('text-primary-600', isDisabled && 'text-gray-400')
+                            className: joinClassNames('text-primary-600', isDisabled && 'text-gray-400'),
                         })}
                     </span>
                 ) : (
@@ -128,7 +128,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
                         className={joinClassNames(
                             'inline-block rounded border-2 border-primary-600 bg-white peer-checked:hidden',
                             getSizeStyle(size).default,
-                            isDisabled && 'border-gray-400'
+                            isDisabled && 'border-gray-400',
                         )}
                     />
                 )}
@@ -139,7 +139,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
                         className={joinClassNames(
                             'font-medium leading-normal',
                             getSizeStyle(size).text,
-                            isDisabled && 'text-gray-400'
+                            isDisabled && 'text-gray-400',
                         )}
                     >
                         {label}

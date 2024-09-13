@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import debounce from 'lodash.debounce';
 
@@ -14,9 +14,9 @@ const meta = {
     component: Autocomplete,
     tags: ['autodocs'],
     parameters: {
-        layout: 'centered'
+        layout: 'centered',
     },
-    argTypes: {}
+    argTypes: {},
 } satisfies Meta<typeof Autocomplete>;
 
 export default meta;
@@ -37,7 +37,7 @@ const DefaultAutocomplete: Story = {
                     setDataList(AUTOCOMPLETE);
                 }
             }, 100),
-            []
+            [],
         );
 
         const handleChange = useCallback(
@@ -45,7 +45,7 @@ const DefaultAutocomplete: Story = {
                 setInputValue(String(newValue));
                 handleSearch(String(newValue));
             },
-            [handleSearch]
+            [handleSearch],
         );
 
         const handleSelect = useCallback((e?: CommonListDataType) => setSelectedItem(e as CommonListDataType), []);
@@ -57,20 +57,20 @@ const DefaultAutocomplete: Story = {
                 </div>
                 <div className="max-w-80">
                     <Autocomplete
+                        inputValue={inputValue}
                         labelText="Lorem Ipsum"
                         name="lorem ipsum"
                         options={dataList}
-                        inputValue={inputValue}
                         onChange={handleChange}
                         onSelect={handleSelect}
                     />
                 </div>
             </>
         );
-    }
+    },
 };
 
 export const Default: Story = {
     ...DefaultAutocomplete,
-    args: {}
+    args: {},
 };

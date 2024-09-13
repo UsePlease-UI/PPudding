@@ -1,9 +1,9 @@
 import dayjs, { OpUnitType } from 'dayjs';
 
 export type DateObjType = {
-    year: number;
-    month: number;
     date: number;
+    month: number;
+    year: number;
 };
 
 export type DatesType = DateObjType[][];
@@ -49,7 +49,7 @@ export const getDates = (currentDate: string | dayjs.Dayjs) => {
             list[0][i] = {
                 year: prev.get('year'),
                 month: prevMonth,
-                date: prevLastDay.subtract(prevDays - i - 1, 'day').get('date')
+                date: prevLastDay.subtract(prevDays - i - 1, 'day').get('date'),
             };
         }
     }
