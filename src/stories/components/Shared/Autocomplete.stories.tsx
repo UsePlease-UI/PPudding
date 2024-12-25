@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import debounce from 'lodash.debounce';
 
@@ -22,23 +22,26 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof Autocomplete>;
 
-const DefaultAutocomplete: Story = {
-  render: () => {
+export const DefaultAutocomplete: Story = {
+  render: function Render() {
     const [dataList, setDataList] = useState<CommonListDataType[]>(AUTOCOMPLETE);
     const [inputValue, setInputValue] = useState<string>('');
     const [selectedItem, setSelectedItem] = useState<CommonListDataType>();
 
-    const handleSearch = useCallback(
-      debounce((value: string) => {
-        if (value.length !== 0 && value !== '') {
-          const newArr = AUTOCOMPLETE.filter((el) => el.label.includes(value as string));
-          setDataList(newArr);
-        } else {
-          setDataList(AUTOCOMPLETE);
-        }
-      }, 100),
+    const debouncedSearch = useMemo(
+      () =>
+        debounce((value: string) => {
+          if (value.length !== 0 && value !== '') {
+            const newArr = AUTOCOMPLETE.filter((el) => el.label.includes(value as string));
+            setDataList(newArr);
+          } else {
+            setDataList(AUTOCOMPLETE);
+          }
+        }, 100),
       [],
     );
+
+    const handleSearch = useCallback((value: string) => debouncedSearch(value), [debouncedSearch]);
 
     const handleChange = useCallback(
       (newValue: number | string) => {
@@ -68,9 +71,4 @@ const DefaultAutocomplete: Story = {
       </>
     );
   },
-};
-
-export const Default: Story = {
-  ...DefaultAutocomplete,
-  args: {},
 };

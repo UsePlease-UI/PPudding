@@ -1,4 +1,4 @@
-import { useCalender } from '@components/useCalender';
+import { useCalendar } from '@components/useCalendar';
 
 import { joinClassNames } from '@utils/format';
 
@@ -6,7 +6,7 @@ import WeekDays from './WeekDays';
 
 // TODO
 export default function WeeklyCalender() {
-  const { date, getWeeks } = useCalender();
+  const { date, getWeeks } = useCalendar();
 
   const week = getWeeks()
     .map((elem, index) => {

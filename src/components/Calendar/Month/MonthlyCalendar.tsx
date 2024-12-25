@@ -7,11 +7,11 @@ import Button from '@components/Button/Button';
 import IconButton from '@components/Button/IconButton';
 import Popover from '@components/Shared/Popover';
 import usePopover from '@components/Shared/usePopover';
-import { useCalender } from '@components/useCalender';
+import { useCalendar } from '@components/useCalendar';
 
 import useMobile from '@hooks/useMobile';
 
-import { CALENDER_SEVEN_DAYS } from '../constants';
+import { CALENDAR_SEVEN_DAYS } from '../constants';
 import Schedule from '../Schedule';
 import AddSchedule from '../Schedule/AddSchedule';
 
@@ -19,7 +19,7 @@ export default function MonthlyCalender() {
   const { isTablet } = useMobile();
   const { anchorElement, handleClose, handleOpen, isOpen } = usePopover();
 
-  const { handleCalendar, month, year } = useCalender();
+  const { handleCalendar, month, year } = useCalendar();
   const [isAddFormOpen, setIsAddFormOpen] = useState(false);
   const [isScheduleOpen, setIsScheduleOpen] = useState({ isOpen: '', index: -1 });
   const [isEdited, setIsEdited] = useState(false);
@@ -39,8 +39,8 @@ export default function MonthlyCalender() {
     [isScheduleOpen, isTablet, handleOpen],
   );
 
-  const handlePreviousMonth = useCallback(() => handleCalendar({ type: 'PREV_MONTH' }), []);
-  const handleNextMonth = useCallback(() => handleCalendar({ type: 'NEXT_MONTH' }), []);
+  const handlePreviousMonth = useCallback(() => handleCalendar({ type: 'PREV_MONTH' }), [handleCalendar]);
+  const handleNextMonth = useCallback(() => handleCalendar({ type: 'NEXT_MONTH' }), [handleCalendar]);
 
   const handleEdit = useCallback((isEdited: boolean) => setIsEdited(isEdited), []);
   const handleAddFormOpen = useCallback((isOpen: boolean) => setIsAddFormOpen(isOpen), []);
@@ -95,7 +95,7 @@ export default function MonthlyCalender() {
         </IconButton>
       </div>
       <ul className="flex items-center">
-        {CALENDER_SEVEN_DAYS.map((el: string) => (
+        {CALENDAR_SEVEN_DAYS.map((el: string) => (
           <li key={el} className="h-7.5 w-full">
             <span className="block text-center text-18 font-medium">{el}</span>
           </li>

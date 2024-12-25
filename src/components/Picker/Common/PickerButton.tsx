@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { CalendarRegular } from '@fluentui/react-icons';
 
 import IconButton from '@components/Button/IconButton';
-import { DateType } from '@components/usePicker';
+import { PickerDateType } from '@components/usePicker';
 
 import { joinClassNames } from '@utils/format';
 
@@ -15,7 +15,7 @@ type PickerButtonType = {
   icon?: ReactNode;
   labelText?: string;
   placeholder?: string;
-  value?: DateType;
+  value?: PickerDateType;
   onClick?: () => void;
 };
 

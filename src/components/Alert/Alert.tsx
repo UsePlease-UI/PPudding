@@ -30,12 +30,12 @@ export default function Alert({ icon, message, onClose, options }: AlertType) {
       total = options.delay / 1000 - 0.5;
     }
     return total;
-  }, []);
+  }, [options?.delay]);
 
   useEffect(() => {
     const timerId = setTimeout(onClose, options?.delay || 5000);
     return () => clearTimeout(timerId);
-  }, []);
+  }, [onClose, options?.delay]);
 
   return (
     <div

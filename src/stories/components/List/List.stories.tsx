@@ -20,20 +20,22 @@ export default meta;
 type Story = StoryObj<typeof List>;
 
 export const DefaultList: Story = {
-  render: () => (
-    <List>
-      {Array.from({ length: 10 }, (_, idx) => (
-        <List.Item key={idx} isDense>
-          <List.ItemText primaryText="Lorem Ipsum" secondaryText="This is secondary text." />
-        </List.Item>
-      ))}
-    </List>
-  ),
+  render: function Render() {
+    return (
+      <List>
+        {Array.from({ length: 10 }, (_, idx) => (
+          <List.Item key={idx} isDense>
+            <List.ItemText primaryText="Lorem Ipsum" secondaryText="This is secondary text." />
+          </List.Item>
+        ))}
+      </List>
+    );
+  },
   args: {},
 };
 
 export const CollapsedList: Story = {
-  render: () => {
+  render: function Render() {
     const [open, setOpen] = useState<Record<string, boolean>>({
       schedule: true,
       mail: false,

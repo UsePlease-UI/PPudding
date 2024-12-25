@@ -22,7 +22,7 @@ export default meta;
 type Story = StoryObj<typeof ToggleButton>;
 
 export const TextSelected: Story = {
-  render: (args) => {
+  render: function Render(args) {
     return <ToggleButton {...args}>Banana</ToggleButton>;
   },
   args: {
@@ -35,7 +35,7 @@ export const TextSelected: Story = {
 };
 
 export const TextNotSelected: Story = {
-  render: (args) => {
+  render: function Render(args) {
     return <ToggleButton {...args}>Orange</ToggleButton>;
   },
   args: {
@@ -48,7 +48,7 @@ export const TextNotSelected: Story = {
 };
 
 export const IconSelected: Story = {
-  render: (args) => {
+  render: function Render(args) {
     return (
       <ToggleButton {...args}>
         <TextBoldFilled />
@@ -65,7 +65,7 @@ export const IconSelected: Story = {
 };
 
 export const IconNotSelected: Story = {
-  render: (args) => {
+  render: function Render(args) {
     return (
       <ToggleButton {...args}>
         <TextItalicFilled />

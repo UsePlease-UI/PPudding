@@ -26,7 +26,7 @@ type Story = StoryObj<typeof RadioGroup>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 export const Default: Story = {
-  render: (args) => {
+  render: function Render(args) {
     const [value, setValue] = useState('red');
     return (
       <RadioGroup {...args} value={value} onChange={(e) => setValue(e.currentTarget.value)}>

@@ -18,7 +18,7 @@ export default meta;
 type Story = StoryObj<typeof Tab>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: function Render(args) {
     const [value, setValue] = useState(1);
 
     const handleChange = (newValue: number) => {

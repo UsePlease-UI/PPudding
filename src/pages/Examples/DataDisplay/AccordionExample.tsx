@@ -7,11 +7,10 @@ const AccordionExample = () => {
 
   // Reference : https://stackoverflow.com/questions/32782922/what-do-multiple-arrow-functions-mean-in-javascript
   // *함수를 return하는 함수
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   const handleChange = (selectedPanel: string) => (_event: MouseEvent<HTMLButtonElement>, isExpanded: boolean) => {
-    // eslint-disable-next-line no-console
     console.log('i am controlled!', selectedPanel);
-    // eslint-disable-next-line no-console
+
     console.log('i am currently expanded', isExpanded);
     setPanel(selectedPanel);
   };

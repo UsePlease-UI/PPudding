@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useState } from 'react';
+import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 
 import debounce from 'lodash.debounce';
 
@@ -12,23 +12,29 @@ export default function KAutocompleteExample() {
   const [inputValue, setInputValue] = useState('');
   const [selectedItem, setSelectedItem] = useState<CommonListDataType>();
 
-  const handleSearch = useCallback(
-    debounce((value: string) => {
-      if (value.length !== 0 && value !== '') {
-        const newArr = K_AUTOCOMPLETE_LIST.filter((el) => el.label.includes(value as string));
-        setListArr(newArr);
-      } else {
-        setListArr(K_AUTOCOMPLETE_LIST);
-      }
-    }, 100),
+  const debouncedSearch = useMemo(
+    () =>
+      debounce((value: string) => {
+        if (value.length !== 0 && value !== '') {
+          const newArr = K_AUTOCOMPLETE_LIST.filter((el) => el.label.includes(value as string));
+          setListArr(newArr);
+        } else {
+          setListArr(K_AUTOCOMPLETE_LIST);
+        }
+      }, 100),
     [],
   );
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.currentTarget;
-    setInputValue(value);
-    handleSearch(value);
-  };
+  const handleSearch = useCallback((value: string) => debouncedSearch(value), [debouncedSearch]);
+
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const { value } = e.currentTarget;
+      setInputValue(value);
+      handleSearch(value);
+    },
+    [handleSearch],
+  );
 
   return (
     <div className="my-5 flex w-full flex-col items-start justify-center">

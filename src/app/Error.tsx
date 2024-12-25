@@ -10,7 +10,7 @@ export default function Error() {
     return () => {
       clearTimeout(timerId);
     };
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center text-3xl font-black text-primary-900">

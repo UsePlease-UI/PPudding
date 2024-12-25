@@ -23,7 +23,9 @@ export default meta;
 type Story = StoryObj<typeof IconButton>;
 
 export const Default: Story = {
-  render: (args) => <IconButton {...args}>{args.children}</IconButton>,
+  render: function Render(args) {
+    return <IconButton {...args}>{args.children}</IconButton>;
+  },
   args: {
     'aria-label': 'Starred',
     children: <StarFilled />, // arg 순서를 위해서

@@ -26,7 +26,7 @@ type Story = StoryObj<typeof Radio>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 export const Default: Story = {
-  render: (args) => {
+  render: function Render(args) {
     const [value, setValue] = useState('red');
     return <Radio {...args} currentValue={value} onChange={(e) => setValue(e.currentTarget.value)} />;
   },

@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import BottomSheet from '@components/BottomSheet';
 import Popover from '@components/Shared/Popover';
 import usePopover from '@components/Shared/usePopover';
-import { useCalender } from '@components/useCalender';
+import { useCalendar } from '@components/useCalendar';
 
 import useMobile from '@hooks/useMobile';
 import { joinClassNames } from '@utils/format';
@@ -32,7 +32,7 @@ export default function Schedule(props: ScheduleType) {
 
   const { isTablet } = useMobile();
   const { anchorElement, handleClose, handleOpen, isOpen } = usePopover();
-  const { date, getWeeks, handleCalendar, month, scheduleList, year } = useCalender();
+  const { date, getWeeks, handleCalendar, month, scheduleList, year } = useCalendar();
 
   const handleDetailClick = useCallback(
     (type: 'close' | 'open', day: string, index: number) => {
@@ -47,14 +47,17 @@ export default function Schedule(props: ScheduleType) {
       }
       onScheduleOpen({ isOpen: day, index });
     },
-    [isAddFormOpen, isTablet],
+    [onAddFormOpen, onScheduleOpen, onEdit, isAddFormOpen, isTablet, handleClose],
   );
 
-  const handleScheduleDelete = useCallback((idx: string) => {
-    if (window.confirm('일정을 삭제하시겠습니까?')) {
-      handleCalendar({ type: 'DELETE_SCHEDULE', idx });
-    }
-  }, []);
+  const handleScheduleDelete = useCallback(
+    (idx: string) => {
+      if (window.confirm('일정을 삭제하시겠습니까?')) {
+        handleCalendar({ type: 'DELETE_SCHEDULE', idx });
+      }
+    },
+    [handleCalendar],
+  );
 
   return (
     <section className="flex flex-col gap-px border border-black bg-black">

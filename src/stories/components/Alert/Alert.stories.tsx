@@ -69,9 +69,9 @@ const meta = {
     delay: 6000,
     onClose: () => console.log('Closed!'),
   },
-  render: ({ canDismiss, delay, message, onClose, variant }) => (
-    <Alert message={message} options={{ variant, delay, canDismiss }} onClose={onClose} />
-  ),
+  render: function Render({ canDismiss, delay, message, onClose, variant }) {
+    return <Alert message={message} options={{ variant, delay, canDismiss }} onClose={onClose} />;
+  },
 } satisfies Meta;
 
 export default meta;

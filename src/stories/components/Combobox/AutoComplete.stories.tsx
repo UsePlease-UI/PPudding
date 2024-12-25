@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useState } from 'react';
+import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 
 import debounce from 'lodash.debounce';
 
@@ -22,34 +22,40 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof Autocomplete>;
 
-const AutoCompleteTemplate: Story = {
-  render: (args) => {
+export const AutoCompleteTemplate: Story = {
+  render: function Render(args) {
     const list = AUTOCOMPLETE;
 
     const [selectedItem, setSelectedItem] = useState<CommonListDataType>();
     const [inputValue, setInputValue] = useState<string>('');
     const [listArr, setListArr] = useState<CommonListDataType[]>(list);
 
-    const handleSearch = useCallback(
-      debounce((value: string) => {
-        let newArr = [];
-        if (value.length !== 0 || value !== '') {
-          newArr = list.filter((el: CommonListDataType) => el.label.includes(value));
-          setListArr(newArr);
-        }
+    const debouncedSearch = useMemo(
+      () =>
+        debounce((value: string) => {
+          let newArr = [];
+          if (value.length !== 0 || value !== '') {
+            newArr = list.filter((el: CommonListDataType) => el.label.includes(value));
+            setListArr(newArr);
+          }
 
-        if (value.length === 0) {
-          setListArr(list);
-        }
-      }, 100),
-      [],
+          if (value.length === 0) {
+            setListArr(list);
+          }
+        }, 100),
+      [list],
     );
 
-    const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-      const { value } = e.target;
-      setInputValue(value);
-      handleSearch(value);
-    }, []);
+    const handleSearch = useCallback((value: string) => debouncedSearch(value), [debouncedSearch]);
+
+    const handleChange = useCallback(
+      (e: ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target;
+        setInputValue(value);
+        handleSearch(value);
+      },
+      [handleSearch],
+    );
 
     const handleSelect = useCallback((item: CommonListDataType) => setSelectedItem(item), []);
 
@@ -68,12 +74,5 @@ const AutoCompleteTemplate: Story = {
         />
       </div>
     );
-  },
-};
-
-export const Default: Story = {
-  ...AutoCompleteTemplate,
-  args: {
-    listArr: AUTOCOMPLETE,
   },
 };

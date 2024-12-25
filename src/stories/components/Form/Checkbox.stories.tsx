@@ -20,7 +20,7 @@ type Story = StoryObj<typeof Checkbox>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 export const Default: Story = {
-  render: (args) => {
+  render: function Render(args) {
     const [candy, setCandy] = useState(false);
     return <Checkbox {...args} checked={candy} label="사탕" value="candy" onChange={() => setCandy((prev) => !prev)} />;
   },

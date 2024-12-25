@@ -8,10 +8,10 @@ import Select from '@components/Combobox/Select';
 import { Checkbox } from '@components/Form/Checkbox';
 import TextField from '@components/Form/TextField';
 import { useAlert } from '@components/useAlert';
-import { useCalender } from '@components/useCalender';
+import { useCalendar } from '@components/useCalendar';
 import { TodoType, useSchedule } from '@components/useSchedule';
 
-import { CALENDER_LABEL_COLOR } from '../constants';
+import { CALENDAR_LABEL_COLOR } from '../constants';
 
 type ScheduleDetailType = {
   day: string;
@@ -27,7 +27,7 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
   const { day, isEdited, isStartDate, onDetailClick, onEdit, onScheduleDelete, todo } = props;
   const { onAlert } = useAlert();
 
-  const { handleCalendar } = useCalender();
+  const { handleCalendar } = useCalendar();
   const { addContents, color, handleColorChange, handleContents, handleDayChange, isAllDay } = useSchedule(
     todo.color,
     todo,
@@ -93,10 +93,10 @@ export default function ScheduleDetail(props: ScheduleDetailType) {
             />
           </div>
           <Select
-            label={CALENDER_LABEL_COLOR.filter((val) => val.value === color)?.[0]?.label}
+            label={CALENDAR_LABEL_COLOR.filter((val) => val.value === color)?.[0]?.label}
             labelText="라벨 색상"
             name="label-color"
-            options={CALENDER_LABEL_COLOR}
+            options={CALENDAR_LABEL_COLOR}
             value={color}
             onChange={(e) => handleColorChange(e.currentTarget.value)}
           />

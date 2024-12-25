@@ -43,7 +43,7 @@ export default function Pagination(props: PaginationType) {
     if (onChange) {
       onChange(1);
     }
-  }, []);
+  }, [onChange]);
 
   const handlePrevClick = useCallback(() => {
     setCurrentPage((prev) => prev - 1);
@@ -54,7 +54,7 @@ export default function Pagination(props: PaginationType) {
     if (onChange) {
       onChange(currentPage - 1);
     }
-  }, [currentBlockNum, currentPage, pageLimit, onChange]);
+  }, [currentPage, pageLimit, onChange]);
 
   const handleNextClick = useCallback(() => {
     setCurrentPage((prev) => prev + 1);
@@ -72,7 +72,7 @@ export default function Pagination(props: PaginationType) {
     if (onChange) {
       onChange(totalCount);
     }
-  }, [totalCount, onChange]);
+  }, [totalCount, pageMaxCount, onChange]);
 
   return (
     <nav aria-label="pagination" className="flex w-full items-center justify-start p-5">

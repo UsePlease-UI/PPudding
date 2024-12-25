@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+import scrollbarHide from 'tailwind-scrollbar-hide';
 const px1000 = Array.from({ length: 1000 }, (_, idx) => idx + 1);
 const pxToRem = (px, base = 16) => `${px / base}rem`;
 const rem1000 = px1000.reduce((acc, px) => ({ ...acc, [px]: pxToRem(px) }), { 0: '0rem' });
@@ -207,7 +207,7 @@ export default {
     },
   },
   plugins: [
-    require('tailwind-scrollbar-hide'),
+    scrollbarHide,
     function ({ addVariant }) {
       addVariant('child-svg', '& svg');
     },

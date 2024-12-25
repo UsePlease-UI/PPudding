@@ -19,7 +19,7 @@ export default meta;
 type Story = StoryObj<typeof ToggleButtonGroup>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: function Render(args) {
     return (
       <ToggleButtonGroup {...args}>
         <ToggleButton name="fruits" value="banana">

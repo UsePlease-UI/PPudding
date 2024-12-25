@@ -31,10 +31,10 @@ export default function DragNDrop({ items = [], onDragOver, onDragStart, onDrop,
   const [draggedItem, setDraggedItem] = useState<CommonListDataType | null>(null);
 
   useEffect(() => {
-    if (listItems.length > 0) {
+    if (items.length > 0) {
       setListItems(items);
     }
-  }, []);
+  }, [items]);
 
   const handleDragStart = useCallback(
     (event: DragEvent<HTMLLIElement>, data: CommonListDataType) => {

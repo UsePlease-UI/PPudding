@@ -60,11 +60,13 @@ const meta = {
       control: 'text',
     },
   },
-  render: (args) => (
-    <div className="flex size-full min-h-screen items-start justify-center p-20">
-      <Picker {...args} />
-    </div>
-  ),
+  render: function Render(args) {
+    return (
+      <div className="flex size-full min-h-screen items-start justify-center p-20">
+        <Picker {...args} />
+      </div>
+    );
+  },
 } satisfies Meta;
 
 export default meta;

@@ -31,7 +31,7 @@ const usePosition = ({ inputId, isVisible, listBoxId, totalLength }: Props) => {
     }
 
     return false;
-  }, [totalLength]);
+  }, [inputId, totalLength]);
 
   const handlePosition = useCallback(() => {
     const element = document.getElementById(inputId);
@@ -49,7 +49,7 @@ const usePosition = ({ inputId, isVisible, listBoxId, totalLength }: Props) => {
       setLeft(element.getBoundingClientRect().x);
       setMaxWidth(element.getBoundingClientRect().width);
     }
-  }, [isVisible]);
+  }, [inputId, listBoxId, isVisible, isTop]);
 
   useEffect(() => {
     handlePosition();

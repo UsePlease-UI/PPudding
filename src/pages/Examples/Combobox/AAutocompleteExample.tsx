@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import debounce from 'lodash.debounce';
 
@@ -12,22 +12,33 @@ export default function AAutocompleteExample() {
   const [inputValue, setInputValue] = useState<string>('');
   const [selectedItem, setSelectedItem] = useState<CommonListDataType>();
 
-  const handleSearch = useCallback(
-    debounce((value: string) => {
-      if (value.length !== 0 && value !== '') {
-        const newArr = A_AUTOCOMPLETE_LIST.filter((el) => el.label.includes(value as string));
-        setDataList(newArr);
-      } else {
-        setDataList(A_AUTOCOMPLETE_LIST);
-      }
-    }, 100),
+  const debouncedSearch = useMemo(
+    () =>
+      debounce((value: string) => {
+        if (value.length !== 0 && value !== '') {
+          const newArr = A_AUTOCOMPLETE_LIST.filter((el) => el.label.includes(value as string));
+          setDataList(newArr);
+        } else {
+          setDataList(A_AUTOCOMPLETE_LIST);
+        }
+      }, 100),
     [],
   );
 
-  const handleChange = useCallback((newValue: number | string) => {
-    setInputValue(String(newValue));
-    handleSearch(String(newValue));
-  }, []);
+  const handleSearch = useCallback(
+    (value: string) => {
+      debouncedSearch(value);
+    },
+    [debouncedSearch],
+  );
+
+  const handleChange = useCallback(
+    (newValue: number | string) => {
+      setInputValue(String(newValue));
+      handleSearch(String(newValue));
+    },
+    [handleSearch],
+  );
 
   const handleSelect = useCallback((e?: CommonListDataType) => setSelectedItem(e as CommonListDataType), []);
 

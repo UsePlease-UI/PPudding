@@ -18,7 +18,7 @@ export default meta;
 type Story = StoryObj<typeof TextField>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: function Render(args) {
     const [value, setValue] = useState('ReactJS');
     return <TextField {...args} value={value} onChange={(e) => setValue(e.currentTarget.value)} />;
   },
@@ -30,7 +30,7 @@ export const Default: Story = {
 };
 
 export const Number: Story = {
-  render: (args) => {
+  render: function Render(args) {
     const [value, setValue] = useState('ReactJS');
     return <TextField {...args} value={value} onChange={(e) => setValue(e.currentTarget.value)} />;
   },

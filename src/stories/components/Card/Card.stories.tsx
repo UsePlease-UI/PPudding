@@ -29,64 +29,68 @@ export default meta;
 type Story = StoryObj<typeof Card>;
 
 export const DefaultCard: Story = {
-  render: () => (
-    <Card>
-      <Card.Media height={350} src="https://picsum.photos/id/360/200/300" type="image" width={350} />
-      <Card.Text primaryText="멋진 UI를 위한 CSS 스터디" secondaryText="UI/UX" />
-    </Card>
-  ),
+  render: function Render() {
+    return (
+      <Card>
+        <Card.Media height={350} src="https://picsum.photos/id/360/200/300" type="image" width={350} />
+        <Card.Text primaryText="멋진 UI를 위한 CSS 스터디" secondaryText="UI/UX" />
+      </Card>
+    );
+  },
   args: {},
 };
 
 export const ExpandableCard: Story = {
-  render: () => (
-    <Card>
-      <Card.Media height={350} src="https://picsum.photos/id/1/200/300" type="image" width={350} />
-      <Card.Text
-        isExpandable
-        primaryText="Welcome Class"
-        secondaryText="First Session of UI/UX Class"
-        expandedContents={
-          <>
-            <div className="flex items-center gap-2.5">
-              <div className="size-10 rounded-full bg-primary-600">
-                <CallFilled className="m-2.5 size-5 text-white" />
+  render: function Render() {
+    return (
+      <Card>
+        <Card.Media height={350} src="https://picsum.photos/id/1/200/300" type="image" width={350} />
+        <Card.Text
+          isExpandable
+          primaryText="Welcome Class"
+          secondaryText="First Session of UI/UX Class"
+          expandedContents={
+            <>
+              <div className="flex items-center gap-2.5">
+                <div className="size-10 rounded-full bg-primary-600">
+                  <CallFilled className="m-2.5 size-5 text-white" />
+                </div>
+                <div className="flex flex-col self-start">
+                  <p className="text-14 font-normal">(00) 0000-0000</p>
+                  <small className="text-12 text-gray-600">TEL</small>
+                </div>
               </div>
-              <div className="flex flex-col self-start">
-                <p className="text-14 font-normal">(00) 0000-0000</p>
-                <small className="text-12 text-gray-600">TEL</small>
+              <Divider backgroundColor="bg-gray-100" margin="my-2.5" orientation="horizontal" />
+              <div className="flex items-center gap-2.5">
+                <div className="size-10 rounded-full bg-primary-600">
+                  <MailFilled className="m-2.5 size-5 text-white" />
+                </div>
+                <div className="flex flex-col self-start">
+                  <p className="text-14 font-normal">example-email@test.com</p>
+                  <small className="text-12 text-gray-600">E-MAIL</small>
+                </div>
               </div>
-            </div>
-            <Divider backgroundColor="bg-gray-100" margin="my-2.5" orientation="horizontal" />
-            <div className="flex items-center gap-2.5">
-              <div className="size-10 rounded-full bg-primary-600">
-                <MailFilled className="m-2.5 size-5 text-white" />
+              <Divider backgroundColor="bg-gray-100" margin="my-2.5" orientation="horizontal" />
+              <div className="flex items-center gap-2.5">
+                <div className="size-10 rounded-full bg-primary-600">
+                  <CalendarFilled className="m-2.5 size-5 text-white" />
+                </div>
+                <div className="flex flex-col self-start">
+                  <p className="text-14 font-normal">Every Monday, Wednesday</p>
+                  <small className="text-12 text-gray-600">SCHEDULE</small>
+                </div>
               </div>
-              <div className="flex flex-col self-start">
-                <p className="text-14 font-normal">example-email@test.com</p>
-                <small className="text-12 text-gray-600">E-MAIL</small>
-              </div>
-            </div>
-            <Divider backgroundColor="bg-gray-100" margin="my-2.5" orientation="horizontal" />
-            <div className="flex items-center gap-2.5">
-              <div className="size-10 rounded-full bg-primary-600">
-                <CalendarFilled className="m-2.5 size-5 text-white" />
-              </div>
-              <div className="flex flex-col self-start">
-                <p className="text-14 font-normal">Every Monday, Wednesday</p>
-                <small className="text-12 text-gray-600">SCHEDULE</small>
-              </div>
-            </div>
-          </>
-        }
-      />
-    </Card>
-  ),
+            </>
+          }
+        />
+      </Card>
+    );
+  },
   args: {},
 };
 
 export const ActionCard: Story = {
-  render: () => {
+  render: function Render() {
     return (
       <Card>
         <Card.Header>

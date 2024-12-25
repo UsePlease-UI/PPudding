@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 
-export const CALENDER_DUMMY_DATA = [
+export const CALENDAR_DUMMY_DATA = [
   {
     idx: uuid(),
     startDate: '2024-01-22',

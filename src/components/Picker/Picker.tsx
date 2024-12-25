@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 
-import { DateType, PickerProvider } from '../usePicker';
+import { PickerDateType, PickerProvider } from '@components/usePicker';
+
 import DatePicker from './DatePicker';
 import MonthPicker from './MonthPicker';
 
@@ -9,14 +10,14 @@ type PickerType = {
   helperText?: string;
   icon?: ReactNode;
   labelText?: string;
-  maxDate?: DateType;
-  minDate?: DateType;
+  maxDate?: PickerDateType;
+  minDate?: PickerDateType;
   placeholder?: string;
   showMonthPicker?: boolean;
-  value?: DateType;
+  value?: PickerDateType;
   onCancel?: () => void;
   onChange?: (date: Date) => void;
-  onSelect?: (date: DateType) => void;
+  onSelect?: (date: PickerDateType) => void;
 };
 
 /**

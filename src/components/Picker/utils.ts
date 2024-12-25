@@ -10,7 +10,7 @@ export type DatesType = DateObjType[][];
 
 type TempDatesType = (DateObjType | null)[];
 
-export const getDates = (currentDate: string | dayjs.Dayjs) => {
+export const getDates = (currentDate: dayjs.Dayjs | string) => {
   const now = dayjs(currentDate);
   const month = now.get('month') + 1;
   const firstDay = now.startOf('month');
