@@ -112,7 +112,7 @@ type Story = StoryObj<typeof Select>;
 
 export const Default: Story = {
   args: {
-    helperText: '하나의 값을 선택해 주세요.',
+    helperText: '하나의 값을 선택하세요.',
     isDisabled: false,
     isReadOnly: false,
     labelText: 'test',
