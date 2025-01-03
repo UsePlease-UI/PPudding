@@ -1,10 +1,10 @@
 import scrollbarHide from 'tailwind-scrollbar-hide';
+
 const px1000 = Array.from({ length: 1000 }, (_, idx) => idx + 1);
 const pxToRem = (px, base = 16) => `${px / base}rem`;
 const rem1000 = px1000.reduce((acc, px) => ({ ...acc, [px]: pxToRem(px) }), { 0: '0rem' });
 
 const spacing1000 = px1000.reduce((acc, px) => ({ ...acc, [px / 4]: pxToRem(px) }), { 0: '0rem' });
-
 const px10000 = Array.from({ length: 10000 }, (_, idx) => idx + 1);
 
 /** @type {import('tailwindcss').Config} */
@@ -12,7 +12,7 @@ export default {
   future: {
     hoverOnlyWhenSupported: true,
   },
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./lib/**/*.{js,ts,jsx,tsx,mdx}', './stories/**/*.{js,ts,jsx,tsx}'],
   // Toggle dark-mode based on .dark class or data-mode="dark"
   darkMode: ['class', '[data-mode="dark"]'],
   theme: {

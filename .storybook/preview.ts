@@ -1,15 +1,17 @@
 import { withThemeByClassName } from '@storybook/addon-themes';
-import type { Preview } from '@storybook/react';
 
-import '../src/styles/index.css'; // tailwind css file
+// tailwind css file
+import '../lib/index.css';
+
+import type { Preview } from '@storybook/react';
 
 export const decorators = [
   withThemeByClassName({
-    themes: {
-      light: 'light',
-      dark: 'dark',
-    },
     defaultTheme: 'light',
+    themes: {
+      dark: 'dark',
+      light: 'light',
+    },
   }),
 ];
 
@@ -23,8 +25,8 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        method: 'alphabetical',
         includeNames: true,
+        method: 'alphabetical',
         order: ['Introduction', 'Pages'],
       },
     },

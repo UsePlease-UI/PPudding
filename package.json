@@ -1,36 +1,49 @@
 {
-  "name": "ppudding",
+  "name": "@useplease-ui/ppudding",
   "private": true,
-  "version": "1.0.2",
+  "version": "1.0.3",
+  "homepage": "https://github.com/UsePlease-UI/PPudding#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UsePlease-UI/PPudding.git"
+  },
   "type": "module",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && npm run tailwind && rm -rf ./dist/ppudding.css",
+    "tailwind": "npx tailwindcss -o ./dist/style.css --minify",
     "preview": "vite preview",
-    "predeploy": "yarn run build",
-    "deploy": "gh-pages -d dist",
-    "prettier:check": "prettier --check src",
-    "prettier:fix": "prettier --write src",
-    "lint:check": "eslint src",
-    "lint:fix": "eslint src --fix",
+    "prettier:check": "prettier {lib,stories} --check",
+    "prettier:fix": "prettier {lib,stories} --write",
+    "lint:check": "eslint {lib,stories}",
+    "lint:fix": "eslint {lib,stories} --fix",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build -o storybook"
   },
   "dependencies": {
-    "@fluentui/react-icons": "^2.0.270",
+    "@heroicons/react": "^2.2.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
-    "lodash.debounce": "^4.0.8",
     "motion": "^11.15.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.2",
-    "tailwind-merge": "^2.5.5",
-    "tailwind-variants": "^0.3.0"
+    "tailwind-merge": "^2.5.5"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^2.0.2",
     "@eslint/js": "^9.17.0",
+    "@etchteam/storybook-addon-status": "^5.0.0",
     "@storybook/addon-a11y": "^8.4.7",
     "@storybook/addon-essentials": "^8.4.7",
     "@storybook/addon-interactions": "^8.4.7",
@@ -49,25 +62,31 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-perfectionist": "^3.5.0",
+    "eslint-plugin-perfectionist": "^4.4.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "eslint-plugin-storybook": "^0.11.1",
     "eslint-plugin-tailwindcss": "^3.17.5",
-    "gh-pages": "^6.2.0",
     "globals": "^15.13.0",
+    "lodash.debounce": "^4.0.8",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9",
-    "rollup-plugin-visualizer": "^5.12.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "storybook": "^8.4.7",
     "tailwind-scrollbar-hide": "^2.0.0",
     "tailwindcss": "^3.4.17",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.1",
     "vite": "^6.0.3",
+    "vite-plugin-dts": "^4.4.0",
     "vite-tsconfig-paths": "^5.1.4"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   }
 }

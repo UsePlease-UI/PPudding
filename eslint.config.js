@@ -23,7 +23,7 @@ export default tseslint.config(
     },
   },
   {
-    // eslintignore가 사라지고 여기서 작성
+    // .eslintignore
     ignores: ['dist', 'tailwind.config.js', '!.storybook'],
     languageOptions: {
       ecmaVersion: 2020,
@@ -139,6 +139,10 @@ export default tseslint.config(
           type: 'alphabetical',
           order: 'asc',
           ignoreCase: true,
+          specialCharacters: 'keep',
+          internalPattern: ['^~/.+'],
+          partitionByComment: false,
+          partitionByNewLine: false,
           newlinesBetween: 'always',
           maxLineLength: undefined,
           groups: [
@@ -149,7 +153,6 @@ export default tseslint.config(
             'internal',
             'components',
             'utils',
-            'pages',
             ['parent', 'sibling'],
             'index',
             'object',
@@ -159,14 +162,32 @@ export default tseslint.config(
           ],
           customGroups: {
             value: {
-              react: ['react', 'react-*', 'react-*/**'],
-              app: ['@app'],
-              assets: ['@assets/**', '@fluentui/react-icons'],
-              components: ['@components/**', '@layouts/**'],
-              utils: ['@hooks/**', '@libs/**', '@slices/**', '@services/**', '@utils/**'],
-              pages: ['@pages/**'],
+              react: ['^react$', '^react-.+'],
+              app: ['@app/.+'],
+              assets: ['@asset/.+', '@heroicons/react'],
+              components: ['@components/.+'],
+              utils: ['@hooks/.+', '@utils/.+'],
             },
           },
+        },
+      ],
+      'perfectionist/sort-objects': [
+        'error',
+        {
+          type: 'alphabetical',
+          order: 'asc',
+          ignoreCase: true,
+          specialCharacters: 'keep',
+          partitionByComment: false,
+          partitionByNewLine: false,
+          newlinesBetween: 'ignore',
+          objectDeclarations: true,
+          destructuredObjects: true,
+          styledComponents: true,
+          ignorePattern: [],
+          useConfigurationIf: {},
+          groups: [],
+          customGroups: {},
         },
       ],
     },

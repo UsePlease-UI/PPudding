@@ -1,0 +1,58 @@
+import { v4 as uuid } from 'uuid';
+
+export const CALENDAR_DUMMY_DATA = [
+  {
+    color: 'bg-pastel-01',
+    description: '열심히 공부하기',
+    endDate: '2024-01-22',
+    idx: uuid(),
+    isAllDay: false,
+    startDate: '2024-01-22',
+    title: '공부하기',
+  },
+  {
+    color: 'bg-pastel-02',
+    description: '건강검진 받기',
+    endDate: '2024-01-18',
+    idx: uuid(),
+    isAllDay: true,
+    startDate: '2024-01-13',
+    title: '병원',
+  },
+  {
+    color: 'bg-pastel-03',
+    description: '캘린더 만들기',
+    endDate: '2024-01-13',
+    idx: uuid(),
+    isAllDay: false,
+    startDate: '2024-01-13',
+    title: '과제',
+  },
+  {
+    color: 'bg-pastel-04',
+    description: '수강신청하기',
+    endDate: '2024-02-19',
+    idx: uuid(),
+    isAllDay: true,
+    startDate: '2024-02-10',
+    title: '학교',
+  },
+  {
+    color: 'bg-pastel-05',
+    description: '테스트',
+    endDate: '2024-02-01',
+    idx: uuid(),
+    isAllDay: false,
+    startDate: '2024-02-01',
+    title: '2월 테스트',
+  },
+  {
+    color: 'bg-pastel-06',
+    description: '테스트',
+    endDate: '2024-01-01',
+    idx: uuid(),
+    isAllDay: true,
+    startDate: '2024-01-01',
+    title: '1월 테스트',
+  },
+];

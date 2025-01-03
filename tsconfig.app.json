@@ -21,18 +21,12 @@
     "noFallthroughCasesInSwitch": true,
 
     /* Path Alias */
-    "baseUrl": "src",
+    "baseUrl": "lib",
     "paths": {
-      "@app/*": ["app/*"],
-      "@assets/*": ["assets/*"],
       "@components/*": ["components/*"],
-      "@constants/*": ["constants/*"],
       "@hooks/*": ["hooks/*"],
-      "@layouts/*": ["layouts/*"],
-      "@pages/*": ["pages/*"],
-      "@utils/*": ["utils/*"],
-      "@styles/*": ["styles/*"]
+      "@utils/*": ["utils/*"]
     }
   },
-  "include": ["src"]
+  "include": ["lib", "stories"]
 }
