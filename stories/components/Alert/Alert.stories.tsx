@@ -37,7 +37,11 @@ const meta = {
         category: 'optional',
       },
     },
-    icon: { table: { disable: true } },
+    icon: {
+      table: {
+        disable: true,
+      },
+    },
     message: {
       control: 'text',
       description: 'content of the component',
@@ -45,8 +49,16 @@ const meta = {
         category: 'required',
       },
     },
-    onClose: { table: { disable: true } },
-    options: { table: { disable: true } },
+    onClose: {
+      table: {
+        disable: true,
+      },
+    },
+    options: {
+      table: {
+        disable: true,
+      },
+    },
     variant: {
       control: {
         type: 'inline-radio',
