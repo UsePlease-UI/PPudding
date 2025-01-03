@@ -1,5 +1,0 @@
-# Skeleton Component
-
-## Anatomy
-
--   Skeleton

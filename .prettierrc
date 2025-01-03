@@ -1,10 +1,11 @@
 {
-    "printWidth": 120,
-    "tabWidth": 4,
-    "useTabs": false,
-    "semi": true,
-    "singleQuote": true,
-    "bracketSpacing": true,
-    "trailingComma": "none",
-    "plugins": ["prettier-plugin-tailwindcss"]
+  "printWidth": 120,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "bracketSpacing": true,
+  "trailingComma": "all",
+  "tailwindFunctions": ["joinClassNames"],
+  "plugins": ["prettier-plugin-tailwindcss"]
 }
