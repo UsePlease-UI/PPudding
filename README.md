@@ -59,5 +59,5 @@
 
 ## Assets
 
-- [Fluent Icons](https://github.com/microsoft/fluentui-system-icons)
+- [Heroicons](https://heroicons.com/)
 - [Pretendard Font](https://github.com/orioncactus/pretendard)
