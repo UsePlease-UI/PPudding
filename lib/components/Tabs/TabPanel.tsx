@@ -13,7 +13,13 @@ export default function TabPanel(props: TabPanelType) {
   const { children, className, index, value } = props;
 
   return (
-    <div className={joinClassNames('size-full p-5', className && className)} hidden={value !== index} role="tabpanel">
+    <div
+      aria-labelledby={`tab-${index}`}
+      className={joinClassNames('size-full p-5', className && className)}
+      hidden={value !== index}
+      id={`tabpanel-${index}`}
+      role="tabpanel"
+    >
       {children}
     </div>
   );

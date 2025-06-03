@@ -102,10 +102,10 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(function TextField
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         className={joinClassNames(
-          'h-10 truncate rounded border border-gray-100 px-3 py-2.5 text-14 font-normal leading-normal tracking-normal text-gray-950 placeholder:text-gray-400 hover:border-primary-600 focus:border-primary-700 focus:bg-primary-100 disabled:pointer-events-none disabled:border-gray-300 disabled:bg-gray-300 disabled:text-gray-950 under-tablet:min-w-0',
+          'h-11 truncate rounded border border-black px-3 py-2.5 text-16 font-normal leading-normal tracking-normal text-black placeholder:text-gray-400 hover:bg-gray-100 focus:bg-gray-200 disabled:pointer-events-none disabled:border-gray-400 disabled:bg-gray-100 disabled:text-gray-600 under-tablet:min-w-0',
+          isError && 'border-red-600',
           isFullWidth ? 'w-full min-w-0' : 'min-w-80',
-          isReadOnly && 'pointer-events-none border-gray-500 bg-gray-50',
-          isError && 'border-red-500',
+          isReadOnly && 'pointer-events-none border-gray-400 bg-gray-100',
           className && className,
         )}
       />

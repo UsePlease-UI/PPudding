@@ -4,14 +4,13 @@ import { XMarkIcon } from '@heroicons/react/24/solid';
 
 import { joinClassNames } from '@utils/format';
 
-import { ButtonVariantType, getCommonButtonVariantStyle } from '../styles';
-import { getChipVariantStyle } from './styles';
+import { ChipVariantType, getChipVariantStyle } from './styles';
 
 export interface ChipType extends HTMLAttributes<HTMLDivElement> {
   label: string;
   value: string;
   isDeletable?: boolean;
-  variant?: ButtonVariantType;
+  variant?: ChipVariantType;
   onDelete?: (value: string) => void;
 }
 
@@ -39,16 +38,22 @@ export default function Chip(props: ChipType) {
         className && className,
       )}
     >
-      <span className="text-16 font-medium leading-normal">{label}</span>
+      <span
+        className={joinClassNames(
+          'text-16 font-medium leading-normal',
+          variant === 'contained' ? 'text-white' : 'text-black',
+        )}
+      >
+        {label}
+      </span>
       {isDeletable && (
         <button
-          aria-label="delete"
+          aria-label="삭제"
           type="button"
           onClick={handleClick}
           className={joinClassNames(
-            'group flex cursor-pointer items-center justify-center rounded-full p-0.5',
-            getCommonButtonVariantStyle(variant),
-            variant === 'text' && 'border border-gray-200',
+            'group flex cursor-pointer items-center justify-center rounded-full p-0.5 hover:opacity-80 active:opacity-70',
+            variant === 'outlined' ? 'border border-black text-black' : 'border border-white text-white',
           )}
         >
           <XMarkIcon className="!block size-3 text-inherit" />

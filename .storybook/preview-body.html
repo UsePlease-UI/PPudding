@@ -1,1 +1,16 @@
 <div id="portal"></div>
+
+<style>
+  .sb-show-main.sb-main-centered #storybook-root,
+  #storybook-root {
+    min-width: 768px;
+    min-height: 100vh;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  [hidden]:where(:not([hidden='until-found'])) {
+    display: none !important;
+  }
+</style>

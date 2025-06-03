@@ -8,7 +8,9 @@ export default function FAQ() {
       <h2 className="mb-10 text-center text-40 font-bold">자주 묻는 질문들(FAQ)</h2>
       <div className="space-y-1.25">
         <Accordion isExpanded>
-          <Accordion.Header>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Accordion.Header>
+          <Accordion.Header headingLevel="h2">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </Accordion.Header>
           <Accordion.Panel>
             Phasellus lacinia lacus at mi lobortis, a fringilla lectus maximus. Vestibulum id volutpat leo. Nam eget
             ante non eros ultrices ultricies. Vivamus porta, ante non egestas fermentum, ante diam ultrices est, non
@@ -18,7 +20,7 @@ export default function FAQ() {
           </Accordion.Panel>
         </Accordion>
         <Accordion>
-          <Accordion.Header>Proin id diam leo.</Accordion.Header>
+          <Accordion.Header headingLevel="h2">Proin id diam leo.</Accordion.Header>
           <Accordion.Panel>
             Proin eget magna non nunc vehicula elementum. Vestibulum eget nulla at enim lacinia finibus vitae sed
             libero. Nunc tempus pharetra quam ac finibus. Curabitur scelerisque ex eget massa aliquet tincidunt quis sed
@@ -27,7 +29,7 @@ export default function FAQ() {
           </Accordion.Panel>
         </Accordion>
         <Accordion>
-          <Accordion.Header>In hac habitasse platea dictumst.</Accordion.Header>
+          <Accordion.Header headingLevel="h2">In hac habitasse platea dictumst.</Accordion.Header>
           <Accordion.Panel>
             In hac habitasse platea dictumst. Ut velit elit, pulvinar sed ultricies sed, rhoncus ut orci. Aenean id
             venenatis turpis, id aliquet mi. In finibus porta lacus, quis scelerisque massa faucibus vel. Nullam
@@ -40,7 +42,9 @@ export default function FAQ() {
           </Accordion.Panel>
         </Accordion>
         <Accordion>
-          <Accordion.Header>Curabitur placerat placerat felis, ac vulputate nulla hendrerit vitae.</Accordion.Header>
+          <Accordion.Header headingLevel="h2">
+            Curabitur placerat placerat felis, ac vulputate nulla hendrerit vitae.
+          </Accordion.Header>
           <Accordion.Panel>
             Curabitur placerat placerat felis, ac vulputate nulla hendrerit vitae. Vivamus ligula purus, varius et leo
             ut, bibendum finibus turpis. Integer mollis, erat sit amet congue tincidunt, libero libero pellentesque
@@ -50,7 +54,7 @@ export default function FAQ() {
           </Accordion.Panel>
         </Accordion>
         <Accordion isDisabled>
-          <Accordion.Header hasIcon icon={<XMarkIcon />}>
+          <Accordion.Header headingLevel="h2" hasIcon icon={<XMarkIcon />}>
             Fusce accumsan felis in justo consequat, a commodo enim volutpat.
           </Accordion.Header>
           <Accordion.Panel>

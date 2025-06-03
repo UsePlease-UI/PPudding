@@ -10,7 +10,7 @@ export default function Table(props: TableType) {
   const { children, className, ...rest } = props;
 
   return (
-    <table {...rest} className={joinClassNames('size-full border border-primary-100 bg-white', className && className)}>
+    <table {...rest} className={joinClassNames('size-full border border-gray-100 bg-white', className && className)}>
       {children}
     </table>
   );

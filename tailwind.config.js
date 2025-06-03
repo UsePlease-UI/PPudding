@@ -13,7 +13,6 @@ export default {
     hoverOnlyWhenSupported: true,
   },
   content: ['./lib/**/*.{js,ts,jsx,tsx,mdx}', './stories/**/*.{js,ts,jsx,tsx}'],
-  // Toggle dark-mode based on .dark class or data-mode="dark"
   darkMode: ['class', '[data-mode="dark"]'],
   theme: {
     extend: {
@@ -78,58 +77,6 @@ export default {
         inset01: 'inset 0px -1px 0px 0px #eeeeee',
       },
       colors: {
-        primary: {
-          50: '#fcfde9',
-          100: '#f7fbc6',
-          200: '#f3f890',
-          300: '#f2f351',
-          400: '#eee821',
-          500: '#dccd14',
-          600: '#bfa40f',
-          700: '#99770f',
-          800: '#7f5f14',
-          900: '#6c4d17',
-          950: '#3f2909',
-        },
-        blue: {
-          50: '#f1f6fe',
-          100: '#e3ecfb',
-          200: '#c0d9f7',
-          300: '#89baf0',
-          400: '#4a97e6',
-          500: '#2279d5',
-          600: '#145cb1', // main
-          700: '#124b92',
-          800: '#134079',
-          900: '#153865',
-          950: '#0e2343',
-        },
-        'blue-gray': {
-          50: '#f4f8fa',
-          100: '#e7eef2',
-          200: '#d4e0e9',
-          300: '#b7ccd9',
-          400: '#94b2c6',
-          500: '#85a3bd',
-          600: '#6886a8', // main
-          700: '#5c7699',
-          800: '#4f617e',
-          900: '#425266',
-          950: '#2c333f',
-        },
-        'yellow-gray': {
-          50: '#f4f4f1',
-          100: '#e6e6e1',
-          200: '#d0cec6',
-          300: '#b3b1a3',
-          400: '#989683',
-          500: '#83816d',
-          600: '#61604f',
-          700: '#4c4c3f',
-          800: '#3f3e35',
-          900: '#373730',
-          950: '#1c1c17',
-        },
         gray: {
           50: '#f8f8f8',
           100: '#eeeeee', // main
@@ -159,17 +106,6 @@ export default {
         },
       },
       keyframes: {
-        blink: {
-          '0%': {
-            opacity: 0.4,
-          },
-          '50%': {
-            opacity: 1,
-          },
-          '100%': {
-            opacity: 0.4,
-          },
-        },
         fadeIn: {
           '0%': {
             bottom: 0,

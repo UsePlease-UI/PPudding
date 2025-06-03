@@ -1,10 +1,10 @@
-import { expect, spyOn, userEvent, within } from '@storybook/test';
+import { expect, spyOn, userEvent, within } from 'storybook/test';
 
 import { sleep } from '../utils/common';
 import { PASSWORD_REG_EXP } from './constants';
 import RegisterPage from './Register';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   argTypes: {},
@@ -30,7 +30,7 @@ Default.play = async ({ canvasElement, step }) => {
   const [year, month, day] = canvas.getAllByRole('combobox');
   const registerButton = canvas.getByRole('button', { name: /등록/i });
   const gender = canvas.getByRole('radio', { name: '여성' });
-  const useYn = canvas.getByRole('radio', { name: '미사용' });
+  const useYn = canvas.getByRole('button', { name: /미사용/i });
   const terms = canvas.getByRole('checkbox', { name: '이용약관 동의' });
   const policy = canvas.getByRole('checkbox', { name: '(선택) 마케팅 동의' });
   const consoleSpy = spyOn(console, 'log');

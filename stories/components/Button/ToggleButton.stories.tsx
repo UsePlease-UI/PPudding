@@ -2,12 +2,11 @@ import { BoldIcon, ItalicIcon } from '@heroicons/react/24/solid';
 
 import { ToggleButton } from '@components/Button/ToggleButton';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   args: {
     isDisabled: false,
-    name: 'text',
     size: 'large',
     value: 'bold',
   },
@@ -72,7 +71,6 @@ type Story = StoryObj<typeof ToggleButton>;
 
 export const TextSelected: Story = {
   args: {
-    name: 'fruits',
     size: 'large',
     value: 'banana',
   },
@@ -87,7 +85,6 @@ export const TextSelected: Story = {
 
 export const TextNotSelected: Story = {
   args: {
-    name: 'fruits',
     size: 'large',
     value: 'orange',
   },
@@ -102,13 +99,12 @@ export const TextNotSelected: Story = {
 
 export const IconSelected: Story = {
   args: {
-    name: 'text',
     size: 'large',
     value: 'bold',
   },
   render: function Render(args) {
     return (
-      <ToggleButton currentValue="bold" {...args}>
+      <ToggleButton aria-label="bold" currentValue="bold" {...args}>
         <BoldIcon />
       </ToggleButton>
     );
@@ -117,13 +113,12 @@ export const IconSelected: Story = {
 
 export const IconNotSelected: Story = {
   args: {
-    name: 'text',
     size: 'large',
     value: 'italic',
   },
   render: function Render(args) {
     return (
-      <ToggleButton currentValue="bold" {...args}>
+      <ToggleButton aria-label="italic" currentValue="bold" {...args}>
         <ItalicIcon />
       </ToggleButton>
     );

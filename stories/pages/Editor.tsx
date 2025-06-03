@@ -11,7 +11,8 @@ import {
 } from '@heroicons/react/24/solid';
 
 import { IconButton, ToggleButton, ToggleButtonGroup } from '@components/Button';
-import { SharedPopover, useSharedPopover } from '@components/Shared';
+import Popover from '@components/Popover';
+import usePopover from '@components/usePopover';
 
 import { joinClassNames } from '@utils/format';
 
@@ -20,91 +21,107 @@ import { COLOR_LIST, DEFAULT_VALUE, TextAlignType } from './constants';
 const Editor = () => {
   const [style, setStyle] = useState<string[]>([]);
   const [align, setAlign] = useState<TextAlignType>('text-left');
-  const [color, setColor] = useState('text-primary-800');
+  const [color, setColor] = useState('text-black');
 
-  const { anchorElement, handleClose, handleOpen, isOpen } = useSharedPopover();
+  const { anchorElement, handleClose, handleOpen, isOpen } = usePopover();
 
   return (
-    <div className="under-tablet:p-2.5">
-      <div className="flex flex-wrap justify-end gap-2.5 rounded-t bg-yellow-gray-50 p-2.5">
+    <div className="w-full under-tablet:p-2.5">
+      <div className="flex flex-wrap justify-end gap-2.5 rounded-t border border-b-0 border-black bg-white p-2.5">
         <ToggleButtonGroup
           value={style}
-          onChange={(e) => {
-            const newValue = e.currentTarget.value;
-            if (style.includes(newValue)) {
-              setStyle((prev) => prev.filter((val) => val !== newValue));
+          onClick={(selected) => {
+            if (style.includes(selected)) {
+              setStyle((prev) => prev.filter((val) => val !== selected));
             } else {
-              setStyle((prev) => [...prev, newValue]);
+              setStyle((prev) => [...prev, selected]);
             }
           }}
         >
-          <ToggleButton name="style" value="bold">
+          <ToggleButton aria-label="굵게" value="bold">
             <BoldIcon />
           </ToggleButton>
-          <ToggleButton name="style" value="italic">
+          <ToggleButton aria-label="기울기" value="italic">
             <ItalicIcon />
           </ToggleButton>
-          <ToggleButton name="style" value="underline">
+          <ToggleButton aria-label="밑줄" value="underline">
             <UnderlineIcon />
           </ToggleButton>
         </ToggleButtonGroup>
-        <IconButton variant="outlined" onClick={handleOpen}>
+        <IconButton
+          aria-expanded={isOpen}
+          aria-label="색상 선택"
+          id="color-button"
+          variant="outlined"
+          aria-controls={isOpen ? 'color-popover' : undefined}
+          aria-haspopup="dialog"
+          onClick={handleOpen}
+        >
           <EyeDropperIcon />
         </IconButton>
-        <SharedPopover
+        <Popover
+          aria-labelledby="color-button"
+          id="color-popover"
           isOpen={isOpen}
           anchorElement={anchorElement}
           anchorPosition={{ horizontal: 'right', vertical: 'bottom' }}
           onClose={handleClose}
         >
-          <div className="flex max-w-30 flex-wrap items-center justify-center gap-2.5">
+          <div className="flex max-w-30 flex-wrap items-center justify-center gap-2.5" role="group">
             {COLOR_LIST.map((val) => (
-              <IconButton key={val} variant="outlined" onClick={() => setColor(val)}>
-                <EyeDropperIcon className={val} />
+              <IconButton
+                key={val}
+                aria-label="텍스트 색상"
+                aria-pressed={val === color}
+                variant={val === color ? 'contained' : 'outlined'}
+                onClick={() => setColor(val)}
+              >
+                <EyeDropperIcon className={val === color && val === 'text-black' ? 'text-white' : val} />
               </IconButton>
             ))}
           </div>
-        </SharedPopover>
+        </Popover>
         <ToggleButtonGroup
           value={align}
-          onChange={(e) => {
-            const newValue = e.currentTarget.value;
-            if (newValue === '') {
+          onClick={(selected) => {
+            if (selected === '') {
               setStyle([]);
               setAlign('text-left');
-              setColor('text-primary-800');
+              setColor('text-black');
             } else {
-              setAlign((prev) => (prev === newValue ? '' : newValue) as TextAlignType);
+              setAlign(() => selected as TextAlignType);
             }
           }}
         >
-          <ToggleButton name="textAlign" value="text-left">
+          <ToggleButton aria-label="텍스트 왼쪽 정렬" value="text-left">
             <Bars3BottomLeftIcon />
           </ToggleButton>
-          <ToggleButton name="textAlign" value="text-center">
+          <ToggleButton aria-label="텍스트 중앙 정렬" value="text-center">
             <Bars3Icon />
           </ToggleButton>
-          <ToggleButton name="textAlign" value="text-right">
+          <ToggleButton aria-label="텍스트 오른쪽 정렬" value="text-right">
             <Bars3BottomRightIcon />
           </ToggleButton>
-          <ToggleButton name="textAlign" value="">
-            RESET
-          </ToggleButton>
+          <ToggleButton value="">RESET</ToggleButton>
         </ToggleButtonGroup>
       </div>
-      <div className="h-[calc(100vh-158px)] w-full tablet:h-125">
-        <textarea
-          readOnly
-          defaultValue={DEFAULT_VALUE}
-          className={joinClassNames(
-            'h-full w-full resize-none rounded-b border border-t-0 border-yellow-gray-100 p-5 outline-none',
-            color,
-            align,
-            style.includes('bold') ? 'font-semibold' : 'font-normal',
-            style.includes('italic') && 'italic',
-            style.includes('underline') && 'underline',
-          )}
-        />
+      <div className="h-[calc(100vh-158px)] w-full border border-black tablet:h-125">
+        <label htmlFor="editor">
+          <span className="sr-only">에디터</span>
+          <textarea
+            readOnly
+            defaultValue={DEFAULT_VALUE}
+            id="editor"
+            className={joinClassNames(
+              'h-full w-full resize-none rounded-b border border-t-0 border-gray-100 bg-gray-100 p-5',
+              color,
+              align,
+              style.includes('bold') ? 'font-semibold' : 'font-normal',
+              style.includes('italic') && 'italic',
+              style.includes('underline') && 'underline',
+            )}
+          />
+        </label>
       </div>
     </div>
   );

@@ -4,17 +4,17 @@ const WEEK_DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
 export default function PickerWeekDays() {
   return (
-    <div className="mb-2.5 flex h-full w-77 gap-px">
+    <div className="mb-2.5 flex h-full w-77 gap-px border border-black bg-black">
       {WEEK_DAYS.map((val) => (
-        <p
+        <span
           key={val}
           className={joinClassNames(
-            'my-0.5 h-11 w-11 text-center text-14 font-semibold leading-44 text-primary-950',
-            (val === '일' || val === '토') && 'bg-primary-900 text-white',
+            'block h-11 w-11 bg-white py-0.5 text-center text-14 font-semibold leading-44 text-black',
+            (val === '일' || val === '토') && 'bg-black text-white',
           )}
         >
           {val}
-        </p>
+        </span>
       ))}
     </div>
   );

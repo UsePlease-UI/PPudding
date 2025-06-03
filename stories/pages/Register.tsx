@@ -82,33 +82,27 @@ const Register = () => {
           />
           <div className="flex gap-5">
             <Select
-              aria-labelledby="year"
               id="year-select"
               label={YEAR_OPTIONS.filter((val) => val.value === year)?.[0]?.label}
               labelText="연도"
-              name="year"
               value={year}
-              onChange={(e) => setYear(e.currentTarget.value)}
+              onChange={setYear}
               options={YEAR_OPTIONS}
             />
             <Select
-              aria-labelledby="month"
               id="month-select"
               label={MONTH_OPTIONS.filter((val) => val.value === month)?.[0]?.label}
               labelText="월"
-              name="month"
               value={month}
-              onChange={(e) => setMonth(e.currentTarget.value)}
+              onChange={setMonth}
               options={MONTH_OPTIONS}
             />
             <Select
-              aria-labelledby="day"
               id="day-select"
               label={DAY_OPTIONS.filter((val) => val.value === day)?.[0]?.label}
               labelText="일"
-              name="day"
               value={day}
-              onChange={(e) => setDay(e.currentTarget.value)}
+              onChange={setDay}
               options={DAY_OPTIONS}
             />
           </div>
@@ -122,11 +116,11 @@ const Register = () => {
           </div>
           <div className="space-y-1.25">
             <span className="text-12 font-semibold">이메일 수신여부</span>
-            <ToggleButtonGroup value={useYn} onChange={(e) => setUseYn(e.currentTarget.value)}>
-              <ToggleButton name="useYn" size="large" value="Y">
+            <ToggleButtonGroup value={useYn} onClick={setUseYn}>
+              <ToggleButton size="large" value="Y">
                 사용
               </ToggleButton>
-              <ToggleButton name="useYn" size="large" value="N">
+              <ToggleButton size="large" value="N">
                 미사용
               </ToggleButton>
             </ToggleButtonGroup>

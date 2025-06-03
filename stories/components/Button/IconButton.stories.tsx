@@ -1,11 +1,11 @@
-import { expect, fn, spyOn, userEvent, within } from '@storybook/test';
+import { expect, fn, spyOn, userEvent, within } from 'storybook/test';
 
 import { StarIcon } from '@heroicons/react/24/solid';
 
 import IconButton from '@components/Button/IconButton';
 import { getCommonButtonVariantStyle, getIconButtonSizeStyle } from '@components/Button/styles';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   args: {
@@ -13,6 +13,7 @@ const meta = {
     isDisabled: false,
     // https://github.com/storybookjs/storybook/issues/21551#issuecomment-1889574929
     onClick: fn(),
+    shape: 'rounded',
     size: 'large',
     variant: 'outlined',
   },
@@ -45,6 +46,19 @@ const meta = {
         category: 'optional',
         type: {
           summary: '(e: MouseEvent<ButtonElement>) => void',
+        },
+      },
+    },
+    shape: {
+      control: {
+        type: 'inline-radio',
+      },
+      description: 'icon button shape',
+      options: ['circular', 'rounded', 'square'],
+      table: {
+        category: 'optional',
+        type: {
+          summary: 'circular | rounded | square',
         },
       },
     },
@@ -101,7 +115,7 @@ export const Default: Story = {
   },
   render: function Render(args) {
     return (
-      <IconButton aria-label="starred" {...args}>
+      <IconButton aria-label="찜하기" {...args}>
         {args.children}
       </IconButton>
     );

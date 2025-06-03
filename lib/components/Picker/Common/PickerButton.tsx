@@ -24,21 +24,21 @@ export default function PickerButton(props: PickerButtonType) {
 
   return (
     <>
-      {labelText && <p className="ml-1 w-full text-left text-10 font-semibold leading-16">{labelText}</p>}
-      <div className="flex w-full min-w-50 cursor-default items-center justify-between overflow-hidden rounded border border-gray-900">
-        <p
+      {labelText && <span className="ml-1 block w-full text-left text-10 font-semibold leading-16">{labelText}</span>}
+      <div className="flex w-full min-w-50 cursor-default items-center justify-between overflow-hidden rounded border border-black">
+        <span
           className={joinClassNames(
-            'flex-1 pl-2 text-left text-14 font-medium text-primary-950',
+            'block flex-1 pl-2 text-left text-14 font-medium text-black',
             !value && placeholder && 'text-gray-400',
           )}
         >
           {value ? dayjs(value).format(dateFormat) : placeholder}
-        </p>
+        </span>
         <IconButton size="medium" variant="text" onClick={onClick}>
           {icon || <CalendarIcon />}
         </IconButton>
       </div>
-      {helperText && <p className="ml-1 w-full text-left text-10 font-semibold leading-16">{helperText}</p>}
+      {helperText && <span className="ml-1 block w-full text-left text-10 font-semibold leading-16">{helperText}</span>}
     </>
   );
 }

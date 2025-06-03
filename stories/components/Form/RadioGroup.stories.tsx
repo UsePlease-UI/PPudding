@@ -1,9 +1,9 @@
-import { useArgs } from '@storybook/preview-api';
-import { expect, within } from '@storybook/test';
+import { useArgs } from 'storybook/preview-api';
+import { expect, within } from 'storybook/test';
 
 import { Radio, RadioGroup } from '@components/Form/Radio';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof RadioGroup> = {
   args: {
@@ -46,7 +46,7 @@ const meta: Meta<typeof RadioGroup> = {
       control: false,
       description: 'change event handler',
       table: {
-        category: 'optional',
+        category: 'required',
         type: {
           summary: '(e: ChangeEvent<HTMLInputElement>) => void',
         },

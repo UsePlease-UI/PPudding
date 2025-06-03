@@ -1,25 +1,24 @@
-import { HTMLAttributes, MouseEvent, ReactNode, useCallback, useEffect, useId, useRef, useState } from 'react';
+import { HTMLAttributes, ReactNode, useCallback, useEffect, useId, useRef, useState } from 'react';
 
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 
-import Backdrop from '@components/Base/Backdrop';
+import { ClickAwayListener, ListboxOptionType } from '@components/Base';
 import FormControl from '@components/Base/FormControl';
 import { Listbox } from '@components/Base/Listbox';
 import { getCommonButtonVariantStyle } from '@components/Button/styles';
-import { OptionsType } from '@components/types';
 import usePosition from '@components/usePosition';
 
 import { joinClassNames } from '@utils/format';
 
 export interface SelectType extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   label: string;
-  value: number | string;
+  value: string;
+  onChange: (selected: string) => void;
   helperText?: ReactNode;
   isDisabled?: boolean;
   isReadOnly?: boolean;
   labelText?: ReactNode;
-  onChange?: (e: MouseEvent<HTMLButtonElement>) => void;
-  options?: OptionsType[];
+  options?: ListboxOptionType[];
   placeholder?: string;
 }
 
@@ -39,35 +38,37 @@ export default function Select(props: SelectType) {
     ...rest
   } = props;
 
-  const buttonId = useId();
+  const ref = useRef<HTMLButtonElement | null>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+
+  const [isVisible, setIsVisible] = useState(false);
+
   const labelId = useId();
+  const buttonId = useId();
   const helperTextId = useId();
   const listBoxId = useId();
 
-  const listContainerRef = useRef<HTMLDivElement>(null);
-  const ref = useRef<HTMLButtonElement | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  const position = usePosition({
-    inputId: id || buttonId,
-    isVisible,
-    listBoxId,
-    totalLength: options.length,
-  });
-
-  useEffect(() => {
-    const element = listContainerRef.current;
-    if (isVisible && element) {
-      const { left, marginTop, maxWidth, top } = position;
-      element.style.top = `${top}px`;
-      element.style.left = `${left}px`;
-      element.style.marginTop = `${marginTop}px`;
-      const list = element.getElementsByTagName('ul')[0];
-      list.style.maxWidth = `${maxWidth}px`;
-    }
-  }, [isVisible, position]);
+  const position = usePosition({ inputId: id || buttonId, isVisible, listBoxId, totalLength: options.length });
 
   const handleClick = useCallback(() => setIsVisible((prev) => !prev), []);
+
+  const handleChange = useCallback(
+    (selected: string) => {
+      onChange(selected);
+      setIsVisible(false);
+    },
+    [onChange],
+  );
+
+  useEffect(() => {
+    const element = listRef.current;
+    if (isVisible && element) {
+      const { left, marginTop, maxWidth, top } = position;
+      element.style.top = `${top + marginTop}px`;
+      element.style.left = `${left}px`;
+      element.style.maxWidth = `${maxWidth}px`;
+    }
+  }, [isVisible, position]);
 
   return (
     <div className={joinClassNames('w-max', className && className)}>
@@ -75,7 +76,7 @@ export default function Select(props: SelectType) {
         helperText={helperText}
         helperTextId={rest['aria-describedby'] || helperTextId}
         labelText={labelText}
-        labelTextId={rest['aria-labelledby'] || labelId}
+        labelTextId={id || rest['aria-labelledby'] || labelId}
       >
         <div className="group relative">
           <button
@@ -83,16 +84,16 @@ export default function Select(props: SelectType) {
             aria-describedby={helperText ? rest['aria-describedby'] || helperTextId : undefined}
             aria-expanded={isVisible}
             disabled={isDisabled || isReadOnly}
-            id={id || buttonId}
+            id={id || rest['aria-labelledby'] || buttonId}
             tabIndex={0}
             type="button"
-            aria-controls={listBoxId}
+            aria-controls={isVisible ? listBoxId : undefined}
             aria-haspopup="listbox"
             onClick={handleClick}
             role="combobox"
             className={joinClassNames(
               getCommonButtonVariantStyle('outlined'),
-              'flex h-10 min-w-30 items-center justify-between rounded pl-3 pr-2 text-primary-950',
+              'flex h-10 min-w-30 items-center justify-between rounded pl-3 pr-2 text-black',
               placeholder && !value && 'text-gray-400',
             )}
           >
@@ -101,22 +102,27 @@ export default function Select(props: SelectType) {
             </span>
             <span className="size-5">
               <ChevronDownIcon
-                className={joinClassNames('!block h-5 w-5 text-primary-800', isVisible && 'rotate-180')}
+                className={joinClassNames('!block h-5 w-5 text-black transition-transform', isVisible && 'rotate-180')}
               />
             </span>
           </button>
           {isVisible && (
-            <Backdrop isOpen={isVisible} onClose={handleClick}>
-              <div ref={listContainerRef} className="fixed w-full">
-                <Listbox
-                  id={listBoxId}
-                  labelId={rest['aria-labelledby'] || labelId}
-                  value={value}
-                  onClick={onChange}
-                  options={options}
-                />
-              </div>
-            </Backdrop>
+            <ClickAwayListener
+              element={ref.current}
+              isOpen={isVisible}
+              anchorElement={listRef.current}
+              onClose={handleClick}
+            >
+              <Listbox
+                ref={listRef}
+                className="fixed w-full"
+                id={listBoxId}
+                labelId={rest['aria-labelledby'] || labelId}
+                value={value}
+                onClick={handleChange}
+                options={options}
+              />
+            </ClickAwayListener>
           )}
         </div>
       </FormControl>

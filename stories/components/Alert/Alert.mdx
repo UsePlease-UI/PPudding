@@ -1,0 +1,180 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+
+import * as AlertStories from './Alert.stories';
+
+import AnatomyImage from './alert_anatomy.png';
+import DefaultImage from './alert_default.png';
+import SuccessImage from './alert_success.png';
+import ErrorImage from './alert_error.png';
+import InfoImage from './alert_info.png';
+import WarningImage from './alert_warning.png';
+import AlertWithoutDismissImage from './alert_without_dismiss_button.png';
+import AlertWithMultiline from './alert_multiline.png';
+
+<style>
+  {`
+    * {
+        box-sizing: border-box;
+        color: #191919 !important;
+    }
+
+    p, li {
+        font-size: 16px !important;
+    }
+
+    a:hover {
+        text-decoration: underline !important;
+    }
+
+    h1 {
+        margin-bottom: 40px !important;
+    }
+
+    h2 {
+        font-weight: 600 !important;
+        margin-top: 60px !important;
+    }
+
+    h2:first-of-type {
+        margin-top: 0px !important;
+    }
+
+    .img-container {
+        padding: 10px !important;
+        border-radius: 4px !important;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px !important;
+    }
+
+    .img-container b {
+        margin-bottom: 20px !important;
+    }
+
+    img {
+        width: 748px !important;
+        height: 400px !important;
+        margin: 0 auto !important;
+    }
+  `}
+</style>
+
+<Meta of={AlertStories} />
+
+# Alert
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Anatomy](#anatomy)
+- [Variants](#variants)
+- [Usage](#usage)
+
+## Overview
+
+사용자에게 중요한 메시지를 전달하거나 상태를 알릴 때 사용하는 **Alert** 컴포넌트입니다.  
+※ **useAlert**와 함께 사용합니다.
+
+## Anatomy
+
+**Alert**는 다음과 같이 구현되어 있습니다.
+
+<div className="img-container">
+  <img src={AnatomyImage} alt="Alert Anatomy" />
+</div>
+
+1️⃣ **Alert Message**
+
+2️⃣ **Alert Icon**
+
+## Variants
+
+기본값은 **default**이며 **default**, **success**, **error**, **info**, **warning** 중 하나를 선택할 수 있습니다.
+
+<div className="img-container">
+  <h3>Default</h3>
+  <img src={DefaultImage} alt="Default" />
+</div>
+<br />
+<br />
+<div className="img-container">
+  <h3>Success</h3>
+  <img src={SuccessImage} alt="Success" />
+</div>
+<br />
+<br />
+<div className="img-container">
+  <h3>Error</h3>
+  <img src={ErrorImage} alt="Error" />
+</div>
+<br />
+<br />
+<div className="img-container">
+  <h3>Info</h3>
+  <img src={InfoImage} alt="Info" />
+</div>
+<br />
+<br />
+<div className="img-container">
+  <h3>Warning</h3>
+  <img src={WarningImage} alt="Warning" />
+</div>
+
+## Usage
+
+**AlertProvider**는 `main.tsx` / `App.tsx`에서 적용해주세요.
+
+AlertProvider의 props로 **icon**(닫기 버튼의 아이콘)과 **position**을 설정할 수 있습니다.  
+**Position**은 `bottom-right`(기본값), `bottom-center`, `bottom-left`, `top-right`, `top-center`, `top-left` 중 하나를 선택할 수 있습니다.
+
+```tsx
+// main.tsx
+import { AlertProvider } from '@components/useAlert';
+
+import AlertExample from './AlertExample';
+
+export default function App() {
+  return (
+    <AlertProvider>
+      <AlertExample />
+    </AlertProvider>
+  );
+}
+```
+
+**useAlert**의 **onAlert**를 사용하여 메시지를 노출합니다.
+
+```tsx
+// component
+import { useAlert } from '@components/useAlert';
+
+export default function AlertExample() {
+  const { onAlert } = useAlert();
+
+  const handleClick = () => {
+    onAlert('문제가 발생하였습니다.', { variant: 'error' });
+  };
+
+  return (
+    <button type="button" onClick={handleClick}>
+      test alert
+    </button>
+  );
+}
+```
+
+**canDismiss** props으로 닫기 버튼(X 아이콘) 노출여부를 설정할 수 있습니다.
+
+<div className="img-container">
+  <h3>Alert without Dismiss Button</h3>
+  <img src={AlertWithoutDismissImage} alt="Alert without Dismiss Button" />
+</div>
+
+<br />
+<br />
+
+2줄 이상 메시지를 노출하려면 메시지에 `\n`을 추가해서 사용하세요.  
+`문제가 발생하였습니다.\n잠시 후에 다시 시도해주세요.`
+
+<div className="img-container">
+  <h3>Alert with Multiline Message</h3>
+  <img src={AlertWithMultiline} alt="Alert with Multiline" />
+</div>

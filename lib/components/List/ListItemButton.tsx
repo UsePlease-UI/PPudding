@@ -27,21 +27,18 @@ export default function ListItemButton({
   );
 
   return (
-    <li
-      className={joinClassNames(
-        'relative flex min-h-12 min-w-70 items-center justify-start px-2 text-16 font-semibold leading-24',
-        isDense && 'px-4',
-        !isDisabled && 'text-gray-950 focus-within:bg-primary-100 hover:bg-primary-50 active:bg-primary-200',
-        isDisabled && 'bg-gray-100',
-        className && className,
-      )}
-    >
+    <li className={joinClassNames('h-full w-full', className && className)}>
       <button
         {...rest}
-        className="flex min-h-12 w-full items-center justify-start truncate bg-transparent py-1 text-left active:bg-primary-200 disabled:bg-gray-100"
         disabled={isDisabled}
         type="button"
         onClick={handleClick}
+        className={joinClassNames(
+          'flex min-h-12 min-w-70 items-center justify-start truncate bg-transparent px-2 py-1 text-left text-16 font-semibold leading-24',
+          isDense && 'px-4',
+          !isDisabled && 'text-black hover:bg-gray-100 focus:bg-gray-200 active:bg-gray-200',
+          isDisabled && 'pointer-events-none bg-gray-100 text-gray-600',
+        )}
       >
         {children}
       </button>

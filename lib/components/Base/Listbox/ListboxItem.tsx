@@ -1,32 +1,43 @@
-import { LiHTMLAttributes, MouseEvent, ReactNode } from 'react';
+import { LiHTMLAttributes, ReactNode, useCallback } from 'react';
 
 import { joinClassNames } from '@utils/format';
 
 import { listStyle } from './styles';
 
-export interface ListboxItemType extends Omit<LiHTMLAttributes<HTMLLIElement>, 'onClick'> {
-  currentValue: number | string;
+export interface ListboxItemType extends Omit<LiHTMLAttributes<HTMLDivElement>, 'onClick'> {
   label: ReactNode;
-  value: number | string;
-  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+  value: string;
+  isSelected?: boolean;
+  onClick?: (selected: string) => void;
+  onHover?: () => void;
 }
 
-export default function ListboxItem({ className, currentValue, label, onClick, value, ...rest }: ListboxItemType) {
+export default function ListboxItem({
+  className,
+  isSelected,
+  label,
+  onClick,
+  onHover,
+  value,
+  ...rest
+}: ListboxItemType) {
+  const handleClick = useCallback(() => {
+    if (onClick) {
+      onClick(value);
+    }
+  }, [onClick, value]);
+
   return (
-    <li
+    <div
       {...rest}
-      aria-selected={currentValue === value}
-      className={joinClassNames(listStyle.listItem, className && className)}
+      aria-selected={isSelected}
+      className={joinClassNames(listStyle.listItem, isSelected && listStyle.selected, className && className)}
+      onClick={handleClick}
+      onFocus={onHover}
+      onMouseEnter={onHover}
       role="option"
     >
-      <button
-        className={joinClassNames(listStyle.listItemButton, currentValue === value && listStyle.selected)}
-        type="button"
-        value={value}
-        onClick={onClick}
-      >
-        {label}
-      </button>
-    </li>
+      {label}
+    </div>
   );
 }

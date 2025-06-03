@@ -3,7 +3,6 @@ import { extendTailwindMerge } from 'tailwind-merge';
 
 const px1000 = Array.from({ length: 1000 }, (_, idx) => idx + 1);
 const rem1000 = px1000.map((px) => `text-${px}`);
-const colors = Array.from({ length: 19 }, (_, idx) => 50 * (idx + 1));
 const pastelColors = Array.from({ length: 12 }, (_, idx) => `${idx + 1}`.padStart(2, '0'));
 
 // https://github.com/dcastil/tailwind-merge/blob/v2.2.2/src/lib/default-config.ts
@@ -12,10 +11,10 @@ const pastelColors = Array.from({ length: 12 }, (_, idx) => `${idx + 1}`.padStar
 const twMerge = extendTailwindMerge({
   extend: {
     classGroups: {
-      'bg-color': [...colors.map((val) => `primary-${val}`), ...pastelColors.map((val) => `pastel-${val}`)],
-      'border-color': [...colors.map((val) => `primary-${val}`), ...pastelColors.map((val) => `pastel-${val}`)],
+      'bg-color': [...pastelColors.map((val) => `pastel-${val}`)],
+      'border-color': [...pastelColors.map((val) => `pastel-${val}`)],
       'font-size': [...rem1000],
-      'text-color': [...colors.map((val) => `primary-${val}`), ...pastelColors.map((val) => `pastel-${val}`)],
+      'text-color': [...pastelColors.map((val) => `pastel-${val}`)],
     },
   },
 });

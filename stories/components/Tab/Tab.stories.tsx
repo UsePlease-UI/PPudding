@@ -1,9 +1,9 @@
 // TODO: https://github.com/storybookjs/storybook/issues/29189 해결되면 수정
-import { useState } from '@storybook/preview-api';
+import { useState } from 'storybook/preview-api';
 
 import Tabs from '@components/Tabs';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   argTypes: {
@@ -30,7 +30,7 @@ export const Default: Story = {
 
     return (
       <Tabs className="min-w-192">
-        <Tabs.Tab {...args} aria-label="navigation" value={value} onChange={handleChange}>
+        <Tabs.Tab {...args} aria-label="탭 네비게이션" value={value} onChange={handleChange}>
           <Tabs.Item index={1} label="1" value={value} />
           <Tabs.Item index={2} label="2" value={value} />
           <Tabs.Item index={3} label="3" value={value} />

@@ -4,10 +4,11 @@ import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
 
 import { Button, Chip } from '@components/Button';
 import { Checkbox, CheckboxGroup, Radio, RadioGroup, TextField } from '@components/Form';
-import { SharedPopover, useSharedPopover } from '@components/Shared';
+import Popover from '@components/Popover';
+import usePopover from '@components/usePopover';
 
 const Search = () => {
-  const { anchorElement, handleClose, handleOpen, isOpen } = useSharedPopover();
+  const { anchorElement, handleClose, handleOpen, isOpen } = usePopover();
 
   const [state, setState] = useState('Y');
   const [selected, setSelected] = useState<string[]>([]);
@@ -17,23 +18,29 @@ const Search = () => {
   });
 
   return (
-    <div className="flex flex-col">
+    <div className="flex w-full flex-col">
       <div className="my-5 flex w-full flex-col items-start justify-center gap-2.5 px-5 tablet:mt-0 tablet:flex-row tablet:items-center">
-        <div className="shrink-0 rounded border border-primary-600 px-2 under-tablet:w-max">
-          <p className="text-24 font-black text-primary-800">RC</p>
+        <div className="shrink-0 rounded border border-black px-2 py-0.75 under-tablet:w-max">
+          <h1 className="text-24 font-black text-black">PPUDDING</h1>
         </div>
-        <TextField isFullWidth aria-label="검색" type="search" placeholder="검색어를 입력해 주세요" />
+        <TextField isFullWidth aria-label="검색어 입력" type="search" placeholder="검색어를 입력하세요" />
       </div>
       <div className="flex w-full flex-1 items-center justify-end px-5">
         <Button
+          aria-expanded={isOpen}
+          id="more-button"
           size="small"
+          aria-controls={isOpen ? 'search-popover' : undefined}
+          aria-haspopup="dialog"
           endIcon={isOpen ? <ChevronUpIcon className="size-3" /> : <ChevronDownIcon className="size-3" />}
           onClick={handleOpen}
         >
           더보기
         </Button>
       </div>
-      <SharedPopover
+      <Popover
+        aria-labelledby="more-button"
+        id="search-popover"
         isOpen={isOpen}
         anchorElement={anchorElement}
         anchorPosition={{ horizontal: 'right', vertical: 'bottom' }}
@@ -111,7 +118,7 @@ const Search = () => {
             </Button>
           </div>
         </div>
-      </SharedPopover>
+      </Popover>
       <div className="my-5 flex flex-wrap gap-2.5 px-5">
         {confirmed.state && (
           <Chip

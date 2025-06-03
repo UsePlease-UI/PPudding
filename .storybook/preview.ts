@@ -3,7 +3,7 @@ import { withThemeByClassName } from '@storybook/addon-themes';
 // tailwind css file
 import '../lib/index.css';
 
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/react-vite';
 
 export const decorators = [
   withThemeByClassName({

@@ -12,7 +12,7 @@ export default function ListItem({ children, className, isDense = true, ...rest 
     <li
       {...rest}
       className={joinClassNames(
-        'relative flex min-h-12 min-w-70 items-center justify-start px-2 text-16 font-semibold leading-24 text-gray-950 hover:bg-primary-50',
+        'relative flex min-h-12 min-w-70 items-center justify-start px-2 text-16 font-semibold leading-24 text-black hover:bg-gray-100',
         isDense && 'px-4',
         className && className,
       )}

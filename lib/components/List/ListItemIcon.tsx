@@ -20,7 +20,7 @@ export default function ListItemIcon({ align, children, className, ...rest }: Li
         className && className,
       )}
     >
-      {cloneElement(children as ReactElement, { className: joinClassNames('!block h-5 w-5') })}
+      {cloneElement(children as ReactElement<HTMLElement>, { className: joinClassNames('!block h-5 w-5') })}
     </span>
   );
 }

@@ -1,13 +1,12 @@
 import { joinClassNames } from '@utils/format';
 
-import { ButtonVariantType } from '../styles';
+export type ChipVariantType = 'contained' | 'outlined';
 
 const style = {
-  contained: joinClassNames('border border-primary-600 bg-primary-600'),
-  outlined: joinClassNames('border border-primary-700 bg-white'),
-  text: joinClassNames('border-[0.3px] border-gray-200 bg-white'),
+  contained: joinClassNames('border border-black bg-black'),
+  outlined: joinClassNames('border border-black bg-white'),
 };
 
-export const getChipVariantStyle = (variant?: ButtonVariantType) => {
+export const getChipVariantStyle = (variant?: ChipVariantType) => {
   return variant ? style[variant] : style.outlined;
 };

@@ -6,7 +6,7 @@ import { DateObjType } from '@components/Picker/utils';
 
 export type PickerDateType = Date | null;
 
-export type PickerContextType = {
+export interface PickerContextType {
   current: Dayjs;
   datePickerId: string;
   isDateDisabled: (date: DateObjType) => boolean;
@@ -23,6 +23,6 @@ export type PickerContextType = {
   onYearMonthChange: (isPreviousMonth: boolean) => void;
   dates?: DateObjType[][];
   dateValue?: PickerDateType;
-};
+}
 
 export const PickerContext = createContext<PickerContextType | undefined>(undefined);

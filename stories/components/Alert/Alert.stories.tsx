@@ -1,12 +1,12 @@
 import { ComponentProps } from 'react';
 
-import { expect, spyOn, userEvent, within } from '@storybook/test';
+import { expect, spyOn, userEvent, within } from 'storybook/test';
 
 import Alert from '@components/Alert';
 
 import { sleep } from '../../utils/common';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 type AlertPropsAndCustomArgs = {
   canDismiss: boolean;
@@ -17,7 +17,7 @@ type AlertPropsAndCustomArgs = {
 const meta = {
   args: {
     canDismiss: true,
-    delay: 6000,
+    delay: Number.MAX_SAFE_INTEGER,
     message: '로그인되었습니다.',
     onClose: () => console.log('Closed!'),
     variant: 'default',
@@ -72,17 +72,11 @@ const meta = {
   },
   component: Alert,
   parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
     layout: 'centered',
   },
   render: function Render({ canDismiss, delay, message, onClose, variant }) {
     return <Alert message={message} onClose={onClose} options={{ canDismiss, delay, variant }} />;
   },
-  tags: ['autodocs'],
   title: 'Alert/Alert',
 } satisfies Meta;
 
@@ -114,7 +108,7 @@ export const Default: Story = {
     });
     if (args.canDismiss) {
       await step('if dismissible, will execute function when dismissed', async () => {
-        await expect(canvas.getByRole('button')).toHaveAttribute('aria-label', 'dismiss button');
+        await expect(canvas.getByRole('button')).toHaveAttribute('aria-label', '알럿 닫기');
         await userEvent.click(canvas.getByRole('button'));
         await expect(consoleSpy).toHaveBeenCalledWith('Closed!');
       });

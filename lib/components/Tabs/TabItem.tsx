@@ -38,9 +38,9 @@ export default function TabItem(props: TabItemType) {
 
   return (
     <button
-      type="button"
       {...a11yProps(index, value)}
       ref={linkRefs[index - 1]}
+      type="button"
       onClick={() => handleClick(index)}
       className={joinClassNames(
         'flex size-full min-h-14 cursor-pointer flex-col items-center justify-center',
@@ -50,21 +50,21 @@ export default function TabItem(props: TabItemType) {
       <div className="flex items-center justify-center">
         {icon && (
           <span className="my-3 block size-4.5">
-            {cloneElement(icon as ReactElement, {
-              className: joinClassNames('!block h-4.5 w-4.5 text-primary-950'),
+            {cloneElement(icon as ReactElement<HTMLElement>, {
+              className: joinClassNames('!block h-4.5 w-4.5 text-black'),
             })}
           </span>
         )}
         {label &&
           (typeof label === 'string' ? (
-            <p
+            <span
               className={joinClassNames(
-                'mx-1 my-2.25 text-16 font-medium text-primary-950',
+                'mx-1 my-2.25 block text-16 font-medium text-white',
                 value === index ? 'font-bold' : 'font-medium',
               )}
             >
               {label}
-            </p>
+            </span>
           ) : (
             label
           ))}
@@ -72,7 +72,7 @@ export default function TabItem(props: TabItemType) {
       <div
         id={`tab-indicator-${index}`}
         className={joinClassNames(
-          'h-0.5 w-4/5 rounded-full bg-primary-100 transition-all duration-75',
+          'h-0.5 w-4/5 rounded-full bg-gray-100 transition-all duration-75',
           value === index ? 'visible' : 'invisible',
         )}
       />

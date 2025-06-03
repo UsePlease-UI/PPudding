@@ -1,4 +1,7 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { HTMLAttributes, ReactNode, useCallback, useRef } from 'react';
+
+import { AnimationDefinition, domAnimation, LazyMotion } from 'motion/react';
+import * as motion from 'motion/react-client';
 
 import { useAccordion } from '@components/useAccordion';
 
@@ -12,19 +15,44 @@ export default function AccordionPanel(props: AccordionPanelType) {
   const { children, className, ...rest } = props;
   const { accordionId, isExpanded } = useAccordion();
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  const handleAnimationComplete = useCallback((definition: AnimationDefinition) => {
+    if (definition === 'exit') {
+      if (ref.current) {
+        ref.current.hidden = true;
+      }
+    }
+  }, []);
+
   return (
-    <div
-      {...rest}
-      aria-labelledby={`accordion-panel-${accordionId}`}
-      id={`panel-${accordionId}`}
-      role="region"
-      className={joinClassNames(
-        'invisible -mt-px h-0 w-full bg-white p-0 text-14 *:text-14 *:leading-normal',
-        isExpanded && 'visible h-auto rounded-b border border-gray-100 p-5',
-        className && className,
-      )}
-    >
-      {children}
-    </div>
+    <LazyMotion features={domAnimation}>
+      <motion.div
+        animate={isExpanded ? 'enter' : 'exit'}
+        className="w-full overflow-hidden"
+        exit="exit"
+        initial="exit"
+        onAnimationComplete={handleAnimationComplete}
+        variants={{
+          // 150ms cubic-bezier(0.4, 0, 0.2, 1)
+          enter: { height: 'auto', transition: { duration: 0.15, times: [0.4, 0, 0.2, 1] } },
+          exit: { height: 0, transition: { duration: 0.15, times: [0.4, 0, 0.2, 1] } },
+        }}
+      >
+        <div
+          {...rest}
+          ref={ref}
+          aria-labelledby={`accordion-header-${accordionId}`}
+          id={`accordion-content-${accordionId}`}
+          role="region"
+          className={joinClassNames(
+            '-mt-px h-max w-full rounded-b border border-gray-100 bg-white p-5 text-16 *:text-16 *:leading-normal',
+            className && className,
+          )}
+        >
+          {children}
+        </div>
+      </motion.div>
+    </LazyMotion>
   );
 }

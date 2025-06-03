@@ -26,7 +26,7 @@ export const COLOR_LIST = [
   'text-orange-600',
   'text-yellow-600',
   'text-green-600',
-  'text-primary-800',
+  'text-blue-600',
   'text-purple-600',
   'text-gray-600',
   'text-black',

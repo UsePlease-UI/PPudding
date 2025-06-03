@@ -11,7 +11,7 @@ export default function Tabs({ children, className, ...rest }: TabsType) {
     <div
       {...rest}
       className={joinClassNames(
-        'flex size-full flex-col overflow-hidden rounded-md border border-primary-100 shadow-03',
+        'flex size-full flex-col overflow-hidden rounded-md border border-gray-100 shadow-03',
         className && className,
       )}
     >
