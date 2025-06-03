@@ -1,0 +1,78 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+
+import * as AccordionStories from './Accordion.stories';
+
+import AnatomyImage from './accordion_anatomy.png';
+
+<style>
+  {`
+    * {
+        box-sizing: border-box;
+        color: #191919 !important;
+    }
+
+    p, li {
+        font-size: 16px !important;
+    }
+
+    a:hover {
+        text-decoration: underline !important;
+    }
+
+    h1 {
+        margin-bottom: 40px !important;
+    }
+
+    h2 {
+        font-weight: 600 !important;
+        margin-top: 60px !important;
+    }
+
+    h2:first-of-type {
+        margin-top: 0px !important;
+    }
+
+    .img-container {
+        padding: 10px !important;
+        border-radius: 4px !important;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px !important;
+    }
+
+    .img-container b {
+        margin-bottom: 20px !important;
+    }
+
+    img {
+        width: 748px !important;
+        height: 400px !important;
+        margin: 0 auto !important;
+    }
+  `}
+</style>
+
+<Meta of={AccordionStories} />
+
+# Accordion
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Anatomy](#anatomy)
+
+## Overview
+
+섹션을 확장하거나 축소해 정보를 구조적으로 표시할 수 있는 **Accordion** 컴포넌트입니다.
+
+## Anatomy
+
+**Accordion**은 다음과 같이 구현되어 있습니다.
+
+<div className="img-container">
+  <img src={AnatomyImage} alt="Accordion Anatomy" />
+</div>
+
+1️⃣ **Accordion**
+
+2️⃣ **Accordion Header**
+
+3️⃣ **Accordion Panel**

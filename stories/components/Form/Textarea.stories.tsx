@@ -1,10 +1,10 @@
-import { useArgs } from '@storybook/preview-api';
+import { useArgs } from 'storybook/preview-api';
 
 import Textarea from '@components/Form/Textarea';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-const meta = {
+const meta: Meta<typeof Textarea> = {
   args: {
     helperText: '이름을 입력하세요.',
     isAutoHeight: true,
@@ -69,7 +69,7 @@ const meta = {
   },
   tags: ['autodocs'],
   title: 'Form/Textarea',
-} satisfies Meta<typeof Textarea>;
+};
 
 export default meta;
 type Story = StoryObj<typeof Textarea>;

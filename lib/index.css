@@ -8,7 +8,7 @@
   html,
   body,
   #root {
-    min-height: 100%;
+    @apply min-h-full;
   }
 
   body {
@@ -35,13 +35,6 @@
 
   #root {
     background-color: #ffffff;
-  }
-
-  input,
-  button,
-  textarea,
-  a {
-    outline: none;
   }
 
   input:-webkit-autofill {

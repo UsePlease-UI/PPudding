@@ -1,4 +1,4 @@
-import { expect, spyOn, userEvent, within } from '@storybook/test';
+import { expect, spyOn, userEvent, within } from 'storybook/test';
 
 import { TrashIcon } from '@heroicons/react/24/solid';
 
@@ -6,7 +6,7 @@ import Button from '@components/Button/Button';
 import { getButtonSizeStyle } from '@components/Button/Button/styles';
 import { getCommonButtonShapeStyle, getCommonButtonVariantStyle } from '@components/Button/styles';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   args: {

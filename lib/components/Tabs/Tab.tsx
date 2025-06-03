@@ -16,11 +16,15 @@ export default function Tab(props: TabType) {
 
   return (
     <TabProvider value={value} onChange={onChange}>
-      <div {...rest} className={joinClassNames('w-full bg-primary-600', className && className)} role="tablist">
-        <div className="flex size-full items-center justify-evenly">
-          {/* https://fe-developers.kakaoent.com/2021/211022-react-children-tip/ */}
-          {Children.toArray(children).map((child) => cloneElement(child as ReactElement, { onChange }))}
-        </div>
+      <div
+        {...rest}
+        className={joinClassNames('flex size-full w-full items-center justify-evenly bg-black', className && className)}
+        role="tablist"
+      >
+        {/* https://fe-developers.kakaoent.com/2021/211022-react-children-tip/ */}
+        {Children.toArray(children).map((child) =>
+          cloneElement(child as ReactElement<{ onChange: (newValue: number) => void } & HTMLElement>, { onChange }),
+        )}
       </div>
     </TabProvider>
   );

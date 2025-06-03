@@ -1,10 +1,10 @@
-import { useArgs } from '@storybook/preview-api';
+import { useArgs } from 'storybook/preview-api';
 
 import TextField from '@components/Form/TextField';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-const meta = {
+const meta: Meta<typeof TextField> = {
   args: {
     helperText: '이름을 입력하세요.',
     isDisabled: false,
@@ -56,6 +56,11 @@ const meta = {
         category: 'optional',
       },
     },
+    type: {
+      table: {
+        disable: true,
+      },
+    },
   },
   component: TextField,
   parameters: {
@@ -72,7 +77,7 @@ const meta = {
   },
   tags: ['autodocs'],
   title: 'Form/TextField',
-} satisfies Meta<typeof TextField>;
+};
 
 export default meta;
 type Story = StoryObj<typeof TextField>;

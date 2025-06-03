@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 
 import Picker from '@components/Picker';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   argTypes: {
@@ -132,9 +132,6 @@ const meta = {
       },
     },
     layout: 'fullscreen',
-    status: {
-      type: 'beta',
-    },
   },
   render: function Render(args) {
     return (

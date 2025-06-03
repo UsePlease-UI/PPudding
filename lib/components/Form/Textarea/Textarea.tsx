@@ -54,11 +54,11 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaType>(function Textarea
     >
       <div
         className={joinClassNames(
-          'h-50 w-full rounded border border-gray-100 py-2.5 pl-3 pr-px focus-within:border-primary-700 focus-within:bg-primary-100 hover:border-primary-600 under-tablet:min-w-0',
-          isAutoHeight && 'h-full min-h-30 px-3',
-          isError && 'border border-red-500',
-          isReadOnly && 'pointer-events-none border-gray-500 bg-gray-50',
-          isDisabled && 'pointer-events-none border-gray-300 bg-gray-300 text-gray-950',
+          'h-50 w-full overflow-hidden rounded border border-black bg-white focus-within:bg-gray-200 hover:bg-gray-100 under-tablet:min-w-0',
+          isAutoHeight && 'h-full min-h-30',
+          isError && 'border border-red-600',
+          isReadOnly && 'pointer-events-none border-gray-400 bg-gray-100',
+          isDisabled && 'pointer-events-none border-gray-400 bg-gray-100 text-gray-600',
           className && className,
         )}
       >
@@ -74,7 +74,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaType>(function Textarea
           value={value}
           onChange={handleChange}
           className={joinClassNames(
-            'custom-scrollbar h-full min-h-0 w-full resize-none overflow-y-auto bg-transparent pr-2 align-top text-14 font-normal leading-normal tracking-normal outline-none ring-0 placeholder:text-gray-400 focus:ring-0 disabled:cursor-not-allowed',
+            'custom-scrollbar h-full min-h-0 w-full resize-none overflow-y-auto bg-inherit px-3 py-2.5 align-top text-16 font-normal leading-normal tracking-normal placeholder:text-gray-400',
             isAutoHeight && 'min-h-inherit',
           )}
         />

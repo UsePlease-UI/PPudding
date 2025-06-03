@@ -1,9 +1,9 @@
-import { useArgs } from '@storybook/preview-api';
-import { fn } from '@storybook/test';
+import { useArgs } from 'storybook/preview-api';
+import { fn } from 'storybook/test';
 
 import { Checkbox } from '@components/Form/Checkbox';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof Checkbox> = {
   args: {
@@ -12,8 +12,8 @@ const meta: Meta<typeof Checkbox> = {
     isDisabled: false,
     label: '사탕',
     onChange: fn(),
-    position: 'start',
-    size: 'small',
+    position: 'end',
+    size: 'medium',
     value: 'candy',
   },
   argTypes: {
@@ -73,6 +73,9 @@ const meta: Meta<typeof Checkbox> = {
       options: ['start', 'end'],
       table: {
         category: 'optional',
+        defaultValue: {
+          summary: 'end',
+        },
         type: {
           summary: 'start | end',
         },
@@ -86,6 +89,9 @@ const meta: Meta<typeof Checkbox> = {
       options: ['large', 'medium', 'small'],
       table: {
         category: 'optional',
+        defaultValue: {
+          summary: 'medium',
+        },
         type: {
           summary: 'large | medium | small',
         },

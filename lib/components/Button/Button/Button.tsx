@@ -67,11 +67,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonType>(function Button(props, 
           {startIcon && (
             <span className="-ml-2 inline-flex size-5 shrink-0 items-center justify-center">{startIcon}</span>
           )}
-          <p className="mt-0.5 shrink-0 text-center">{children}</p>
+          <span className="mt-0.5 block shrink-0 text-center">{children}</span>
           {endIcon && <span className="-mr-2 inline-flex size-5 shrink-0 items-center justify-center">{endIcon}</span>}
         </div>
       ) : typeof children === 'string' ? (
-        <p className="mt-0.5 w-full text-center">{children}</p>
+        <span className="mt-0.5 block w-full text-center">{children}</span>
       ) : (
         children
       )}

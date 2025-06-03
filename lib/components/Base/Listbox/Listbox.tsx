@@ -1,26 +1,31 @@
-import { forwardRef, HTMLAttributes, MouseEvent, ReactNode } from 'react';
-
-import { OptionsType } from '@components/types';
+import { forwardRef, HTMLAttributes, ReactNode } from 'react';
 
 import { joinClassNames } from '@utils/format';
 
 import ListboxItem from './ListboxItem';
 import { listStyle } from './styles';
 
-export interface ListboxType extends Omit<HTMLAttributes<HTMLUListElement>, 'onClick'> {
-  id: string;
-  value: number | string;
-  options: OptionsType[];
-  labelId?: string;
-  renderItem?: (option: OptionsType) => ReactNode;
-  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+export interface ListboxOptionType {
+  label: string;
+  value: string;
+  idx?: string;
 }
 
-const Listbox = forwardRef<HTMLUListElement, ListboxType>(function Listbox(props, ref) {
-  const { className, id, labelId, onClick, options, renderItem, value, ...rest } = props;
+export interface ListboxType extends Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {
+  options: ListboxOptionType[];
+  id?: string;
+  labelId?: string;
+  renderItem?: (option: ListboxOptionType, index: number) => ReactNode;
+  value?: string;
+  onClick?: (selected: string) => void;
+  onHover?: (index: string) => void;
+}
+
+const Listbox = forwardRef<HTMLDivElement, ListboxType>(function Listbox(props, ref) {
+  const { className, id, labelId, onClick, onHover, options, renderItem, value, ...rest } = props;
 
   return (
-    <ul
+    <div
       {...rest}
       ref={ref}
       aria-labelledby={labelId}
@@ -30,18 +35,19 @@ const Listbox = forwardRef<HTMLUListElement, ListboxType>(function Listbox(props
       role="listbox"
     >
       {options.map(
-        (option) =>
-          renderItem?.(option) || (
+        (option, index) =>
+          renderItem?.(option, index) || (
             <ListboxItem
               key={`${option.label}-${option.value}`}
-              currentValue={value}
+              isSelected={value === option.value}
               label={option.label}
               value={option.value}
               onClick={onClick}
+              onHover={() => onHover?.(String(index))}
             />
           ),
       )}
-    </ul>
+    </div>
   );
 });
 

@@ -6,7 +6,7 @@ import Button from '@components/Button/Button';
 import IconButton from '@components/Button/IconButton';
 import Card from '@components/Card';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   argTypes: {
@@ -52,31 +52,31 @@ export const ExpandableCard: Story = {
           expandedContents={
             <>
               <div className="flex items-center gap-2.5">
-                <div className="size-10 rounded-full bg-primary-600">
+                <div className="size-10 rounded-full bg-black">
                   <PhoneIcon className="m-2.5 size-5 text-white" />
                 </div>
                 <div className="flex flex-col self-start">
-                  <p className="text-14 font-normal">(00) 0000-0000</p>
+                  <span className="block text-14 font-normal">(00) 0000-0000</span>
                   <small className="text-12 text-gray-600">TEL</small>
                 </div>
               </div>
               <Divider className="my-2.5 bg-gray-100" orientation="horizontal" />
               <div className="flex items-center gap-2.5">
-                <div className="size-10 rounded-full bg-primary-600">
+                <div className="size-10 rounded-full bg-black">
                   <EnvelopeIcon className="m-2.5 size-5 text-white" />
                 </div>
                 <div className="flex flex-col self-start">
-                  <p className="text-14 font-normal">example-email@test.com</p>
+                  <span className="block text-14 font-normal">example-email@test.com</span>
                   <small className="text-12 text-gray-600">E-MAIL</small>
                 </div>
               </div>
               <Divider className="my-2.5 bg-gray-100" orientation="horizontal" />
               <div className="flex items-center gap-2.5">
-                <div className="size-10 rounded-full bg-primary-600">
+                <div className="size-10 rounded-full bg-black">
                   <CalendarIcon className="m-2.5 size-5 text-white" />
                 </div>
                 <div className="flex flex-col self-start">
-                  <p className="text-14 font-normal">Every Monday, Wednesday</p>
+                  <span className="block text-14 font-normal">Every Monday, Wednesday</span>
                   <small className="text-12 text-gray-600">SCHEDULE</small>
                 </div>
               </div>

@@ -11,14 +11,14 @@ export default function ListItemText({ className, primaryText, secondaryText, ..
   return (
     <div {...rest} className={joinClassNames('flex w-full flex-col', className && className)}>
       {typeof primaryText === 'string' ? (
-        <p
+        <span
           className={joinClassNames(
-            'my-auto truncate text-16 font-semibold leading-24 text-gray-950',
+            'my-auto block truncate text-16 font-semibold leading-24 text-gray-950',
             secondaryText && 'mt-1',
           )}
         >
           {primaryText}
-        </p>
+        </span>
       ) : (
         primaryText
       )}

@@ -15,7 +15,7 @@ dayjs.extend(isBetween);
 
 const TODAY = dayjs();
 
-export type PickerProviderType = {
+export interface PickerProviderType {
   children: ReactNode;
   maxDate?: PickerDateType;
   minDate?: PickerDateType;
@@ -23,7 +23,7 @@ export type PickerProviderType = {
   onCancel?: () => void;
   onChange?: (date: Date) => void;
   onSelect?: (date: PickerDateType) => void;
-};
+}
 
 const PickerProvider = (props: PickerProviderType) => {
   const { children, maxDate, minDate, onCancel, onChange, onSelect, value } = props;

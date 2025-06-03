@@ -1,28 +1,26 @@
-import { ChangeEvent, Children, cloneElement, HTMLAttributes, ReactElement, ReactNode } from 'react';
+import { Children, cloneElement, HTMLAttributes, ReactElement, ReactNode } from 'react';
 
 import { joinClassNames } from '@utils/format';
 
-export interface ToggleButtonGroupType extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface ToggleButtonGroupType extends Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {
   children: ReactNode;
   value?: string | string[];
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onClick?: (selected: string) => void;
 }
 
-export default function ToggleButtonGroup({ children, className, onChange, value, ...rest }: ToggleButtonGroupType) {
-  const isMultiple = typeof value !== 'string';
-
+export default function ToggleButtonGroup({ children, className, onClick, value, ...rest }: ToggleButtonGroupType) {
   return (
-    <div
-      {...rest}
-      {...(!isMultiple && { role: 'radiogroup' })}
-      className={joinClassNames('flex', className && className)}
-    >
+    <div {...rest} className={joinClassNames('flex', className && className)} role="group">
       {Children.toArray(children).map((child) =>
-        cloneElement(child as ReactElement, {
-          currentValue: value,
-          isMultiple,
-          onChange,
-        }),
+        cloneElement(
+          child as ReactElement<
+            { currentValue?: string | string[]; onClick?: (selected: string) => void } & HTMLElement
+          >,
+          {
+            currentValue: value,
+            onClick,
+          },
+        ),
       )}
     </div>
   );

@@ -1,9 +1,9 @@
-import { useArgs } from '@storybook/preview-api';
-import { expect, fn, within } from '@storybook/test';
+import { useArgs } from 'storybook/preview-api';
+import { expect, fn, within } from 'storybook/test';
 
 import { Radio } from '@components/Form/Radio';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof Radio> = {
   args: {
@@ -121,6 +121,7 @@ export const Default: Story = {
     isDisabled: false,
     label: '빨강',
     name: 'color',
+    position: 'end',
     size: 'small',
     value: 'red',
   },

@@ -1,13 +1,13 @@
 import { Fragment } from 'react';
 
 // TODO: https://github.com/storybookjs/storybook/issues/29189 해결되면 수정
-import { useState } from '@storybook/preview-api';
+import { useState } from 'storybook/preview-api';
 
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
 
 import List from '@components/List';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   argTypes: {

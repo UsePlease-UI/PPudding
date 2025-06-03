@@ -1,20 +1,81 @@
-import { useArgs } from '@storybook/preview-api';
-import { fn } from '@storybook/test';
-
 import Pagination from '@components/Pagination';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   args: {
-    onChange: fn(),
-    page: 1,
-    pageLimit: 10,
-    showFirstButton: true,
-    showLastButton: true,
+    hasFirstIcon: true,
+    hasLastIcon: true,
+    itemsPerPage: 10,
+    pageRange: 10,
+    selectedPage: 1,
+    shape: 'circular',
+    size: 'medium',
     totalCount: 100,
+    variant: 'outlined',
   },
   argTypes: {
+    className: { table: { disable: true } },
+    firstIcon: {
+      control: false,
+      description: 'custom icon (svg element)',
+      table: {
+        category: 'optional',
+        type: {
+          summary: 'ReactNode',
+        },
+      },
+    },
+    hasFirstIcon: {
+      control: 'boolean',
+      description: 'if true, arrow button to first page will be displayed',
+      table: {
+        category: 'optional',
+        defaultValue: {
+          summary: 'true',
+        },
+      },
+    },
+    hasLastIcon: {
+      control: 'boolean',
+      description: 'if true, arrow button to last page will be displayed',
+      table: {
+        category: 'optional',
+        defaultValue: {
+          summary: 'true',
+        },
+      },
+    },
+    itemsPerPage: {
+      control: 'number',
+      description: 'number of data per page',
+      table: {
+        category: 'optional',
+        type: {
+          summary: 'number',
+        },
+      },
+    },
+    lastIcon: {
+      control: false,
+      description: 'custom icon (svg element)',
+      table: {
+        category: 'optional',
+        type: {
+          summary: 'ReactNode',
+        },
+      },
+    },
+    nextIcon: {
+      control: false,
+      description: 'custom icon (svg element)',
+      table: {
+        category: 'optional',
+        type: {
+          summary: 'ReactNode',
+        },
+      },
+    },
     onChange: {
       control: false,
       description: 'change event handler',
@@ -25,19 +86,9 @@ const meta = {
         },
       },
     },
-    page: {
+    pageRange: {
       control: 'number',
-      description: 'current page number',
-      table: {
-        category: 'required',
-        type: {
-          summary: 'number',
-        },
-      },
-    },
-    pageLimit: {
-      control: 'number',
-      description: 'number of data per page',
+      description: 'number of page buttons (if set to 10, it will display buttons from 1 - 10)',
       table: {
         category: 'optional',
         defaultValue: {
@@ -48,23 +99,58 @@ const meta = {
         },
       },
     },
-    showFirstButton: {
-      control: 'boolean',
-      description: 'if true, arrow button to first page will be displayed',
+    prevIcon: {
+      control: false,
+      description: 'custom icon (svg element)',
       table: {
         category: 'optional',
-        defaultValue: {
-          summary: 'true',
+        type: {
+          summary: 'ReactNode',
         },
       },
     },
-    showLastButton: {
-      control: 'boolean',
-      description: 'if true, arrow button to last page will be displayed',
+    selectedPage: {
+      control: 'number',
+      description: 'current page number',
       table: {
         category: 'optional',
         defaultValue: {
-          summary: 'true',
+          summary: '1',
+        },
+        type: {
+          summary: 'number',
+        },
+      },
+    },
+    shape: {
+      control: {
+        type: 'inline-radio',
+      },
+      description: 'button shape',
+      options: ['rounded', 'square', 'circular'],
+      table: {
+        category: 'optional',
+        defaultValue: {
+          summary: 'circular',
+        },
+        type: {
+          summary: 'rounded | square | circular',
+        },
+      },
+    },
+    size: {
+      control: {
+        type: 'inline-radio',
+      },
+      description: 'button size',
+      options: ['large', 'medium', 'small'],
+      table: {
+        category: 'optional',
+        defaultValue: {
+          summary: 'medium',
+        },
+        type: {
+          summary: 'large | medium | small',
         },
       },
     },
@@ -72,15 +158,39 @@ const meta = {
       control: 'number',
       description: 'total number of data',
       table: {
-        category: 'required',
+        category: 'optional',
+        defaultValue: {
+          summary: '100',
+        },
         type: {
           summary: 'number',
+        },
+      },
+    },
+    variant: {
+      control: {
+        type: 'inline-radio',
+      },
+      description: 'button variant',
+      options: ['outlined', 'contained', 'text'],
+      table: {
+        category: 'optional',
+        defaultValue: {
+          summary: 'outlined',
+        },
+        type: {
+          summary: 'outlined | contained | text',
         },
       },
     },
   },
   component: Pagination,
   parameters: {
+    docs: {
+      argTypes: {
+        sort: 'requiredFirst',
+      },
+    },
     layout: 'centered',
   },
   tags: ['autodocs'],
@@ -92,19 +202,16 @@ type Story = StoryObj<typeof Pagination>;
 
 export const Default: Story = {
   args: {
-    page: 1,
-    pageLimit: 10,
-    showFirstButton: true,
-    showLastButton: true,
+    hasFirstIcon: true,
+    hasLastIcon: true,
+    itemsPerPage: 10,
+    pageRange: 10,
+    shape: 'circular',
+    size: 'medium',
     totalCount: 100,
+    variant: 'outlined',
   },
   render: function Render(args) {
-    const [{ page }, updateArgs] = useArgs();
-
-    const handleChange = (newValue: number) => {
-      updateArgs({ page: newValue });
-    };
-
-    return <Pagination {...args} page={page} onChange={handleChange} />;
+    return <Pagination {...args} />;
   },
 };

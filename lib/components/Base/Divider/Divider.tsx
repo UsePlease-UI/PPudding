@@ -15,7 +15,7 @@ export default function Divider(props: DividerType) {
   return (
     <hr
       {...rest}
-      className={joinClassNames('bg-gray-600', getDividerOrientationStyle(orientation), className && className)}
+      className={joinClassNames('bg-black', getDividerOrientationStyle(orientation), className && className)}
     />
   );
 }

@@ -64,11 +64,11 @@ export default function MonthPicker(props: MonthPickerType) {
                     type="button"
                     onClick={() => onMonthChange(month)}
                     className={joinClassNames(
-                      'h-12 w-12 rounded font-normal text-primary-900 hover:border hover:border-primary-900 hover:bg-inherit hover:text-primary-900 disabled:pointer-events-none disabled:text-gray-600',
+                      'h-12 w-12 rounded border border-transparent bg-white font-normal text-black hover:border-black disabled:pointer-events-none disabled:text-gray-600',
                       isSameDate(currentMonth, 'month') &&
-                        'border border-primary-700 font-semibold text-primary-700 hover:border-primary-800 disabled:pointer-events-none',
+                        'border border-black font-semibold text-black hover:bg-gray-100 active:bg-gray-200 disabled:border-transparent',
                       isSame &&
-                        'bg-primary-800 font-semibold text-white hover:border-2 hover:border-primary-900 hover:bg-primary-900 hover:text-white disabled:bg-white',
+                        'border-black bg-black font-semibold text-white hover:bg-black hover:text-white hover:opacity-80 active:bg-black active:opacity-70 disabled:border-gray-400 disabled:bg-gray-100',
                     )}
                   >
                     {month}월

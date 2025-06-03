@@ -1,12 +1,11 @@
 import {
-  ChangeEvent,
+  ButtonHTMLAttributes,
   cloneElement,
   forwardRef,
-  InputHTMLAttributes,
+  MouseEvent,
   ReactElement,
   ReactNode,
   useCallback,
-  useId,
   useMemo,
 } from 'react';
 
@@ -15,73 +14,58 @@ import { joinClassNames } from '@utils/format';
 import { ButtonSizeType } from '../styles';
 import { getToggleButtonSizeStyle } from './styles';
 
-export interface ToggleButtonType extends Omit<InputHTMLAttributes<HTMLInputElement>, 'disabled' | 'size'> {
+export interface ToggleButtonType
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'disabled' | 'onClick' | 'size'> {
   children: ReactNode;
-  name: string;
   value: string;
   currentValue?: string | string[];
   isDisabled?: boolean;
   isMultiple?: boolean;
   size?: ButtonSizeType;
+  onClick?: (selected: string) => void;
 }
 
-const ToggleButton = forwardRef<HTMLInputElement, ToggleButtonType>(function ToggleButton(props, ref) {
-  const {
-    children,
-    className,
-    currentValue = '',
-    isDisabled,
-    isMultiple,
-    name,
-    onChange,
-    size,
-    value,
-    ...rest
-  } = props;
-  const id = useId();
+const ToggleButton = forwardRef<HTMLButtonElement, ToggleButtonType>(function ToggleButton(props, ref) {
+  const { children, className, currentValue = '', isDisabled, onClick, size, value, ...rest } = props;
 
   const isChecked = useMemo(
     () => (typeof currentValue === 'string' ? value === currentValue : currentValue.includes(value)),
     [currentValue, value],
   );
 
-  const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
+  const handleClick = useCallback(
+    (e: MouseEvent<HTMLButtonElement>) => {
       e.currentTarget.blur();
-      if (onChange) {
-        onChange(e);
+      if (onClick) {
+        onClick(e.currentTarget.value);
       }
     },
-    [onChange],
+    [onClick],
   );
 
   return (
-    <label
-      htmlFor={id}
+    <button
+      {...rest}
+      ref={ref}
+      aria-pressed={isChecked}
+      disabled={isDisabled}
+      tabIndex={0}
+      value={value}
+      onClick={handleClick}
       className={joinClassNames(
-        'group flex h-max w-max shrink-0 cursor-pointer items-center overflow-hidden border-y border-primary-600 bg-white first:rounded-l first:border-l last:rounded-r last:border-r focus-within:border-primary-700 focus-within:bg-primary-100',
-        !isChecked && isDisabled && 'cursor-not-allowed border-yellow-gray-400',
-        isChecked && isDisabled && 'cursor-not-allowed border-gray-400',
+        'group flex h-max w-max shrink-0 cursor-pointer items-center overflow-hidden border-y border-black bg-white first:rounded-l first:border-l last:rounded-r last:border-r disabled:pointer-events-none',
+        isChecked ? 'bg-black hover:opacity-80 active:opacity-70' : 'bg-white hover:bg-gray-100 active:bg-gray-200',
+        !isChecked && isDisabled && 'pointer-events-none border-gray-400 bg-gray-100',
+        isChecked && isDisabled && 'pointer-events-none border-gray-400 bg-gray-400',
         className && className,
       )}
     >
-      <input
-        {...rest}
-        ref={ref}
-        checked={isChecked}
-        className="peer sr-only"
-        disabled={isDisabled}
-        id={id}
-        name={name}
-        type={isMultiple ? 'checkbox' : 'radio'}
-        value={value}
-        onChange={handleChange}
-      />
       {typeof children === 'string' ? (
         <span
           className={joinClassNames(
             'text-16 font-medium uppercase',
-            'flex items-center justify-center text-primary-800 group-focus-within:text-primary-800 group-hover:bg-primary-50 group-hover:text-primary-900 peer-checked:bg-primary-600 peer-checked:text-primary-950 peer-checked:hover:bg-primary-700 peer-checked:hover:text-white peer-disabled:bg-yellow-gray-50 peer-disabled:text-yellow-gray-600 peer-disabled:peer-checked:bg-gray-400 peer-disabled:peer-checked:text-gray-200',
+            'flex items-center justify-center text-black group-disabled:text-gray-600',
+            isChecked && 'text-white group-hover:text-white group-disabled:text-gray-600',
             getToggleButtonSizeStyle(size).text,
           )}
         >
@@ -90,16 +74,15 @@ const ToggleButton = forwardRef<HTMLInputElement, ToggleButtonType>(function Tog
       ) : (
         <span
           className={joinClassNames(
-            'flex items-center justify-center text-primary-800 group-focus-within:text-primary-800 group-hover:bg-primary-50 group-hover:text-primary-900 peer-checked:bg-primary-600 peer-checked:text-primary-950 peer-checked:hover:bg-primary-700 peer-checked:hover:text-white peer-disabled:bg-yellow-gray-50 peer-disabled:text-yellow-gray-600 peer-disabled:peer-checked:bg-gray-400 peer-disabled:peer-checked:text-gray-200',
+            'flex items-center justify-center text-black disabled:text-gray-600',
+            isChecked && 'text-white hover:text-white group-disabled:text-gray-600',
             getToggleButtonSizeStyle(size).icon,
           )}
         >
-          {cloneElement(children as ReactElement, {
-            className: joinClassNames('block text-inherit'),
-          })}
+          {cloneElement(children as ReactElement<HTMLElement>, { className: joinClassNames('block text-inherit') })}
         </span>
       )}
-    </label>
+    </button>
   );
 });
 

@@ -14,11 +14,11 @@ export default function PickerHeader({ month, onClick, year }: PickerHeaderType)
       <IconButton size="small" onClick={() => onClick(true)}>
         <ChevronLeftIcon />
       </IconButton>
-      <p className="text-center text-18 font-medium">
-        <strong className="text-primary-800">
+      <span className="block text-center text-18 font-medium">
+        <strong className="text-black">
           {year}년{month && ` ${month}월`}
         </strong>
-      </p>
+      </span>
       <IconButton size="small" onClick={() => onClick(false)}>
         <ChevronRightIcon />
       </IconButton>

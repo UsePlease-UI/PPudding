@@ -11,10 +11,7 @@ export default function TableRow(props: TableRowType) {
 
   return (
     <tr
-      className={joinClassNames(
-        'border-b border-b-primary-100 last:border-b-0 hover:bg-primary-50',
-        className && className,
-      )}
+      className={joinClassNames('border-b border-b-gray-100 last:border-b-0 hover:bg-gray-100', className && className)}
     >
       {children}
     </tr>

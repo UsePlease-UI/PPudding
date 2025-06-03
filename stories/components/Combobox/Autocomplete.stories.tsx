@@ -1,15 +1,15 @@
-import { ChangeEvent, useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
-import { useArgs } from '@storybook/preview-api';
-import { fn } from '@storybook/test';
 import debounce from 'lodash.debounce';
+import { useArgs } from 'storybook/preview-api';
+import { fn } from 'storybook/test';
 
+import { ListboxOptionType } from '@components/Base';
 import Autocomplete from '@components/Combobox/Autocomplete';
-import { OptionsType } from '@components/types';
 
 import { AUTOCOMPLETE_LIST } from '../constants';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   args: {
@@ -20,6 +20,13 @@ const meta = {
     value: '',
   },
   argTypes: {
+    helperText: {
+      control: 'text',
+      description: 'extra description of the component',
+      table: {
+        category: 'optional',
+      },
+    },
     labelText: {
       control: 'text',
       description: 'content of label component',
@@ -27,23 +34,33 @@ const meta = {
         category: 'optional',
       },
     },
-    onChange: {
-      control: false,
-      description: 'change event handler',
+    name: {
+      control: 'text',
+      description: 'name attribute of the input element',
       table: {
         category: 'required',
         type: {
-          summary: '(e: ChangeEvent<HTMLInputElement>) => void',
+          summary: 'string',
+        },
+      },
+    },
+    onChange: {
+      control: false,
+      description: 'callback fired when new value is entered or selected',
+      table: {
+        category: 'required',
+        type: {
+          summary: '(newValue: string) => void',
         },
       },
     },
     onSelect: {
       control: false,
-      description: 'callback fired when select is clicked',
+      description: 'callback fired when select is clicked (undefined is returned when there is no entered value)',
       table: {
         category: 'required',
         type: {
-          summary: '(selected: { label: string; value: string; idx?: string }) => void',
+          summary: '(selected?: { label: string; value: string; idx?: string }) => void',
         },
       },
     },
@@ -87,7 +104,8 @@ type Story = StoryObj<typeof Autocomplete>;
 
 export const Default: Story = {
   args: {
-    labelText: 'Autocomplete Example',
+    labelText: 'Lorem Ipsum',
+    name: 'lorem ipsum',
     options: AUTOCOMPLETE_LIST,
     value: '',
   },
@@ -97,13 +115,10 @@ export const Default: Story = {
     const debouncedSearch = useMemo(
       () =>
         debounce((value: string) => {
-          let newArr = [];
-          if (value.length !== 0 || value !== '') {
-            newArr = AUTOCOMPLETE_LIST.filter((el: OptionsType) => el.label.includes(value));
+          if (value.length !== 0 && value !== '') {
+            const newArr = AUTOCOMPLETE_LIST.filter((el) => el.label.includes(value as string));
             updateArgs({ options: newArr });
-          }
-
-          if (value.length === 0) {
+          } else {
             updateArgs({ options: AUTOCOMPLETE_LIST });
           }
         }, 100),
@@ -113,19 +128,24 @@ export const Default: Story = {
     const handleSearch = useCallback((value: string) => debouncedSearch(value), [debouncedSearch]);
 
     const handleChange = useCallback(
-      ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
-        updateArgs({ value });
-        handleSearch(value);
+      (newValue: string) => {
+        updateArgs({ value: newValue });
+        handleSearch(newValue);
       },
       [updateArgs, handleSearch],
     );
 
-    const handleSelect = useCallback((selected: OptionsType) => updateArgs({ value: selected.label }), [updateArgs]);
+    const handleSelect = useCallback(
+      (selected?: ListboxOptionType) => updateArgs({ value: selected?.label || '' }),
+      [updateArgs],
+    );
 
     return (
-      <div className="flex flex-col gap-2.5">
-        <Autocomplete {...args} value={value} onChange={handleChange} onSelect={handleSelect} options={options} />
-      </div>
+      <>
+        <div className="max-w-80">
+          <Autocomplete {...args} value={value} onChange={handleChange} onSelect={handleSelect} options={options} />
+        </div>
+      </>
     );
   },
 };

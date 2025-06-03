@@ -46,8 +46,8 @@ const Radio = forwardRef<HTMLInputElement, RadioType>(function Radio(
           <span
             className={joinClassNames(
               'font-medium leading-normal',
-              getSizeStyle(size).text,
-              isDisabled && 'text-gray-400',
+              getSizeStyle(size).rightText,
+              isDisabled && 'text-gray-600',
             )}
           >
             {label}
@@ -58,7 +58,7 @@ const Radio = forwardRef<HTMLInputElement, RadioType>(function Radio(
       <span
         className={joinClassNames(
           getSizeStyle(size).container,
-          'inline-flex items-center group-focus-within:rounded-full group-focus-within:bg-yellow-gray-100 group-hover:rounded-full group-hover:bg-yellow-gray-50',
+          'inline-flex items-center group-focus-within:rounded-full group-focus-within:bg-gray-200 group-hover:rounded-full group-hover:bg-gray-100',
         )}
       >
         <input
@@ -76,16 +76,16 @@ const Radio = forwardRef<HTMLInputElement, RadioType>(function Radio(
         />
         <span
           className={joinClassNames(
-            'hidden items-center justify-center rounded-full border-2 border-primary-600 bg-white peer-checked:inline-flex',
+            'hidden items-center justify-center rounded-full border-2 border-black bg-white peer-checked:inline-flex',
             getSizeStyle(size).default,
             isDisabled && 'border-gray-400',
           )}
         >
-          <span className={joinClassNames('block rounded-full bg-primary-600', isDisabled && 'bg-gray-400')} />
+          <span className={joinClassNames('block rounded-full bg-black', isDisabled && 'bg-gray-400')} />
         </span>
         <span
           className={joinClassNames(
-            'block rounded-full border-2 border-primary-600 bg-white peer-checked:hidden',
+            'block rounded-full border-2 border-black bg-white peer-checked:hidden',
             getSizeStyle(size).default,
             isDisabled && 'border-gray-400',
           )}
@@ -96,8 +96,8 @@ const Radio = forwardRef<HTMLInputElement, RadioType>(function Radio(
           <span
             className={joinClassNames(
               'font-medium leading-normal',
-              getSizeStyle(size).text,
-              isDisabled && 'text-gray-400',
+              getSizeStyle(size).leftText,
+              isDisabled && 'text-gray-600',
             )}
           >
             {label}

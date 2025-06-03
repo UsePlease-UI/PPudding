@@ -12,7 +12,7 @@ export default function TableHead(props: TableHeadType) {
   return (
     <thead
       className={joinClassNames(
-        'border-b border-primary-100 bg-primary-200 align-middle hover:*:bg-inherit [&_th]:p-3',
+        'border-b border-gray-100 bg-gray-200 align-middle hover:*:bg-inherit [&_th]:p-3',
         className && className,
       )}
     >

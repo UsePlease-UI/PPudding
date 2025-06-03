@@ -1,6 +1,6 @@
 import EditorPage from './Editor';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   argTypes: {},

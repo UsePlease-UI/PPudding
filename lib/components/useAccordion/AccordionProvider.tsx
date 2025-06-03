@@ -1,4 +1,4 @@
-import { MouseEvent, ReactNode, useCallback, useId, useMemo, useState } from 'react';
+import { MouseEvent, ReactNode, useCallback, useEffect, useId, useMemo, useState } from 'react';
 
 import { AccordionContext, AccordionContextType } from './AccordionContext';
 
@@ -11,7 +11,7 @@ export interface AccordionProviderType {
 
 const AccordionProvider = ({ children, isDisabled, isExpanded, onChange }: AccordionProviderType) => {
   const accordionId = useId();
-  const [isSelected, setIsSelected] = useState<boolean>(isExpanded ?? false);
+  const [isSelected, setIsSelected] = useState(false);
 
   const handleChange = useCallback(
     (event: MouseEvent<HTMLButtonElement>, curIsExpanded: boolean) => {
@@ -19,8 +19,12 @@ const AccordionProvider = ({ children, isDisabled, isExpanded, onChange }: Accor
       if (onChange) {
         onChange(event, curIsExpanded);
       }
+      const panel = document.getElementById(`accordion-content-${accordionId}`);
+      if (panel) {
+        panel.hidden = false;
+      }
     },
-    [onChange],
+    [onChange, accordionId],
   );
 
   const context: AccordionContextType = useMemo(
@@ -32,6 +36,10 @@ const AccordionProvider = ({ children, isDisabled, isExpanded, onChange }: Accor
     }),
     [accordionId, isSelected, isDisabled, handleChange],
   );
+
+  useEffect(() => {
+    setIsSelected(isExpanded ?? false);
+  }, [isExpanded]);
 
   return <AccordionContext.Provider value={context}>{children}</AccordionContext.Provider>;
 };

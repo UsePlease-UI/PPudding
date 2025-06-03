@@ -1,109 +1,161 @@
-import { ChangeEvent, Fragment, useCallback, useEffect, useId, useRef, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useId, useRef, useState } from 'react';
 
-import { listStyle } from '@components/Base/Listbox';
+import { ClickAwayListener, Listbox, ListboxItem, ListboxOptionType } from '@components/Base';
 import TextField from '@components/Form/TextField';
-import { OptionsType } from '@components/types';
+import usePosition from '@components/usePosition';
 
 import { joinClassNames } from '@utils/format';
 
 export interface AutocompleteType {
+  name: string;
   value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onSelect: (selected: OptionsType) => void;
-  options: OptionsType[];
+  onChange: (newValue: string) => void;
+  onSelect: (newOption?: ListboxOptionType) => void;
+  options: ListboxOptionType[];
+  helperText?: string;
   labelText?: string;
 }
 
-export default function Autocomplete({ labelText, onChange, onSelect, options, value }: AutocompleteType) {
-  const listRef = useRef<HTMLUListElement | null>(null);
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+export default function Autocomplete(props: AutocompleteType) {
+  const { helperText, labelText, name, onChange, onSelect, options, value } = props;
 
-  const listboxId = useId();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [selected, setSelected] = useState<ListboxOptionType>();
+  const [activeIndex, setActiveIndex] = useState<string | undefined>(undefined);
+
+  const labelId = useId();
   const inputId = useId();
+  const listBoxId = useId();
+  const listItemId = useId();
 
-  const handleItemClick = useCallback(
-    (e: OptionsType) => {
-      onSelect(e);
-      setIsOpen(false);
+  const position = usePosition({ inputId, isVisible, listBoxId, totalLength: options.length });
+
+  const handleSelect = useCallback(
+    (newOption: ListboxOptionType) => {
+      setSelected(newOption);
+      onSelect(newOption);
+      onChange(newOption.label);
+      setIsVisible(false);
     },
-    [onSelect],
+    [onSelect, onChange],
   );
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      onChange(e);
-      if (e.currentTarget.value) {
-        setIsOpen(true);
+      onChange(e.currentTarget.value);
+      if (!e.currentTarget.value) {
+        setSelected(undefined);
+        onSelect();
       } else {
-        setIsOpen(false);
+        setIsVisible(true);
       }
     },
-    [onChange],
+    [onChange, onSelect],
   );
 
-  useEffect(() => {
-    if (isOpen && options.length) {
-      document.body.style.overflow = 'hidden';
+  const handleClick = useCallback(() => {
+    // 옵션 선택 후 list 미노출
+    if (selected && isVisible) {
+      setIsVisible(false);
+      setActiveIndex(undefined);
     } else {
-      document.body.style.overflow = 'auto';
+      setIsVisible((prev) => !prev);
     }
-  }, [isOpen, options]);
+
+    // 선택된 값이 있는 상태에서 open
+    if (!isVisible && selected) {
+      const index = options.findIndex((val) => val.value === selected?.value);
+      setActiveIndex(index !== -1 ? String(index) : undefined);
+    }
+  }, [selected, isVisible, options]);
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (isOpen && !inputRef.current?.contains(event.target as Node)) {
-        document.body.style.overflow = 'auto';
+    const element = listRef.current;
+    if (isVisible && element) {
+      const { left, marginTop, maxWidth, top } = position;
+      element.style.top = `${top + marginTop}px`;
+      element.style.left = `${left}px`;
+      const list = document.getElementById(listBoxId);
+      if (list) {
+        list.style.maxWidth = `${maxWidth}px`;
       }
     }
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isOpen]);
+  }, [isVisible, position, listBoxId]);
 
   return (
-    <div>
+    <>
       <div className="flex w-full items-center justify-center gap-1.25 bg-white">
         <TextField
           ref={inputRef}
           isFullWidth
-          aria-expanded={Boolean(options.length > 0 && isOpen)}
+          aria-activedescendant={activeIndex ? `${listItemId}-${activeIndex}` : undefined}
+          aria-expanded={isVisible}
+          aria-invalid="false"
+          aria-label={!labelText ? `${name}` : undefined}
+          helperText={helperText}
           id={inputId}
           labelText={labelText}
+          spellCheck="false"
           type="text"
           value={value}
           aria-autocomplete="list"
-          aria-controls={listboxId}
-          autoComplete="new-password"
+          aria-controls={isVisible ? listBoxId : undefined}
+          autoCapitalize="false"
           onChange={handleChange}
+          onClick={handleClick}
           role="combobox"
         />
       </div>
-      {Boolean(options.length > 0 && isOpen) && (
-        <ul ref={listRef} aria-label={labelText} className={listStyle.list} id={listboxId} role="listbox">
-          {options.map((el) => (
-            <li key={`list-${el.idx}`} className={joinClassNames('group px-3', listStyle.listItem)}>
-              <button
-                className={joinClassNames(listStyle.listItemButton)}
-                type="button"
-                onClick={() => handleItemClick(el)}
-              >
-                {[...el.label].map((letter, idx) =>
-                  value.includes(letter) ? (
-                    <span key={`letter-${idx}`} className="font-semibold text-primary-800">
-                      {letter}
-                    </span>
-                  ) : (
-                    <Fragment key={`letter-${idx}`}>{letter}</Fragment>
-                  ),
-                )}
-              </button>
-            </li>
-          ))}
-        </ul>
+      {isVisible && (
+        <ClickAwayListener
+          element={listRef.current}
+          isOpen={isVisible}
+          anchorElement={inputRef.current}
+          onClose={handleClick}
+        >
+          <Listbox
+            ref={listRef}
+            aria-label={labelText ? undefined : name}
+            className="fixed w-full"
+            id={listBoxId}
+            labelId={labelText ? labelId : undefined}
+            value={selected?.value || ''}
+            options={options}
+            renderItem={(option, index) => (
+              <ListboxItem
+                key={option.label}
+                id={`${listItemId}-${index}`}
+                isSelected={selected?.value ? selected.value === option.value : false}
+                value={option.value}
+                onClick={() => handleSelect(option)}
+                onHover={() => setActiveIndex(String(index))}
+                label={
+                  value
+                    ? option.label.split(new RegExp(`(${value})`, 'gi')).map((letter, idx) => (
+                        <span
+                          key={letter + idx}
+                          className={joinClassNames(
+                            selected?.value === option.value
+                              ? 'text-white'
+                              : new RegExp(`(${value})`, 'gi').test(letter)
+                                ? 'text-blue-600'
+                                : 'text-black',
+                            new RegExp(`(${value})`, 'gi').test(letter) ? 'font-semibold' : 'font-normal',
+                          )}
+                        >
+                          {letter}
+                        </span>
+                      ))
+                    : option.label
+                }
+              />
+            )}
+          />
+        </ClickAwayListener>
       )}
-    </div>
+    </>
   );
 }

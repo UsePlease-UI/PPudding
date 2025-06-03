@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useState } from 'react';
+import { ReactNode, useCallback, useId, useState } from 'react';
 
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
 
@@ -20,6 +20,8 @@ export default function CardText({
   secondaryText,
   ...rest
 }: CardTextType) {
+  const id = useId();
+
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleClick = useCallback(() => {
@@ -34,7 +36,7 @@ export default function CardText({
       <div {...rest} className="flex items-center justify-between px-3 py-2.25">
         <div>
           {typeof primaryText === 'string' ? (
-            <p className="text-16 font-semibold leading-20 text-gray-950">{primaryText}</p>
+            <span className="block text-16 font-semibold leading-20 text-black">{primaryText}</span>
           ) : (
             primaryText
           )}
@@ -45,12 +47,23 @@ export default function CardText({
           )}
         </div>
         {isExpandable && (
-          <IconButton aria-label="accordion button" size="small" variant="text" onClick={handleClick}>
+          <IconButton
+            aria-expanded={isExpanded}
+            aria-label={isExpanded ? '항목 닫기' : '항목 열기'}
+            size="small"
+            variant="text"
+            aria-controls={id}
+            onClick={handleClick}
+          >
             {isExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
           </IconButton>
         )}
       </div>
-      {isExpandable && isExpanded && <div className="px-3 py-2.25">{expandedContents}</div>}
+      {isExpandable && (
+        <div className="px-3 py-2.25" hidden={!isExpanded} id={id}>
+          {expandedContents}
+        </div>
+      )}
     </>
   );
 }

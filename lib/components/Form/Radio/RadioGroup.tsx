@@ -25,7 +25,12 @@ export default function RadioGroup(props: RadioGroupType) {
       )}
     >
       {Children.toArray(children).map((child) =>
-        cloneElement(child as ReactElement, { currentValue: value, onChange }),
+        cloneElement(
+          child as ReactElement<
+            { currentValue: string; onChange: (e: ChangeEvent<HTMLInputElement>) => void } & HTMLElement
+          >,
+          { currentValue: value, onChange },
+        ),
       )}
     </div>
   );

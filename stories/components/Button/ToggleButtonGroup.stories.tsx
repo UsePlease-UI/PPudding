@@ -1,15 +1,15 @@
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 import { BoldIcon, ItalicIcon, UnderlineIcon } from '@heroicons/react/24/solid';
 
 import { ToggleButton, ToggleButtonGroup } from '@components/Button/ToggleButton';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   args: {
     children: null,
-    onChange: fn(),
+    onClick: fn(),
     value: 'banana',
   },
   argTypes: {
@@ -23,13 +23,13 @@ const meta = {
         },
       },
     },
-    onChange: {
+    onClick: {
       control: false,
-      description: 'change event handler',
+      description: 'click event handler',
       table: {
         category: 'optional',
         type: {
-          summary: '(e: ChangeEvent<HTMLInputElement>) => void',
+          summary: '(selected: string) => void',
         },
       },
     },
@@ -67,31 +67,25 @@ export const Default: Story = {
   render: function Render(args) {
     return (
       <ToggleButtonGroup {...args}>
-        <ToggleButton name="fruits" value="banana">
-          Banana
-        </ToggleButton>
-        <ToggleButton name="fruits" value="orange">
-          Orange
-        </ToggleButton>
+        <ToggleButton value="banana">Banana</ToggleButton>
+        <ToggleButton value="orange">Orange</ToggleButton>
       </ToggleButtonGroup>
     );
   },
 };
 
 export const MultiSelection: Story = {
-  args: {
-    value: ['bold', 'italic'],
-  },
+  args: { value: ['bold', 'italic'] },
   render: function Render(args) {
     return (
       <ToggleButtonGroup {...args}>
-        <ToggleButton name="text" value="bold">
+        <ToggleButton aria-label="bold" value="bold">
           <BoldIcon />
         </ToggleButton>
-        <ToggleButton name="text" value="italic">
+        <ToggleButton aria-label="italic" value="italic">
           <ItalicIcon />
         </ToggleButton>
-        <ToggleButton name="text" value="underline">
+        <ToggleButton aria-label="underline" value="underline">
           <UnderlineIcon />
         </ToggleButton>
       </ToggleButtonGroup>

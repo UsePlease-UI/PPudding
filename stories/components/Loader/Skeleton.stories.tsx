@@ -1,6 +1,6 @@
 import Skeleton from '@components/Loader/Skeleton';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   argTypes: {

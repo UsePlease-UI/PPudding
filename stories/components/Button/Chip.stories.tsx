@@ -1,9 +1,9 @@
-import { expect, fn, spyOn, userEvent, within } from '@storybook/test';
+import { expect, fn, spyOn, userEvent, within } from 'storybook/test';
 
 import Chip from '@components/Button/Chip';
 import { getChipVariantStyle } from '@components/Button/Chip/styles';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof Chip> = {
   args: {
@@ -53,11 +53,11 @@ const meta: Meta<typeof Chip> = {
         type: 'inline-radio',
       },
       description: 'chip variant',
-      options: ['outlined', 'contained', 'text'],
+      options: ['outlined', 'contained'],
       table: {
         category: 'optional',
         type: {
-          summary: 'outlined | contained | text',
+          summary: 'outlined | contained',
         },
       },
     },

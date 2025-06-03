@@ -36,19 +36,21 @@ export default function Alert({ icon, message, onClose, options }: AlertType) {
 
   return (
     <div
+      aria-live="assertive"
       style={{ animationDelay: delay ? `${animationTime}s` : '4.5s' }}
+      aria-atomic="true"
       role="alert"
       className={joinClassNames(
         'flex min-h-12 w-max animate-fadeInOut items-center justify-between whitespace-pre-wrap break-all rounded-xl px-3 py-2.25',
         getAlertVariantStyle(variant),
       )}
     >
-      <p className="pr-2.5 text-16 font-medium leading-20 text-inherit">{message}</p>
+      <span className="block pr-2.5 text-16 font-medium leading-20 text-inherit">{message}</span>
       {(canDismiss === undefined || canDismiss === true) && (
         <div className="flex items-center">
           <div className={joinClassNames('mx-5 h-3 w-px', options?.variant === 'warning' ? 'bg-black' : 'bg-white')} />
           <button
-            aria-label="dismiss button"
+            aria-label="알럿 닫기"
             type="button"
             onClick={(e) => {
               e.currentTarget.blur();
@@ -56,11 +58,11 @@ export default function Alert({ icon, message, onClose, options }: AlertType) {
             }}
             className={joinClassNames(
               'rounded-full bg-transparent text-inherit',
-              options?.variant === 'warning' && 'hover:border-black focus:border-black active:border-black',
+              options?.variant === 'warning' && 'hover:border-black active:border-black',
             )}
           >
             {icon ? (
-              cloneElement(icon as ReactElement, {
+              cloneElement(icon as ReactElement<HTMLElement>, {
                 className: joinClassNames('!block h-4.5 w-4.5 stroke-2 text-inherit'),
               })
             ) : (

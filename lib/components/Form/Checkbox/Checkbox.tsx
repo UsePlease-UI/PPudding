@@ -68,8 +68,8 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
           <span
             className={joinClassNames(
               'font-medium leading-normal',
-              getSizeStyle(size).text,
-              isDisabled && 'text-gray-400',
+              getSizeStyle(size).rightText,
+              isDisabled && 'text-gray-600',
             )}
           >
             {label}
@@ -82,7 +82,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
           size === 'small' && 'p-0.5',
           size === 'medium' && 'p-0.75',
           size === 'large' && 'p-1',
-          'inline-flex items-center group-focus-within:rounded group-focus-within:bg-yellow-gray-100 group-hover:rounded group-hover:bg-yellow-gray-50',
+          'inline-flex items-center group-focus-within:rounded group-focus-within:bg-gray-200 group-hover:rounded group-hover:bg-gray-100',
         )}
       >
         <input
@@ -102,19 +102,19 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
               getSizeStyle(size).custom,
             )}
           >
-            {cloneElement(checkedIcon as ReactElement, {
-              className: joinClassNames(isDisabled ? 'text-gray-400' : 'text-primary-600'),
+            {cloneElement(checkedIcon as ReactElement<HTMLElement>, {
+              className: joinClassNames(isDisabled ? 'text-gray-600' : 'text-black'),
             })}
           </span>
         ) : (
           <span
             className={joinClassNames(
-              'hidden items-center justify-center rounded bg-primary-600 peer-checked:inline-flex',
+              'hidden items-center justify-center rounded bg-black peer-checked:inline-flex',
               getSizeStyle(size).default,
               isDisabled && 'border-2 border-gray-400 bg-gray-400',
             )}
           >
-            <CheckIcon className={joinClassNames('text-white', isDisabled && 'text-white')} />
+            <CheckIcon className={joinClassNames('text-white', isDisabled && 'text-gray-600')} />
           </span>
         )}
         {icon ? (
@@ -124,14 +124,14 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
               getSizeStyle(size).custom,
             )}
           >
-            {cloneElement(icon as ReactElement, {
-              className: joinClassNames('text-primary-600', isDisabled && 'text-gray-400'),
+            {cloneElement(icon as ReactElement<HTMLElement>, {
+              className: joinClassNames(isDisabled ? 'text-gray-600' : 'text-black'),
             })}
           </span>
         ) : (
           <span
             className={joinClassNames(
-              'inline-block rounded border-2 border-primary-600 bg-white peer-checked:hidden',
+              'inline-block rounded border-2 border-black bg-white peer-checked:hidden',
               getSizeStyle(size).default,
               isDisabled && 'border-gray-400',
             )}
@@ -143,7 +143,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
           <span
             className={joinClassNames(
               'font-medium leading-normal',
-              getSizeStyle(size).text,
+              getSizeStyle(size).leftText,
               isDisabled && 'text-gray-400',
             )}
           >
