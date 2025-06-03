@@ -1,10 +1,11 @@
-import { ChangeEvent } from '../../../../node_modules/react';
-import { OptionsType } from '../../types';
+import { ListboxOptionType } from '../../Base';
 export interface AutocompleteType {
+    name: string;
     value: string;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    onSelect: (selected: OptionsType) => void;
-    options: OptionsType[];
+    onChange: (newValue: string) => void;
+    onSelect: (newOption?: ListboxOptionType) => void;
+    options: ListboxOptionType[];
+    helperText?: string;
     labelText?: string;
 }
-export default function Autocomplete({ labelText, onChange, onSelect, options, value }: AutocompleteType): import("react/jsx-runtime").JSX.Element;
+export default function Autocomplete(props: AutocompleteType): import("react/jsx-runtime").JSX.Element;

@@ -1,8 +1,9 @@
-import { LiHTMLAttributes, MouseEvent, ReactNode } from '../../../../node_modules/react';
-export interface ListboxItemType extends Omit<LiHTMLAttributes<HTMLLIElement>, 'onClick'> {
-    currentValue: number | string;
+import { LiHTMLAttributes, ReactNode } from '../../../../node_modules/react';
+export interface ListboxItemType extends Omit<LiHTMLAttributes<HTMLDivElement>, 'onClick'> {
     label: ReactNode;
-    value: number | string;
-    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+    value: string;
+    isSelected?: boolean;
+    onClick?: (selected: string) => void;
+    onHover?: () => void;
 }
-export default function ListboxItem({ className, currentValue, label, onClick, value, ...rest }: ListboxItemType): import("react/jsx-runtime").JSX.Element;
+export default function ListboxItem({ className, isSelected, label, onClick, onHover, value, ...rest }: ListboxItemType): import("react/jsx-runtime").JSX.Element;

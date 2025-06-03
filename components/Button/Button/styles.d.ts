@@ -9,4 +9,4 @@ export declare const buttonStyle: {
 };
 export declare const getButtonSizeStyle: (size?: ButtonSizeType) => string | null;
 export declare const getButtonIconShapeStyle: (shape?: ButtonShapeType) => string;
-export declare const getButtonShapeStyle: (size?: ButtonSizeType, shape?: ButtonShapeType) => string | undefined;
+export declare const getButtonShapeStyle: (size?: ButtonSizeType, shape?: ButtonShapeType) => string;

@@ -3,5 +3,6 @@ export type RadioPositionType = 'end' | 'start';
 export declare function getSizeStyle(size?: RadioSizeType): {
     container: string;
     default: string;
-    text: string;
+    leftText: string;
+    rightText: string;
 };

@@ -1,12 +1,17 @@
-import { HTMLAttributes, MouseEvent, ReactNode } from '../../../../node_modules/react';
-import { OptionsType } from '../../types';
-export interface ListboxType extends Omit<HTMLAttributes<HTMLUListElement>, 'onClick'> {
-    id: string;
-    value: number | string;
-    options: OptionsType[];
-    labelId?: string;
-    renderItem?: (option: OptionsType) => ReactNode;
-    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+import { HTMLAttributes, ReactNode } from '../../../../node_modules/react';
+export interface ListboxOptionType {
+    label: string;
+    value: string;
+    idx?: string;
 }
-declare const Listbox: import('../../../../node_modules/react').ForwardRefExoticComponent<ListboxType & import('../../../../node_modules/react').RefAttributes<HTMLUListElement>>;
+export interface ListboxType extends Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {
+    options: ListboxOptionType[];
+    id?: string;
+    labelId?: string;
+    renderItem?: (option: ListboxOptionType, index: number) => ReactNode;
+    value?: string;
+    onClick?: (selected: string) => void;
+    onHover?: (index: string) => void;
+}
+declare const Listbox: import('../../../../node_modules/react').ForwardRefExoticComponent<ListboxType & import('../../../../node_modules/react').RefAttributes<HTMLDivElement>>;
 export default Listbox;

@@ -1,6 +1,6 @@
 import { ReactNode } from '../../../node_modules/react';
 import { PickerDateType } from './PickerContext';
-export type PickerProviderType = {
+export interface PickerProviderType {
     children: ReactNode;
     maxDate?: PickerDateType;
     minDate?: PickerDateType;
@@ -8,6 +8,6 @@ export type PickerProviderType = {
     onCancel?: () => void;
     onChange?: (date: Date) => void;
     onSelect?: (date: PickerDateType) => void;
-};
+}
 declare const PickerProvider: (props: PickerProviderType) => import("react/jsx-runtime").JSX.Element;
 export default PickerProvider;

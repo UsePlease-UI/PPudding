@@ -1,2 +1,2 @@
-import { ButtonVariantType } from '../styles';
-export declare const getChipVariantStyle: (variant?: ButtonVariantType) => string;
+export type ChipVariantType = 'contained' | 'outlined';
+export declare const getChipVariantStyle: (variant?: ChipVariantType) => string;
