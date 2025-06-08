@@ -1,16 +1,20 @@
+import { ChevronDownIcon } from '@heroicons/react/24/solid';
+
 import Accordion from '@components/Accordion';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   args: {
-    isDisabled: false,
-    isExpanded: false,
+    children: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    hasIcon: true,
+    headingLevel: 'h2',
+    icon: <ChevronDownIcon />,
   },
   argTypes: {
     children: {
-      control: false,
-      description: 'Accordion Header and Accordion Panel',
+      control: 'text',
+      description: 'header content',
       table: {
         category: 'required',
         type: {
@@ -18,72 +22,56 @@ const meta = {
         },
       },
     },
-    className: {
-      control: false,
-      description: 'custom className',
-      table: {
-        category: 'optional',
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    isDisabled: {
+    hasIcon: {
       control: 'boolean',
-      description: 'if true, accordion header is disabled',
+      description: 'if true, accordion header has icon',
       table: {
         category: 'optional',
         defaultValue: {
-          summary: 'false',
+          summary: 'true',
         },
         type: {
           summary: 'boolean',
         },
       },
     },
-    isExpanded: {
-      control: 'boolean',
-      description: 'if true, accordion panel is expanded',
+    headingLevel: {
+      control: 'inline-radio',
+      description: 'heading element level',
+      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
       table: {
         category: 'optional',
         defaultValue: {
-          summary: 'false',
+          summary: 'h3',
         },
         type: {
-          summary: 'boolean',
+          summary: 'h1 | h2 | h3 | h4 | h5 | h6',
         },
       },
     },
-    onChange: {
+    icon: {
       control: false,
-      description: 'callback fired when accordion header is clicked',
+      description: 'custom icon (svg element)',
       table: {
         category: 'optional',
         type: {
-          summary: '(event: MouseEvent<HTMLButtonElement>, isExpanded: boolean) => void',
+          summary: 'ReactNode',
         },
       },
     },
   },
-  component: Accordion,
-  parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
-  },
-  title: 'Accordion/Accordion',
-} satisfies Meta<typeof Accordion>;
+  component: Accordion.Header,
+  title: 'Accordion/AccordionHeader',
+} satisfies Meta<typeof Accordion.Header>;
 
 export default meta;
 
-type Story = StoryObj<typeof Accordion>;
+type Story = StoryObj<typeof Accordion.Header>;
 
 export const Default: Story = {
-  render: ({ isDisabled, isExpanded }) => (
-    <Accordion isDisabled={isDisabled} isExpanded={isExpanded}>
-      <Accordion.Header headingLevel="h2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Accordion.Header>
+  render: ({ children, ...args }) => (
+    <Accordion>
+      <Accordion.Header {...args}>{children}</Accordion.Header>
       <Accordion.Panel>
         Phasellus lacinia lacus at mi lobortis, a fringilla lectus maximus. Vestibulum id volutpat leo. Nam eget ante
         non eros ultrices ultricies. Vivamus porta, ante non egestas fermentum, ante diam ultrices est, non euismod

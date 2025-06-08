@@ -3,52 +3,9 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
 import * as AccordionStories from './Accordion.stories';
 
 import AnatomyImage from './accordion_anatomy.png';
-
-<style>
-  {`
-    * {
-        box-sizing: border-box;
-        color: #191919 !important;
-    }
-
-    p, li {
-        font-size: 16px !important;
-    }
-
-    a:hover {
-        text-decoration: underline !important;
-    }
-
-    h1 {
-        margin-bottom: 40px !important;
-    }
-
-    h2 {
-        font-weight: 600 !important;
-        margin-top: 60px !important;
-    }
-
-    h2:first-of-type {
-        margin-top: 0px !important;
-    }
-
-    .img-container {
-        padding: 10px !important;
-        border-radius: 4px !important;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px !important;
-    }
-
-    .img-container b {
-        margin-bottom: 20px !important;
-    }
-
-    img {
-        width: 748px !important;
-        height: 400px !important;
-        margin: 0 auto !important;
-    }
-  `}
-</style>
+import DefaultImage from './accordion_default.png';
+import DisabledImage from './accordion_disabled.png';
+import ExpandedImage from './accordion_expanded.png';
 
 <Meta of={AccordionStories} />
 
@@ -58,10 +15,14 @@ import AnatomyImage from './accordion_anatomy.png';
 
 - [Overview](#overview)
 - [Anatomy](#anatomy)
+- [WAI-ARIA Roles, States, and Properties](#wai-aria-roles-states-and-properties)
+- [Keyboard Interaction](#keyboard-interaction)
+- [States](#states)
+- [Usage](#usage)
 
 ## Overview
 
-섹션을 확장하거나 축소해 정보를 구조적으로 표시할 수 있는 **Accordion** 컴포넌트입니다.
+콘텐츠를 섹션별로 접고 펼칠 수 있는 **Accordion** 컴포넌트입니다.
 
 ## Anatomy
 
@@ -76,3 +37,74 @@ import AnatomyImage from './accordion_anatomy.png';
 2️⃣ **Accordion Header**
 
 3️⃣ **Accordion Panel**
+
+## WAI-ARIA Roles, States, and Properties
+
+### Accordion Header
+
+✅ 헤더는 button으로 구현되어 있습니다.  
+✅ 버튼은 heading 요소로 감싸져 있습니다.  
+✅ 버튼에는 패널의 열림 상태를 나타내는 `aria-expanded`가 설정되어 있습니다.  
+✅ 버튼에는 제어 대상 패널의 ID를 지정하는 `aria-controls`가 설정되어 있습니다.  
+✅ 패널을 닫을 수 없는 경우, 버튼에 `aria-disabled="true"`가 설정되어 있습니다.
+
+### Accordion Panel
+
+✅ 패널 요소는 고유한 ID를 가지며, 버튼의 `aria-controls`가 이를 참조합니다.  
+✅ `role="region"`이 설정되어 있습니다.  
+✅ `aria-labelledby`로 연결된 버튼의 ID를 참조합니다.
+
+## Keyboard Interaction
+
+<div className="keyboard">Tab / Shift + Tab</div>
+
+- 아코디언 헤더 간 포커스 이동이 가능합니다.
+
+<div className="keyboard">Enter 또는 Space</div>
+
+- 현재 포커스된 헤더의 패널을 열거나 닫을 수 있습니다.
+
+## States
+
+<div className="img-container">
+  <h3>Default</h3>
+  <img src={DefaultImage} alt="Accordion Default" />
+</div>
+<br />
+<br />
+<div className="img-container">
+  <h3>Expanded</h3>
+  <img src={ExpandedImage} alt="Accordion Expanded" />
+</div>
+<br />
+<br />
+<div className="img-container">
+  <h3>Disabled</h3>
+  <img src={DisabledImage} alt="Accordion Disabled" />
+</div>
+
+## Usage
+
+```tsx
+import Accordion from '@components/Accordion';
+
+export default function AccordionExample() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleChange = (event: React.MouseEvent<HTMLButtonElement>, isExpanded: boolean) => {
+    setIsExpanded(isExpanded);
+  };
+
+  return (
+    <Accordion isExpanded={isExpanded} onChange={handleChange}>
+      <Accordion.Header>Proin id diam leo.</Accordion.Header>
+      <Accordion.Panel>
+        Proin eget magna non nunc vehicula elementum. Vestibulum eget nulla at enim lacinia finibus vitae sed libero.
+        Nunc tempus pharetra quam ac finibus. Curabitur scelerisque ex eget massa aliquet tincidunt quis sed sem.
+        Praesent interdum vulputate quam non sodales. Proin vitae diam porttitor lacus luctus ultrices eget nec elit.
+        Aliquam vehicula magna sit amet ipsum sagittis blandit et vel sapien.
+      </Accordion.Panel>
+    </Accordion>
+  );
+}
+```
