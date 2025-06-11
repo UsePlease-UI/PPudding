@@ -17,7 +17,11 @@ export interface AlertType {
 
 export default function Alert({ icon, message, onClose, options }: AlertType) {
   const { canDismiss, delay, variant } = useMemo(
-    () => ({ canDismiss: options?.canDismiss, delay: options?.delay || 4.5, variant: options?.variant || 'default' }),
+    () => ({
+      canDismiss: options?.canDismiss || false,
+      delay: options?.delay || 4.5,
+      variant: options?.variant || 'default',
+    }),
     [options],
   );
 
