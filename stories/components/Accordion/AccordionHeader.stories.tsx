@@ -61,7 +61,7 @@ const meta = {
     },
   },
   component: Accordion.Header,
-  title: 'Accordion/AccordionHeader',
+  title: 'Accordion/Accordion.Header',
 } satisfies Meta<typeof Accordion.Header>;
 
 export default meta;

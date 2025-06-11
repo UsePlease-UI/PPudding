@@ -20,7 +20,7 @@ const meta = {
     },
   },
   component: Accordion.Panel,
-  title: 'Accordion/AccordionPanel',
+  title: 'Accordion/Accordion.Panel',
 } satisfies Meta<typeof Accordion.Panel>;
 
 export default meta;
