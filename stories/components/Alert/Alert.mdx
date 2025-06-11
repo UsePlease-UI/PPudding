@@ -11,52 +11,6 @@ import WarningImage from './alert_warning.png';
 import AlertWithoutDismissImage from './alert_without_dismiss_button.png';
 import AlertWithMultiline from './alert_multiline.png';
 
-<style>
-  {`
-    * {
-        box-sizing: border-box;
-        color: #191919 !important;
-    }
-
-    p, li {
-        font-size: 16px !important;
-    }
-
-    a:hover {
-        text-decoration: underline !important;
-    }
-
-    h1 {
-        margin-bottom: 40px !important;
-    }
-
-    h2 {
-        font-weight: 600 !important;
-        margin-top: 60px !important;
-    }
-
-    h2:first-of-type {
-        margin-top: 0px !important;
-    }
-
-    .img-container {
-        padding: 10px !important;
-        border-radius: 4px !important;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px !important;
-    }
-
-    .img-container b {
-        margin-bottom: 20px !important;
-    }
-
-    img {
-        width: 748px !important;
-        height: 400px !important;
-        margin: 0 auto !important;
-    }
-  `}
-</style>
-
 <Meta of={AlertStories} />
 
 # Alert
@@ -65,6 +19,8 @@ import AlertWithMultiline from './alert_multiline.png';
 
 - [Overview](#overview)
 - [Anatomy](#anatomy)
+- [WAI-ARIA Roles, States, and Properties](#wai-aria-roles-states-and-properties)
+- [Keyboard Interaction](#keyboard-interaction)
 - [Variants](#variants)
 - [Usage](#usage)
 
@@ -85,9 +41,25 @@ import AlertWithMultiline from './alert_multiline.png';
 
 2️⃣ **Alert Icon**
 
+## WAI-ARIA Roles, States, and Properties
+
+✅ `role="alert"`이 적용되어 있으며, 스크린 리더가 긴급한 메시지로 인식하고 즉시 읽도록 지정되어 있습니다.  
+✅ `aria-live="assertive"`가 적용되어 있으며, 현재 읽고 있던 내용을 중단하고 즉시 알림을 전달합니다.  
+✅ `aria-atomic="true"`가 적용되어 있으며, 내용 변경 시 전체 문장을 통째로 읽도록 설정되어 있습니다.
+
+## Keyboard Interaction
+
+<div className="keyboard">Tab</div>
+
+- 알림 내 닫기 버튼에 포커스할 수 있습니다.
+
+<div className="keyboard">Enter 또는 Space</div>
+
+- 포커스된 닫기 버튼을 눌러 알림을 닫을 수 있습니다.
+
 ## Variants
 
-기본값은 **default**이며 **default**, **success**, **error**, **info**, **warning** 중 하나를 선택할 수 있습니다.
+기본값은 **default**이며 `default`, `success`, `error`, `info`, `warning` 중 하나를 선택할 수 있습니다.
 
 <div className="img-container">
   <h3>Default</h3>
