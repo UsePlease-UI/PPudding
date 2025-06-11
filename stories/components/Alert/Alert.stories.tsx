@@ -28,18 +28,35 @@ const meta = {
       description: 'if true, component can be programmatically closed',
       table: {
         category: 'optional',
+        defaultValue: {
+          summary: 'false',
+        },
+        type: {
+          summary: 'boolean',
+        },
       },
     },
     delay: {
       control: 'number',
-      description: 'duration of display',
+      description: 'duration of display (in seconds)',
       table: {
         category: 'optional',
+        defaultValue: {
+          summary: '4.5',
+        },
+        type: {
+          summary: 'number',
+        },
       },
     },
     icon: {
+      control: false,
+      description: 'custom icon (svg element)',
       table: {
-        disable: true,
+        category: 'optional',
+        type: {
+          summary: 'ReactNode',
+        },
       },
     },
     message: {
@@ -47,16 +64,37 @@ const meta = {
       description: 'content of the component',
       table: {
         category: 'required',
+        type: {
+          summary: 'string',
+        },
       },
     },
     onClose: {
-      table: {
+      control: {
         disable: true,
+      },
+      description: 'dismiss button click event handler',
+      table: {
+        category: 'required',
+        type: {
+          summary: '() => void',
+        },
       },
     },
     options: {
-      table: {
+      control: {
         disable: true,
+      },
+      description: 'alert options',
+      table: {
+        category: 'optional',
+        defaultValue: {
+          summary: '{ canDismiss: false; delay: 4.5; variant: default }',
+        },
+        type: {
+          summary:
+            "{ canDismiss?: boolean; delay?: number; variant?: 'default' | 'error' | 'info' | 'success' | 'warning'; }",
+        },
       },
     },
     variant: {
@@ -67,6 +105,9 @@ const meta = {
       options: ['default', 'success', 'error', 'info', 'warning'],
       table: {
         category: 'optional',
+        defaultValue: {
+          summary: 'default',
+        },
       },
     },
   },
