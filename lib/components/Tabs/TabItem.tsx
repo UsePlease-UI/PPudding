@@ -6,11 +6,9 @@ import { joinClassNames } from '@utils/format';
 
 export interface TabItemType {
   index: number;
-  value: number;
   className?: string;
   label?: ReactNode;
   icon?: ReactNode;
-  onChange?: (newValue: number) => void;
 }
 
 const a11yProps = (index: number, value: number) => {
@@ -24,8 +22,8 @@ const a11yProps = (index: number, value: number) => {
 };
 
 export default function TabItem(props: TabItemType) {
-  const { className, icon, index, label, onChange, value } = props;
-  const { linkRefs } = useTab();
+  const { className, icon, index, label } = props;
+  const { linkRefs, onChange, value } = useTab();
 
   const handleClick = useCallback(
     (newValue: number) => {
