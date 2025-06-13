@@ -41,7 +41,7 @@ const TabProvider = ({ children, onChange, value }: TabProviderType) => {
     return () => window.removeEventListener('keydown', onKeyDown, true);
   }, [linkRefs, value, onChange]);
 
-  const context: TabContextType = useMemo(() => ({ linkRefs, value }), [linkRefs, value]);
+  const context: TabContextType = useMemo(() => ({ linkRefs, onChange, value }), [linkRefs, onChange, value]);
 
   return <TabContext.Provider value={context}>{children}</TabContext.Provider>;
 };

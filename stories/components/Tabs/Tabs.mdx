@@ -1,0 +1,125 @@
+import { Canvas, Meta, Story, ArgTypes } from '@storybook/addon-docs/blocks';
+
+import * as TabsStories from './Tabs.stories';
+import * as TabStories from './Tab.stories';
+import * as TabItemStories from './TabItem.stories';
+import * as TabPanelStories from './TabPanel.stories';
+
+import AnatomyImage from './tabs_anatomy.png';
+import DefaultImage from './tabs_default.png';
+
+<Meta of={TabsStories} />
+
+# Tabs
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Anatomy](#anatomy)
+- [WAI-ARIA Roles, States, and Properties](#wai-aria-roles-states-and-properties)
+- [Keyboard Interaction](#keyboard-interaction)
+- [Props](#props)
+- [Usage](#usage)
+
+## Overview
+
+여러 콘텐츠를 탭으로 나누고, 선택된 탭에 따라 내용을 전환할 수 있는 **Tabs** 컴포넌트입니다.
+
+## Anatomy
+
+**Tabs**는 다음과 같이 구현되어 있습니다.
+
+<div className="img-container">
+  <img src={AnatomyImage} alt="Tabs Anatomy" />
+</div>
+
+**1️⃣ Tabs**
+
+**2️⃣ Tab**
+
+**3️⃣ Tab Item**
+
+**4️⃣ Tab Panel**
+
+## WAI-ARIA Roles, States, and Properties
+
+### Tab
+
+✅ 탭 버튼 그룹은 `role="tablist"`로 설정되어 있습니다.
+
+### Tab Item
+
+✅ 탭 버튼은 `role="tab"`으로 설정되어 있습니다.  
+✅ 선택된 탭 버튼에는 `aria-selected="true"`가 설정되어 있습니다.  
+✅ 탭 버튼에는 제어 대상 패널의 ID를 지정하는 `aria-controls`가 설정되어 있습니다.
+
+### Tab Panel
+
+✅ role="tabpanel"으로 설정되어 있습니다.  
+✅ 패널 요소는 고유한 ID를 가지며, 탭 버튼의 `aria-controls`가 이를 참조합니다.  
+✅ `aria-labelledby`로 연결된 탭 버튼의 ID를 참조합니다.
+
+## Keyboard Interaction
+
+<div className="keyboard">Tab</div>
+
+- 탭 버튼 그룹 내에서 첫 번째 탭에 포커스할 수 있습니다.
+
+<div className="keyboard">ArrowRight</div>
+
+- 다음 탭 버튼으로 포커스를 이동시킵니다.
+
+<div className="keyboard">ArrowLeft</div>
+
+- 이전 탭 버튼으로 포커스를 이동시킵니다.
+
+## Props
+
+### Tabs
+
+<ArgTypes />
+
+### Tab
+
+<ArgTypes of={TabStories} />
+
+### TabItem
+
+<ArgTypes of={TabItemStories} />
+
+### TabPanel
+
+<ArgTypes of={TabPanelStories} />
+
+## Usage
+
+```tsx
+import Tabs from '@components/Tabs';
+
+export default function TabExample(args) {
+  const [value, setValue] = React.useState(1);
+
+  const handleChange = (newValue: number) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Tabs className="min-w-192" value={value} onChange={handleChange}>
+      <Tabs.Tab {...args} aria-label="navigation">
+        <Tabs.Item index={1} label="1" />
+        <Tabs.Item index={2} label="2" />
+        <Tabs.Item index={3} label="3" />
+      </Tabs.Tab>
+      <Tabs.Panel index={1}>
+        <p>Tab Panel #1</p>
+      </Tabs.Panel>
+      <Tabs.Panel index={2}>
+        <p>Tab Panel #2</p>
+      </Tabs.Panel>
+      <Tabs.Panel index={3}>
+        <p>Tab Panel #3</p>
+      </Tabs.Panel>
+    </Tabs>
+  );
+}
+```
