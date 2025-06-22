@@ -100,8 +100,8 @@ export const Default: Story = {
     const labelTextId = useId();
     const helperTextId = useId();
 
-    const handleChange = (newValue: number | string) => {
-      updateArgs({ selected: newValue });
+    const handleChange = (newSelected: string) => {
+      updateArgs({ selected: newSelected });
     };
 
     return (

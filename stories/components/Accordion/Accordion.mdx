@@ -108,8 +108,8 @@ import ExpandedImage from './accordion_expanded.png';
 
 ### Accordion Header
 
-✅ 헤더는 button으로 구현되어 있습니다.  
-✅ 버튼은 heading 요소로 감싸져 있습니다.  
+✅ 헤더는 `button`으로 구현되어 있습니다.  
+✅ 버튼은 `heading 요소`로 감싸져 있습니다.  
 ✅ 버튼에는 패널의 열림 상태를 나타내는 `aria-expanded`가 설정되어 있습니다.  
 ✅ 버튼에는 제어 대상 패널의 ID를 지정하는 `aria-controls`가 설정되어 있습니다.  
 ✅ 패널을 닫을 수 없는 경우, 버튼에 `aria-disabled="true"`가 설정되어 있습니다.
@@ -166,12 +166,14 @@ import ExpandedImage from './accordion_expanded.png';
 ## Usage
 
 ```tsx
+import { MouseEvent, useState } from 'react';
+
 import { Accordion } from '@useplease-ui/ppudding';
 
 export default function AccordionExample() {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const handleChange = (event: React.MouseEvent<HTMLButtonElement>, isExpanded: boolean) => {
+  const handleChange = (event: MouseEvent<HTMLButtonElement>, isExpanded: boolean) => {
     setIsExpanded(isExpanded);
   };
 
