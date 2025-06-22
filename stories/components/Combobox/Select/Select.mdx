@@ -102,7 +102,7 @@ import AnatomyImage from './select_anatomy.png';
 
 ### Select Trigger
 
-✅ 트리거는 button으로 구현되어 있습니다.  
+✅ 트리거는 `button`으로 구현되어 있습니다.  
 ✅ 버튼에는 `aria-haspopup="listbox"`가 설정되어 있습니다.  
 ✅ 버튼에는 시각적 라벨의 ID를 참조하는 `aria-labelledby`가 설정되어 있습니다.  
 ✅ 버튼에는 드롭다운의 존재를 알리는 `aria-haspopup="listbox"`가 설정되어 있습니다.  
@@ -157,7 +157,9 @@ import AnatomyImage from './select_anatomy.png';
 ## Usage
 
 ```tsx
-import { Select } from '@useplease-ui/ppudding';
+import { useId, useState } from 'react';
+
+import { FormControl, Select } from '@useplease-ui/ppudding';
 
 const options = [
   { idx: '1', label: '김치찌개', value: 'kimchi-stew' },
@@ -177,6 +179,12 @@ export default function SelectExample() {
   const labelTextId = useId();
   const helperTextId = useId();
 
+  const [selected, setSelected] = useState('');
+
+  const handleChange = (newSelected: string) => {
+    setSelected(newSelected);
+  };
+
   return (
     <FormControl
       helperText="하나의 값을 선택하세요."
@@ -191,7 +199,7 @@ export default function SelectExample() {
         id={buttonId}
         selected={selected}
         onChange={handleChange}
-        options={OPTIONS}
+        options={options}
       />
     </FormControl>
   );
