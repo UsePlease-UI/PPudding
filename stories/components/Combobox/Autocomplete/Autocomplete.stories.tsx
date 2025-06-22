@@ -107,7 +107,7 @@ export const Default: Story = {
       () =>
         debounce((value: string) => {
           if (value.length !== 0 && value !== '') {
-            const newArr = AUTOCOMPLETE_LIST.filter((el) => el.label.includes(value as string));
+            const newArr = AUTOCOMPLETE_LIST.filter((el) => el.label.includes(value));
             updateArgs({ options: newArr });
           } else {
             updateArgs({ options: AUTOCOMPLETE_LIST });
@@ -132,21 +132,19 @@ export const Default: Story = {
     );
 
     return (
-      <>
-        <div className="max-w-80">
-          <FormControl inputId={inputId} labelText="Lorem Ipsum" labelTextId={labelTextId}>
-            <Autocomplete
-              {...args}
-              aria-labelledby={labelTextId}
-              id={inputId}
-              value={value}
-              onChange={handleChange}
-              onSelect={handleSelect}
-              options={options}
-            />
-          </FormControl>
-        </div>
-      </>
+      <div className="max-w-80">
+        <FormControl inputId={inputId} labelText="지역 선택" labelTextId={labelTextId}>
+          <Autocomplete
+            {...args}
+            aria-labelledby={labelTextId}
+            id={inputId}
+            value={value}
+            onChange={handleChange}
+            onSelect={handleSelect}
+            options={options}
+          />
+        </FormControl>
+      </div>
     );
   },
 };
