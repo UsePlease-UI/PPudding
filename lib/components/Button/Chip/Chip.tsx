@@ -11,11 +11,12 @@ export interface ChipType extends HTMLAttributes<HTMLDivElement> {
   value: string;
   isDeletable?: boolean;
   variant?: ChipVariantType;
+  onClick?: () => void;
   onDelete?: (value: string) => void;
 }
 
 export default function Chip(props: ChipType) {
-  const { className, isDeletable = true, label, onDelete, value, variant = 'outlined' } = props;
+  const { className, isDeletable = true, label, onClick, onDelete, value, variant = 'outlined', ...rest } = props;
 
   const handleClick = useCallback(
     (e: MouseEvent<HTMLButtonElement>) => {
@@ -31,10 +32,16 @@ export default function Chip(props: ChipType) {
 
   return (
     <div
+      {...rest}
+      tabIndex={onClick ? 0 : undefined}
+      onClick={onClick}
+      onKeyDown={onClick}
+      role={onClick ? 'button' : undefined}
       className={joinClassNames(
         'flex w-max items-center gap-2 rounded-full',
         getChipVariantStyle(variant),
         isDeletable ? 'pointer-events-auto py-1 pl-3.5 pr-2' : 'pointer-events-none px-3 py-1',
+        onClick && 'pointer-events-auto cursor-pointer',
         className && className,
       )}
     >

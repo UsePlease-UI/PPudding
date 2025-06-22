@@ -1,7 +1,4 @@
-import { Fragment } from 'react';
-
-// TODO: https://github.com/storybookjs/storybook/issues/29189 해결되면 수정
-import { useState } from 'storybook/preview-api';
+import { Fragment, useState } from 'react';
 
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
 

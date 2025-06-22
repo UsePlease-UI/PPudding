@@ -9,6 +9,6 @@ export default Object.assign(Accordion, {
 });
 
 // Types export
-export * from './Accordion';
-export * from './AccordionHeader';
-export * from './AccordionPanel';
+export type { AccordionType } from './Accordion';
+export type { AccordionHeaderType } from './AccordionHeader';
+export type { AccordionPanelType } from './AccordionPanel';

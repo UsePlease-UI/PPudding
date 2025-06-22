@@ -29,7 +29,7 @@ export default function PickerButton(props: PickerButtonType) {
         <span
           className={joinClassNames(
             'block flex-1 pl-2 text-left text-14 font-medium text-black',
-            !value && placeholder && 'text-gray-400',
+            !value && placeholder && 'text-gray-600',
           )}
         >
           {value ? dayjs(value).format(dateFormat) : placeholder}

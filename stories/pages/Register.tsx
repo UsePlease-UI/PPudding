@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 
+import FormControl from '@components/Base/FormControl';
 import Button from '@components/Button/Button';
 import { ToggleButton, ToggleButtonGroup } from '@components/Button/ToggleButton';
 import Select from '@components/Combobox/Select';
@@ -43,68 +44,92 @@ const Register = () => {
     <div className="flex size-full items-center justify-center bg-white">
       <form className="flex w-full items-center justify-center" onSubmit={handleSubmit}>
         <div className="w-full space-y-5 p-5">
-          <TextField
-            isFullWidth
-            required
+          <FormControl
             helperText="닉네임은 최소 10자 이상 최대 100자 이하로 입력해 주세요"
+            helperTextId="name-helper-text"
+            inputId="name"
             labelText="닉네임"
-            maxLength={100}
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.currentTarget.value)}
-            placeholder="닉네임을 입력해 주세요"
-          />
-          <TextField
-            isFullWidth
-            required
+          >
+            <TextField
+              isFullWidth
+              required
+              aria-describedby="name-helper-text"
+              id="name"
+              maxLength={100}
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.currentTarget.value)}
+              placeholder="닉네임을 입력해 주세요"
+            />
+          </FormControl>
+          <FormControl
             helperText="이메일은 아이디로 사용됩니다"
+            helperTextId="email-helper-text"
+            inputId="email"
             labelText="이메일"
-            name="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.currentTarget.value)}
-            placeholder="이메일을 입력해 주세요"
-          />
-          <TextField
-            isFullWidth
-            required
+          >
+            <TextField
+              isFullWidth
+              required
+              aria-describedby="email-helper-text"
+              id="email"
+              name="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.currentTarget.value)}
+              placeholder="이메일을 입력해 주세요"
+            />
+          </FormControl>
+          <FormControl
             helperText="비밀번호는 최소 8글자 이상 16글자 이하로 입력해 주세요"
+            helperTextId="password-helper-text"
+            inputId="password"
             labelText="비밀번호"
-            maxLength={16}
-            minLength={8}
-            name="password"
-            pattern={PASSWORD_REG_EXP}
-            type="password"
-            value={password}
-            autoComplete="new-password"
-            onChange={(e) => setPassword(e.currentTarget.value)}
-            placeholder="비밀번호를 입력해 주세요"
-          />
+          >
+            <TextField
+              isFullWidth
+              required
+              aria-describedby="password-helper-text"
+              id="password"
+              maxLength={16}
+              minLength={8}
+              name="password"
+              pattern={PASSWORD_REG_EXP}
+              type="password"
+              value={password}
+              autoComplete="new-password"
+              onChange={(e) => setPassword(e.currentTarget.value)}
+              placeholder="비밀번호를 입력해 주세요"
+            />
+          </FormControl>
           <div className="flex gap-5">
-            <Select
-              id="year-select"
-              label={YEAR_OPTIONS.filter((val) => val.value === year)?.[0]?.label}
-              labelText="연도"
-              value={year}
-              onChange={setYear}
-              options={YEAR_OPTIONS}
-            />
-            <Select
-              id="month-select"
-              label={MONTH_OPTIONS.filter((val) => val.value === month)?.[0]?.label}
-              labelText="월"
-              value={month}
-              onChange={setMonth}
-              options={MONTH_OPTIONS}
-            />
-            <Select
-              id="day-select"
-              label={DAY_OPTIONS.filter((val) => val.value === day)?.[0]?.label}
-              labelText="일"
-              value={day}
-              onChange={setDay}
-              options={DAY_OPTIONS}
-            />
+            <FormControl inputId="year-select" labelText="연도" labelTextId="year-label-text">
+              <Select
+                aria-labelledby="year-label-text"
+                id="year-select"
+                selected={year}
+                onChange={setYear}
+                options={YEAR_OPTIONS}
+              />
+            </FormControl>
+            <FormControl labelText="월" labelTextId="month-label-text">
+              <Select
+                aria-labelledby="month-label-text"
+                id="month-select"
+                selected={month}
+                onChange={setMonth}
+                options={MONTH_OPTIONS}
+              />
+            </FormControl>
+            <FormControl labelText="일" labelTextId="day-label-text">
+              <Select
+                aria-labelledby="day-label-text"
+                id="day-select"
+                selected={day}
+                onChange={setDay}
+                options={DAY_OPTIONS}
+              />
+            </FormControl>
           </div>
           <div className="space-y-1.25">
             <span className="text-12 font-semibold">성별</span>

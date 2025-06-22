@@ -4,7 +4,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
-  addons: ['@storybook/addon-links', '@storybook/addon-themes', '@storybook/addon-a11y', '@storybook/addon-docs'],
+  addons: ['@storybook/addon-links', '@storybook/addon-a11y', '@storybook/addon-docs'],
   core: {
     disableTelemetry: true, // 👈 Disables telemetry
   },
