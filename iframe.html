@@ -528,9 +528,21 @@
     console.warn('unable to connect to top frame for connecting dev tools');
   }
 </script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous" />
+<link
+  rel="preload"
+  as="style"
+  crossorigin="anonymous"
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css"
+  crossorigin="anonymous"
+/>
 
-    <script type="module" crossorigin src="./assets/iframe-xSyj_TgM.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/iframe-Cxq24PQw.css">
+    <script type="module" crossorigin src="./assets/iframe-Bvnjis0j.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/iframe-DPicx1QG.css">
   </head>
 
   <body>
@@ -548,6 +560,26 @@
   }
   [hidden]:where(:not([hidden='until-found'])) {
     display: none !important;
+  }
+
+  #storybook-docs * {
+    box-sizing: border-box;
+    font-family:
+      'Pretendard Variable',
+      Pretendard,
+      -apple-system,
+      BlinkMacSystemFont,
+      system-ui,
+      Roboto,
+      'Helvetica Neue',
+      'Segoe UI',
+      'Apple SD Gothic Neo',
+      'Noto Sans KR',
+      'Malgun Gothic',
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol',
+      sans-serif;
   }
 </style>
 <div class="sb-preparing-story sb-wrapper">

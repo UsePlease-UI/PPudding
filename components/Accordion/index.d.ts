@@ -6,3 +6,6 @@ declare const _default: typeof Accordion & {
     Panel: typeof AccordionPanel;
 };
 export default _default;
+export type { AccordionType } from './Accordion';
+export type { AccordionHeaderType } from './AccordionHeader';
+export type { AccordionPanelType } from './AccordionPanel';

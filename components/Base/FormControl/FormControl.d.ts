@@ -5,6 +5,7 @@ export interface FormControlType {
     helperText?: ReactNode;
     helperTextClassName?: string;
     helperTextId?: string;
+    inputId?: string;
     labelText?: ReactNode;
     labelTextClassName?: string;
     labelTextId?: string;

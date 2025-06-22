@@ -10,3 +10,8 @@ declare const _default: typeof Table & {
     Row: typeof TableRow;
 };
 export default _default;
+export type { TableType } from './Table';
+export type { TableBodyType } from './TableBody';
+export type { TableCellType } from './TableCell';
+export type { TableHeadType } from './TableHead';
+export type { TableRowType } from './TableRow';

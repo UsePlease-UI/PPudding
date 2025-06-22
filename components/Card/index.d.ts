@@ -14,3 +14,10 @@ declare const _default: typeof Card & {
     Title: typeof CardTitle;
 };
 export default _default;
+export type { CardType } from './Card';
+export type { CardActionsType } from './CardActions';
+export type { CardHeaderType } from './CardHeader';
+export type { CardMediaType } from './CardMedia';
+export type { CardSupportingVisualType } from './CardSupportingVisual';
+export type { CardTextType } from './CardText';
+export type { CardTitleType } from './CardTitle';

@@ -4,6 +4,6 @@ export interface ListboxItemType extends Omit<LiHTMLAttributes<HTMLDivElement>, 
     value: string;
     isSelected?: boolean;
     onClick?: (selected: string) => void;
-    onHover?: () => void;
 }
-export default function ListboxItem({ className, isSelected, label, onClick, onHover, value, ...rest }: ListboxItemType): import("react/jsx-runtime").JSX.Element;
+declare const ListboxItem: import('../../../../node_modules/react').ForwardRefExoticComponent<ListboxItemType & import('../../../../node_modules/react').RefAttributes<HTMLDivElement>>;
+export default ListboxItem;

@@ -8,3 +8,7 @@ declare const _default: typeof Tabs & {
     Tab: typeof Tab;
 };
 export default _default;
+export type { TabType } from './Tab';
+export type { TabItemType } from './TabItem';
+export type { TabPanelType } from './TabPanel';
+export type { TabsType } from './Tabs';

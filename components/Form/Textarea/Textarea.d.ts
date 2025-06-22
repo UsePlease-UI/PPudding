@@ -1,9 +1,7 @@
-import { ReactNode, TextareaHTMLAttributes } from '../../../../node_modules/react';
+import { TextareaHTMLAttributes } from '../../../../node_modules/react';
 export interface TextareaType extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-    helperText?: ReactNode;
     isDisabled?: boolean;
     isReadOnly?: boolean;
-    labelText?: ReactNode;
     isAutoHeight?: boolean;
     isError?: boolean;
 }

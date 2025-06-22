@@ -6,4 +6,4 @@ export interface ClickAwayListenerType {
     anchorElement?: HTMLElement | null;
     onClose?: () => void;
 }
-export default function ClickAwayListener({ anchorElement, children, element, isOpen, onClose, }: ClickAwayListenerType): ReactNode;
+export default function ClickAwayListener(props: ClickAwayListenerType): ReactNode;

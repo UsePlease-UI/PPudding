@@ -1,1 +1,0 @@
-import{r as o}from"./iframe-xSyj_TgM.js";function c({anchorElement:t,children:f,element:i,isOpen:u,onClose:r}){return o.useEffect(()=>{function s(d){u&&!(i!=null&&i.contains(d.target))&&!(t!=null&&t.contains(d.target))&&r&&r()}return document.addEventListener("mousedown",s),()=>{document.removeEventListener("mousedown",s)}},[t,i,u,r]),f}export{c as C};
