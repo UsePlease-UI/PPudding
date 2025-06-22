@@ -27,7 +27,9 @@ Default.play = async ({ canvasElement, step }) => {
   const name = canvas.getByLabelText('닉네임');
   const email = canvas.getByLabelText('이메일');
   const password = canvas.getByLabelText('비밀번호');
-  const [year, month, day] = canvas.getAllByRole('combobox');
+  const year = canvas.getByLabelText('연도');
+  const month = canvas.getByLabelText('월');
+  const day = canvas.getByLabelText('일');
   const registerButton = canvas.getByRole('button', { name: /등록/i });
   const gender = canvas.getByRole('radio', { name: '여성' });
   const useYn = canvas.getByRole('button', { name: /미사용/i });

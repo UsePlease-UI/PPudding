@@ -1,30 +1,23 @@
+import { useId } from 'react';
+
 import { useArgs } from 'storybook/preview-api';
 
+import FormControl from '@components/Base/FormControl';
 import Select from '@components/Combobox/Select';
 
-import { OPTIONS } from '../constants';
+import { OPTIONS } from '../../constants';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   args: {
-    helperText: '하나의 값을 선택해 주세요.',
     isDisabled: false,
     isReadOnly: false,
-    label: '',
-    labelText: 'test',
     options: OPTIONS,
-    placeholder: '전체',
-    value: '',
+    placeholder: '선택',
+    selected: '',
   },
   argTypes: {
-    helperText: {
-      control: 'text',
-      description: 'extra description of the component',
-      table: {
-        category: 'optional',
-      },
-    },
     isDisabled: {
       control: 'boolean',
       description: 'if true, the component will be disabled',
@@ -39,28 +32,13 @@ const meta = {
         category: 'optional',
       },
     },
-    label: {
-      control: false,
-      description: 'content of the component',
-      table: {
-        category: 'required',
-      },
-      type: 'string',
-    },
-    labelText: {
-      control: 'text',
-      description: 'content of label component',
-      table: {
-        category: 'optional',
-      },
-    },
     onChange: {
       control: false,
       description: 'change event handler',
       table: {
         category: 'optional',
         type: {
-          summary: '(e: ChangeEvent<HTMLInputElement>) => void',
+          summary: '(selected: string) => void',
         },
       },
     },
@@ -81,7 +59,7 @@ const meta = {
         category: 'optional',
       },
     },
-    value: {
+    selected: {
       control: false,
       description: 'selected value',
       table: {
@@ -102,7 +80,6 @@ const meta = {
     },
     layout: 'centered',
   },
-  tags: ['autodocs'],
   title: 'Combobox/Select',
 } satisfies Meta<typeof Select>;
 
@@ -111,24 +88,39 @@ type Story = StoryObj<typeof Select>;
 
 export const Default: Story = {
   args: {
-    helperText: '하나의 값을 선택하세요.',
     isDisabled: false,
     isReadOnly: false,
-    labelText: '한식 메뉴 추천',
     options: OPTIONS,
-    placeholder: '전체',
+    placeholder: '선택',
   },
   render: function Render(args) {
-    const [{ label, options, value }, updateArgs] = useArgs();
+    const [{ selected }, updateArgs] = useArgs();
+
+    const buttonId = useId();
+    const labelTextId = useId();
+    const helperTextId = useId();
 
     const handleChange = (newValue: number | string) => {
-      const list = options as typeof OPTIONS;
-      updateArgs({
-        label: list.filter((val) => val.value === newValue)?.[0]?.label,
-        value: newValue,
-      });
+      updateArgs({ selected: newValue });
     };
 
-    return <Select {...args} label={label} value={value} onChange={handleChange} />;
+    return (
+      <FormControl
+        helperText="하나의 값을 선택하세요."
+        helperTextId={helperTextId}
+        inputId={buttonId}
+        labelText="한식 메뉴 추천"
+        labelTextId={labelTextId}
+      >
+        <Select
+          {...args}
+          aria-describedby={helperTextId}
+          aria-labelledby={labelTextId}
+          id={buttonId}
+          selected={selected}
+          onChange={handleChange}
+        />
+      </FormControl>
+    );
   },
 };

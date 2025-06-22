@@ -1,4 +1,4 @@
-import { LiHTMLAttributes, ReactNode, useCallback } from 'react';
+import { forwardRef, LiHTMLAttributes, ReactNode, useCallback } from 'react';
 
 import { joinClassNames } from '@utils/format';
 
@@ -9,18 +9,12 @@ export interface ListboxItemType extends Omit<LiHTMLAttributes<HTMLDivElement>, 
   value: string;
   isSelected?: boolean;
   onClick?: (selected: string) => void;
-  onHover?: () => void;
 }
 
-export default function ListboxItem({
-  className,
-  isSelected,
-  label,
-  onClick,
-  onHover,
-  value,
-  ...rest
-}: ListboxItemType) {
+const ListboxItem = forwardRef<HTMLDivElement, ListboxItemType>(function ListboxItem(
+  { className, isSelected, label, onClick, value, ...rest },
+  ref,
+) {
   const handleClick = useCallback(() => {
     if (onClick) {
       onClick(value);
@@ -30,14 +24,15 @@ export default function ListboxItem({
   return (
     <div
       {...rest}
+      ref={ref}
       aria-selected={isSelected}
       className={joinClassNames(listStyle.listItem, isSelected && listStyle.selected, className && className)}
       onClick={handleClick}
-      onFocus={onHover}
-      onMouseEnter={onHover}
       role="option"
     >
       {label}
     </div>
   );
-}
+});
+
+export default ListboxItem;

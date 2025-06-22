@@ -8,6 +8,7 @@ export interface FormControlType {
   helperText?: ReactNode;
   helperTextClassName?: string;
   helperTextId?: string;
+  inputId?: string;
   labelText?: ReactNode;
   labelTextClassName?: string;
   labelTextId?: string;
@@ -20,17 +21,19 @@ export default function FormControl(props: FormControlType) {
     helperText,
     helperTextClassName,
     helperTextId,
+    inputId,
     labelText,
     labelTextClassName,
     labelTextId,
   } = props;
 
   return (
-    <div className={joinClassNames('w-full', className && className)}>
+    <div className={joinClassNames('w-max', className && className)}>
       {labelText && (
         <label
           className={joinClassNames('mb-1 block text-12 font-semibold', labelTextClassName && labelTextClassName)}
-          htmlFor={labelTextId}
+          id={labelTextId}
+          htmlFor={inputId}
         >
           {labelText}
         </label>

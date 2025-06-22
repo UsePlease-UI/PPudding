@@ -1,26 +1,18 @@
 import { useArgs } from 'storybook/preview-api';
 
+import FormControl from '@components/Base/FormControl';
 import TextField from '@components/Form/TextField';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof TextField> = {
   args: {
-    helperText: '이름을 입력하세요.',
     isDisabled: false,
     isError: false,
     isFullWidth: false,
     isReadOnly: false,
-    labelText: '이름',
   },
   argTypes: {
-    helperText: {
-      control: 'text',
-      description: 'extra description of the component',
-      table: {
-        category: 'optional',
-      },
-    },
     isDisabled: {
       control: 'boolean',
       description: 'if true, the component will be disabled',
@@ -45,13 +37,6 @@ const meta: Meta<typeof TextField> = {
     isReadOnly: {
       control: 'boolean',
       description: 'if true, user cannot change the value of the component',
-      table: {
-        category: 'optional',
-      },
-    },
-    labelText: {
-      control: 'text',
-      description: 'content of label component',
       table: {
         category: 'optional',
       },
@@ -84,12 +69,10 @@ type Story = StoryObj<typeof TextField>;
 
 export const Default: Story = {
   args: {
-    helperText: '이름을 입력하세요.',
     isDisabled: false,
     isError: false,
     isFullWidth: false,
     isReadOnly: false,
-    labelText: '이름',
   },
   render: function Render(args) {
     const [{ value }, updateArgs] = useArgs();
@@ -99,26 +82,27 @@ export const Default: Story = {
     };
 
     return (
-      <TextField
-        {...args}
-        maxLength={100}
-        type="text"
-        value={value}
-        onChange={(e) => handleChange(e.currentTarget.value)}
-        placeholder="홍길동"
-      />
+      <FormControl helperText="이름을 입력하세요." helperTextId="name-helper-text" labelText="이름">
+        <TextField
+          {...args}
+          aria-describedby="name-helper-text"
+          maxLength={100}
+          type="text"
+          value={value}
+          onChange={(e) => handleChange(e.currentTarget.value)}
+          placeholder="홍길동"
+        />
+      </FormControl>
     );
   },
 };
 
 export const Number: Story = {
   args: {
-    helperText: '최소 10, 최대 100까지 입력할 수 있습니다.',
     isDisabled: false,
     isError: false,
     isFullWidth: false,
     isReadOnly: false,
-    labelText: '수량',
   },
   render: function Render(args) {
     const [{ value }, updateArgs] = useArgs();
@@ -128,15 +112,22 @@ export const Number: Story = {
     };
 
     return (
-      <TextField
-        {...args}
-        max={100}
-        min={10}
-        type="number"
-        value={value}
-        onChange={(e) => handleChange(e.currentTarget.value)}
-        placeholder="7"
-      />
+      <FormControl
+        helperText="최소 10, 최대 100까지 입력할 수 있습니다."
+        helperTextId="quantity-helper-text"
+        labelText="수량"
+      >
+        <TextField
+          {...args}
+          aria-describedby="helper-quantity-text"
+          max={100}
+          min={10}
+          type="number"
+          value={value}
+          onChange={(e) => handleChange(e.currentTarget.value)}
+          placeholder="7"
+        />
+      </FormControl>
     );
   },
 };

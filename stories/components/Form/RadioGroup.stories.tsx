@@ -23,11 +23,7 @@ const meta: Meta<typeof RadioGroup> = {
         },
       },
     },
-    className: {
-      table: {
-        disable: true,
-      },
-    },
+    className: { table: { disable: true } },
     gap: {
       control: 'number',
       description: 'horizontal / vertical spacing of the component',
