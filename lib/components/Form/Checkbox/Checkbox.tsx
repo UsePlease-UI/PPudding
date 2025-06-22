@@ -144,7 +144,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
             className={joinClassNames(
               'font-medium leading-normal',
               getSizeStyle(size).leftText,
-              isDisabled && 'text-gray-400',
+              isDisabled && 'text-gray-600',
             )}
           >
             {label}

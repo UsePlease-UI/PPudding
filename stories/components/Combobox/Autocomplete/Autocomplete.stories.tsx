@@ -1,47 +1,38 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useId, useMemo } from 'react';
 
 import debounce from 'lodash.debounce';
 import { useArgs } from 'storybook/preview-api';
 import { fn } from 'storybook/test';
 
-import { ListboxOptionType } from '@components/Base';
+import { FormControl, ListboxOptionType } from '@components/Base';
 import Autocomplete from '@components/Combobox/Autocomplete';
 
-import { AUTOCOMPLETE_LIST } from '../constants';
+import { AUTOCOMPLETE_LIST } from '../../constants';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   args: {
-    labelText: '',
+    isDisabled: false,
+    isReadOnly: false,
     onChange: fn(),
     onSelect: fn(),
     options: AUTOCOMPLETE_LIST,
     value: '',
   },
   argTypes: {
-    helperText: {
-      control: 'text',
-      description: 'extra description of the component',
+    isDisabled: {
+      control: 'boolean',
+      description: 'if true, the component will be disabled',
       table: {
         category: 'optional',
       },
     },
-    labelText: {
-      control: 'text',
-      description: 'content of label component',
+    isReadOnly: {
+      control: 'boolean',
+      description: 'if true, user cannot change the value of the component',
       table: {
         category: 'optional',
-      },
-    },
-    name: {
-      control: 'text',
-      description: 'name attribute of the input element',
-      table: {
-        category: 'required',
-        type: {
-          summary: 'string',
-        },
       },
     },
     onChange: {
@@ -95,7 +86,6 @@ const meta = {
     },
     layout: 'centered',
   },
-  tags: ['autodocs'],
   title: 'Combobox/Autocomplete',
 } satisfies Meta<typeof Autocomplete>;
 
@@ -104,13 +94,14 @@ type Story = StoryObj<typeof Autocomplete>;
 
 export const Default: Story = {
   args: {
-    labelText: 'Lorem Ipsum',
-    name: 'lorem ipsum',
     options: AUTOCOMPLETE_LIST,
     value: '',
   },
   render: function Render(args) {
     const [{ options, value }, updateArgs] = useArgs();
+
+    const inputId = useId();
+    const labelTextId = useId();
 
     const debouncedSearch = useMemo(
       () =>
@@ -143,7 +134,17 @@ export const Default: Story = {
     return (
       <>
         <div className="max-w-80">
-          <Autocomplete {...args} value={value} onChange={handleChange} onSelect={handleSelect} options={options} />
+          <FormControl inputId={inputId} labelText="Lorem Ipsum" labelTextId={labelTextId}>
+            <Autocomplete
+              {...args}
+              aria-labelledby={labelTextId}
+              id={inputId}
+              value={value}
+              onChange={handleChange}
+              onSelect={handleSelect}
+              options={options}
+            />
+          </FormControl>
         </div>
       </>
     );

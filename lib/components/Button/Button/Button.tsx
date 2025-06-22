@@ -54,7 +54,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonType>(function Button(props, 
       type={type}
       onClick={handleClick}
       className={joinClassNames(
-        'font-pretendard',
         getButtonSizeStyle(size),
         getCommonButtonVariantStyle(variant),
         startIcon || endIcon ? getButtonIconShapeStyle(shape) : getButtonShapeStyle(size, shape),

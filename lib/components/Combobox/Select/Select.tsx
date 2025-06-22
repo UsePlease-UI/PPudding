@@ -1,131 +1,228 @@
-import { HTMLAttributes, ReactNode, useCallback, useEffect, useId, useRef, useState } from 'react';
+import {
+  HTMLAttributes,
+  KeyboardEvent as ReactKeyboardEvent,
+  useCallback,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+
+import { autoUpdate, flip, offset, size, useFloating } from '@floating-ui/react-dom';
 
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 
-import { ClickAwayListener, ListboxOptionType } from '@components/Base';
-import FormControl from '@components/Base/FormControl';
-import { Listbox } from '@components/Base/Listbox';
-import { getCommonButtonVariantStyle } from '@components/Button/styles';
-import usePosition from '@components/usePosition';
+import { ClickAwayListener, Listbox, ListboxOptionType } from '@components/Base';
+import { getCommonButtonVariantStyle } from '@components/Button';
 
 import { joinClassNames } from '@utils/format';
 
-export interface SelectType extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
-  label: string;
-  value: string;
+export interface SelectType extends Omit<HTMLAttributes<HTMLButtonElement>, 'onChange'> {
+  selected: string;
   onChange: (selected: string) => void;
-  helperText?: ReactNode;
   isDisabled?: boolean;
   isReadOnly?: boolean;
-  labelText?: ReactNode;
   options?: ListboxOptionType[];
   placeholder?: string;
 }
 
 export default function Select(props: SelectType) {
-  const {
-    className,
-    helperText,
-    id,
-    isDisabled,
-    isReadOnly,
-    label,
-    labelText,
-    onChange,
-    options = [],
-    placeholder,
-    value,
-    ...rest
-  } = props;
+  const { className, id, isDisabled, isReadOnly, onChange, options = [], placeholder, selected, ...rest } = props;
 
-  const ref = useRef<HTMLButtonElement | null>(null);
+  const { floatingStyles, refs } = useFloating({
+    middleware: [
+      offset(1),
+      flip({ padding: 20 }),
+      size({
+        apply({ availableHeight, elements, rects }) {
+          Object.assign(elements.floating.style, {
+            maxHeight: `${availableHeight}px`,
+            minWidth: `${rects.reference.width}px`,
+          });
+        },
+        padding: 20,
+      }),
+    ],
+    placement: 'bottom',
+    whileElementsMounted: autoUpdate,
+  });
+
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
+  const optionRefs = useRef<HTMLDivElement[]>([]);
 
-  const [isVisible, setIsVisible] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
 
-  const labelId = useId();
   const buttonId = useId();
-  const helperTextId = useId();
-  const listBoxId = useId();
+  const listboxId = useId();
 
-  const position = usePosition({ inputId: id || buttonId, isVisible, listBoxId, totalLength: options.length });
+  const handleClick = useCallback(() => {
+    if (isOpen) {
+      setIsFocused(false);
+      setActiveIndex(-1);
+    } else {
+      setActiveIndex(selected ? options.findIndex((option) => option.value === selected) : 0);
+    }
+    setIsOpen((prev) => !prev);
+  }, [isOpen, selected, options]);
 
-  const handleClick = useCallback(() => setIsVisible((prev) => !prev), []);
+  const handleKeyDown = useCallback((e: ReactKeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      setIsFocused(true);
+    }
+  }, []);
+
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+    setIsFocused(false);
+    setActiveIndex(-1);
+  }, []);
 
   const handleChange = useCallback(
     (selected: string) => {
       onChange(selected);
-      setIsVisible(false);
+      handleClose();
     },
-    [onChange],
+    [onChange, handleClose],
   );
 
+  const selectedLabel = useMemo(() => options.find((option) => option.value === selected)?.label, [selected, options]);
+
   useEffect(() => {
-    const element = listRef.current;
-    if (isVisible && element) {
-      const { left, marginTop, maxWidth, top } = position;
-      element.style.top = `${top + marginTop}px`;
-      element.style.left = `${left}px`;
-      element.style.maxWidth = `${maxWidth}px`;
+    // list가 노출될 때 선택된 또는 첫번째 list item이 focus되도록
+    if (isOpen && activeIndex !== -1) {
+      optionRefs.current[activeIndex]?.focus();
+      optionRefs.current[activeIndex]?.scrollIntoView({
+        block: 'nearest',
+      });
     }
-  }, [isVisible, position]);
+  }, [isOpen, activeIndex]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isOpen) {
+        return;
+      }
+
+      switch (e.key) {
+        case 'ArrowDown':
+          e.preventDefault();
+          setActiveIndex((prev) => (prev + 1 === options.length ? 0 : prev + 1));
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          setActiveIndex((prev) => (prev === 0 ? options.length - 1 : prev - 1));
+          break;
+        case 'Enter':
+          e.preventDefault();
+          onChange(options[activeIndex].value);
+          handleClose();
+          buttonRef.current?.focus();
+          break;
+        case ' ':
+          e.preventDefault();
+          onChange(options[activeIndex].value);
+          handleClose();
+          buttonRef.current?.focus();
+          break;
+        case 'Tab':
+          e.preventDefault();
+          handleClose();
+          buttonRef.current?.focus();
+          break;
+        case 'Escape':
+          e.preventDefault();
+          handleClose();
+          buttonRef.current?.focus();
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, activeIndex, onChange, options, handleClose]);
 
   return (
     <div className={joinClassNames('w-max', className && className)}>
-      <FormControl
-        helperText={helperText}
-        helperTextId={rest['aria-describedby'] || helperTextId}
-        labelText={labelText}
-        labelTextId={id || rest['aria-labelledby'] || labelId}
-      >
-        <div className="group relative">
-          <button
-            ref={ref}
-            aria-describedby={helperText ? rest['aria-describedby'] || helperTextId : undefined}
-            aria-expanded={isVisible}
-            disabled={isDisabled || isReadOnly}
-            id={id || rest['aria-labelledby'] || buttonId}
-            tabIndex={0}
-            type="button"
-            aria-controls={isVisible ? listBoxId : undefined}
-            aria-haspopup="listbox"
-            onClick={handleClick}
-            role="combobox"
-            className={joinClassNames(
-              getCommonButtonVariantStyle('outlined'),
-              'flex h-10 min-w-30 items-center justify-between rounded pl-3 pr-2 text-black',
-              placeholder && !value && 'text-gray-400',
-            )}
-          >
-            <span className="mr-2.5 flex-1 truncate text-left text-14 font-normal leading-normal text-inherit">
-              {placeholder && !value ? placeholder : label}
-            </span>
-            <span className="size-5">
-              <ChevronDownIcon
-                className={joinClassNames('!block h-5 w-5 text-black transition-transform', isVisible && 'rotate-180')}
-              />
-            </span>
-          </button>
-          {isVisible && (
-            <ClickAwayListener
-              element={ref.current}
-              isOpen={isVisible}
-              anchorElement={listRef.current}
-              onClose={handleClick}
-            >
-              <Listbox
-                ref={listRef}
-                className="fixed w-full"
-                id={listBoxId}
-                labelId={rest['aria-labelledby'] || labelId}
-                value={value}
-                onClick={handleChange}
-                options={options}
-              />
-            </ClickAwayListener>
+      <div className="group relative">
+        <button
+          {...rest}
+          ref={(node) => {
+            refs.setReference(node);
+            buttonRef.current = node;
+          }}
+          aria-expanded={isOpen}
+          aria-labelledby={rest['aria-labelledby'] ? `${rest['aria-labelledby']} ${id || buttonId}` : undefined}
+          disabled={isDisabled || isReadOnly}
+          id={id || buttonId}
+          tabIndex={0}
+          type="button"
+          aria-controls={isOpen ? listboxId : undefined}
+          aria-haspopup="listbox"
+          onClick={handleClick}
+          onKeyDown={handleKeyDown}
+          className={joinClassNames(
+            getCommonButtonVariantStyle('outlined'),
+            'flex h-10 min-w-30 items-center justify-between rounded pl-3 pr-2 text-black',
+            placeholder && !selected && 'text-gray-600',
           )}
-        </div>
-      </FormControl>
+        >
+          <span className="mr-2.5 flex-1 truncate text-left text-14 font-normal leading-normal text-inherit">
+            {placeholder && !selected ? placeholder : selectedLabel}
+          </span>
+          <span className="size-5">
+            <ChevronDownIcon
+              className={joinClassNames('!block h-5 w-5 text-black transition-transform', isOpen && 'rotate-180')}
+            />
+          </span>
+        </button>
+        {isOpen && (
+          <ClickAwayListener
+            element={buttonRef.current}
+            isOpen={isOpen}
+            anchorElement={listRef.current}
+            onClose={handleClose}
+          >
+            <Listbox
+              ref={(node) => {
+                refs.setFloating(node);
+                listRef.current = node;
+              }}
+              aria-labelledby={rest['aria-labelledby']}
+              className="w-max"
+              id={listboxId}
+              style={floatingStyles}
+            >
+              {options.map(({ label, value }, index) => (
+                <Listbox.Item
+                  key={`${label}-${value}`}
+                  ref={(node) => {
+                    if (node) {
+                      optionRefs.current[index] = node;
+                    }
+                  }}
+                  isSelected={value === selected}
+                  label={label}
+                  tabIndex={activeIndex === index ? 0 : -1}
+                  value={value}
+                  onClick={handleChange}
+                  className={
+                    isFocused && activeIndex === index ? 'outline outline-2 outline-offset-[-2px] outline-black' : ''
+                  }
+                />
+              ))}
+            </Listbox>
+          </ClickAwayListener>
+        )}
+      </div>
     </div>
   );
 }

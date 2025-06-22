@@ -1,27 +1,21 @@
-import { ChangeEvent, forwardRef, InputHTMLAttributes, KeyboardEvent, ReactNode, useCallback, useId } from 'react';
-
-import FormControl from '@components/Base/FormControl';
+import { ChangeEvent, forwardRef, InputHTMLAttributes, KeyboardEvent, useCallback } from 'react';
 
 import { joinClassNames } from '@utils/format';
 
 export interface TextFieldType extends InputHTMLAttributes<HTMLInputElement> {
-  helperText?: ReactNode;
   isDisabled?: boolean;
   isFullWidth?: boolean;
   isReadOnly?: boolean;
-  labelText?: ReactNode;
   isError?: boolean;
 }
 
 const TextField = forwardRef<HTMLInputElement, TextFieldType>(function TextField(
   {
     className,
-    helperText,
     isDisabled,
     isError,
     isFullWidth,
     isReadOnly,
-    labelText,
     max,
     maxLength,
     min,
@@ -32,9 +26,6 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(function TextField
   },
   ref,
 ) {
-  const labelId = useId();
-  const helperTextId = useId();
-
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       if (type === 'text') {
@@ -80,36 +71,26 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(function TextField
   );
 
   return (
-    <FormControl
-      helperText={helperText}
-      helperTextId={props['aria-describedby'] || helperTextId}
-      labelText={labelText}
-      labelTextId={props.id || labelId}
-    >
-      <input
-        {...props}
-        ref={ref}
-        aria-describedby={helperText ? props['aria-describedby'] || helperTextId : undefined}
-        aria-label={!labelText ? 'outlined-text-input' : undefined}
-        disabled={isDisabled}
-        id={props.id || labelId}
-        max={max}
-        maxLength={maxLength}
-        min={min}
-        readOnly={isReadOnly}
-        type={type}
-        autoComplete={props.autoComplete || 'new-password'}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        className={joinClassNames(
-          'h-11 truncate rounded border border-black px-3 py-2.5 text-16 font-normal leading-normal tracking-normal text-black placeholder:text-gray-400 hover:bg-gray-100 focus:bg-gray-200 disabled:pointer-events-none disabled:border-gray-400 disabled:bg-gray-100 disabled:text-gray-600 under-tablet:min-w-0',
-          isError && 'border-red-600',
-          isFullWidth ? 'w-full min-w-0' : 'min-w-80',
-          isReadOnly && 'pointer-events-none border-gray-400 bg-gray-100',
-          className && className,
-        )}
-      />
-    </FormControl>
+    <input
+      {...props}
+      ref={ref}
+      disabled={isDisabled}
+      max={max}
+      maxLength={maxLength}
+      min={min}
+      readOnly={isReadOnly}
+      type={type}
+      autoComplete={props.autoComplete || 'new-password'}
+      onChange={handleChange}
+      onKeyDown={handleKeyDown}
+      className={joinClassNames(
+        'h-11 truncate rounded border border-black px-3 py-2.5 text-16 font-normal leading-normal tracking-normal text-black placeholder:text-gray-600 hover:bg-gray-100 focus:bg-gray-200 disabled:pointer-events-none disabled:border-gray-400 disabled:bg-gray-100 disabled:text-gray-600 under-tablet:min-w-0',
+        isError && 'border-red-600',
+        isFullWidth ? 'w-full min-w-0' : 'min-w-80',
+        isReadOnly && 'pointer-events-none border-gray-400 bg-gray-100',
+        className && className,
+      )}
+    />
   );
 });
 

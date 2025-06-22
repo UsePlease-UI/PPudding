@@ -18,7 +18,6 @@ export default {
     extend: {
       fontFamily: {
         inherit: 'inherit',
-        pretendard: ['Pretendard', 'sans-serif'],
       },
       fontSize: {
         ...rem1000,

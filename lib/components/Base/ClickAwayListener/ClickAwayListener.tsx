@@ -8,13 +8,9 @@ export interface ClickAwayListenerType {
   onClose?: () => void;
 }
 
-export default function ClickAwayListener({
-  anchorElement,
-  children,
-  element,
-  isOpen,
-  onClose,
-}: ClickAwayListenerType) {
+export default function ClickAwayListener(props: ClickAwayListenerType) {
+  const { anchorElement, children, element, isOpen, onClose } = props;
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (

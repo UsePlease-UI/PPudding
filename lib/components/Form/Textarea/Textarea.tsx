@@ -1,24 +1,17 @@
-import { ChangeEvent, forwardRef, ReactNode, TextareaHTMLAttributes, useCallback, useEffect, useId } from 'react';
-
-import FormControl from '@components/Base/FormControl';
+import { ChangeEvent, forwardRef, TextareaHTMLAttributes, useCallback, useEffect } from 'react';
 
 import useForwardRef from '@hooks/useForwardRef';
 import { joinClassNames } from '@utils/format';
 
 export interface TextareaType extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  helperText?: ReactNode;
   isDisabled?: boolean;
   isReadOnly?: boolean;
-  labelText?: ReactNode;
   isAutoHeight?: boolean;
   isError?: boolean;
 }
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaType>(function Textarea({ onChange, value, ...props }, ref) {
-  const { className, helperText, isAutoHeight, isDisabled, isError, isReadOnly, labelText, maxLength, ...rest } = props;
-
-  const labelId = useId();
-  const helperTextId = useId();
+  const { className, isAutoHeight, isDisabled, isError, isReadOnly, maxLength, ...rest } = props;
 
   const textareaRef = useForwardRef<HTMLTextAreaElement>(ref);
 
@@ -46,40 +39,30 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaType>(function Textarea
   }, [isAutoHeight, value, textareaRef]);
 
   return (
-    <FormControl
-      helperText={helperText}
-      helperTextId={props['aria-describedby'] || helperTextId}
-      labelText={labelText}
-      labelTextId={props.id || labelId}
+    <div
+      className={joinClassNames(
+        'h-50 w-full overflow-hidden rounded border border-black bg-white focus-within:bg-gray-200 hover:bg-gray-100 under-tablet:min-w-0',
+        isAutoHeight && 'h-full min-h-30',
+        isError && 'border border-red-600',
+        isReadOnly && 'pointer-events-none border-gray-400 bg-gray-100',
+        isDisabled && 'pointer-events-none border-gray-400 bg-gray-100 text-gray-600',
+        className && className,
+      )}
     >
-      <div
+      <textarea
+        {...rest}
+        ref={textareaRef}
+        disabled={isDisabled}
+        maxLength={maxLength}
+        readOnly={isReadOnly}
+        value={value}
+        onChange={handleChange}
         className={joinClassNames(
-          'h-50 w-full overflow-hidden rounded border border-black bg-white focus-within:bg-gray-200 hover:bg-gray-100 under-tablet:min-w-0',
-          isAutoHeight && 'h-full min-h-30',
-          isError && 'border border-red-600',
-          isReadOnly && 'pointer-events-none border-gray-400 bg-gray-100',
-          isDisabled && 'pointer-events-none border-gray-400 bg-gray-100 text-gray-600',
-          className && className,
+          'custom-scrollbar h-full min-h-0 w-full resize-none overflow-y-auto bg-inherit px-3 py-2.5 align-top text-16 font-normal leading-normal tracking-normal placeholder:text-gray-600',
+          isAutoHeight && 'min-h-inherit',
         )}
-      >
-        <textarea
-          {...rest}
-          ref={textareaRef}
-          aria-describedby={helperText ? props['aria-describedby'] || helperTextId : undefined}
-          aria-label={!labelText ? 'outlined-text-area' : undefined}
-          disabled={isDisabled}
-          id={props.id || labelId}
-          maxLength={maxLength}
-          readOnly={isReadOnly}
-          value={value}
-          onChange={handleChange}
-          className={joinClassNames(
-            'custom-scrollbar h-full min-h-0 w-full resize-none overflow-y-auto bg-inherit px-3 py-2.5 align-top text-16 font-normal leading-normal tracking-normal placeholder:text-gray-400',
-            isAutoHeight && 'min-h-inherit',
-          )}
-        />
-      </div>
-    </FormControl>
+      />
+    </div>
   );
 });
 

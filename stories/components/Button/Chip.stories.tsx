@@ -5,7 +5,7 @@ import { getChipVariantStyle } from '@components/Button/Chip/styles';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-const meta: Meta<typeof Chip> = {
+const meta = {
   args: {
     isDeletable: false,
     label: '사탕',
@@ -26,6 +26,16 @@ const meta: Meta<typeof Chip> = {
       description: 'content of the component',
       table: {
         category: 'required',
+      },
+    },
+    onClick: {
+      control: false,
+      description: 'click event handler',
+      table: {
+        category: 'optional',
+        type: {
+          summary: '( ) => void',
+        },
       },
     },
     onDelete: {
@@ -93,7 +103,7 @@ const meta: Meta<typeof Chip> = {
   },
   tags: ['autodocs'],
   title: 'Button/Chip',
-};
+} satisfies Meta<typeof Chip>;
 
 export default meta;
 type Story = StoryObj<typeof Chip>;
@@ -103,6 +113,16 @@ export const Default: Story = {
     isDeletable: false,
     label: '사탕',
     value: 'candy',
+    variant: 'outlined',
+  },
+};
+
+export const Clickable: Story = {
+  args: {
+    isDeletable: false,
+    label: '초콜렛',
+    onClick: () => console.log('clicked'),
+    value: 'chocolate',
     variant: 'outlined',
   },
 };
