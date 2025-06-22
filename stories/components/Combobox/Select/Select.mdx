@@ -1,0 +1,199 @@
+import { Canvas, Meta, Story, ArgTypes } from '@storybook/addon-docs/blocks';
+
+import * as SelectStories from './Select.stories';
+
+import AnatomyImage from './select_anatomy.png';
+
+<Meta of={SelectStories} />
+
+<style>
+  {`
+      #storybook-docs code {
+        font-size: 14px !important;
+        font-weight: 600;
+      }
+
+      #storybook-docs pre {
+        font-size: 16px !important;
+        font-weight: 500;
+        background-color: #f7fafc !important;
+      }
+
+      #storybook-docs p,
+      #storybook-docs li {
+        font-size: 16px !important;
+      }
+
+      #storybook-docs a:hover {
+        text-decoration: underline !important;
+      }
+
+      #storybook-docs h1 {
+        margin-bottom: 40px !important;
+      }
+
+      #storybook-docs h2 {
+        font-weight: 600 !important;
+        margin-top: 60px !important;
+      }
+
+      #storybook-docs h2:first-of-type {
+        margin-top: 0px !important;
+      }
+
+      #storybook-docs .img-container {
+        padding: 10px !important;
+        border-radius: 4px !important;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px !important;
+      }
+
+      #storybook-docs .img-container b {
+        margin-bottom: 20px !important;
+      }
+
+      #storybook-docs img {
+        width: 748px !important;
+        height: 400px !important;
+        margin: 0 auto !important;
+        object-fit: contain;
+      }
+
+      #storybook-docs .keyboard {
+        width: max-content;
+        border: 1px solid black;
+        padding: 2px 8px;
+        border-radius: 4px;
+        box-shadow: 1px 1px 0px 0px black;
+        font-weight: 600;
+      }
+  `}
+</style>
+
+# Select
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Anatomy](#anatomy)
+- [WAI-ARIA Roles, States, and Properties](#wai-aria-roles-states-and-properties)
+- [Keyboard Interaction](#keyboard-interaction)
+- [Props](#props)
+- [Usage](#usage)
+
+## Overview
+
+여러 옵션 중 하나를 선택할 수 있는 드롭다운 형태의 **Select** 컴포넌트입니다.
+
+## Anatomy
+
+**Select**는 다음과 같이 구현되어 있습니다.
+
+<div className="img-container">
+  <img src={AnatomyImage} alt="Select Anatomy" />
+</div>
+
+1️⃣ **Select Trigger**
+
+2️⃣ **Select List**
+
+3️⃣ **Select ListItem**
+
+## WAI-ARIA Roles, States, and Properties
+
+### Select Trigger
+
+✅ 트리거는 button으로 구현되어 있습니다.  
+✅ 버튼에는 `aria-haspopup="listbox"`가 설정되어 있습니다.  
+✅ 버튼에는 시각적 라벨의 ID를 참조하는 `aria-labelledby`가 설정되어 있습니다.  
+✅ 버튼에는 드롭다운의 존재를 알리는 `aria-haspopup="listbox"`가 설정되어 있습니다.  
+✅ 버튼에는 열림 상태를 나타내는 `aria-expanded`가 설정되어 있습니다.  
+✅ 버튼에는 옵션 목록의 ID를 참조하는 `aria-controls`가 설정되어 있습니다.
+
+### Select List
+
+✅ `role="listbox"`로 설정되어 있습니다.  
+✅ 옵션 목록에는 시각적 라벨의 ID를 참조하는 `aria-labelledby`가 설정되어 있습니다.  
+✅ 옵션 목록은 고유한 ID를 가지며, 트리거 버튼의 `aria-controls`가 이를 참조합니다.
+
+### Select ListItem
+
+✅ `role="option"`으로 설정되어 있습니다.  
+✅ 선택된 옵션에는 `aria-selected="true"`가 설정되어 있습니다.
+
+## Keyboard Interaction
+
+### Select Trigger
+
+<div className="keyboard">Tab</div>
+
+- 트리거 버튼에 포커스를 이동합니다.
+
+<div className="keyboard">Enter / Space</div>
+
+- 옵션 목록을 열거나 닫습니다.
+
+### Select List & Select ListItem
+
+<div className="keyboard">ArrowDown</div>
+
+- 다음 옵션으로 포커스를 이동합니다.
+
+<div className="keyboard">ArrowUp</div>
+
+- 이전 옵션으로 포커스를 이동합니다.
+
+<div className="keyboard">Enter / Space</div>
+
+- 포커스된 옵션을 선택합니다.
+
+<div className="keyboard">Escape</div>
+
+- 옵션 목록을 닫습니다.
+
+## Props
+
+<ArgTypes />
+
+## Usage
+
+```tsx
+import { Select } from '@useplease-ui/ppudding';
+
+const options = [
+  { idx: '1', label: '김치찌개', value: 'kimchi-stew' },
+  { idx: '2', label: '비빔밥', value: 'bibimbap' },
+  { idx: '3', label: '불고기', value: 'bulgogi' },
+  { idx: '4', label: '된장찌개', value: 'soybean-paste-stew' },
+  { idx: '5', label: '삼겹살', value: 'samgyeopsal' },
+  { idx: '6', label: '잡채', value: 'japchae' },
+  { idx: '7', label: '떡볶이', value: 'tteokbokki' },
+  { idx: '8', label: '칼국수', value: 'kalguksu' },
+  { idx: '9', label: '순두부찌개', value: 'soft-tofu-stew' },
+  { idx: '10', label: '물냉면', value: 'cold-noodles' },
+];
+
+export default function SelectExample() {
+  const buttonId = useId();
+  const labelTextId = useId();
+  const helperTextId = useId();
+
+  return (
+    <FormControl
+      helperText="하나의 값을 선택하세요."
+      helperTextId={helperTextId}
+      inputId={buttonId}
+      labelText="한식 메뉴 추천"
+      labelTextId={labelTextId}
+    >
+      <Select
+        aria-describedby={helperTextId}
+        aria-labelledby={labelTextId}
+        id={buttonId}
+        selected={selected}
+        onChange={handleChange}
+        options={OPTIONS}
+      />
+    </FormControl>
+  );
+}
+```
