@@ -1,14 +1,4 @@
-import {
-  ChangeEvent,
-  cloneElement,
-  forwardRef,
-  InputHTMLAttributes,
-  MouseEvent,
-  ReactElement,
-  ReactNode,
-  useCallback,
-  useId,
-} from 'react';
+import { cloneElement, forwardRef, InputHTMLAttributes, ReactElement, ReactNode, useId } from 'react';
 
 import { CheckIcon } from '@heroicons/react/24/solid';
 
@@ -16,7 +6,7 @@ import { joinClassNames } from '@utils/format';
 
 import { CheckboxPositionType, CheckboxSizeType, getSizeStyle } from './styles';
 
-export interface CheckboxType extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface CheckboxType extends Omit<InputHTMLAttributes<HTMLInputElement>, 'disabled' | 'size'> {
   label: ReactNode;
   isDisabled?: boolean;
   size?: CheckboxSizeType;
@@ -26,36 +16,14 @@ export interface CheckboxType extends Omit<InputHTMLAttributes<HTMLInputElement>
 }
 
 const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
-  {
-    checkedIcon,
-    className,
-    icon,
-    isDisabled,
-    label,
-    onChange,
-    position = 'end',
-    size = 'medium',
-    ...props
-  }: CheckboxType,
+  { checkedIcon, className, icon, isDisabled, label, position = 'end', size = 'medium', ...rest }: CheckboxType,
   ref,
 ) {
-  const labelId = useId();
-
-  const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      e.currentTarget.blur();
-      if (onChange) {
-        onChange(e);
-      }
-    },
-    [onChange],
-  );
-
-  const handleClick = useCallback((e: MouseEvent<HTMLInputElement>) => e.currentTarget.blur(), []);
+  const id = useId();
 
   return (
     <label
-      htmlFor={labelId}
+      htmlFor={rest.id || id}
       className={joinClassNames(
         'group inline-flex w-max cursor-pointer items-center',
         isDisabled && 'pointer-events-none',
@@ -85,16 +53,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxType>(function Checkbox(
           'inline-flex items-center group-focus-within:rounded group-focus-within:bg-gray-200 group-hover:rounded group-hover:bg-gray-100',
         )}
       >
-        <input
-          {...props}
-          ref={ref}
-          className="peer sr-only"
-          disabled={isDisabled}
-          id={labelId}
-          type="checkbox"
-          onChange={handleChange}
-          onClick={handleClick}
-        />
+        <input {...rest} ref={ref} className="peer sr-only" disabled={isDisabled} id={rest.id || id} type="checkbox" />
         {checkedIcon ? (
           <span
             className={joinClassNames(

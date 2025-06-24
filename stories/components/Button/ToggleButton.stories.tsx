@@ -1,6 +1,6 @@
 import { BoldIcon, ItalicIcon } from '@heroicons/react/24/solid';
 
-import { ToggleButton } from '@components/Button/ToggleButton';
+import ToggleButton from '@components/Button/ToggleButton';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 

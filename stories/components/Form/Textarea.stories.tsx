@@ -7,7 +7,7 @@ import Textarea from '@components/Form/Textarea';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-const meta: Meta<typeof Textarea> = {
+const meta = {
   args: {
     isAutoHeight: true,
     isDisabled: false,
@@ -56,7 +56,7 @@ const meta: Meta<typeof Textarea> = {
   },
   tags: ['autodocs'],
   title: 'Form/Textarea',
-};
+} satisfies Meta<typeof Textarea>;
 
 export default meta;
 type Story = StoryObj<typeof Textarea>;

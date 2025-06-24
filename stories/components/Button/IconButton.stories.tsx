@@ -1,4 +1,4 @@
-import { expect, fn, spyOn, userEvent, within } from 'storybook/test';
+import { expect, spyOn, userEvent, within } from 'storybook/test';
 
 import { StarIcon } from '@heroicons/react/24/solid';
 
@@ -11,8 +11,7 @@ const meta = {
   args: {
     children: <StarIcon />,
     isDisabled: false,
-    // https://github.com/storybookjs/storybook/issues/21551#issuecomment-1889574929
-    onClick: fn(),
+    onClick: () => console.log('Clicked!'),
     shape: 'rounded',
     size: 'large',
     variant: 'outlined',
@@ -113,6 +112,31 @@ export const Default: Story = {
     size: 'large',
     variant: 'outlined',
   },
+  play: async ({ args, canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    const consoleSpy = spyOn(console, 'log');
+
+    await step('icon button should render its children (svg icon)', async () => {
+      await expect(await canvas.findByRole('button')).toBeInTheDocument();
+      const element = document.getElementsByTagName('svg')[0];
+      await expect(canvas.getByRole('button')).toContainElement(element);
+    });
+
+    await step(`icon button variant : ${args.variant}`, async () => {
+      await expect(canvas.getByRole('button')).toHaveClass(getCommonButtonVariantStyle(args.variant) as string);
+    });
+
+    await step(`icon button size : ${args.size}`, async () => {
+      await expect(canvas.getByRole('button')).toHaveClass(getIconButtonSizeStyle(args.size) as string);
+    });
+
+    if (!args.isDisabled) {
+      await step('when clicked, it should fire onclick event', async () => {
+        await userEvent.click(canvas.getByRole('button'));
+        await expect(consoleSpy).toHaveBeenCalledWith('Clicked!');
+      });
+    }
+  },
   render: function Render(args) {
     return (
       <IconButton aria-label="찜하기" {...args}>
@@ -120,30 +144,4 @@ export const Default: Story = {
       </IconButton>
     );
   },
-};
-
-Default.play = async ({ args, canvasElement, step }) => {
-  const canvas = within(canvasElement);
-  const consoleSpy = spyOn(console, 'log');
-
-  await step('icon button should render its children (svg icon)', async () => {
-    await expect(await canvas.findByRole('button')).toBeInTheDocument();
-    const element = document.getElementsByTagName('svg')[0];
-    await expect(canvas.getByRole('button')).toContainElement(element);
-  });
-
-  await step(`icon button variant : ${args.variant}`, async () => {
-    await expect(canvas.getByRole('button')).toHaveClass(getCommonButtonVariantStyle(args.variant) as string);
-  });
-
-  await step(`icon button size : ${args.size}`, async () => {
-    await expect(canvas.getByRole('button')).toHaveClass(getIconButtonSizeStyle(args.size) as string);
-  });
-
-  if (!args.isDisabled) {
-    await step('when clicked, it should fire onclick event', async () => {
-      await userEvent.click(canvas.getByRole('button'));
-      await expect(consoleSpy).toHaveBeenCalledWith('Clicked!');
-    });
-  }
 };

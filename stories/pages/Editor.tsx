@@ -10,7 +10,7 @@ import {
   UnderlineIcon,
 } from '@heroicons/react/24/solid';
 
-import { IconButton, ToggleButton, ToggleButtonGroup } from '@components/Button';
+import { IconButton, ToggleButton } from '@components/Button';
 import Popover from '@components/Popover';
 import usePopover from '@components/usePopover';
 
@@ -28,7 +28,7 @@ const Editor = () => {
   return (
     <div className="w-full under-tablet:p-2.5">
       <div className="flex flex-wrap justify-end gap-2.5 rounded-t border border-b-0 border-black bg-white p-2.5">
-        <ToggleButtonGroup
+        <ToggleButton.Group
           value={style}
           onClick={(selected) => {
             if (style.includes(selected)) {
@@ -47,7 +47,7 @@ const Editor = () => {
           <ToggleButton aria-label="밑줄" value="underline">
             <UnderlineIcon />
           </ToggleButton>
-        </ToggleButtonGroup>
+        </ToggleButton.Group>
         <IconButton
           aria-expanded={isOpen}
           aria-label="색상 선택"
@@ -81,7 +81,7 @@ const Editor = () => {
             ))}
           </div>
         </Popover>
-        <ToggleButtonGroup
+        <ToggleButton.Group
           value={align}
           onClick={(selected) => {
             if (selected === '') {
@@ -103,7 +103,7 @@ const Editor = () => {
             <Bars3BottomRightIcon />
           </ToggleButton>
           <ToggleButton value="">RESET</ToggleButton>
-        </ToggleButtonGroup>
+        </ToggleButton.Group>
       </div>
       <div className="h-[calc(100vh-158px)] w-full border border-black tablet:h-125">
         <label htmlFor="editor">

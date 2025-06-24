@@ -3,15 +3,15 @@ import { ChangeEvent, forwardRef, TextareaHTMLAttributes, useCallback, useEffect
 import useForwardRef from '@hooks/useForwardRef';
 import { joinClassNames } from '@utils/format';
 
-export interface TextareaType extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextareaType extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'disabled'> {
   isDisabled?: boolean;
   isReadOnly?: boolean;
   isAutoHeight?: boolean;
   isError?: boolean;
 }
 
-const Textarea = forwardRef<HTMLTextAreaElement, TextareaType>(function Textarea({ onChange, value, ...props }, ref) {
-  const { className, isAutoHeight, isDisabled, isError, isReadOnly, maxLength, ...rest } = props;
+const Textarea = forwardRef<HTMLTextAreaElement, TextareaType>(function Textarea(props, ref) {
+  const { className, isAutoHeight, isDisabled, isError, isReadOnly, maxLength, onChange, value, ...rest } = props;
 
   const textareaRef = useForwardRef<HTMLTextAreaElement>(ref);
 

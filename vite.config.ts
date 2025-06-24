@@ -24,6 +24,7 @@ export default defineConfig({
       output: {
         experimentalMinChunkSize: Infinity, // prevent small chunks
         globals: {
+          '@floating-ui/react-dom': '@Floating-UI/React-Dom',
           '@heroicons/react': '@Heroicons/React',
           clsx: 'CLSX',
           dayjs: 'Dayjs',

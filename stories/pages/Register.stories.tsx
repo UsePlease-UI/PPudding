@@ -59,7 +59,6 @@ Default.play = async ({ canvasElement, step }) => {
     expect('Supersecret123!').toEqual(expect.stringMatching(PASSWORD_REG_EXP));
   });
 
-  // portal에서 값을 찾아오도록 body에서 findByText
   await step('연도 선택', async () => {
     await userEvent.click(year);
     await sleep(500);

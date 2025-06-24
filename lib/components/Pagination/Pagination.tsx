@@ -7,14 +7,13 @@ import {
   ChevronRightIcon,
 } from '@heroicons/react/24/solid';
 
-import IconButton from '@components/Button/IconButton';
-import { ButtonShapeType, ButtonSizeType, ButtonVariantType } from '@components/Button/styles';
+import { ButtonShapeType, ButtonSizeType, ButtonVariantType, IconButton } from '@components/Button';
 
 import { joinClassNames } from '@utils/format';
 
 import { getActiveVariant } from './styles';
 
-export interface SharedPaginationType {
+export interface PaginationType {
   className?: string;
   itemsPerPage?: number;
   pageRange?: number;
@@ -32,7 +31,7 @@ export interface SharedPaginationType {
   totalCount?: number;
 }
 
-export default function SharedPagination(props: SharedPaginationType) {
+export default function Pagination(props: PaginationType) {
   const {
     className,
     firstIcon,

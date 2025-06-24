@@ -14,11 +14,10 @@ import { autoUpdate, flip, offset, size, useFloating } from '@floating-ui/react-
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 
 import { ClickAwayListener, Listbox, ListboxOptionType } from '@components/Base';
-import { getCommonButtonVariantStyle } from '@components/Button';
 
 import { joinClassNames } from '@utils/format';
 
-export interface SelectType extends Omit<HTMLAttributes<HTMLButtonElement>, 'onChange'> {
+export interface SelectType extends Omit<HTMLAttributes<HTMLButtonElement>, 'disabled' | 'onChange'> {
   selected: string;
   onChange: (selected: string) => void;
   isDisabled?: boolean;
@@ -107,39 +106,21 @@ export default function Select(props: SelectType) {
         return;
       }
 
-      switch (e.key) {
-        case 'ArrowDown':
-          e.preventDefault();
-          setActiveIndex((prev) => (prev + 1 === options.length ? 0 : prev + 1));
-          break;
-        case 'ArrowUp':
-          e.preventDefault();
-          setActiveIndex((prev) => (prev === 0 ? options.length - 1 : prev - 1));
-          break;
-        case 'Enter':
-          e.preventDefault();
-          onChange(options[activeIndex].value);
-          handleClose();
-          buttonRef.current?.focus();
-          break;
-        case ' ':
-          e.preventDefault();
-          onChange(options[activeIndex].value);
-          handleClose();
-          buttonRef.current?.focus();
-          break;
-        case 'Tab':
-          e.preventDefault();
-          handleClose();
-          buttonRef.current?.focus();
-          break;
-        case 'Escape':
-          e.preventDefault();
-          handleClose();
-          buttonRef.current?.focus();
-          break;
-        default:
-          break;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setActiveIndex((prev) => (prev + 1 === options.length ? 0 : prev + 1));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setActiveIndex((prev) => (prev === 0 ? options.length - 1 : prev - 1));
+      } else if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        onChange(options[activeIndex].value);
+        handleClose();
+        buttonRef.current?.focus();
+      } else if (e.key === 'Tab' || e.key === 'Escape') {
+        e.preventDefault();
+        handleClose();
+        buttonRef.current?.focus();
       }
     };
 
@@ -170,8 +151,7 @@ export default function Select(props: SelectType) {
           onClick={handleClick}
           onKeyDown={handleKeyDown}
           className={joinClassNames(
-            getCommonButtonVariantStyle('outlined'),
-            'flex h-10 min-w-30 items-center justify-between rounded pl-3 pr-2 text-black',
+            'flex h-10 min-w-30 items-center justify-between rounded border border-black bg-white pl-3 pr-2 text-black hover:bg-gray-100 active:bg-gray-200 disabled:pointer-events-none disabled:border-gray-400 disabled:bg-gray-100 disabled:text-gray-600',
             placeholder && !selected && 'text-gray-600',
           )}
         >

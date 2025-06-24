@@ -20,8 +20,8 @@ export interface PickerType {
   showMonthPicker?: boolean;
 }
 
-export default function Picker({ showMonthPicker, ...props }: PickerType) {
-  const { maxDate, minDate, onCancel, onChange, onSelect, value } = props;
+export default function Picker(props: PickerType) {
+  const { maxDate, minDate, onCancel, onChange, onSelect, showMonthPicker, value } = props;
 
   return (
     <PickerProvider

@@ -8,12 +8,14 @@ export type PickerDateType = Date | null;
 
 export interface PickerContextType {
   current: Dayjs;
-  datePickerId: string;
   isDateDisabled: (date: DateObjType) => boolean;
+  isNextYearDisabled: boolean;
   isOpen: boolean;
+  isPrevYearDisabled: boolean;
   selected: PickerDateType;
-  containerId: string;
   isMonthDisabled: (date: string) => boolean;
+  isNextMonthDisabled: boolean;
+  isPrevMonthDisabled: boolean;
   onCancel: () => void;
   onConfirm: () => void;
   onDateChange: (formattedDate: string) => void;

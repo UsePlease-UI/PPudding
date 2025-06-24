@@ -1,4 +1,4 @@
-import { expect, fn, spyOn, userEvent, within } from 'storybook/test';
+import { expect, spyOn, userEvent, within } from 'storybook/test';
 
 import Chip from '@components/Button/Chip';
 import { getChipVariantStyle } from '@components/Button/Chip/styles';
@@ -9,7 +9,7 @@ const meta = {
   args: {
     isDeletable: false,
     label: '사탕',
-    onDelete: fn(),
+    onDelete: () => console.log('Delete!'),
     value: 'candy',
     variant: 'outlined',
   },
@@ -108,7 +108,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof Chip>;
 
-export const Default: Story = {
+export const Chip1Default: Story = {
   args: {
     isDeletable: false,
     label: '사탕',
@@ -117,7 +117,7 @@ export const Default: Story = {
   },
 };
 
-export const Clickable: Story = {
+export const Chip2Clickable: Story = {
   args: {
     isDeletable: false,
     label: '초콜렛',
@@ -127,7 +127,7 @@ export const Clickable: Story = {
   },
 };
 
-export const Deletable: Story = {
+export const Chip3Deletable: Story = {
   args: {
     isDeletable: true,
     label: '사탕',

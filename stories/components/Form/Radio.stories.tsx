@@ -1,21 +1,22 @@
 import { useArgs } from 'storybook/preview-api';
 import { expect, fn, within } from 'storybook/test';
 
-import { Radio } from '@components/Form/Radio';
+import Radio from '@components/Form/Radio';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-const meta: Meta<typeof Radio> = {
+const meta = {
   args: {
     isDisabled: false,
     label: '빨강',
     name: 'color',
     onChange: fn(),
     position: 'start',
-    size: 'small',
+    size: 'medium',
     value: 'red',
   },
   argTypes: {
+    currentValue: { table: { disable: true } },
     isDisabled: {
       control: 'boolean',
       description: 'if true, the component will be disabled',
@@ -111,7 +112,7 @@ const meta: Meta<typeof Radio> = {
   },
   tags: ['autodocs'],
   title: 'Form/Radio',
-};
+} satisfies Meta<typeof Radio>;
 
 export default meta;
 type Story = StoryObj<typeof Radio>;
@@ -122,8 +123,13 @@ export const Default: Story = {
     label: '빨강',
     name: 'color',
     position: 'end',
-    size: 'small',
+    size: 'medium',
     value: 'red',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const radio1 = canvas.getByRole('radio', { name: '빨강' });
+    await expect(radio1).toBeChecked();
   },
   render: function Render(args) {
     const [{ value }, updateArgs] = useArgs();
@@ -134,10 +140,4 @@ export const Default: Story = {
 
     return <Radio {...args} currentValue={value} onChange={(e) => handleChange(e.currentTarget.value)} />;
   },
-};
-
-Default.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const radio1 = canvas.getByRole('radio', { name: '빨강' });
-  await expect(radio1).toBeChecked();
 };

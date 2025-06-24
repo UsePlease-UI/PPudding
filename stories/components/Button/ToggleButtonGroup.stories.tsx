@@ -2,7 +2,7 @@ import { fn } from 'storybook/test';
 
 import { BoldIcon, ItalicIcon, UnderlineIcon } from '@heroicons/react/24/solid';
 
-import { ToggleButton, ToggleButtonGroup } from '@components/Button/ToggleButton';
+import ToggleButton from '@components/Button/ToggleButton';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
@@ -44,7 +44,7 @@ const meta = {
       },
     },
   },
-  component: ToggleButtonGroup,
+  component: ToggleButton.Group,
   parameters: {
     docs: {
       argTypes: {
@@ -54,11 +54,11 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  title: 'Button/ToggleButtonGroup',
-} satisfies Meta<typeof ToggleButtonGroup>;
+  title: 'Button/ToggleButton.Group',
+} satisfies Meta<typeof ToggleButton.Group>;
 
 export default meta;
-type Story = StoryObj<typeof ToggleButtonGroup>;
+type Story = StoryObj<typeof ToggleButton.Group>;
 
 export const Default: Story = {
   args: {
@@ -66,10 +66,10 @@ export const Default: Story = {
   },
   render: function Render(args) {
     return (
-      <ToggleButtonGroup {...args}>
+      <ToggleButton.Group {...args}>
         <ToggleButton value="banana">Banana</ToggleButton>
         <ToggleButton value="orange">Orange</ToggleButton>
-      </ToggleButtonGroup>
+      </ToggleButton.Group>
     );
   },
 };
@@ -78,7 +78,7 @@ export const MultiSelection: Story = {
   args: { value: ['bold', 'italic'] },
   render: function Render(args) {
     return (
-      <ToggleButtonGroup {...args}>
+      <ToggleButton.Group {...args}>
         <ToggleButton aria-label="bold" value="bold">
           <BoldIcon />
         </ToggleButton>
@@ -88,7 +88,7 @@ export const MultiSelection: Story = {
         <ToggleButton aria-label="underline" value="underline">
           <UnderlineIcon />
         </ToggleButton>
-      </ToggleButtonGroup>
+      </ToggleButton.Group>
     );
   },
 };

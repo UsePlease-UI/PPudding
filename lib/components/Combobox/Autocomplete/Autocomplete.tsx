@@ -3,7 +3,7 @@ import { ChangeEvent, InputHTMLAttributes, useCallback, useEffect, useId, useRef
 import { autoUpdate, flip, offset, size, useFloating } from '@floating-ui/react-dom';
 
 import { ClickAwayListener, Listbox, ListboxOptionType } from '@components/Base';
-import { TextField } from '@components/Form';
+import TextField from '@components/Form/TextField';
 
 import { joinClassNames } from '@utils/format';
 
@@ -114,30 +114,19 @@ export default function Autocomplete(props: AutocompleteType) {
       }
 
       // list item keyboard navigation
-      switch (e.key) {
-        case 'ArrowDown':
-          e.preventDefault();
-          setActiveIndex((prev) => (prev + 1 === options.length ? 0 : prev + 1));
-          break;
-        case 'ArrowUp':
-          e.preventDefault();
-          setActiveIndex((prev) => (prev === 0 ? options.length - 1 : prev - 1));
-          break;
-        case 'Enter':
-          e.preventDefault();
-          onSelect(options[activeIndex]);
-          handleClose();
-          break;
-        case 'Tab':
-          e.preventDefault();
-          handleClose();
-          break;
-        case 'Escape':
-          e.preventDefault();
-          handleClose();
-          break;
-        default:
-          break;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setActiveIndex((prev) => (prev + 1 === options.length ? 0 : prev + 1));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setActiveIndex((prev) => (prev === 0 ? options.length - 1 : prev - 1));
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        onSelect(options[activeIndex]);
+        handleClose();
+      } else if (e.key === 'Tab' || e.key === 'Escape') {
+        e.preventDefault();
+        handleClose();
       }
     };
 

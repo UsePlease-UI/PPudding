@@ -1,11 +1,11 @@
 import { useArgs } from 'storybook/preview-api';
 import { fn } from 'storybook/test';
 
-import { Checkbox } from '@components/Form/Checkbox';
+import Checkbox from '@components/Form/Checkbox';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-const meta: Meta<typeof Checkbox> = {
+const meta = {
   args: {
     checkedIcon: null,
     icon: null,
@@ -120,7 +120,7 @@ const meta: Meta<typeof Checkbox> = {
   },
   tags: ['autodocs'],
   title: 'Form/Checkbox',
-};
+} satisfies Meta<typeof Checkbox>;
 
 export default meta;
 type Story = StoryObj<typeof Checkbox>;

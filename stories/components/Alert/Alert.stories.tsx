@@ -3,16 +3,14 @@ import { ComponentProps } from 'react';
 import { expect, spyOn, userEvent, within } from 'storybook/test';
 
 import Alert from '@components/Alert';
+import Button from '@components/Button/Button';
+import { AlertOptionsType, useAlert } from '@components/useAlert';
 
 import { sleep } from '../../utils/common';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-type AlertPropsAndCustomArgs = {
-  canDismiss: boolean;
-  delay: number;
-  variant: string;
-} & ComponentProps<typeof Alert>;
+type AlertPropsAndCustomArgs = AlertOptionsType & ComponentProps<typeof Alert>;
 
 const meta = {
   args: {
@@ -119,7 +117,7 @@ const meta = {
     return <Alert message={message} onClose={onClose} options={{ canDismiss, delay, variant }} />;
   },
   title: 'Alert/Alert',
-} satisfies Meta;
+} satisfies Meta<AlertPropsAndCustomArgs>;
 
 export default meta;
 
@@ -133,7 +131,7 @@ const backgroundColor = {
   warning: '#eab308',
 };
 
-export const Default: Story = {
+export const Alert1Default: Story = {
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
     const consoleSpy = spyOn(console, 'log');
@@ -159,5 +157,27 @@ export const Default: Story = {
         await expect(canvas.getByRole('alert')).not.toHaveStyle({ opacity: 1 });
       });
     }
+  },
+};
+
+export const Alert2ClickToAlert: Story = {
+  args: {
+    canDismiss: true,
+    delay: 6000,
+    message: '수정되었습니다.',
+    variant: 'success',
+  },
+  render: function Render(args) {
+    const { onAlert } = useAlert();
+
+    const handleClick = () => {
+      onAlert(args.message, { canDismiss: args.canDismiss, delay: args.delay, variant: args.variant });
+    };
+
+    return (
+      <Button variant="outlined" onClick={handleClick}>
+        수정
+      </Button>
+    );
   },
 };

@@ -14,6 +14,7 @@ export default function CheckboxGroup(props: CheckboxGroupType) {
 
   return (
     <div
+      role="group"
       className={joinClassNames(
         'flex flex-col',
         isRow && 'flex-row items-center justify-start',

@@ -5,7 +5,7 @@ import { joinClassNames } from '@utils/format';
 import { ButtonShapeType, ButtonSizeType, ButtonVariantType, getCommonButtonVariantStyle } from '../styles';
 import { getButtonIconShapeStyle, getButtonShapeStyle, getButtonSizeStyle } from './styles';
 
-export interface ButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonType extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'> {
   children: ReactNode;
   isDisabled?: boolean;
   isFullWidth?: boolean;

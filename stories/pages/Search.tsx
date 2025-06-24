@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
 
 import { Button, Chip } from '@components/Button';
-import { Checkbox, CheckboxGroup, Radio, RadioGroup, TextField } from '@components/Form';
+import { Checkbox, Radio, TextField } from '@components/Form';
 import Popover from '@components/Popover';
 import usePopover from '@components/usePopover';
 
@@ -48,7 +48,7 @@ const Search = () => {
       >
         <div className="flex w-50 flex-col rounded-lg p-2.5">
           <p className="mb-2.5 font-semibold">브랜드</p>
-          <CheckboxGroup gap={2.5} isRow={false}>
+          <Checkbox.Group gap={2.5} isRow={false}>
             <Checkbox
               checked={selected.includes('channel')}
               label="Channel"
@@ -97,13 +97,13 @@ const Search = () => {
                 }
               }}
             />
-          </CheckboxGroup>
+          </Checkbox.Group>
           <p className="mb-2.5 mt-5 font-semibold">판매여부</p>
           <div className="mb-5">
-            <RadioGroup gap={5} value={state} onChange={(e) => setState(e.currentTarget.value)}>
+            <Radio.Group gap={5} value={state} onChange={(e) => setState(e.currentTarget.value)}>
               <Radio label="판매 중" name="state" value="Y" />
               <Radio label="품절" name="state" value="N" />
-            </RadioGroup>
+            </Radio.Group>
           </div>
           <div className="ml-auto w-max">
             <Button

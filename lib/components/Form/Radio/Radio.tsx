@@ -1,10 +1,10 @@
-import { ChangeEvent, forwardRef, InputHTMLAttributes, MouseEvent, ReactNode, useCallback, useId } from 'react';
+import { forwardRef, InputHTMLAttributes, ReactNode, useId } from 'react';
 
 import { joinClassNames } from '@utils/format';
 
 import { getSizeStyle, RadioPositionType, RadioSizeType } from './styles';
 
-export interface RadioType extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface RadioType extends Omit<InputHTMLAttributes<HTMLInputElement>, 'disabled' | 'size'> {
   label: ReactNode;
   name: string;
   currentValue?: string;
@@ -14,26 +14,14 @@ export interface RadioType extends Omit<InputHTMLAttributes<HTMLInputElement>, '
 }
 
 const Radio = forwardRef<HTMLInputElement, RadioType>(function Radio(
-  { className, currentValue, isDisabled, label, name, onChange, position = 'end', size = 'medium', value, ...props },
+  { className, currentValue, isDisabled, label, name, position = 'end', size = 'medium', value, ...rest },
   ref,
 ) {
   const id = useId();
 
-  const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      e.currentTarget.blur();
-      if (onChange) {
-        onChange(e);
-      }
-    },
-    [onChange],
-  );
-
-  const handleClick = useCallback((e: MouseEvent<HTMLInputElement>) => e.currentTarget.blur(), []);
-
   return (
     <label
-      htmlFor={id}
+      htmlFor={rest.id || id}
       className={joinClassNames(
         'group inline-flex w-max cursor-pointer items-center',
         isDisabled && 'pointer-events-none',
@@ -62,17 +50,15 @@ const Radio = forwardRef<HTMLInputElement, RadioType>(function Radio(
         )}
       >
         <input
-          {...props}
+          {...rest}
           ref={ref}
           checked={value !== undefined ? value === currentValue : undefined}
           className="peer sr-only"
           disabled={isDisabled}
-          id={id}
+          id={rest.id || id}
           name={name}
           type="radio"
           value={value}
-          onChange={handleChange}
-          onClick={handleClick}
         />
         <span
           className={joinClassNames(

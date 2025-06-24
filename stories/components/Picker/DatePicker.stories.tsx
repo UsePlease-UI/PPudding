@@ -131,18 +131,14 @@ const meta = {
         sort: 'requiredFirst',
       },
     },
-    layout: 'fullscreen',
+    layout: 'centered',
   },
   render: function Render(args) {
-    return (
-      <div className="flex size-full min-h-screen items-start justify-center p-20">
-        <Picker {...args} />
-      </div>
-    );
+    return <Picker {...args} />;
   },
   tags: ['autodocs'],
-  title: 'Picker/Date Picker',
-} satisfies Meta;
+  title: 'Picker/Picker',
+} satisfies Meta<typeof Picker>;
 
 export default meta;
 

@@ -11,6 +11,9 @@ const MAX_MENU_HEIGHT = 300;
 const AVG_OPTION_HEIGHT = 24;
 const MIN_OFFSET = 20;
 
+/**
+ * @deprecated
+ */
 const usePosition = ({ inputId, isVisible, listBoxId, totalLength }: Props) => {
   const [top, setTop] = useState(0);
   const [left, setLeft] = useState(0);

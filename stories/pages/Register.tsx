@@ -1,12 +1,9 @@
 import { FormEvent, useState } from 'react';
 
 import FormControl from '@components/Base/FormControl';
-import Button from '@components/Button/Button';
-import { ToggleButton, ToggleButtonGroup } from '@components/Button/ToggleButton';
+import { Button, ToggleButton } from '@components/Button';
 import Select from '@components/Combobox/Select';
-import { Checkbox, CheckboxGroup } from '@components/Form/Checkbox';
-import { Radio, RadioGroup } from '@components/Form/Radio';
-import TextField from '@components/Form/TextField';
+import { Checkbox, Radio, TextField } from '@components/Form';
 
 import { DAY_OPTIONS, MONTH_OPTIONS, PASSWORD_REG_EXP, YEAR_OPTIONS } from './constants';
 
@@ -133,26 +130,26 @@ const Register = () => {
           </div>
           <div className="space-y-1.25">
             <span className="text-12 font-semibold">성별</span>
-            <RadioGroup value={gender} onChange={(e) => setGender(e.currentTarget.value)}>
+            <Radio.Group value={gender} onChange={(e) => setGender(e.currentTarget.value)}>
               <Radio label="선택안함" name="gender" size="medium" value="N/A" />
               <Radio label="여성" name="gender" size="medium" value="F" />
               <Radio label="남성" name="gender" size="medium" value="M" />
-            </RadioGroup>
+            </Radio.Group>
           </div>
           <div className="space-y-1.25">
             <span className="text-12 font-semibold">이메일 수신여부</span>
-            <ToggleButtonGroup value={useYn} onClick={setUseYn}>
+            <ToggleButton.Group value={useYn} onClick={setUseYn}>
               <ToggleButton size="large" value="Y">
                 사용
               </ToggleButton>
               <ToggleButton size="large" value="N">
                 미사용
               </ToggleButton>
-            </ToggleButtonGroup>
+            </ToggleButton.Group>
           </div>
           <div className="space-y-2.5">
             <Checkbox checked={terms && policy} label="전체 동의" size="medium" value="terms" onChange={handleCheck} />
-            <CheckboxGroup gap={5} isRow={false}>
+            <Checkbox.Group gap={5} isRow={false}>
               <Checkbox
                 checked={terms}
                 label="이용약관 동의"
@@ -167,7 +164,7 @@ const Register = () => {
                 value="policy"
                 onChange={() => setPolicy((prev) => !prev)}
               />
-            </CheckboxGroup>
+            </Checkbox.Group>
           </div>
           <Button isFullWidth isDisabled={isDisabled} size="large" type="submit" variant="contained">
             등록

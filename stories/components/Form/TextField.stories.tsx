@@ -5,7 +5,7 @@ import TextField from '@components/Form/TextField';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-const meta: Meta<typeof TextField> = {
+const meta = {
   args: {
     isDisabled: false,
     isError: false,
@@ -62,7 +62,7 @@ const meta: Meta<typeof TextField> = {
   },
   tags: ['autodocs'],
   title: 'Form/TextField',
-};
+} satisfies Meta<typeof TextField>;
 
 export default meta;
 type Story = StoryObj<typeof TextField>;

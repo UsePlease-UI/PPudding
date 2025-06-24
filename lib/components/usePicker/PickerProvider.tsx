@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useId, useMemo, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
@@ -28,19 +28,18 @@ export interface PickerProviderType {
 const PickerProvider = (props: PickerProviderType) => {
   const { children, maxDate, minDate, onCancel, onChange, onSelect, value } = props;
 
-  const containerId = useId();
-  const datePickerId = useId();
-
   const [isOpen, setIsOpen] = useState(false);
   const [dates, setDates] = useState<DatesType>(); // Calendar Dates
+
   const [dateValue, setDateValue] = useState(value); // Selected Date
   const [current, setCurrent] = useState(value ? dayjs(value) : dayjs()); // Current Date
-  const [selected, setSelected] = useState<PickerDateType>(null); // (Temp) Selected Date
+  const [selected, setSelected] = useState<PickerDateType>(value ? new Date(value) : null); // (Temp) Selected Date
 
   useEffect(() => {
     if (isOpen && value) {
       setCurrent(dayjs(value));
       setDateValue(value);
+      setSelected(new Date(value));
     }
   }, [isOpen, value]);
 
@@ -49,19 +48,14 @@ const PickerProvider = (props: PickerProviderType) => {
     setDates(getDates(current));
   }, [current]);
 
-  useEffect(() => {
-    const containerElement = document.getElementById(containerId);
-    const pickerElement = document.getElementById(datePickerId);
-
-    if (isOpen && pickerElement && containerElement) {
-      if (pickerElement.getBoundingClientRect().bottom >= window.innerHeight - 20) {
-        pickerElement.style.marginTop = '-10px';
-      } else {
-        pickerElement.style.top = `${containerElement.getBoundingClientRect().top + containerElement.getBoundingClientRect().height + 4}px`;
-      }
-      pickerElement.style.left = `${containerElement.getBoundingClientRect().left + (containerElement.getBoundingClientRect().width - pickerElement.getBoundingClientRect().width) / 2}px`;
-    }
-  }, [isOpen, containerId, datePickerId]);
+  const { isNextMonthDisabled, isNextYearDisabled, isPrevMonthDisabled, isPrevYearDisabled } = useMemo(() => {
+    return {
+      isNextMonthDisabled: !dayjs(current).isSameOrBefore(maxDate, 'month'),
+      isNextYearDisabled: !dayjs(current).isSameOrBefore(maxDate, 'year'),
+      isPrevMonthDisabled: !dayjs(current).isSameOrAfter(minDate, 'month'),
+      isPrevYearDisabled: !dayjs(current).isSameOrAfter(minDate, 'year'),
+    };
+  }, [current, maxDate, minDate]);
 
   const isDateDisabled = useCallback(
     ({ date, month, year }: DateObjType) => {
@@ -186,14 +180,16 @@ const PickerProvider = (props: PickerProviderType) => {
 
   const context: PickerContextType = useMemo(
     () => ({
-      containerId,
       current,
-      datePickerId,
       dates,
       dateValue,
       isDateDisabled,
       isMonthDisabled,
+      isNextMonthDisabled,
+      isNextYearDisabled,
       isOpen,
+      isPrevMonthDisabled,
+      isPrevYearDisabled,
       onCancel: handleCancel,
       onConfirm: handleConfirm,
       onDateChange: handleDateChange,
@@ -204,22 +200,24 @@ const PickerProvider = (props: PickerProviderType) => {
       selected,
     }),
     [
-      containerId,
-      datePickerId,
-      isOpen,
       current,
-      dateValue,
-      selected,
       dates,
-      isMonthDisabled,
+      dateValue,
       isDateDisabled,
-      handleYearChange,
-      handleMonthChange,
-      handleYearMonthChange,
+      isMonthDisabled,
+      isNextMonthDisabled,
+      isNextYearDisabled,
+      isOpen,
+      isPrevMonthDisabled,
+      isPrevYearDisabled,
+      handleCancel,
+      handleConfirm,
       handleDateChange,
       handleDatePickerClick,
-      handleConfirm,
-      handleCancel,
+      handleMonthChange,
+      handleYearChange,
+      handleYearMonthChange,
+      selected,
     ],
   );
 

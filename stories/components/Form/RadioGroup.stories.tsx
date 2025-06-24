@@ -1,11 +1,11 @@
 import { useArgs } from 'storybook/preview-api';
 import { expect, within } from 'storybook/test';
 
-import { Radio, RadioGroup } from '@components/Form/Radio';
+import Radio from '@components/Form/Radio';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-const meta: Meta<typeof RadioGroup> = {
+const meta = {
   args: {
     children: null,
     gap: 10,
@@ -60,7 +60,7 @@ const meta: Meta<typeof RadioGroup> = {
       type: 'string',
     },
   },
-  component: RadioGroup,
+  component: Radio.Group,
   parameters: {
     docs: {
       argTypes: {
@@ -70,17 +70,28 @@ const meta: Meta<typeof RadioGroup> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  title: 'Form/RadioGroup',
-};
+  title: 'Form/Radio.Group',
+} satisfies Meta<typeof Radio.Group>;
 
 export default meta;
-type Story = StoryObj<typeof RadioGroup>;
+type Story = StoryObj<typeof Radio.Group>;
 
 export const Default: Story = {
   args: {
     gap: 10,
     isRow: true,
     value: 'red',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const radioGroup = canvas.getByRole('radiogroup');
+    await expect(radioGroup).toBeInTheDocument();
+    await expect(radioGroup).toHaveStyle('flex-direction: row');
+
+    const radio1 = canvas.getByRole('radio', { name: '빨강' });
+    await expect(radio1).toBeChecked();
+    const radio2 = canvas.getByRole('radio', { name: '파랑' });
+    await expect(radio2).not.toBeChecked();
   },
   render: function Render(args) {
     const [{ value }, updateArgs] = useArgs();
@@ -90,22 +101,10 @@ export const Default: Story = {
     };
 
     return (
-      <RadioGroup {...args} value={value} onChange={(e) => handleChange(e.currentTarget.value)}>
+      <Radio.Group {...args} value={value} onChange={(e) => handleChange(e.currentTarget.value)}>
         <Radio label="빨강" name="color" value="red" />
         <Radio label="파랑" name="color" value="blue" />
-      </RadioGroup>
+      </Radio.Group>
     );
   },
-};
-
-Default.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const radioGroup = canvas.getByRole('radiogroup');
-  await expect(radioGroup).toBeInTheDocument();
-  await expect(radioGroup).toHaveStyle('flex-direction: row');
-
-  const radio1 = canvas.getByRole('radio', { name: '빨강' });
-  await expect(radio1).toBeChecked();
-  const radio2 = canvas.getByRole('radio', { name: '파랑' });
-  await expect(radio2).not.toBeChecked();
 };

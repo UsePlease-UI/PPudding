@@ -2,7 +2,7 @@ import { ChangeEvent, forwardRef, InputHTMLAttributes, KeyboardEvent, useCallbac
 
 import { joinClassNames } from '@utils/format';
 
-export interface TextFieldType extends InputHTMLAttributes<HTMLInputElement> {
+export interface TextFieldType extends Omit<InputHTMLAttributes<HTMLInputElement>, 'disabled'> {
   isDisabled?: boolean;
   isFullWidth?: boolean;
   isReadOnly?: boolean;
@@ -22,7 +22,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(function TextField
     onChange,
     onKeyDown,
     type = 'text',
-    ...props
+    ...rest
   },
   ref,
 ) {
@@ -72,7 +72,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(function TextField
 
   return (
     <input
-      {...props}
+      {...rest}
       ref={ref}
       disabled={isDisabled}
       max={max}
@@ -80,7 +80,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldType>(function TextField
       min={min}
       readOnly={isReadOnly}
       type={type}
-      autoComplete={props.autoComplete || 'new-password'}
+      autoComplete={rest.autoComplete || 'new-password'}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
       className={joinClassNames(

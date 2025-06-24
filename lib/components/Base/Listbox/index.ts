@@ -9,6 +9,3 @@ export default Object.assign(Listbox, {
 // Types Export
 export type { ListboxOptionType, ListboxType } from './Listbox';
 export type { ListboxItemType } from './ListboxItem';
-
-// Styles Export
-export * from './styles';

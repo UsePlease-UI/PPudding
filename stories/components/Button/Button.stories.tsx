@@ -17,7 +17,7 @@ const meta = {
     onClick: () => console.log('Clicked!'),
     shape: 'rounded',
     size: 'large',
-    startIcon: <TrashIcon />,
+    startIcon: null,
     variant: 'outlined',
   },
   argTypes: {
@@ -131,7 +131,13 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Default: Story = {
+export const Button1Default: Story = {
+  args: {
+    children: '제출',
+    isFullWidth: true,
+    size: 'large',
+    variant: 'contained',
+  },
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
     const consoleSpy = spyOn(console, 'log');
@@ -165,5 +171,11 @@ export const Default: Story = {
         await expect(consoleSpy).toHaveBeenCalledWith('Clicked!');
       });
     }
+  },
+};
+
+export const Button2WithIcon: Story = {
+  args: {
+    startIcon: <TrashIcon />,
   },
 };

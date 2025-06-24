@@ -28,7 +28,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof Card>;
 
-export const DefaultCard: Story = {
+export const Card1Default: Story = {
   args: {},
   render: function Render() {
     return (
@@ -40,7 +40,7 @@ export const DefaultCard: Story = {
   },
 };
 
-export const ExpandableCard: Story = {
+export const Card2Expandable: Story = {
   args: {},
   render: function Render() {
     return (
@@ -89,7 +89,7 @@ export const ExpandableCard: Story = {
   },
 };
 
-export const ActionCard: Story = {
+export const Card3Action: Story = {
   args: {},
   render: function Render() {
     return (

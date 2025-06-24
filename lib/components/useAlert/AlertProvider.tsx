@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import { ReactNode, useCallback, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { v4 as uuid } from 'uuid';
@@ -31,7 +31,6 @@ export interface AlertProviderType {
 }
 
 const AlertProvider = ({ children, icon, position }: AlertProviderType) => {
-  const [modalElement, setModalElement] = useState<HTMLElement>();
   const [messages, setMessages] = useState<AlertMessageType[]>([]);
 
   const handleOpen = useCallback(
@@ -53,29 +52,12 @@ const AlertProvider = ({ children, icon, position }: AlertProviderType) => {
 
   const context: AlertContextType = useMemo(() => ({ onAlert: handleOpen }), [handleOpen]);
 
-  useEffect(() => {
-    if (!document.getElementById('portal')) {
-      const portal = document.createElement('div');
-      portal.setAttribute('id', 'portal');
-      const body = document.getElementsByTagName('body')[0];
-      body.appendChild(portal);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (messages.length > 0) {
-      setModalElement(document.getElementById('portal') as HTMLElement);
-    } else {
-      setModalElement(undefined);
-    }
-  }, [messages]);
-
   return (
     <AlertContext.Provider value={context}>
       {children}
-      {modalElement
+      {messages.length > 0
         ? createPortal(
-            <div className={joinClassNames(getAlertPositionStyle(position), 'absolute z-1000 flex flex-col gap-2.5')}>
+            <div className={joinClassNames(getAlertPositionStyle(position), 'fixed z-10000 flex flex-col gap-2.5')}>
               {messages.map((message) => (
                 <Alert
                   key={message.id}
@@ -86,7 +68,7 @@ const AlertProvider = ({ children, icon, position }: AlertProviderType) => {
                 />
               ))}
             </div>,
-            modalElement as HTMLElement,
+            document.getElementsByTagName('body')[0],
           )
         : null}
     </AlertContext.Provider>

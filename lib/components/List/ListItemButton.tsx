@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, MouseEvent, ReactNode, useCallback } from 'react'
 
 import { joinClassNames } from '@utils/format';
 
-export interface ListItemButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ListItemButtonType extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'> {
   children: ReactNode;
   isDense?: boolean;
   isDisabled?: boolean;
