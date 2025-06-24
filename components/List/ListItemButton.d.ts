@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, ReactNode } from '../../../node_modules/react';
-export interface ListItemButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ListItemButtonType extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'> {
     children: ReactNode;
     isDense?: boolean;
     isDisabled?: boolean;

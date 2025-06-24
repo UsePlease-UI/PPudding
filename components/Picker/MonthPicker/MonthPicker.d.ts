@@ -1,6 +1,7 @@
 import { ReactNode } from '../../../../node_modules/react';
 export interface MonthPickerType {
     helperText?: string;
+    isDisabled?: boolean;
     labelText?: string;
     dateFormat?: string;
     icon?: ReactNode;

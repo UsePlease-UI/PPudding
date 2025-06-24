@@ -1,6 +1,6 @@
 import { ReactNode } from '../../../node_modules/react';
-import { ButtonShapeType, ButtonSizeType, ButtonVariantType } from '../Button/styles';
-export interface SharedPaginationType {
+import { ButtonShapeType, ButtonSizeType, ButtonVariantType } from '../Button';
+export interface PaginationType {
     className?: string;
     itemsPerPage?: number;
     pageRange?: number;
@@ -17,4 +17,4 @@ export interface SharedPaginationType {
     prevIcon?: ReactNode;
     totalCount?: number;
 }
-export default function SharedPagination(props: SharedPaginationType): import("react/jsx-runtime").JSX.Element;
+export default function Pagination(props: PaginationType): import("react/jsx-runtime").JSX.Element;

@@ -4,6 +4,9 @@ interface Props {
     listBoxId: string;
     totalLength: number;
 }
+/**
+ * @deprecated
+ */
 declare const usePosition: ({ inputId, isVisible, listBoxId, totalLength }: Props) => {
     handlePosition: () => void;
     isTop: () => boolean;

@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, ReactNode } from '../../../../node_modules/react';
 import { ButtonShapeType, ButtonSizeType, ButtonVariantType } from '../styles';
-export interface ButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonType extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'> {
     children: ReactNode;
     isDisabled?: boolean;
     isFullWidth?: boolean;

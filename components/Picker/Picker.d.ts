@@ -14,4 +14,4 @@ export interface PickerType {
     placeholder?: string;
     showMonthPicker?: boolean;
 }
-export default function Picker({ showMonthPicker, ...props }: PickerType): import("react/jsx-runtime").JSX.Element;
+export default function Picker(props: PickerType): import("react/jsx-runtime").JSX.Element;

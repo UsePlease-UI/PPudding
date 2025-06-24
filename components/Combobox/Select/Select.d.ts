@@ -1,6 +1,6 @@
 import { HTMLAttributes } from '../../../../node_modules/react';
 import { ListboxOptionType } from '../../Base';
-export interface SelectType extends Omit<HTMLAttributes<HTMLButtonElement>, 'onChange'> {
+export interface SelectType extends Omit<HTMLAttributes<HTMLButtonElement>, 'disabled' | 'onChange'> {
     selected: string;
     onChange: (selected: string) => void;
     isDisabled?: boolean;

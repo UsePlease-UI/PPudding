@@ -1,2 +1,2 @@
-import { ButtonVariantType } from '../Button/styles';
+import { ButtonVariantType } from '../Button';
 export declare const getActiveVariant: (isActive: boolean, variant: ButtonVariantType) => ButtonVariantType;

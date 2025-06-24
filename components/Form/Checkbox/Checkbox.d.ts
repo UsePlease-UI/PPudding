@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, ReactNode } from '../../../../node_modules/react';
 import { CheckboxPositionType, CheckboxSizeType } from './styles';
-export interface CheckboxType extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface CheckboxType extends Omit<InputHTMLAttributes<HTMLInputElement>, 'disabled' | 'size'> {
     label: ReactNode;
     isDisabled?: boolean;
     size?: CheckboxSizeType;

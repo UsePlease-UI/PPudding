@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, ReactNode } from '../../../../node_modules/react';
 import { RadioPositionType, RadioSizeType } from './styles';
-export interface RadioType extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface RadioType extends Omit<InputHTMLAttributes<HTMLInputElement>, 'disabled' | 'size'> {
     label: ReactNode;
     name: string;
     currentValue?: string;

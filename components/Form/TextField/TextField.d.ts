@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from '../../../../node_modules/react';
-export interface TextFieldType extends InputHTMLAttributes<HTMLInputElement> {
+export interface TextFieldType extends Omit<InputHTMLAttributes<HTMLInputElement>, 'disabled'> {
     isDisabled?: boolean;
     isFullWidth?: boolean;
     isReadOnly?: boolean;

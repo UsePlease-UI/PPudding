@@ -1,5 +1,5 @@
 import { TextareaHTMLAttributes } from '../../../../node_modules/react';
-export interface TextareaType extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextareaType extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'disabled'> {
     isDisabled?: boolean;
     isReadOnly?: boolean;
     isAutoHeight?: boolean;

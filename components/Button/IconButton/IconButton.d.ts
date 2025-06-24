@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, ReactNode } from '../../../../node_modules/react';
 import { ButtonShapeType, ButtonVariantType, IconButtonSizeType } from '../styles';
-export interface IconButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface IconButtonType extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'> {
     children: ReactNode;
     isDisabled?: boolean;
     shape?: ButtonShapeType;
