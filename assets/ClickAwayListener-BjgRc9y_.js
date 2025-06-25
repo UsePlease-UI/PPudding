@@ -1,0 +1,1 @@
+import{r as u}from"./iframe-BBfB5-06.js";function d(i){const{anchorElement:t,children:c,element:e,isOpen:o,onClose:n}=i;return u.useEffect(()=>{function r(s){o&&!(e!=null&&e.contains(s.target))&&!(t!=null&&t.contains(s.target))&&n&&n()}return document.addEventListener("mousedown",r),()=>{document.removeEventListener("mousedown",r)}},[t,e,o,n]),c}export{d as C};
