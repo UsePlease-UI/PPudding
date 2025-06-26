@@ -12,7 +12,6 @@ const meta = {
       control: 'text',
       description: 'format of date displayed',
       table: {
-        category: 'optional',
         defaultValue: {
           summary: 'YYYY-MM-DD',
         },
@@ -24,15 +23,11 @@ const meta = {
     helperText: {
       control: 'text',
       description: 'extra description of the component',
-      table: {
-        category: 'optional',
-      },
     },
     icon: {
       control: false,
       description: 'custom default icon (svg element)',
       table: {
-        category: 'optional',
         type: {
           summary: 'ReactNode',
         },
@@ -41,15 +36,11 @@ const meta = {
     labelText: {
       control: 'text',
       description: 'content of label component',
-      table: {
-        category: 'optional',
-      },
     },
     maxDate: {
       control: 'date',
       description: 'max date',
       table: {
-        category: 'optional',
         type: {
           summary: 'Date | null',
         },
@@ -59,26 +50,19 @@ const meta = {
       control: 'date',
       description: 'min date',
       table: {
-        category: 'optional',
         type: {
           summary: 'Date | null',
         },
       },
     },
     onCancel: {
-      control: {
-        disable: true,
-      },
+      control: false,
       description: 'callback fired when cancel button (취소) is clicked',
-      table: {
-        category: 'optional',
-      },
     },
     onChange: {
       control: false,
       description: 'change event handler',
       table: {
-        category: 'optional',
         type: {
           summary: '(date: Date) => void',
         },
@@ -88,7 +72,6 @@ const meta = {
       control: false,
       description: 'callback fired when date is selected',
       table: {
-        category: 'optional',
         type: {
           summary: '(date: Date | null) => void',
         },
@@ -97,17 +80,11 @@ const meta = {
     placeholder: {
       control: 'text',
       description: 'a hint that will be displayed until user enters a value',
-      table: {
-        category: 'optional',
-      },
     },
     showMonthPicker: {
-      control: {
-        disable: true,
-      },
+      control: false,
       description: 'if true, date picker will be rendered as month picker',
       table: {
-        category: 'optional',
         defaultValue: {
           summary: 'false',
         },
@@ -117,7 +94,6 @@ const meta = {
       control: 'date',
       description: 'selected date',
       table: {
-        category: 'optional',
         type: {
           summary: 'Date | null',
         },
@@ -126,15 +102,7 @@ const meta = {
   },
   component: Picker,
   parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
     layout: 'centered',
-  },
-  render: function Render(args) {
-    return <Picker {...args} />;
   },
   tags: ['autodocs'],
   title: 'Picker/Picker',
@@ -144,7 +112,7 @@ export default meta;
 
 type Story = StoryObj<ComponentProps<typeof Picker>>;
 
-export const DatePicker: Story = {
+export const Example1DatePicker: Story = {
   args: {
     dateFormat: 'YYYY-MM-DD',
     helperText: '시작일을 선택해 주세요.',
@@ -156,7 +124,7 @@ export const DatePicker: Story = {
   },
 };
 
-export const MonthPicker: Story = {
+export const Example2MonthPicker: Story = {
   args: {
     dateFormat: 'YYYY-MM',
     maxDate: new Date('2026-01-01'),

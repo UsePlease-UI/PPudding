@@ -20,7 +20,6 @@ const meta = {
       control: false,
       description: 'custom icon (svg element)',
       table: {
-        category: 'optional',
         type: {
           summary: 'ReactNode',
         },
@@ -30,7 +29,6 @@ const meta = {
       control: 'boolean',
       description: 'if true, arrow button to first page will be displayed',
       table: {
-        category: 'optional',
         defaultValue: {
           summary: 'true',
         },
@@ -40,7 +38,6 @@ const meta = {
       control: 'boolean',
       description: 'if true, arrow button to last page will be displayed',
       table: {
-        category: 'optional',
         defaultValue: {
           summary: 'true',
         },
@@ -50,7 +47,6 @@ const meta = {
       control: 'number',
       description: 'number of data per page',
       table: {
-        category: 'optional',
         type: {
           summary: 'number',
         },
@@ -60,7 +56,6 @@ const meta = {
       control: false,
       description: 'custom icon (svg element)',
       table: {
-        category: 'optional',
         type: {
           summary: 'ReactNode',
         },
@@ -70,7 +65,6 @@ const meta = {
       control: false,
       description: 'custom icon (svg element)',
       table: {
-        category: 'optional',
         type: {
           summary: 'ReactNode',
         },
@@ -80,7 +74,6 @@ const meta = {
       control: false,
       description: 'change event handler',
       table: {
-        category: 'optional',
         type: {
           summary: '(newPage: number) => void',
         },
@@ -90,7 +83,6 @@ const meta = {
       control: 'number',
       description: 'number of page buttons (if set to 10, it will display buttons from 1 - 10)',
       table: {
-        category: 'optional',
         defaultValue: {
           summary: '10',
         },
@@ -103,7 +95,6 @@ const meta = {
       control: false,
       description: 'custom icon (svg element)',
       table: {
-        category: 'optional',
         type: {
           summary: 'ReactNode',
         },
@@ -113,7 +104,6 @@ const meta = {
       control: 'number',
       description: 'current page number',
       table: {
-        category: 'optional',
         defaultValue: {
           summary: '1',
         },
@@ -129,7 +119,6 @@ const meta = {
       description: 'button shape',
       options: ['rounded', 'square', 'circular'],
       table: {
-        category: 'optional',
         defaultValue: {
           summary: 'circular',
         },
@@ -145,7 +134,6 @@ const meta = {
       description: 'button size',
       options: ['large', 'medium', 'small'],
       table: {
-        category: 'optional',
         defaultValue: {
           summary: 'medium',
         },
@@ -158,7 +146,6 @@ const meta = {
       control: 'number',
       description: 'total number of data',
       table: {
-        category: 'optional',
         defaultValue: {
           summary: '100',
         },
@@ -174,7 +161,6 @@ const meta = {
       description: 'button variant',
       options: ['outlined', 'contained', 'text'],
       table: {
-        category: 'optional',
         defaultValue: {
           summary: 'outlined',
         },
@@ -186,11 +172,6 @@ const meta = {
   },
   component: Pagination,
   parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
     layout: 'centered',
   },
   tags: ['autodocs'],
@@ -198,6 +179,7 @@ const meta = {
 } satisfies Meta<typeof Pagination>;
 
 export default meta;
+
 type Story = StoryObj<typeof Pagination>;
 
 export const Default: Story = {

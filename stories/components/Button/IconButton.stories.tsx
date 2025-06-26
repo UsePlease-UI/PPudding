@@ -21,28 +21,19 @@ const meta = {
       control: false,
       description: 'content of the component (SVGElement)',
       table: {
-        category: 'required',
         type: {
           summary: 'ReactNode',
         },
-      },
-      type: {
-        name: 'function',
-        required: true,
       },
     },
     isDisabled: {
       control: 'boolean',
       description: 'if true, the component will be disabled',
-      table: {
-        category: 'optional',
-      },
     },
     onClick: {
       control: false,
       description: 'click event handler',
       table: {
-        category: 'optional',
         type: {
           summary: '(e: MouseEvent<ButtonElement>) => void',
         },
@@ -55,7 +46,6 @@ const meta = {
       description: 'icon button shape',
       options: ['circular', 'rounded', 'square'],
       table: {
-        category: 'optional',
         type: {
           summary: 'circular | rounded | square',
         },
@@ -68,7 +58,6 @@ const meta = {
       description: 'icon button size',
       options: ['large', 'medium', 'small', 'mini'],
       table: {
-        category: 'optional',
         type: {
           summary: 'large | medium | small | mini',
         },
@@ -81,7 +70,6 @@ const meta = {
       description: 'icon button variant',
       options: ['outlined', 'contained', 'text'],
       table: {
-        category: 'optional',
         type: {
           summary: 'outlined | contained | text',
         },
@@ -90,11 +78,6 @@ const meta = {
   },
   component: IconButton,
   parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
     layout: 'centered',
   },
   tags: ['autodocs'],
@@ -102,6 +85,7 @@ const meta = {
 } satisfies Meta<typeof IconButton>;
 
 export default meta;
+
 type Story = StoryObj<typeof IconButton>;
 
 export const Default: Story = {

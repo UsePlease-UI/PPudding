@@ -13,11 +13,6 @@ const meta = {
   },
   component: List,
   parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
     layout: 'centered',
   },
   tags: ['autodocs'],
@@ -25,9 +20,10 @@ const meta = {
 } satisfies Meta<typeof List>;
 
 export default meta;
+
 type Story = StoryObj<typeof List>;
 
-export const DefaultList: Story = {
+export const Example1Default: Story = {
   args: {},
   render: function Render() {
     return (
@@ -42,7 +38,7 @@ export const DefaultList: Story = {
   },
 };
 
-export const CollapsedList: Story = {
+export const Example2CollapsedList: Story = {
   args: {},
   render: function Render() {
     const [open, setOpen] = useState<Record<string, boolean>>({

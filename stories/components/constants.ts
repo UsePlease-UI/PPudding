@@ -25,3 +25,41 @@ export const AUTOCOMPLETE_LIST = [
   { idx: uuid(), label: '제주', value: 'jeju' },
   { idx: uuid(), label: '춘천', value: 'chuncheon' },
 ];
+
+export const TABLE_DATA = [
+  {
+    brand: '그레인팩토리',
+    description: '100% 통밀로 만든 바삭한 건강 크래커',
+    no: 1,
+    productCode: 'GF-TW-001',
+    productName: '통밀 크래커',
+  },
+  {
+    brand: '베리밸런스',
+    description: '국산 딸기와 저지방 요거트의 조화',
+    no: 2,
+    productCode: 'BB-ST-210',
+    productName: '딸기 요거트',
+  },
+  {
+    brand: '프로즌네이처',
+    description: '급속 냉동된 블루베리, 스무디나 요거트 토핑용',
+    no: 3,
+    productCode: 'FN-BB-330',
+    productName: '냉동 블루베리',
+  },
+  {
+    brand: '밥상연구소',
+    description: '오징어, 새우가 들어간 매콤한 즉석 볶음밥',
+    no: 4,
+    productCode: 'BS-HF-012',
+    productName: '매콤 해물 볶음밥',
+  },
+  {
+    brand: '소이퓨어',
+    description: '콩 본연의 맛을 살린 무가당 두유, 500ml',
+    no: 5,
+    productCode: 'SP-SY-500',
+    productName: '무가당 두유',
+  },
+];

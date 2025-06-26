@@ -20,40 +20,24 @@ const meta = {
     isDisabled: {
       control: 'boolean',
       description: 'if true, the component will be disabled',
-      table: {
-        category: 'optional',
-      },
     },
     label: {
       control: 'text',
       description: 'content of the component',
-      table: {
-        category: 'required',
-      },
-      type: {
-        name: 'string',
-        required: true,
-      },
     },
     name: {
       control: 'text',
       description: 'name attribute of the input element',
       table: {
-        category: 'required',
         type: {
           summary: 'string',
         },
-      },
-      type: {
-        name: 'string',
-        required: true,
       },
     },
     onChange: {
       control: false,
       description: 'change event handler',
       table: {
-        category: 'optional',
         type: {
           summary: '(e: ChangeEvent<HTMLInputElement>) => void',
         },
@@ -66,7 +50,6 @@ const meta = {
       description: 'radio position',
       options: ['start', 'end'],
       table: {
-        category: 'optional',
         type: {
           summary: 'start | end',
         },
@@ -79,7 +62,6 @@ const meta = {
       description: 'radio size',
       options: ['large', 'medium', 'small'],
       table: {
-        category: 'optional',
         type: {
           summary: 'large | medium | small',
         },
@@ -89,7 +71,6 @@ const meta = {
       control: 'text',
       description: 'value of the component',
       table: {
-        category: 'optional',
         type: {
           summary: 'string',
         },
@@ -99,22 +80,14 @@ const meta = {
   },
   component: Radio,
   parameters: {
-    docs: {
-      argTypes: {
-        exclude: ['currentValue', 'onChange'],
-        sort: 'requiredFirst',
-      },
-      controls: {
-        exclude: ['currentValue', 'onChange'],
-      },
-    },
     layout: 'centered',
   },
   tags: ['autodocs'],
-  title: 'Form/Radio',
+  title: 'Form/Radio/UI - 2. Radio',
 } satisfies Meta<typeof Radio>;
 
 export default meta;
+
 type Story = StoryObj<typeof Radio>;
 
 export const Default: Story = {

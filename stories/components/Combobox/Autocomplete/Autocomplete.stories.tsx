@@ -24,22 +24,15 @@ const meta = {
     isDisabled: {
       control: 'boolean',
       description: 'if true, the component will be disabled',
-      table: {
-        category: 'optional',
-      },
     },
     isReadOnly: {
       control: 'boolean',
       description: 'if true, user cannot change the value of the component',
-      table: {
-        category: 'optional',
-      },
     },
     onChange: {
       control: false,
       description: 'callback fired when new value is entered or selected',
       table: {
-        category: 'required',
         type: {
           summary: '(newValue: string) => void',
         },
@@ -49,7 +42,6 @@ const meta = {
       control: false,
       description: 'callback fired when select is clicked (undefined is returned when there is no entered value)',
       table: {
-        category: 'required',
         type: {
           summary: '(selected?: { label: string; value: string; idx?: string }) => void',
         },
@@ -59,7 +51,6 @@ const meta = {
       control: 'object',
       description: 'options to be shown',
       table: {
-        category: 'required',
         type: {
           summary: '{ label : string; value: string; idx?: string }',
         },
@@ -69,7 +60,6 @@ const meta = {
       control: false,
       description: 'value attribute of the input element',
       table: {
-        category: 'required',
         type: {
           summary: 'string',
         },
@@ -79,17 +69,13 @@ const meta = {
   },
   component: Autocomplete,
   parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
     layout: 'centered',
   },
   title: 'Combobox/Autocomplete',
 } satisfies Meta<typeof Autocomplete>;
 
 export default meta;
+
 type Story = StoryObj<typeof Autocomplete>;
 
 export const Default: Story = {

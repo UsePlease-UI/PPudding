@@ -25,7 +25,6 @@ const meta = {
       control: 'boolean',
       description: 'if true, component can be programmatically closed',
       table: {
-        category: 'optional',
         defaultValue: {
           summary: 'false',
         },
@@ -38,7 +37,6 @@ const meta = {
       control: 'number',
       description: 'duration of display (in seconds)',
       table: {
-        category: 'optional',
         defaultValue: {
           summary: '4.5',
         },
@@ -51,7 +49,6 @@ const meta = {
       control: false,
       description: 'custom icon (svg element)',
       table: {
-        category: 'optional',
         type: {
           summary: 'ReactNode',
         },
@@ -61,31 +58,24 @@ const meta = {
       control: 'text',
       description: 'content of the component',
       table: {
-        category: 'required',
         type: {
           summary: 'string',
         },
       },
     },
     onClose: {
-      control: {
-        disable: true,
-      },
+      control: false,
       description: 'dismiss button click event handler',
       table: {
-        category: 'required',
         type: {
           summary: '() => void',
         },
       },
     },
     options: {
-      control: {
-        disable: true,
-      },
+      control: false,
       description: 'alert options',
       table: {
-        category: 'optional',
         defaultValue: {
           summary: '{ canDismiss: false; delay: 4.5; variant: default }',
         },
@@ -102,7 +92,6 @@ const meta = {
       description: 'alert variant',
       options: ['default', 'success', 'error', 'info', 'warning'],
       table: {
-        category: 'optional',
         defaultValue: {
           summary: 'default',
         },
@@ -131,7 +120,7 @@ const backgroundColor = {
   warning: '#eab308',
 };
 
-export const Alert1Default: Story = {
+export const Example1Default: Story = {
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
     const consoleSpy = spyOn(console, 'log');
@@ -160,7 +149,7 @@ export const Alert1Default: Story = {
   },
 };
 
-export const Alert2ClickToAlert: Story = {
+export const Example2ClickToAlert: Story = {
   args: {
     canDismiss: true,
     delay: 6000,

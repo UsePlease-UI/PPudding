@@ -16,7 +16,6 @@ const meta = {
       control: 'text',
       description: 'header content',
       table: {
-        category: 'required',
         type: {
           summary: 'ReactNode',
         },
@@ -26,7 +25,6 @@ const meta = {
       control: 'boolean',
       description: 'if true, accordion header has icon',
       table: {
-        category: 'optional',
         defaultValue: {
           summary: 'true',
         },
@@ -40,7 +38,6 @@ const meta = {
       description: 'heading element level',
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
       table: {
-        category: 'optional',
         defaultValue: {
           summary: 'h3',
         },
@@ -53,7 +50,6 @@ const meta = {
       control: false,
       description: 'custom icon (svg element)',
       table: {
-        category: 'optional',
         type: {
           summary: 'ReactNode',
         },
@@ -61,7 +57,8 @@ const meta = {
     },
   },
   component: Accordion.Header,
-  title: 'Accordion/Accordion.Header',
+  tags: ['autodocs'],
+  title: 'Accordion/UI - 2. Accordion Header',
 } satisfies Meta<typeof Accordion.Header>;
 
 export default meta;

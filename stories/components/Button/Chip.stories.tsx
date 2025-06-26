@@ -17,22 +17,15 @@ const meta = {
     isDeletable: {
       control: 'boolean',
       description: 'if true, component can be deleted (delete icon will be shown)',
-      table: {
-        category: 'optional',
-      },
     },
     label: {
       control: 'text',
       description: 'content of the component',
-      table: {
-        category: 'required',
-      },
     },
     onClick: {
       control: false,
       description: 'click event handler',
       table: {
-        category: 'optional',
         type: {
           summary: '( ) => void',
         },
@@ -42,7 +35,6 @@ const meta = {
       control: false,
       description: 'callback fired when icon button is clicked (need to set isDeletable true)',
       table: {
-        category: 'optional',
         type: {
           summary: '(value: string) => void',
         },
@@ -52,7 +44,6 @@ const meta = {
       control: 'text',
       description: 'chip value',
       table: {
-        category: 'required',
         type: {
           summary: 'string',
         },
@@ -65,7 +56,6 @@ const meta = {
       description: 'chip variant',
       options: ['outlined', 'contained'],
       table: {
-        category: 'optional',
         type: {
           summary: 'outlined | contained',
         },
@@ -74,11 +64,6 @@ const meta = {
   },
   component: Chip,
   parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
     layout: 'centered',
   },
   play: async ({ args, canvasElement, step }) => {
@@ -106,9 +91,10 @@ const meta = {
 } satisfies Meta<typeof Chip>;
 
 export default meta;
+
 type Story = StoryObj<typeof Chip>;
 
-export const Chip1Default: Story = {
+export const Example1Default: Story = {
   args: {
     isDeletable: false,
     label: '사탕',
@@ -117,7 +103,7 @@ export const Chip1Default: Story = {
   },
 };
 
-export const Chip2Clickable: Story = {
+export const Example2Clickable: Story = {
   args: {
     isDeletable: false,
     label: '초콜렛',
@@ -127,7 +113,7 @@ export const Chip2Clickable: Story = {
   },
 };
 
-export const Chip3Deletable: Story = {
+export const Example3Deletable: Story = {
   args: {
     isDeletable: true,
     label: '사탕',

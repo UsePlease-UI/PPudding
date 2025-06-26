@@ -9,6 +9,7 @@ const meta = {
 } satisfies Meta<typeof FAQPage>;
 
 export default meta;
+
 type Story = StoryObj<typeof FAQPage>;
 
 export const Default: Story = {

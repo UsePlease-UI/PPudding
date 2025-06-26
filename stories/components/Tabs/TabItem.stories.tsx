@@ -16,7 +16,6 @@ const meta = {
       control: false,
       description: 'custom className',
       table: {
-        category: 'optional',
         type: {
           summary: 'string',
         },
@@ -26,7 +25,6 @@ const meta = {
       control: false,
       description: 'custom icon (svg element)',
       table: {
-        category: 'optional',
         type: {
           summary: 'ReactNode',
         },
@@ -39,7 +37,6 @@ const meta = {
       },
       description: 'tab item index. associated tab panel should have the same index',
       table: {
-        category: 'required',
         type: {
           summary: 'number',
         },
@@ -49,7 +46,6 @@ const meta = {
       control: 'text',
       description: 'content of the component',
       table: {
-        category: 'optional',
         type: {
           summary: 'ReactNode',
         },
@@ -57,7 +53,7 @@ const meta = {
     },
   },
   component: Tabs.Item,
-  title: 'Tabs/Tabs.Item',
+  title: 'Tabs/UI - 3. Tab Item',
 } satisfies Meta<typeof Tabs.Item>;
 
 export default meta;

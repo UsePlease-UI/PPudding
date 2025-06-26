@@ -1,5 +1,7 @@
 import Table from 'components/Table';
 
+import { TABLE_DATA } from '../constants';
+
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
@@ -15,6 +17,7 @@ const meta = {
 } satisfies Meta<typeof Table>;
 
 export default meta;
+
 type Story = StoryObj<typeof Table>;
 
 export const Default: Story = {
@@ -31,13 +34,13 @@ export const Default: Story = {
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          {Array.from({ length: 20 }, (_, idx) => (
+          {TABLE_DATA.map((data, idx) => (
             <Table.Row key={idx}>
               <Table.Cell align="center">{idx + 1}</Table.Cell>
-              <Table.Cell align="center">바나나</Table.Cell>
-              <Table.Cell align="center">바나나차차</Table.Cell>
-              <Table.Cell align="center">1010101010</Table.Cell>
-              <Table.Cell align="center">바나나나나나나나나나</Table.Cell>
+              <Table.Cell align="center">{data.productName}</Table.Cell>
+              <Table.Cell align="center">{data.brand}</Table.Cell>
+              <Table.Cell align="center">{data.productCode}</Table.Cell>
+              <Table.Cell align="center">{data.description}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>

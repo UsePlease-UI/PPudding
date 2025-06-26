@@ -12,7 +12,6 @@ const meta = {
       control: false,
       description: 'Accordion Header and Accordion Panel',
       table: {
-        category: 'required',
         type: {
           summary: 'ReactNode',
         },
@@ -22,7 +21,6 @@ const meta = {
       control: false,
       description: 'custom className',
       table: {
-        category: 'optional',
         type: {
           summary: 'string',
         },
@@ -32,7 +30,6 @@ const meta = {
       control: 'boolean',
       description: 'if true, accordion header is disabled',
       table: {
-        category: 'optional',
         defaultValue: {
           summary: 'false',
         },
@@ -45,7 +42,6 @@ const meta = {
       control: 'boolean',
       description: 'if true, accordion panel is expanded',
       table: {
-        category: 'optional',
         defaultValue: {
           summary: 'false',
         },
@@ -58,7 +54,6 @@ const meta = {
       control: false,
       description: 'callback fired when accordion header is clicked',
       table: {
-        category: 'optional',
         type: {
           summary: '(event: MouseEvent<HTMLButtonElement>, isExpanded: boolean) => void',
         },
@@ -67,13 +62,9 @@ const meta = {
   },
   component: Accordion,
   parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
+    layout: 'centered',
   },
-  title: 'Accordion/Accordion',
+  title: 'Accordion/UI - 1. Accordion',
 } satisfies Meta<typeof Accordion>;
 
 export default meta;

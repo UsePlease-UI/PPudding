@@ -25,7 +25,6 @@ const meta = {
       control: 'text',
       description: 'content of the component',
       table: {
-        category: 'required',
         type: {
           summary: 'ReactNode',
         },
@@ -35,7 +34,6 @@ const meta = {
       control: false,
       description: 'icon (svg element) placed after children',
       table: {
-        category: 'optional',
         type: {
           summary: 'ReactNode',
         },
@@ -44,22 +42,15 @@ const meta = {
     isDisabled: {
       control: 'boolean',
       description: 'if true, the component will be disabled',
-      table: {
-        category: 'optional',
-      },
     },
     isFullWidth: {
       control: 'boolean',
       description: 'if true, the component will take up the full width of its container',
-      table: {
-        category: 'optional',
-      },
     },
     onClick: {
       control: false,
       description: 'click event handler',
       table: {
-        category: 'optional',
         type: {
           summary: '(e: MouseEvent<ButtonElement>) => void',
         },
@@ -72,7 +63,6 @@ const meta = {
       description: 'button shape',
       options: ['rounded', 'square', 'circular'],
       table: {
-        category: 'optional',
         type: {
           summary: 'rounded | square | circular',
         },
@@ -85,7 +75,6 @@ const meta = {
       description: 'button size',
       options: ['large', 'medium', 'small'],
       table: {
-        category: 'optional',
         type: {
           summary: 'large | medium | small',
         },
@@ -95,7 +84,6 @@ const meta = {
       control: false,
       description: 'icon (svg element) placed before children',
       table: {
-        category: 'optional',
         type: {
           summary: 'ReactNode',
         },
@@ -108,7 +96,6 @@ const meta = {
       description: 'button variant',
       options: ['outlined', 'contained', 'text'],
       table: {
-        category: 'optional',
         type: {
           summary: 'outlined | contained | text',
         },
@@ -117,11 +104,6 @@ const meta = {
   },
   component: Button,
   parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
     layout: 'centered',
   },
   tags: ['autodocs'],
@@ -129,9 +111,10 @@ const meta = {
 } satisfies Meta<typeof Button>;
 
 export default meta;
+
 type Story = StoryObj<typeof Button>;
 
-export const Button1Default: Story = {
+export const Example1Default: Story = {
   args: {
     children: '제출',
     isFullWidth: true,
@@ -174,7 +157,7 @@ export const Button1Default: Story = {
   },
 };
 
-export const Button2WithIcon: Story = {
+export const Example2WithIcon: Story = {
   args: {
     startIcon: <TrashIcon />,
   },

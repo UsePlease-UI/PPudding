@@ -19,6 +19,7 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+      sort: 'requiredFirst',
     },
     options: {
       showToolbar: false,

@@ -17,7 +17,6 @@ const meta = {
       control: false,
       description: 'content of the component (toggle button)',
       table: {
-        category: 'required',
         type: {
           summary: 'ReactNode',
         },
@@ -27,7 +26,6 @@ const meta = {
       control: false,
       description: 'click event handler',
       table: {
-        category: 'optional',
         type: {
           summary: '(selected: string) => void',
         },
@@ -37,7 +35,6 @@ const meta = {
       control: 'object',
       description: 'selected value (need to pass string array to allow multiple selection)',
       table: {
-        category: 'optional',
         type: {
           summary: 'string | string[]',
         },
@@ -46,21 +43,17 @@ const meta = {
   },
   component: ToggleButton.Group,
   parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
     layout: 'centered',
   },
   tags: ['autodocs'],
-  title: 'Button/ToggleButton.Group',
+  title: 'Button/ToggleButton/UI - 1. Toggle Button Group',
 } satisfies Meta<typeof ToggleButton.Group>;
 
 export default meta;
+
 type Story = StoryObj<typeof ToggleButton.Group>;
 
-export const Default: Story = {
+export const Example1Default: Story = {
   args: {
     value: 'banana',
   },
@@ -74,7 +67,7 @@ export const Default: Story = {
   },
 };
 
-export const MultiSelection: Story = {
+export const Example2MultiSelection: Story = {
   args: { value: ['bold', 'italic'] },
   render: function Render(args) {
     return (

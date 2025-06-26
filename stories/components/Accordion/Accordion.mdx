@@ -1,5 +1,6 @@
 import { Canvas, Meta, Story, ArgTypes } from '@storybook/addon-docs/blocks';
 
+import * as AccordionExampleStories from './AccordionExample.stories';
 import * as AccordionStories from './Accordion.stories';
 import * as AccordionHeaderStories from './AccordionHeader.stories';
 import * as AccordionPanelStories from './AccordionPanel.stories';
@@ -9,7 +10,7 @@ import DefaultImage from './accordion_default.png';
 import DisabledImage from './accordion_disabled.png';
 import ExpandedImage from './accordion_expanded.png';
 
-<Meta of={AccordionStories} />
+<Meta of={AccordionExampleStories} />
 
 <style>
   {`
@@ -111,7 +112,7 @@ import ExpandedImage from './accordion_expanded.png';
 ✅ 헤더는 `button`으로 구현되어 있습니다.  
 ✅ 버튼은 `heading 요소`로 감싸져 있습니다.  
 ✅ 버튼에는 패널의 열림 상태를 나타내는 `aria-expanded`가 설정되어 있습니다.  
-✅ 버튼에는 제어 대상 패널의 ID를 지정하는 `aria-controls`가 설정되어 있습니다.  
+✅ 버튼에는 제어 대상 패널의 ID를 참조하는 `aria-controls`가 설정되어 있습니다.  
 ✅ 패널을 닫을 수 없는 경우, 버튼에 `aria-disabled="true"`가 설정되어 있습니다.
 
 ### Accordion Panel

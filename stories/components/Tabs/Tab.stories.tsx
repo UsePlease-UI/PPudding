@@ -13,7 +13,6 @@ const meta = {
       control: false,
       description: 'Tab Item',
       table: {
-        category: 'required',
         type: {
           summary: 'ReactNode',
         },
@@ -21,7 +20,7 @@ const meta = {
     },
   },
   component: Tabs.Tab,
-  title: 'Tabs/Tabs.Tab',
+  title: 'Tabs/UI - 2. Tab',
 } satisfies Meta<typeof Tabs.Tab>;
 
 export default meta;

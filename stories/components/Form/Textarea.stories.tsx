@@ -18,40 +18,23 @@ const meta = {
     isAutoHeight: {
       control: 'boolean',
       description: 'if true, height will automatically increase, without being fixed',
-      table: {
-        category: 'optional',
-      },
     },
     isDisabled: {
       control: 'boolean',
       description: 'if true, the component will be disabled',
-      table: {
-        category: 'optional',
-      },
     },
     isError: {
       control: 'boolean',
       description: 'if true, the component will indicate error',
-      table: {
-        category: 'optional',
-      },
     },
     isReadOnly: {
       control: 'boolean',
       description: 'if true, user cannot change the value of the component',
-      table: {
-        category: 'optional',
-      },
     },
+    value: { table: { disable: true } },
   },
   component: Textarea,
   parameters: {
-    docs: {
-      argTypes: {
-        exclude: ['value'],
-        sort: 'requiredFirst',
-      },
-    },
     layout: 'centered',
   },
   tags: ['autodocs'],
@@ -59,9 +42,10 @@ const meta = {
 } satisfies Meta<typeof Textarea>;
 
 export default meta;
+
 type Story = StoryObj<typeof Textarea>;
 
-export const Default: Story = {
+export const Example1Default: Story = {
   args: {
     isAutoHeight: false,
     value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -86,7 +70,7 @@ export const Default: Story = {
   },
 };
 
-export const AutoHeight: Story = {
+export const Example2AutoHeight: Story = {
   args: {
     isAutoHeight: true,
     value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -100,6 +84,7 @@ export const AutoHeight: Story = {
     const handleChange = (newValue: string) => {
       updateArgs({ value: newValue });
     };
+
     return (
       <FormControl helperText="Type Lorem Ipsum" helperTextId={helperTextId} inputId={inputId} labelText="Lorem Ipsum">
         <Textarea

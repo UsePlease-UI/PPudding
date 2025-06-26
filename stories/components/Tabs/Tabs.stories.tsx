@@ -14,12 +14,9 @@ const meta = {
   },
   argTypes: {
     children: {
-      control: {
-        disable: true,
-      },
+      control: false,
       description: 'Tab Item & Tab Panel',
       table: {
-        category: 'required',
         type: {
           summary: 'ReactNode',
         },
@@ -29,7 +26,6 @@ const meta = {
       control: false,
       description: 'callback fired when tab button is clicked',
       table: {
-        category: 'required',
         type: {
           summary: '(newValue: number) => void',
         },
@@ -39,7 +35,6 @@ const meta = {
       control: 'number',
       description: 'selected tab index',
       table: {
-        category: 'required',
         type: {
           summary: 'number',
         },
@@ -50,10 +45,11 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-  title: 'Tabs/Tabs',
+  title: 'Tabs/UI - 1. Tabs',
 } satisfies Meta<typeof Tabs>;
 
 export default meta;
+
 type Story = StoryObj<typeof Tabs>;
 
 export const Default: Story = {

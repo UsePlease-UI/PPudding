@@ -11,38 +11,33 @@ const meta = {
     value: 'bold',
   },
   argTypes: {
+    currentValue: { table: { disable: true } },
     isDisabled: {
       control: 'boolean',
       description: 'if true, the component will be disabled',
-      table: {
-        category: 'optional',
-      },
     },
+    isMultiple: { table: { disable: true } },
     name: {
       control: 'text',
       description: 'name attribute of the input element',
       table: {
-        category: 'optional',
         type: {
           summary: 'string',
         },
       },
     },
+    onChange: { table: { disable: true } },
     size: {
       control: {
         type: 'inline-radio',
       },
       description: 'toggle button size',
       options: ['large', 'medium', 'small'],
-      table: {
-        category: 'optional',
-      },
     },
     value: {
       control: 'text',
       description: 'toggle button value',
       table: {
-        category: 'optional',
         type: {
           summary: 'string',
         },
@@ -51,25 +46,17 @@ const meta = {
   },
   component: ToggleButton,
   parameters: {
-    docs: {
-      argTypes: {
-        exclude: ['currentValue', 'onChange', 'isMultiple'],
-        sort: 'requiredFirst',
-      },
-      controls: {
-        exclude: ['currentValue', 'onChange', 'isMultiple'],
-      },
-    },
     layout: 'centered',
   },
   tags: ['autodocs'],
-  title: 'Button/ToggleButton',
+  title: 'Button/ToggleButton/UI - 2. ToggleButton',
 } satisfies Meta<typeof ToggleButton>;
 
 export default meta;
+
 type Story = StoryObj<typeof ToggleButton>;
 
-export const TextSelected: Story = {
+export const Example1TextSelected: Story = {
   args: {
     size: 'large',
     value: 'banana',
@@ -83,7 +70,7 @@ export const TextSelected: Story = {
   },
 };
 
-export const TextNotSelected: Story = {
+export const Example2TextNotSelected: Story = {
   args: {
     size: 'large',
     value: 'orange',
@@ -97,7 +84,7 @@ export const TextNotSelected: Story = {
   },
 };
 
-export const IconSelected: Story = {
+export const Example3IconSelected: Story = {
   args: {
     size: 'large',
     value: 'bold',
@@ -111,7 +98,7 @@ export const IconSelected: Story = {
   },
 };
 
-export const IconNotSelected: Story = {
+export const Example4IconNotSelected: Story = {
   args: {
     size: 'large',
     value: 'italic',

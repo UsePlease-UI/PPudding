@@ -12,7 +12,6 @@ const meta = {
       description: 'skeleton size',
       options: ['large', 'medium', 'small'],
       table: {
-        category: 'optional',
         type: {
           summary: 'large | medium | small',
         },
@@ -25,7 +24,6 @@ const meta = {
       description: 'skeleton variant',
       options: ['rounded', 'square', 'circular'],
       table: {
-        category: 'optional',
         type: {
           summary: 'rounded | square | circular',
         },
@@ -41,6 +39,7 @@ const meta = {
 } satisfies Meta<typeof Skeleton>;
 
 export default meta;
+
 type Story = StoryObj<typeof Skeleton>;
 
 export const Default: Story = {

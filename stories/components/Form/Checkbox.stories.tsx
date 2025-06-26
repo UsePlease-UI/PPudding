@@ -21,7 +21,6 @@ const meta = {
       control: false,
       description: 'custom checked icon (svg element)',
       table: {
-        category: 'optional',
         type: {
           summary: 'ReactNode',
         },
@@ -31,7 +30,6 @@ const meta = {
       control: false,
       description: 'custom default icon (svg element)',
       table: {
-        category: 'optional',
         type: {
           summary: 'ReactNode',
         },
@@ -40,26 +38,15 @@ const meta = {
     isDisabled: {
       control: 'boolean',
       description: 'if true, the component will be disabled',
-      table: {
-        category: 'optional',
-      },
     },
     label: {
       control: 'text',
       description: 'content of the component',
-      table: {
-        category: 'required',
-      },
-      type: {
-        name: 'string',
-        required: true,
-      },
     },
     onChange: {
       control: false,
       description: 'change event handler',
       table: {
-        category: 'optional',
         type: {
           summary: '(e: ChangeEvent<HTMLInputElement>) => void',
         },
@@ -72,7 +59,6 @@ const meta = {
       description: 'checkbox position',
       options: ['start', 'end'],
       table: {
-        category: 'optional',
         defaultValue: {
           summary: 'end',
         },
@@ -88,7 +74,6 @@ const meta = {
       description: 'checkbox size',
       options: ['large', 'medium', 'small'],
       table: {
-        category: 'optional',
         defaultValue: {
           summary: 'medium',
         },
@@ -101,7 +86,6 @@ const meta = {
       control: 'text',
       description: 'value of the component',
       table: {
-        category: 'optional',
         type: {
           summary: 'string',
         },
@@ -111,18 +95,14 @@ const meta = {
   },
   component: Checkbox,
   parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
     layout: 'centered',
   },
   tags: ['autodocs'],
-  title: 'Form/Checkbox',
+  title: 'Form/Checkbox/UI - 2. Checkbox',
 } satisfies Meta<typeof Checkbox>;
 
 export default meta;
+
 type Story = StoryObj<typeof Checkbox>;
 
 export const Default: Story = {

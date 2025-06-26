@@ -1,5 +1,6 @@
 import { Canvas, Meta, Story, ArgTypes } from '@storybook/addon-docs/blocks';
 
+import * as TabsExampleStories from './TabsExample.stories';
 import * as TabsStories from './Tabs.stories';
 import * as TabStories from './Tab.stories';
 import * as TabItemStories from './TabItem.stories';
@@ -8,7 +9,7 @@ import * as TabPanelStories from './TabPanel.stories';
 import AnatomyImage from './tabs_anatomy.png';
 import DefaultImage from './tabs_default.png';
 
-<Meta of={TabsStories} />
+<Meta of={TabsExampleStories} />
 
 <style>
   {`
@@ -114,7 +115,7 @@ import DefaultImage from './tabs_default.png';
 
 ✅ 탭 버튼은 `role="tab"`으로 설정되어 있습니다.  
 ✅ 선택된 탭 버튼에는 `aria-selected="true"`가 설정되어 있습니다.  
-✅ 탭 버튼에는 제어 대상 패널의 ID를 지정하는 `aria-controls`가 설정되어 있습니다.
+✅ 탭 버튼에는 제어 대상 패널의 ID를 참조하는 `aria-controls`가 설정되어 있습니다.
 
 ### Tab Panel
 

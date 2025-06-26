@@ -12,7 +12,6 @@ const meta = {
       control: 'text',
       description: 'panel content',
       table: {
-        category: 'required',
         type: {
           summary: 'ReactNode',
         },
@@ -20,7 +19,8 @@ const meta = {
     },
   },
   component: Accordion.Panel,
-  title: 'Accordion/Accordion.Panel',
+  tags: ['autodocs'],
+  title: 'Accordion/UI - 3. Accordion Panel',
 } satisfies Meta<typeof Accordion.Panel>;
 
 export default meta;

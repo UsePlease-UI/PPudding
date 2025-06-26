@@ -15,7 +15,6 @@ const meta = {
       control: false,
       description: 'content of component',
       table: {
-        category: 'required',
         type: {
           summary: 'ReactNode',
         },
@@ -25,7 +24,6 @@ const meta = {
       control: false,
       description: 'custom className',
       table: {
-        category: 'optional',
         type: {
           summary: 'string',
         },
@@ -38,7 +36,6 @@ const meta = {
       },
       description: 'tab panel index. associated tab item should have the same index',
       table: {
-        category: 'required',
         type: {
           summary: 'number',
         },
@@ -46,7 +43,7 @@ const meta = {
     },
   },
   component: Tabs.Panel,
-  title: 'Tabs/Tabs.Panel',
+  title: 'Tabs/UI - 4. Tab Panel',
 } satisfies Meta<typeof Tabs.Panel>;
 
 export default meta;

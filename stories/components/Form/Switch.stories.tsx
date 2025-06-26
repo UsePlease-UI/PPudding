@@ -11,7 +11,7 @@ const meta = {
     checked: false,
     isDisabled: false,
     label: '푸시 알림',
-    position: 'end',
+    position: 'start',
     stateText: '',
     thumb: null,
   },
@@ -20,25 +20,15 @@ const meta = {
     isDisabled: {
       control: 'boolean',
       description: 'if true, the component will be disabled',
-      table: {
-        category: 'optional',
-      },
     },
     label: {
       control: 'text',
       description: 'content of the component',
-      table: {
-        category: 'optional',
-        type: {
-          summary: 'ReactNode',
-        },
-      },
     },
     onChange: {
       control: false,
       description: 'change event handler',
       table: {
-        category: 'optional',
         type: {
           summary: '(e: ChangeEvent<HTMLInputElement>) => void',
         },
@@ -51,7 +41,6 @@ const meta = {
       description: 'switch label position',
       options: ['start', 'end'],
       table: {
-        category: 'optional',
         type: {
           summary: 'start | end',
         },
@@ -61,7 +50,6 @@ const meta = {
       control: 'text',
       description: 'text equivalent of the state (on or off)',
       table: {
-        category: 'optional',
         type: {
           summary: 'string',
         },
@@ -71,7 +59,6 @@ const meta = {
       control: false,
       description: 'custom switch thumb',
       table: {
-        category: 'optional',
         type: {
           summary: 'ReactNode',
         },
@@ -80,11 +67,6 @@ const meta = {
   },
   component: Switch,
   parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
     layout: 'centered',
   },
   tags: ['autodocs'],
@@ -92,14 +74,14 @@ const meta = {
 } satisfies Meta<typeof Switch>;
 
 export default meta;
+
 type Story = StoryObj<typeof Switch>;
 
-export const Switch1Default: Story = {
+export const Example1Default: Story = {
   args: {
     checked: true,
     isDisabled: true,
     label: '푸시 알림',
-    position: 'start',
   },
   render: function Render(args) {
     const [{ checked }, updateArgs] = useArgs();
@@ -120,11 +102,10 @@ export const Switch1Default: Story = {
   },
 };
 
-export const Switch2CustomThumb: Story = {
+export const Example2CustomThumb: Story = {
   args: {
     checked: true,
     label: '푸시 알림',
-    position: 'start',
   },
   render: function Render(args) {
     const [{ checked, isDisabled }, updateArgs] = useArgs();
@@ -153,14 +134,13 @@ export const Switch2CustomThumb: Story = {
   },
 };
 
-export const Switch3CustomLabel: Story = {
+export const Example3CustomLabel: Story = {
   args: {
     checked: true,
-    label: '푸쉬 알림',
-    position: 'start',
+    label: '푸시 알림',
   },
   render: function Render(args) {
-    const [{ checked, isDisabled }, updateArgs] = useArgs();
+    const [{ checked }, updateArgs] = useArgs();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       updateArgs({ checked: e.currentTarget.checked });
@@ -172,7 +152,6 @@ export const Switch3CustomLabel: Story = {
         <Switch
           {...args}
           checked={checked}
-          className={isDisabled ? 'bg-red-900' : ''}
           label={<span className="cursor-pointer text-18 font-bold text-pink-600">{args.label}</span>}
           onChange={handleChange}
         />
@@ -184,11 +163,10 @@ export const Switch3CustomLabel: Story = {
   },
 };
 
-export const Switch3WithStateText: Story = {
+export const Example4WithStateText: Story = {
   args: {
     checked: true,
     label: '푸시 알림',
-    position: 'start',
     stateText: 'ON',
   },
   render: function Render(args) {

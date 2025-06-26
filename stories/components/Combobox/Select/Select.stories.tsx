@@ -21,22 +21,15 @@ const meta = {
     isDisabled: {
       control: 'boolean',
       description: 'if true, the component will be disabled',
-      table: {
-        category: 'optional',
-      },
     },
     isReadOnly: {
       control: 'boolean',
       description: 'if true, user cannot change the value of the component',
-      table: {
-        category: 'optional',
-      },
     },
     onChange: {
       control: false,
       description: 'change event handler',
       table: {
-        category: 'optional',
         type: {
           summary: '(selected: string) => void',
         },
@@ -46,7 +39,6 @@ const meta = {
       control: 'object',
       description: 'select options',
       table: {
-        category: 'optional',
         type: {
           summary: '{ label : string; value: string; idx?: string }',
         },
@@ -55,15 +47,11 @@ const meta = {
     placeholder: {
       control: 'text',
       description: 'a hint that will be displayed until user enters a value',
-      table: {
-        category: 'optional',
-      },
     },
     selected: {
       control: false,
       description: 'selected value',
       table: {
-        category: 'required',
         type: {
           summary: 'string',
         },
@@ -73,17 +61,13 @@ const meta = {
   },
   component: Select,
   parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
     layout: 'centered',
   },
   title: 'Combobox/Select',
 } satisfies Meta<typeof Select>;
 
 export default meta;
+
 type Story = StoryObj<typeof Select>;
 
 export const Default: Story = {

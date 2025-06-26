@@ -17,7 +17,6 @@ const meta = {
       control: false,
       description: 'radio component',
       table: {
-        category: 'required',
         type: {
           summary: 'ReactNode',
         },
@@ -27,22 +26,15 @@ const meta = {
     gap: {
       control: 'number',
       description: 'horizontal / vertical spacing of the component',
-      table: {
-        category: 'optional',
-      },
     },
     isRow: {
       control: 'boolean',
       description: 'if true, the component be shown horizontally',
-      table: {
-        category: 'optional',
-      },
     },
     onChange: {
       control: false,
       description: 'change event handler',
       table: {
-        category: 'required',
         type: {
           summary: '(e: ChangeEvent<HTMLInputElement>) => void',
         },
@@ -52,7 +44,6 @@ const meta = {
       control: false,
       description: "selected radio's value",
       table: {
-        category: 'required',
         type: {
           summary: 'string',
         },
@@ -62,18 +53,14 @@ const meta = {
   },
   component: Radio.Group,
   parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
     layout: 'centered',
   },
   tags: ['autodocs'],
-  title: 'Form/Radio.Group',
+  title: 'Form/Radio/UI - 1. Radio Group',
 } satisfies Meta<typeof Radio.Group>;
 
 export default meta;
+
 type Story = StoryObj<typeof Radio.Group>;
 
 export const Default: Story = {

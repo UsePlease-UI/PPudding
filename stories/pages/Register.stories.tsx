@@ -13,6 +13,7 @@ const meta = {
 } satisfies Meta<typeof RegisterPage>;
 
 export default meta;
+
 type Story = StoryObj<typeof RegisterPage>;
 
 export const Default: Story = {

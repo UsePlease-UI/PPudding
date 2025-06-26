@@ -15,7 +15,6 @@ const meta = {
       control: false,
       description: 'radio component',
       table: {
-        category: 'required',
         type: {
           summary: 'ReactNode',
         },
@@ -25,32 +24,22 @@ const meta = {
     gap: {
       control: 'number',
       description: 'horizontal / vertical spacing of the component',
-      table: {
-        category: 'optional',
-      },
     },
     isRow: {
       control: 'boolean',
       description: 'if true, the component be shown horizontally',
-      table: {
-        category: 'optional',
-      },
     },
   },
   component: Checkbox.Group,
   parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
     layout: 'centered',
   },
   tags: ['autodocs'],
-  title: 'Form/Checkbox.Group',
+  title: 'Form/Checkbox/UI - 1. Checkbox Group',
 } satisfies Meta<typeof Checkbox.Group>;
 
 export default meta;
+
 type Story = StoryObj<typeof Checkbox.Group>;
 
 export const Default: Story = {

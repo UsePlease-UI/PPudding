@@ -14,11 +14,6 @@ const meta = {
   },
   component: Card,
   parameters: {
-    docs: {
-      argTypes: {
-        sort: 'requiredFirst',
-      },
-    },
     layout: 'centered',
   },
   tags: ['autodocs'],
@@ -26,9 +21,10 @@ const meta = {
 } satisfies Meta<typeof Card>;
 
 export default meta;
+
 type Story = StoryObj<typeof Card>;
 
-export const Card1Default: Story = {
+export const Example1Default: Story = {
   args: {},
   render: function Render() {
     return (
@@ -40,7 +36,7 @@ export const Card1Default: Story = {
   },
 };
 
-export const Card2Expandable: Story = {
+export const Example2Expandable: Story = {
   args: {},
   render: function Render() {
     return (
@@ -89,7 +85,7 @@ export const Card2Expandable: Story = {
   },
 };
 
-export const Card3Action: Story = {
+export const Example3Action: Story = {
   args: {},
   render: function Render() {
     return (
