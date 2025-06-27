@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useId, useRef } from 'react';
+import { ReactNode, useCallback, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { RemoveScroll } from 'react-remove-scroll';
 
@@ -6,24 +6,29 @@ import FocusOverlay from '../FocusOverlay';
 
 export interface FocusManagerType {
   children: ReactNode;
-  id: string;
+  canDismiss?: boolean;
   className?: string;
   isOpen?: boolean;
   onClose?: () => void;
+  overlayClassName?: string;
 }
 
 const FOCUSABLE = 'button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
 export default function FocusManager(props: FocusManagerType) {
-  const { children, id, isOpen, onClose } = props;
+  const { canDismiss, children, isOpen, onClose, overlayClassName, ...rest } = props;
   const portalRef = useRef<HTMLDivElement>(null);
 
-  const dialogId = useId();
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   // shift + tab -> backward
   // tab -> forward
   const handleFocusTrap = useCallback(
     (e: KeyboardEvent) => {
+      if (!isOpen) {
+        return;
+      }
+
       const focusable = portalRef.current?.querySelectorAll(FOCUSABLE) || [];
       const firstElement = [...focusable].shift() as HTMLElement;
       const lastElement = [...focusable].pop() as HTMLElement;
@@ -43,38 +48,43 @@ export default function FocusManager(props: FocusManagerType) {
         }
       }
     },
-    [onClose],
+    [isOpen, onClose],
   );
 
   useEffect(() => {
     if (isOpen) {
+      if (scrollRef.current) {
+        scrollRef.current.role = 'presentation';
+      }
       // document active element 강제 변경
       const focusable = portalRef.current?.querySelectorAll(FOCUSABLE) || [];
       const firstElement = [...focusable].shift() as HTMLElement;
-      firstElement.focus();
+      firstElement?.focus();
     }
   }, [isOpen]);
 
   useEffect(() => {
-    if (isOpen) {
-      window.addEventListener('keydown', handleFocusTrap);
-    }
+    window.addEventListener('keydown', handleFocusTrap);
     return () => window.removeEventListener('keydown', handleFocusTrap);
-  }, [handleFocusTrap, isOpen]);
+  }, [handleFocusTrap]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (canDismiss && portalRef.current === event.target && onClose) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [canDismiss, onClose]);
 
   return isOpen
     ? createPortal(
-        <RemoveScroll enabled={isOpen}>
-          <FocusOverlay isDimmed />
+        <RemoveScroll ref={scrollRef} className="fixed inset-0 z-10000" enabled={isOpen}>
+          <FocusOverlay isDimmed className={overlayClassName} />
           <span aria-hidden={true} className="sr-only" tabIndex={0} />
-          <div
-            ref={portalRef}
-            className="fixed bottom-0 left-0 right-0 top-0 z-9999"
-            id={id || dialogId}
-            tabIndex={-1}
-            aria-modal="true"
-            role="dialog"
-          >
+          <div {...rest} ref={portalRef} tabIndex={-1} role="presentation">
             {children}
           </div>
           <span aria-hidden={true} className="sr-only" tabIndex={0} />

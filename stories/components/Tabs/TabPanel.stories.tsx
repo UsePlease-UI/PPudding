@@ -43,6 +43,7 @@ const meta = {
     },
   },
   component: Tabs.Panel,
+  tags: ['autodocs'],
   title: 'Tabs/UI - 4. Tab Panel',
 } satisfies Meta<typeof Tabs.Panel>;
 

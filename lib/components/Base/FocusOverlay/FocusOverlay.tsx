@@ -13,7 +13,7 @@ export default function FocusOverlay(props: FocusOverlayType) {
       aria-hidden="true"
       role="presentation"
       className={joinClassNames(
-        'fixed bottom-0 left-0 right-0 top-0 select-none',
+        'fixed bottom-0 left-0 right-0 top-0 -z-1 select-none',
         isDimmed && 'bg-black/10',
         className && className,
       )}

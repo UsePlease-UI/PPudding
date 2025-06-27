@@ -53,6 +53,7 @@ const meta = {
     },
   },
   component: Tabs.Item,
+  tags: ['autodocs'],
   title: 'Tabs/UI - 3. Tab Item',
 } satisfies Meta<typeof Tabs.Item>;
 

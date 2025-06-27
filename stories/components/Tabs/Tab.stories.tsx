@@ -20,6 +20,7 @@ const meta = {
     },
   },
   component: Tabs.Tab,
+  tags: ['autodocs'],
   title: 'Tabs/UI - 2. Tab',
 } satisfies Meta<typeof Tabs.Tab>;
 

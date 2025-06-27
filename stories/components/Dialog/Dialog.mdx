@@ -1,0 +1,237 @@
+import { Canvas, Meta, Story, ArgTypes } from '@storybook/addon-docs/blocks';
+
+import * as DialogExampleStories from './DialogExample.stories';
+
+import * as DialogRootStories from './DialogRoot.stories';
+import * as DialogTriggerStories from './DialogTrigger.stories';
+import * as DialogFocusManagerStories from './DialogFocusManager.stories';
+import * as DialogContentStories from './DialogContent.stories';
+import * as DialogTitleStories from './DialogTitle.stories';
+import * as DialogDescriptionStories from './DialogDescription.stories';
+import * as DialogActionStories from './DialogAction.stories';
+
+import AnatomyImage from './dialog_anatomy.png';
+
+<Meta of={DialogExampleStories} />
+
+<style>
+  {`
+      #storybook-docs code {
+        font-size: 14px !important;
+        font-weight: 600;
+      }
+
+      #storybook-docs pre {
+        font-size: 16px !important;
+        font-weight: 500;
+        background-color: #f7fafc !important;
+      }
+
+      #storybook-docs p,
+      #storybook-docs li {
+        font-size: 16px !important;
+      }
+
+      #storybook-docs a:hover {
+        text-decoration: underline !important;
+      }
+
+      #storybook-docs h1 {
+        margin-bottom: 40px !important;
+      }
+
+      #storybook-docs h2 {
+        font-weight: 600 !important;
+        margin-top: 60px !important;
+      }
+
+      #storybook-docs h2:first-of-type {
+        margin-top: 0px !important;
+      }
+
+      #storybook-docs .img-container {
+        padding: 10px !important;
+        border-radius: 4px !important;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px !important;
+      }
+
+      #storybook-docs .img-container b {
+        margin-bottom: 20px !important;
+      }
+
+      #storybook-docs img {
+        width: 748px !important;
+        height: 400px !important;
+        margin: 0 auto !important;
+        object-fit: contain;
+      }
+
+      #storybook-docs .keyboard {
+        width: max-content;
+        border: 1px solid black;
+        padding: 2px 8px;
+        border-radius: 4px;
+        box-shadow: 1px 1px 0px 0px black;
+        font-weight: 600;
+      }
+  `}
+</style>
+
+# Dialog
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Anatomy](#anatomy)
+- [WAI-ARIA Roles, States, and Properties](#wai-aria-roles-states-and-properties)
+- [Keyboard Interaction](#keyboard-interaction)
+- [Props](#props)
+- [Usage](#usage)
+
+## Overview
+
+사용자에게 중요한 정보를 알리거나, 추가 작업을 요구할 때 사용되는 **Dialog** 컴포넌트입니다.
+
+## Anatomy
+
+**Dialog**는 다음과 같이 구현되어 있습니다.
+
+<div className="img-container">
+  <img src={AnatomyImage} alt="Dialog Anatomy" />
+</div>
+
+0️⃣ **Dialog Root**
+
+1️⃣ **Dialog Trigger**
+
+2️⃣ **Dialog Focus Manager**
+
+3️⃣ **Dialog Content**
+
+4️⃣ **Dialog Title**
+
+5️⃣ **Dialog Description**
+
+6️⃣ **Dialog Action**
+
+## WAI-ARIA Roles, States, and Properties
+
+### Dialog Trigger
+
+✅ 트리거는 `button`으로 구현되어 있습니다.
+✅ 버튼은 `aria-haspopup="dialog"`로 설정되어 있습니다.  
+✅ 버튼에는 다이얼로그의 열림 상태를 나타내는 `aria-expanded`가 설정되어 있습니다.  
+✅ 버튼에는 제어 대상 다이얼로그의 ID를 참조하는 `aria-controls`가 설정되어 있습니다.
+
+### Dialog Content
+
+✅ `role="dialog"`으로 설정되어 있습니다.  
+✅ 다이얼로그는 고유한 ID를 가지며, 버튼의 `aria-controls`가 이를 참조합니다.  
+✅ 키보드 포커스를 제한하기 위해 `aria-modal="true"`가 설정되어 있습니다.  
+✅ 다이얼로그의 제목 요소 ID를 참조하는 `aria-labelledby`가 설정되어 있습니다.  
+✅ 다이얼로그의 설명 문구 ID를 참조하는 `aria-describedby`가 설정되어 있습니다.
+
+### Dialog Title
+
+✅ 제목 요소는 고유한 ID를 가지며, 다이얼로그의 `aria-labelledby`가 이를 참조합니다.
+
+### Dialog Description
+
+✅ 설명 문구는 고유한 ID를 가지며, 다이얼로그의 `aria-describedby`가 이를 참조합니다.
+
+## Keyboard Interaction
+
+<div className="keyboard">Tab</div>
+
+- 다이얼로그 내 첫 번째 포커스 가능한 요소로 이동합니다.
+
+- 이후 포커스는 다이얼로그 내부에서만 순환합니다. **(Focus Trap 적용)**
+
+<div className="keyboard">Shift + Tab</div>
+
+- 포커스를 다이얼로그 내 이전 요소로 이동합니다.
+
+<div className="keyboard">Esc</div>
+
+- 다이얼로그를 닫습니다.
+
+## Props
+
+### Dialog Root
+
+<ArgTypes of={DialogRootStories} />
+
+### Dialog Trigger
+
+<ArgTypes of={DialogTriggerStories} />
+
+### Dialog Focus Manager
+
+<ArgTypes of={DialogFocusManagerStories} />
+
+### Dialog Content
+
+<ArgTypes of={DialogContentStories} />
+
+### Dialog Title
+
+<ArgTypes of={DialogTitleStories} />
+
+### Dialog Description
+
+<ArgTypes of={DialogDescriptionStories} />
+
+### Dialog Action
+
+<ArgTypes of={DialogActionStories} />
+
+## Usage
+
+설명 요소가 없다면 DialogContent에서 `aria-describedby=""`로 설정해주세요.
+
+```tsx
+import { useState } from 'react';
+
+import { Button, Dialog, useAlert } from '@useplease-ui/ppudding';
+
+export default function DialogExample() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const { onAlert } = useAlert();
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  const handleConfirm = () => {
+    setIsOpen(false);
+    onAlert('인증 해제되었습니다.', { canDismiss: true, delay: 3000, variant: 'success' });
+  };
+
+  return (
+    <div className="flex h-screen w-screen items-center justify-center bg-gray-100">
+      <Dialog canDismiss isOpen={isOpen} setIsOpen={setIsOpen}>
+        <Dialog.Trigger>인증 해제</Dialog.Trigger>
+        <Dialog.FocusManager>
+          <Dialog.Content>
+            <Dialog.Title className="mb-5">인증을 해제하시겠습니까?</Dialog.Title>
+            <Dialog.Description className="mb-10">
+              인증 해제 후에는 바로 로그아웃되며,
+              <br />
+              로그인 시에 새롭게 기기인증을 진행해야 합니다.
+            </Dialog.Description>
+            <Dialog.Action>
+              <Button size="medium" variant="outlined" onClick={handleClose}>
+                취소
+              </Button>
+              <Button size="medium" variant="contained" onClick={handleConfirm}>
+                인증 해제
+              </Button>
+            </Dialog.Action>
+          </Dialog.Content>
+        </Dialog.FocusManager>
+      </Dialog>
+    </div>
+  );
+}
+```
