@@ -1,0 +1,23 @@
+import { default as DialogAction } from './DialogAction';
+import { default as DialogContent } from './DialogContent';
+import { default as DialogDescription } from './DialogDescription';
+import { default as DialogFocusManager } from './DialogFocusManager';
+import { default as DialogRoot } from './DialogRoot';
+import { default as DialogTitle } from './DialogTitle';
+import { default as DialogTrigger } from './DialogTrigger';
+declare const _default: typeof DialogRoot & {
+    Action: typeof DialogAction;
+    Content: typeof DialogContent;
+    Description: typeof DialogDescription;
+    FocusManager: typeof DialogFocusManager;
+    Title: typeof DialogTitle;
+    Trigger: typeof DialogTrigger;
+};
+export default _default;
+export type { DialogRootType } from './DialogRoot';
+export type { DialogTriggerType } from './DialogTrigger';
+export type { DialogFocusManagerType } from './DialogFocusManager';
+export type { DialogContentType } from './DialogContent';
+export type { DialogTitleType } from './DialogTitle';
+export type { DialogDescriptionType } from './DialogDescription';
+export type { DialogActionType } from './DialogAction';

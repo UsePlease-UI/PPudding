@@ -1,0 +1,4 @@
+import{j as o}from"./iframe-BuoardWh.js";import{D as l,a as s}from"./DialogExample-C64iaBdI.js";const n={args:{as:"h2",children:null},argTypes:{as:{control:!1,description:"element type (h1, h2, h3...)",table:{defaultValue:{summary:"h2"},type:{summary:"ElementType"}}},children:{control:!1,description:"dialog title content",table:{type:{summary:"ReactNode"}}}},component:l.Title,parameters:{layout:"centered"},tags:["autodocs"],title:"Dialog/UI - 5. Dialog Title"},e={args:{},render:()=>o.jsx(s,{})};var t,a,r;e.parameters={...e.parameters,docs:{...(t=e.parameters)==null?void 0:t.docs,source:{originalSource:`{
+  args: {},
+  render: () => <DialogExample />
+}`,...(r=(a=e.parameters)==null?void 0:a.docs)==null?void 0:r.source}}};const i=["Default"],p=Object.freeze(Object.defineProperty({__proto__:null,Default:e,__namedExportsOrder:i,default:n},Symbol.toStringTag,{value:"Module"}));export{p as D};

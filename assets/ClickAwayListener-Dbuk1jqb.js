@@ -1,0 +1,1 @@
+import{r as a}from"./iframe-BuoardWh.js";function u(i){const{anchorElement:t,children:c,element:e,isOpen:o,onClose:n}=i;return a.useEffect(()=>{const r=s=>{o&&!(e!=null&&e.contains(s.target))&&!(t!=null&&t.contains(s.target))&&n&&n()};return document.addEventListener("mousedown",r),()=>{document.removeEventListener("mousedown",r)}},[t,e,o,n]),c}export{u as C};
