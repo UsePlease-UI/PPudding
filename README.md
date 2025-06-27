@@ -157,7 +157,7 @@
         Skeleton
       </th>
       <th width="33.3333%">
-        Table
+        Switch
       </th>
     </tr>
     <tr>
@@ -172,23 +172,28 @@
         </a>
       </td>
       <td width="33.3333%">
-        <a href="https://useplease-ui.github.io/PPudding/?path=/docs/table-table--docs">
-          <img src="https://github.com/user-attachments/assets/f5e26323-7d8b-4a8a-984a-d38630b9de2b" width="600" />
+        <a href="https://useplease-ui.github.io/PPudding/?path=/docs/form-switch--docs">
+          <img src="https://github.com/user-attachments/assets/c1af6c6d-807e-46d4-8f1f-df03dec0fe09" width="600" />
         </a>
       </td>
     </tr>
     <tr>
+      <th width="33.3333%">
+        Table
+      </th>
       <th width="33.3333%">
         Tabs
       </th>
       <th width="33.3333%">
         Textarea
       </th>
-      <th width="33.3333%">
-        Textfield
-      </th>
     </tr>
     <tr>
+      <td width="33.3333%">
+        <a href="https://useplease-ui.github.io/PPudding/?path=/docs/table-table--docs">
+          <img src="https://github.com/user-attachments/assets/f5e26323-7d8b-4a8a-984a-d38630b9de2b" width="600" />
+        </a>
+      </td>
       <td width="33.3333%">
         <a href="https://useplease-ui.github.io/PPudding/?path=/docs/tabs-tabs--docs">
           <img src="https://github.com/user-attachments/assets/8fbcff3c-5ebd-40c7-841e-194366adfd8d" width="600" />
@@ -199,32 +204,27 @@
           <img src="https://github.com/user-attachments/assets/7e1e231a-efd3-4afd-850e-5d91f43648a8" width="600" />
         </a>
       </td>
-      <td width="33.3333%">
-        <a href="https://useplease-ui.github.io/PPudding/?path=/docs/form-textfield--docs">
-          <img src="https://github.com/user-attachments/assets/6c9c50d3-4dd3-47d8-af66-a5938a4ccc79" width="600" />
-        </a>
-      </td>
     </tr>
     <tr>
+      <th width="33.3333%">
+        Textfield
+      </th>
       <th width="33.3333%">
         Toggle Button
       </th>
       <th width="33.3333%">
         -
       </th>
-      <th width="33.3333%">
-        -
-      </th>
     </tr>
     <tr>
       <td width="33.3333%">
-        <a href="https://useplease-ui.github.io/PPudding/?path=/docs/button-togglebutton--docs">
-          <img src="https://github.com/user-attachments/assets/dce2584e-a4ff-4235-9582-ad69dc161fe8" width="600" />
+        <a href="https://useplease-ui.github.io/PPudding/?path=/docs/form-textfield--docs">
+          <img src="https://github.com/user-attachments/assets/6c9c50d3-4dd3-47d8-af66-a5938a4ccc79" width="600" />
         </a>
       </td>
       <td width="33.3333%">
-        <a href="https://useplease-ui.github.io/PPudding">
-          <img src="https://github.com/user-attachments/assets/d9caa9c4-e00e-4e9a-a674-8b7c8b0b5c80" width="600" />
+        <a href="https://useplease-ui.github.io/PPudding/?path=/docs/button-togglebutton--docs">
+          <img src="https://github.com/user-attachments/assets/dce2584e-a4ff-4235-9582-ad69dc161fe8" width="600" />
         </a>
       </td>
       <td width="33.3333%">
