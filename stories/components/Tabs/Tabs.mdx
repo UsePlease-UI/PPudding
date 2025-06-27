@@ -109,19 +109,19 @@ import DefaultImage from './tabs_default.png';
 
 ### Tab
 
-✅ 탭 버튼 그룹은 `role="tablist"`로 설정되어 있습니다.
+✅ `role="tablist"`로 설정되어 있습니다.
 
 ### Tab Item
 
-✅ 탭 버튼은 `role="tab"`으로 설정되어 있습니다.  
+✅ `role="tab"`으로 설정되어 있습니다.  
 ✅ 선택된 탭 버튼에는 `aria-selected="true"`가 설정되어 있습니다.  
 ✅ 탭 버튼에는 제어 대상 패널의 ID를 참조하는 `aria-controls`가 설정되어 있습니다.
 
 ### Tab Panel
 
-✅ role="tabpanel"으로 설정되어 있습니다.  
+✅ `role="tabpanel"`으로 설정되어 있습니다.  
 ✅ 패널 요소는 고유한 ID를 가지며, 탭 버튼의 `aria-controls`가 이를 참조합니다.  
-✅ `aria-labelledby`로 연결된 탭 버튼의 ID를 참조합니다.
+✅ 연결된 탭 버튼의 ID를 참조하는 `aria-labelledby`가 설정되어 있습니다.
 
 ## Keyboard Interaction
 
@@ -129,11 +129,11 @@ import DefaultImage from './tabs_default.png';
 
 - 탭 버튼 그룹 내에서 첫 번째 탭에 포커스할 수 있습니다.
 
-<div className="keyboard">ArrowRight</div>
+<div className="keyboard">Arrow Right</div>
 
 - 다음 탭 버튼으로 포커스를 이동시킵니다.
 
-<div className="keyboard">ArrowLeft</div>
+<div className="keyboard">Arrow Left</div>
 
 - 이전 탭 버튼으로 포커스를 이동시킵니다.
 
@@ -141,17 +141,17 @@ import DefaultImage from './tabs_default.png';
 
 ### Tabs
 
-<ArgTypes />
+<ArgTypes of={TabsStories} />
 
 ### Tab
 
 <ArgTypes of={TabStories} />
 
-### TabItem
+### Tab Item
 
 <ArgTypes of={TabItemStories} />
 
-### TabPanel
+### Tab Panel
 
 <ArgTypes of={TabPanelStories} />
 

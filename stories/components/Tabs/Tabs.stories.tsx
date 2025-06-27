@@ -45,6 +45,7 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
+  tags: ['autodocs'],
   title: 'Tabs/UI - 1. Tabs',
 } satisfies Meta<typeof Tabs>;
 

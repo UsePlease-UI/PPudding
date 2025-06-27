@@ -12,7 +12,7 @@ export default function ClickAwayListener(props: ClickAwayListenerType) {
   const { anchorElement, children, element, isOpen, onClose } = props;
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    const handleClickOutside = (event: MouseEvent) => {
       if (
         isOpen &&
         !element?.contains(event.target as Node) &&
@@ -21,7 +21,7 @@ export default function ClickAwayListener(props: ClickAwayListenerType) {
       ) {
         onClose();
       }
-    }
+    };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
