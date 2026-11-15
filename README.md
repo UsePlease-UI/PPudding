@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=waving&height=350&text=PPudding&color=DCCD14&fontColor=754112)
+<img width="1200" height="630" alt="banner image" src="https://github.com/user-attachments/assets/1f3557cd-2401-47cb-945b-5ca111547ac7" />
 
 ![v1.0](https://img.shields.io/badge/v1.0-2023--05~2023--08-e3ecfb?style=flat-square)
 ![v1.1](https://img.shields.io/badge/v1.1-2024--01~2025--06-c0d9f7?style=flat-square)
@@ -236,7 +236,8 @@
   </tbody>
 </table>
 
-## 사용된 리소스
+## 사용한 Assets
 
 - [Heroicons](https://heroicons.com/)
 - [Pretendard Font](https://github.com/orioncactus/pretendard)
+- [Cherry Bomb One Font](https://fonts.google.com/specimen/Cherry+Bomb+One)
